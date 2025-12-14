@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "outputDirectory": ".next",
+  "regions": ["iad1"],
+  "env": {
+    "BINDING_MODE": "synthetic",
+    "APP_NAME": "SGM Summit Demo",
+    "APP_TIER": "summit",
+    "NODE_ENV": "production"
+  }
+}
