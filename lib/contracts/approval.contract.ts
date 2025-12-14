@@ -42,7 +42,7 @@ export const ApprovalSchema = z.object({
   entityType: z.string(), // e.g., "policy", "territory", "quota"
   entityId: z.string(),
   requestType: z.string(), // e.g., "create", "update", "delete", "publish"
-  requestData: z.record(z.any()), // JSON payload with requested changes
+  requestData: z.record(z.string(), z.any()), // JSON payload with requested changes
 
   // Workflow
   workflowId: z.string().optional(),
@@ -68,7 +68,7 @@ export const ApprovalSchema = z.object({
   updatedAt: z.coerce.date().optional(),
 
   // Metadata
-  metadata: z.record(z.any()).optional(),
+  metadata: z.record(z.string(), z.any()).optional(),
 });
 
 export type Approval = z.infer<typeof ApprovalSchema>;

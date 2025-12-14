@@ -42,7 +42,7 @@ export const IndexItemSchema = z.object({
   lastUpdatedAt: z.coerce.date(),
 
   // Additional Metadata
-  metadata: z.record(z.any()).optional(),
+  metadata: z.record(z.string(), z.any()).optional(),
 });
 
 export type IndexItem = z.infer<typeof IndexItemSchema>;

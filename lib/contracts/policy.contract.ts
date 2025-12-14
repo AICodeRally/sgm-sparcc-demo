@@ -55,7 +55,7 @@ export const PolicySchema = z.object({
   updatedAt: z.coerce.date().optional(),
 
   // Metadata (flexible JSON for client-specific fields)
-  metadata: z.record(z.any()).optional(),
+  metadata: z.record(z.string(), z.any()).optional(),
 });
 
 export type Policy = z.infer<typeof PolicySchema>;

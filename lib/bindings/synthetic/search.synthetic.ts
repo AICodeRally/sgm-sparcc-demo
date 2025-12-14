@@ -9,10 +9,10 @@ import type {
 } from '@/lib/contracts/index-item.contract';
 
 export class SyntheticSearchProvider implements ISearchPort {
-  private index: Map<string, IndexItem>;
+  private searchIndex: Map<string, IndexItem>;
 
   constructor() {
-    this.index = new Map();
+    this.searchIndex = new Map();
   }
 
   async index(data: CreateIndexItem): Promise<IndexItem> {
@@ -23,7 +23,7 @@ export class SyntheticSearchProvider implements ISearchPort {
       indexedAt: new Date(),
     };
 
-    this.index.set(item.id, item);
+    this.searchIndex.set(item.id, item);
     return item;
   }
 
@@ -32,7 +32,7 @@ export class SyntheticSearchProvider implements ISearchPort {
   }
 
   async updateIndex(data: UpdateIndexItem): Promise<IndexItem> {
-    const existing = this.index.get(data.id);
+    const existing = this.searchIndex.get(data.id);
     if (!existing) throw new Error(`IndexItem ${data.id} not found`);
 
     const updated: IndexItem = {
@@ -41,16 +41,16 @@ export class SyntheticSearchProvider implements ISearchPort {
       searchableText: this.buildSearchableText(data),
     };
 
-    this.index.set(updated.id, updated);
+    this.searchIndex.set(updated.id, updated);
     return updated;
   }
 
   async removeFromIndex(entityType: string, entityId: string): Promise<void> {
-    const items = Array.from(this.index.values()).filter(
+    const items = Array.from(this.searchIndex.values()).filter(
       (i) => i.entityType === entityType && i.entityId === entityId
     );
 
-    items.forEach((i) => this.index.delete(i.id));
+    items.forEach((i) => this.searchIndex.delete(i.id));
   }
 
   async reindex(
@@ -70,7 +70,7 @@ export class SyntheticSearchProvider implements ISearchPort {
   async search(query: SearchQuery): Promise<SearchResponse> {
     const startTime = Date.now();
 
-    let results = Array.from(this.index.values());
+    let results = Array.from(this.searchIndex.values());
 
     // Apply filters
     if (query.tenantId) {
@@ -148,7 +148,7 @@ export class SyntheticSearchProvider implements ISearchPort {
   }
 
   async suggest(tenantId: string, prefix: string, limit: number = 10): Promise<string[]> {
-    const items = Array.from(this.index.values()).filter((i) => i.tenantId === tenantId);
+    const items = Array.from(this.searchIndex.values()).filter((i) => i.tenantId === tenantId);
 
     const suggestions = new Set<string>();
 
@@ -162,7 +162,7 @@ export class SyntheticSearchProvider implements ISearchPort {
   }
 
   async getAggregations(tenantId: string, query?: string): Promise<SearchAggregations> {
-    let items = Array.from(this.index.values()).filter((i) => i.tenantId === tenantId);
+    let items = Array.from(this.searchIndex.values()).filter((i) => i.tenantId === tenantId);
 
     if (query) {
       const searchQuery = query.toLowerCase();
@@ -198,7 +198,7 @@ export class SyntheticSearchProvider implements ISearchPort {
   }
 
   async findByEntity(entityType: string, entityId: string): Promise<IndexItem | null> {
-    const items = Array.from(this.index.values()).filter(
+    const items = Array.from(this.searchIndex.values()).filter(
       (i) => i.entityType === entityType && i.entityId === entityId
     );
 
@@ -206,17 +206,17 @@ export class SyntheticSearchProvider implements ISearchPort {
   }
 
   async findByEntityType(tenantId: string, entityType: string): Promise<IndexItem[]> {
-    return Array.from(this.index.values()).filter(
+    return Array.from(this.searchIndex.values()).filter(
       (i) => i.tenantId === tenantId && i.entityType === entityType
     );
   }
 
   async count(tenantId: string): Promise<number> {
-    return Array.from(this.index.values()).filter((i) => i.tenantId === tenantId).length;
+    return Array.from(this.searchIndex.values()).filter((i) => i.tenantId === tenantId).length;
   }
 
   async countByEntityType(tenantId: string): Promise<Record<string, number>> {
-    const items = Array.from(this.index.values()).filter((i) => i.tenantId === tenantId);
+    const items = Array.from(this.searchIndex.values()).filter((i) => i.tenantId === tenantId);
 
     const counts: Record<string, number> = {};
     items.forEach((i) => {
@@ -227,9 +227,9 @@ export class SyntheticSearchProvider implements ISearchPort {
   }
 
   async clearIndex(tenantId: string): Promise<number> {
-    const items = Array.from(this.index.values()).filter((i) => i.tenantId === tenantId);
+    const items = Array.from(this.searchIndex.values()).filter((i) => i.tenantId === tenantId);
 
-    items.forEach((i) => this.index.delete(i.id));
+    items.forEach((i) => this.searchIndex.delete(i.id));
 
     return items.length;
   }

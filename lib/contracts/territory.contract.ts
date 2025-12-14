@@ -74,7 +74,7 @@ export const TerritorySchema = z.object({
   updatedAt: z.coerce.date().optional(),
 
   // Metadata
-  metadata: z.record(z.any()).optional(),
+  metadata: z.record(z.string(), z.any()).optional(),
 });
 
 export type Territory = z.infer<typeof TerritorySchema>;

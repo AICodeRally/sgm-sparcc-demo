@@ -72,8 +72,8 @@ export const AuditLogSchema = z.object({
   actorRole: z.string().optional(), // User role at time of action
 
   // Changes (for update events)
-  changesBefore: z.record(z.any()).optional(), // Previous values
-  changesAfter: z.record(z.any()).optional(), // New values
+  changesBefore: z.record(z.string(), z.any()).optional(), // Previous values
+  changesAfter: z.record(z.string(), z.any()).optional(), // New values
 
   // Request Context
   requestId: z.string().optional(), // Trace ID for debugging
@@ -84,7 +84,7 @@ export const AuditLogSchema = z.object({
   occurredAt: z.coerce.date(),
 
   // Metadata
-  metadata: z.record(z.any()).optional(),
+  metadata: z.record(z.string(), z.any()).optional(),
 });
 
 export type AuditLog = z.infer<typeof AuditLogSchema>;
@@ -121,8 +121,8 @@ export type AuditLogFilters = z.infer<typeof AuditLogFiltersSchema>;
  */
 export const AuditSummarySchema = z.object({
   totalEvents: z.number().int(),
-  eventsByType: z.record(z.number()),
-  eventsBySeverity: z.record(z.number()),
+  eventsByType: z.record(z.string(), z.number()),
+  eventsBySeverity: z.record(z.string(), z.number()),
   topActors: z.array(z.object({
     actorId: z.string(),
     actorName: z.string().optional(),

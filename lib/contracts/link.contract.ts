@@ -75,7 +75,7 @@ export const LinkSchema = z.object({
   deletedAt: z.coerce.date().optional(),
 
   // Metadata
-  metadata: z.record(z.any()).optional(),
+  metadata: z.record(z.string(), z.any()).optional(),
 });
 
 export type Link = z.infer<typeof LinkSchema>;
@@ -114,7 +114,7 @@ export const LinkGraphNodeSchema = z.object({
   id: z.string(),
   type: z.string(),
   name: z.string(),
-  data: z.record(z.any()).optional(),
+  data: z.record(z.string(), z.any()).optional(),
 });
 
 export type LinkGraphNode = z.infer<typeof LinkGraphNodeSchema>;
