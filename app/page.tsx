@@ -1,122 +1,176 @@
-import { CheckCircledIcon, LayersIcon, CodeIcon, RocketIcon } from '@radix-ui/react-icons';
+'use client';
 
-export default function Home() {
+import Link from 'next/link';
+
+export default function SGMDashboard() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-8">
-      <div className="glass-card p-12 max-w-4xl w-full">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold mb-4 text-primary-500">
-            SGM Summit Demo
-          </h1>
-          <h2 className="text-2xl text-navy-300 mb-4">
-            Sales Governance Manager
-          </h2>
-          <p className="text-navy-400 text-lg">
-            Demonstrating <strong>Contracts + Ports + Bindings</strong> architecture
-            <br />
-            for flexible, testable, zero-dependency demos
-          </p>
-        </div>
-
-        {/* Architecture Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="glass-card p-6 text-center">
-            <LayersIcon className="w-12 h-12 mx-auto mb-4 text-primary-500" />
-            <h3 className="font-bold text-lg mb-2">Contracts</h3>
-            <p className="text-sm text-navy-400">TypeScript types + Zod schemas</p>
-          </div>
-          <div className="glass-card p-6 text-center">
-            <CodeIcon className="w-12 h-12 mx-auto mb-4 text-primary-500" />
-            <h3 className="font-bold text-lg mb-2">Ports</h3>
-            <p className="text-sm text-navy-400">Service interfaces (DI)</p>
-          </div>
-          <div className="glass-card p-6 text-center">
-            <RocketIcon className="w-12 h-12 mx-auto mb-4 text-primary-500" />
-            <h3 className="font-bold text-lg mb-2">Bindings</h3>
-            <p className="text-sm text-navy-400">Synthetic | Mapped | Live</p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
+      {/* Hero Section */}
+      <div className="bg-white border-b border-gray-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="text-center">
+            <h1 className="text-5xl font-bold text-gray-900">Sales Governance Manager</h1>
+            <p className="text-xl text-gray-600 mt-4">
+              Centralized platform for managing compensation governance documents, approvals, and compliance
+            </p>
           </div>
         </div>
+      </div>
 
-        {/* Features */}
-        <div className="mb-12">
-          <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <CheckCircledIcon className="text-green-500" />
-            Implemented (MVP)
-          </h3>
-          <div className="grid grid-cols-2 gap-4 text-sm">
-            <div className="glass-card p-4">
-              <strong className="text-primary-500">Policies</strong>
-              <p className="text-navy-400">Versioning, lifecycle, search</p>
-            </div>
-            <div className="glass-card p-4">
-              <strong className="text-primary-500">Territories</strong>
-              <p className="text-navy-400">Hierarchy, assignment tracking</p>
-            </div>
-            <div className="glass-card p-4">
-              <strong className="text-primary-500">Approvals</strong>
-              <p className="text-navy-400">Workflows, SLA tracking</p>
-            </div>
-            <div className="glass-card p-4">
-              <strong className="text-primary-500">Audit Logs</strong>
-              <p className="text-navy-400">Append-only event logging</p>
-            </div>
-            <div className="glass-card p-4">
-              <strong className="text-primary-500">Links</strong>
-              <p className="text-navy-400">ConnectItem pattern</p>
-            </div>
-            <div className="glass-card p-4">
-              <strong className="text-primary-500">Search</strong>
-              <p className="text-navy-400">IndexItem pattern</p>
-            </div>
+      {/* Quick Stats */}
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-4 gap-6 mb-12">
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <p className="text-sm text-gray-600 font-medium">Documents</p>
+            <p className="text-3xl font-bold text-gray-900 mt-2">10+</p>
+            <p className="text-xs text-gray-500 mt-1">All governance documents</p>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <p className="text-sm text-gray-600 font-medium">Pending Approvals</p>
+            <p className="text-3xl font-bold text-orange-600 mt-2">3</p>
+            <p className="text-xs text-gray-500 mt-1">Awaiting review</p>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <p className="text-sm text-gray-600 font-medium">Active Policies</p>
+            <p className="text-3xl font-bold text-green-600 mt-2">6</p>
+            <p className="text-xs text-gray-500 mt-1">Effective now</p>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-6">
+            <p className="text-sm text-gray-600 font-medium">Committees</p>
+            <p className="text-3xl font-bold text-blue-600 mt-2">2</p>
+            <p className="text-xs text-gray-500 mt-1">SGCC, CRB</p>
           </div>
         </div>
 
-        {/* API Links */}
-        <div className="space-y-4">
-          <h3 className="text-xl font-bold mb-4">Try the API</h3>
-
-          <a href="/api/sgm/diagnostics" target="_blank" className="glass-card-hover p-4 block">
-            <div className="flex justify-between items-center">
-              <div>
-                <div className="font-bold">Diagnostics</div>
-                <div className="text-sm text-navy-400">System status, binding mode, data counts</div>
+        {/* Main Navigation */}
+        <div className="grid grid-cols-3 gap-6 mb-12">
+          {/* Documents */}
+          <Link href="/documents">
+            <div className="bg-white rounded-lg border border-gray-200 p-8 hover:shadow-lg hover:border-gray-300 transition-all cursor-pointer h-full">
+              <div className="text-4xl mb-4">📄</div>
+              <h2 className="text-2xl font-bold text-gray-900">Documents</h2>
+              <p className="text-gray-600 mt-2">Manage governance documents with versioning and lifecycle tracking</p>
+              <div className="mt-4 flex items-center gap-2 text-blue-600 font-medium">
+                Browse Documents <span>→</span>
               </div>
-              <div className="text-primary-500 font-mono text-sm">GET /api/sgm/diagnostics</div>
             </div>
-          </a>
+          </Link>
 
-          <a href="/api/sgm/policies?status=published" target="_blank" className="glass-card-hover p-4 block">
-            <div className="flex justify-between items-center">
-              <div>
-                <div className="font-bold">List Policies</div>
-                <div className="text-sm text-navy-400">Query policies with filters</div>
+          {/* Approvals */}
+          <Link href="/approvals">
+            <div className="bg-white rounded-lg border border-gray-200 p-8 hover:shadow-lg hover:border-gray-300 transition-all cursor-pointer h-full">
+              <div className="text-4xl mb-4">✓</div>
+              <h2 className="text-2xl font-bold text-gray-900">Approvals</h2>
+              <p className="text-gray-600 mt-2">Review and approve pending documents with multi-level workflow routing</p>
+              <div className="mt-4 flex items-center gap-2 text-blue-600 font-medium">
+                View Queue <span>→</span>
               </div>
-              <div className="text-primary-500 font-mono text-sm">GET /api/sgm/policies</div>
             </div>
-          </a>
+          </Link>
 
-          <a href="/api/sgm/policies/pol-001" target="_blank" className="glass-card-hover p-4 block">
-            <div className="flex justify-between items-center">
-              <div>
-                <div className="font-bold">Policy Detail</div>
-                <div className="text-sm text-navy-400">Policy + audit logs + links</div>
+          {/* Committees */}
+          <Link href="/committees">
+            <div className="bg-white rounded-lg border border-gray-200 p-8 hover:shadow-lg hover:border-gray-300 transition-all cursor-pointer h-full">
+              <div className="text-4xl mb-4">👥</div>
+              <h2 className="text-2xl font-bold text-gray-900">Committees</h2>
+              <p className="text-gray-600 mt-2">Manage governance committees, members, and decision authorities</p>
+              <div className="mt-4 flex items-center gap-2 text-blue-600 font-medium">
+                View Committees <span>→</span>
               </div>
-              <div className="text-primary-500 font-mono text-sm">GET /api/sgm/policies/[id]</div>
             </div>
-          </a>
+          </Link>
         </div>
 
-        {/* Footer */}
-        <div className="mt-12 pt-8 border-t border-navy-700 text-center text-sm text-navy-400">
-          <p>
-            <strong>Binding Mode:</strong> Synthetic (zero external dependencies)
-            <br />
-            <strong>Data:</strong> 10 policies, 10 territories, 3 approvals, 12 links
-            <br />
-            <strong>Port:</strong> 3003 (Summit tier standard)
+        {/* Secondary Navigation */}
+        <div className="grid grid-cols-3 gap-6 mb-12">
+          {/* Governance Matrix */}
+          <Link href="/governance-matrix">
+            <div className="bg-white rounded-lg border border-gray-200 p-8 hover:shadow-lg hover:border-gray-300 transition-all cursor-pointer">
+              <div className="text-4xl mb-4">📊</div>
+              <h2 className="text-xl font-bold text-gray-900">Governance Matrix</h2>
+              <p className="text-gray-600 mt-2 text-sm">Policy coverage, approval authorities, and compliance mapping</p>
+            </div>
+          </Link>
+
+          {/* Decisions */}
+          <Link href="/decisions">
+            <div className="bg-white rounded-lg border border-gray-200 p-8 hover:shadow-lg hover:border-gray-300 transition-all cursor-pointer">
+              <div className="text-4xl mb-4">📋</div>
+              <h2 className="text-xl font-bold text-gray-900">Decision Log</h2>
+              <p className="text-gray-600 mt-2 text-sm">Record of all major governance decisions and outcomes</p>
+            </div>
+          </Link>
+
+          {/* New Document */}
+          <Link href="/documents/new">
+            <div className="bg-blue-50 rounded-lg border border-blue-200 p-8 hover:shadow-lg hover:border-blue-300 transition-all cursor-pointer">
+              <div className="text-4xl mb-4">➕</div>
+              <h2 className="text-xl font-bold text-gray-900">Create Document</h2>
+              <p className="text-gray-600 mt-2 text-sm">Add a new governance document to the system</p>
+            </div>
+          </Link>
+        </div>
+
+        {/* Feature Highlights */}
+        <div className="bg-white rounded-lg border border-gray-200 p-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8">Key Features</h2>
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <div className="flex gap-4 mb-4">
+                <span className="text-2xl">📁</span>
+                <div>
+                  <h3 className="font-bold text-gray-900">Document Management</h3>
+                  <p className="text-sm text-gray-600 mt-1">Manage .md, .docx, .pdf, and other formats with versioning</p>
+                </div>
+              </div>
+              <div className="flex gap-4 mb-4">
+                <span className="text-2xl">🔄</span>
+                <div>
+                  <h3 className="font-bold text-gray-900">Approval Workflows</h3>
+                  <p className="text-sm text-gray-600 mt-1">Multi-step routing with SLA tracking and escalation</p>
+                </div>
+              </div>
+              <div className="flex gap-4 mb-4">
+                <span className="text-2xl">📊</span>
+                <div>
+                  <h3 className="font-bold text-gray-900">Governance Matrix</h3>
+                  <p className="text-sm text-gray-600 mt-1">Policy coverage, authority levels, and compliance mapping</p>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="flex gap-4 mb-4">
+                <span className="text-2xl">👥</span>
+                <div>
+                  <h3 className="font-bold text-gray-900">Committee Management</h3>
+                  <p className="text-sm text-gray-600 mt-1">SGCC, CRB, and other decision-making bodies</p>
+                </div>
+              </div>
+              <div className="flex gap-4 mb-4">
+                <span className="text-2xl">🔍</span>
+                <div>
+                  <h3 className="font-bold text-gray-900">Search & Discovery</h3>
+                  <p className="text-sm text-gray-600 mt-1">Full-text search across all documents and metadata</p>
+                </div>
+              </div>
+              <div className="flex gap-4 mb-4">
+                <span className="text-2xl">🔗</span>
+                <div>
+                  <h3 className="font-bold text-gray-900">Integrations</h3>
+                  <p className="text-sm text-gray-600 mt-1">Connect to SFDC, Xactly, Workday, and other systems</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Sample Data Notice */}
+        <div className="mt-12 p-6 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-blue-900">
+            <strong>Demo Data:</strong> This system includes 10 JAMF governance documents (policies, procedures, frameworks) and 2 governance committees (SGCC and CRB) for demonstration.
           </p>
         </div>
       </div>
-    </main>
-  )
+    </div>
+  );
 }
