@@ -191,7 +191,7 @@ export default function SGMDashboard() {
         </div>
 
         {/* Additional Features */}
-        <div className="grid grid-cols-5 gap-6 mb-12">
+        <div className="grid grid-cols-6 gap-6 mb-12">
           {/* Document Links */}
           <Link href="/links">
             <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg hover:border-gray-300 transition-all cursor-pointer h-full group">
@@ -243,6 +243,17 @@ export default function SGMDashboard() {
               <h2 className="text-lg font-bold text-gray-900">Compare</h2>
               <p className="text-gray-600 mt-2 text-sm">
                 Version history
+              </p>
+            </div>
+          </Link>
+
+          {/* Case Analytics */}
+          <Link href="/cases/analytics">
+            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg hover:border-gray-300 transition-all cursor-pointer h-full group">
+              <BarChartIcon className="w-8 h-8 text-indigo-600 mb-3" />
+              <h2 className="text-lg font-bold text-gray-900">Case Analytics</h2>
+              <p className="text-gray-600 mt-2 text-sm">
+                AI predictions & trends
               </p>
             </div>
           </Link>
