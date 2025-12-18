@@ -18,7 +18,10 @@
       "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat\\(sgm\\): Add AI integration with OrgChief and AskSGM\n\nIntegrated AI-powered governance assistance using Rally LLaMA SPM-tuned model:\n\nOrgChief \\(Governance Insights\\):\n- Analyzes approval workflows, compliance, and governance health\n- Identifies critical alerts, warnings, and opportunities\n- Monitors SLA compliance, pending approvals, active cases\n- Provides actionable recommendations for governance improvements\n- API endpoint: /api/ai/orgchief\n\nAskSGM \\(Conversational Governance AI\\):\n- Interactive Q&A about compensation policies and workflows\n- Context-aware responses using governance data \\(RAG\\)\n- Explains SGCC/CRB approval processes and SLA requirements\n- Guides users through exception requests and dispute resolution\n- API endpoint: /api/ai/asksgm\n\nInfrastructure:\n- Rally LLM client with automatic Claude fallback\n- Signal bus for AI-generated insights\n- Telemetry logging for AI interactions\n- Response caching \\(5-minute TTL\\)\n- Token tracking and usage monitoring\n\nConfiguration:\n- Updated ai.manifest.ts with SGM-specific endpoints\n- Configured RootLayoutClient with AppShell integration\n- RAG domains: spm_plans, governance, interviews, frameworks\n\nThe system uses the private Rally LLaMA model \\(SPM-tuned\\) when configured,\nwith automatic fallback to Claude API for resilience.\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git commit:*)",
       "Bash(find:*)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill -9)",
+      "Bash(npm install:*)"
     ]
   }
 }

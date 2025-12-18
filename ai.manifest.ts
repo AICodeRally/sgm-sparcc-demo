@@ -1,7 +1,20 @@
-import type { BlockManifest } from "@rally/blocks-ai";
-import type { RagDomain } from "@rally/ai-contracts";
+// AI Configuration for SGM SPARCC
+// Note: Rally packages (@rally/blocks-ai, @rally/ai-contracts) are optional
+// This config is used when Rally AppShell is available
 
-export const aiManifest: BlockManifest = {
+export type RagDomain = "spm_plans" | "governance" | "interviews" | "frameworks";
+
+export interface AIBlockConfig {
+  enabled: boolean;
+  slot: string;
+  config?: Record<string, any>;
+}
+
+export interface AIManifest {
+  blocks: Record<string, AIBlockConfig>;
+}
+
+export const aiManifest: AIManifest = {
   blocks: {
     opsChief: {
       enabled: true,
@@ -19,7 +32,10 @@ export const aiManifest: BlockManifest = {
         askEndpoint: "/api/ai/asksgm"
       }
     },
-    glowBar: { enabled: true, slot: "global.overlay.bottomCenter" },
+    glowBar: {
+      enabled: true,
+      slot: "global.overlay.bottomCenter"
+    },
   },
 };
 

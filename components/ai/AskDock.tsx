@@ -2,6 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { ChatBubbleIcon, Cross2Icon, PaperPlaneIcon, MinusIcon, ReloadIcon } from '@radix-ui/react-icons';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Message {
   id: string;
@@ -229,7 +231,15 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                           : 'bg-white border border-gray-200 text-gray-800'
                       }`}
                     >
-                      <p className="whitespace-pre-wrap">{message.content}</p>
+                      {message.role === 'assistant' ? (
+                        <div className="prose prose-sm max-w-none prose-headings:text-gray-900 prose-headings:font-semibold prose-h1:text-base prose-h2:text-sm prose-h3:text-sm prose-p:text-gray-700 prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:text-gray-700 prose-strong:text-gray-900 prose-strong:font-semibold prose-table:text-xs prose-th:bg-purple-50 prose-th:text-purple-900 prose-th:font-semibold prose-th:p-2 prose-td:p-2 prose-td:border prose-td:border-gray-200 prose-hr:my-3 prose-hr:border-gray-300">
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {message.content}
+                          </ReactMarkdown>
+                        </div>
+                      ) : (
+                        <p className="whitespace-pre-wrap">{message.content}</p>
+                      )}
                       <p
                         className={`mt-1 text-xs ${
                           message.role === 'user' ? 'text-purple-100' : 'text-gray-400'
