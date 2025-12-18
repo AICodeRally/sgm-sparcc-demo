@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { DiscIcon, Cross2Icon, ReloadIcon } from '@radix-ui/react-icons';
+import { ActivityLogIcon, Cross2Icon, ReloadIcon } from '@radix-ui/react-icons';
 
 interface Insight {
   id: string;
@@ -105,7 +105,7 @@ export function OpsChiefOrb({ appName = 'SGM SPARCC', enabled = true }: OpsChief
         aria-label="Open OpsChief Insights"
         title="OpsChief - System Health & Insights"
       >
-        <DiscIcon className="h-6 w-6" />
+        <ActivityLogIcon className="h-6 w-6" />
         {/* Pulse glow on hover */}
         <div className="absolute inset-0 rounded-full bg-purple-500 opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" />
         {/* Alert badge */}
@@ -124,7 +124,7 @@ export function OpsChiefOrb({ appName = 'SGM SPARCC', enabled = true }: OpsChief
             <div className="flex items-center justify-between border-b border-gray-200 p-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
-                  <DiscIcon className="h-5 w-5 text-white" />
+                  <ActivityLogIcon className="h-5 w-5 text-white" />
                 </div>
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900">OpsChief</h2>
