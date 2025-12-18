@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { AppShell } from "@rally/app-shell";
 import { aiManifest } from "../ai.manifest";
 import { CommandPalette } from "@/components/CommandPalette";
+import { OrgChiefOrb } from "@/components/ai/OrgChiefOrb";
+import { AskDock } from "@/components/ai/AskDock";
 
 interface RootLayoutClientProps {
   children: React.ReactNode;
@@ -47,6 +49,9 @@ export function RootLayoutClient({ children }: RootLayoutClientProps) {
         isOpen={commandPaletteOpen}
         onClose={() => setCommandPaletteOpen(false)}
       />
+      {/* AI Widgets */}
+      <OrgChiefOrb appName="SGM SPARCC" enabled={true} />
+      <AskDock appName="SGM" enabled={true} />
     </AppShell>
   );
 }
