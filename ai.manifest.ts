@@ -3,12 +3,12 @@ import type { RagDomain } from "@rally/ai-contracts";
 
 export const aiManifest: BlockManifest = {
   blocks: {
-    orgChief: {
+    opsChief: {
       enabled: true,
       slot: "global.overlay.bottomLeft",
       config: {
         appName: "SGM SPARCC",
-        endpoint: "/api/ai/orgchief"
+        endpoint: "/api/ai/opschief"
       }
     },
     askItem: {

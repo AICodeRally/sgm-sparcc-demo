@@ -12,7 +12,7 @@ function logTelemetry(event: Record<string, any>) {
   // TODO: Store in database or send to central telemetry service
 }
 
-interface OrgChiefInsight {
+interface OpsChiefInsight {
   id: string;
   type: 'alert' | 'warning' | 'info';
   title: string;
@@ -23,16 +23,16 @@ interface OrgChiefInsight {
   suggestedAction?: string;
 }
 
-interface OrgChiefRequest {
+interface OpsChiefRequest {
   tenantId?: string;
   department?: string;
   forceRefresh?: boolean;
 }
 
 /**
- * GET /api/ai/orgchief
+ * GET /api/ai/opschief
  *
- * Endpoint for OrgChief governance insights
+ * Endpoint for OpsChief governance insights
  * Analyzes governance data and generates alerts/warnings
  *
  * Query params:
@@ -71,7 +71,7 @@ export async function GET(request: NextRequest) {
     }).length;
 
     // Build analysis prompt for LLM
-    const analysisPrompt = `You are OrgChief, an AI governance assistant for the Sales Governance Manager (SGM) SPARCC platform.
+    const analysisPrompt = `You are OpsChief, an AI governance assistant for the Sales Governance Manager (SGM) SPARCC platform.
 
 ## Current Governance Snapshot
 **Total Documents**: ${totalDocuments} (${approvedDocs} approved, ${draftDocs} draft)
@@ -149,7 +149,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
       const rallyClient = getRallyLLMClient();
       const clientStatus = rallyClient.getStatus();
 
-      console.log(`🔧 [OrgChief/SGM] Using LLM: ${clientStatus.model} (Rally)`);
+      console.log(`🔧 [OpsChief/SGM] Using LLM: ${clientStatus.model} (Rally)`);
 
       const analysisResponse = await rallyClient.chat(
         [
@@ -169,7 +169,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
       tokensUsed = analysisResponse.tokensUsed;
     } else {
       // Fallback to Claude API
-      console.log(`🔧 [OrgChief/SGM] Using LLM: Claude 3.5 Sonnet (Fallback)`);
+      console.log(`🔧 [OpsChief/SGM] Using LLM: Claude 3.5 Sonnet (Fallback)`);
 
       const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
         method: 'POST',
@@ -213,7 +213,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
     }
 
     // Parse insights from response
-    let insights: OrgChiefInsight[] = [];
+    let insights: OpsChiefInsight[] = [];
     try {
       // Extract JSON from response (LLM might include markdown formatting)
       const jsonMatch = analysisContent.match(/\[[\s\S]*\]/);
@@ -246,7 +246,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
       ];
     }
 
-    // Log telemetry event - OrgChief analysis completed
+    // Log telemetry event - OpsChief analysis completed
     logTelemetry({
       name: 'ai.request',
       appId: 'sgm-sparcc',
@@ -256,7 +256,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
         modelId: modelUsed,
         modelType: isRallyLLMConfigured() ? 'rally-llama-spm' : 'claude-sonnet',
         intent: 'sgm_governance_analysis',
-        analysisType: 'orgchief',
+        analysisType: 'opschief',
         department: department || 'all',
         inputTokens: tokensUsed.input,
       },
@@ -280,7 +280,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
     });
 
     // Emit signals from insights
-    const emittedSignals = await emitSignalsFromInsights(insights, 'orgchief');
+    const emittedSignals = await emitSignalsFromInsights(insights, 'opschief');
 
     logTelemetry({
       name: 'ai.signal_emitted',
@@ -295,7 +295,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
     });
 
     // Log additional context
-    console.log('OrgChief governance analysis:', {
+    console.log('OpsChief governance analysis:', {
       department: department || 'all',
       insightCount: insights.length,
       signalsEmitted: emittedSignals.length,
@@ -323,19 +323,19 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
       },
     });
   } catch (error) {
-    console.error('OrgChief/SGM error:', error);
+    console.error('OpsChief/SGM error:', error);
 
     const errorMessage =
       error instanceof Error ? error.message : 'Unknown error occurred';
 
-    // Log telemetry event - OrgChief error
+    // Log telemetry event - OpsChief error
     logTelemetry({
       name: 'api.error',
       appId: 'sgm-sparcc',
       tenantId: 'platform',
       ts: new Date().toISOString(),
       metrics: {
-        endpoint: '/api/ai/orgchief',
+        endpoint: '/api/ai/opschief',
         errorClass: error instanceof Error ? error.name : 'UNKNOWN',
         statusCode: 500,
       },

@@ -21,7 +21,7 @@ export type SignalCategory =
 
 export interface AISignal {
   id: string;
-  source: 'orgchief' | 'askbhg';
+  source: 'opschief' | 'asksgm';
   category: SignalCategory;
   severity: SignalSeverity;
   title: string;
@@ -38,11 +38,11 @@ export interface AISignal {
 }
 
 /**
- * Convert OrgChief insights to signals for upstream consumption
+ * Convert OpsChief insights to signals for upstream consumption
  */
 export function insightToSignal(
   insight: any,
-  source: 'orgchief' | 'askbhg' = 'orgchief'
+  source: 'opschief' | 'asksgm' = 'opschief'
 ): AISignal {
   const severityMap: Record<string, SignalSeverity> = {
     critical: 'critical',
@@ -81,7 +81,7 @@ export function insightToSignal(
  */
 export async function broadcastSignal(signal: AISignal): Promise<void> {
   // Log signal emission
-  console.log('[BHG AI Signal Emitted]', {
+  console.log('[SGM AI Signal Emitted]', {
     id: signal.id,
     source: signal.source,
     category: signal.category,
@@ -98,11 +98,11 @@ export async function broadcastSignal(signal: AISignal): Promise<void> {
 }
 
 /**
- * Emit signals from OrgChief insights batch
+ * Emit signals from OpsChief insights batch
  */
 export async function emitSignalsFromInsights(
   insights: any[],
-  source: 'orgchief' | 'askbhg' = 'orgchief'
+  source: 'opschief' | 'asksgm' = 'opschief'
 ): Promise<AISignal[]> {
   const signals = insights.map((insight) => insightToSignal(insight, source));
 

@@ -105,8 +105,8 @@ export async function calculateUsageMetrics(tenantId: string, days: number = 30)
       days,
     },
     api: {
-      askbhgRequests: 0,
-      orgchiefRequests: 0,
+      asksgmRequests: 0,
+      opschiefRequests: 0,
       totalRequests: 0,
       errorRate: 0,
       averageLatency: 0,
@@ -138,8 +138,8 @@ export async function getSystemHealthStatus() {
     status: 'healthy' as 'healthy' | 'degraded' | 'unhealthy',
     lastCheck: new Date().toISOString(),
     metrics: {
-      askbhgAvailability: 100,
-      orgchiefAvailability: 100,
+      asksgmAvailability: 100,
+      opschiefAvailability: 100,
       apiLatencyMs: 0,
       errorRate: 0,
     },
