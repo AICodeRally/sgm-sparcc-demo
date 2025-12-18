@@ -27,18 +27,13 @@ export default function SGMDashboard() {
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50">
       {/* Hero Section */}
       <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="text-center">
-            <div className="inline-block mb-4">
-              <span className="text-xs font-semibold tracking-wider uppercase text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
-                Summit Tier • SPARCC
-              </span>
-            </div>
             <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent">
               Sales Governance Manager
             </h1>
             <p className="text-xl text-gray-700 mt-4">
-              Summit-grade platform for managing compensation governance, approvals, and compliance
+              Enterprise-grade platform for managing compensation governance, approvals, and compliance
             </p>
           </div>
         </div>
