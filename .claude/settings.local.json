@@ -23,7 +23,9 @@
       "Bash(xargs kill -9)",
       "Bash(npm install:*)",
       "Bash(npm run build:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(vercel:*)",
+      "Bash(kill:*)"
     ]
   }
 }

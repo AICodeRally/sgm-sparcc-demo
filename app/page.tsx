@@ -144,7 +144,7 @@ export default function SGMDashboard() {
         </div>
 
         {/* Secondary Navigation */}
-        <div className="grid grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-4 gap-6 mb-12">
           {/* Governance Matrix */}
           <Link href="/governance-matrix">
             <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg hover:border-gray-300 transition-all cursor-pointer h-full group">
@@ -152,6 +152,17 @@ export default function SGMDashboard() {
               <h2 className="text-lg font-bold text-gray-900">Governance Matrix</h2>
               <p className="text-gray-600 mt-2 text-sm">
                 Policy coverage, approval authorities, and compliance mapping
+              </p>
+            </div>
+          </Link>
+
+          {/* Case SLA Management */}
+          <Link href="/cases/sla">
+            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg hover:border-gray-300 transition-all cursor-pointer h-full group">
+              <ClockIcon className="w-8 h-8 text-orange-600 mb-3" />
+              <h2 className="text-lg font-bold text-gray-900">Case SLA & Load</h2>
+              <p className="text-gray-600 mt-2 text-sm">
+                SLA tracking, compliance monitoring, and workload optimization
               </p>
             </div>
           </Link>
