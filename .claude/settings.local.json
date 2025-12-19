@@ -25,7 +25,20 @@
       "Bash(npm run build:*)",
       "Bash(ls:*)",
       "Bash(vercel:*)",
-      "Bash(kill:*)"
+      "Bash(kill:*)",
+      "WebSearch",
+      "Bash(timeout 10 npm run dev)",
+      "Bash(curl:*)",
+      "Bash(for page in disputes disputes/new queue analytics knowledge)",
+      "Bash(do echo \"Testing /$page...\" curl -s http://localhost:3004/$page)",
+      "Bash(test:*)",
+      "Bash(timeout 15 npm run dev:*)",
+      "Bash(npx tsc:*)",
+      "Bash(git reset:*)",
+      "Bash(while read f)",
+      "Bash(do if grep -q [📄📊📝🖼️📎💼📈📉💰👥🎯✅❌⚠️🔔📧📞🎁📋🤝] $f)",
+      "Bash(then echo $f)",
+      "Bash(fi)"
     ]
   }
 }
