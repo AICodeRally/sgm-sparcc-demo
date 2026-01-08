@@ -40,11 +40,44 @@ export async function GET(
 
     // Find the matching plan in gap analysis
     // Map plan codes to plan names in the analysis
-    const planNameMap: Record<string, string> = {
+    const planNameMap: Record<string, string | null> = {
+      // Medical Division
       'HS-MED-FSC-2025': 'Medical FSC Standard',
       'HS-MED-ISC-2025': 'Medical ISC Standard v3',
-      'HS-MED-SGE-2025': 'Medical SGE',
-      // Add more mappings as needed
+      'HS-MED-SGE-2025': 'Medical SGE Bonus',
+
+      // Dental Division
+      'HS-DENT-AE-2025': 'Dental AE',
+      'HS-DENT-FSC-2025': 'Dental FSC',
+      'HS-DENT-EQP-2025': 'Dental Equipment Specialist',
+      'HS-DENT-EQP-US-2025': 'Dental Equipment Specialist',
+      'HS-DENT-RGM-2025': 'Dental RGM Bonus',
+
+      // Brasseler Dental
+      'HS-BRASS-DSM-2025': 'Brasseler DSM I',
+      'HS-BRASS-IAM-2025': 'Brasseler IAM',
+
+      // Hayes Medical
+      'HS-HAYES-OSR-2025': 'Hayes OSR',
+
+      // TriMed
+      'HS-TRIM-ARM-EAST-2025': 'TriMed East Area RM',
+      'HS-TRIM-ARM-WEST-2025': 'TriMed West Area RM',
+
+      // HS ONE (no gap analysis yet)
+      'HS-HSONE-AE-2025': null,
+      'HS-HSONE-SC-2025': null,
+
+      // Corporate Plans (no gap analysis yet)
+      'HS-CORP-HSIP-2025': null,
+      'HS-CORP-HSIP-OVERVIEW-2025': null,
+      'HS-CORP-TSIP-2025': null,
+      'HS-COMP-HANDBOOK-2025': null,
+
+      // Archived Plans
+      'HS-ATH-REP-2022': null,
+      'HS-ZAHN-TM-2023': null,
+      'HS-INTL-DE-FAQ-2025': null,
     };
 
     const planNameInAnalysis = planNameMap[planCode];
