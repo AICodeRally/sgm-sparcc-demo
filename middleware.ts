@@ -22,9 +22,11 @@ const PUBLIC_ROUTES = [
   // Temporary for testing
   '/templates',
   '/plans',
+  '/policies',
   '/governance-framework',
   '/api/plan-templates',
   '/api/plans',
+  '/api/policies',
   '/api/governance-framework',
   '/api/ai/agents',
 ];
