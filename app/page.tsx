@@ -389,7 +389,7 @@ export default function SGMDashboard() {
         </div>
 
         {/* Governance & Utilities */}
-        <div className="grid grid-cols-5 gap-6 mb-6">
+        <div className="grid grid-cols-6 gap-6 mb-6">
 
           {/* Governance Framework */}
           <Link href="/framework">
@@ -420,6 +420,17 @@ export default function SGMDashboard() {
               <h2 className="text-lg font-bold text-gray-900">Document Library</h2>
               <p className="text-gray-700 mt-2 text-sm font-medium">
                 Full provenance • Version history
+              </p>
+            </div>
+          </Link>
+
+          {/* Policy Library */}
+          <Link href="/policies">
+            <div className="bg-gradient-to-br from-purple-50 to-fuchsia-50 rounded-xl border-2 border-purple-300 p-6 hover:shadow-xl hover:border-purple-400 transition-all cursor-pointer h-full group">
+              <ReaderIcon className="w-8 h-8 text-purple-600 mb-3" />
+              <h2 className="text-lg font-bold text-gray-900">Policy Library</h2>
+              <p className="text-gray-700 mt-2 text-sm font-medium">
+                26 policies • Governance templates
               </p>
             </div>
           </Link>
