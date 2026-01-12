@@ -25,55 +25,55 @@ export default function PlanStatusBadge({
         return {
           label: 'Draft',
           icon: FileTextIcon,
-          className: 'bg-gray-100 text-gray-800 border-gray-300',
+          className: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]',
         };
       case 'IN_PROGRESS':
         return {
           label: 'In Progress',
           icon: ClockIcon,
-          className: 'bg-blue-100 text-blue-800 border-blue-300',
+          className: 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] border-[color:var(--color-info-border)]',
         };
       case 'UNDER_REVIEW':
         return {
           label: 'Under Review',
           icon: EyeOpenIcon,
-          className: 'bg-yellow-100 text-yellow-800 border-yellow-300',
+          className: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
         };
       case 'PENDING_APPROVAL':
         return {
           label: 'Pending Approval',
           icon: ClockIcon,
-          className: 'bg-orange-100 text-orange-800 border-orange-300',
+          className: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
         };
       case 'APPROVED':
         return {
           label: 'Approved',
           icon: CheckCircledIcon,
-          className: 'bg-green-100 text-green-800 border-green-300',
+          className: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]',
         };
       case 'PUBLISHED':
         return {
           label: 'Published',
           icon: RocketIcon,
-          className: 'bg-purple-100 text-purple-800 border-purple-300',
+          className: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-accent)] border-[color:var(--color-border)]',
         };
       case 'SUPERSEDED':
         return {
           label: 'Superseded',
           icon: CrossCircledIcon,
-          className: 'bg-gray-100 text-gray-600 border-gray-300',
+          className: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-muted)] border-[color:var(--color-border)]',
         };
       case 'ARCHIVED':
         return {
           label: 'Archived',
           icon: ArchiveIcon,
-          className: 'bg-gray-100 text-gray-600 border-gray-300',
+          className: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-muted)] border-[color:var(--color-border)]',
         };
       default:
         return {
           label: status,
           icon: FileTextIcon,
-          className: 'bg-gray-100 text-gray-800 border-gray-300',
+          className: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]',
         };
     }
   };

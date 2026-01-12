@@ -180,25 +180,25 @@ export default function TemplateBuilderPage() {
         description="Create custom compensation plan templates"
       />
 
-      <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex flex-col">
+      <div className="h-screen sparcc-hero-bg flex flex-col">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm">
           <div className="max-w-[1800px] mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Link
                   href="/templates"
-                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+                  className="flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)] transition-colors"
                 >
                   <ArrowLeftIcon className="w-4 h-4" />
                   Back to Templates
                 </Link>
-                <div className="h-6 w-px bg-purple-300"></div>
+                <div className="h-6 w-px bg-[color:var(--color-accent-border)]"></div>
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
                     Compensation Plan Template Builder
                   </h1>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-[color:var(--color-muted)]">
                     Select sections to include in your custom template
                   </p>
                 </div>
@@ -206,11 +206,11 @@ export default function TemplateBuilderPage() {
 
               <div className="flex items-center gap-3">
                 <div className="text-right">
-                  <div className="text-sm text-gray-600">
-                    <span className="font-bold text-purple-600">{stats.selected}</span> of{' '}
+                  <div className="text-sm text-[color:var(--color-muted)]">
+                    <span className="font-bold text-[color:var(--color-primary)]">{stats.selected}</span> of{' '}
                     {stats.total} sections selected
                   </div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-[color:var(--color-muted)]">
                     {stats.required} required • {stats.selectedOptional} of {stats.optional} optional
                   </div>
                 </div>
@@ -224,24 +224,24 @@ export default function TemplateBuilderPage() {
           <div className="max-w-[1800px] mx-auto px-6 py-6 h-full">
             <div className="grid grid-cols-2 gap-6 h-full">
               {/* Left Pane: Section Selection */}
-              <div className="bg-white rounded-xl border border-purple-200 shadow-lg overflow-hidden flex flex-col">
-                <div className="p-6 border-b border-purple-200 bg-gray-50">
-                  <h2 className="text-xl font-bold text-gray-900 mb-4">Template Details</h2>
+              <div className="bg-[color:var(--color-surface)] rounded-xl border border-[color:var(--color-border)] shadow-lg overflow-hidden flex flex-col">
+                <div className="p-6 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]">
+                  <h2 className="text-xl font-bold text-[color:var(--color-foreground)] mb-4">Template Details</h2>
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Template Name <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-1">
+                        Template Name <span className="text-[color:var(--color-error)]">*</span>
                       </label>
                       <input
                         type="text"
                         value={templateName}
                         onChange={(e) => setTemplateName(e.target.value)}
                         placeholder="e.g., Sales Rep - Medical Division"
-                        className="w-full px-3 py-2 border border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-1">
                         Description
                       </label>
                       <textarea
@@ -249,14 +249,14 @@ export default function TemplateBuilderPage() {
                         onChange={(e) => setTemplateDescription(e.target.value)}
                         placeholder="Brief description of this template's purpose..."
                         rows={2}
-                        className="w-full px-3 py-2 border border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                        className="w-full px-3 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent resize-none"
                       />
                     </div>
                   </div>
                 </div>
 
                 <div className="flex-1 overflow-y-auto p-6">
-                  <h2 className="text-xl font-bold text-gray-900 mb-4">Select Sections</h2>
+                  <h2 className="text-xl font-bold text-[color:var(--color-foreground)] mb-4">Select Sections</h2>
 
                   {CATEGORIES.map((category) => {
                     const sections = getSectionsByCategory(category.id);
@@ -268,10 +268,10 @@ export default function TemplateBuilderPage() {
                       <div key={category.id} className="mb-6">
                         <div className="flex items-center justify-between mb-3">
                           <div>
-                            <h3 className="text-lg font-bold text-gray-900">{category.name}</h3>
-                            <p className="text-xs text-gray-600">{category.description}</p>
+                            <h3 className="text-lg font-bold text-[color:var(--color-foreground)]">{category.name}</h3>
+                            <p className="text-xs text-[color:var(--color-muted)]">{category.description}</p>
                           </div>
-                          <span className="text-sm text-gray-600">
+                          <span className="text-sm text-[color:var(--color-muted)]">
                             {selectedInCategory} / {sections.length}
                           </span>
                         </div>
@@ -287,11 +287,11 @@ export default function TemplateBuilderPage() {
                                 key={section.id}
                                 className={`border rounded-lg p-3 transition-all ${
                                   isSelected
-                                    ? 'border-purple-300 bg-purple-50'
-                                    : 'border-gray-200 bg-white'
+                                    ? 'border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]'
+                                    : 'border-[color:var(--color-border)] bg-[color:var(--color-surface)]'
                                 } ${
                                   !isRequired && isSelectable
-                                    ? 'cursor-pointer hover:border-purple-300 hover:bg-purple-50/50'
+                                    ? 'cursor-pointer hover:border-[color:var(--color-border)] hover:bg-[color:var(--color-surface-alt)]/50'
                                     : ''
                                 }`}
                                 onClick={() => toggleSection(section.id, isRequired)}
@@ -299,15 +299,15 @@ export default function TemplateBuilderPage() {
                                 <div className="flex items-start gap-3">
                                   <div className="flex-none mt-0.5">
                                     {isRequired ? (
-                                      <div className="w-5 h-5 rounded bg-purple-600 flex items-center justify-center">
+                                      <div className="w-5 h-5 rounded bg-[color:var(--color-primary)] flex items-center justify-center">
                                         <LockClosedIcon className="w-3 h-3 text-white" />
                                       </div>
                                     ) : (
                                       <div
                                         className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-colors ${
                                           isSelected
-                                            ? 'border-purple-600 bg-purple-600'
-                                            : 'border-gray-300 bg-white'
+                                            ? 'border-[color:var(--color-primary)] bg-[color:var(--color-primary)]'
+                                            : 'border-[color:var(--color-border)] bg-[color:var(--color-surface)]'
                                         }`}
                                       >
                                         {isSelected && (
@@ -319,18 +319,18 @@ export default function TemplateBuilderPage() {
 
                                   <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2">
-                                      <span className="text-sm font-mono text-gray-500">
+                                      <span className="text-sm font-mono text-[color:var(--color-muted)]">
                                         {section.sectionNumber}
                                       </span>
-                                      <h4 className="text-sm font-semibold text-gray-900">
+                                      <h4 className="text-sm font-semibold text-[color:var(--color-foreground)]">
                                         {section.title}
                                       </h4>
                                     </div>
-                                    <p className="text-xs text-gray-600 mt-1">
+                                    <p className="text-xs text-[color:var(--color-muted)] mt-1">
                                       {section.description}
                                     </p>
                                     {isRequired && (
-                                      <span className="inline-block mt-1 px-2 py-0.5 bg-purple-100 text-purple-700 text-xs font-semibold rounded">
+                                      <span className="inline-block mt-1 px-2 py-0.5 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] text-xs font-semibold rounded">
                                         REQUIRED
                                       </span>
                                     )}
@@ -347,49 +347,49 @@ export default function TemplateBuilderPage() {
               </div>
 
               {/* Right Pane: Live Preview */}
-              <div className="bg-white rounded-xl border border-purple-200 shadow-lg overflow-hidden flex flex-col">
-                <div className="p-6 border-b border-purple-200 bg-gray-50">
+              <div className="bg-[color:var(--color-surface)] rounded-xl border border-[color:var(--color-border)] shadow-lg overflow-hidden flex flex-col">
+                <div className="p-6 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]">
                   <div className="flex items-center gap-2 mb-2">
-                    <EyeOpenIcon className="w-5 h-5 text-purple-600" />
-                    <h2 className="text-xl font-bold text-gray-900">Template Preview</h2>
+                    <EyeOpenIcon className="w-5 h-5 text-[color:var(--color-primary)]" />
+                    <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">Template Preview</h2>
                   </div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-[color:var(--color-muted)]">
                     This is how your template structure will look
                   </p>
                 </div>
 
                 <div className="flex-1 overflow-y-auto p-6">
                   {/* Template Header */}
-                  <div className="mb-8 p-6 bg-gradient-to-br from-purple-50 to-fuchsia-50 rounded-lg border-2 border-purple-200">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  <div className="mb-8 p-6 bg-[color:var(--color-surface-alt)] rounded-lg border-2 border-[color:var(--color-border)]">
+                    <h3 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">
                       {templateName || '[Template Name]'}
                     </h3>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-[color:var(--color-muted)]">
                       {templateDescription || '[Template description will appear here]'}
                     </p>
                     <div className="mt-4 flex items-center gap-4 text-sm">
                       <div>
-                        <span className="font-semibold text-purple-600">{stats.selected}</span>{' '}
-                        <span className="text-gray-600">Total Sections</span>
+                        <span className="font-semibold text-[color:var(--color-primary)]">{stats.selected}</span>{' '}
+                        <span className="text-[color:var(--color-muted)]">Total Sections</span>
                       </div>
-                      <div className="h-4 w-px bg-gray-300"></div>
+                      <div className="h-4 w-px bg-[color:var(--color-border)]"></div>
                       <div>
-                        <span className="font-semibold text-green-600">{stats.required}</span>{' '}
-                        <span className="text-gray-600">Required</span>
+                        <span className="font-semibold text-[color:var(--color-success)]">{stats.required}</span>{' '}
+                        <span className="text-[color:var(--color-muted)]">Required</span>
                       </div>
-                      <div className="h-4 w-px bg-gray-300"></div>
+                      <div className="h-4 w-px bg-[color:var(--color-border)]"></div>
                       <div>
-                        <span className="font-semibold text-blue-600">
+                        <span className="font-semibold text-[color:var(--color-info)]">
                           {stats.selectedOptional}
                         </span>{' '}
-                        <span className="text-gray-600">Optional</span>
+                        <span className="text-[color:var(--color-muted)]">Optional</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Table of Contents */}
-                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Table of Contents</h3>
+                  <div className="bg-[color:var(--color-surface-alt)] rounded-lg border border-[color:var(--color-border)] p-6">
+                    <h3 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4">Table of Contents</h3>
                     <div className="space-y-1">
                       {CATEGORIES.map((category) => {
                         const sectionsInCategory = getSelectedSections().filter(
@@ -400,22 +400,22 @@ export default function TemplateBuilderPage() {
 
                         return (
                           <div key={category.id} className="mb-4">
-                            <div className="font-bold text-sm text-purple-700 mb-2 pb-1 border-b border-purple-200">
+                            <div className="font-bold text-sm text-[color:var(--color-primary)] mb-2 pb-1 border-b border-[color:var(--color-border)]">
                               {category.name}
                             </div>
                             {sectionsInCategory.map((section) => (
                               <div
                                 key={section.id}
-                                className="flex items-center gap-3 py-1.5 px-2 hover:bg-white rounded transition-colors"
+                                className="flex items-center gap-3 py-1.5 px-2 hover:bg-[color:var(--color-surface)] rounded transition-colors"
                               >
-                                <span className="text-xs font-mono text-gray-500 w-12">
+                                <span className="text-xs font-mono text-[color:var(--color-muted)] w-12">
                                   {section.sectionNumber}
                                 </span>
-                                <span className="text-sm text-gray-700 flex-1">
+                                <span className="text-sm text-[color:var(--color-foreground)] flex-1">
                                   {section.title}
                                 </span>
                                 {section.isRequired && (
-                                  <LockClosedIcon className="w-3 h-3 text-purple-400" />
+                                  <LockClosedIcon className="w-3 h-3 text-[color:var(--color-accent)]" />
                                 )}
                               </div>
                             ))}
@@ -428,9 +428,9 @@ export default function TemplateBuilderPage() {
                   {/* Empty State */}
                   {stats.selected === 0 && (
                     <div className="text-center py-12">
-                      <Cross2Icon className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                      <p className="text-gray-500">No sections selected yet</p>
-                      <p className="text-sm text-gray-400">
+                      <Cross2Icon className="w-12 h-12 text-[color:var(--color-muted)] mx-auto mb-3" />
+                      <p className="text-[color:var(--color-muted)]">No sections selected yet</p>
+                      <p className="text-sm text-[color:var(--color-muted)]">
                         Select sections from the left panel to preview your template
                       </p>
                     </div>
@@ -438,43 +438,43 @@ export default function TemplateBuilderPage() {
                 </div>
 
                 {/* Footer Actions */}
-                <div className="p-6 border-t border-purple-200 bg-gray-50">
+                <div className="p-6 border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]">
                   {/* Error Message */}
                   {error && (
-                    <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-                      <p className="text-sm text-red-700 font-medium">{error}</p>
+                    <div className="mb-4 p-3 bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded-lg">
+                      <p className="text-sm text-[color:var(--color-error)] font-medium">{error}</p>
                     </div>
                   )}
 
                   {/* Success Message */}
                   {success && (
-                    <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2">
-                      <CheckCircledIcon className="w-5 h-5 text-green-600" />
-                      <p className="text-sm text-green-700 font-medium">
+                    <div className="mb-4 p-3 bg-[color:var(--color-success-bg)] border border-[color:var(--color-success-border)] rounded-lg flex items-center gap-2">
+                      <CheckCircledIcon className="w-5 h-5 text-[color:var(--color-success)]" />
+                      <p className="text-sm text-[color:var(--color-success)] font-medium">
                         Template created successfully! Redirecting...
                       </p>
                     </div>
                   )}
 
                   <div className="flex items-center justify-between">
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-[color:var(--color-muted)]">
                       <span className="font-semibold">{stats.selected} sections</span> ready to
                       use
-                      <span className="ml-3 text-xs text-gray-400">
-                        • Press <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-300 rounded text-xs">⌘</kbd> + <kbd className="px-1 py-0.5 bg-gray-100 border border-gray-300 rounded text-xs">Enter</kbd> to create
+                      <span className="ml-3 text-xs text-[color:var(--color-muted)]">
+                        • Press <kbd className="px-1 py-0.5 bg-[color:var(--color-surface-alt)] border border-[color:var(--color-border)] rounded text-xs">⌘</kbd> + <kbd className="px-1 py-0.5 bg-[color:var(--color-surface-alt)] border border-[color:var(--color-border)] rounded text-xs">Enter</kbd> to create
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <button
                         disabled={isCreating || success}
-                        className="px-6 py-2 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="px-6 py-2 border-2 border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         Save as Draft
                       </button>
                       <button
                         onClick={handleCreateTemplate}
                         disabled={!templateName || isCreating || success}
-                        className="px-6 py-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-lg hover:from-purple-700 hover:to-fuchsia-700 transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                        className="px-6 py-2 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-lg hover:opacity-90 transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                       >
                         {isCreating ? (
                           <>

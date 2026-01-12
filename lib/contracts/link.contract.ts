@@ -143,7 +143,7 @@ export const LinkGraphSchema = z.object({
 export type LinkGraph = z.infer<typeof LinkGraphSchema>;
 
 /**
- * Coverage Matrix (Entity A × Entity B relationships)
+ * Coverage Matrix (Entity A x Entity B relationships)
  */
 export const CoverageMatrixSchema = z.object({
   rowEntityType: z.string(), // e.g., "policy"

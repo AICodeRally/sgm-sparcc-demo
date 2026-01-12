@@ -36,11 +36,11 @@ export function MetricsGrid({ metrics }: MetricsGridProps) {
   const getTrendColorClass = (trend?: 'up' | 'down' | 'neutral') => {
     switch (trend) {
       case 'up':
-        return 'text-green-600 bg-green-50';
+        return 'text-[color:var(--color-success)] bg-[color:var(--color-success-bg)]';
       case 'down':
-        return 'text-red-600 bg-red-50';
+        return 'text-[color:var(--color-error)] bg-[color:var(--color-error-bg)]';
       case 'neutral':
-        return 'text-gray-600 bg-gray-50';
+        return 'text-[color:var(--color-muted)] bg-[color:var(--color-surface-alt)]';
       default:
         return '';
     }
@@ -51,17 +51,17 @@ export function MetricsGrid({ metrics }: MetricsGridProps) {
       {metrics.map((metric, index) => (
         <div
           key={index}
-          className={`bg-white rounded-xl border-2 p-6 text-center transition-all hover:shadow-lg ${
-            metric.colorClass || 'border-indigo-200'
+          className={`theme-card rounded-xl border-2 p-6 text-center transition-all hover:shadow-lg ${
+            metric.colorClass || 'border-[color:var(--color-accent-border)]'
           }`}
         >
-          <p className={`text-4xl font-bold ${metric.colorClass ? metric.colorClass.replace('border-', 'text-').replace('-200', '-600') : 'text-indigo-600'}`}>
+          <p className={`text-4xl font-bold ${metric.colorClass ? metric.colorClass.replace('border-', 'text-').replace('-200', '-600') : 'text-[color:var(--color-accent)]'}`}>
             {metric.value}
           </p>
-          <p className="text-sm text-gray-600 mt-2 font-medium">{metric.label}</p>
+          <p className="text-sm text-[color:var(--color-muted)] mt-2 font-medium">{metric.label}</p>
 
           {metric.subtext && (
-            <p className="text-xs text-gray-500 mt-1">{metric.subtext}</p>
+            <p className="text-xs text-[color:var(--color-muted)] mt-1">{metric.subtext}</p>
           )}
 
           {metric.trend && metric.trendValue && (

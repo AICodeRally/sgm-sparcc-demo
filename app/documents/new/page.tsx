@@ -57,29 +57,29 @@ export default function NewDocumentPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[color:var(--color-surface-alt)]">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
+      <div className="bg-[color:var(--color-surface)] border-b border-[color:var(--color-border)] shadow-sm">
         <div className="max-w-2xl mx-auto px-6 py-6">
-          <Link href="/documents" className="text-blue-600 hover:text-blue-700 text-sm mb-4 inline-block">
+          <Link href="/documents" className="text-[color:var(--color-info)] hover:text-[color:var(--color-primary)] text-sm mb-4 inline-block">
             ← Back to Documents
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Create New Document</h1>
-          <p className="text-gray-600 mt-1">Add a new governance document to your organization</p>
+          <h1 className="text-3xl font-bold text-[color:var(--color-foreground)]">Create New Document</h1>
+          <p className="text-[color:var(--color-muted)] mt-1">Add a new governance document to your organization</p>
         </div>
       </div>
 
       <div className="max-w-2xl mx-auto px-6 py-12">
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+        <form onSubmit={handleSubmit} className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-8 shadow-sm">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-700 text-sm">{error}</p>
+            <div className="mb-6 p-4 bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded-lg">
+              <p className="text-[color:var(--color-error)] text-sm">{error}</p>
             </div>
           )}
 
           {/* Document Code */}
           <div className="mb-6">
-            <label htmlFor="documentCode" className="block text-sm font-medium text-gray-900 mb-2">
+            <label htmlFor="documentCode" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
               Document Code *
             </label>
             <input
@@ -90,14 +90,14 @@ export default function NewDocumentPage() {
               value={formData.documentCode}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
             />
-            <p className="text-xs text-gray-500 mt-1">Unique identifier for this document</p>
+            <p className="text-xs text-[color:var(--color-muted)] mt-1">Unique identifier for this document</p>
           </div>
 
           {/* Title */}
           <div className="mb-6">
-            <label htmlFor="title" className="block text-sm font-medium text-gray-900 mb-2">
+            <label htmlFor="title" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
               Title *
             </label>
             <input
@@ -108,13 +108,13 @@ export default function NewDocumentPage() {
               value={formData.title}
               onChange={handleChange}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
             />
           </div>
 
           {/* Description */}
           <div className="mb-6">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-900 mb-2">
+            <label htmlFor="description" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
               Description
             </label>
             <textarea
@@ -124,13 +124,13 @@ export default function NewDocumentPage() {
               value={formData.description}
               onChange={handleChange}
               rows={3}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
             />
           </div>
 
           {/* Document Type */}
           <div className="mb-6">
-            <label htmlFor="documentType" className="block text-sm font-medium text-gray-900 mb-2">
+            <label htmlFor="documentType" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
               Document Type *
             </label>
             <select
@@ -138,7 +138,7 @@ export default function NewDocumentPage() {
               name="documentType"
               value={formData.documentType}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
             >
               <option value="FRAMEWORK">Framework</option>
               <option value="POLICY">Policy</option>
@@ -151,7 +151,7 @@ export default function NewDocumentPage() {
 
           {/* Category */}
           <div className="mb-6">
-            <label htmlFor="category" className="block text-sm font-medium text-gray-900 mb-2">
+            <label htmlFor="category" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
               Category
             </label>
             <input
@@ -161,13 +161,13 @@ export default function NewDocumentPage() {
               placeholder="e.g., Compensation, Governance"
               value={formData.category}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
             />
           </div>
 
           {/* Tags */}
           <div className="mb-6">
-            <label htmlFor="tags" className="block text-sm font-medium text-gray-900 mb-2">
+            <label htmlFor="tags" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
               Tags
             </label>
             <input
@@ -177,13 +177,13 @@ export default function NewDocumentPage() {
               placeholder="e.g., sales, compensation, required (comma-separated)"
               value={formData.tags}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
             />
           </div>
 
           {/* Owner */}
           <div className="mb-6">
-            <label htmlFor="owner" className="block text-sm font-medium text-gray-900 mb-2">
+            <label htmlFor="owner" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
               Owner
             </label>
             <input
@@ -192,7 +192,7 @@ export default function NewDocumentPage() {
               type="text"
               value={formData.owner}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
             />
           </div>
 
@@ -201,11 +201,11 @@ export default function NewDocumentPage() {
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+              className="flex-1 px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] disabled:bg-[color:var(--color-border)]"
             >
               {loading ? 'Creating...' : 'Create Document'}
             </button>
-            <Link href="/documents" className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-center">
+            <Link href="/documents" className="flex-1 px-4 py-2 border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] text-center">
               Cancel
             </Link>
           </div>

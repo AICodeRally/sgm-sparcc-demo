@@ -1,7 +1,15 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { ChatBubbleIcon, Cross2Icon, PaperPlaneIcon, MinusIcon, ReloadIcon } from '@radix-ui/react-icons';
+import {
+  ChatBubbleIcon,
+  Cross2Icon,
+  PaperPlaneIcon,
+  MinusIcon,
+  ReloadIcon,
+  InfoCircledIcon,
+  ExclamationTriangleIcon,
+} from '@radix-ui/react-icons';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { usePageKb } from '@/components/kb/PageKbProvider';
@@ -90,7 +98,7 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: '⚠️ Sorry, I encountered an error. Please try again.',
+        content: 'Sorry, I encountered an error. Please try again.',
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, errorMessage]);
@@ -131,7 +139,7 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl"
+          className="fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl"
           aria-label="Open AskSGM AI Assistant"
           title="AskSGM - Governance AI Assistant"
         >
@@ -141,21 +149,21 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
 
       {/* Chat Panel - Slides in from right */}
       {isOpen && !isMinimized && (
-        <div className="fixed bottom-4 right-4 z-40 flex h-[600px] w-96 flex-col rounded-lg bg-white shadow-2xl border border-gray-200">
+        <div className="fixed bottom-4 right-4 z-40 flex h-[600px] w-96 flex-col rounded-lg bg-[color:var(--color-surface)] shadow-2xl border border-[color:var(--color-border)]">
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-gray-200 bg-gradient-to-r from-purple-500 to-fuchsia-500 p-4 text-white rounded-t-lg">
+          <div className="flex items-center justify-between border-b border-[color:var(--color-border)] bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] p-4 text-white rounded-t-lg">
             <div className="flex items-center gap-2">
               <ChatBubbleIcon className="h-5 w-5" />
               <div>
                 <h3 className="font-semibold">AskSGM</h3>
-                <p className="text-xs text-purple-100">Governance AI Assistant</p>
+                <p className="text-xs text-white/80">Governance AI Assistant</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
               {messages.length > 0 && (
                 <button
                   onClick={clearChat}
-                  className="rounded p-1 text-xs transition-colors hover:bg-white/20"
+                  className="rounded p-1 text-xs transition-colors hover:bg-[color:var(--color-surface)]/20"
                   aria-label="Clear chat"
                   title="Clear conversation"
                 >
@@ -164,14 +172,14 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
               )}
               <button
                 onClick={() => setIsMinimized(true)}
-                className="rounded p-1 transition-colors hover:bg-white/20"
+                className="rounded p-1 transition-colors hover:bg-[color:var(--color-surface)]/20"
                 aria-label="Minimize"
               >
                 <MinusIcon className="h-4 w-4" />
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="rounded p-1 transition-colors hover:bg-white/20"
+                className="rounded p-1 transition-colors hover:bg-[color:var(--color-surface)]/20"
                 aria-label="Close"
               >
                 <Cross2Icon className="h-4 w-4" />
@@ -180,23 +188,23 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
           </div>
 
           {/* Messages Area */}
-          <div className="flex-1 space-y-4 overflow-y-auto p-4 bg-gray-50">
+          <div className="flex-1 space-y-4 overflow-y-auto p-4 bg-[color:var(--color-surface-alt)]">
             {messages.length === 0 ? (
               <>
                 {/* Welcome Message */}
                 <div className="flex gap-3">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500 text-white">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white">
                     <ChatBubbleIcon className="h-4 w-4" />
                   </div>
-                  <div className="rounded-lg bg-purple-50 p-3 border border-purple-200">
-                    <p className="text-sm text-gray-700">
+                  <div className="rounded-lg bg-[color:var(--color-surface-alt)] p-3 border border-[color:var(--color-border)]">
+                    <p className="text-sm text-[color:var(--color-foreground)]">
                       Hi! I'm AskSGM, your governance intelligence assistant. I can help you with:
                     </p>
-                    <ul className="mt-2 space-y-1 text-xs text-gray-600">
-                      <li>• Compensation policies and approval workflows</li>
-                      <li>• SGCC and CRB committee processes</li>
-                      <li>• SLA compliance and document governance</li>
-                      <li>• Exception requests and dispute resolution</li>
+                    <ul className="mt-2 space-y-1 text-xs text-[color:var(--color-muted)]">
+                      <li className="flex items-center gap-2"><CheckCircledIcon className="h-3 w-3 text-[color:var(--color-primary)]" />Compensation policies and approval workflows</li>
+                      <li className="flex items-center gap-2"><CheckCircledIcon className="h-3 w-3 text-[color:var(--color-primary)]" />SGCC and CRB committee processes</li>
+                      <li className="flex items-center gap-2"><CheckCircledIcon className="h-3 w-3 text-[color:var(--color-primary)]" />SLA compliance and document governance</li>
+                      <li className="flex items-center gap-2"><CheckCircledIcon className="h-3 w-3 text-[color:var(--color-primary)]" />Exception requests and dispute resolution</li>
                     </ul>
                   </div>
                 </div>
@@ -205,24 +213,24 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                 {pageKb?.meta?.title && (
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <p className="text-xs font-medium text-gray-500">
+                      <p className="text-xs font-medium text-[color:var(--color-muted)]">
                         Current page guide
                       </p>
                       <button
                         onClick={() => setShowPageGuide(!showPageGuide)}
-                        className="text-xs text-purple-600 hover:text-purple-700"
+                        className="text-xs text-[color:var(--color-primary)] hover:text-[color:var(--color-primary)]"
                       >
                         {showPageGuide ? 'Hide' : 'View'}
                       </button>
                     </div>
-                    <div className="rounded-lg border border-purple-200 bg-white p-3 text-xs text-gray-700">
-                      <p className="font-semibold text-gray-900">{pageKb.meta.title}</p>
+                    <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-3 text-xs text-[color:var(--color-foreground)]">
+                      <p className="font-semibold text-[color:var(--color-foreground)]">{pageKb.meta.title}</p>
                       {pageKb.meta.description && (
-                        <p className="mt-1 text-gray-600">{pageKb.meta.description}</p>
+                        <p className="mt-1 text-[color:var(--color-muted)]">{pageKb.meta.description}</p>
                       )}
                       {showPageGuide && (
-                        <div className="mt-3 max-h-56 overflow-y-auto rounded border border-purple-100 bg-purple-50 p-3">
-                          <ReactMarkdown remarkPlugins={[remarkGfm]} className="prose prose-sm max-w-none text-gray-700">
+                        <div className="mt-3 max-h-56 overflow-y-auto rounded border border-[color:var(--color-accent-border)] bg-[color:var(--color-surface-alt)] p-3">
+                          <ReactMarkdown remarkPlugins={[remarkGfm]} className="prose prose-sm max-w-none text-[color:var(--color-foreground)]">
                             {pageKb.content}
                           </ReactMarkdown>
                         </div>
@@ -232,14 +240,17 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                 )}
 
                 <div className="space-y-2">
-                  <p className="text-xs font-medium text-gray-500">Quick questions:</p>
+                  <p className="text-xs font-medium text-[color:var(--color-muted)]">Quick questions:</p>
                   {quickQuestions.map((question, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleQuickQuestion(question)}
-                      className="w-full rounded-lg border border-gray-200 bg-white p-2 text-left text-xs text-gray-700 transition-colors hover:bg-purple-50 hover:border-purple-300"
+                      className="w-full rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-2 text-left text-xs text-[color:var(--color-foreground)] transition-colors hover:bg-[color:var(--color-surface-alt)] hover:border-[color:var(--color-border)]"
                     >
-                      💡 {question}
+                      <span className="inline-flex items-center gap-2">
+                        <InfoCircledIcon className="w-3 h-3 text-[color:var(--color-accent)]" />
+                        {question}
+                      </span>
                     </button>
                   ))}
                 </div>
@@ -252,19 +263,19 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                     className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : ''}`}
                   >
                     {message.role === 'assistant' && (
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500 text-white">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white">
                         <ChatBubbleIcon className="h-4 w-4" />
                       </div>
                     )}
                     <div
                       className={`max-w-[80%] rounded-lg p-3 text-sm ${
                         message.role === 'user'
-                          ? 'bg-purple-600 text-white'
-                          : 'bg-white border border-gray-200 text-gray-800'
+                          ? 'bg-[color:var(--color-primary)] text-white'
+                          : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)]'
                       }`}
                     >
                       {message.role === 'assistant' ? (
-                        <div className="prose prose-sm max-w-none prose-headings:text-gray-900 prose-headings:font-semibold prose-h1:text-base prose-h2:text-sm prose-h3:text-sm prose-p:text-gray-700 prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:text-gray-700 prose-strong:text-gray-900 prose-strong:font-semibold prose-table:text-xs prose-th:bg-purple-50 prose-th:text-purple-900 prose-th:font-semibold prose-th:p-2 prose-td:p-2 prose-td:border prose-td:border-gray-200 prose-hr:my-3 prose-hr:border-gray-300">
+                        <div className="prose prose-sm max-w-none prose-headings:text-[color:var(--color-foreground)] prose-headings:font-semibold prose-h1:text-base prose-h2:text-sm prose-h3:text-sm prose-p:text-[color:var(--color-foreground)] prose-p:my-2 prose-ul:my-2 prose-ol:my-2 prose-li:text-[color:var(--color-foreground)] prose-strong:text-[color:var(--color-foreground)] prose-strong:font-semibold prose-table:text-xs prose-th:bg-[color:var(--color-surface-alt)] prose-th:text-[color:var(--color-accent)] prose-th:font-semibold prose-th:p-2 prose-td:p-2 prose-td:border prose-td:border-[color:var(--color-border)] prose-hr:my-3 prose-hr:border-[color:var(--color-border)]">
                           <ReactMarkdown remarkPlugins={[remarkGfm]}>
                             {message.content}
                           </ReactMarkdown>
@@ -274,7 +285,7 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                       )}
                       <p
                         className={`mt-1 text-xs ${
-                          message.role === 'user' ? 'text-purple-100' : 'text-gray-400'
+                          message.role === 'user' ? 'text-white/80' : 'text-[color:var(--color-muted)]'
                         }`}
                       >
                         {message.timestamp.toLocaleTimeString([], {
@@ -284,7 +295,7 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                       </p>
                     </div>
                     {message.role === 'user' && (
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-300 text-gray-600 text-xs font-semibold">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[color:var(--color-border)] text-[color:var(--color-muted)] text-xs font-semibold">
                         You
                       </div>
                     )}
@@ -293,10 +304,10 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
 
                 {isLoading && (
                   <div className="flex gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-fuchsia-500 text-white">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white">
                       <ReloadIcon className="h-4 w-4 animate-spin" />
                     </div>
-                    <div className="rounded-lg bg-white border border-gray-200 p-3 text-sm text-gray-600">
+                    <div className="rounded-lg bg-[color:var(--color-surface)] border border-[color:var(--color-border)] p-3 text-sm text-[color:var(--color-muted)]">
                       <p>Analyzing governance data...</p>
                     </div>
                   </div>
@@ -308,10 +319,13 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
           </div>
 
           {/* Input Area */}
-          <div className="border-t border-gray-200 p-4 bg-white rounded-b-lg">
+          <div className="border-t border-[color:var(--color-border)] p-4 bg-[color:var(--color-surface)] rounded-b-lg">
             {error && (
-              <div className="mb-2 rounded-md bg-red-50 border border-red-200 p-2 text-xs text-red-600">
-                ⚠️ {error}
+              <div className="mb-2 rounded-md bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] p-2 text-xs text-[color:var(--color-error)]">
+                <div className="flex items-center gap-2">
+                  <ExclamationTriangleIcon className="w-3 h-3" />
+                  <span>{error}</span>
+                </div>
               </div>
             )}
             <div className="flex items-end gap-2">
@@ -320,14 +334,14 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask about governance policies, approvals, SLAs..."
-                className="flex-1 resize-none rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder-gray-400 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-200"
+                className="flex-1 resize-none rounded-lg border border-[color:var(--color-border)] px-3 py-2 text-sm placeholder-[color:var(--color-muted)] focus:border-[color:var(--color-primary)] focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent-border)]"
                 rows={2}
                 disabled={isLoading}
               />
               <button
                 onClick={() => handleSendMessage()}
                 disabled={!input.trim() || isLoading}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <ReloadIcon className="h-4 w-4 animate-spin" />
@@ -336,7 +350,7 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                 )}
               </button>
             </div>
-            <p className="mt-2 text-xs text-gray-500">
+            <p className="mt-2 text-xs text-[color:var(--color-muted)]">
               Press Enter to send • Shift+Enter for new line
             </p>
           </div>
@@ -347,12 +361,12 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
       {isOpen && isMinimized && (
         <button
           onClick={() => setIsMinimized(false)}
-          className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-lg bg-gradient-to-r from-purple-500 to-fuchsia-500 px-4 py-2 text-white shadow-lg transition-all hover:shadow-xl"
+          className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-lg bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] px-4 py-2 text-white shadow-lg transition-all hover:shadow-xl"
         >
           <ChatBubbleIcon className="h-4 w-4" />
           <span className="text-sm font-medium">AskSGM</span>
           {messages.length > 0 && (
-            <span className="ml-1 rounded-full bg-white/20 px-2 py-0.5 text-xs">
+            <span className="ml-1 rounded-full bg-[color:var(--color-surface)]/20 px-2 py-0.5 text-xs">
               {messages.length}
             </span>
           )}

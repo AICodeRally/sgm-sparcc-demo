@@ -7,6 +7,8 @@ import { FeatureTile } from '@/components/modes/FeatureTile';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { OperationalMode } from '@/types/operational-mode';
 import { MODE_CONFIGS } from '@/lib/auth/mode-permissions';
+import { ThemeBadge } from '@/components/ThemeBadge';
+import { getToneStyles } from '@/lib/config/themes';
 import {
   AvatarIcon,
   ClockIcon,
@@ -25,6 +27,7 @@ export default function OverseeModePage() {
     activeMembers: 12,
     complianceScore: 96,
   });
+  const toneStyles = getToneStyles('infra');
 
   return (
     <>
@@ -42,32 +45,32 @@ export default function OverseeModePage() {
           <ModeHeader mode={OperationalMode.OVERSEE} />
 
           {/* Key Metrics */}
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">Governance & Control Center</h2>
+            <ThemeBadge />
+          </div>
           <div className="grid grid-cols-5 gap-6 mb-8">
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.committees}</p>
-              <p className="text-sm text-gray-600 mt-2">Committees</p>
-            </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.upcomingMeetings}</p>
-              <p className="text-sm text-gray-600 mt-2">Meetings</p>
-            </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.decisionsThisMonth}</p>
-              <p className="text-sm text-gray-600 mt-2">Decisions</p>
-            </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.activeMembers}</p>
-              <p className="text-sm text-gray-600 mt-2">Members</p>
-            </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.complianceScore}%</p>
-              <p className="text-sm text-gray-600 mt-2">Compliance</p>
-            </div>
+            {[
+              { label: 'Committees', value: metrics.committees },
+              { label: 'Meetings', value: metrics.upcomingMeetings },
+              { label: 'Decisions', value: metrics.decisionsThisMonth },
+              { label: 'Members', value: metrics.activeMembers },
+              { label: 'Compliance', value: `${metrics.complianceScore}%` },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="bg-[color:var(--color-surface)] rounded-xl border-2 p-6 text-center theme-card"
+                style={{ border: toneStyles.border, boxShadow: toneStyles.shadow }}
+              >
+                <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{item.value}</p>
+                <p className="text-sm text-[color:var(--color-muted)] mt-2">{item.label}</p>
+              </div>
+            ))}
           </div>
 
           {/* Primary Features */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Primary Features</h2>
+            <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-4">Primary Features</h2>
             <div className="grid grid-cols-3 gap-6">
               <FeatureTile
                 href="/committees"
@@ -96,7 +99,7 @@ export default function OverseeModePage() {
 
           {/* Secondary Features */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Oversight Tools</h2>
+            <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-4">Oversight Tools</h2>
             <div className="grid grid-cols-4 gap-6">
               <FeatureTile
                 href="/committees/decisions"
@@ -128,19 +131,19 @@ export default function OverseeModePage() {
           </div>
 
           {/* Committee Overview */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border-2 p-6 mb-8" style={{ borderColor: `${config.color.hex}30` }}>
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Active Committees</h3>
+          <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-xl border-2 p-6 mb-8" style={{ borderColor: `${config.color.hex}30` }}>
+            <h3 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4">Active Committees</h3>
             <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white rounded-lg border p-6" style={{ borderColor: `${config.color.hex}30` }}>
+              <div className="bg-[color:var(--color-surface)] rounded-lg border p-6" style={{ borderColor: `${config.color.hex}30` }}>
                 <div className="flex items-center justify-between mb-4">
-                  <h4 className="text-lg font-bold text-gray-900">
+                  <h4 className="text-lg font-bold text-[color:var(--color-foreground)]">
                     Sales Governance Compliance Committee (SGCC)
                   </h4>
-                  <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                  <span className="px-3 py-1 bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] text-xs font-semibold rounded-full">
                     Active
                   </span>
                 </div>
-                <div className="space-y-2 text-sm text-gray-700">
+                <div className="space-y-2 text-sm text-[color:var(--color-foreground)]">
                   <p><strong>Members:</strong> 7</p>
                   <p><strong>Next Meeting:</strong> In 5 days</p>
                   <p><strong>Decisions This Month:</strong> {metrics.decisionsThisMonth}</p>
@@ -148,16 +151,16 @@ export default function OverseeModePage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg border p-6" style={{ borderColor: `${config.color.hex}30` }}>
+              <div className="bg-[color:var(--color-surface)] rounded-lg border p-6" style={{ borderColor: `${config.color.hex}30` }}>
                 <div className="flex items-center justify-between mb-4">
-                  <h4 className="text-lg font-bold text-gray-900">
+                  <h4 className="text-lg font-bold text-[color:var(--color-foreground)]">
                     Compensation Review Board (CRB)
                   </h4>
-                  <span className="px-3 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded-full">
+                  <span className="px-3 py-1 bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] text-xs font-semibold rounded-full">
                     Active
                   </span>
                 </div>
-                <div className="space-y-2 text-sm text-gray-700">
+                <div className="space-y-2 text-sm text-[color:var(--color-foreground)]">
                   <p><strong>Members:</strong> 5</p>
                   <p><strong>Next Meeting:</strong> In 12 days</p>
                   <p><strong>Focus:</strong> Windfall deals</p>

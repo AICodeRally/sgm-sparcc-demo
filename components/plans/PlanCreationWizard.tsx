@@ -142,27 +142,27 @@ export default function PlanCreationWizard({ isOpen, onClose }: PlanCreationWiza
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/50 backdrop-blur-sm">
       <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] flex flex-col">
+        <div className="bg-[color:var(--color-surface)] rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between px-8 py-6 border-b border-purple-200">
+          <div className="flex items-center justify-between px-8 py-6 border-b border-[color:var(--color-border)]">
             <div>
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent">
+              <h2 className="text-3xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
                 Create New Plan
               </h2>
-              <p className="text-gray-600 mt-1">
+              <p className="text-[color:var(--color-muted)] mt-1">
                 {STEPS[currentStep].description}
               </p>
             </div>
             <button
               onClick={onClose}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-2 hover:bg-[color:var(--color-surface-alt)] rounded-lg transition-colors"
             >
-              <Cross2Icon className="h-6 w-6 text-gray-500" />
+              <Cross2Icon className="h-6 w-6 text-[color:var(--color-muted)]" />
             </button>
           </div>
 
           {/* Progress Steps */}
-          <div className="px-8 py-6 border-b border-purple-200">
+          <div className="px-8 py-6 border-b border-[color:var(--color-border)]">
             <div className="flex items-center justify-between">
               {STEPS.map((step, index) => (
                 <div
@@ -173,10 +173,10 @@ export default function PlanCreationWizard({ isOpen, onClose }: PlanCreationWiza
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold transition-all ${
                         index < currentStep
-                          ? 'bg-green-500 text-white'
+                          ? 'bg-transparent text-white'
                           : index === currentStep
-                          ? 'bg-purple-600 text-white'
-                          : 'bg-gray-200 text-gray-500'
+                          ? 'bg-[color:var(--color-primary)] text-white'
+                          : 'bg-[color:var(--color-border)] text-[color:var(--color-muted)]'
                       }`}
                     >
                       {index < currentStep ? (
@@ -189,10 +189,10 @@ export default function PlanCreationWizard({ isOpen, onClose }: PlanCreationWiza
                       <div
                         className={`font-medium ${
                           index === currentStep
-                            ? 'text-purple-600'
+                            ? 'text-[color:var(--color-primary)]'
                             : index < currentStep
-                            ? 'text-green-600'
-                            : 'text-gray-500'
+                            ? 'text-[color:var(--color-success)]'
+                            : 'text-[color:var(--color-muted)]'
                         }`}
                       >
                         {step.title}
@@ -202,7 +202,7 @@ export default function PlanCreationWizard({ isOpen, onClose }: PlanCreationWiza
                   {index < STEPS.length - 1 && (
                     <div
                       className={`flex-1 h-1 mx-4 rounded ${
-                        index < currentStep ? 'bg-green-500' : 'bg-gray-200'
+                        index < currentStep ? 'bg-transparent' : 'bg-[color:var(--color-border)]'
                       }`}
                     />
                   )}
@@ -246,17 +246,17 @@ export default function PlanCreationWizard({ isOpen, onClose }: PlanCreationWiza
           </div>
 
           {/* Footer */}
-          <div className="flex items-center justify-between px-8 py-6 border-t border-purple-200 bg-gray-50">
+          <div className="flex items-center justify-between px-8 py-6 border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]">
             <button
               onClick={handleBack}
               disabled={currentStep === 0}
-              className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className="px-6 py-2 border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
             >
               <ChevronLeftIcon className="h-5 w-5" />
               Back
             </button>
 
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-[color:var(--color-muted)]">
               Step {currentStep + 1} of {STEPS.length}
             </div>
 
@@ -264,7 +264,7 @@ export default function PlanCreationWizard({ isOpen, onClose }: PlanCreationWiza
               <button
                 onClick={handleNext}
                 disabled={!canProceed()}
-                className="px-6 py-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-lg hover:from-purple-700 hover:to-fuchsia-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg"
+                className="px-6 py-2 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg"
               >
                 Next
                 <ChevronRightIcon className="h-5 w-5" />
@@ -273,7 +273,7 @@ export default function PlanCreationWizard({ isOpen, onClose }: PlanCreationWiza
               <button
                 onClick={handleCreate}
                 disabled={!canProceed() || saving}
-                className="px-6 py-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-lg hover:from-purple-700 hover:to-fuchsia-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
+                className="px-6 py-2 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
               >
                 {saving ? 'Creating...' : 'Create Plan'}
               </button>
@@ -301,14 +301,14 @@ function TemplateSelectionStep({
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="text-gray-500">Loading templates...</div>
+        <div className="text-[color:var(--color-muted)]">Loading templates...</div>
       </div>
     );
   }
 
   return (
     <div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">
+      <h3 className="text-xl font-semibold text-[color:var(--color-foreground)] mb-4">
         Select a Template
       </h3>
       <div className="grid grid-cols-2 gap-4">
@@ -318,25 +318,25 @@ function TemplateSelectionStep({
             onClick={() => onSelect(template)}
             className={`text-left p-6 rounded-lg border-2 transition-all ${
               selectedTemplate?.id === template.id
-                ? 'border-purple-600 bg-purple-50'
-                : 'border-purple-200 hover:border-purple-300 hover:bg-purple-50/50'
+                ? 'border-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)]'
+                : 'border-[color:var(--color-border)] hover:border-[color:var(--color-border)] hover:bg-[color:var(--color-surface-alt)]/50'
             }`}
           >
             <div className="flex items-start justify-between mb-2">
-              <h4 className="font-semibold text-gray-900">{template.name}</h4>
+              <h4 className="font-semibold text-[color:var(--color-foreground)]">{template.name}</h4>
               {selectedTemplate?.id === template.id && (
-                <CheckIcon className="h-5 w-5 text-purple-600" />
+                <CheckIcon className="h-5 w-5 text-[color:var(--color-primary)]" />
               )}
             </div>
-            <p className="text-sm text-gray-600 mb-2">
+            <p className="text-sm text-[color:var(--color-muted)] mb-2">
               {template.description || 'No description'}
             </p>
-            <div className="flex items-center gap-2 text-xs text-gray-500">
-              <span className="px-2 py-1 bg-gray-100 rounded">
+            <div className="flex items-center gap-2 text-xs text-[color:var(--color-muted)]">
+              <span className="px-2 py-1 bg-[color:var(--color-surface-alt)] rounded">
                 {template.planType.replace('_', ' ')}
               </span>
               {template.isSystemTemplate && (
-                <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded">
+                <span className="px-2 py-1 bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)] rounded">
                   System
                 </span>
               )}
@@ -359,12 +359,12 @@ function BasicsStep({
 }) {
   return (
     <div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">
+      <h3 className="text-xl font-semibold text-[color:var(--color-foreground)] mb-4">
         Plan Information
       </h3>
       <div className="space-y-6 max-w-2xl">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
             Plan Title *
           </label>
           <input
@@ -372,12 +372,12 @@ function BasicsStep({
             value={planData.title || ''}
             onChange={(e) => onChange({ ...planData, title: e.target.value })}
             placeholder="FY2026 Sales Compensation Plan"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
             Description *
           </label>
           <textarea
@@ -385,17 +385,17 @@ function BasicsStep({
             onChange={(e) => onChange({ ...planData, description: e.target.value })}
             placeholder="Describe the purpose and scope of this plan..."
             rows={4}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
           />
         </div>
 
-        <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+        <div className="bg-[color:var(--color-surface-alt)] border border-[color:var(--color-border)] rounded-lg p-4">
           <div className="flex items-start gap-3">
             <div className="flex-1">
-              <h4 className="font-medium text-gray-900 mb-1">
+              <h4 className="font-medium text-[color:var(--color-foreground)] mb-1">
                 Using Template: {template?.name}
               </h4>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-[color:var(--color-muted)]">
                 {template?.description}
               </p>
             </div>
@@ -415,14 +415,14 @@ function SectionsStep({
 }) {
   return (
     <div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">
+      <h3 className="text-xl font-semibold text-[color:var(--color-foreground)] mb-4">
         Template Sections
       </h3>
-      <p className="text-gray-600 mb-6">
+      <p className="text-[color:var(--color-muted)] mb-6">
         The following sections will be included in your plan. You can fill them out after creation.
       </p>
-      <div className="bg-gray-50 rounded-lg p-6">
-        <p className="text-gray-600 text-center">
+      <div className="bg-[color:var(--color-surface-alt)] rounded-lg p-6">
+        <p className="text-[color:var(--color-muted)] text-center">
           Section preview will be available after plan creation
         </p>
       </div>
@@ -439,30 +439,30 @@ function ReviewStep({
 }) {
   return (
     <div>
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">
+      <h3 className="text-xl font-semibold text-[color:var(--color-foreground)] mb-4">
         Review Your Plan
       </h3>
       <div className="space-y-6 max-w-2xl">
-        <div className="bg-white border border-purple-200 rounded-lg p-6">
-          <h4 className="font-semibold text-gray-900 mb-4">Plan Details</h4>
+        <div className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg p-6">
+          <h4 className="font-semibold text-[color:var(--color-foreground)] mb-4">Plan Details</h4>
           <dl className="space-y-3">
             <div>
-              <dt className="text-sm font-medium text-gray-500">Title</dt>
-              <dd className="text-gray-900 mt-1">{planData.title}</dd>
+              <dt className="text-sm font-medium text-[color:var(--color-muted)]">Title</dt>
+              <dd className="text-[color:var(--color-foreground)] mt-1">{planData.title}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">Description</dt>
-              <dd className="text-gray-900 mt-1">{planData.description}</dd>
+              <dt className="text-sm font-medium text-[color:var(--color-muted)]">Description</dt>
+              <dd className="text-[color:var(--color-foreground)] mt-1">{planData.description}</dd>
             </div>
             <div>
-              <dt className="text-sm font-medium text-gray-500">Template</dt>
-              <dd className="text-gray-900 mt-1">{template?.name}</dd>
+              <dt className="text-sm font-medium text-[color:var(--color-muted)]">Template</dt>
+              <dd className="text-[color:var(--color-foreground)] mt-1">{template?.name}</dd>
             </div>
           </dl>
         </div>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <p className="text-sm text-blue-800">
+        <div className="bg-[color:var(--color-surface-alt)] border border-[color:var(--color-info-border)] rounded-lg p-4">
+          <p className="text-sm text-[color:var(--color-info)]">
             <strong>Next steps:</strong> After creating this plan, you'll be able to fill out all sections, collaborate with your team, and submit for approval.
           </p>
         </div>

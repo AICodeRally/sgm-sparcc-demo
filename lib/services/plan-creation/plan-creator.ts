@@ -217,7 +217,7 @@ export class PlanCreator {
 
     try {
       // Step 1: Parse document
-      console.log('📄 Step 1: Parsing document...');
+      console.log('[DOC] Step 1: Parsing document...');
       const parseStartTime = Date.now();
 
       const parseResult = await parseAndConvert(documentPath, {
@@ -229,7 +229,7 @@ export class PlanCreator {
 
       const parseTime = Date.now() - parseStartTime;
       console.log(
-        `✅ Parsed ${parseResult.sections.length} sections in ${parseTime}ms`
+        `[OK] Parsed ${parseResult.sections.length} sections in ${parseTime}ms`
       );
 
       if (parseResult.sections.length === 0) {
@@ -249,7 +249,7 @@ export class PlanCreator {
       });
 
       const mappingTime = Date.now() - mappingStartTime;
-      console.log(`✅ Generated ${mappings.length} mappings in ${mappingTime}ms`);
+      console.log(`[OK] Generated ${mappings.length} mappings in ${mappingTime}ms`);
 
       // Step 3: Analyze gaps
       console.log('\n🔍 Step 3: Analyzing policy gaps...');
@@ -260,10 +260,10 @@ export class PlanCreator {
       });
 
       const gapTime = Date.now() - gapStartTime;
-      console.log(`✅ Detected ${gaps.length} gaps in ${gapTime}ms`);
+      console.log(`[OK] Detected ${gaps.length} gaps in ${gapTime}ms`);
 
       // Step 4: Generate recommendations
-      console.log('\n💡 Step 4: Generating policy recommendations...');
+      console.log('\n[NOTE] Step 4: Generating policy recommendations...');
       const recStartTime = Date.now();
 
       const recommendations = generateRecommendations(gaps, {
@@ -272,11 +272,11 @@ export class PlanCreator {
 
       const recTime = Date.now() - recStartTime;
       console.log(
-        `✅ Generated ${recommendations.length} recommendations in ${recTime}ms`
+        `[OK] Generated ${recommendations.length} recommendations in ${recTime}ms`
       );
 
       // Step 5: Create plan
-      console.log('\n📋 Step 5: Creating plan with content...');
+      console.log('\n[DOC] Step 5: Creating plan with content...');
       const creationStartTime = Date.now();
 
       const plan = await this.buildPlan(
@@ -286,7 +286,7 @@ export class PlanCreator {
       );
 
       const creationTime = Date.now() - creationStartTime;
-      console.log(`✅ Created plan with ${plan.sections.length} sections`);
+      console.log(`[OK] Created plan with ${plan.sections.length} sections`);
 
       // Build metadata
       const totalTime = Date.now() - startTime;

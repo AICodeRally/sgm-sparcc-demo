@@ -118,9 +118,9 @@ ${activeCases
 
 ## Your Role
 Analyze this governance data and identify:
-1. **Alerts** (🚨) - Critical governance issues requiring immediate attention
-2. **Warnings** (⚠️) - At-risk situations that need monitoring
-3. **Info** (ℹ️) - Positive updates and governance health indicators
+1. **Alerts** ([ALERT]) - Critical governance issues requiring immediate attention
+2. **Warnings** ([WARN]) - At-risk situations that need monitoring
+3. **Info** ([INFO]) - Positive updates and governance health indicators
 
 ## Analysis Framework
 **Approval Velocity**: SLA compliance, bottlenecks in approval workflows
@@ -156,7 +156,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
       const rallyClient = getRallyLLMClient();
       const clientStatus = rallyClient.getStatus();
 
-      console.log(`🔧 [OpsChief/SGM] Using LLM: ${clientStatus.model} (Rally)`);
+      console.log(`[TOOL] [OpsChief/SGM] Using LLM: ${clientStatus.model} (Rally)`);
 
       const analysisResponse = await rallyClient.chat(
         [
@@ -176,11 +176,11 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
       tokensUsed = analysisResponse.tokensUsed;
     } else {
       // Fallback to Claude API (if configured) or static insights
-      console.log(`🔧 [OpsChief/SGM] Checking for Claude API key...`);
+      console.log(`[TOOL] [OpsChief/SGM] Checking for Claude API key...`);
 
       if (!process.env.ANTHROPIC_API_KEY) {
         // No API key - return static insights
-        console.log(`🔧 [OpsChief/SGM] No API key configured - using static insights`);
+        console.log(`[TOOL] [OpsChief/SGM] No API key configured - using static insights`);
 
         analysisContent = JSON.stringify([
           {
@@ -224,7 +224,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
         tokensUsed = { input: 0, output: 0, total: 0 };
       } else {
         // Claude API configured - use it
-        console.log(`🔧 [OpsChief/SGM] Using LLM: Claude Opus 4.5 (Fallback)`);
+        console.log(`[TOOL] [OpsChief/SGM] Using LLM: Claude Opus 4.5 (Fallback)`);
 
         const { signal, cleanup } = createAbortController(AI_GUARDRAILS.requestTimeoutMs);
         let claudeResponse: Response;

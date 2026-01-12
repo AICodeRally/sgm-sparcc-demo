@@ -68,7 +68,7 @@ export function ModuleSwitcher() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         disabled={isSwitching}
-        className="flex items-center gap-3 px-4 py-2 bg-white rounded-lg border-2 border-gray-200 hover:border-gray-300 hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center gap-3 px-4 py-2 bg-[color:var(--color-surface)] rounded-lg border-2 border-[color:var(--color-border)] hover:border-[color:var(--color-border)] hover:shadow-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {/* Module Gradient Preview */}
         <div
@@ -78,20 +78,20 @@ export function ModuleSwitcher() {
 
         {/* Module Info */}
         <div className="text-left">
-          <p className="text-sm font-bold text-gray-900">
+          <p className="text-sm font-bold text-[color:var(--color-foreground)]">
             {activeModule.module.productLine}
           </p>
-          <p className="text-xs text-gray-600">
+          <p className="text-xs text-[color:var(--color-muted)]">
             {activeModule.module.name} • v{activeModule.module.version}
           </p>
         </div>
 
         {/* Icon */}
         {isSwitching ? (
-          <ReloadIcon className="w-4 h-4 text-gray-600 animate-spin" />
+          <ReloadIcon className="w-4 h-4 text-[color:var(--color-muted)] animate-spin" />
         ) : (
           <ChevronDownIcon
-            className={`w-4 h-4 text-gray-600 transition-transform ${
+            className={`w-4 h-4 text-[color:var(--color-muted)] transition-transform ${
               isOpen ? 'rotate-180' : ''
             }`}
           />
@@ -108,13 +108,13 @@ export function ModuleSwitcher() {
           />
 
           {/* Dropdown Menu */}
-          <div className="absolute top-full mt-2 right-0 w-96 bg-white rounded-xl border-2 border-gray-200 shadow-2xl z-50 overflow-hidden">
+          <div className="absolute top-full mt-2 right-0 w-96 bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-border)] shadow-2xl z-50 overflow-hidden">
             {/* Header */}
-            <div className="px-4 py-3 border-b border-gray-200 bg-gray-50">
-              <p className="text-sm font-bold text-gray-900">
+            <div className="px-4 py-3 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]">
+              <p className="text-sm font-bold text-[color:var(--color-foreground)]">
                 Switch SPARCC Module
               </p>
-              <p className="text-xs text-gray-600 mt-1">
+              <p className="text-xs text-[color:var(--color-muted)] mt-1">
                 Changes will reload the page to apply new colors
               </p>
             </div>
@@ -129,8 +129,8 @@ export function ModuleSwitcher() {
                     key={module.module.id}
                     onClick={() => handleModuleSwitch(module.module.id)}
                     disabled={isSwitching}
-                    className={`w-full px-4 py-4 flex items-center gap-4 hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
-                      isActive ? 'bg-blue-50' : ''
+                    className={`w-full px-4 py-4 flex items-center gap-4 hover:bg-[color:var(--color-surface-alt)] transition-all disabled:opacity-50 disabled:cursor-not-allowed ${
+                      isActive ? 'bg-[color:var(--color-surface-alt)]' : ''
                     }`}
                   >
                     {/* Gradient Preview */}
@@ -142,52 +142,52 @@ export function ModuleSwitcher() {
                     {/* Module Info */}
                     <div className="flex-1 text-left">
                       <div className="flex items-center gap-2 mb-1">
-                        <p className="text-sm font-bold text-gray-900">
+                        <p className="text-sm font-bold text-[color:var(--color-foreground)]">
                           {module.module.productLine}
                         </p>
                         {isActive && (
-                          <span className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs font-semibold rounded-full">
+                          <span className="px-2 py-0.5 bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)] text-xs font-semibold rounded-full">
                             Active
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-gray-700 font-medium mb-1">
+                      <p className="text-xs text-[color:var(--color-foreground)] font-medium mb-1">
                         {module.module.name}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-[color:var(--color-muted)]">
                         v{module.module.version} • {module.data.apiVersion}
                       </p>
 
                       {/* Color Stops */}
                       <div className="flex items-center gap-1 mt-2">
                         <div
-                          className="w-4 h-4 rounded-sm border border-gray-300"
+                          className="w-4 h-4 rounded-sm border border-[color:var(--color-border)]"
                           style={{ backgroundColor: module.gradient.start }}
                           title="Start"
                         />
                         {module.gradient.mid1 && (
                           <div
-                            className="w-4 h-4 rounded-sm border border-gray-300"
+                            className="w-4 h-4 rounded-sm border border-[color:var(--color-border)]"
                             style={{ backgroundColor: module.gradient.mid1 }}
                             title="Mid 1"
                           />
                         )}
                         {module.gradient.mid2 && (
                           <div
-                            className="w-4 h-4 rounded-sm border border-gray-300"
+                            className="w-4 h-4 rounded-sm border border-[color:var(--color-border)]"
                             style={{ backgroundColor: module.gradient.mid2 }}
                             title="Mid 2"
                           />
                         )}
                         {module.gradient.mid3 && (
                           <div
-                            className="w-4 h-4 rounded-sm border border-gray-300"
+                            className="w-4 h-4 rounded-sm border border-[color:var(--color-border)]"
                             style={{ backgroundColor: module.gradient.mid3 }}
                             title="Mid 3"
                           />
                         )}
                         <div
-                          className="w-4 h-4 rounded-sm border border-gray-300"
+                          className="w-4 h-4 rounded-sm border border-[color:var(--color-border)]"
                           style={{ backgroundColor: module.gradient.end }}
                           title="End"
                         />
@@ -196,7 +196,7 @@ export function ModuleSwitcher() {
 
                     {/* Check Icon */}
                     {isActive && (
-                      <CheckIcon className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                      <CheckIcon className="w-5 h-5 text-[color:var(--color-info)] flex-shrink-0" />
                     )}
                   </button>
                 );
@@ -204,8 +204,8 @@ export function ModuleSwitcher() {
             </div>
 
             {/* Footer */}
-            <div className="px-4 py-3 border-t border-gray-200 bg-gray-50">
-              <p className="text-xs text-gray-600">
+            <div className="px-4 py-3 border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]">
+              <p className="text-xs text-[color:var(--color-muted)]">
                 Total modules: {allModules.length} • Currently active:{' '}
                 {activeModule.module.id}
               </p>

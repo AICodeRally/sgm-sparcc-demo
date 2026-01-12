@@ -36,7 +36,7 @@ export default function RoadmapPage({ params }: RoadmapPageProps) {
     return (
       <ClientDashboardLayout tenantSlug={tenantSlug} tenantName="Loading...">
         <div className="text-center py-12">
-          <p className="text-gray-600">Loading roadmap...</p>
+          <p className="text-[color:var(--color-muted)]">Loading roadmap...</p>
         </div>
       </ClientDashboardLayout>
     );
@@ -45,8 +45,8 @@ export default function RoadmapPage({ params }: RoadmapPageProps) {
   return (
     <ClientDashboardLayout tenantSlug={tenantSlug} tenantName="Demo Client">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Implementation Roadmap</h1>
-        <p className="text-gray-600">
+        <h1 className="text-3xl font-bold text-[color:var(--color-foreground)] mb-2">Implementation Roadmap</h1>
+        <p className="text-[color:var(--color-muted)]">
           Phased implementation plan with milestones and deliverables
         </p>
       </div>

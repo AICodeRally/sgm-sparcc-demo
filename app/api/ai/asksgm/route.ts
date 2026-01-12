@@ -255,7 +255,7 @@ When citing decisions, use the DecisionId:
     // Priority 1: Try AICR Platform (expert hierarchy)
     if (isAICRConfigured()) {
       try {
-        console.log(`🔧 [AskSGM] Trying AICR Platform (expert hierarchy)...`);
+        console.log(`[TOOL] [AskSGM] Trying AICR Platform (expert hierarchy)...`);
         const aicrClient = getAICRClient();
 
         // Get the last user message for the query
@@ -283,9 +283,9 @@ When citing decisions, use the DecisionId:
         tokensUsed = aicrResponse.tokensUsed || { input: 0, output: 0, total: 0 };
         cached = aicrResponse.cached || false;
 
-        console.log(`✅ [AskSGM] AICR Platform responded via ${aicrResponse.expert?.name || 'SGM Expert'}`);
+        console.log(`[OK] [AskSGM] AICR Platform responded via ${aicrResponse.expert?.name || 'SGM Expert'}`);
       } catch (aicrError) {
-        console.warn(`⚠️ [AskSGM] AICR Platform failed, falling back to local:`, aicrError);
+        console.warn(`[WARN] [AskSGM] AICR Platform failed, falling back to local:`, aicrError);
         aicrResponse = null;
       }
     }
@@ -295,7 +295,7 @@ When citing decisions, use the DecisionId:
       const rallyClient = getRallyLLMClient();
       const clientStatus = rallyClient.getStatus();
 
-      console.log(`🔧 [AskSGM] Using LLM: ${clientStatus.model} (Rally Local)`);
+      console.log(`[TOOL] [AskSGM] Using LLM: ${clientStatus.model} (Rally Local)`);
 
       const chatResponse = await rallyClient.chat(
         messages.map((msg) => ({
@@ -332,7 +332,7 @@ When citing decisions, use the DecisionId:
         );
       }
 
-      console.log(`🔧 [AskSGM] Using LLM: Claude Sonnet 4 (Cloud Fallback)`);
+      console.log(`[TOOL] [AskSGM] Using LLM: Claude Sonnet 4 (Cloud Fallback)`);
 
       const { signal, cleanup } = createAbortController(AI_GUARDRAILS.requestTimeoutMs);
       const maxTokens = AI_GUARDRAILS.maxOutputTokens;
@@ -451,7 +451,7 @@ When citing decisions, use the DecisionId:
     });
 
     // Log additional context (bounded operator)
-    console.log('✅ AskSGM bounded operator:', {
+    console.log('[OK] AskSGM bounded operator:', {
       model: modelUsed,
       department: body.department,
       cycleState: body.cycleState || 'unknown',

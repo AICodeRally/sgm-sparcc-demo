@@ -48,15 +48,15 @@ export default function DocumentLinksPage() {
   const getNodeColor = (type: string) => {
     switch (type) {
       case 'FRAMEWORK':
-        return 'bg-purple-500';
+        return 'bg-[color:var(--color-surface-alt)]0';
       case 'POLICY':
-        return 'bg-blue-500';
+        return 'bg-[color:var(--color-surface-alt)]0';
       case 'PROCEDURE':
-        return 'bg-green-500';
+        return 'bg-transparent';
       case 'TEMPLATE':
-        return 'bg-yellow-500';
+        return 'bg-transparent';
       default:
-        return 'bg-gray-500';
+        return 'bg-[color:var(--color-surface-alt)]0';
     }
   };
 
@@ -66,19 +66,19 @@ export default function DocumentLinksPage() {
         title="Document Links Explorer"
         description="Interactive graph showing document relationships and dependencies"
       />
-      <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex flex-col">
+      <div className="h-screen sparcc-hero-bg flex flex-col">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm">
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-sm">
-              <div className="bg-purple-100 px-3 py-1 rounded-full">
-                <span className="font-semibold text-purple-700">{GRAPH_STATS.totalDocuments}</span>
-                <span className="text-purple-600 ml-1">documents</span>
+              <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
+                <span className="font-semibold text-[color:var(--color-primary)]">{GRAPH_STATS.totalDocuments}</span>
+                <span className="text-[color:var(--color-primary)] ml-1">documents</span>
               </div>
-              <div className="bg-fuchsia-100 px-3 py-1 rounded-full">
-                <span className="font-semibold text-fuchsia-700">{GRAPH_STATS.totalLinks}</span>
-                <span className="text-fuchsia-600 ml-1">links</span>
+              <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
+                <span className="font-semibold text-[color:var(--color-primary)]">{GRAPH_STATS.totalLinks}</span>
+                <span className="text-[color:var(--color-primary)] ml-1">links</span>
               </div>
             </div>
           </div>
@@ -87,30 +87,30 @@ export default function DocumentLinksPage() {
 
       <div className="flex-1 flex overflow-hidden">
         {/* Left Panel - Document List */}
-        <div className="w-80 border-r border-purple-200 bg-white/90 backdrop-blur-sm overflow-y-auto">
+        <div className="w-80 border-r border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
           <div className="p-4">
             {/* Search */}
             <div className="relative mb-4">
-              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[color:var(--color-muted)]" />
               <input
                 type="text"
                 placeholder="Search documents..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-purple-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full pl-10 pr-4 py-2 border border-[color:var(--color-border)] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent-border)]"
               />
             </div>
 
             {/* Legend */}
-            <div className="mb-4 p-3 bg-purple-50 rounded-md">
-              <p className="text-xs font-semibold text-purple-700 uppercase tracking-wider mb-2">
+            <div className="mb-4 p-3 bg-[color:var(--color-surface-alt)] rounded-md">
+              <p className="text-xs font-semibold text-[color:var(--color-primary)] uppercase tracking-wider mb-2">
                 Node Types
               </p>
               <div className="space-y-1">
                 {['FRAMEWORK', 'POLICY', 'PROCEDURE', 'TEMPLATE'].map(type => (
                   <div key={type} className="flex items-center gap-2 text-xs">
                     <div className={`w-3 h-3 rounded-full ${getNodeColor(type)}`}></div>
-                    <span className="text-gray-700">{type}</span>
+                    <span className="text-[color:var(--color-foreground)]">{type}</span>
                   </div>
                 ))}
               </div>
@@ -124,18 +124,18 @@ export default function DocumentLinksPage() {
                   onClick={() => setSelectedNode(node)}
                   className={`w-full text-left p-3 rounded-md transition-all ${
                     selectedNode?.id === node.id
-                      ? 'bg-gradient-to-r from-purple-100 to-fuchsia-100 border-l-2 border-purple-500'
-                      : 'hover:bg-purple-50'
+                      ? 'bg-[color:var(--color-surface-alt)] border-l-2 border-[color:var(--color-primary)]'
+                      : 'hover:bg-[color:var(--color-surface-alt)]'
                   }`}
                 >
                   <div className="flex items-start gap-2">
                     <div className={`w-2 h-2 rounded-full mt-1.5 ${getNodeColor(node.type)}`}></div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-gray-900 truncate">
+                      <p className="text-sm font-semibold text-[color:var(--color-foreground)] truncate">
                         {node.documentCode}
                       </p>
-                      <p className="text-xs text-gray-600 truncate">{node.title}</p>
-                      <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
+                      <p className="text-xs text-[color:var(--color-muted)] truncate">{node.title}</p>
+                      <div className="flex items-center gap-2 mt-1 text-xs text-[color:var(--color-muted)]">
                         <span>{node.incomingLinks} in</span>
                         <span>•</span>
                         <span>{node.outgoingLinks} out</span>
@@ -153,28 +153,28 @@ export default function DocumentLinksPage() {
           {selectedNode ? (
             <div className="h-full flex flex-col">
               {/* Selected Node Info */}
-              <div className="bg-white/90 backdrop-blur-sm rounded-lg border border-purple-200 p-6 mb-6">
+              <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border border-[color:var(--color-border)] p-6 mb-6">
                 <div className="flex items-start justify-between">
                   <div className="flex items-start gap-4">
                     <div className={`w-12 h-12 rounded-full ${getNodeColor(selectedNode.type)} flex items-center justify-center flex-shrink-0`}>
                       <FileTextIcon className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h2 className="text-xl font-bold text-gray-900">{selectedNode.documentCode}</h2>
-                      <p className="text-gray-600 mt-1">{selectedNode.title}</p>
+                      <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">{selectedNode.documentCode}</h2>
+                      <p className="text-[color:var(--color-muted)] mt-1">{selectedNode.title}</p>
                       <div className="flex items-center gap-4 mt-2">
-                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded text-xs font-medium">
                           {selectedNode.type}
                         </span>
-                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 rounded text-xs font-medium">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] rounded text-xs font-medium">
                           {selectedNode.status}
                         </span>
                       </div>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-purple-600">{selectedNodeLinks.length}</div>
-                    <div className="text-xs text-gray-500">total links</div>
+                    <div className="text-2xl font-bold text-[color:var(--color-primary)]">{selectedNodeLinks.length}</div>
+                    <div className="text-xs text-[color:var(--color-muted)]">total links</div>
                   </div>
                 </div>
               </div>
@@ -185,8 +185,8 @@ export default function DocumentLinksPage() {
                   onClick={() => setFilterLinkType('all')}
                   className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
                     filterLinkType === 'all'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-white/80 text-gray-700 hover:bg-white'
+                      ? 'bg-[color:var(--color-primary)] text-white'
+                      : 'bg-[color:var(--surface-glass)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface)]'
                   }`}
                 >
                   All Links ({selectedNodeLinks.length})
@@ -201,7 +201,7 @@ export default function DocumentLinksPage() {
                       className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
                         filterLinkType === key
                           ? 'text-white'
-                          : 'bg-white/80 text-gray-700 hover:bg-white'
+                          : 'bg-[color:var(--surface-glass)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface)]'
                       }`}
                       style={{
                         backgroundColor: filterLinkType === key ? info.color : undefined,
@@ -216,8 +216,8 @@ export default function DocumentLinksPage() {
               {/* Links List */}
               <div className="flex-1 overflow-y-auto space-y-3">
                 {filteredLinks.length === 0 ? (
-                  <div className="text-center py-12 text-gray-500">
-                    <Link2Icon className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+                  <div className="text-center py-12 text-[color:var(--color-muted)]">
+                    <Link2Icon className="w-12 h-12 mx-auto mb-3 text-[color:var(--color-muted)]" />
                     <p>No links of this type</p>
                   </div>
                 ) : (
@@ -230,15 +230,15 @@ export default function DocumentLinksPage() {
                     return (
                       <div
                         key={link.id}
-                        className="bg-white/80 backdrop-blur-sm rounded-lg border border-purple-200 p-4 hover:shadow-md transition-all"
+                        className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border border-[color:var(--color-border)] p-4 hover:shadow-md transition-all"
                       >
                         <div className="flex items-start gap-3">
                           {/* Direction indicator */}
                           <div className="flex-shrink-0 mt-1">
                             {isOutgoing ? (
-                              <ArrowRightIcon className="w-5 h-5 text-purple-600" />
+                              <ArrowRightIcon className="w-5 h-5 text-[color:var(--color-primary)]" />
                             ) : (
-                              <ArrowRightIcon className="w-5 h-5 text-purple-600 transform rotate-180" />
+                              <ArrowRightIcon className="w-5 h-5 text-[color:var(--color-primary)] transform rotate-180" />
                             )}
                           </div>
 
@@ -251,7 +251,7 @@ export default function DocumentLinksPage() {
                               >
                                 {linkInfo.name}
                               </span>
-                              <span className="text-xs text-gray-500">
+                              <span className="text-xs text-[color:var(--color-muted)]">
                                 {isOutgoing ? 'to' : 'from'}
                               </span>
                             </div>
@@ -260,15 +260,15 @@ export default function DocumentLinksPage() {
                             {otherDoc && (
                               <button
                                 onClick={() => setSelectedNode(otherDoc)}
-                                className="text-left hover:bg-purple-50 rounded p-2 -m-2 transition-colors w-full"
+                                className="text-left hover:bg-[color:var(--color-surface-alt)] rounded p-2 -m-2 transition-colors w-full"
                               >
                                 <div className="flex items-center gap-2">
                                   <div className={`w-2 h-2 rounded-full ${getNodeColor(otherDoc.type)}`}></div>
-                                  <p className="text-sm font-semibold text-gray-900">
+                                  <p className="text-sm font-semibold text-[color:var(--color-foreground)]">
                                     {otherDoc.documentCode}
                                   </p>
-                                  <span className="text-xs text-gray-500">•</span>
-                                  <p className="text-xs text-gray-600 truncate flex-1">
+                                  <span className="text-xs text-[color:var(--color-muted)]">•</span>
+                                  <p className="text-xs text-[color:var(--color-muted)] truncate flex-1">
                                     {otherDoc.title}
                                   </p>
                                 </div>
@@ -277,7 +277,7 @@ export default function DocumentLinksPage() {
 
                             {/* Description */}
                             {link.description && (
-                              <p className="text-xs text-gray-600 mt-2 leading-relaxed">
+                              <p className="text-xs text-[color:var(--color-muted)] mt-2 leading-relaxed">
                                 {link.description}
                               </p>
                             )}
@@ -292,9 +292,9 @@ export default function DocumentLinksPage() {
           ) : (
             <div className="h-full flex items-center justify-center">
               <div className="text-center">
-                <Link2Icon className="w-16 h-16 text-purple-300 mx-auto mb-4" />
-                <p className="text-gray-600 text-lg mb-2">Select a document to explore links</p>
-                <p className="text-gray-500 text-sm">
+                <Link2Icon className="w-16 h-16 text-[color:var(--color-accent)] mx-auto mb-4" />
+                <p className="text-[color:var(--color-muted)] text-lg mb-2">Select a document to explore links</p>
+                <p className="text-[color:var(--color-muted)] text-sm">
                   {GRAPH_STATS.totalDocuments} documents • {GRAPH_STATS.totalLinks} relationships
                 </p>
               </div>
@@ -304,10 +304,10 @@ export default function DocumentLinksPage() {
 
         {/* Right Panel - Related Documents */}
         {selectedNode && relatedDocs.length > 0 && (
-          <div className="w-72 border-l border-purple-200 bg-white/90 backdrop-blur-sm overflow-y-auto">
+          <div className="w-72 border-l border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
             <div className="p-4">
-              <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                <LayersIcon className="w-4 h-4 text-purple-600" />
+              <h3 className="text-sm font-semibold text-[color:var(--color-foreground)] mb-3 flex items-center gap-2">
+                <LayersIcon className="w-4 h-4 text-[color:var(--color-primary)]" />
                 Related Documents ({relatedDocs.length})
               </h3>
               <div className="space-y-2">
@@ -315,15 +315,15 @@ export default function DocumentLinksPage() {
                   <button
                     key={doc.id}
                     onClick={() => setSelectedNode(doc)}
-                    className="w-full text-left p-3 rounded-md bg-purple-50 hover:bg-purple-100 transition-colors"
+                    className="w-full text-left p-3 rounded-md bg-[color:var(--color-surface-alt)] hover:bg-[color:var(--color-surface-alt)] transition-colors"
                   >
                     <div className="flex items-start gap-2">
                       <div className={`w-2 h-2 rounded-full mt-1.5 ${getNodeColor(doc.type)}`}></div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold text-gray-900 truncate">
+                        <p className="text-xs font-semibold text-[color:var(--color-foreground)] truncate">
                           {doc.documentCode}
                         </p>
-                        <p className="text-xs text-gray-600 truncate">{doc.title}</p>
+                        <p className="text-xs text-[color:var(--color-muted)] truncate">{doc.title}</p>
                       </div>
                     </div>
                   </button>

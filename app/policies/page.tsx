@@ -85,31 +85,31 @@ export default function PolicyLibraryPage() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'APPROVED':
-        return <CheckCircledIcon className="w-5 h-5 text-green-600" />;
+        return <CheckCircledIcon className="w-5 h-5 text-[color:var(--color-success)]" />;
       case 'TEMPLATE':
-        return <FileIcon className="w-5 h-5 text-blue-600" />;
+        return <FileIcon className="w-5 h-5 text-[color:var(--color-info)]" />;
       case 'DRAFT':
-        return <ClockIcon className="w-5 h-5 text-orange-600" />;
+        return <ClockIcon className="w-5 h-5 text-[color:var(--color-warning)]" />;
       default:
-        return <FileTextIcon className="w-5 h-5 text-gray-600" />;
+        return <FileTextIcon className="w-5 h-5 text-[color:var(--color-muted)]" />;
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'APPROVED':
-        return 'bg-green-100 text-green-800 border-green-300';
+        return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]';
       case 'TEMPLATE':
-        return 'bg-blue-100 text-blue-800 border-blue-300';
+        return 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] border-[color:var(--color-info-border)]';
       case 'DRAFT':
-        return 'bg-orange-100 text-orange-800 border-orange-300';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-300';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
     }
   };
 
   const getCategoryIcon = (category: string) => {
-    const iconClass = "w-5 h-5 text-purple-600";
+    const iconClass = "w-5 h-5 text-[color:var(--color-primary)]";
     if (category.includes('Financial')) return <CircleIcon className={iconClass} />;
     if (category.includes('Legal') || category.includes('Compliance')) return <LockClosedIcon className={iconClass} />;
     if (category.includes('HR')) return <PersonIcon className={iconClass} />;
@@ -140,11 +140,11 @@ export default function PolicyLibraryPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-8">
+      <div className="min-h-screen sparcc-hero-bg p-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading policy library...</p>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[color:var(--color-primary)] mx-auto"></div>
+            <p className="mt-4 text-[color:var(--color-muted)]">Loading policy library...</p>
           </div>
         </div>
       </div>
@@ -152,24 +152,24 @@ export default function PolicyLibraryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-8">
+    <div className="min-h-screen sparcc-hero-bg p-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <div className="bg-white rounded-xl shadow-lg p-8">
+          <div className="bg-[color:var(--color-surface)] rounded-xl shadow-lg p-8">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-gradient-to-br from-purple-100 to-fuchsia-100 rounded-xl">
-                  <ReaderIcon className="w-8 h-8 text-purple-600" />
+                <div className="p-3 bg-[color:var(--color-surface-alt)] rounded-xl">
+                  <ReaderIcon className="w-8 h-8 text-[color:var(--color-primary)]" />
                 </div>
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <h1 className="text-4xl font-bold text-gray-900">
+                    <h1 className="text-4xl font-bold text-[color:var(--color-foreground)]">
                       Policy Library
                     </h1>
                     <ModeContextBadge size="md" />
                   </div>
-                  <p className="text-gray-600 mt-1">
+                  <p className="text-[color:var(--color-muted)] mt-1">
                     Comprehensive compensation governance policy templates
                   </p>
                 </div>
@@ -179,21 +179,21 @@ export default function PolicyLibraryPage() {
             {/* Stats */}
             {stats && (
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
-                  <div className="text-3xl font-bold text-purple-900">{stats.totalPolicies}</div>
-                  <div className="text-sm text-purple-700">Total Policies</div>
+                <div className="bg-[color:var(--color-surface-alt)] rounded-lg p-4">
+                  <div className="text-3xl font-bold text-[color:var(--color-accent)]">{stats.totalPolicies}</div>
+                  <div className="text-sm text-[color:var(--color-primary)]">Total Policies</div>
                 </div>
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
-                  <div className="text-3xl font-bold text-green-900">{stats.byStatus.APPROVED || 0}</div>
-                  <div className="text-sm text-green-700">Approved</div>
+                <div className="bg-[color:var(--color-success-bg)] rounded-lg p-4 border border-[color:var(--color-success-border)]">
+                  <div className="text-3xl font-bold text-[color:var(--color-success)]">{stats.byStatus.APPROVED || 0}</div>
+                  <div className="text-sm text-[color:var(--color-success)]">Approved</div>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
-                  <div className="text-3xl font-bold text-blue-900">{stats.byStatus.TEMPLATE || 0}</div>
-                  <div className="text-sm text-blue-700">Templates</div>
+                <div className="bg-[color:var(--color-info-bg)] rounded-lg p-4 border border-[color:var(--color-info-border)]">
+                  <div className="text-3xl font-bold text-[color:var(--color-info)]">{stats.byStatus.TEMPLATE || 0}</div>
+                  <div className="text-sm text-[color:var(--color-primary)]">Templates</div>
                 </div>
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
-                  <div className="text-3xl font-bold text-orange-900">{stats.byStatus.DRAFT || 0}</div>
-                  <div className="text-sm text-orange-700">Drafts</div>
+                <div className="bg-[color:var(--color-warning-bg)] rounded-lg p-4 border border-[color:var(--color-warning-border)]">
+                  <div className="text-3xl font-bold text-[color:var(--color-warning)]">{stats.byStatus.DRAFT || 0}</div>
+                  <div className="text-sm text-[color:var(--color-warning)]">Drafts</div>
                 </div>
               </div>
             )}
@@ -201,17 +201,17 @@ export default function PolicyLibraryPage() {
         </div>
 
         {/* Search and Filters */}
-        <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div className="bg-[color:var(--color-surface)] rounded-xl shadow-lg p-6 mb-8">
           {/* Search Bar */}
           <div className="mb-4">
             <div className="relative">
-              <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[color:var(--color-muted)]" />
               <input
                 type="text"
                 placeholder="Search policies by name, code, or framework area..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:outline-none"
+                className="w-full pl-12 pr-4 py-3 border-2 border-[color:var(--color-border)] rounded-lg focus:border-[color:var(--color-primary)] focus:outline-none"
               />
             </div>
           </div>
@@ -219,14 +219,14 @@ export default function PolicyLibraryPage() {
           {/* Filters */}
           <div className="flex flex-wrap gap-3">
             <div className="flex items-center gap-2">
-              <MixerVerticalIcon className="w-4 h-4 text-gray-500" />
-              <span className="text-sm font-medium text-gray-700">Filters:</span>
+              <MixerVerticalIcon className="w-4 h-4 text-[color:var(--color-muted)]" />
+              <span className="text-sm font-medium text-[color:var(--color-foreground)]">Filters:</span>
             </div>
 
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm focus:border-purple-500 focus:outline-none"
+              className="px-4 py-2 border-2 border-[color:var(--color-border)] rounded-lg text-sm focus:border-[color:var(--color-primary)] focus:outline-none"
             >
               <option value="all">All Status</option>
               <option value="APPROVED">Approved</option>
@@ -237,7 +237,7 @@ export default function PolicyLibraryPage() {
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm focus:border-purple-500 focus:outline-none"
+              className="px-4 py-2 border-2 border-[color:var(--color-border)] rounded-lg text-sm focus:border-[color:var(--color-primary)] focus:outline-none"
             >
               <option value="all">All Categories</option>
               {categories.map(cat => (
@@ -248,7 +248,7 @@ export default function PolicyLibraryPage() {
             <select
               value={sourceFilter}
               onChange={(e) => setSourceFilter(e.target.value)}
-              className="px-4 py-2 border-2 border-gray-200 rounded-lg text-sm focus:border-purple-500 focus:outline-none"
+              className="px-4 py-2 border-2 border-[color:var(--color-border)] rounded-lg text-sm focus:border-[color:var(--color-primary)] focus:outline-none"
             >
               <option value="all">All Sources</option>
               <option value="HenrySchein">Henry Schein</option>
@@ -263,7 +263,7 @@ export default function PolicyLibraryPage() {
                   setCategoryFilter('all');
                   setSourceFilter('all');
                 }}
-                className="px-4 py-2 text-sm text-purple-600 hover:text-purple-800 font-medium"
+                className="px-4 py-2 text-sm text-[color:var(--color-primary)] hover:text-[color:var(--color-accent)] font-medium"
               >
                 Clear All
               </button>
@@ -271,7 +271,7 @@ export default function PolicyLibraryPage() {
 
             <div className="flex-1"></div>
 
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-[color:var(--color-muted)]">
               Showing {filteredPolicies.length} of {policies.length} policies
             </div>
           </div>
@@ -282,23 +282,23 @@ export default function PolicyLibraryPage() {
           {filteredPolicies.map(policy => (
             <div
               key={policy.code}
-              className="bg-white rounded-xl border-2 border-purple-200 p-6 hover:shadow-xl hover:border-purple-400 transition-all"
+              className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-border)] p-6 hover:shadow-xl hover:border-[color:var(--color-primary)] transition-all"
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     {getCategoryIcon(policy.category)}
-                    <h3 className="text-xl font-bold text-gray-900">{policy.name}</h3>
+                    <h3 className="text-xl font-bold text-[color:var(--color-foreground)]">{policy.name}</h3>
                     <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusColor(policy.status)}`}>
                       {policy.status}
                     </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-300">
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border border-[color:var(--color-border)]">
                       {policy.source}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
-                    <span className="font-mono font-medium text-purple-700">{policy.code}</span>
+                  <div className="flex items-center gap-4 text-sm text-[color:var(--color-muted)] mb-3">
+                    <span className="font-mono font-medium text-[color:var(--color-primary)]">{policy.code}</span>
                     {policy.frameworkArea && (
                       <>
                         <span>•</span>
@@ -318,7 +318,7 @@ export default function PolicyLibraryPage() {
                   </div>
 
                   {policy.legalReviewRequired && (
-                    <div className="flex items-center gap-2 text-sm text-orange-700 bg-orange-50 px-3 py-2 rounded-lg inline-flex">
+                    <div className="flex items-center gap-2 text-sm text-[color:var(--color-warning)] bg-[color:var(--color-warning-bg)] px-3 py-2 rounded-lg inline-flex">
                       <ExclamationTriangleIcon className="w-4 h-4" />
                       Requires legal review before implementation
                     </div>
@@ -328,16 +328,16 @@ export default function PolicyLibraryPage() {
                 <div className="flex items-center gap-2 ml-4">
                   <button
                     onClick={() => handleViewPolicy(policy)}
-                    className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+                    className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] transition-colors font-medium"
                   >
                     View Policy
                   </button>
                   <button
                     onClick={() => handleDownloadPolicy(policy)}
-                    className="p-2 border-2 border-gray-300 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-colors"
+                    className="p-2 border-2 border-[color:var(--color-border)] rounded-lg hover:border-[color:var(--color-primary)] hover:bg-[color:var(--color-surface-alt)] transition-colors"
                     title="Download Markdown"
                   >
-                    <DownloadIcon className="w-5 h-5 text-gray-600" />
+                    <DownloadIcon className="w-5 h-5 text-[color:var(--color-muted)]" />
                   </button>
                 </div>
               </div>
@@ -346,23 +346,23 @@ export default function PolicyLibraryPage() {
         </div>
 
         {filteredPolicies.length === 0 && (
-          <div className="bg-white rounded-xl shadow-lg p-12 text-center">
-            <FileTextIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gray-700 mb-2">No policies found</h3>
-            <p className="text-gray-600">Try adjusting your search or filters</p>
+          <div className="bg-[color:var(--color-surface)] rounded-xl shadow-lg p-12 text-center">
+            <FileTextIcon className="w-16 h-16 text-[color:var(--color-muted)] mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-[color:var(--color-foreground)] mb-2">No policies found</h3>
+            <p className="text-[color:var(--color-muted)]">Try adjusting your search or filters</p>
           </div>
         )}
 
         {/* Policy Modal */}
         {showPolicyModal && selectedPolicy && (
           <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={() => setShowPolicyModal(false)}>
-            <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden" onClick={(e) => e.stopPropagation()}>
-              <div className="p-6 border-b border-gray-200">
+            <div className="bg-[color:var(--color-surface)] rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden" onClick={(e) => e.stopPropagation()}>
+              <div className="p-6 border-b border-[color:var(--color-border)]">
                 <div className="flex items-start justify-between">
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">{selectedPolicy.name}</h2>
-                    <div className="flex items-center gap-3 text-sm text-gray-600">
-                      <span className="font-mono font-medium text-purple-700">{selectedPolicy.code}</span>
+                    <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">{selectedPolicy.name}</h2>
+                    <div className="flex items-center gap-3 text-sm text-[color:var(--color-muted)]">
+                      <span className="font-mono font-medium text-[color:var(--color-primary)]">{selectedPolicy.code}</span>
                       {selectedPolicy.frameworkArea && (
                         <>
                           <span>•</span>
@@ -375,7 +375,7 @@ export default function PolicyLibraryPage() {
                   </div>
                   <button
                     onClick={() => setShowPolicyModal(false)}
-                    className="text-gray-400 hover:text-gray-600"
+                    className="text-[color:var(--color-muted)] hover:text-[color:var(--color-muted)]"
                   >
                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -395,18 +395,18 @@ export default function PolicyLibraryPage() {
                 </div>
               </div>
 
-              <div className="p-6 border-t border-gray-200 flex items-center justify-between">
+              <div className="p-6 border-t border-[color:var(--color-border)] flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${getStatusColor(selectedPolicy.status)}`}>
                     {selectedPolicy.status}
                   </span>
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-700 border border-gray-300">
+                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border border-[color:var(--color-border)]">
                     {selectedPolicy.source}
                   </span>
                 </div>
                 <button
                   onClick={() => handleDownloadPolicy(selectedPolicy)}
-                  className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium flex items-center gap-2"
+                  className="px-6 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] transition-colors font-medium flex items-center gap-2"
                 >
                   <DownloadIcon className="w-4 h-4" />
                   Download

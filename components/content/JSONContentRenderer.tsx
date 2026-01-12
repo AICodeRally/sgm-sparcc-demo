@@ -85,7 +85,7 @@ interface BlockRendererProps {
 function BlockRenderer({ block, showBlockType }: BlockRendererProps) {
   // Optional debug indicator
   const debugLabel = showBlockType && (
-    <span className="text-xs text-gray-400 font-mono mr-2">[{block.type}]</span>
+    <span className="text-xs text-[color:var(--color-muted)] font-mono mr-2">[{block.type}]</span>
   );
 
   switch (block.type) {
@@ -125,12 +125,12 @@ function HeadingRenderer({
   const HeadingTag = `h${block.level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 
   const headingClasses: Record<number, string> = {
-    1: 'text-3xl font-bold text-gray-900 mb-4 mt-8',
-    2: 'text-2xl font-bold text-gray-900 mb-3 mt-6',
-    3: 'text-xl font-semibold text-gray-900 mb-2 mt-5',
-    4: 'text-lg font-semibold text-gray-800 mb-2 mt-4',
-    5: 'text-base font-semibold text-gray-800 mb-2 mt-3',
-    6: 'text-sm font-semibold text-gray-700 mb-1 mt-2',
+    1: 'text-3xl font-bold text-[color:var(--color-foreground)] mb-4 mt-8',
+    2: 'text-2xl font-bold text-[color:var(--color-foreground)] mb-3 mt-6',
+    3: 'text-xl font-semibold text-[color:var(--color-foreground)] mb-2 mt-5',
+    4: 'text-lg font-semibold text-[color:var(--color-foreground)] mb-2 mt-4',
+    5: 'text-base font-semibold text-[color:var(--color-foreground)] mb-2 mt-3',
+    6: 'text-sm font-semibold text-[color:var(--color-foreground)] mb-1 mt-2',
   };
 
   return (
@@ -152,7 +152,7 @@ function ParagraphRenderer({
   debugLabel?: React.ReactNode;
 }) {
   return (
-    <p className="text-gray-700 leading-relaxed mb-4">
+    <p className="text-[color:var(--color-foreground)] leading-relaxed mb-4">
       {debugLabel}
       <FormattedText content={block.content} formatting={block.formatting} />
     </p>
@@ -186,7 +186,7 @@ function ListRenderer({
             : '';
 
           return (
-            <li key={index} className={`text-gray-700 ${indentClass}`}>
+            <li key={index} className={`text-[color:var(--color-foreground)] ${indentClass}`}>
               <FormattedText text={item.text} />
             </li>
           );
@@ -209,13 +209,13 @@ function TableRenderer({
   return (
     <div className="mb-4 overflow-x-auto">
       {debugLabel}
-      <table className="min-w-full border-collapse border border-gray-300">
-        <thead className="bg-gray-50">
+      <table className="min-w-full border-collapse border border-[color:var(--color-border)]">
+        <thead className="bg-[color:var(--color-surface-alt)]">
           <tr>
             {block.headers.map((header, index) => (
               <th
                 key={index}
-                className="border border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-900"
+                className="border border-[color:var(--color-border)] px-4 py-2 text-left text-sm font-semibold text-[color:var(--color-foreground)]"
               >
                 {header}
               </th>
@@ -226,12 +226,12 @@ function TableRenderer({
           {block.rows.map((row, rowIndex) => (
             <tr
               key={rowIndex}
-              className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+              className={rowIndex % 2 === 0 ? 'bg-[color:var(--color-surface)]' : 'bg-[color:var(--color-surface-alt)]'}
             >
               {row.cells.map((cell, cellIndex) => (
                 <td
                   key={cellIndex}
-                  className="border border-gray-300 px-4 py-2 text-sm text-gray-700"
+                  className="border border-[color:var(--color-border)] px-4 py-2 text-sm text-[color:var(--color-foreground)]"
                 >
                   {cell}
                 </td>
@@ -259,28 +259,28 @@ function CalloutRenderer({
     { bg: string; border: string; text: string; icon: React.ReactNode }
   > = {
     info: {
-      bg: 'bg-blue-50',
-      border: 'border-blue-200',
-      text: 'text-blue-800',
-      icon: <InfoCircledIcon className="w-5 h-5 text-blue-500" />,
+      bg: 'bg-[color:var(--color-surface-alt)]',
+      border: 'border-[color:var(--color-info-border)]',
+      text: 'text-[color:var(--color-info)]',
+      icon: <InfoCircledIcon className="w-5 h-5 text-[color:var(--color-info)]" />,
     },
     warning: {
-      bg: 'bg-yellow-50',
-      border: 'border-yellow-200',
-      text: 'text-yellow-800',
-      icon: <ExclamationTriangleIcon className="w-5 h-5 text-yellow-500" />,
+      bg: 'bg-[color:var(--color-warning-bg)]',
+      border: 'border-[color:var(--color-warning-border)]',
+      text: 'text-[color:var(--color-warning)]',
+      icon: <ExclamationTriangleIcon className="w-5 h-5 text-[color:var(--color-warning)]" />,
     },
     error: {
-      bg: 'bg-red-50',
-      border: 'border-red-200',
-      text: 'text-red-800',
-      icon: <CrossCircledIcon className="w-5 h-5 text-red-500" />,
+      bg: 'bg-[color:var(--color-error-bg)]',
+      border: 'border-[color:var(--color-error-border)]',
+      text: 'text-[color:var(--color-error)]',
+      icon: <CrossCircledIcon className="w-5 h-5 text-[color:var(--color-error)]" />,
     },
     success: {
-      bg: 'bg-green-50',
-      border: 'border-green-200',
-      text: 'text-green-800',
-      icon: <CheckCircledIcon className="w-5 h-5 text-green-500" />,
+      bg: 'bg-[color:var(--color-success-bg)]',
+      border: 'border-[color:var(--color-success-border)]',
+      text: 'text-[color:var(--color-success)]',
+      icon: <CheckCircledIcon className="w-5 h-5 text-[color:var(--color-success)]" />,
     },
   };
 
@@ -303,7 +303,7 @@ function CalloutRenderer({
  * Divider Renderer
  */
 function DividerRenderer({ block }: { block: DividerBlock }) {
-  return <hr className="my-6 border-t border-gray-300" />;
+  return <hr className="my-6 border-t border-[color:var(--color-border)]" />;
 }
 
 /**

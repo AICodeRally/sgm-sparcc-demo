@@ -104,22 +104,22 @@ export default function DocumentLibraryPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'ACTIVE':
-        return 'bg-green-100 text-green-800 border-green-300';
+        return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]';
       case 'DRAFT':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
       case 'ARCHIVED':
-        return 'bg-gray-100 text-gray-800 border-gray-300';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
       default:
-        return 'bg-blue-100 text-blue-800 border-blue-300';
+        return 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] border-[color:var(--color-info-border)]';
     }
   };
 
   if (loading) {
     return (
-      <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex items-center justify-center">
+      <div className="h-screen sparcc-hero-bg flex items-center justify-center">
         <div className="text-center">
-          <UpdateIcon className="w-16 h-16 text-purple-600 mx-auto mb-4 animate-spin" />
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Loading Documents...</h1>
+          <UpdateIcon className="w-16 h-16 text-[color:var(--color-primary)] mx-auto mb-4 animate-spin" />
+          <h1 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">Loading Documents...</h1>
         </div>
       </div>
     );
@@ -132,25 +132,25 @@ export default function DocumentLibraryPage() {
         description="Full provenance tracking for all documents"
       />
 
-      <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex flex-col overflow-hidden">
+      <div className="h-screen sparcc-hero-bg flex flex-col overflow-hidden">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm flex-shrink-0">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm flex-shrink-0">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Link
                   href="/"
-                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+                  className="flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)] transition-colors"
                 >
                   <ArrowLeftIcon className="w-4 h-4" />
                   Home
                 </Link>
-                <div className="h-6 w-px bg-purple-300"></div>
+                <div className="h-6 w-px bg-[color:var(--color-accent-border)]"></div>
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
                     Document Library
                   </h1>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-[color:var(--color-muted)]">
                     {filteredDocuments.length} documents • Full version history
                   </p>
                 </div>
@@ -162,7 +162,7 @@ export default function DocumentLibraryPage() {
                   placeholder="Search documents..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 w-64"
+                  className="px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent-border)] w-64"
                 />
               </div>
             </div>
@@ -171,25 +171,25 @@ export default function DocumentLibraryPage() {
             <div className="flex items-center gap-2 mt-4">
               <button
                 onClick={() => setFilter('all')}
-                className={'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (filter === 'all' ? 'bg-purple-600 text-white' : 'bg-white text-gray-700 hover:bg-purple-50')}
+                className={'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (filter === 'all' ? 'bg-[color:var(--color-primary)] text-white' : 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]')}
               >
                 All Documents
               </button>
               <button
                 onClick={() => setFilter('active')}
-                className={'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (filter === 'active' ? 'bg-green-600 text-white' : 'bg-white text-gray-700 hover:bg-green-50')}
+                className={'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (filter === 'active' ? 'bg-[color:var(--color-success)] text-white' : 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-success-bg)]')}
               >
                 Active
               </button>
               <button
                 onClick={() => setFilter('draft')}
-                className={'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (filter === 'draft' ? 'bg-yellow-600 text-white' : 'bg-white text-gray-700 hover:bg-yellow-50')}
+                className={'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (filter === 'draft' ? 'bg-[color:var(--color-warning)] text-white' : 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-warning-bg)]')}
               >
                 Draft
               </button>
               <button
                 onClick={() => setFilter('archived')}
-                className={'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (filter === 'archived' ? 'bg-gray-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50')}
+                className={'px-4 py-2 rounded-lg text-sm font-medium transition-colors ' + (filter === 'archived' ? 'bg-[color:var(--color-foreground)] text-[color:var(--color-surface)]' : 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]')}
               >
                 Archived
               </button>
@@ -202,9 +202,9 @@ export default function DocumentLibraryPage() {
           <div className="max-w-7xl mx-auto px-6 py-6">
             {filteredDocuments.length === 0 ? (
               <div className="text-center py-16">
-                <FileTextIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">No documents found</h2>
-                <p className="text-gray-600">Try adjusting your search or filters</p>
+                <FileTextIcon className="w-16 h-16 text-[color:var(--color-muted)] mx-auto mb-4" />
+                <h2 className="text-xl font-semibold text-[color:var(--color-foreground)] mb-2">No documents found</h2>
+                <p className="text-[color:var(--color-muted)]">Try adjusting your search or filters</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-6">
@@ -214,65 +214,65 @@ export default function DocumentLibraryPage() {
                     href={`/documents/${doc.id}/versions`}
                     className="block"
                   >
-                    <div className="bg-white rounded-xl border-2 border-purple-200 p-6 hover:shadow-xl hover:border-purple-400 transition-all cursor-pointer">
+                    <div className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-border)] p-6 hover:shadow-xl hover:border-[color:var(--color-primary)] transition-all cursor-pointer">
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <FileTextIcon className="w-6 h-6 text-purple-600" />
-                            <h2 className="text-xl font-bold text-gray-900">{doc.title}</h2>
+                            <FileTextIcon className="w-6 h-6 text-[color:var(--color-primary)]" />
+                            <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">{doc.title}</h2>
                             <span className={'px-3 py-1 rounded-full text-xs font-semibold border ' + getStatusColor(doc.status)}>
                               {doc.status}
                             </span>
                           </div>
-                          <p className="text-sm text-gray-500 mb-2">
-                            Code: <span className="font-mono font-medium text-gray-700">{doc.documentCode}</span>
+                          <p className="text-sm text-[color:var(--color-muted)] mb-2">
+                            Code: <span className="font-mono font-medium text-[color:var(--color-foreground)]">{doc.documentCode}</span>
                           </p>
                           {doc.description && (
-                            <p className="text-gray-700 mb-3">{doc.description}</p>
+                            <p className="text-[color:var(--color-foreground)] mb-3">{doc.description}</p>
                           )}
                         </div>
 
                         <div className="text-right ml-6">
-                          <div className="text-3xl font-bold text-purple-600">
+                          <div className="text-3xl font-bold text-[color:var(--color-primary)]">
                             {doc.versionStats.totalVersions}
                           </div>
-                          <div className="text-xs text-gray-600">versions</div>
+                          <div className="text-xs text-[color:var(--color-muted)]">versions</div>
                         </div>
                       </div>
 
                       {/* Version Stats */}
-                      <div className="grid grid-cols-4 gap-4 pt-4 border-t border-gray-200">
+                      <div className="grid grid-cols-4 gap-4 pt-4 border-t border-[color:var(--color-border)]">
                         <div>
-                          <div className="text-xs text-gray-500 mb-1">Latest Version</div>
-                          <div className="font-mono font-bold text-gray-900">
+                          <div className="text-xs text-[color:var(--color-muted)] mb-1">Latest Version</div>
+                          <div className="font-mono font-bold text-[color:var(--color-foreground)]">
                             {doc.versionStats.latestVersion}
                           </div>
                         </div>
                         <div>
-                          <div className="text-xs text-gray-500 mb-1">Active Version</div>
-                          <div className="font-mono font-bold text-green-600">
+                          <div className="text-xs text-[color:var(--color-muted)] mb-1">Active Version</div>
+                          <div className="font-mono font-bold text-[color:var(--color-success)]">
                             {doc.versionStats.activeVersion || 'None'}
                           </div>
                         </div>
                         <div>
-                          <div className="text-xs text-gray-500 mb-1">Owner</div>
-                          <div className="font-medium text-gray-900">{doc.owner}</div>
+                          <div className="text-xs text-[color:var(--color-muted)] mb-1">Owner</div>
+                          <div className="font-medium text-[color:var(--color-foreground)]">{doc.owner}</div>
                         </div>
                         <div>
-                          <div className="text-xs text-gray-500 mb-1">Last Updated</div>
-                          <div className="text-sm text-gray-700">
+                          <div className="text-xs text-[color:var(--color-muted)] mb-1">Last Updated</div>
+                          <div className="text-sm text-[color:var(--color-foreground)]">
                             {new Date(doc.lastUpdated).toLocaleDateString()}
                           </div>
                         </div>
                       </div>
 
                       {/* Version Status Breakdown */}
-                      <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-200">
-                        <div className="text-xs text-gray-600">Version Status:</div>
+                      <div className="flex items-center gap-4 mt-4 pt-4 border-t border-[color:var(--color-border)]">
+                        <div className="text-xs text-[color:var(--color-muted)]">Version Status:</div>
                         {Object.entries(doc.versionStats.versionsByStatus).map(([status, count]) => (
                           <div key={status} className="flex items-center gap-1">
-                            <span className="text-xs font-medium text-gray-700">{status}:</span>
-                            <span className="text-xs font-bold text-purple-600">{count}</span>
+                            <span className="text-xs font-medium text-[color:var(--color-foreground)]">{status}:</span>
+                            <span className="text-xs font-bold text-[color:var(--color-primary)]">{count}</span>
                           </div>
                         ))}
                       </div>

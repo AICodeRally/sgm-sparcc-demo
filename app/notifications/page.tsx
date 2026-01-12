@@ -120,15 +120,15 @@ export default function NotificationsPage() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'CRITICAL':
-        return 'bg-red-100 text-red-700 border-red-200';
+        return 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]';
       case 'HIGH':
-        return 'bg-orange-100 text-orange-700 border-orange-200';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
       case 'MEDIUM':
-        return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
       case 'LOW':
-        return 'bg-gray-100 text-gray-700 border-purple-200';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
       default:
-        return 'bg-gray-100 text-gray-700 border-purple-200';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
     }
   };
 
@@ -144,19 +144,19 @@ export default function NotificationsPage() {
         title="Notifications Center"
         description="Centralized action items inbox with priority filtering"
       />
-      <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex flex-col">
+      <div className="h-screen sparcc-hero-bg flex flex-col">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm">
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-sm">
-              <div className="bg-purple-100 px-3 py-1 rounded-full">
-                <span className="font-semibold text-purple-700">{NOTIFICATION_STATS.unread}</span>
-                <span className="text-purple-600 ml-1">unread</span>
+              <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
+                <span className="font-semibold text-[color:var(--color-primary)]">{NOTIFICATION_STATS.unread}</span>
+                <span className="text-[color:var(--color-primary)] ml-1">unread</span>
               </div>
-              <div className="bg-red-100 px-3 py-1 rounded-full">
-                <span className="font-semibold text-red-700">{NOTIFICATION_STATS.actionRequired}</span>
-                <span className="text-red-600 ml-1">action required</span>
+              <div className="bg-[color:var(--color-error-bg)] px-3 py-1 rounded-full">
+                <span className="font-semibold text-[color:var(--color-error)]">{NOTIFICATION_STATS.actionRequired}</span>
+                <span className="text-[color:var(--color-error)] ml-1">action required</span>
               </div>
             </div>
           </div>
@@ -165,7 +165,7 @@ export default function NotificationsPage() {
 
       <div className="flex-1 flex overflow-hidden">
         {/* Left Panel - Notification List */}
-        <div className="flex-1 border-r border-purple-200 bg-white/90 backdrop-blur-sm overflow-y-auto">
+        <div className="flex-1 border-r border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
           <div className="p-4">
             {/* Filters */}
             <div className="mb-4 space-y-3">
@@ -178,8 +178,8 @@ export default function NotificationsPage() {
                   }}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${
                     showOnlyUnread
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-white border border-purple-200 text-gray-700 hover:bg-purple-50'
+                      ? 'bg-[color:var(--color-primary)] text-white'
+                      : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
                   }`}
                 >
                   <EnvelopeClosedIcon className="w-4 h-4" />
@@ -192,8 +192,8 @@ export default function NotificationsPage() {
                   }}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${
                     showOnlyActionRequired
-                      ? 'bg-red-600 text-white'
-                      : 'bg-white border border-purple-200 text-gray-700 hover:bg-purple-50'
+                      ? 'bg-[color:var(--color-error)] text-white'
+                      : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
                   }`}
                 >
                   <ExclamationTriangleIcon className="w-4 h-4" />
@@ -207,8 +207,8 @@ export default function NotificationsPage() {
                   onClick={() => setFilterType('all')}
                   className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
                     filterType === 'all'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-white text-gray-700 hover:bg-purple-50 border border-purple-200'
+                      ? 'bg-[color:var(--color-primary)] text-white'
+                      : 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)] border border-[color:var(--color-border)]'
                   }`}
                 >
                   All Types
@@ -223,7 +223,7 @@ export default function NotificationsPage() {
                       className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors border ${
                         filterType === key
                           ? 'text-white border-transparent'
-                          : 'bg-white text-gray-700 hover:bg-purple-50 border-purple-200'
+                          : 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)] border-[color:var(--color-border)]'
                       }`}
                       style={{
                         backgroundColor: filterType === key ? info.color : undefined,
@@ -237,14 +237,14 @@ export default function NotificationsPage() {
 
               {/* Priority Filter */}
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-gray-600">Priority:</span>
+                <span className="text-xs font-semibold text-[color:var(--color-muted)]">Priority:</span>
                 {['all', 'CRITICAL', 'HIGH', 'MEDIUM', 'LOW'].map(priority => (
                   <button
                     key={priority}
                     onClick={() => setFilterPriority(priority)}
                     className={`px-2 py-1 rounded text-xs font-medium transition-colors border ${
                       filterPriority === priority
-                        ? 'bg-purple-600 text-white border-purple-600'
+                        ? 'bg-[color:var(--color-primary)] text-white border-[color:var(--color-primary)]'
                         : getPriorityColor(priority) + ' hover:opacity-80'
                     }`}
                   >
@@ -260,7 +260,7 @@ export default function NotificationsPage() {
 
               return (
                 <div key={group} className="mb-6">
-                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2 px-2">
+                  <h3 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2 px-2">
                     {group}
                   </h3>
                   <div className="space-y-1">
@@ -275,10 +275,10 @@ export default function NotificationsPage() {
                           onClick={() => setSelectedNotification(notification)}
                           className={`w-full text-left p-3 rounded-lg transition-all ${
                             isSelected
-                              ? 'bg-gradient-to-r from-purple-100 to-fuchsia-100 border-l-2 border-purple-500'
+                              ? 'bg-[color:var(--color-surface-alt)] border-l-2 border-[color:var(--color-primary)]'
                               : notification.isRead
-                              ? 'bg-white hover:bg-purple-50'
-                              : 'bg-purple-50 hover:bg-purple-100 border-l-2 border-purple-400'
+                              ? 'bg-[color:var(--color-surface)] hover:bg-[color:var(--color-surface-alt)]'
+                              : 'bg-[color:var(--color-surface-alt)] hover:bg-[color:var(--color-surface-alt)] border-l-2 border-[color:var(--color-primary)]'
                           }`}
                         >
                           <div className="flex items-start gap-3">
@@ -294,30 +294,30 @@ export default function NotificationsPage() {
                               {/* Title */}
                               <div className="flex items-center gap-2 mb-1">
                                 <p className={`text-sm font-semibold truncate ${
-                                  notification.isRead ? 'text-gray-700' : 'text-gray-900'
+                                  notification.isRead ? 'text-[color:var(--color-foreground)]' : 'text-[color:var(--color-foreground)]'
                                 }`}>
                                   {notification.title}
                                 </p>
                                 {!notification.isRead && (
-                                  <DotFilledIcon className="w-3 h-3 text-purple-600 flex-shrink-0" />
+                                  <DotFilledIcon className="w-3 h-3 text-[color:var(--color-primary)] flex-shrink-0" />
                                 )}
                               </div>
 
                               {/* Message */}
-                              <p className="text-xs text-gray-600 truncate mb-2">
+                              <p className="text-xs text-[color:var(--color-muted)] truncate mb-2">
                                 {notification.message}
                               </p>
 
                               {/* Meta */}
                               <div className="flex items-center gap-2">
-                                <span className="text-xs text-gray-500">
+                                <span className="text-xs text-[color:var(--color-muted)]">
                                   {formatTime(notification.timestamp)}
                                 </span>
                                 {notification.priority === 'CRITICAL' || notification.priority === 'HIGH' ? (
                                   <>
-                                    <span className="text-xs text-gray-400">•</span>
+                                    <span className="text-xs text-[color:var(--color-muted)]">•</span>
                                     <span className={`text-xs font-medium ${
-                                      notification.priority === 'CRITICAL' ? 'text-red-600' : 'text-orange-600'
+                                      notification.priority === 'CRITICAL' ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-warning)]'
                                     }`}>
                                       {notification.priority}
                                     </span>
@@ -325,8 +325,8 @@ export default function NotificationsPage() {
                                 ) : null}
                                 {notification.actionRequired && (
                                   <>
-                                    <span className="text-xs text-gray-400">•</span>
-                                    <span className="text-xs font-medium text-purple-600">
+                                    <span className="text-xs text-[color:var(--color-muted)]">•</span>
+                                    <span className="text-xs font-medium text-[color:var(--color-primary)]">
                                       Action Required
                                     </span>
                                   </>
@@ -345,8 +345,8 @@ export default function NotificationsPage() {
             {/* Empty State */}
             {filteredNotifications.length === 0 && (
               <div className="text-center py-12">
-                <BellIcon className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-                <p className="text-gray-600">No notifications match your filters</p>
+                <BellIcon className="w-12 h-12 text-[color:var(--color-muted)] mx-auto mb-3" />
+                <p className="text-[color:var(--color-muted)]">No notifications match your filters</p>
                 <button
                   onClick={() => {
                     setFilterType('all');
@@ -354,7 +354,7 @@ export default function NotificationsPage() {
                     setShowOnlyUnread(false);
                     setShowOnlyActionRequired(false);
                   }}
-                  className="mt-3 text-sm text-purple-600 hover:text-purple-700 font-medium"
+                  className="mt-3 text-sm text-[color:var(--color-primary)] hover:text-[color:var(--color-primary)] font-medium"
                 >
                   Clear filters
                 </button>
@@ -365,25 +365,25 @@ export default function NotificationsPage() {
 
         {/* Right Panel - Notification Detail */}
         {selectedNotification && (
-          <div className="w-96 bg-white/90 backdrop-blur-sm overflow-y-auto">
+          <div className="w-96 bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
             <div className="p-6">
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-2">
                   {selectedNotification.isRead ? (
-                    <EnvelopeOpenIcon className="w-5 h-5 text-gray-400" />
+                    <EnvelopeOpenIcon className="w-5 h-5 text-[color:var(--color-muted)]" />
                   ) : (
-                    <EnvelopeClosedIcon className="w-5 h-5 text-purple-600" />
+                    <EnvelopeClosedIcon className="w-5 h-5 text-[color:var(--color-primary)]" />
                   )}
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-[color:var(--color-muted)]">
                     {selectedNotification.isRead ? 'Read' : 'Unread'}
                   </span>
                 </div>
                 <button
                   onClick={() => setSelectedNotification(null)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]"
                 >
-                  ×
+                  x
                 </button>
               </div>
 
@@ -399,7 +399,7 @@ export default function NotificationsPage() {
                   {selectedNotification.priority}
                 </span>
                 {selectedNotification.actionRequired && (
-                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium bg-red-100 text-red-700 border border-red-200">
+                  <span className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border border-[color:var(--color-error-border)]">
                     <ExclamationTriangleIcon className="w-3 h-3" />
                     Action Required
                   </span>
@@ -407,12 +407,12 @@ export default function NotificationsPage() {
               </div>
 
               {/* Title */}
-              <h2 className="text-xl font-bold text-gray-900 mb-2">
+              <h2 className="text-xl font-bold text-[color:var(--color-foreground)] mb-2">
                 {selectedNotification.title}
               </h2>
 
               {/* Timestamp */}
-              <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
+              <div className="flex items-center gap-2 text-sm text-[color:var(--color-muted)] mb-4">
                 <ClockIcon className="w-4 h-4" />
                 <span>
                   {new Date(selectedNotification.timestamp).toLocaleString('en-US', {
@@ -428,25 +428,25 @@ export default function NotificationsPage() {
 
               {/* Sender */}
               {selectedNotification.sender && (
-                <div className="flex items-center gap-2 text-sm text-gray-600 mb-4 pb-4 border-b border-purple-200">
-                  <span className="text-gray-500">From:</span>
+                <div className="flex items-center gap-2 text-sm text-[color:var(--color-muted)] mb-4 pb-4 border-b border-[color:var(--color-border)]">
+                  <span className="text-[color:var(--color-muted)]">From:</span>
                   <span className="font-medium">{selectedNotification.sender}</span>
                 </div>
               )}
 
               {/* Message */}
-              <p className="text-sm text-gray-700 leading-relaxed mb-6">
+              <p className="text-sm text-[color:var(--color-foreground)] leading-relaxed mb-6">
                 {selectedNotification.message}
               </p>
 
               {/* Metadata */}
               {selectedNotification.metadata && (
-                <div className="bg-purple-50 rounded-lg p-4 mb-6 space-y-2">
+                <div className="bg-[color:var(--color-surface-alt)] rounded-lg p-4 mb-6 space-y-2">
                   {selectedNotification.metadata.dueDate && (
                     <div className="flex items-center gap-2 text-sm">
-                      <CalendarIcon className="w-4 h-4 text-purple-600" />
-                      <span className="text-gray-600">Due:</span>
-                      <span className="font-medium text-gray-900">
+                      <CalendarIcon className="w-4 h-4 text-[color:var(--color-primary)]" />
+                      <span className="text-[color:var(--color-muted)]">Due:</span>
+                      <span className="font-medium text-[color:var(--color-foreground)]">
                         {new Date(selectedNotification.metadata.dueDate).toLocaleDateString('en-US', {
                           month: 'short',
                           day: 'numeric',
@@ -457,18 +457,18 @@ export default function NotificationsPage() {
                   )}
                   {selectedNotification.metadata.slaRemaining !== undefined && (
                     <div className="flex items-center gap-2 text-sm">
-                      <ClockIcon className="w-4 h-4 text-red-600" />
-                      <span className="text-gray-600">SLA Remaining:</span>
-                      <span className="font-medium text-red-700">
+                      <ClockIcon className="w-4 h-4 text-[color:var(--color-error)]" />
+                      <span className="text-[color:var(--color-muted)]">SLA Remaining:</span>
+                      <span className="font-medium text-[color:var(--color-error)]">
                         {selectedNotification.metadata.slaRemaining} {selectedNotification.metadata.slaRemaining === 1 ? 'day' : 'days'}
                       </span>
                     </div>
                   )}
                   {selectedNotification.relatedDocCode && (
                     <div className="flex items-center gap-2 text-sm">
-                      <FileTextIcon className="w-4 h-4 text-purple-600" />
-                      <span className="text-gray-600">Document:</span>
-                      <span className="font-medium text-purple-700">
+                      <FileTextIcon className="w-4 h-4 text-[color:var(--color-primary)]" />
+                      <span className="text-[color:var(--color-muted)]">Document:</span>
+                      <span className="font-medium text-[color:var(--color-primary)]">
                         {selectedNotification.relatedDocCode}
                       </span>
                     </div>
@@ -478,7 +478,7 @@ export default function NotificationsPage() {
 
               {/* Action Button */}
               {selectedNotification.actionRequired && selectedNotification.actionUrl && (
-                <button className="w-full px-4 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors flex items-center justify-center gap-2">
+                <button className="w-full px-4 py-3 bg-[color:var(--color-primary)] text-white rounded-lg font-medium hover:bg-[color:var(--color-secondary)] transition-colors flex items-center justify-center gap-2">
                   <CheckCircledIcon className="w-5 h-5" />
                   Take Action
                 </button>
@@ -486,10 +486,10 @@ export default function NotificationsPage() {
 
               {/* Secondary Actions */}
               <div className="mt-4 flex items-center gap-2">
-                <button className="flex-1 px-3 py-2 bg-white border border-purple-200 text-gray-700 rounded-md text-sm font-medium hover:bg-purple-50 transition-colors">
+                <button className="flex-1 px-3 py-2 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-md text-sm font-medium hover:bg-[color:var(--color-surface-alt)] transition-colors">
                   {selectedNotification.isRead ? 'Mark as Unread' : 'Mark as Read'}
                 </button>
-                <button className="flex-1 px-3 py-2 bg-white border border-purple-200 text-gray-700 rounded-md text-sm font-medium hover:bg-purple-50 transition-colors">
+                <button className="flex-1 px-3 py-2 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-md text-sm font-medium hover:bg-[color:var(--color-surface-alt)] transition-colors">
                   Archive
                 </button>
               </div>

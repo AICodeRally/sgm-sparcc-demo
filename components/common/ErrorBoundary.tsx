@@ -34,23 +34,23 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
       }
 
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 p-8">
-          <div className="max-w-md w-full bg-white rounded-lg shadow-xl p-8 text-center">
-            <ExclamationTriangleIcon className="h-16 w-16 text-red-500 mx-auto mb-4" />
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Something went wrong</h1>
-            <p className="text-gray-600 mb-4">
+        <div className="min-h-screen flex items-center justify-center sparcc-hero-bg p-8">
+          <div className="max-w-md w-full bg-[color:var(--color-surface)] rounded-lg shadow-xl p-8 text-center">
+            <ExclamationTriangleIcon className="h-16 w-16 text-[color:var(--color-error)] mx-auto mb-4" />
+            <h1 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">Something went wrong</h1>
+            <p className="text-[color:var(--color-muted)] mb-4">
               We encountered an unexpected error. Please try refreshing the page.
             </p>
             {this.state.error && (
-              <div className="bg-red-50 border border-red-200 rounded p-3 text-left mb-4">
-                <p className="text-xs font-mono text-red-800 break-all">
+              <div className="bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded p-3 text-left mb-4">
+                <p className="text-xs font-mono text-[color:var(--color-error)] break-all">
                   {this.state.error.message}
                 </p>
               </div>
             )}
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-lg hover:from-purple-700 hover:to-fuchsia-700 transition-all"
+              className="px-6 py-2 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-lg hover:opacity-90 transition-all"
             >
               Refresh Page
             </button>

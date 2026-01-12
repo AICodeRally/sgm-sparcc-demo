@@ -33,15 +33,15 @@ export function RoadmapTimeline({ phases }: RoadmapTimelineProps) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'NOT_STARTED':
-        return 'text-gray-700 bg-gray-50 border-gray-300';
+        return 'text-[color:var(--color-foreground)] bg-[color:var(--color-surface-alt)] border-[color:var(--color-border)]';
       case 'IN_PROGRESS':
-        return 'text-blue-700 bg-blue-50 border-blue-300';
+        return 'text-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)] border-[color:var(--color-info-border)]';
       case 'COMPLETED':
-        return 'text-green-700 bg-green-50 border-green-300';
+        return 'text-[color:var(--color-success)] bg-[color:var(--color-success-bg)] border-[color:var(--color-success-border)]';
       case 'BLOCKED':
-        return 'text-red-700 bg-red-50 border-red-300';
+        return 'text-[color:var(--color-error)] bg-[color:var(--color-error-bg)] border-[color:var(--color-error-border)]';
       default:
-        return 'text-gray-700 bg-gray-50 border-gray-300';
+        return 'text-[color:var(--color-foreground)] bg-[color:var(--color-surface-alt)] border-[color:var(--color-border)]';
     }
   };
 
@@ -62,9 +62,9 @@ export function RoadmapTimeline({ phases }: RoadmapTimelineProps) {
   };
 
   return (
-    <div className="bg-white rounded-xl border-2 border-indigo-200 p-6">
+    <div className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-accent-border)] p-6">
       {/* Header */}
-      <h2 className="text-xl font-bold text-gray-900 mb-6">Implementation Roadmap</h2>
+      <h2 className="text-xl font-bold text-[color:var(--color-foreground)] mb-6">Implementation Roadmap</h2>
 
       {/* Timeline */}
       <div className="space-y-6">
@@ -76,13 +76,13 @@ export function RoadmapTimeline({ phases }: RoadmapTimelineProps) {
             <div key={phase.id} className="relative">
               {/* Connecting Line */}
               {!isLast && (
-                <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-indigo-200 -mb-6" />
+                <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-[color:var(--color-accent-border)] -mb-6" />
               )}
 
               {/* Phase Card */}
               <div className={`border-2 rounded-lg p-6 ${getStatusColor(phase.status)} relative`}>
                 {/* Phase Icon */}
-                <div className="absolute -left-3 top-6 bg-white rounded-full p-1">
+                <div className="absolute -left-3 top-6 bg-[color:var(--color-surface)] rounded-full p-1">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center border-2 ${getStatusColor(phase.status)}`}>
                     {getStatusIcon(phase.status)}
                   </div>
@@ -93,27 +93,27 @@ export function RoadmapTimeline({ phases }: RoadmapTimelineProps) {
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <div className="flex items-center gap-3 mb-1">
-                        <h3 className="text-lg font-bold text-gray-900">{phase.phase}</h3>
+                        <h3 className="text-lg font-bold text-[color:var(--color-foreground)]">{phase.phase}</h3>
                         <span className="px-2 py-1 text-xs font-semibold rounded uppercase">
                           {phase.status.replace('_', ' ')}
                         </span>
                       </div>
-                      <p className="text-base font-semibold text-gray-800">{phase.title}</p>
+                      <p className="text-base font-semibold text-[color:var(--color-foreground)]">{phase.title}</p>
                       {phase.description && (
-                        <p className="text-sm text-gray-700 mt-1">{phase.description}</p>
+                        <p className="text-sm text-[color:var(--color-foreground)] mt-1">{phase.description}</p>
                       )}
                     </div>
 
                     {/* Completion Percentage */}
                     <div className="text-right">
-                      <p className="text-2xl font-bold text-indigo-600">{phase.completionPct}%</p>
-                      <p className="text-xs text-gray-600">Complete</p>
+                      <p className="text-2xl font-bold text-[color:var(--color-accent)]">{phase.completionPct}%</p>
+                      <p className="text-xs text-[color:var(--color-muted)]">Complete</p>
                     </div>
                   </div>
 
                   {/* Dates */}
                   {(phase.startDate || phase.targetEndDate) && (
-                    <div className="flex items-center gap-4 text-xs text-gray-600 mb-3">
+                    <div className="flex items-center gap-4 text-xs text-[color:var(--color-muted)] mb-3">
                       {phase.startDate && (
                         <span>
                           <strong>Start:</strong> {new Date(phase.startDate).toLocaleDateString()}
@@ -129,9 +129,9 @@ export function RoadmapTimeline({ phases }: RoadmapTimelineProps) {
 
                   {/* Progress Bar */}
                   <div className="mb-4">
-                    <div className="h-2 bg-white rounded-full overflow-hidden border border-gray-300">
+                    <div className="h-2 bg-[color:var(--color-surface)] rounded-full overflow-hidden border border-[color:var(--color-border)]">
                       <div
-                        className="h-full bg-indigo-600 transition-all"
+                        className="h-full bg-[color:var(--color-primary)] transition-all"
                         style={{ width: `${phase.completionPct}%` }}
                       />
                     </div>
@@ -139,7 +139,7 @@ export function RoadmapTimeline({ phases }: RoadmapTimelineProps) {
 
                   {/* Milestones */}
                   <div>
-                    <p className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-2">
+                    <p className="text-xs font-semibold text-[color:var(--color-foreground)] uppercase tracking-wide mb-2">
                       Milestones ({completedMilestones}/{phase.milestones.length})
                     </p>
                     <div className="grid grid-cols-2 gap-2">
@@ -149,11 +149,11 @@ export function RoadmapTimeline({ phases }: RoadmapTimelineProps) {
                           className="flex items-center gap-2 text-sm"
                         >
                           {milestone.completed ? (
-                            <CheckCircledIcon className="w-4 h-4 text-green-600 flex-shrink-0" />
+                            <CheckCircledIcon className="w-4 h-4 text-[color:var(--color-success)] flex-shrink-0" />
                           ) : (
-                            <CircleIcon className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                            <CircleIcon className="w-4 h-4 text-[color:var(--color-muted)] flex-shrink-0" />
                           )}
-                          <span className={milestone.completed ? 'text-gray-700 line-through' : 'text-gray-900'}>
+                          <span className={milestone.completed ? 'text-[color:var(--color-foreground)] line-through' : 'text-[color:var(--color-foreground)]'}>
                             {milestone.title}
                           </span>
                         </div>

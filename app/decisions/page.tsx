@@ -64,11 +64,11 @@ export default function DecisionsPage() {
 
   const getOutcomeColor = (outcome: string) => {
     const colors: Record<string, string> = {
-      approved: 'bg-green-100 text-green-800',
-      rejected: 'bg-red-100 text-red-800',
-      deferred: 'bg-yellow-100 text-yellow-800',
+      approved: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]',
+      rejected: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]',
+      deferred: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]',
     };
-    return colors[outcome] || 'bg-gray-100 text-gray-800';
+    return colors[outcome] || 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
   };
 
   return (
@@ -77,36 +77,36 @@ export default function DecisionsPage() {
         title="Decision Log"
         description="Track governance decisions and committee resolutions"
       />
-      <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex flex-col">
+      <div className="h-screen sparcc-hero-bg flex flex-col">
 
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="bg-white rounded-lg border border-purple-200 overflow-hidden">
+        <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-purple-200">
+              <thead className="bg-[color:var(--color-surface-alt)] border-b border-[color:var(--color-border)]">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Decision Type</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Situation</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Decision Maker</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Outcome</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase">Date</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase">Decision Type</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase">Situation</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase">Decision Maker</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase">Outcome</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase">Amount</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {decisions.map(decision => (
-                  <tr key={decision.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <tr key={decision.id} className="hover:bg-[color:var(--color-surface-alt)]">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[color:var(--color-foreground)]">
                       {new Date(decision.date).toLocaleDateString()}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[color:var(--color-foreground)]">
                       {decision.decisionType}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">
+                    <td className="px-6 py-4 text-sm text-[color:var(--color-muted)] max-w-xs truncate">
                       {decision.situation}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[color:var(--color-foreground)]">
                       {decision.decisionMaker}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -114,7 +114,7 @@ export default function DecisionsPage() {
                         {decision.outcome.toUpperCase()}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-[color:var(--color-foreground)]">
                       {decision.amount ? `$${(decision.amount / 1000).toFixed(0)}K` : '—'}
                     </td>
                   </tr>
@@ -126,10 +126,10 @@ export default function DecisionsPage() {
 
         {/* Export Options */}
         <div className="mt-6 flex gap-3">
-          <button className="px-4 py-2 border border-purple-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm font-medium">
+          <button className="px-4 py-2 border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] text-sm font-medium">
             Export to PDF
           </button>
-          <button className="px-4 py-2 border border-purple-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm font-medium">
+          <button className="px-4 py-2 border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] text-sm font-medium">
             Export to Excel
           </button>
         </div>

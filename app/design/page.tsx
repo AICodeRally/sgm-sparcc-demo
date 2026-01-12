@@ -7,6 +7,8 @@ import { FeatureTile } from '@/components/modes/FeatureTile';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { OperationalMode } from '@/types/operational-mode';
 import { MODE_CONFIGS } from '@/lib/auth/mode-permissions';
+import { ThemeBadge } from '@/components/ThemeBadge';
+import { getToneStyles } from '@/lib/config/themes';
 import {
   ReaderIcon,
   FileTextIcon,
@@ -25,6 +27,7 @@ export default function DesignModePage() {
     frameworks: 6,
     planCount: 27,
   });
+  const toneStyles = getToneStyles('primary');
 
   return (
     <>
@@ -42,23 +45,26 @@ export default function DesignModePage() {
           <ModeHeader mode={OperationalMode.DESIGN} />
 
           {/* Key Metrics */}
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">Design Control Center</h2>
+            <ThemeBadge />
+          </div>
           <div className="grid grid-cols-4 gap-6 mb-8">
-            <div className="bg-[color:var(--color-surface)] rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.policies}</p>
-              <p className="text-sm text-[color:var(--color-muted)] mt-2">Policies</p>
-            </div>
-            <div className="bg-[color:var(--color-surface)] rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.templates}</p>
-              <p className="text-sm text-[color:var(--color-muted)] mt-2">Template Sections</p>
-            </div>
-            <div className="bg-[color:var(--color-surface)] rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.frameworks}</p>
-              <p className="text-sm text-[color:var(--color-muted)] mt-2">Frameworks</p>
-            </div>
-            <div className="bg-[color:var(--color-surface)] rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.planCount}</p>
-              <p className="text-sm text-[color:var(--color-muted)] mt-2">Plans Analyzed</p>
-            </div>
+            {[
+              { label: 'Policies', value: metrics.policies },
+              { label: 'Template Sections', value: metrics.templates },
+              { label: 'Frameworks', value: metrics.frameworks },
+              { label: 'Plans Analyzed', value: metrics.planCount },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-xl border-2 p-6 text-center theme-card"
+                style={{ border: toneStyles.border, boxShadow: toneStyles.shadow }}
+              >
+                <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{item.value}</p>
+                <p className="text-sm text-[color:var(--color-muted)] mt-2">{item.label}</p>
+              </div>
+            ))}
           </div>
 
           {/* Primary Features */}

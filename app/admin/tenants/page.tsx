@@ -61,19 +61,19 @@ export default function TenantsPage() {
 
   const getTierBadge = (tier: string) => {
     const colors = {
-      DEMO: 'bg-gray-100 text-gray-700',
-      BETA: 'bg-blue-100 text-blue-700',
-      PRODUCTION: 'bg-green-100 text-green-700',
+      DEMO: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]',
+      BETA: 'bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)]',
+      PRODUCTION: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]',
     };
     return colors[tier as keyof typeof colors] || colors.DEMO;
   };
 
   const getStatusBadge = (status: string) => {
     const colors = {
-      ACTIVE: 'bg-green-100 text-green-700',
-      SUSPENDED: 'bg-red-100 text-red-700',
-      TRIAL: 'bg-yellow-100 text-yellow-700',
-      EXPIRED: 'bg-gray-100 text-gray-700',
+      ACTIVE: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]',
+      SUSPENDED: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]',
+      TRIAL: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]',
+      EXPIRED: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]',
     };
     return colors[status as keyof typeof colors] || colors.ACTIVE;
   };
@@ -81,7 +81,7 @@ export default function TenantsPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-600">Loading tenants...</p>
+        <p className="text-[color:var(--color-muted)]">Loading tenants...</p>
       </div>
     );
   }
@@ -89,27 +89,27 @@ export default function TenantsPage() {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="bg-red-50 border border-red-200 rounded-md p-4">
-          <p className="text-red-800">Error: {error}</p>
+        <div className="bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded-md p-4">
+          <p className="text-[color:var(--color-error)]">Error: {error}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[color:var(--color-surface-alt)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Tenant Management</h1>
-            <p className="mt-2 text-sm text-gray-600">
+            <h1 className="text-3xl font-bold text-[color:var(--color-foreground)]">Tenant Management</h1>
+            <p className="mt-2 text-sm text-[color:var(--color-muted)]">
               Manage all tenants, users, and access controls
             </p>
           </div>
           <Link
             href="/admin/tenants/new"
-            className="px-4 py-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-md hover:from-purple-700 hover:to-fuchsia-700 transition-all"
+            className="px-4 py-2 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-md hover:opacity-90 transition-all"
           >
             + New Tenant
           </Link>
@@ -117,65 +117,65 @@ export default function TenantsPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-sm text-gray-600">Total Tenants</p>
-            <p className="text-3xl font-bold text-gray-900 mt-2">{tenants.length}</p>
+          <div className="bg-[color:var(--color-surface)] rounded-lg shadow p-6">
+            <p className="text-sm text-[color:var(--color-muted)]">Total Tenants</p>
+            <p className="text-3xl font-bold text-[color:var(--color-foreground)] mt-2">{tenants.length}</p>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-sm text-gray-600">Active</p>
-            <p className="text-3xl font-bold text-green-600 mt-2">
+          <div className="bg-[color:var(--color-surface)] rounded-lg shadow p-6">
+            <p className="text-sm text-[color:var(--color-muted)]">Active</p>
+            <p className="text-3xl font-bold text-[color:var(--color-success)] mt-2">
               {tenants.filter((t) => t.status === 'ACTIVE').length}
             </p>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-sm text-gray-600">Beta</p>
-            <p className="text-3xl font-bold text-blue-600 mt-2">
+          <div className="bg-[color:var(--color-surface)] rounded-lg shadow p-6">
+            <p className="text-sm text-[color:var(--color-muted)]">Beta</p>
+            <p className="text-3xl font-bold text-[color:var(--color-info)] mt-2">
               {tenants.filter((t) => t.tier === 'BETA').length}
             </p>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <p className="text-sm text-gray-600">Production</p>
-            <p className="text-3xl font-bold text-purple-600 mt-2">
+          <div className="bg-[color:var(--color-surface)] rounded-lg shadow p-6">
+            <p className="text-sm text-[color:var(--color-muted)]">Production</p>
+            <p className="text-3xl font-bold text-[color:var(--color-primary)] mt-2">
               {tenants.filter((t) => t.tier === 'PRODUCTION').length}
             </p>
           </div>
         </div>
 
         {/* Tenants Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-[color:var(--color-surface)] rounded-lg shadow overflow-hidden">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="bg-[color:var(--color-surface-alt)]">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                   Tenant
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                   Tier
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                   Users
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                   Documents
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                   Created
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-right text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-[color:var(--color-surface)] divide-y divide-gray-200">
               {tenants.map((tenant) => (
-                <tr key={tenant.id} className="hover:bg-gray-50">
+                <tr key={tenant.id} className="hover:bg-[color:var(--color-surface-alt)]">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
-                      <div className="text-sm font-medium text-gray-900">{tenant.name}</div>
-                      <div className="text-sm text-gray-500">{tenant.slug}</div>
+                      <div className="text-sm font-medium text-[color:var(--color-foreground)]">{tenant.name}</div>
+                      <div className="text-sm text-[color:var(--color-muted)]">{tenant.slug}</div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -196,25 +196,25 @@ export default function TenantsPage() {
                       {tenant.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[color:var(--color-foreground)]">
                     {tenant._count.users}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[color:var(--color-foreground)]">
                     {tenant._count.documents}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[color:var(--color-muted)]">
                     {new Date(tenant.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <Link
                       href={`/admin/tenants/${tenant.id}` as any}
-                      className="text-purple-600 hover:text-purple-900 mr-4"
+                      className="text-[color:var(--color-primary)] hover:text-[color:var(--color-accent)] mr-4"
                     >
                       View
                     </Link>
                     <Link
                       href={`/admin/tenants/${tenant.id}/edit` as any}
-                      className="text-blue-600 hover:text-blue-900"
+                      className="text-[color:var(--color-info)] hover:text-[color:var(--color-info)]"
                     >
                       Edit
                     </Link>
@@ -226,7 +226,7 @@ export default function TenantsPage() {
 
           {tenants.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500">No tenants found</p>
+              <p className="text-[color:var(--color-muted)]">No tenants found</p>
             </div>
           )}
         </div>

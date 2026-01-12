@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { CheckCircledIcon } from '@radix-ui/react-icons';
 
 interface ApprovalStep {
   stepOrder: number;
@@ -80,15 +81,15 @@ export default function ApprovalDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[color:var(--color-surface-alt)]">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
+      <div className="bg-[color:var(--color-surface)] border-b border-[color:var(--color-border)] shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-6">
-          <Link href="/approvals" className="text-blue-600 hover:text-blue-700 text-sm mb-4 inline-block">
+          <Link href="/approvals" className="text-[color:var(--color-info)] hover:text-[color:var(--color-primary)] text-sm mb-4 inline-block">
             ← Back to Queue
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">{approval.documentTitle}</h1>
-          <p className="text-gray-600 mt-1">{approval.documentCode}</p>
+          <h1 className="text-3xl font-bold text-[color:var(--color-foreground)]">{approval.documentTitle}</h1>
+          <p className="text-[color:var(--color-muted)] mt-1">{approval.documentCode}</p>
         </div>
       </div>
 
@@ -97,8 +98,8 @@ export default function ApprovalDetailPage() {
           {/* Main Content */}
           <div className="col-span-2 space-y-6">
             {/* Workflow Stepper */}
-            <div className="bg-white rounded-lg border border-gray-200 p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8">Approval Workflow</h2>
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-8">
+              <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-8">Approval Workflow</h2>
 
               <div className="space-y-6">
                 {approval.steps.map((step, index) => {
@@ -114,21 +115,25 @@ export default function ApprovalDetailPage() {
                             className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white ${
                               isCompleted
                                 ? step.status === 'approved'
-                                  ? 'bg-green-600'
-                                  : 'bg-red-600'
+                                  ? 'bg-[color:var(--color-success)]'
+                                  : 'bg-[color:var(--color-error)]'
                                 : isCurrent
-                                ? 'bg-blue-600'
-                                : 'bg-gray-300'
+                                ? 'bg-[color:var(--color-primary)]'
+                                : 'bg-[color:var(--color-border)]'
                             }`}
                           >
-                            {isCompleted && step.status === 'approved' ? '✓' : step.stepOrder}
+                            {isCompleted && step.status === 'approved' ? (
+                              <CheckCircledIcon className="w-5 h-5" />
+                            ) : (
+                              step.stepOrder
+                            )}
                           </div>
                           {index < approval.steps.length - 1 && (
                             <div
                               className={`w-1 h-16 ${
                                 isCompleted || isCurrent || index < approval.steps.findIndex(s => s.status === 'pending')
-                                  ? 'bg-green-600'
-                                  : 'bg-gray-300'
+                                  ? 'bg-[color:var(--color-success)]'
+                                  : 'bg-[color:var(--color-border)]'
                               }`}
                             />
                           )}
@@ -136,26 +141,26 @@ export default function ApprovalDetailPage() {
 
                         {/* Step details */}
                         <div className="flex-1 pb-6">
-                          <h3 className="text-lg font-semibold text-gray-900">{step.stepName}</h3>
-                          <p className="text-sm text-gray-600 mt-1">Role: {step.role}</p>
+                          <h3 className="text-lg font-semibold text-[color:var(--color-foreground)]">{step.stepName}</h3>
+                          <p className="text-sm text-[color:var(--color-muted)] mt-1">Role: {step.role}</p>
 
                           {isCompleted && (
-                            <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-                              <p className="text-sm font-medium text-gray-900">
+                            <div className="mt-4 p-4 bg-[color:var(--color-surface-alt)] rounded-lg">
+                              <p className="text-sm font-medium text-[color:var(--color-foreground)]">
                                 {step.approverName}{' '}
                                 <span
                                   className={`font-bold ${
-                                    step.status === 'approved' ? 'text-green-600' : 'text-red-600'
+                                    step.status === 'approved' ? 'text-[color:var(--color-success)]' : 'text-[color:var(--color-error)]'
                                   }`}
                                 >
                                   {step.status === 'approved' ? 'approved' : 'rejected'}
                                 </span>
                               </p>
                               {step.comments && (
-                                <p className="text-sm text-gray-600 mt-2 italic">"{step.comments}"</p>
+                                <p className="text-sm text-[color:var(--color-muted)] mt-2 italic">"{step.comments}"</p>
                               )}
                               {step.decidedAt && (
-                                <p className="text-xs text-gray-500 mt-2">
+                                <p className="text-xs text-[color:var(--color-muted)] mt-2">
                                   {new Date(step.decidedAt).toLocaleDateString()}
                                 </p>
                               )}
@@ -163,8 +168,8 @@ export default function ApprovalDetailPage() {
                           )}
 
                           {isCurrent && (
-                            <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                              <p className="text-sm font-medium text-blue-900">Awaiting your decision</p>
+                            <div className="mt-4 p-4 bg-[color:var(--color-surface-alt)] border border-[color:var(--color-info-border)] rounded-lg">
+                              <p className="text-sm font-medium text-[color:var(--color-info)]">Awaiting your decision</p>
                             </div>
                           )}
                         </div>
@@ -176,11 +181,11 @@ export default function ApprovalDetailPage() {
             </div>
 
             {/* Document Preview */}
-            <div className="bg-white rounded-lg border border-gray-200 p-8">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Document Preview</h2>
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600">
-                  <Link href={`/documents/doc-1`} className="text-blue-600 hover:text-blue-700">
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-8">
+              <h2 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">Document Preview</h2>
+              <div className="p-4 bg-[color:var(--color-surface-alt)] rounded-lg">
+                <p className="text-sm text-[color:var(--color-muted)]">
+                  <Link href={`/documents/doc-1`} className="text-[color:var(--color-info)] hover:text-[color:var(--color-primary)]">
                     View full document →
                   </Link>
                 </p>
@@ -188,41 +193,41 @@ export default function ApprovalDetailPage() {
             </div>
 
             {/* Decision Form */}
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 p-8">
-              <h2 className="text-lg font-semibold text-gray-900 mb-6">Your Decision</h2>
+            <form onSubmit={handleSubmit} className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-8">
+              <h2 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-6">Your Decision</h2>
 
               <div className="space-y-6">
                 {/* Decision Selection */}
                 <div>
-                  <label className="text-sm font-medium text-gray-900 block mb-3">Decision</label>
+                  <label className="text-sm font-medium text-[color:var(--color-foreground)] block mb-3">Decision</label>
                   <div className="space-y-3">
-                    <label className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-blue-50 cursor-pointer">
+                    <label className="flex items-center p-4 border border-[color:var(--color-border)] rounded-lg hover:bg-[color:var(--color-surface-alt)] cursor-pointer">
                       <input
                         type="radio"
                         name="decision"
                         value="approved"
                         checked={decision === 'approved'}
                         onChange={() => setDecision('approved')}
-                        className="w-4 h-4 text-blue-600"
+                        className="w-4 h-4 text-[color:var(--color-info)]"
                       />
                       <div className="ml-3 flex-1">
-                        <p className="font-medium text-gray-900">Approve</p>
-                        <p className="text-sm text-gray-600">I approve this document and it can move to the next step</p>
+                        <p className="font-medium text-[color:var(--color-foreground)]">Approve</p>
+                        <p className="text-sm text-[color:var(--color-muted)]">I approve this document and it can move to the next step</p>
                       </div>
                     </label>
 
-                    <label className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-red-50 cursor-pointer">
+                    <label className="flex items-center p-4 border border-[color:var(--color-border)] rounded-lg hover:bg-[color:var(--color-error-bg)] cursor-pointer">
                       <input
                         type="radio"
                         name="decision"
                         value="rejected"
                         checked={decision === 'rejected'}
                         onChange={() => setDecision('rejected')}
-                        className="w-4 h-4 text-red-600"
+                        className="w-4 h-4 text-[color:var(--color-error)]"
                       />
                       <div className="ml-3 flex-1">
-                        <p className="font-medium text-gray-900">Reject</p>
-                        <p className="text-sm text-gray-600">I request changes before approval</p>
+                        <p className="font-medium text-[color:var(--color-foreground)]">Reject</p>
+                        <p className="text-sm text-[color:var(--color-muted)]">I request changes before approval</p>
                       </div>
                     </label>
                   </div>
@@ -230,8 +235,8 @@ export default function ApprovalDetailPage() {
 
                 {/* Comments */}
                 <div>
-                  <label htmlFor="comments" className="block text-sm font-medium text-gray-900 mb-2">
-                    Comments {decision === 'rejected' && <span className="text-red-600">*</span>}
+                  <label htmlFor="comments" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
+                    Comments {decision === 'rejected' && <span className="text-[color:var(--color-error)]">*</span>}
                   </label>
                   <textarea
                     id="comments"
@@ -239,20 +244,20 @@ export default function ApprovalDetailPage() {
                     onChange={e => setComments(e.target.value)}
                     placeholder="Add any comments or feedback..."
                     rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
                   />
                 </div>
 
                 {/* Submit Button */}
-                <div className="flex gap-4 pt-4 border-t border-gray-200">
+                <div className="flex gap-4 pt-4 border-t border-[color:var(--color-border)]">
                   <button
                     type="submit"
                     disabled={!decision || (decision === 'rejected' && !comments.trim()) || submitting}
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 font-medium"
+                    className="flex-1 px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] disabled:bg-[color:var(--color-border)] font-medium"
                   >
                     {submitting ? 'Submitting...' : 'Submit Decision'}
                   </button>
-                  <Link href="/approvals" className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium">
+                  <Link href="/approvals" className="px-4 py-2 border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] font-medium">
                     Cancel
                   </Link>
                 </div>
@@ -262,21 +267,21 @@ export default function ApprovalDetailPage() {
 
           {/* Sidebar - Request Info */}
           <div className="space-y-6">
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Request Info</h3>
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+              <h3 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">Request Info</h3>
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-gray-500 uppercase">Requested By</label>
-                  <p className="mt-1 text-gray-900">{approval.requestedBy}</p>
+                  <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Requested By</label>
+                  <p className="mt-1 text-[color:var(--color-foreground)]">{approval.requestedBy}</p>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-gray-500 uppercase">Date Requested</label>
-                  <p className="mt-1 text-gray-900">{approval.requestedAt.toLocaleDateString()}</p>
+                  <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Date Requested</label>
+                  <p className="mt-1 text-[color:var(--color-foreground)]">{approval.requestedAt.toLocaleDateString()}</p>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-gray-500 uppercase">Status</label>
+                  <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Status</label>
                   <p className="mt-1">
-                    <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded text-xs font-medium">
+                    <span className="px-2 py-1 bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] rounded text-xs font-medium">
                       {approval.status.toUpperCase()}
                     </span>
                   </p>
@@ -285,15 +290,15 @@ export default function ApprovalDetailPage() {
             </div>
 
             {/* Progress */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Progress</h3>
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+              <h3 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">Progress</h3>
               <div className="space-y-2">
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-[color:var(--color-muted)]">
                   Step {approval.steps.findIndex(s => s.status === 'pending') + 1} of {approval.steps.length}
                 </p>
-                <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="w-full bg-[color:var(--color-border)] rounded-full h-2">
                   <div
-                    className="bg-blue-600 h-2 rounded-full transition-all"
+                    className="bg-[color:var(--color-primary)] h-2 rounded-full transition-all"
                     style={{
                       width: `${((approval.steps.findIndex(s => s.status === 'pending') + 1) / approval.steps.length) * 100}%`,
                     }}

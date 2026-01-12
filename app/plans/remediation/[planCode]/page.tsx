@@ -9,6 +9,7 @@ import {
   Cross2Icon,
   ChevronDownIcon,
   ChevronRightIcon,
+  PlusCircledIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import {
@@ -44,27 +45,27 @@ export default function PlanRemediationPage({ params }: Props) {
     switch (status) {
       case 'COVERED':
         return {
-          bg: 'bg-green-50',
-          border: 'border-green-300',
-          text: 'text-green-800',
-          icon: 'text-green-600',
-          badge: 'bg-green-100 text-green-800',
+          bg: 'bg-[color:var(--color-success-bg)]',
+          border: 'border-[color:var(--color-success-border)]',
+          text: 'text-[color:var(--color-success)]',
+          icon: 'text-[color:var(--color-success)]',
+          badge: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]',
         };
       case 'NEEDS_WORK':
         return {
-          bg: 'bg-yellow-50',
-          border: 'border-yellow-300',
-          text: 'text-yellow-900',
-          icon: 'text-yellow-600',
-          badge: 'bg-yellow-100 text-yellow-800',
+          bg: 'bg-[color:var(--color-warning-bg)]',
+          border: 'border-[color:var(--color-warning-border)]',
+          text: 'text-[color:var(--color-warning)]',
+          icon: 'text-[color:var(--color-warning)]',
+          badge: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]',
         };
       case 'MISSING':
         return {
-          bg: 'bg-red-50',
-          border: 'border-red-300',
-          text: 'text-red-900',
-          icon: 'text-red-600',
-          badge: 'bg-red-100 text-red-800',
+          bg: 'bg-[color:var(--color-error-bg)]',
+          border: 'border-[color:var(--color-error-border)]',
+          text: 'text-[color:var(--color-error)]',
+          icon: 'text-[color:var(--color-error)]',
+          badge: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]',
         };
     }
   };
@@ -72,13 +73,13 @@ export default function PlanRemediationPage({ params }: Props) {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'CRITICAL':
-        return 'bg-red-500 text-white';
+        return 'bg-transparent text-white';
       case 'HIGH':
-        return 'bg-orange-500 text-white';
+        return 'bg-[color:var(--color-warning)] text-white';
       case 'MEDIUM':
-        return 'bg-blue-500 text-white';
+        return 'bg-[color:var(--color-surface-alt)]0 text-white';
       default:
-        return 'bg-gray-500 text-white';
+        return 'bg-[color:var(--color-surface-alt)]0 text-white';
     }
   };
 
@@ -94,31 +95,31 @@ export default function PlanRemediationPage({ params }: Props) {
         description="Governance Gap Analysis & Draft Language"
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50">
+      <div className="min-h-screen sparcc-hero-bg">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm sticky top-0 z-10">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm sticky top-0 z-10">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Link
                   href="/henryschein/plans"
-                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+                  className="flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)] transition-colors"
                 >
                   <ArrowLeftIcon className="w-4 h-4" />
                   Back to Plans
                 </Link>
-                <div className="h-6 w-px bg-purple-300"></div>
+                <div className="h-6 w-px bg-[color:var(--color-accent-border)]"></div>
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
                     Plan Remediation Workspace
                   </h1>
-                  <p className="text-sm text-gray-600">{planCode} - Gap Analysis & Draft Language</p>
+                  <p className="text-sm text-[color:var(--color-muted)]">{planCode} - Gap Analysis & Draft Language</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <span className="text-xs text-gray-500">STATUS:</span>
-                <span className="px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm font-semibold border border-yellow-300">
+                <span className="text-xs text-[color:var(--color-muted)]">STATUS:</span>
+                <span className="px-3 py-1 rounded-full bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] text-sm font-semibold border border-[color:var(--color-warning-border)]">
                   DRAFT
                 </span>
               </div>
@@ -128,41 +129,41 @@ export default function PlanRemediationPage({ params }: Props) {
 
         {/* Coverage Summary */}
         <div className="max-w-7xl mx-auto px-6 py-6">
-          <div className="bg-white rounded-xl border border-purple-200 shadow-lg p-6 mb-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Governance Coverage Summary</h2>
+          <div className="bg-[color:var(--color-surface)] rounded-xl border border-[color:var(--color-border)] shadow-lg p-6 mb-6">
+            <h2 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4">Governance Coverage Summary</h2>
 
             <div className="grid grid-cols-5 gap-4 mb-6">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-300 p-4">
-                <div className="text-3xl font-bold text-green-700">{summary.covered}</div>
-                <div className="text-sm text-green-600 font-medium">Covered</div>
+              <div className="bg-[color:var(--color-success-bg)] rounded-lg border border-[color:var(--color-success-border)] p-4">
+                <div className="text-3xl font-bold text-[color:var(--color-success)]">{summary.covered}</div>
+                <div className="text-sm text-[color:var(--color-success)] font-medium">Covered</div>
               </div>
-              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-300 p-4">
-                <div className="text-3xl font-bold text-yellow-700">{summary.needsWork}</div>
-                <div className="text-sm text-yellow-600 font-medium">Needs Work</div>
+              <div className="bg-[color:var(--color-warning-bg)] rounded-lg border border-[color:var(--color-warning-border)] p-4">
+                <div className="text-3xl font-bold text-[color:var(--color-warning)]">{summary.needsWork}</div>
+                <div className="text-sm text-[color:var(--color-warning)] font-medium">Needs Work</div>
               </div>
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-300 p-4">
-                <div className="text-3xl font-bold text-red-700">{summary.missing}</div>
-                <div className="text-sm text-red-600 font-medium">Missing</div>
+              <div className="bg-[color:var(--color-error-bg)] rounded-lg border border-[color:var(--color-error-border)] p-4">
+                <div className="text-3xl font-bold text-[color:var(--color-error)]">{summary.missing}</div>
+                <div className="text-sm text-[color:var(--color-error)] font-medium">Missing</div>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border border-purple-300 p-4">
-                <div className="text-3xl font-bold text-purple-700">{summary.total}</div>
-                <div className="text-sm text-purple-600 font-medium">Total Policies</div>
+              <div className="bg-[color:var(--color-surface-alt)] rounded-lg border border-[color:var(--color-border)] p-4">
+                <div className="text-3xl font-bold text-[color:var(--color-primary)]">{summary.total}</div>
+                <div className="text-sm text-[color:var(--color-primary)] font-medium">Total Policies</div>
               </div>
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-300 p-4">
-                <div className="text-3xl font-bold text-blue-700">{summary.completenessScore}%</div>
-                <div className="text-sm text-blue-600 font-medium">Completeness</div>
+              <div className="bg-[color:var(--color-info-bg)] rounded-lg border border-[color:var(--color-info-border)] p-4">
+                <div className="text-3xl font-bold text-[color:var(--color-primary)]">{summary.completenessScore}%</div>
+                <div className="text-sm text-[color:var(--color-info)] font-medium">Completeness</div>
               </div>
             </div>
 
             {/* Filter Buttons */}
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-gray-700">Filter:</span>
+              <span className="text-sm font-medium text-[color:var(--color-foreground)]">Filter:</span>
               <button
                 onClick={() => setSelectedStatus('ALL')}
                 className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
                   selectedStatus === 'ALL'
-                    ? 'bg-purple-600 text-white'
-                    : 'bg-white border border-purple-200 text-gray-700 hover:bg-purple-50'
+                    ? 'bg-[color:var(--color-primary)] text-white'
+                    : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
                 }`}
               >
                 All ({coverage.length})
@@ -171,8 +172,8 @@ export default function PlanRemediationPage({ params }: Props) {
                 onClick={() => setSelectedStatus('COVERED')}
                 className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
                   selectedStatus === 'COVERED'
-                    ? 'bg-green-600 text-white'
-                    : 'bg-white border border-green-200 text-gray-700 hover:bg-green-50'
+                    ? 'bg-[color:var(--color-success)] text-white'
+                    : 'bg-[color:var(--color-surface)] border border-[color:var(--color-success-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-success-bg)]'
                 }`}
               >
                 Covered ({summary.covered})
@@ -181,8 +182,8 @@ export default function PlanRemediationPage({ params }: Props) {
                 onClick={() => setSelectedStatus('NEEDS_WORK')}
                 className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
                   selectedStatus === 'NEEDS_WORK'
-                    ? 'bg-yellow-600 text-white'
-                    : 'bg-white border border-yellow-200 text-gray-700 hover:bg-yellow-50'
+                    ? 'bg-[color:var(--color-warning)] text-white'
+                    : 'bg-[color:var(--color-surface)] border border-[color:var(--color-warning-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-warning-bg)]'
                 }`}
               >
                 Needs Work ({summary.needsWork})
@@ -191,8 +192,8 @@ export default function PlanRemediationPage({ params }: Props) {
                 onClick={() => setSelectedStatus('MISSING')}
                 className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
                   selectedStatus === 'MISSING'
-                    ? 'bg-red-600 text-white'
-                    : 'bg-white border border-red-200 text-gray-700 hover:bg-red-50'
+                    ? 'bg-[color:var(--color-error)] text-white'
+                    : 'bg-[color:var(--color-surface)] border border-[color:var(--color-error-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-error-bg)]'
                 }`}
               >
                 Missing ({summary.missing})
@@ -216,12 +217,12 @@ export default function PlanRemediationPage({ params }: Props) {
               return (
                 <div
                   key={policy.id}
-                  className={`bg-white rounded-lg border-2 ${colors.border} shadow-md overflow-hidden transition-all`}
+                  className={`bg-[color:var(--color-surface)] rounded-lg border-2 ${colors.border} shadow-md overflow-hidden transition-all`}
                 >
                   {/* Policy Header */}
                   <button
                     onClick={() => toggleSection(policy.id)}
-                    className={`w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors ${
+                    className={`w-full px-6 py-4 flex items-center justify-between hover:bg-[color:var(--color-surface-alt)] transition-colors ${
                       isExpanded ? colors.bg : ''
                     }`}
                   >
@@ -247,7 +248,7 @@ export default function PlanRemediationPage({ params }: Props) {
                             {policy.priority}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600">{policy.description}</p>
+                        <p className="text-sm text-[color:var(--color-muted)]">{policy.description}</p>
                       </div>
                     </div>
 
@@ -262,11 +263,12 @@ export default function PlanRemediationPage({ params }: Props) {
                       {/* Existing Language (if present) */}
                       {policyCoverage.existingLanguage && (
                         <div className="mb-4">
-                          <h4 className="font-semibold text-sm text-gray-700 mb-2">
-                            ✅ Existing Language in Plan:
+                          <h4 className="font-semibold text-sm text-[color:var(--color-foreground)] mb-2 inline-flex items-center gap-2">
+                            <CheckCircledIcon className="w-4 h-4 text-[color:var(--color-success)]" />
+                            <span>Existing Language in Plan:</span>
                           </h4>
-                          <div className="bg-white rounded border border-gray-300 p-3">
-                            <p className="text-sm text-gray-800">{policyCoverage.existingLanguage}</p>
+                          <div className="bg-[color:var(--color-surface)] rounded border border-[color:var(--color-border)] p-3">
+                            <p className="text-sm text-[color:var(--color-foreground)]">{policyCoverage.existingLanguage}</p>
                           </div>
                         </div>
                       )}
@@ -274,11 +276,12 @@ export default function PlanRemediationPage({ params }: Props) {
                       {/* Draft Additive Language (if NEEDS_WORK) */}
                       {policyCoverage.draftAdditiveLanguage && (
                         <div className="mb-4">
-                          <h4 className="font-semibold text-sm text-yellow-700 mb-2">
-                            ➕ Draft Additive Language:
+                          <h4 className="font-semibold text-sm text-[color:var(--color-warning)] mb-2 inline-flex items-center gap-2">
+                            <PlusCircledIcon className="w-4 h-4" />
+                            <span>Draft Additive Language:</span>
                           </h4>
-                          <div className="bg-yellow-50 rounded border-2 border-yellow-400 p-4">
-                            <pre className="text-sm text-gray-800 whitespace-pre-wrap font-sans">
+                          <div className="bg-[color:var(--color-warning-bg)] rounded border-2 border-[color:var(--color-warning-border)] p-4">
+                            <pre className="text-sm text-[color:var(--color-foreground)] whitespace-pre-wrap font-sans">
                               {policyCoverage.draftAdditiveLanguage}
                             </pre>
                           </div>
@@ -288,11 +291,12 @@ export default function PlanRemediationPage({ params }: Props) {
                       {/* Draft Missing Language (if MISSING) */}
                       {policyCoverage.draftMissingLanguage && (
                         <div className="mb-4">
-                          <h4 className="font-semibold text-sm text-red-700 mb-2">
-                            ❌ Draft Missing Section (to be added):
+                          <h4 className="font-semibold text-sm text-[color:var(--color-error)] mb-2 inline-flex items-center gap-2">
+                            <Cross2Icon className="w-4 h-4" />
+                            <span>Draft Missing Section (to be added):</span>
                           </h4>
-                          <div className="bg-red-50 rounded border-2 border-red-400 p-4">
-                            <pre className="text-sm text-gray-800 whitespace-pre-wrap font-sans">
+                          <div className="bg-[color:var(--color-error-bg)] rounded border-2 border-[color:var(--color-error-border)] p-4">
+                            <pre className="text-sm text-[color:var(--color-foreground)] whitespace-pre-wrap font-sans">
                               {policyCoverage.draftMissingLanguage}
                             </pre>
                           </div>
@@ -301,8 +305,8 @@ export default function PlanRemediationPage({ params }: Props) {
 
                       {/* Notes */}
                       {policyCoverage.notes && (
-                        <div className="bg-blue-50 rounded border border-blue-300 p-3">
-                          <p className="text-xs text-blue-800">
+                        <div className="bg-[color:var(--color-surface-alt)] rounded border border-[color:var(--color-info-border)] p-3">
+                          <p className="text-xs text-[color:var(--color-info)]">
                             <strong>Note:</strong> {policyCoverage.notes}
                           </p>
                         </div>
@@ -310,13 +314,13 @@ export default function PlanRemediationPage({ params }: Props) {
 
                       {/* Action Buttons */}
                       <div className="flex items-center gap-3 mt-4">
-                        <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+                        <button className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] transition-colors text-sm font-medium">
                           Accept Draft
                         </button>
-                        <button className="px-4 py-2 bg-white border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50 transition-colors text-sm font-medium">
+                        <button className="px-4 py-2 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-primary)] rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors text-sm font-medium">
                           Edit Language
                         </button>
-                        <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium">
+                        <button className="px-4 py-2 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors text-sm font-medium">
                           Skip for Now
                         </button>
                       </div>

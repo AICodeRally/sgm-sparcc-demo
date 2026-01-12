@@ -58,11 +58,11 @@ export default function PlanDocumentPage({ params }: Props) {
   // Show loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex items-center justify-center">
+      <div className="min-h-screen sparcc-hero-bg flex items-center justify-center">
         <div className="text-center">
-          <ReloadIcon className="w-16 h-16 text-purple-600 mx-auto mb-4 animate-spin" />
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Loading Plan...</h1>
-          <p className="text-gray-600">Plan code: {planCode}</p>
+          <ReloadIcon className="w-16 h-16 text-[color:var(--color-primary)] mx-auto mb-4 animate-spin" />
+          <h1 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">Loading Plan...</h1>
+          <p className="text-[color:var(--color-muted)]">Plan code: {planCode}</p>
         </div>
       </div>
     );
@@ -71,15 +71,15 @@ export default function PlanDocumentPage({ params }: Props) {
   // Show error state
   if (error || !realPlan) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex items-center justify-center">
+      <div className="min-h-screen sparcc-hero-bg flex items-center justify-center">
         <div className="text-center">
-          <Cross2Icon className="w-16 h-16 text-red-600 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Plan Not Found</h1>
-          <p className="text-gray-600 mb-4">Plan code: {planCode}</p>
-          <p className="text-sm text-red-600 mb-4">{error}</p>
+          <Cross2Icon className="w-16 h-16 text-[color:var(--color-error)] mx-auto mb-4" />
+          <h1 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">Plan Not Found</h1>
+          <p className="text-[color:var(--color-muted)] mb-4">Plan code: {planCode}</p>
+          <p className="text-sm text-[color:var(--color-error)] mb-4">{error}</p>
           <Link
             href="/henryschein/plans"
-            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors inline-flex items-center gap-2"
+            className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] transition-colors inline-flex items-center gap-2"
           >
             <ArrowLeftIcon className="w-4 h-4" />
             Back to Plans
@@ -146,31 +146,31 @@ export default function PlanDocumentPage({ params }: Props) {
     switch (status) {
       case 'COMPLETE':
         return {
-          bg: 'bg-green-50',
-          border: 'border-green-300',
-          text: 'text-green-800',
-          badge: 'bg-green-100 text-green-800 border-green-300',
+          bg: 'bg-[color:var(--color-success-bg)]',
+          border: 'border-[color:var(--color-success-border)]',
+          text: 'text-[color:var(--color-success)]',
+          badge: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]',
         };
       case 'PARTIAL':
         return {
-          bg: 'bg-yellow-50',
-          border: 'border-yellow-300',
-          text: 'text-yellow-900',
-          badge: 'bg-yellow-100 text-yellow-800 border-yellow-300',
+          bg: 'bg-[color:var(--color-warning-bg)]',
+          border: 'border-[color:var(--color-warning-border)]',
+          text: 'text-[color:var(--color-warning)]',
+          badge: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
         };
       case 'MISSING':
         return {
-          bg: 'bg-red-50',
-          border: 'border-red-300',
-          text: 'text-red-900',
-          badge: 'bg-red-100 text-red-800 border-red-300',
+          bg: 'bg-[color:var(--color-error-bg)]',
+          border: 'border-[color:var(--color-error-border)]',
+          text: 'text-[color:var(--color-error)]',
+          badge: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]',
         };
       default:
         return {
-          bg: 'bg-gray-50',
-          border: 'border-gray-300',
-          text: 'text-gray-900',
-          badge: 'bg-gray-100 text-gray-800 border-gray-300',
+          bg: 'bg-[color:var(--color-surface-alt)]',
+          border: 'border-[color:var(--color-border)]',
+          text: 'text-[color:var(--color-foreground)]',
+          badge: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]',
         };
     }
   };
@@ -196,9 +196,9 @@ export default function PlanDocumentPage({ params }: Props) {
         `}</style>
       )}
 
-      <div className={`min-h-screen ${isReviewMode ? 'bg-white' : 'bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50'}`}>
+      <div className={`min-h-screen ${isReviewMode ? 'bg-[color:var(--color-surface)]' : 'sparcc-hero-bg'}`}>
         {/* Header */}
-        <div className={`bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm sticky top-0 z-10 ${isReviewMode ? 'no-print' : ''}`}>
+        <div className={`bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm sticky top-0 z-10 ${isReviewMode ? 'no-print' : ''}`}>
           <div className="max-w-5xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
@@ -206,19 +206,19 @@ export default function PlanDocumentPage({ params }: Props) {
                   <>
                     <Link
                       href="/henryschein/plans"
-                      className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+                      className="flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)] transition-colors"
                     >
                       <ArrowLeftIcon className="w-4 h-4" />
                       Back
                     </Link>
-                    <div className="h-6 w-px bg-purple-300"></div>
+                    <div className="h-6 w-px bg-[color:var(--color-accent-border)]"></div>
                   </>
                 )}
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
                     {isReviewMode ? 'Compensation Plan Document' : 'Comp Plan Governance Analysis'}
                   </h1>
-                  <p className="text-sm text-gray-600">{realPlan.metadata.planCode} - {realPlan.metadata.role}</p>
+                  <p className="text-sm text-[color:var(--color-muted)]">{realPlan.metadata.planCode} - {realPlan.metadata.role}</p>
                 </div>
               </div>
 
@@ -227,13 +227,13 @@ export default function PlanDocumentPage({ params }: Props) {
                   <>
                     <Link
                       href={`/plans/document/${planCode}?view=review`}
-                      className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium"
+                      className="flex items-center gap-2 px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] transition-colors text-sm font-medium"
                     >
                       <DownloadIcon className="w-4 h-4" />
                       Review Mode
                     </Link>
-                    <span className="text-xs text-gray-500">STATUS:</span>
-                    <span className="px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm font-semibold border border-yellow-300">
+                    <span className="text-xs text-[color:var(--color-muted)]">STATUS:</span>
+                    <span className="px-3 py-1 rounded-full bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] text-sm font-semibold border border-[color:var(--color-warning-border)]">
                       DRAFT
                     </span>
                   </>
@@ -241,13 +241,13 @@ export default function PlanDocumentPage({ params }: Props) {
                   <>
                     <Link
                       href={`/plans/document/${planCode}`}
-                      className="px-4 py-2 bg-white border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50 transition-colors text-sm font-medium"
+                      className="px-4 py-2 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-primary)] rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors text-sm font-medium"
                     >
                       Exit Review Mode
                     </Link>
                     <button
                       onClick={() => window.print()}
-                      className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium"
+                      className="flex items-center gap-2 px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] transition-colors text-sm font-medium"
                     >
                       <DownloadIcon className="w-4 h-4" />
                       Print / PDF
@@ -262,16 +262,19 @@ export default function PlanDocumentPage({ params }: Props) {
         <div className="max-w-5xl mx-auto px-6 py-6">
           {/* Governance Framework Reference */}
           {!isReviewMode && gapAnalysis && (
-            <div className="bg-gradient-to-br from-purple-50 to-fuchsia-50 rounded-xl border-2 border-purple-300 p-6 mb-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-2">📋 Governance Framework</h2>
-              <p className="text-sm text-gray-700 mb-4">
+            <div className="bg-[color:var(--color-surface-alt)] rounded-xl border-2 border-[color:var(--color-border)] p-6 mb-6">
+              <h2 className="text-lg font-bold text-[color:var(--color-foreground)] mb-2 inline-flex items-center gap-2">
+                <ClipboardIcon className="h-4 w-4" />
+                Governance Framework
+              </h2>
+              <p className="text-sm text-[color:var(--color-foreground)] mb-4">
                 This plan is evaluated against <strong>16 standard governance policy areas</strong> required for comprehensive compensation plan compliance.
               </p>
               {gapAnalysis.frameworkPolicies && (
                 <div className="grid grid-cols-2 gap-2 text-xs">
                   {gapAnalysis.frameworkPolicies.map((policy: string, idx: number) => (
-                    <div key={idx} className="flex items-center gap-2 text-gray-700">
-                      <span className="text-purple-600">•</span>
+                    <div key={idx} className="flex items-center gap-2 text-[color:var(--color-foreground)]">
+                      <span className="text-[color:var(--color-primary)]">•</span>
                       <span>{policy}</span>
                     </div>
                   ))}
@@ -282,56 +285,59 @@ export default function PlanDocumentPage({ params }: Props) {
 
           {/* Governance Gap Analysis Stats */}
           {!isReviewMode && hasGaps && (
-            <div className="bg-white rounded-xl border border-purple-200 shadow-lg p-6 mb-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-4">📊 Governance Policy Coverage Analysis</h2>
+            <div className="bg-[color:var(--color-surface)] rounded-xl border border-[color:var(--color-border)] shadow-lg p-6 mb-6">
+              <h2 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4 inline-flex items-center gap-2">
+                <BarChartIcon className="h-4 w-4" />
+                Governance Policy Coverage Analysis
+              </h2>
               <div className="grid grid-cols-5 gap-4">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-600">{stats.complete}</div>
-                  <div className="text-sm text-gray-600">Full Coverage</div>
+                  <div className="text-3xl font-bold text-[color:var(--color-success)]">{stats.complete}</div>
+                  <div className="text-sm text-[color:var(--color-muted)]">Full Coverage</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-600">{stats.partial}</div>
-                  <div className="text-sm text-gray-600">Limited</div>
+                  <div className="text-3xl font-bold text-[color:var(--color-warning)]">{stats.partial}</div>
+                  <div className="text-sm text-[color:var(--color-muted)]">Limited</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-red-600">{stats.missing}</div>
-                  <div className="text-sm text-gray-600">Not Covered</div>
+                  <div className="text-3xl font-bold text-[color:var(--color-error)]">{stats.missing}</div>
+                  <div className="text-sm text-[color:var(--color-muted)]">Not Covered</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-gray-900">{stats.total}</div>
-                  <div className="text-sm text-gray-600">Total Policies</div>
+                  <div className="text-3xl font-bold text-[color:var(--color-foreground)]">{stats.total}</div>
+                  <div className="text-sm text-[color:var(--color-muted)]">Total Policies</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600">{stats.completeness}%</div>
-                  <div className="text-sm text-gray-600">Coverage</div>
+                  <div className="text-3xl font-bold text-[color:var(--color-primary)]">{stats.completeness}%</div>
+                  <div className="text-sm text-[color:var(--color-muted)]">Coverage</div>
                 </div>
               </div>
             </div>
           )}
 
           {/* Plan Document */}
-          <div className="bg-white rounded-xl border border-purple-200 shadow-lg p-8">
+          <div className="bg-[color:var(--color-surface)] rounded-xl border border-[color:var(--color-border)] shadow-lg p-8">
             <div className="mb-8">
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              <h1 className="text-4xl font-bold text-[color:var(--color-foreground)] mb-2">
                 {realPlan.metadata.title}
               </h1>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-[color:var(--color-muted)]">
                 {realPlan.metadata.division} | Fiscal Year {realPlan.metadata.planYear} | Effective: {realPlan.metadata.effectiveDate}
               </p>
               {!isReviewMode && (
                 <div className="mt-2 flex items-center gap-3">
-                  <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold rounded-full border border-green-300">
+                  <span className="px-3 py-1 bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] text-xs font-semibold rounded-full border border-[color:var(--color-success-border)]">
                     {realPlan.metadata.status}
                   </span>
-                  <span className="text-xs text-gray-500">Version: {realPlan.metadata.version}</span>
-                  <span className="text-xs text-gray-500">Plan Code: {realPlan.metadata.planCode}</span>
+                  <span className="text-xs text-[color:var(--color-muted)]">Version: {realPlan.metadata.version}</span>
+                  <span className="text-xs text-[color:var(--color-muted)]">Plan Code: {realPlan.metadata.planCode}</span>
                 </div>
               )}
             </div>
 
             {/* Table of Contents */}
-            <div className="mb-12 bg-gray-50 rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Table of Contents</h2>
+            <div className="mb-12 bg-[color:var(--color-surface-alt)] rounded-lg border border-[color:var(--color-border)] p-6">
+              <h2 className="text-xl font-bold text-[color:var(--color-foreground)] mb-4">Table of Contents</h2>
               <div className="space-y-2">
                 {sections.map((section) => {
                   const colors = getStatusColor(section.status);
@@ -339,21 +345,21 @@ export default function PlanDocumentPage({ params }: Props) {
                     <a
                       key={section.id}
                       href={`#${section.id}`}
-                      className="flex items-center justify-between p-2 hover:bg-white rounded transition-colors group"
+                      className="flex items-center justify-between p-2 hover:bg-[color:var(--color-surface)] rounded transition-colors group"
                     >
                       <div className="flex items-center gap-3">
                         {!isReviewMode && hasGaps && section.status && (
                           <>
                             {section.status === 'COMPLETE' ? (
-                              <CheckCircledIcon className="w-4 h-4 text-green-600" />
+                              <CheckCircledIcon className="w-4 h-4 text-[color:var(--color-success)]" />
                             ) : section.status === 'PARTIAL' ? (
-                              <ExclamationTriangleIcon className="w-4 h-4 text-yellow-600" />
+                              <ExclamationTriangleIcon className="w-4 h-4 text-[color:var(--color-warning)]" />
                             ) : (
-                              <Cross2Icon className="w-4 h-4 text-red-600" />
+                              <Cross2Icon className="w-4 h-4 text-[color:var(--color-error)]" />
                             )}
                           </>
                         )}
-                        <span className="text-sm font-medium text-gray-700 group-hover:text-purple-600">
+                        <span className="text-sm font-medium text-[color:var(--color-foreground)] group-hover:text-[color:var(--color-primary)]">
                           {section.sectionNumber} {section.title}
                         </span>
                       </div>
@@ -379,15 +385,15 @@ export default function PlanDocumentPage({ params }: Props) {
                   <div key={section.id}>
                     {/* Category Header */}
                     {showCategoryHeader && (
-                      <div className="mb-6 pt-8 border-t-4 border-purple-300">
-                        <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-fuchsia-600 bg-clip-text text-transparent mb-2">
+                      <div className="mb-6 pt-8 border-t-4 border-[color:var(--color-border)]">
+                        <h2 className="text-3xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent mb-2">
                           {section.category === 'PLAN_OVERVIEW' && '1. Plan Overview'}
                           {section.category === 'PLAN_MEASURES' && '2. Plan Measures'}
                           {section.category === 'PAYOUTS' && '3. Payouts'}
                           {section.category === 'PAYOUT_EXAMPLE' && '4. Payout Example'}
                           {section.category === 'TERMS_CONDITIONS' && '5. Terms and Conditions'}
                         </h2>
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-[color:var(--color-muted)]">
                           {section.category === 'PLAN_OVERVIEW' && 'What you\'ll earn and how this plan works'}
                           {section.category === 'PLAN_MEASURES' && 'How you earn incentives - compensation components'}
                           {section.category === 'PAYOUTS' && 'When and how incentives are paid'}
@@ -399,25 +405,25 @@ export default function PlanDocumentPage({ params }: Props) {
 
                     <div id={section.id} className="scroll-mt-20">
                     {/* Section Header */}
-                    <div className="flex items-start justify-between mb-4 pb-3 border-b-2 border-gray-300">
+                    <div className="flex items-start justify-between mb-4 pb-3 border-b-2 border-[color:var(--color-border)]">
                       <div className="flex items-center gap-3">
                         {!isReviewMode && hasGaps && section.status && (
                           <>
                             {section.status === 'COMPLETE' ? (
-                              <CheckCircledIcon className="w-6 h-6 text-green-600 flex-none mt-1" />
+                              <CheckCircledIcon className="w-6 h-6 text-[color:var(--color-success)] flex-none mt-1" />
                             ) : section.status === 'PARTIAL' ? (
-                              <ExclamationTriangleIcon className="w-6 h-6 text-yellow-600 flex-none mt-1" />
+                              <ExclamationTriangleIcon className="w-6 h-6 text-[color:var(--color-warning)] flex-none mt-1" />
                             ) : (
-                              <Cross2Icon className="w-6 h-6 text-red-600 flex-none mt-1" />
+                              <Cross2Icon className="w-6 h-6 text-[color:var(--color-error)] flex-none mt-1" />
                             )}
                           </>
                         )}
                         <div>
-                          <h2 className="text-2xl font-bold text-gray-900">
+                          <h2 className="text-2xl font-bold text-[color:var(--color-foreground)]">
                             {section.sectionNumber} {section.title}
                           </h2>
                           {!isReviewMode && section.relatedPolicies.length > 0 && (
-                            <p className="text-xs text-gray-500 mt-1">
+                            <p className="text-xs text-[color:var(--color-muted)] mt-1">
                               Governance: {section.relatedPolicies.join(', ')}
                             </p>
                           )}
@@ -433,7 +439,7 @@ export default function PlanDocumentPage({ params }: Props) {
                     {/* Existing Content */}
                     {section.existingContent && (
                       <div className="mb-6">
-                        <div className="prose max-w-none text-gray-800 leading-relaxed">
+                        <div className="prose max-w-none text-[color:var(--color-foreground)] leading-relaxed">
                           {section.existingContent.split('\n').map((paragraph, idx) => (
                             paragraph.trim() ? (
                               <p key={idx} className="mb-4">{paragraph}</p>
@@ -447,35 +453,36 @@ export default function PlanDocumentPage({ params }: Props) {
 
                     {/* Draft Content (if PARTIAL or MISSING) */}
                     {section.draftContent && (
-                      <div className={`rounded-lg border-2 ${isReviewMode ? 'border-gray-300 bg-white' : `${colors.border} ${colors.bg}`} p-6`}>
+                      <div className={`rounded-lg border-2 ${isReviewMode ? 'border-[color:var(--color-border)] bg-[color:var(--color-surface)]' : `${colors.border} ${colors.bg}`} p-6`}>
                         {!isReviewMode && (
-                          <div className="flex items-center justify-between mb-4 pb-3 border-b border-purple-300">
+                          <div className="flex items-center justify-between mb-4 pb-3 border-b border-[color:var(--color-border)]">
                             <div className="flex items-center gap-2">
-                              <span className="px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full">
-                                📝 DRAFT POLICY TEMPLATE
+                              <span className="px-3 py-1 bg-[color:var(--color-primary)] text-white text-xs font-bold rounded-full">
+                                [DOC] DRAFT POLICY TEMPLATE
                               </span>
-                              <span className="text-xs text-gray-600">
-                                {section.status === 'MISSING'
-                                  ? 'Required policy missing from plan - draft language provided'
-                                  : 'Partial coverage - additional language suggested'}
-                              </span>
-                            </div>
-                            <span className="text-xs font-semibold text-purple-600">
-                              ⚠ LEGAL REVIEW REQUIRED
+                            <span className="text-xs text-[color:var(--color-muted)]">
+                              {section.status === 'MISSING'
+                                ? 'Required policy missing from plan - draft language provided'
+                                : 'Partial coverage - additional language suggested'}
+                            </span>
+                          </div>
+                            <span className="text-xs font-semibold text-[color:var(--color-primary)] inline-flex items-center gap-2">
+                              <ExclamationTriangleIcon className="w-4 h-4" />
+                              LEGAL REVIEW REQUIRED
                             </span>
                           </div>
                         )}
 
                         {/* Purpose Section */}
                         {section.draftPurpose && !isReviewMode && (
-                          <div className="mb-4 p-3 bg-purple-50 rounded border border-purple-200">
-                            <h4 className="text-sm font-bold text-purple-900 mb-2">Policy Purpose</h4>
-                            <p className="text-sm text-gray-700">{section.draftPurpose}</p>
+                          <div className="mb-4 p-3 bg-[color:var(--color-surface-alt)] rounded border border-[color:var(--color-border)]">
+                            <h4 className="text-sm font-bold text-[color:var(--color-accent)] mb-2">Policy Purpose</h4>
+                            <p className="text-sm text-[color:var(--color-foreground)]">{section.draftPurpose}</p>
                           </div>
                         )}
 
                         {/* Full Policy Text */}
-                        <div className="prose max-w-none text-gray-900 leading-relaxed text-sm">
+                        <div className="prose max-w-none text-[color:var(--color-foreground)] leading-relaxed text-sm">
                           {section.draftContent.split('\n').map((paragraph, idx) => (
                             paragraph.trim() ? (
                               <p key={idx} className="mb-3">{paragraph}</p>
@@ -485,14 +492,14 @@ export default function PlanDocumentPage({ params }: Props) {
                           ))}
                         </div>
                         {!isReviewMode && (
-                          <div className="flex items-center gap-3 mt-4 pt-4 border-t border-gray-300">
-                            <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium">
+                          <div className="flex items-center gap-3 mt-4 pt-4 border-t border-[color:var(--color-border)]">
+                            <button className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] transition-colors text-sm font-medium">
                               Accept Draft
                             </button>
-                            <button className="px-4 py-2 bg-white border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50 transition-colors text-sm font-medium">
+                            <button className="px-4 py-2 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-primary)] rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors text-sm font-medium">
                               Edit Language
                             </button>
-                            <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium">
+                            <button className="px-4 py-2 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors text-sm font-medium">
                               Skip
                             </button>
                           </div>
@@ -507,24 +514,24 @@ export default function PlanDocumentPage({ params }: Props) {
 
             {/* Document Footer */}
             {!isReviewMode && (
-              <div className="mt-12 pt-8 border-t-2 border-gray-300">
+              <div className="mt-12 pt-8 border-t-2 border-[color:var(--color-border)]">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">
-                      Document Status: <strong className="text-yellow-700">DRAFT</strong>
+                    <p className="text-sm text-[color:var(--color-muted)]">
+                      Document Status: <strong className="text-[color:var(--color-warning)]">DRAFT</strong>
                     </p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-[color:var(--color-muted)]">
                       Last Updated: {new Date().toLocaleDateString()}
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <Link
                       href={`/plans/remediation/${planCode}`}
-                      className="px-6 py-3 bg-white border-2 border-purple-400 text-purple-700 rounded-lg hover:bg-purple-50 transition-colors font-semibold"
+                      className="px-6 py-3 bg-[color:var(--color-surface)] border-2 border-[color:var(--color-primary)] text-[color:var(--color-primary)] rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors font-semibold"
                     >
                       Gap Analysis View
                     </Link>
-                    <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-lg hover:from-purple-700 hover:to-fuchsia-700 transition-all font-semibold shadow-lg">
+                    <button className="px-6 py-3 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-lg hover:opacity-90 transition-all font-semibold shadow-lg">
                       Approve & Publish Plan
                     </button>
                   </div>

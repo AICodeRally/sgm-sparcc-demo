@@ -84,19 +84,19 @@ export default function AuditPage() {
   const getCategoryColor = (category: AuditEvent['category']) => {
     switch (category) {
       case 'DOCUMENT':
-        return 'bg-blue-100 text-blue-700';
+        return 'bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)]';
       case 'APPROVAL':
-        return 'bg-orange-100 text-orange-700';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]';
       case 'CASE':
-        return 'bg-pink-100 text-pink-700';
+        return 'bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)]';
       case 'COMMITTEE':
-        return 'bg-purple-100 text-purple-700';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)]';
       case 'POLICY':
-        return 'bg-green-100 text-green-700';
+        return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]';
       case 'ACCESS':
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
     }
   };
 
@@ -120,15 +120,15 @@ export default function AuditPage() {
   const getImpactColor = (impact: AuditEvent['impactLevel']) => {
     switch (impact) {
       case 'CRITICAL':
-        return 'text-red-600';
+        return 'text-[color:var(--color-error)]';
       case 'HIGH':
-        return 'text-orange-600';
+        return 'text-[color:var(--color-warning)]';
       case 'MEDIUM':
-        return 'text-yellow-600';
+        return 'text-[color:var(--color-warning)]';
       case 'LOW':
-        return 'text-gray-500';
+        return 'text-[color:var(--color-muted)]';
       default:
-        return 'text-gray-500';
+        return 'text-[color:var(--color-muted)]';
     }
   };
 
@@ -165,26 +165,26 @@ export default function AuditPage() {
     <div className="p-4 space-y-6">
       {/* Quick Stats */}
       <div>
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
           Quick Stats
         </h2>
         <div className="space-y-2">
-          <div className="bg-green-50 rounded-md p-3">
+          <div className="bg-[color:var(--color-success-bg)] rounded-md p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-green-700 font-medium">Total Events</span>
-              <span className="text-lg font-bold text-green-700">{AUDIT_STATS.totalEvents}</span>
+              <span className="text-xs text-[color:var(--color-success)] font-medium">Total Events</span>
+              <span className="text-lg font-bold text-[color:var(--color-success)]">{AUDIT_STATS.totalEvents}</span>
             </div>
           </div>
-          <div className="bg-blue-50 rounded-md p-3">
+          <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-blue-700 font-medium">Last 24h</span>
-              <span className="text-lg font-bold text-blue-700">{AUDIT_STATS.last24Hours}</span>
+              <span className="text-xs text-[color:var(--color-primary)] font-medium">Last 24h</span>
+              <span className="text-lg font-bold text-[color:var(--color-primary)]">{AUDIT_STATS.last24Hours}</span>
             </div>
           </div>
-          <div className="bg-purple-50 rounded-md p-3">
+          <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-purple-700 font-medium">Last 7d</span>
-              <span className="text-lg font-bold text-purple-700">{AUDIT_STATS.last7Days}</span>
+              <span className="text-xs text-[color:var(--color-primary)] font-medium">Last 7d</span>
+              <span className="text-lg font-bold text-[color:var(--color-primary)]">{AUDIT_STATS.last7Days}</span>
             </div>
           </div>
         </div>
@@ -192,7 +192,7 @@ export default function AuditPage() {
 
       {/* Time Range Filter */}
       <div>
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
           Time Range
         </h2>
         <div className="space-y-1">
@@ -200,8 +200,8 @@ export default function AuditPage() {
             onClick={() => setFilterTimeRange('all')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterTimeRange === 'all'
-                ? 'bg-green-50 text-green-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <ClockIcon className="w-4 h-4" />
@@ -211,8 +211,8 @@ export default function AuditPage() {
             onClick={() => setFilterTimeRange('24h')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterTimeRange === '24h'
-                ? 'bg-green-50 text-green-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <ClockIcon className="w-4 h-4" />
@@ -222,8 +222,8 @@ export default function AuditPage() {
             onClick={() => setFilterTimeRange('7d')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterTimeRange === '7d'
-                ? 'bg-green-50 text-green-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <ClockIcon className="w-4 h-4" />
@@ -233,8 +233,8 @@ export default function AuditPage() {
             onClick={() => setFilterTimeRange('30d')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterTimeRange === '30d'
-                ? 'bg-green-50 text-green-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <ClockIcon className="w-4 h-4" />
@@ -245,7 +245,7 @@ export default function AuditPage() {
 
       {/* Category Filter */}
       <div>
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
           Category
         </h2>
         <div className="space-y-1">
@@ -253,8 +253,8 @@ export default function AuditPage() {
             onClick={() => setFilterCategory('all')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterCategory === 'all'
-                ? 'bg-green-50 text-green-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <LayersIcon className="w-4 h-4" />
@@ -268,8 +268,8 @@ export default function AuditPage() {
                 onClick={() => setFilterCategory(key)}
                 className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
                   filterCategory === key
-                    ? 'bg-green-50 text-green-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] font-medium'
+                    : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -282,7 +282,7 @@ export default function AuditPage() {
 
       {/* Impact Filter */}
       <div>
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
           Impact Level
         </h2>
         <div className="space-y-1">
@@ -290,8 +290,8 @@ export default function AuditPage() {
             onClick={() => setFilterImpact('all')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterImpact === 'all'
-                ? 'bg-green-50 text-green-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <BarChartIcon className="w-4 h-4" />
@@ -305,8 +305,8 @@ export default function AuditPage() {
                 onClick={() => setFilterImpact(key)}
                 className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
                   filterImpact === key
-                    ? 'bg-green-50 text-green-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] font-medium'
+                    : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
                 }`}
               >
                 <Icon className={`w-4 h-4 ${getImpactColor(key as AuditEvent['impactLevel'])}`} />
@@ -323,9 +323,9 @@ export default function AuditPage() {
   const centerContent = (
     <div className="h-full flex flex-col">
       {/* Toolbar */}
-      <div className="flex-none bg-white/90 backdrop-blur-sm border-b border-purple-200 p-6">
+      <div className="flex-none bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] p-6">
         <div className="flex items-center justify-end mb-4">
-          <button className="px-4 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center gap-2">
+          <button className="px-4 py-2 bg-[color:var(--color-success)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-success)] transition-colors flex items-center gap-2">
             <CalendarIcon className="w-4 h-4" />
             Export Log
           </button>
@@ -333,13 +333,13 @@ export default function AuditPage() {
 
         {/* Search */}
         <div className="relative">
-          <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[color:var(--color-muted)]" />
           <input
             type="text"
             placeholder="Search events by action, description, or actor..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-[color:var(--color-border)] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--color-success-border)] focus:border-transparent"
           />
         </div>
       </div>
@@ -348,8 +348,8 @@ export default function AuditPage() {
       <div className="flex-1 overflow-y-auto p-6">
         {sortedEvents.length === 0 ? (
           <div className="text-center py-12">
-            <ClockIcon className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-            <p className="text-gray-600">No events found</p>
+            <ClockIcon className="w-12 h-12 text-[color:var(--color-muted)] mx-auto mb-3" />
+            <p className="text-[color:var(--color-muted)]">No events found</p>
           </div>
         ) : (
           <div className="space-y-6">
@@ -369,29 +369,29 @@ export default function AuditPage() {
                     {/* Timeline line */}
                     <div className="flex flex-col items-center flex-shrink-0">
                       <div className={`w-3 h-3 rounded-full ${
-                        selectedEvent?.id === event.id ? 'bg-green-500' : 'bg-gray-300'
+                        selectedEvent?.id === event.id ? 'bg-transparent' : 'bg-[color:var(--color-border)]'
                       }`}></div>
                       {index < sortedEvents.length - 1 && (
-                        <div className="w-0.5 h-full bg-gray-200 mt-2"></div>
+                        <div className="w-0.5 h-full bg-[color:var(--color-border)] mt-2"></div>
                       )}
                     </div>
 
                     {/* Event Card */}
-                    <div className={`flex-1 pb-6 bg-white/80 backdrop-blur-sm rounded-md border transition-all hover:shadow-md ${
+                    <div className={`flex-1 pb-6 bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-md border transition-all hover:shadow-md ${
                       selectedEvent?.id === event.id
-                        ? 'border-green-300 shadow-sm'
-                        : 'border-purple-200'
+                        ? 'border-[color:var(--color-success-border)] shadow-sm'
+                        : 'border-[color:var(--color-border)]'
                     }`}>
                       <div className="p-4">
                         {/* Header */}
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex items-center gap-2 flex-1 min-w-0">
-                            <CategoryIcon className="w-5 h-5 text-green-600 flex-shrink-0" />
+                            <CategoryIcon className="w-5 h-5 text-[color:var(--color-success)] flex-shrink-0" />
                             <div className="min-w-0 flex-1">
-                              <h3 className="font-semibold text-gray-900 text-sm">
+                              <h3 className="font-semibold text-[color:var(--color-foreground)] text-sm">
                                 {event.action}
                               </h3>
-                              <p className="text-xs text-gray-500 mt-0.5">
+                              <p className="text-xs text-[color:var(--color-muted)] mt-0.5">
                                 {formatRelativeTime(event.timestamp)}
                               </p>
                             </div>
@@ -400,7 +400,7 @@ export default function AuditPage() {
                         </div>
 
                         {/* Description */}
-                        <p className="text-sm text-gray-700 mb-3">
+                        <p className="text-sm text-[color:var(--color-foreground)] mb-3">
                           {event.description}
                         </p>
 
@@ -410,12 +410,12 @@ export default function AuditPage() {
                             {React.createElement(CategoryIcon, { className: 'w-3 h-3' })}
                             {event.category}
                           </span>
-                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
+                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] rounded text-xs">
                             <PersonIcon className="w-3 h-3" />
                             {event.actor}
                           </span>
                           {event.committee && (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">
+                            <span className="inline-flex items-center gap-1 px-2 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded text-xs font-medium">
                               {event.committee}
                             </span>
                           )}
@@ -436,17 +436,17 @@ export default function AuditPage() {
   const rightDetail = selectedEvent ? (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="flex-none border-b border-purple-200 p-4">
+      <div className="flex-none border-b border-[color:var(--color-border)] p-4">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2">
             {React.createElement(getCategoryIcon(selectedEvent.category), {
-              className: 'w-5 h-5 text-green-600 flex-shrink-0'
+              className: 'w-5 h-5 text-[color:var(--color-success)] flex-shrink-0'
             })}
             <div>
-              <h2 className="font-semibold text-gray-900 text-sm">
+              <h2 className="font-semibold text-[color:var(--color-foreground)] text-sm">
                 {selectedEvent.eventType.replace(/_/g, ' ')}
               </h2>
-              <p className="text-xs text-gray-500 mt-0.5">
+              <p className="text-xs text-[color:var(--color-muted)] mt-0.5">
                 {selectedEvent.category}
               </p>
             </div>
@@ -456,7 +456,7 @@ export default function AuditPage() {
           })}
         </div>
 
-        <h3 className="font-semibold text-gray-900 mb-2">
+        <h3 className="font-semibold text-[color:var(--color-foreground)] mb-2">
           {selectedEvent.action}
         </h3>
 
@@ -467,10 +467,10 @@ export default function AuditPage() {
             {selectedEvent.category}
           </span>
           <span className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium ${
-            selectedEvent.impactLevel === 'CRITICAL' ? 'bg-red-100 text-red-700' :
-            selectedEvent.impactLevel === 'HIGH' ? 'bg-orange-100 text-orange-700' :
-            selectedEvent.impactLevel === 'MEDIUM' ? 'bg-yellow-100 text-yellow-700' :
-            'bg-gray-100 text-gray-700'
+            selectedEvent.impactLevel === 'CRITICAL' ? 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]' :
+            selectedEvent.impactLevel === 'HIGH' ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]' :
+            selectedEvent.impactLevel === 'MEDIUM' ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]' :
+            'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]'
           }`}>
             {selectedEvent.impactLevel}
           </span>
@@ -481,50 +481,50 @@ export default function AuditPage() {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Description */}
         <div>
-          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+          <h4 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
             Description
           </h4>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-[color:var(--color-foreground)] leading-relaxed">
             {selectedEvent.description}
           </p>
         </div>
 
         {/* Event Details */}
-        <div className="bg-gray-50 rounded-md p-3 space-y-2">
+        <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3 space-y-2">
           <div className="flex items-start justify-between text-xs">
-            <span className="text-gray-600">Timestamp</span>
-            <span className="text-gray-900 font-medium text-right">
+            <span className="text-[color:var(--color-muted)]">Timestamp</span>
+            <span className="text-[color:var(--color-foreground)] font-medium text-right">
               {formatDate(selectedEvent.timestamp)}
             </span>
           </div>
           <div className="flex items-start justify-between text-xs">
-            <span className="text-gray-600">Actor</span>
-            <span className="text-gray-900 font-medium text-right">
+            <span className="text-[color:var(--color-muted)]">Actor</span>
+            <span className="text-[color:var(--color-foreground)] font-medium text-right">
               {selectedEvent.actor}
             </span>
           </div>
           <div className="flex items-start justify-between text-xs">
-            <span className="text-gray-600">Role</span>
-            <span className="text-gray-900 font-medium text-right">
+            <span className="text-[color:var(--color-muted)]">Role</span>
+            <span className="text-[color:var(--color-foreground)] font-medium text-right">
               {selectedEvent.actorRole}
             </span>
           </div>
           <div className="flex items-start justify-between text-xs">
-            <span className="text-gray-600">Target Type</span>
-            <span className="text-gray-900 font-medium">
+            <span className="text-[color:var(--color-muted)]">Target Type</span>
+            <span className="text-[color:var(--color-foreground)] font-medium">
               {selectedEvent.targetType}
             </span>
           </div>
           <div className="flex items-start justify-between text-xs">
-            <span className="text-gray-600">Target</span>
-            <span className="text-blue-600 font-medium hover:underline cursor-pointer text-right">
+            <span className="text-[color:var(--color-muted)]">Target</span>
+            <span className="text-[color:var(--color-info)] font-medium hover:underline cursor-pointer text-right">
               {selectedEvent.targetName}
             </span>
           </div>
           {selectedEvent.committee && (
             <div className="flex items-start justify-between text-xs">
-              <span className="text-gray-600">Committee</span>
-              <span className="text-purple-600 font-medium">
+              <span className="text-[color:var(--color-muted)]">Committee</span>
+              <span className="text-[color:var(--color-primary)] font-medium">
                 {selectedEvent.committee}
               </span>
             </div>
@@ -534,16 +534,16 @@ export default function AuditPage() {
         {/* Metadata */}
         {selectedEvent.metadata && Object.keys(selectedEvent.metadata).length > 0 && (
           <div>
-            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            <h4 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Additional Details
             </h4>
-            <div className="bg-blue-50 rounded-md p-3 space-y-2">
+            <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3 space-y-2">
               {Object.entries(selectedEvent.metadata).map(([key, value]) => (
                 <div key={key} className="flex items-start justify-between text-xs">
-                  <span className="text-blue-700 font-medium">
+                  <span className="text-[color:var(--color-primary)] font-medium">
                     {key.replace(/([A-Z])/g, ' $1').trim()}
                   </span>
-                  <span className="text-blue-900 text-right max-w-[60%]">
+                  <span className="text-[color:var(--color-info)] text-right max-w-[60%]">
                     {typeof value === 'number' && key.toLowerCase().includes('amount')
                       ? `$${value.toLocaleString()}`
                       : String(value)}
@@ -555,9 +555,9 @@ export default function AuditPage() {
         )}
 
         {/* Event ID */}
-        <div className="pt-4 border-t border-purple-200">
-          <p className="text-xs text-gray-500">
-            Event ID: <span className="font-mono text-gray-700">{selectedEvent.id}</span>
+        <div className="pt-4 border-t border-[color:var(--color-border)]">
+          <p className="text-xs text-[color:var(--color-muted)]">
+            Event ID: <span className="font-mono text-[color:var(--color-foreground)]">{selectedEvent.id}</span>
           </p>
         </div>
       </div>

@@ -228,33 +228,33 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-[20vh] bg-black/50 backdrop-blur-sm">
       <div className="w-full max-w-2xl mx-4">
-        <div className="bg-white rounded-lg shadow-2xl border border-purple-200 overflow-hidden">
+        <div className="bg-[color:var(--color-surface)] rounded-lg shadow-2xl border border-[color:var(--color-border)] overflow-hidden">
           {/* Search Input */}
-          <div className="flex items-center gap-3 p-4 border-b border-gray-200">
-            <MagnifyingGlassIcon className="w-5 h-5 text-gray-400" />
+          <div className="flex items-center gap-3 p-4 border-b border-[color:var(--color-border)]">
+            <MagnifyingGlassIcon className="w-5 h-5 text-[color:var(--color-muted)]" />
             <input
               ref={inputRef}
               type="text"
               placeholder="Search or jump to..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 text-base outline-none text-gray-900 placeholder-gray-400"
+              className="flex-1 text-base outline-none text-[color:var(--color-foreground)] placeholder-[color:var(--color-muted)]"
             />
             <button
               onClick={() => {
                 onClose();
                 setQuery('');
               }}
-              className="p-1 hover:bg-gray-100 rounded transition-colors"
+              className="p-1 hover:bg-[color:var(--color-surface-alt)] rounded transition-colors"
             >
-              <Cross2Icon className="w-4 h-4 text-gray-500" />
+              <Cross2Icon className="w-4 h-4 text-[color:var(--color-muted)]" />
             </button>
           </div>
 
           {/* Results */}
           <div className="max-h-96 overflow-y-auto">
             {Object.keys(groupedCommands).length === 0 ? (
-              <div className="p-8 text-center text-gray-500">
+              <div className="p-8 text-center text-[color:var(--color-muted)]">
                 <p>No results found for "{query}"</p>
               </div>
             ) : (
@@ -262,7 +262,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                 {Object.entries(groupedCommands).map(([category, items], catIndex) => (
                   <div key={category} className={catIndex > 0 ? 'mt-4' : ''}>
                     <div className="px-3 py-2">
-                      <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      <p className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider">
                         {category}
                       </p>
                     </div>
@@ -282,21 +282,21 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                           onMouseEnter={() => setSelectedIndex(globalIndex)}
                           className={`w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors ${
                             isSelected
-                              ? 'bg-gradient-to-r from-purple-50 to-fuchsia-50 border-l-2 border-purple-500'
-                              : 'hover:bg-gray-50'
+                              ? 'bg-[color:var(--color-surface-alt)] border-l-2 border-[color:var(--color-primary)]'
+                              : 'hover:bg-[color:var(--color-surface-alt)]'
                           }`}
                         >
-                          <Icon className={`w-5 h-5 ${isSelected ? 'text-purple-600' : 'text-gray-400'}`} />
+                          <Icon className={`w-5 h-5 ${isSelected ? 'text-[color:var(--color-primary)]' : 'text-[color:var(--color-muted)]'}`} />
                           <div className="flex-1 text-left">
-                            <p className={`text-sm font-medium ${isSelected ? 'text-purple-900' : 'text-gray-900'}`}>
+                            <p className={`text-sm font-medium ${isSelected ? 'text-[color:var(--color-accent)]' : 'text-[color:var(--color-foreground)]'}`}>
                               {item.title}
                             </p>
                             {item.subtitle && (
-                              <p className="text-xs text-gray-500">{item.subtitle}</p>
+                              <p className="text-xs text-[color:var(--color-muted)]">{item.subtitle}</p>
                             )}
                           </div>
                           {isSelected && (
-                            <ArrowRightIcon className="w-4 h-4 text-purple-600" />
+                            <ArrowRightIcon className="w-4 h-4 text-[color:var(--color-primary)]" />
                           )}
                         </button>
                       );
@@ -308,22 +308,22 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
           </div>
 
           {/* Footer */}
-          <div className="px-4 py-3 border-t border-gray-200 bg-gray-50 flex items-center justify-between text-xs text-gray-500">
+          <div className="px-4 py-3 border-t border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] flex items-center justify-between text-xs text-[color:var(--color-muted)]">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-white border border-gray-300 rounded text-xs font-mono">↑↓</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded text-xs font-mono">↑↓</kbd>
                 to navigate
               </span>
               <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-white border border-gray-300 rounded text-xs font-mono">↵</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded text-xs font-mono">↵</kbd>
                 to select
               </span>
               <span className="flex items-center gap-1">
-                <kbd className="px-1.5 py-0.5 bg-white border border-gray-300 rounded text-xs font-mono">esc</kbd>
+                <kbd className="px-1.5 py-0.5 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded text-xs font-mono">esc</kbd>
                 to close
               </span>
             </div>
-            <span className="text-xs text-purple-600 font-medium">
+            <span className="text-xs text-[color:var(--color-primary)] font-medium">
               SPARCC Search
             </span>
           </div>

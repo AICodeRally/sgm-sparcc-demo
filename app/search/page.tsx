@@ -4,6 +4,14 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { SetPageTitle } from '@/components/SetPageTitle';
+import {
+  FileTextIcon,
+  ClipboardIcon,
+  ReloadIcon,
+  LayersIcon,
+  CheckCircledIcon,
+  ReaderIcon,
+} from '@radix-ui/react-icons';
 
 interface SearchResult {
   id: string;
@@ -61,32 +69,33 @@ function SearchContent() {
 
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
-      DRAFT: 'bg-gray-100 text-gray-800',
-      UNDER_REVIEW: 'bg-yellow-100 text-yellow-800',
-      PENDING_APPROVAL: 'bg-orange-100 text-orange-800',
-      APPROVED: 'bg-blue-100 text-blue-800',
-      ACTIVE: 'bg-green-100 text-green-800',
-      ARCHIVED: 'bg-red-100 text-red-800',
+      DRAFT: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]',
+      UNDER_REVIEW: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]',
+      PENDING_APPROVAL: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]',
+      APPROVED: 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)]',
+      ACTIVE: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]',
+      ARCHIVED: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]',
     };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+    return colors[status] || 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
   };
 
   const getDocumentIcon = (type: string) => {
-    const icons: Record<string, string> = {
-      FRAMEWORK: '📋',
-      POLICY: '📄',
-      PROCEDURE: '🔄',
-      TEMPLATE: '📝',
-      CHECKLIST: '✅',
-      GUIDE: '📚',
+    const icons: Record<string, React.ElementType> = {
+      FRAMEWORK: ClipboardIcon,
+      POLICY: FileTextIcon,
+      PROCEDURE: ReloadIcon,
+      TEMPLATE: LayersIcon,
+      CHECKLIST: CheckCircledIcon,
+      GUIDE: ReaderIcon,
     };
-    return icons[type] || '📄';
+    const Icon = icons[type] || FileTextIcon;
+    return <Icon className="w-7 h-7 text-[color:var(--color-primary)]" />;
   };
 
   return (
-    <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex flex-col">
+    <div className="h-screen sparcc-hero-bg flex flex-col">
       {/* Header */}
-      <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm">
+      <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-6">
           {/* Search Form */}
           <form onSubmit={handleSearch} className="mt-6 flex gap-4">
@@ -95,11 +104,11 @@ function SearchContent() {
               placeholder="Search documents..."
               value={searchInput}
               onChange={e => setSearchInput(e.target.value)}
-              className="flex-1 px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="flex-1 px-4 py-3 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
             />
             <button
               type="submit"
-              className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium"
+              className="px-6 py-3 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] font-medium"
             >
               Search
             </button>
@@ -111,26 +120,26 @@ function SearchContent() {
         <div className="max-w-7xl mx-auto px-6 py-12">
         {!query ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">Enter a search query to get started</p>
+            <p className="text-[color:var(--color-muted)] text-lg">Enter a search query to get started</p>
           </div>
         ) : loading ? (
           <div className="text-center py-12">
-            <p className="text-gray-500">Searching...</p>
+            <p className="text-[color:var(--color-muted)]">Searching...</p>
           </div>
         ) : error ? (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-red-700">{error}</p>
+          <div className="p-4 bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded-lg">
+            <p className="text-[color:var(--color-error)]">{error}</p>
           </div>
         ) : results.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">
+            <p className="text-[color:var(--color-muted)] text-lg">
               No results found for "<strong>{query}</strong>"
             </p>
-            <p className="text-gray-400 mt-2">Try different keywords or filters</p>
+            <p className="text-[color:var(--color-muted)] mt-2">Try different keywords or filters</p>
           </div>
         ) : (
           <div>
-            <p className="text-gray-600 mb-6">
+            <p className="text-[color:var(--color-muted)] mb-6">
               Found <strong>{results.length}</strong> result{results.length !== 1 ? 's' : ''} for "
               <strong>{query}</strong>"
             </p>
@@ -138,25 +147,25 @@ function SearchContent() {
             <div className="space-y-4">
               {results.map(result => (
                 <Link key={result.id} href={`/documents/${result.id}`}>
-                  <div className="bg-white rounded-lg border border-purple-200 p-6 hover:shadow-md hover:border-purple-300 transition-all cursor-pointer">
+                  <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6 hover:shadow-md hover:border-[color:var(--color-border)] transition-all cursor-pointer">
                     <div className="flex items-start gap-4">
-                      <span className="text-3xl">{getDocumentIcon(result.documentType)}</span>
+                      <span>{getDocumentIcon(result.documentType)}</span>
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-gray-900">{result.title}</h3>
-                        <p className="text-sm text-gray-600 mt-1">{result.documentCode}</p>
+                        <h3 className="text-lg font-semibold text-[color:var(--color-foreground)]">{result.title}</h3>
+                        <p className="text-sm text-[color:var(--color-muted)] mt-1">{result.documentCode}</p>
 
                         {result.description && (
-                          <p className="text-gray-600 mt-2 line-clamp-2">{result.description}</p>
+                          <p className="text-[color:var(--color-muted)] mt-2 line-clamp-2">{result.description}</p>
                         )}
 
                         <div className="flex items-center gap-4 mt-4 flex-wrap">
                           <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(result.status)}`}>
                             {result.status}
                           </span>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-[color:var(--color-muted)]">
                             Type: {result.documentType}
                           </span>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-[color:var(--color-muted)]">
                             Updated: {new Date(result.lastUpdated).toLocaleDateString()}
                           </span>
                         </div>
@@ -181,7 +190,7 @@ export default function SearchPage() {
         title="Global Search"
         description="Search across all documents, policies, and governance data"
       />
-      <Suspense fallback={<div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex items-center justify-center"><p>Loading...</p></div>}>
+      <Suspense fallback={<div className="h-screen sparcc-hero-bg flex items-center justify-center"><p>Loading...</p></div>}>
         <SearchContent />
       </Suspense>
     </>

@@ -7,6 +7,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import {
+  CheckCircledIcon,
+  CrossCircledIcon,
+  ExclamationTriangleIcon,
+  InfoCircledIcon,
+} from "@radix-ui/react-icons";
 
 interface HealthStatus {
   service: string;
@@ -87,37 +93,41 @@ export default function AIHealthPage() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'healthy': return 'bg-green-100 text-green-800 border-green-300';
-      case 'degraded': return 'bg-yellow-100 text-yellow-800 border-yellow-300';
-      case 'error': return 'bg-red-100 text-red-800 border-red-300';
-      default: return 'bg-gray-100 text-gray-800 border-gray-300';
+      case 'healthy': return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]';
+      case 'degraded': return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
+      case 'error': return 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]';
+      default: return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
     }
   };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
-      case 'healthy': return '✓';
-      case 'degraded': return '⚠';
-      case 'error': return '✗';
-      default: return '?';
+      case 'healthy':
+        return <CheckCircledIcon className="w-5 h-5" style={{ color: 'var(--color-success)' }} />;
+      case 'degraded':
+        return <ExclamationTriangleIcon className="w-5 h-5" style={{ color: 'var(--color-warning)' }} />;
+      case 'error':
+        return <CrossCircledIcon className="w-5 h-5" style={{ color: 'var(--color-error)' }} />;
+      default:
+        return <InfoCircledIcon className="w-5 h-5" style={{ color: 'var(--color-muted)' }} />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-[color:var(--color-surface-alt)] p-8">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">AI System Health</h1>
-          <p className="text-gray-600">SGM SPARCC - AI Services Status Monitor</p>
+          <h1 className="text-3xl font-bold text-[color:var(--color-foreground)] mb-2">AI System Health</h1>
+          <p className="text-[color:var(--color-muted)]">SGM SPARCC - AI Services Status Monitor</p>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-[color:var(--color-surface)] rounded-lg shadow-sm border border-[color:var(--color-border)] p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-gray-900">Service Status</h2>
+            <h2 className="text-lg font-semibold text-[color:var(--color-foreground)]">Service Status</h2>
             <button
               onClick={checkHealth}
               disabled={isLoading}
-              className="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-md hover:bg-purple-700 disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium text-white bg-[color:var(--color-primary)] rounded-md hover:bg-[color:var(--color-secondary)] disabled:opacity-50"
             >
               {isLoading ? 'Checking...' : 'Refresh'}
             </button>
@@ -131,7 +141,9 @@ export default function AIHealthPage() {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl">{getStatusIcon(check.status)}</span>
+                    <span className="text-2xl inline-flex items-center justify-center">
+                      {getStatusIcon(check.status)}
+                    </span>
                     <div>
                       <h3 className="font-semibold">{check.service}</h3>
                       <p className="text-sm">{check.details}</p>
@@ -149,9 +161,12 @@ export default function AIHealthPage() {
           </div>
         </div>
 
-        <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-          <h3 className="font-semibold text-purple-900 mb-2">ℹ️ About This Page</h3>
-          <p className="text-sm text-purple-800">
+        <div className="bg-[color:var(--color-surface-alt)] border border-[color:var(--color-border)] rounded-lg p-4">
+          <h3 className="font-semibold text-[color:var(--color-accent)] mb-2 flex items-center gap-2">
+            <InfoCircledIcon className="w-4 h-4" />
+            About This Page
+          </h3>
+          <p className="text-sm text-[color:var(--color-accent)]">
             This development page monitors the health of AI services in SGM SPARCC.
             It checks the availability and responsiveness of OpsChief and AskSGM endpoints.
           </p>

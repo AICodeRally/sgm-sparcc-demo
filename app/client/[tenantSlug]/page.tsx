@@ -46,7 +46,7 @@ export default function ClientDashboardPage({ params }: ClientDashboardPageProps
         tenantName="Loading..."
       >
         <div className="text-center py-12">
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-[color:var(--color-muted)]">Loading dashboard...</p>
         </div>
       </ClientDashboardLayout>
     );
@@ -69,27 +69,27 @@ export default function ClientDashboardPage({ params }: ClientDashboardPageProps
     >
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <h1 className="text-3xl font-bold text-[color:var(--color-foreground)] mb-2">
           Governance Dashboard
         </h1>
-        <p className="text-gray-600">
+        <p className="text-[color:var(--color-muted)]">
           Comprehensive gap analysis and implementation roadmap
         </p>
       </div>
 
       {/* Engagement Status Banner */}
       {engagementStatus && (
-        <div className="bg-gradient-to-r from-indigo-500 to-violet-500 text-white rounded-xl p-6 mb-8">
+        <div className="bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-xl p-6 mb-8">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-xl font-bold mb-1">{engagementStatus.type}</h2>
-              <p className="text-indigo-100">
+              <p className="text-white/80">
                 Started: {new Date(engagementStatus.startDate).toLocaleDateString()} •
                 Status: <span className="font-semibold">{engagementStatus.status}</span>
               </p>
             </div>
             <Link href={`/client/${tenantSlug}/roadmap`}>
-              <button className="bg-white text-indigo-600 px-4 py-2 rounded-lg font-semibold hover:bg-indigo-50 transition-colors flex items-center gap-2">
+              <button className="bg-[color:var(--color-surface)] text-[color:var(--color-accent)] px-4 py-2 rounded-lg font-semibold hover:bg-[color:var(--color-accent-bg)] transition-colors flex items-center gap-2">
                 View Roadmap <ArrowRightIcon className="w-4 h-4" />
               </button>
             </Link>
@@ -99,17 +99,17 @@ export default function ClientDashboardPage({ params }: ClientDashboardPageProps
 
       {/* Key Metrics */}
       <div className="mb-8">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">Key Metrics</h2>
+        <h2 className="text-xl font-bold text-[color:var(--color-foreground)] mb-4">Key Metrics</h2>
         <MetricsGrid metrics={metrics} />
       </div>
 
       {/* Top Plans */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-900">High-Risk Plans</h2>
+          <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">High-Risk Plans</h2>
           <Link
             href={`/client/${tenantSlug}/plans`}
-            className="text-sm text-indigo-600 hover:text-indigo-700 font-semibold flex items-center gap-1"
+            className="text-sm text-[color:var(--color-accent)] hover:text-[color:var(--color-accent)] font-semibold flex items-center gap-1"
           >
             View All Plans <ArrowRightIcon className="w-4 h-4" />
           </Link>
@@ -128,10 +128,10 @@ export default function ClientDashboardPage({ params }: ClientDashboardPageProps
       {/* Critical Gaps */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-900">Critical & High Priority Gaps</h2>
+          <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">Critical & High Priority Gaps</h2>
           <Link
             href={`/client/${tenantSlug}/gaps`}
-            className="text-sm text-indigo-600 hover:text-indigo-700 font-semibold flex items-center gap-1"
+            className="text-sm text-[color:var(--color-accent)] hover:text-[color:var(--color-accent)] font-semibold flex items-center gap-1"
           >
             View All Gaps <ArrowRightIcon className="w-4 h-4" />
           </Link>
@@ -142,36 +142,36 @@ export default function ClientDashboardPage({ params }: ClientDashboardPageProps
       {/* Quick Links */}
       <div className="grid grid-cols-3 gap-6">
         <Link href={`/client/${tenantSlug}/coverage`}>
-          <div className="bg-white rounded-xl border-2 border-indigo-200 p-6 hover:shadow-lg hover:border-indigo-300 transition-all cursor-pointer">
-            <h3 className="font-bold text-gray-900 mb-2">Coverage Matrix</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-accent-border)] p-6 hover:shadow-lg hover:border-[color:var(--color-accent-border)] transition-all cursor-pointer">
+            <h3 className="font-bold text-[color:var(--color-foreground)] mb-2">Coverage Matrix</h3>
+            <p className="text-sm text-[color:var(--color-muted)] mb-4">
               Interactive policy coverage visualization
             </p>
-            <span className="text-indigo-600 text-sm font-semibold flex items-center gap-1">
+            <span className="text-[color:var(--color-accent)] text-sm font-semibold flex items-center gap-1">
               View Matrix <ArrowRightIcon className="w-4 h-4" />
             </span>
           </div>
         </Link>
 
         <Link href={`/client/${tenantSlug}/policies`}>
-          <div className="bg-white rounded-xl border-2 border-indigo-200 p-6 hover:shadow-lg hover:border-indigo-300 transition-all cursor-pointer">
-            <h3 className="font-bold text-gray-900 mb-2">Policy Recommendations</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-accent-border)] p-6 hover:shadow-lg hover:border-[color:var(--color-accent-border)] transition-all cursor-pointer">
+            <h3 className="font-bold text-[color:var(--color-foreground)] mb-2">Policy Recommendations</h3>
+            <p className="text-sm text-[color:var(--color-muted)] mb-4">
               BHG best practice policy suggestions
             </p>
-            <span className="text-indigo-600 text-sm font-semibold flex items-center gap-1">
+            <span className="text-[color:var(--color-accent)] text-sm font-semibold flex items-center gap-1">
               View Policies <ArrowRightIcon className="w-4 h-4" />
             </span>
           </div>
         </Link>
 
         <Link href={`/client/${tenantSlug}/roadmap`}>
-          <div className="bg-white rounded-xl border-2 border-indigo-200 p-6 hover:shadow-lg hover:border-indigo-300 transition-all cursor-pointer">
-            <h3 className="font-bold text-gray-900 mb-2">Implementation Roadmap</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-accent-border)] p-6 hover:shadow-lg hover:border-[color:var(--color-accent-border)] transition-all cursor-pointer">
+            <h3 className="font-bold text-[color:var(--color-foreground)] mb-2">Implementation Roadmap</h3>
+            <p className="text-sm text-[color:var(--color-muted)] mb-4">
               Phase-by-phase timeline and milestones
             </p>
-            <span className="text-indigo-600 text-sm font-semibold flex items-center gap-1">
+            <span className="text-[color:var(--color-accent)] text-sm font-semibold flex items-center gap-1">
               View Roadmap <ArrowRightIcon className="w-4 h-4" />
             </span>
           </div>
@@ -190,10 +190,10 @@ function getMockDashboardData() {
       secondaryColor: '#8b5cf6',
     },
     metrics: [
-      { label: 'Plans Analyzed', value: 27, colorClass: 'border-indigo-200' },
-      { label: 'Critical Gaps', value: 8, colorClass: 'border-red-200' },
-      { label: 'Avg Risk Score', value: 64, subtext: 'High Risk', colorClass: 'border-orange-200' },
-      { label: 'Coverage', value: '68%', trend: 'up', trendValue: '+5%', colorClass: 'border-green-200' },
+      { label: 'Plans Analyzed', value: 27, colorClass: 'border-[color:var(--color-accent-border)]' },
+      { label: 'Critical Gaps', value: 8, colorClass: 'border-[color:var(--color-error-border)]' },
+      { label: 'Avg Risk Score', value: 64, subtext: 'High Risk', colorClass: 'border-[color:var(--color-warning-border)]' },
+      { label: 'Coverage', value: '68%', trend: 'up', trendValue: '+5%', colorClass: 'border-[color:var(--color-success-border)]' },
     ],
     topPlans: [
       {

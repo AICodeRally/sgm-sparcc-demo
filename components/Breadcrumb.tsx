@@ -30,33 +30,33 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
     switch (currentMode) {
       case OperationalMode.DESIGN:
         return {
-          text: 'text-teal-700',
-          textLight: 'text-teal-600',
-          hover: 'hover:text-teal-800',
+          text: 'text-[color:var(--color-info)]',
+          textLight: 'text-[color:var(--color-info)]',
+          hover: 'hover:text-[color:var(--color-info)]',
         };
       case OperationalMode.OPERATE:
         return {
-          text: 'text-blue-700',
-          textLight: 'text-blue-600',
-          hover: 'hover:text-blue-800',
+          text: 'text-[color:var(--color-primary)]',
+          textLight: 'text-[color:var(--color-info)]',
+          hover: 'hover:text-[color:var(--color-info)]',
         };
       case OperationalMode.DISPUTE:
         return {
-          text: 'text-pink-700',
-          textLight: 'text-pink-600',
-          hover: 'hover:text-pink-800',
+          text: 'text-[color:var(--color-accent)]',
+          textLight: 'text-[color:var(--color-accent)]',
+          hover: 'hover:text-[color:var(--color-accent)]',
         };
       case OperationalMode.OVERSEE:
         return {
-          text: 'text-indigo-700',
-          textLight: 'text-indigo-600',
-          hover: 'hover:text-indigo-800',
+          text: 'text-[color:var(--color-accent)]',
+          textLight: 'text-[color:var(--color-accent)]',
+          hover: 'hover:text-[color:var(--color-accent)]',
         };
       default:
         return {
-          text: 'text-gray-700',
-          textLight: 'text-gray-600',
-          hover: 'hover:text-gray-800',
+          text: 'text-[color:var(--color-foreground)]',
+          textLight: 'text-[color:var(--color-muted)]',
+          hover: 'hover:text-[color:var(--color-foreground)]',
         };
     }
   };

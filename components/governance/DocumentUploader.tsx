@@ -171,26 +171,26 @@ export function DocumentUploader({
           transition-colors duration-200
           ${
             isDragActive
-              ? 'border-blue-500 bg-blue-50'
-              : 'border-gray-300 hover:border-gray-400 bg-gray-50'
+              ? 'border-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)]'
+              : 'border-[color:var(--color-border)] hover:border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]'
           }
         `}
       >
         <input {...getInputProps()} />
-        <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
+        <Upload className="w-12 h-12 mx-auto mb-4 text-[color:var(--color-muted)]" />
         {isDragActive ? (
-          <p className="text-lg text-blue-600 font-medium">
+          <p className="text-lg text-[color:var(--color-info)] font-medium">
             Drop files here to analyze...
           </p>
         ) : (
           <div>
-            <p className="text-lg text-gray-700 font-medium mb-2">
+            <p className="text-lg text-[color:var(--color-foreground)] font-medium mb-2">
               Drop compensation plan documents here
             </p>
-            <p className="text-sm text-gray-500 mb-4">
+            <p className="text-sm text-[color:var(--color-muted)] mb-4">
               or click to browse files
             </p>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-[color:var(--color-muted)]">
               Accepts PDF, DOCX, DOC, TXT • {allowBatch ? `Up to ${maxFiles} files` : '1 file at a time'}
             </p>
           </div>
@@ -200,7 +200,7 @@ export function DocumentUploader({
       {/* Document List */}
       {documents.length > 0 && (
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-[color:var(--color-foreground)]">
             {documents.length} Document{documents.length > 1 ? 's' : ''}
           </h3>
           {documents.map((doc) => (
@@ -227,14 +227,14 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
   const getStatusIcon = () => {
     switch (status) {
       case 'pending':
-        return <File className="w-5 h-5 text-gray-400" />;
+        return <File className="w-5 h-5 text-[color:var(--color-muted)]" />;
       case 'uploading':
       case 'analyzing':
-        return <Loader2 className="w-5 h-5 text-blue-500 animate-spin" />;
+        return <Loader2 className="w-5 h-5 text-[color:var(--color-info)] animate-spin" />;
       case 'complete':
-        return <CheckCircle2 className="w-5 h-5 text-green-500" />;
+        return <CheckCircle2 className="w-5 h-5 text-[color:var(--color-success)]" />;
       case 'error':
-        return <AlertCircle className="w-5 h-5 text-red-500" />;
+        return <AlertCircle className="w-5 h-5 text-[color:var(--color-error)]" />;
     }
   };
 
@@ -256,38 +256,38 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
   const getStatusColor = () => {
     switch (status) {
       case 'pending':
-        return 'text-gray-600';
+        return 'text-[color:var(--color-muted)]';
       case 'uploading':
       case 'analyzing':
-        return 'text-blue-600';
+        return 'text-[color:var(--color-info)]';
       case 'complete':
-        return 'text-green-600';
+        return 'text-[color:var(--color-success)]';
       case 'error':
-        return 'text-red-600';
+        return 'text-[color:var(--color-error)]';
     }
   };
 
   const getCoverageGrade = (score: number) => {
-    if (score >= 0.8) return { grade: 'A', color: 'text-green-600' };
-    if (score >= 0.4) return { grade: 'B', color: 'text-yellow-600' };
-    return { grade: 'C', color: 'text-red-600' };
+    if (score >= 0.8) return { grade: 'A', color: 'text-[color:var(--color-success)]' };
+    if (score >= 0.4) return { grade: 'B', color: 'text-[color:var(--color-warning)]' };
+    return { grade: 'C', color: 'text-[color:var(--color-error)]' };
   };
 
   const getLiabilityColor = (score: number) => {
-    if (score >= 4) return 'text-red-600';
-    if (score >= 3) return 'text-orange-600';
-    if (score >= 2) return 'text-yellow-600';
-    return 'text-green-600';
+    if (score >= 4) return 'text-[color:var(--color-error)]';
+    if (score >= 3) return 'text-[color:var(--color-warning)]';
+    if (score >= 2) return 'text-[color:var(--color-warning)]';
+    return 'text-[color:var(--color-success)]';
   };
 
   return (
-    <div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm">
+    <div className="border border-[color:var(--color-border)] rounded-lg p-4 bg-[color:var(--color-surface)] shadow-sm">
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3 flex-1">
           {getStatusIcon()}
           <div className="flex-1 min-w-0">
-            <p className="font-medium text-gray-900 truncate">{file.name}</p>
-            <p className="text-sm text-gray-500">
+            <p className="font-medium text-[color:var(--color-foreground)] truncate">{file.name}</p>
+            <p className="text-sm text-[color:var(--color-muted)]">
               {(file.size / 1024 / 1024).toFixed(2)} MB •{' '}
               <span className={getStatusColor()}>{getStatusText()}</span>
             </p>
@@ -295,7 +295,7 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
         </div>
         <button
           onClick={onRemove}
-          className="text-gray-400 hover:text-gray-600 transition-colors p-1"
+          className="text-[color:var(--color-muted)] hover:text-[color:var(--color-muted)] transition-colors p-1"
         >
           <X className="w-5 h-5" />
         </button>
@@ -304,9 +304,9 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
       {/* Progress Bar */}
       {(status === 'uploading' || status === 'analyzing') && (
         <div className="mb-3">
-          <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+          <div className="w-full bg-[color:var(--color-border)] rounded-full h-2 overflow-hidden">
             <div
-              className="bg-blue-500 h-full transition-all duration-300 rounded-full"
+              className="bg-[color:var(--color-surface-alt)]0 h-full transition-all duration-300 rounded-full"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -315,18 +315,18 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
 
       {/* Error Message */}
       {status === 'error' && error && (
-        <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-md">
-          <p className="text-sm text-red-700">{error}</p>
+        <div className="mt-3 p-3 bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded-md">
+          <p className="text-sm text-[color:var(--color-error)]">{error}</p>
         </div>
       )}
 
       {/* Analysis Results */}
       {status === 'complete' && analysisResult && (
-        <div className="mt-4 pt-4 border-t border-gray-200">
+        <div className="mt-4 pt-4 border-t border-[color:var(--color-border)]">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {/* Coverage */}
             <div>
-              <p className="text-xs text-gray-500 mb-1">Coverage</p>
+              <p className="text-xs text-[color:var(--color-muted)] mb-1">Coverage</p>
               <p className="text-2xl font-bold">
                 <span
                   className={
@@ -335,7 +335,7 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
                 >
                   {getCoverageGrade(analysisResult.coverage_score).grade}
                 </span>
-                <span className="text-sm font-normal text-gray-500 ml-2">
+                <span className="text-sm font-normal text-[color:var(--color-muted)] ml-2">
                   {(analysisResult.coverage_score * 100).toFixed(1)}%
                 </span>
               </p>
@@ -343,29 +343,29 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
 
             {/* Liability */}
             <div>
-              <p className="text-xs text-gray-500 mb-1">Liability</p>
+              <p className="text-xs text-[color:var(--color-muted)] mb-1">Liability</p>
               <p className="text-2xl font-bold">
                 <span
                   className={getLiabilityColor(analysisResult.liability_score)}
                 >
                   {analysisResult.liability_score.toFixed(1)}
                 </span>
-                <span className="text-sm font-normal text-gray-500">/5.0</span>
+                <span className="text-sm font-normal text-[color:var(--color-muted)]">/5.0</span>
               </p>
             </div>
 
             {/* Total Gaps */}
             <div>
-              <p className="text-xs text-gray-500 mb-1">Total Gaps</p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-xs text-[color:var(--color-muted)] mb-1">Total Gaps</p>
+              <p className="text-2xl font-bold text-[color:var(--color-foreground)]">
                 {analysisResult.total_gaps}
               </p>
             </div>
 
             {/* Risk Triggers */}
             <div>
-              <p className="text-xs text-gray-500 mb-1">Risk Triggers</p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-xs text-[color:var(--color-muted)] mb-1">Risk Triggers</p>
+              <p className="text-2xl font-bold text-[color:var(--color-foreground)]">
                 {analysisResult.risk_triggers.length}
               </p>
             </div>
@@ -373,11 +373,11 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
 
           {/* Gap Breakdown by Severity */}
           <div className="mt-4">
-            <p className="text-xs text-gray-500 mb-2">Gap Breakdown</p>
+            <p className="text-xs text-[color:var(--color-muted)] mb-2">Gap Breakdown</p>
             <div className="flex gap-4 text-sm">
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 rounded-full bg-red-500" />
-                <span className="text-gray-600">
+                <div className="w-3 h-3 rounded-full bg-transparent" />
+                <span className="text-[color:var(--color-muted)]">
                   Critical:{' '}
                   {
                     analysisResult.gaps.filter((g) => g.severity === 'CRITICAL')
@@ -386,8 +386,8 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
                 </span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 rounded-full bg-orange-500" />
-                <span className="text-gray-600">
+                <div className="w-3 h-3 rounded-full bg-[color:var(--color-warning)]" />
+                <span className="text-[color:var(--color-muted)]">
                   High:{' '}
                   {
                     analysisResult.gaps.filter((g) => g.severity === 'HIGH')
@@ -396,8 +396,8 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
                 </span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                <span className="text-gray-600">
+                <div className="w-3 h-3 rounded-full bg-transparent" />
+                <span className="text-[color:var(--color-muted)]">
                   Medium:{' '}
                   {
                     analysisResult.gaps.filter((g) => g.severity === 'MEDIUM')
@@ -406,8 +406,8 @@ function DocumentCard({ document, onRemove }: DocumentCardProps) {
                 </span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 rounded-full bg-blue-500" />
-                <span className="text-gray-600">
+                <div className="w-3 h-3 rounded-full bg-[color:var(--color-surface-alt)]0" />
+                <span className="text-[color:var(--color-muted)]">
                   Low:{' '}
                   {
                     analysisResult.gaps.filter((g) => g.severity === 'LOW')

@@ -25,9 +25,9 @@ export function ThreePaneWorkspace({
   showRightPane = false,
 }: ThreePaneWorkspaceProps) {
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50">
+    <div className="flex h-screen w-full overflow-hidden sparcc-hero-bg">
       {/* Left Navigation - Fixed width */}
-      <div className="flex-none w-56 border-r border-purple-200 bg-white/90 backdrop-blur-sm overflow-y-auto">
+      <div className="flex-none w-56 border-r border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
         {leftNav}
       </div>
 
@@ -38,7 +38,7 @@ export function ThreePaneWorkspace({
 
       {/* Right Detail Pane - Fixed width, collapsible */}
       {showRightPane && rightDetail && (
-        <div className="flex-none w-96 border-l border-purple-200 bg-white/90 backdrop-blur-sm overflow-y-auto">
+        <div className="flex-none w-96 border-l border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
           {rightDetail}
         </div>
       )}

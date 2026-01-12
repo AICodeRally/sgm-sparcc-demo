@@ -32,17 +32,17 @@ const agentIcons = {
 };
 
 const agentColors = {
-  POLICY_EXPERT: 'text-red-600 bg-red-50 border-red-200',
-  DESIGN: 'text-blue-600 bg-blue-50 border-blue-200',
-  UIUX: 'text-purple-600 bg-purple-50 border-purple-200',
-  KNOWLEDGE_BASE: 'text-green-600 bg-green-50 border-green-200',
+  POLICY_EXPERT: 'text-[color:var(--color-error)] bg-[color:var(--color-error-bg)] border-[color:var(--color-error-border)]',
+  DESIGN: 'text-[color:var(--color-info)] bg-[color:var(--color-surface-alt)] border-[color:var(--color-info-border)]',
+  UIUX: 'text-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)] border-[color:var(--color-border)]',
+  KNOWLEDGE_BASE: 'text-[color:var(--color-success)] bg-[color:var(--color-success-bg)] border-[color:var(--color-success-border)]',
 };
 
 const priorityColors = {
-  CRITICAL: 'bg-red-100 text-red-800 border-red-300',
-  HIGH: 'bg-orange-100 text-orange-800 border-orange-300',
-  MEDIUM: 'bg-yellow-100 text-yellow-800 border-yellow-300',
-  LOW: 'bg-blue-100 text-blue-800 border-blue-300',
+  CRITICAL: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]',
+  HIGH: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
+  MEDIUM: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
+  LOW: 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] border-[color:var(--color-info-border)]',
 };
 
 export default function AgentSuggestionPanel({
@@ -112,16 +112,16 @@ export default function AgentSuggestionPanel({
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="p-6 border-b border-purple-200 bg-white/90">
+      <div className="p-6 border-b border-[color:var(--color-border)] bg-[color:var(--surface-glass)]">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <LightningBoltIcon className="h-6 w-6 text-purple-600" />
-            <h3 className="text-lg font-semibold text-gray-800">AI Suggestions</h3>
+            <LightningBoltIcon className="h-6 w-6 text-[color:var(--color-primary)]" />
+            <h3 className="text-lg font-semibold text-[color:var(--color-foreground)]">AI Suggestions</h3>
           </div>
           <button
             onClick={fetchSuggestions}
             disabled={!section || loading}
-            className="text-sm text-purple-600 hover:text-purple-700 disabled:text-gray-400"
+            className="text-sm text-[color:var(--color-primary)] hover:text-[color:var(--color-primary)] disabled:text-[color:var(--color-muted)]"
           >
             Refresh
           </button>
@@ -133,8 +133,8 @@ export default function AgentSuggestionPanel({
             onClick={() => setMode('realtime')}
             className={`px-3 py-1 text-xs rounded-full transition-colors ${
               mode === 'realtime'
-                ? 'bg-purple-600 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'bg-[color:var(--color-primary)] text-white'
+                : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-muted)] hover:bg-[color:var(--color-border)]'
             }`}
           >
             Real-time
@@ -143,8 +143,8 @@ export default function AgentSuggestionPanel({
             onClick={() => setMode('comprehensive')}
             className={`px-3 py-1 text-xs rounded-full transition-colors ${
               mode === 'comprehensive'
-                ? 'bg-purple-600 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'bg-[color:var(--color-primary)] text-white'
+                : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-muted)] hover:bg-[color:var(--color-border)]'
             }`}
           >
             Comprehensive
@@ -156,7 +156,7 @@ export default function AgentSuggestionPanel({
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {loading && (
           <div className="flex items-center justify-center py-8">
-            <div className="flex items-center gap-2 text-purple-600">
+            <div className="flex items-center gap-2 text-[color:var(--color-primary)]">
               <LightningBoltIcon className="h-5 w-5 animate-spin" />
               <span className="text-sm">Analyzing content...</span>
             </div>
@@ -165,8 +165,8 @@ export default function AgentSuggestionPanel({
 
         {!loading && visibleSuggestions.length === 0 && section && (
           <div className="text-center py-8">
-            <CheckCircledIcon className="h-12 w-12 text-green-500 mx-auto mb-3" />
-            <p className="text-sm text-gray-600">
+            <CheckCircledIcon className="h-12 w-12 text-[color:var(--color-success)] mx-auto mb-3" />
+            <p className="text-sm text-[color:var(--color-muted)]">
               {content.length > 50
                 ? "Looking good! No suggestions at the moment."
                 : "Start writing to get AI suggestions"}
@@ -176,8 +176,8 @@ export default function AgentSuggestionPanel({
 
         {!loading && !section && (
           <div className="text-center py-8">
-            <StarIcon className="h-12 w-12 text-gray-300 mx-auto mb-3" />
-            <p className="text-sm text-gray-500">
+            <StarIcon className="h-12 w-12 text-[color:var(--color-muted)] mx-auto mb-3" />
+            <p className="text-sm text-[color:var(--color-muted)]">
               Select a section to get AI suggestions
             </p>
           </div>
@@ -195,8 +195,8 @@ export default function AgentSuggestionPanel({
 
       {/* Footer */}
       {visibleSuggestions.length > 0 && (
-        <div className="p-4 border-t border-purple-200 bg-white/90">
-          <div className="text-xs text-gray-500 text-center">
+        <div className="p-4 border-t border-[color:var(--color-border)] bg-[color:var(--surface-glass)]">
+          <div className="text-xs text-[color:var(--color-muted)] text-center">
             {visibleSuggestions.length} suggestion{visibleSuggestions.length !== 1 ? 's' : ''} from {
               new Set(visibleSuggestions.map(s => s.agentType)).size
             } agents
@@ -244,13 +244,13 @@ function SuggestionCard({
           </div>
         </div>
 
-        <h4 className="font-semibold text-gray-900 mb-2">{suggestion.title}</h4>
-        <p className="text-sm text-gray-700 mb-3">{suggestion.message}</p>
+        <h4 className="font-semibold text-[color:var(--color-foreground)] mb-2">{suggestion.title}</h4>
+        <p className="text-sm text-[color:var(--color-foreground)] mb-3">{suggestion.message}</p>
 
         {suggestion.suggestedAction && (
-          <div className="text-sm bg-white/50 rounded p-2 mb-2">
-            <div className="font-medium text-gray-700 mb-1">Suggested Action:</div>
-            <div className="text-gray-600">{suggestion.suggestedAction}</div>
+          <div className="text-sm bg-[color:var(--surface-glass)] rounded p-2 mb-2">
+            <div className="font-medium text-[color:var(--color-foreground)] mb-1">Suggested Action:</div>
+            <div className="text-[color:var(--color-muted)]">{suggestion.suggestedAction}</div>
           </div>
         )}
 
@@ -266,8 +266,8 @@ function SuggestionCard({
 
       {/* Expanded Content */}
       {expanded && suggestion.suggestedContent && (
-        <div className="border-t border-current/20 bg-white/30 p-4">
-          <pre className="text-xs font-mono whitespace-pre-wrap bg-white/50 p-3 rounded">
+        <div className="border-t border-current/20 bg-[color:var(--color-surface)]/30 p-4">
+          <pre className="text-xs font-mono whitespace-pre-wrap bg-[color:var(--surface-glass)] p-3 rounded">
             {suggestion.suggestedContent}
           </pre>
           <button
@@ -282,14 +282,14 @@ function SuggestionCard({
 
       {/* Reasoning */}
       {suggestion.reasoning && expanded && (
-        <div className="border-t border-current/20 bg-white/20 px-4 py-3 text-xs text-gray-600">
+        <div className="border-t border-current/20 bg-[color:var(--color-surface)]/20 px-4 py-3 text-xs text-[color:var(--color-muted)]">
           <strong>Why:</strong> {suggestion.reasoning}
         </div>
       )}
 
       {/* References */}
       {suggestion.references && suggestion.references.length > 0 && expanded && (
-        <div className="border-t border-current/20 bg-white/20 px-4 py-3 text-xs">
+        <div className="border-t border-current/20 bg-[color:var(--color-surface)]/20 px-4 py-3 text-xs">
           <strong>References:</strong> {suggestion.references.join(', ')}
         </div>
       )}

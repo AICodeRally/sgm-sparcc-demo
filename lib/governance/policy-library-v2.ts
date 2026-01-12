@@ -340,16 +340,16 @@ Quotas adjusted mid-period only for:
 | Bonus-focused | 80% of quota |
 
 #### Earnings Cap (Ceiling)
-**Default Cap**: 3× target variable compensation per plan year.
+**Default Cap**: 3x target variable compensation per plan year.
 
 #### Accelerator Structure
 | Attainment | Rate Multiplier |
 |------------|-----------------|
-| 0% - 50% | 0× (below threshold) |
-| 50% - 100% | 1.0× |
-| 100% - 125% | 1.25× |
-| 125% - 150% | 1.5× |
-| 150% - 200% | 2.0× |
+| 0% - 50% | 0x (below threshold) |
+| 50% - 100% | 1.0x |
+| 100% - 125% | 1.25x |
+| 125% - 150% | 1.5x |
+| 150% - 200% | 2.0x |
 | > 200% | Capped or CRB review |
 
 #### Cap Exceptions
@@ -659,7 +659,7 @@ export const SECTION_D_POLICIES: PolicyV2[] = [
     goldStandardLanguage: `### LEAVE OF ABSENCE PROVISIONS
 
 #### FMLA-Protected Leave
-- **Quota**: Prorated (Adjusted = Annual × Active Days / 260)
+- **Quota**: Prorated (Adjusted = Annual x Active Days / 260)
 - **Commissions**: Earned prior to leave paid on normal schedule
 - **Pipeline**: Credited if closed within 90 days of return
 - **Return**: Same or equivalent position, same plan, adjusted quota

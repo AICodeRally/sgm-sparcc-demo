@@ -123,18 +123,18 @@ export async function GET(
       tenantName: tenant.name,
       brandingConfig: engagement.brandingConfig || {},
       metrics: [
-        { label: 'Plans Analyzed', value: totalPlans, colorClass: 'border-indigo-200' },
-        { label: 'Critical Gaps', value: criticalGaps, colorClass: 'border-red-200' },
+        { label: 'Plans Analyzed', value: totalPlans, colorClass: 'border-[color:var(--color-accent-border)]' },
+        { label: 'Critical Gaps', value: criticalGaps, colorClass: 'border-[color:var(--color-error-border)]' },
         {
           label: 'Avg Risk Score',
           value: avgRiskScore,
           subtext: avgRiskScore >= 75 ? 'Critical' : avgRiskScore >= 50 ? 'High' : 'Medium',
-          colorClass: 'border-orange-200',
+          colorClass: 'border-[color:var(--color-warning-border)]',
         },
         {
           label: 'Coverage',
           value: `${totalCoverage}%`,
-          colorClass: 'border-green-200',
+          colorClass: 'border-[color:var(--color-success-border)]',
         },
       ],
       topPlans,

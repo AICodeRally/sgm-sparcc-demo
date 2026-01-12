@@ -32,12 +32,12 @@ function main() {
   console.log(`  External Dependencies: ${diagnostics.hasExternalDependencies ? 'YES' : 'NO'}`);
 
   if (diagnostics.database.isLiveMode && !diagnostics.database.hasSchemaParam) {
-    console.log('\n⚠️  WARNING: Live mode enabled but DATABASE_URL missing schema parameter!');
+    console.log('\n[WARN]  WARNING: Live mode enabled but DATABASE_URL missing schema parameter!');
     console.log('   Expected: postgresql://...?schema=sgm_summit_demo');
   }
 
   if (diagnostics.database.isLiveMode && diagnostics.database.hasSchemaParam) {
-    console.log('\n✅ Configuration valid for live mode with schema isolation');
+    console.log('\n[OK] Configuration valid for live mode with schema isolation');
   }
 
   console.log('\n=======================\n');

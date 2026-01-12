@@ -16,6 +16,7 @@ import {
   GearIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
+import { renderTokenizedText } from '@/components/content/tokenUtils';
 
 export default function GovernanceFrameworkPrimer() {
   const [selectedSection, setSelectedSection] = useState<string>('overview');
@@ -81,11 +82,11 @@ export default function GovernanceFrameworkPrimer() {
 
 **With BHG Framework**:
 
-✅ **Legal Compliance**: Policy templates ensure FLSA and state law adherence
-✅ **Cost Control**: Clear rules prevent gaming and overpayment
-✅ **Reduced Disputes**: 70% reduction in escalations with clear policies
-✅ **Strategic Alignment**: Behaviors aligned with business objectives
-✅ **Fair Treatment**: Consistent application of rules across organization`,
+[OK] **Legal Compliance**: Policy templates ensure FLSA and state law adherence
+[OK] **Cost Control**: Clear rules prevent gaming and overpayment
+[OK] **Reduced Disputes**: 70% reduction in escalations with clear policies
+[OK] **Strategic Alignment**: Behaviors aligned with business objectives
+[OK] **Fair Treatment**: Consistent application of rules across organization`,
         },
       ],
     },
@@ -104,7 +105,7 @@ export default function GovernanceFrameworkPrimer() {
 **Key Philosophy**:
 Sales comp plan should not be a distraction for new hires. If they are worried about survival in the first year, focus should be on onboarding program that provides tools, messages and resources to be successful.
 
-⚠️ **Warning**: If Reps do not see a path to success in the first year, and are not adequately paid during ramp period (no draw or unattainable quota), they will leave.`,
+[WARN] **Warning**: If Reps do not see a path to success in the first year, and are not adequately paid during ramp period (no draw or unattainable quota), they will leave.`,
         },
         {
           heading: 'Key Considerations',
@@ -127,15 +128,15 @@ Sales comp plan should not be a distraction for new hires. If they are worried a
         {
           heading: 'Market Practices (AGI 2016)',
           content: `**Immediate Plan Placement**:
-📊 Almost **half of companies** immediately place new hire on the plan
-📊 More than **half of companies** allow new hires to be eligible for incentive payment
+[CHART] Almost **half of companies** immediately place new hire on the plan
+[CHART] More than **half of companies** allow new hires to be eligible for incentive payment
 
 **Draw/Guarantee Duration**:
-📊 **36%** of companies have 2-3 month draws or guarantees
-📊 **28%** provide target incentive as a draw or guarantee for new hires
+[CHART] **36%** of companies have 2-3 month draws or guarantees
+[CHART] **28%** provide target incentive as a draw or guarantee for new hires
 
 **Quota Approach**:
-📊 **51%** provide either full or partial quotas to new hires
+[CHART] **51%** provide either full or partial quotas to new hires
 
 **Common Options**:
 1. **Full Quota + Draw** - Provide 3-6 month draw/guarantee, full quota from day 1
@@ -152,10 +153,10 @@ Sales comp plan should not be a distraction for new hires. If they are worried a
         {
           heading: 'Guiding Principles - Leave of Absence',
           content: `**Core Principles**:
-✅ **Align to HR reward philosophies and benefit policies**
-✅ **Pay for persuasion** - only pay for work actually performed
-✅ **Be fair** - consistent treatment across situations
-✅ **Keep it simple** - minimize administrative burden
+[OK] **Align to HR reward philosophies and benefit policies**
+[OK] **Pay for persuasion** - only pay for work actually performed
+[OK] **Be fair** - consistent treatment across situations
+[OK] **Keep it simple** - minimize administrative burden
 
 **Key Considerations**:
 
@@ -210,16 +211,16 @@ Sales comp plan should not be a distraction for new hires. If they are worried a
         {
           heading: 'Market Practices - Leave of Absence (AGI 2016)',
           content: `**Incentive Payment During LOA**:
-📊 **50%** of companies do NOT guarantee incentive payments during paid leave of absence
+[CHART] **50%** of companies do NOT guarantee incentive payments during paid leave of absence
 
 **Sales Credit Past Leave Date**:
-📊 **42%** of companies do NOT provide additional sales credit for sales closed past leave of absence date
+[CHART] **42%** of companies do NOT provide additional sales credit for sales closed past leave of absence date
 
 **Quota Adjustment**:
-📊 **46.3%** (majority) make NO quota adjustment for those going on paid leave of absence
+[CHART] **46.3%** (majority) make NO quota adjustment for those going on paid leave of absence
 
 **Open Territory Coverage**:
-📊 **25%** of companies give sellers full credit WITHOUT quota adjustment for temporarily assigned accounts from open territories
+[CHART] **25%** of companies give sellers full credit WITHOUT quota adjustment for temporarily assigned accounts from open territories
 
 **BHG Recommendation**:
 ⭐ **Close out plan** for leaves > 90 days
@@ -302,37 +303,37 @@ Credit when the right activities occur, not just luck`,
           content: `**Timing Options** (when does credit occur?):
 
 1️⃣ **Booking/Order Placed**
-✅ Fastest payment (motivational)
-⚠️ Risk if high cancellation rate
-💡 **Use Case**: Low churn SaaS, enterprise deals, long sales cycles
+[OK] Fastest payment (motivational)
+[WARN] Risk if high cancellation rate
+[NOTE] **Use Case**: Low churn SaaS, enterprise deals, long sales cycles
 
 2️⃣ **Revenue Recognition**
-✅ Zero revenue risk
-⚠️ Delayed payment (may reduce motivation)
-💡 **Use Case**: Complex contracts, usage-based, multi-year deals
+[OK] Zero revenue risk
+[WARN] Delayed payment (may reduce motivation)
+[NOTE] **Use Case**: Complex contracts, usage-based, multi-year deals
 
 3️⃣ **Invoice Sent**
-✅ Balance between speed and risk
-⚠️ Still risk of non-payment
-💡 **Use Case**: Standard billing cycles, predictable collection
+[OK] Balance between speed and risk
+[WARN] Still risk of non-payment
+[NOTE] **Use Case**: Standard billing cycles, predictable collection
 
 4️⃣ **Cash Collected**
-✅ Zero financial risk
-⚠️ Very delayed payment
-💡 **Use Case**: High default risk industries, new customers
+[OK] Zero financial risk
+[WARN] Very delayed payment
+[NOTE] **Use Case**: High default risk industries, new customers
 
 5️⃣ **Hybrid** (e.g., 50% at booking, 50% at revenue)
-✅ Balances motivation and risk
-⚠️ More complex to administer
-💡 **Use Case**: Strategic new products, uncertain revenue timing`,
+[OK] Balances motivation and risk
+[WARN] More complex to administer
+[NOTE] **Use Case**: Strategic new products, uncertain revenue timing`,
         },
         {
           heading: 'Global & Cross-Region Crediting',
           content: `**Objective**: Increase revenue by incenting more cross-region business, while keeping costs in control
 
 **Global Accounts**:
-💰 **Double credit/Double compensation** to encourage and reward Global Account Manager (GAM) to work in collaboration with regional resources
-📊 Must develop an ROI for deploying more costly overlay structure
+[COST] **Double credit/Double compensation** to encourage and reward Global Account Manager (GAM) to work in collaboration with regional resources
+[CHART] Must develop an ROI for deploying more costly overlay structure
 
 **Cross-Region Accounts**:
 
@@ -353,11 +354,11 @@ Credit when the right activities occur, not just luck`,
         {
           heading: 'Split Crediting Best Practices',
           content: `**Good Practices**:
-✅ Pre-defined split rules based on role/activity
-✅ Clear definitions of "influence" vs "closing"
-✅ Time-bound credit windows (e.g., 90 days)
-✅ Documented in CRM (who influenced the deal)
-✅ Escalation process for disputes
+[OK] Pre-defined split rules based on role/activity
+[OK] Clear definitions of "influence" vs "closing"
+[OK] Time-bound credit windows (e.g., 90 days)
+[OK] Documented in CRM (who influenced the deal)
+[OK] Escalation process for disputes
 
 **Poor Practices**:
 ❌ Manager discretion on every deal (inconsistent)
@@ -397,11 +398,11 @@ Credit when the right activities occur, not just luck`,
 Recovery of commission previously paid when the underlying sale is cancelled, modified, or returned.
 
 **When Clawbacks Apply**:
-✅ Customer cancels within clawback period (typically 90-180 days)
-✅ Deal size reduced (downsell, renegotiation)
-✅ Product returned
-✅ Customer fails to pay (bad debt)
-✅ Fraud or misrepresentation
+[OK] Customer cancels within clawback period (typically 90-180 days)
+[OK] Deal size reduced (downsell, renegotiation)
+[OK] Product returned
+[OK] Customer fails to pay (bad debt)
+[OK] Fraud or misrepresentation
 
 **Clawback Period Duration**:
 
@@ -429,26 +430,26 @@ Recovery of commission previously paid when the underlying sale is cancelled, mo
           content: `**Recovery Methods**:
 
 1️⃣ **Offset Against Future Commissions** (Most Common)
-✅ Deduct from next commission payment
-✅ No impact to base salary (legally safer)
-⚠️ May take multiple periods if large clawback
+[OK] Deduct from next commission payment
+[OK] No impact to base salary (legally safer)
+[WARN] May take multiple periods if large clawback
 
 2️⃣ **Separate Repayment Agreement**
-✅ Rep signs agreement to repay over time
-✅ Used for large clawbacks or terminated reps
-⚠️ Requires separate legal agreement
+[OK] Rep signs agreement to repay over time
+[OK] Used for large clawbacks or terminated reps
+[WARN] Requires separate legal agreement
 
 3️⃣ **Draw Offset** (If Applicable)
-✅ Reduce outstanding draw balance
-⚠️ Only works if rep has draw in place
+[OK] Reduce outstanding draw balance
+[WARN] Only works if rep has draw in place
 
 **State Law Considerations**:
 
-⚠️ **California**: Cannot deduct from wages (base salary)
+[WARN] **California**: Cannot deduct from wages (base salary)
 - Must use "prospective offset" against future commissions
 - Separate repayment agreement if no future commissions
 
-⚠️ **New York**: Similar restrictions
+[WARN] **New York**: Similar restrictions
 - Written authorization required
 - Cannot reduce below minimum wage
 
@@ -498,26 +499,26 @@ Submit account changes to Sales Operations for quota adjustment`,
 
 **Option 1: Immediate Transition**
 - Switch to new pay mix on effective date
-- ✅ Simple, clean
-- ⚠️ Rep experiences immediate pay decrease (unless quota adjusts)
+- [OK] Simple, clean
+- [WARN] Rep experiences immediate pay decrease (unless quota adjusts)
 
 **Option 2: Graduated Transition**
 - Year 1: 80/20 → 75/25
 - Year 2: 75/25 → 70/30
-- ✅ Softer landing for rep
-- ⚠️ More complex to administer
+- [OK] Softer landing for rep
+- [WARN] More complex to administer
 
 **Option 3: Grandfather Period**
 - Keep rep on old plan for 12 months
 - Switch to new plan after grace period
-- ✅ Protects high performers
-- ⚠️ Creates internal equity issues
+- [OK] Protects high performers
+- [WARN] Creates internal equity issues
 
 **Option 4: Transition Bonus**
 - Pay one-time bonus to offset pay mix change
 - Example: 6 months of variable pay difference
-- ✅ Recognizes historical performance
-- ⚠️ One-time cost
+- [OK] Recognizes historical performance
+- [WARN] One-time cost
 
 **BHG Recommendation**:
 ⭐ **Immediate transition** with clear communication
@@ -547,7 +548,7 @@ An unusually large commission that:
 - Budget overruns
 - Sets unsustainable precedent
 
-✅ **With Policy**:
+[OK] **With Policy**:
 - Predictable compensation costs
 - Fair treatment across reps
 - Maintains motivation for normal-sized deals
@@ -634,32 +635,32 @@ Trigger for large deals:
         },
         {
           heading: 'Best Practices',
-          content: `✅ **Document Policy in Plan**
+          content: `[OK] **Document Policy in Plan**
 Include windfall policy in every compensation plan document
 
-✅ **Define Thresholds Clearly**
+[OK] **Define Thresholds Clearly**
 Use specific dollar amounts or percentages, not "unusual" or "large"
 
-✅ **Establish Comp Review Board (CRB)**
+[OK] **Establish Comp Review Board (CRB)**
 - 3-5 members (Sales VP, CFO, HR, Legal)
 - Quarterly meeting cadence
 - Clear charter and decision authority
 
-✅ **Review Process Transparency**
+[OK] **Review Process Transparency**
 - Notify rep when deal enters review
 - Provide opportunity for rep to present case
 - Document decision rationale
 
-✅ **Timely Decisions**
+[OK] **Timely Decisions**
 - Make decision within 30 days of deal close
 - Don't leave reps hanging for months
 
-✅ **Consistent Application**
+[OK] **Consistent Application**
 - Apply same criteria to all reps
 - Avoid favoritism or special treatment
 
 **Common Threshold**:
-🎯 Deals > $5M OR Commissions > 200% of annual target → automatic CRB review`,
+[TARGET] Deals > $5M OR Commissions > 200% of annual target → automatic CRB review`,
         },
       ],
     },
@@ -678,12 +679,12 @@ Sales Performance Incentive Fund - Add-on rewards to drive short-term goals
 - Build competitive sales culture
 - Provide additional compensation opportunity
 
-⚠️ **Critical**: Should NOT undermine the sales compensation plan
+[WARN] **Critical**: Should NOT undermine the sales compensation plan
 
 **Requirements**:
-✅ Clear objective and defined ROI
-✅ Time-limited (3-6 months maximum)
-✅ Unpredictable timing (not every quarter)`,
+[OK] Clear objective and defined ROI
+[OK] Time-limited (3-6 months maximum)
+[OK] Unpredictable timing (not every quarter)`,
         },
         {
           heading: 'SPIFF Design Principles',
@@ -693,15 +694,15 @@ Sales Performance Incentive Fund - Add-on rewards to drive short-term goals
 - NOT a substitute for compensation plan
 
 **2. ELIGIBILITY - Clear Criteria, Equal Opportunity**
-✅ Use clear eligibility and qualification criteria
-✅ Provide equal opportunity to achieve
+[OK] Use clear eligibility and qualification criteria
+[OK] Provide equal opportunity to achieve
 ❌ No random selection of winners
 ❌ No "insider advantages"
 
 **3. REWARDS & PAYOUTS - Cash, Travel, or Merchandise**
-💰 Budget ~3% of TTC (Total Target Cash)
-💰 Max 20% of TI (Target Incentive) payouts for each award
-🎯 Target at least 30% participation
+[COST] Budget ~3% of TTC (Total Target Cash)
+[COST] Max 20% of TI (Target Incentive) payouts for each award
+[TARGET] Target at least 30% participation
 ❌ No de-motivating "winner-take-all" contests
 
 **4. DURATION & FREQUENCY - Time-Limited, Unpredictable**
@@ -710,25 +711,25 @@ Sales Performance Incentive Fund - Add-on rewards to drive short-term goals
 ⏱️ Ensure they are unpredictable (different times of year)
 
 **5. MEASURES - Track, Report, Audit**
-📊 Able to track, report and audit systematically
+[CHART] Able to track, report and audit systematically
 ❌ Do NOT use measures already in the sales compensation plan
-✅ Can be completed within period - pay for effort, not coincidences`,
+[OK] Can be completed within period - pay for effort, not coincidences`,
         },
         {
           heading: 'SPIFF Examples',
           content: `**Good SPIFF Examples**:
 
-✅ **New Product Launch**
+[OK] **New Product Launch**
 - **Objective**: Drive 100 deals of new Product X in 90 days
 - **Reward**: $500 per deal (in addition to normal commission)
 - **Why Good**: Clear measure, time-limited, strategic objective
 
-✅ **Territory Expansion**
+[OK] **Territory Expansion**
 - **Objective**: First 5 deals in new geographic region
 - **Reward**: $1,000 per deal + trip to President's Club
 - **Why Good**: Drives strategic expansion, limited duration
 
-✅ **Pipeline Build**
+[OK] **Pipeline Build**
 - **Objective**: 20 qualified demos scheduled in Q1
 - **Reward**: $100 per demo (capped at 20)
 - **Why Good**: Measures activity, not in main plan, achievable
@@ -761,10 +762,10 @@ Sales Performance Incentive Fund - Add-on rewards to drive short-term goals
           heading: 'Market Practices (AGI 2016)',
           content: `**Industry Standard**:
 
-📊 **Timing Philosophy**:
+[CHART] **Timing Philosophy**:
 "The sooner the incentive payout is made after the close of the measurement incentive period, the better"
 
-📊 **Most Common Practice**:
+[CHART] **Most Common Practice**:
 Most companies payout between **30-45 days** after the close of the measurement period
 
 **Why 30-45 Days?**
@@ -777,42 +778,42 @@ Most companies payout between **30-45 days** after the close of the measurement 
           heading: 'Payment Timing Options',
           content: `**Option 1: 30 Days After Period End** (Most Common)
 - Deals close → validation → payment within 30 days
-- ✅ Fast payout (motivational)
-- ✅ Minimal disruption to cash flow
-- ⚠️ Less time for validation
+- [OK] Fast payout (motivational)
+- [OK] Minimal disruption to cash flow
+- [WARN] Less time for validation
 
 **Option 2: 45 Days After Period End**
 - More time for deal validation
-- ✅ Higher accuracy
-- ✅ More time to resolve disputes
-- ⚠️ Slightly delayed gratification
+- [OK] Higher accuracy
+- [OK] More time to resolve disputes
+- [WARN] Slightly delayed gratification
 
 **Option 3: 60+ Days After Period End**
 - Used for complex revenue recognition
-- ✅ Highest accuracy
-- ⚠️ Significant delay reduces motivation
+- [OK] Highest accuracy
+- [WARN] Significant delay reduces motivation
 
 **Option 4: Monthly Payments (for Quarterly Plans)**
 - Pay partial commission monthly based on estimated attainment
 - True-up at end of quarter
-- ✅ Provides regular cash flow
-- ⚠️ More complex to administer`,
+- [OK] Provides regular cash flow
+- [WARN] More complex to administer`,
         },
         {
           heading: 'Best Practices',
-          content: `✅ **Consistency is Key**
+          content: `[OK] **Consistency is Key**
 Pay on same schedule every period (builds trust)
 
-✅ **Communicate Timeline**
+[OK] **Communicate Timeline**
 Tell reps exactly when to expect payment
 
-✅ **Provide Visibility**
+[OK] **Provide Visibility**
 Show commission statements before payment date
 
-✅ **Balance Speed and Accuracy**
+[OK] **Balance Speed and Accuracy**
 Don't sacrifice validation for speed
 
-✅ **Document Exceptions**
+[OK] **Document Exceptions**
 If payment is late, communicate why
 
 **Typical Timeline**:
@@ -843,11 +844,11 @@ If payment is late, communicate why
 ❌ Legal risk (wage/hour claims)
 
 **With Formal Process**:
-✅ Consistent, fair treatment
-✅ Clear escalation path
-✅ Documented decisions (audit trail)
-✅ Reduced management burden
-✅ Increased rep trust`,
+[OK] Consistent, fair treatment
+[OK] Clear escalation path
+[OK] Documented decisions (audit trail)
+[OK] Reduced management burden
+[OK] Increased rep trust`,
         },
         {
           heading: 'Comp Review Board (CRB) Structure',
@@ -974,22 +975,22 @@ Centralized governance body to review and approve compensation exceptions, dispu
         title="Framework Primer"
         description="Educational guide to BHG governance methodology and best practices"
       />
-      <div className="h-screen flex flex-col bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50">
+      <div className="h-screen flex flex-col sparcc-hero-bg">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 px-8 py-6">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] px-8 py-6">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-4 mb-4">
               <Link
                 href="/framework"
-                className="text-purple-600 hover:text-purple-700 transition-colors"
+                className="text-[color:var(--color-primary)] hover:text-[color:var(--color-primary)] transition-colors"
               >
                 ← Back to Framework
               </Link>
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
               BHG Governance Framework Primer
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-[color:var(--color-muted)] mt-2">
               Learn SPM best practices for compensation governance - sourced from BHG consulting methodology
             </p>
           </div>
@@ -997,9 +998,9 @@ Centralized governance body to review and approve compensation exceptions, dispu
 
       <div className="flex-1 flex overflow-hidden">
         {/* Left Navigation */}
-        <div className="w-80 border-r border-purple-200 bg-white/80 backdrop-blur-sm overflow-y-auto">
+        <div className="w-80 border-r border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
           <div className="p-4">
-            <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Policy Areas</h3>
+            <h3 className="text-sm font-semibold text-[color:var(--color-muted)] uppercase mb-3">Policy Areas</h3>
             <div className="space-y-1">
               {sections.map((section) => {
                 const Icon = section.icon;
@@ -1009,8 +1010,8 @@ Centralized governance body to review and approve compensation exceptions, dispu
                     onClick={() => setSelectedSection(section.id)}
                     className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center gap-3 ${
                       selectedSection === section.id
-                        ? 'bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white shadow-md'
-                        : 'hover:bg-gray-100 text-gray-700'
+                        ? 'bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-md'
+                        : 'hover:bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]'
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -1025,16 +1026,16 @@ Centralized governance body to review and approve compensation exceptions, dispu
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto p-8">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <div className="bg-[color:var(--color-surface)] rounded-xl shadow-lg p-8 mb-6">
+              <h2 className="text-3xl font-bold text-[color:var(--color-foreground)] mb-2">
                 {currentContent.title}
               </h2>
-              <p className="text-gray-600">{currentContent.subtitle}</p>
+              <p className="text-[color:var(--color-muted)]">{currentContent.subtitle}</p>
             </div>
 
             {currentContent.sections.map((section: any, idx: number) => (
-              <div key={idx} className="bg-white rounded-xl shadow-lg p-8 mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <div key={idx} className="bg-[color:var(--color-surface)] rounded-xl shadow-lg p-8 mb-6">
+                <h3 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-4">
                   {section.heading}
                 </h3>
                 <div className="prose prose-lg max-w-none">
@@ -1045,16 +1046,21 @@ Centralized governance body to review and approve compensation exceptions, dispu
                       const content = paragraph.split('**:')[1];
                       return (
                         <div key={pIdx} className="mb-4">
-                          <h4 className="text-lg font-bold text-gray-800 mb-2">{title}</h4>
-                          {content && <p className="text-gray-700">{content}</p>}
+                          <h4 className="text-lg font-bold text-[color:var(--color-foreground)] mb-2">{title}</h4>
+                          {content && (
+                            <p className="text-[color:var(--color-foreground)]">{renderTokenizedText(content)}</p>
+                          )}
                         </div>
                       );
                     }
 
                     // Regular paragraph with inline formatting
                     return (
-                      <p key={pIdx} className="text-gray-700 leading-relaxed mb-4 whitespace-pre-line">
-                        {paragraph}
+                      <p
+                        key={pIdx}
+                        className="text-[color:var(--color-foreground)] leading-relaxed mb-4 whitespace-pre-line"
+                      >
+                        {renderTokenizedText(paragraph)}
                       </p>
                     );
                   })}

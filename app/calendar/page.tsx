@@ -95,15 +95,15 @@ export default function CalendarPage() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'CRITICAL':
-        return 'bg-red-100 text-red-700 border-red-200';
+        return 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]';
       case 'HIGH':
-        return 'bg-orange-100 text-orange-700 border-orange-200';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
       case 'MEDIUM':
-        return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
       case 'LOW':
-        return 'bg-gray-100 text-gray-700 border-purple-200';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
       default:
-        return 'bg-gray-100 text-gray-700 border-purple-200';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
     }
   };
 
@@ -113,19 +113,19 @@ export default function CalendarPage() {
         title="Governance Calendar"
         description="Month-by-month timeline of governance events and milestones"
       />
-      <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex flex-col">
+      <div className="h-screen sparcc-hero-bg flex flex-col">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm">
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-sm">
-              <div className="bg-purple-100 px-3 py-1 rounded-full">
-                <span className="font-semibold text-purple-700">{CALENDAR_STATS.upcomingEvents}</span>
-                <span className="text-purple-600 ml-1">upcoming</span>
+              <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
+                <span className="font-semibold text-[color:var(--color-primary)]">{CALENDAR_STATS.upcomingEvents}</span>
+                <span className="text-[color:var(--color-primary)] ml-1">upcoming</span>
               </div>
-              <div className="bg-red-100 px-3 py-1 rounded-full">
-                <span className="font-semibold text-red-700">{CALENDAR_STATS.criticalEvents}</span>
-                <span className="text-red-600 ml-1">critical</span>
+              <div className="bg-[color:var(--color-error-bg)] px-3 py-1 rounded-full">
+                <span className="font-semibold text-[color:var(--color-error)]">{CALENDAR_STATS.criticalEvents}</span>
+                <span className="text-[color:var(--color-error)] ml-1">critical</span>
               </div>
             </div>
           </div>
@@ -136,29 +136,29 @@ export default function CalendarPage() {
         {/* Main Calendar */}
         <div className="flex-1 p-6 overflow-y-auto">
           {/* Calendar Controls */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-lg border border-purple-200 p-4 mb-6">
+          <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border border-[color:var(--color-border)] p-4 mb-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <button
                   onClick={goToPreviousMonth}
-                  className="p-2 hover:bg-purple-50 rounded transition-colors"
+                  className="p-2 hover:bg-[color:var(--color-surface-alt)] rounded transition-colors"
                 >
-                  <ChevronLeftIcon className="w-5 h-5 text-gray-600" />
+                  <ChevronLeftIcon className="w-5 h-5 text-[color:var(--color-muted)]" />
                 </button>
-                <h2 className="text-xl font-bold text-gray-900 min-w-[200px] text-center">
+                <h2 className="text-xl font-bold text-[color:var(--color-foreground)] min-w-[200px] text-center">
                   {monthNames[month]} {year}
                 </h2>
                 <button
                   onClick={goToNextMonth}
-                  className="p-2 hover:bg-purple-50 rounded transition-colors"
+                  className="p-2 hover:bg-[color:var(--color-surface-alt)] rounded transition-colors"
                 >
-                  <ChevronRightIcon className="w-5 h-5 text-gray-600" />
+                  <ChevronRightIcon className="w-5 h-5 text-[color:var(--color-muted)]" />
                 </button>
               </div>
 
               <button
                 onClick={goToToday}
-                className="px-4 py-2 bg-purple-600 text-white rounded-md text-sm font-medium hover:bg-purple-700 transition-colors"
+                className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-secondary)] transition-colors"
               >
                 Today
               </button>
@@ -170,8 +170,8 @@ export default function CalendarPage() {
                 onClick={() => setFilterEventType('all')}
                 className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
                   filterEventType === 'all'
-                    ? 'bg-purple-600 text-white'
-                    : 'bg-white text-gray-700 hover:bg-purple-50 border border-purple-200'
+                    ? 'bg-[color:var(--color-primary)] text-white'
+                    : 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)] border border-[color:var(--color-border)]'
                 }`}
               >
                 All Events ({monthEvents.length})
@@ -186,7 +186,7 @@ export default function CalendarPage() {
                     className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-colors border ${
                       filterEventType === key
                         ? 'text-white border-transparent'
-                        : 'bg-white text-gray-700 hover:bg-purple-50 border-purple-200'
+                        : 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)] border-[color:var(--color-border)]'
                     }`}
                     style={{
                       backgroundColor: filterEventType === key ? info.color : undefined,
@@ -200,11 +200,11 @@ export default function CalendarPage() {
           </div>
 
           {/* Calendar Grid */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-lg border border-purple-200 overflow-hidden">
+          <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border border-[color:var(--color-border)] overflow-hidden">
             {/* Day Headers */}
-            <div className="grid grid-cols-7 border-b border-purple-200 bg-purple-50">
+            <div className="grid grid-cols-7 border-b border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]">
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                <div key={day} className="p-3 text-center text-xs font-semibold text-purple-700 uppercase tracking-wider">
+                <div key={day} className="p-3 text-center text-xs font-semibold text-[color:var(--color-primary)] uppercase tracking-wider">
                   {day}
                 </div>
               ))}
@@ -214,7 +214,7 @@ export default function CalendarPage() {
             <div className="grid grid-cols-7">
               {calendarDays.map((dayData, index) => {
                 if (!dayData) {
-                  return <div key={`empty-${index}`} className="min-h-[120px] border-r border-b border-purple-200 bg-gray-50"></div>;
+                  return <div key={`empty-${index}`} className="min-h-[120px] border-r border-b border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)]"></div>;
                 }
 
                 const { day, dateStr, events } = dayData;
@@ -227,15 +227,15 @@ export default function CalendarPage() {
                 return (
                   <div
                     key={dateStr}
-                    className={`min-h-[120px] border-r border-b border-purple-200 p-2 cursor-pointer transition-all ${
-                      isSelected ? 'bg-purple-100' : 'hover:bg-purple-50'
+                    className={`min-h-[120px] border-r border-b border-[color:var(--color-border)] p-2 cursor-pointer transition-all ${
+                      isSelected ? 'bg-[color:var(--color-surface-alt)]' : 'hover:bg-[color:var(--color-surface-alt)]'
                     }`}
                     onClick={() => setSelectedDate(dateStr)}
                   >
                     <div className={`text-sm font-semibold mb-1 ${
                       isToday
-                        ? 'w-6 h-6 flex items-center justify-center rounded-full bg-purple-600 text-white'
-                        : 'text-gray-700'
+                        ? 'w-6 h-6 flex items-center justify-center rounded-full bg-[color:var(--color-primary)] text-white'
+                        : 'text-[color:var(--color-foreground)]'
                     }`}>
                       {day}
                     </div>
@@ -251,7 +251,7 @@ export default function CalendarPage() {
                         </div>
                       ))}
                       {displayEvents.length > 3 && (
-                        <div className="text-xs text-gray-500 px-2">
+                        <div className="text-xs text-[color:var(--color-muted)] px-2">
                           +{displayEvents.length - 3} more
                         </div>
                       )}
@@ -263,8 +263,8 @@ export default function CalendarPage() {
           </div>
 
           {/* Legend */}
-          <div className="bg-white/90 backdrop-blur-sm rounded-lg border border-purple-200 p-4 mt-6">
-            <p className="text-xs font-semibold text-gray-700 uppercase tracking-wider mb-3">
+          <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border border-[color:var(--color-border)] p-4 mt-6">
+            <p className="text-xs font-semibold text-[color:var(--color-foreground)] uppercase tracking-wider mb-3">
               Event Types
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -274,7 +274,7 @@ export default function CalendarPage() {
                     className="w-3 h-3 rounded"
                     style={{ backgroundColor: info.color }}
                   ></div>
-                  <span className="text-xs text-gray-700">{info.name}</span>
+                  <span className="text-xs text-[color:var(--color-foreground)]">{info.name}</span>
                 </div>
               ))}
             </div>
@@ -283,10 +283,10 @@ export default function CalendarPage() {
 
         {/* Right Panel - Selected Date Details */}
         {selectedDate && selectedDateEvents.length > 0 && (
-          <div className="w-96 border-l border-purple-200 bg-white/90 backdrop-blur-sm overflow-y-auto">
+          <div className="w-96 border-l border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-900">
+                <h3 className="text-lg font-bold text-[color:var(--color-foreground)]">
                   {new Date(selectedDate).toLocaleDateString('en-US', {
                     weekday: 'long',
                     month: 'long',
@@ -296,9 +296,9 @@ export default function CalendarPage() {
                 </h3>
                 <button
                   onClick={() => setSelectedDate(null)}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]"
                 >
-                  ×
+                  x
                 </button>
               </div>
 
@@ -308,7 +308,7 @@ export default function CalendarPage() {
                   return (
                     <div
                       key={event.id}
-                      className="bg-white border border-purple-200 rounded-lg p-4 hover:shadow-md transition-all"
+                      className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg p-4 hover:shadow-md transition-all"
                     >
                       {/* Event Type Badge */}
                       <div className="flex items-center gap-2 mb-2">
@@ -326,13 +326,13 @@ export default function CalendarPage() {
                       </div>
 
                       {/* Event Title */}
-                      <h4 className="font-semibold text-gray-900 mb-2">
+                      <h4 className="font-semibold text-[color:var(--color-foreground)] mb-2">
                         {event.title}
                       </h4>
 
                       {/* Event Time */}
                       {event.startTime && (
-                        <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                        <div className="flex items-center gap-2 text-sm text-[color:var(--color-muted)] mb-2">
                           <ClockIcon className="w-4 h-4" />
                           <span>{event.startTime} {event.endTime && `- ${event.endTime}`}</span>
                         </div>
@@ -340,7 +340,7 @@ export default function CalendarPage() {
 
                       {/* Event Location */}
                       {event.location && (
-                        <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                        <div className="flex items-center gap-2 text-sm text-[color:var(--color-muted)] mb-2">
                           <CalendarIcon className="w-4 h-4" />
                           <span>{event.location}</span>
                         </div>
@@ -348,14 +348,14 @@ export default function CalendarPage() {
 
                       {/* Event Description */}
                       {event.description && (
-                        <p className="text-sm text-gray-600 mb-2 leading-relaxed">
+                        <p className="text-sm text-[color:var(--color-muted)] mb-2 leading-relaxed">
                           {event.description}
                         </p>
                       )}
 
                       {/* Related Document */}
                       {event.relatedDocCode && (
-                        <div className="flex items-center gap-2 text-sm text-purple-600 mb-2">
+                        <div className="flex items-center gap-2 text-sm text-[color:var(--color-primary)] mb-2">
                           <FileTextIcon className="w-4 h-4" />
                           <span className="font-medium">{event.relatedDocCode}</span>
                         </div>
@@ -363,8 +363,8 @@ export default function CalendarPage() {
 
                       {/* Attendees */}
                       {event.attendees && event.attendees.length > 0 && (
-                        <div className="mt-3 pt-3 border-t border-gray-100">
-                          <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                        <div className="mt-3 pt-3 border-t border-[color:var(--color-border)]">
+                          <div className="flex items-center gap-2 text-xs text-[color:var(--color-muted)] mb-2">
                             <PersonIcon className="w-3 h-3" />
                             <span className="font-medium">Attendees ({event.attendees.length})</span>
                           </div>
@@ -372,7 +372,7 @@ export default function CalendarPage() {
                             {event.attendees.map((attendee, idx) => (
                               <span
                                 key={idx}
-                                className="inline-block px-2 py-1 bg-purple-50 text-purple-700 rounded text-xs"
+                                className="inline-block px-2 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded text-xs"
                               >
                                 {attendee}
                               </span>
@@ -382,14 +382,14 @@ export default function CalendarPage() {
                       )}
 
                       {/* Status Indicator */}
-                      <div className="mt-3 pt-3 border-t border-gray-100">
+                      <div className="mt-3 pt-3 border-t border-[color:var(--color-border)]">
                         <div className="flex items-center gap-2">
                           {event.status === 'COMPLETED' ? (
-                            <CheckCircledIcon className="w-4 h-4 text-green-600" />
+                            <CheckCircledIcon className="w-4 h-4 text-[color:var(--color-success)]" />
                           ) : (
-                            <DotFilledIcon className="w-4 h-4 text-gray-400" />
+                            <DotFilledIcon className="w-4 h-4 text-[color:var(--color-muted)]" />
                           )}
-                          <span className="text-xs text-gray-600">{event.status}</span>
+                          <span className="text-xs text-[color:var(--color-muted)]">{event.status}</span>
                         </div>
                       </div>
                     </div>

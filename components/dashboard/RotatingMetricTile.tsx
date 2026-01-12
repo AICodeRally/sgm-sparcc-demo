@@ -7,12 +7,15 @@ import {
   ExclamationTriangleIcon,
   ArchiveIcon,
   AvatarIcon,
+  StarFilledIcon,
 } from '@radix-ui/react-icons';
 import { MetricGroup, getGroupColors, STATUS_COLORS } from '@/lib/data/metric-registry';
+import { Tone, getToneStyles } from '@/lib/config/themes';
 
 interface RotatingMetricTileProps {
   group: MetricGroup;
   metricData: Record<string, number | string>;
+  tone?: Tone;
 }
 
 const ICON_MAP = {
@@ -23,7 +26,7 @@ const ICON_MAP = {
   AvatarIcon,
 };
 
-export default function RotatingMetricTile({ group, metricData }: RotatingMetricTileProps) {
+export default function RotatingMetricTile({ group, metricData, tone = 'primary' }: RotatingMetricTileProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [clickCount, setClickCount] = useState(0);
@@ -32,6 +35,7 @@ export default function RotatingMetricTile({ group, metricData }: RotatingMetric
   const colors = getGroupColors(group.color);
   const statusColors = STATUS_COLORS[currentMetric.status];
   const Icon = ICON_MAP[group.icon as keyof typeof ICON_MAP];
+  const toneStyles = getToneStyles(tone);
 
   // Load click tracking from localStorage
   useEffect(() => {
@@ -70,14 +74,16 @@ export default function RotatingMetricTile({ group, metricData }: RotatingMetric
   return (
     <button
       onClick={handleClick}
-      className={`group relative bg-white rounded-xl border p-6 transition-all duration-200 cursor-pointer ${
+      className={`group relative theme-card rounded-xl border p-6 transition-all duration-200 cursor-pointer ${
         statusColors.border
-      } ${colors.hover} hover:shadow-lg ${statusColors.glow} ${
-        isAnimating ? 'scale-95' : 'scale-100'
-      }`}
+      } ${colors.hover} ${statusColors.glow} ${isAnimating ? 'scale-95' : 'scale-100'}`}
+      style={{
+        border: toneStyles.border,
+        boxShadow: toneStyles.shadow,
+      }}
     >
       {/* Position Indicator */}
-      <div className="absolute top-2 right-2 text-[10px] font-medium text-gray-400">
+      <div className="absolute top-2 right-2 text-[10px] font-medium text-[color:var(--color-muted)]">
         {currentIndex + 1}/{group.metrics.length}
       </div>
 
@@ -85,14 +91,14 @@ export default function RotatingMetricTile({ group, metricData }: RotatingMetric
       {currentMetric.status !== 'normal' && (
         <div
           className={`absolute top-2 left-2 w-2 h-2 rounded-full ${
-            currentMetric.status === 'critical' ? 'bg-red-500 animate-pulse' : 'bg-yellow-500'
+            currentMetric.status === 'critical' ? 'bg-transparent animate-pulse' : 'bg-transparent'
           }`}
         />
       )}
 
       {/* Header */}
       <div className="flex items-center justify-between mb-3">
-        <p className="text-sm text-gray-600 font-medium">{currentMetric.label}</p>
+        <p className="text-sm text-[color:var(--color-muted)] font-medium">{currentMetric.label}</p>
         <Icon className={`w-5 h-5 ${colors.icon}`} />
       </div>
 
@@ -104,12 +110,12 @@ export default function RotatingMetricTile({ group, metricData }: RotatingMetric
             <span className="text-lg ml-1">{currentMetric.suffix}</span>
           )}
         </p>
-        <p className="text-xs text-gray-500 mt-1">{currentMetric.description}</p>
+        <p className="text-xs text-[color:var(--color-muted)] mt-1">{currentMetric.description}</p>
       </div>
 
       {/* Click Hint */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-        <div className="text-[10px] text-gray-400 flex items-center gap-1">
+        <div className="text-[10px] text-[color:var(--color-muted)] flex items-center gap-1">
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
           </svg>
@@ -119,8 +125,11 @@ export default function RotatingMetricTile({ group, metricData }: RotatingMetric
 
       {/* Popular Badge (if clicked > 20 times) */}
       {clickCount > 20 && (
-        <div className="absolute -top-2 -right-2 bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-lg">
-          ⭐ Popular
+        <div className="absolute -top-2 -right-2 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-lg">
+          <span className="inline-flex items-center gap-1">
+            <StarFilledIcon className="w-3 h-3" />
+            Popular
+          </span>
         </div>
       )}
     </button>

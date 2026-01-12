@@ -28,15 +28,15 @@ export function FeatureTile({
   return (
     <Link href={href as any}>
       <div
-        className={`bg-white rounded-xl border-2 transition-all cursor-pointer h-full group ${
+        className={`bg-[color:var(--color-surface)] rounded-xl border-2 transition-all cursor-pointer h-full group ${
           primary
-            ? 'border-purple-300 hover:border-purple-500 hover:shadow-xl p-8'
-            : 'border-gray-200 hover:border-purple-300 hover:shadow-lg p-6'
+            ? 'border-[color:var(--color-border)] hover:border-[color:var(--color-primary)] hover:shadow-xl p-8'
+            : 'border-[color:var(--color-border)] hover:border-[color:var(--color-border)] hover:shadow-lg p-6'
         }`}
       >
         {/* Icon */}
         {icon && (
-          <div className={`mb-4 ${primary ? 'text-purple-600' : 'text-gray-700'}`}>
+          <div className={`mb-4 ${primary ? 'text-[color:var(--color-primary)]' : 'text-[color:var(--color-foreground)]'}`}>
             {icon}
           </div>
         )}
@@ -45,7 +45,7 @@ export function FeatureTile({
         <div className="flex items-center justify-between mb-2">
           <h3
             className={`font-bold ${
-              primary ? 'text-2xl text-gray-900' : 'text-lg text-gray-900'
+              primary ? 'text-2xl text-[color:var(--color-foreground)]' : 'text-lg text-[color:var(--color-foreground)]'
             }`}
           >
             {label}
@@ -54,8 +54,8 @@ export function FeatureTile({
             <span
               className={`px-3 py-1 rounded-full text-sm font-semibold ${
                 primary
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'bg-gray-100 text-gray-700'
+                  ? 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)]'
+                  : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]'
               }`}
             >
               {count}
@@ -65,7 +65,7 @@ export function FeatureTile({
 
         {/* Description */}
         {description && (
-          <p className={`text-gray-600 mb-4 ${primary ? 'text-base' : 'text-sm'}`}>
+          <p className={`text-[color:var(--color-muted)] mb-4 ${primary ? 'text-base' : 'text-sm'}`}>
             {description}
           </p>
         )}
@@ -73,7 +73,7 @@ export function FeatureTile({
         {/* CTA */}
         <div
           className={`flex items-center gap-2 font-medium group-hover:gap-3 transition-all ${
-            primary ? 'text-purple-600 text-base' : 'text-gray-700 text-sm'
+            primary ? 'text-[color:var(--color-primary)] text-base' : 'text-[color:var(--color-foreground)] text-sm'
           }`}
         >
           Open <ArrowRightIcon className="w-4 h-4" />

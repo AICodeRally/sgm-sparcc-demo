@@ -99,7 +99,7 @@ export default function PlanWorkflowActions({
           action: 'submit-for-review',
           icon: PaperPlaneIcon,
           data: { submittedBy: 'current-user' },
-          className: 'bg-blue-600 hover:bg-blue-700 text-white',
+          className: 'bg-[color:var(--color-primary)] hover:bg-[color:var(--color-secondary)] text-white',
         });
         break;
 
@@ -109,14 +109,14 @@ export default function PlanWorkflowActions({
           action: 'submit-for-approval',
           icon: PaperPlaneIcon,
           data: { submittedBy: 'current-user' },
-          className: 'bg-green-600 hover:bg-green-700 text-white',
+          className: 'bg-[color:var(--color-success)] hover:bg-[color:var(--color-success)] text-white',
         });
         actions.push({
           label: 'Reject',
           action: 'reject',
           icon: CrossCircledIcon,
           data: { rejectedBy: 'current-user', reason: 'Needs revision' },
-          className: 'bg-red-600 hover:bg-red-700 text-white',
+          className: 'bg-[color:var(--color-error)] hover:bg-[color:var(--color-error)] text-white',
         });
         break;
 
@@ -126,14 +126,14 @@ export default function PlanWorkflowActions({
           action: 'approve',
           icon: CheckCircledIcon,
           data: { approvedBy: 'current-user' },
-          className: 'bg-green-600 hover:bg-green-700 text-white',
+          className: 'bg-[color:var(--color-success)] hover:bg-[color:var(--color-success)] text-white',
         });
         actions.push({
           label: 'Reject',
           action: 'reject',
           icon: CrossCircledIcon,
           data: { rejectedBy: 'current-user', reason: 'Not approved' },
-          className: 'bg-red-600 hover:bg-red-700 text-white',
+          className: 'bg-[color:var(--color-error)] hover:bg-[color:var(--color-error)] text-white',
         });
         break;
 
@@ -146,7 +146,7 @@ export default function PlanWorkflowActions({
             publishedBy: 'current-user',
             effectiveDate: new Date(),
           },
-          className: 'bg-purple-600 hover:bg-purple-700 text-white',
+          className: 'bg-[color:var(--color-primary)] hover:bg-[color:var(--color-secondary)] text-white',
         });
         break;
     }
@@ -158,7 +158,7 @@ export default function PlanWorkflowActions({
         action: 'archive',
         icon: ArchiveIcon,
         data: { archivedBy: 'current-user' },
-        className: 'bg-gray-600 hover:bg-gray-700 text-white',
+        className: 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] border border-[color:var(--color-border)] hover:bg-[color:var(--color-surface-alt)]',
       });
     }
 
@@ -171,12 +171,12 @@ export default function PlanWorkflowActions({
     <div className="space-y-3">
       {/* Success/Error Messages */}
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-2 rounded-lg text-sm">
+        <div className="bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] text-[color:var(--color-error)] px-4 py-2 rounded-lg text-sm">
           {error}
         </div>
       )}
       {success && (
-        <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-2 rounded-lg text-sm">
+        <div className="bg-[color:var(--color-success-bg)] border border-[color:var(--color-success-border)] text-[color:var(--color-success)] px-4 py-2 rounded-lg text-sm">
           {success}
         </div>
       )}
@@ -203,11 +203,11 @@ export default function PlanWorkflowActions({
 
       {/* Generate Document Action */}
       {['APPROVED', 'PUBLISHED'].includes(plan.status) && (
-        <div className="pt-2 border-t border-gray-200">
+        <div className="pt-2 border-t border-[color:var(--color-border)]">
           <button
             onClick={handleGenerateDocument}
             disabled={loading}
-            className="px-4 py-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-lg hover:from-purple-700 hover:to-fuchsia-700 transition-all shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-2 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-lg hover:opacity-90 transition-all shadow-lg flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <DownloadIcon className="h-5 w-5" />
             Generate Document

@@ -164,7 +164,7 @@ Earn a fixed bonus for every [PRODUCT] sale over baseline.
 - Incremental to target incentives
 - Paid quarterly
 
-**Example:** If you sell 10 units and baseline is 4, you earn (10 - 4) × $[AMOUNT] = $[TOTAL]`,
+**Example:** If you sell 10 units and baseline is 4, you earn (10 - 4) x $[AMOUNT] = $[TOTAL]`,
   },
 
   {
@@ -261,10 +261,10 @@ Calculations and payment of incentives, less any legally required or voluntary w
 
 | Component | Calculation | Quarterly Earnings |
 |-----------|-------------|-------------------|
-| **Revenue Bonus** | (Payout at 100%) + (6% × $X per point) | $[AMOUNT] |
-| **Unit Bonus** | (Payout at 100%) + (3% × $X per point) | $[AMOUNT] |
-| **Strategic SPIF** | (10 - 4) × $[X] per unit | $[AMOUNT] |
-| **Coverage Bonus** | (6 weeks × $[X]) ÷ 2 people | $[AMOUNT] |
+| **Revenue Bonus** | (Payout at 100%) + (6% x $X per point) | $[AMOUNT] |
+| **Unit Bonus** | (Payout at 100%) + (3% x $X per point) | $[AMOUNT] |
+| **Strategic SPIF** | (10 - 4) x $[X] per unit | $[AMOUNT] |
+| **Coverage Bonus** | (6 weeks x $[X]) ÷ 2 people | $[AMOUNT] |
 | **TOTAL PAYOUT** | | **$[TOTAL]** |`,
   },
 

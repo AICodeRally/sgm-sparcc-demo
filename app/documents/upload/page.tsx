@@ -53,22 +53,22 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[color:var(--color-surface-alt)]">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm">
+      <div className="bg-[color:var(--color-surface)] border-b border-[color:var(--color-border)] shadow-sm">
         <div className="max-w-4xl mx-auto px-6 py-6">
-          <Link href="/documents" className="text-blue-600 hover:text-blue-700 text-sm mb-4 inline-block">
+          <Link href="/documents" className="text-[color:var(--color-info)] hover:text-[color:var(--color-primary)] text-sm mb-4 inline-block">
             ← Back to Documents
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Upload Documents</h1>
-          <p className="text-gray-600 mt-1">Upload one or more governance documents</p>
+          <h1 className="text-3xl font-bold text-[color:var(--color-foreground)]">Upload Documents</h1>
+          <p className="text-[color:var(--color-muted)] mt-1">Upload one or more governance documents</p>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-12">
         {uploading ? (
-          <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
-            <p className="text-gray-600">Uploading documents...</p>
+          <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-8 text-center">
+            <p className="text-[color:var(--color-muted)]">Uploading documents...</p>
           </div>
         ) : (
           <DocumentUpload

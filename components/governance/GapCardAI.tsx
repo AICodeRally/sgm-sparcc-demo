@@ -69,10 +69,10 @@ export function GapCardAI({
 
   const getSeverityBadge = (severity: string) => {
     const badges = {
-      CRITICAL: 'bg-red-100 text-red-800 border-red-200',
-      HIGH: 'bg-orange-100 text-orange-800 border-orange-200',
-      MEDIUM: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-      LOW: 'bg-blue-100 text-blue-800 border-blue-200',
+      CRITICAL: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]',
+      HIGH: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
+      MEDIUM: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
+      LOW: 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] border-[color:var(--color-info-border)]',
     };
     return badges[severity as keyof typeof badges] || badges.LOW;
   };
@@ -174,25 +174,25 @@ export function GapCardAI({
   };
 
   return (
-    <div className="border border-gray-200 rounded-md overflow-hidden">
+    <div className="border border-[color:var(--color-border)] rounded-md overflow-hidden">
       {/* Header */}
       <button
         onClick={onToggle}
-        className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
+        className="w-full px-4 py-3 flex items-center justify-between hover:bg-[color:var(--color-surface-alt)] transition-colors"
       >
         <div className="flex items-center gap-3 flex-1 text-left">
           {isExpanded ? (
-            <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
+            <ChevronDown className="w-5 h-5 text-[color:var(--color-muted)] flex-shrink-0" />
           ) : (
-            <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
+            <ChevronRight className="w-5 h-5 text-[color:var(--color-muted)] flex-shrink-0" />
           )}
           <div className={`px-2 py-1 rounded-md text-xs font-medium border flex items-center gap-1 ${getSeverityBadge(gap.severity)}`}>
             {getSeverityIcon(gap.severity)}
             {gap.severity}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="font-medium text-gray-900">{gap.requirement_name}</p>
-            <p className="text-sm text-gray-500">
+            <p className="font-medium text-[color:var(--color-foreground)]">{gap.requirement_name}</p>
+            <p className="text-sm text-[color:var(--color-muted)]">
               {gap.policy_code} - {gap.policy_name}
             </p>
           </div>
@@ -201,8 +201,8 @@ export function GapCardAI({
           {validation && (
             <div className={`flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${
               validation.isGap
-                ? 'bg-red-100 text-red-700'
-                : 'bg-green-100 text-green-700'
+                ? 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]'
+                : 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]'
             }`}>
               {validation.isGap ? (
                 <AlertCircle className="w-3 h-3" />
@@ -215,9 +215,9 @@ export function GapCardAI({
           )}
 
           <span className={`px-2 py-1 rounded-md text-xs font-medium ${
-            gap.status === 'UNMET' ? 'bg-red-100 text-red-700' :
-            gap.status === 'PARTIAL' ? 'bg-yellow-100 text-yellow-700' :
-            'bg-green-100 text-green-700'
+            gap.status === 'UNMET' ? 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]' :
+            gap.status === 'PARTIAL' ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]' :
+            'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]'
           }`}>
             {gap.status}
           </span>
@@ -226,14 +226,14 @@ export function GapCardAI({
 
       {/* Expanded Content */}
       {isExpanded && (
-        <div className="px-4 py-4 bg-gray-50 border-t border-gray-200 space-y-4">
+        <div className="px-4 py-4 bg-[color:var(--color-surface-alt)] border-t border-[color:var(--color-border)] space-y-4">
           {/* Evidence */}
           {gap.evidence && gap.evidence.length > 0 && (
             <div>
-              <p className="text-sm font-medium text-gray-700 mb-2">Evidence Found:</p>
+              <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-2">Evidence Found:</p>
               <ul className="list-disc list-inside space-y-1">
                 {gap.evidence.map((ev, i) => (
-                  <li key={i} className="text-sm text-gray-600">{ev}</li>
+                  <li key={i} className="text-sm text-[color:var(--color-muted)]">{ev}</li>
                 ))}
               </ul>
             </div>
@@ -241,7 +241,7 @@ export function GapCardAI({
 
           {/* Error Display */}
           {error && (
-            <div className="flex items-center gap-2 px-3 py-2 bg-red-50 border border-red-200 rounded-md text-red-700 text-sm">
+            <div className="flex items-center gap-2 px-3 py-2 bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded-md text-[color:var(--color-error)] text-sm">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
               {error}
             </div>
@@ -252,7 +252,7 @@ export function GapCardAI({
             <button
               onClick={handleValidate}
               disabled={isValidating || !planText}
-              className="flex items-center gap-2 px-3 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm font-medium"
+              className="flex items-center gap-2 px-3 py-2 bg-[color:var(--color-primary)] text-white rounded-md hover:bg-[color:var(--color-secondary)] disabled:bg-[color:var(--color-border)] disabled:cursor-not-allowed transition-colors text-sm font-medium"
             >
               {isValidating ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -265,7 +265,7 @@ export function GapCardAI({
             <button
               onClick={handleRemediate}
               disabled={isRemediating || !organizationContext}
-              className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm font-medium"
+              className="flex items-center gap-2 px-3 py-2 bg-[color:var(--color-primary)] text-white rounded-md hover:bg-[color:var(--color-secondary)] disabled:bg-[color:var(--color-border)] disabled:cursor-not-allowed transition-colors text-sm font-medium"
             >
               {isRemediating ? (
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -280,42 +280,42 @@ export function GapCardAI({
           {validation && (
             <div className={`p-4 rounded-md border ${
               validation.isGap
-                ? 'bg-red-50 border-red-200'
-                : 'bg-green-50 border-green-200'
+                ? 'bg-[color:var(--color-error-bg)] border-[color:var(--color-error-border)]'
+                : 'bg-[color:var(--color-success-bg)] border-[color:var(--color-success-border)]'
             }`}>
               <div className="flex items-center gap-2 mb-2">
                 {validation.isGap ? (
-                  <XCircle className="w-5 h-5 text-red-600" />
+                  <XCircle className="w-5 h-5 text-[color:var(--color-error)]" />
                 ) : (
-                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  <CheckCircle className="w-5 h-5 text-[color:var(--color-success)]" />
                 )}
                 <span className={`font-semibold ${
-                  validation.isGap ? 'text-red-800' : 'text-green-800'
+                  validation.isGap ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-success)]'
                 }`}>
                   {validation.isGap ? 'Gap Confirmed' : 'False Positive Detected'}
                 </span>
                 <span className={`text-sm ml-auto ${
-                  validation.isGap ? 'text-red-600' : 'text-green-600'
+                  validation.isGap ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-success)]'
                 }`}>
                   {validation.confidence}% confidence
                 </span>
               </div>
               <p className={`text-sm ${
-                validation.isGap ? 'text-red-700' : 'text-green-700'
+                validation.isGap ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-success)]'
               }`}>
                 {validation.reasoning}
               </p>
               {validation.missingElements.length > 0 && (
                 <div className="mt-2">
-                  <p className="text-xs font-medium text-gray-700">Missing Elements:</p>
-                  <ul className="list-disc list-inside text-sm text-gray-600">
+                  <p className="text-xs font-medium text-[color:var(--color-foreground)]">Missing Elements:</p>
+                  <ul className="list-disc list-inside text-sm text-[color:var(--color-muted)]">
                     {validation.missingElements.map((el, i) => (
                       <li key={i}>{el}</li>
                     ))}
                   </ul>
                 </div>
               )}
-              <p className="text-xs text-gray-500 mt-2">
+              <p className="text-xs text-[color:var(--color-muted)] mt-2">
                 Suggested Grade: <span className="font-medium">{validation.suggestedGrade}</span>
               </p>
             </div>
@@ -323,48 +323,48 @@ export function GapCardAI({
 
           {/* Remediation Result */}
           {remediation && (
-            <div className="p-4 rounded-md border bg-blue-50 border-blue-200">
+            <div className="p-4 rounded-md border bg-[color:var(--color-surface-alt)] border-[color:var(--color-info-border)]">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-blue-600" />
-                  <span className="font-semibold text-blue-800">Generated Remediation</span>
+                  <Sparkles className="w-5 h-5 text-[color:var(--color-info)]" />
+                  <span className="font-semibold text-[color:var(--color-info)]">Generated Remediation</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm text-blue-600">
+                  <span className="text-sm text-[color:var(--color-info)]">
                     {remediation.confidence}% confidence
                   </span>
                   <button
                     onClick={handleCopyRemediation}
-                    className="p-1.5 hover:bg-blue-100 rounded transition-colors"
+                    className="p-1.5 hover:bg-[color:var(--color-info-bg)] rounded transition-colors"
                     title="Copy to clipboard"
                   >
                     {copied ? (
-                      <Check className="w-4 h-4 text-green-600" />
+                      <Check className="w-4 h-4 text-[color:var(--color-success)]" />
                     ) : (
-                      <Copy className="w-4 h-4 text-blue-600" />
+                      <Copy className="w-4 h-4 text-[color:var(--color-info)]" />
                     )}
                   </button>
                 </div>
               </div>
 
-              <div className="bg-white rounded-md p-3 border border-blue-200 mb-3">
-                <pre className="text-sm text-gray-800 whitespace-pre-wrap font-sans">
+              <div className="bg-[color:var(--color-surface)] rounded-md p-3 border border-[color:var(--color-info-border)] mb-3">
+                <pre className="text-sm text-[color:var(--color-foreground)] whitespace-pre-wrap font-sans">
                   {remediation.patchText}
                 </pre>
               </div>
 
               <div className="space-y-2 text-sm">
-                <p className="text-blue-700">
+                <p className="text-[color:var(--color-primary)]">
                   <span className="font-medium">Insert at:</span> {remediation.insertionPoint}
                 </p>
-                <p className="text-blue-700">
+                <p className="text-[color:var(--color-primary)]">
                   <span className="font-medium">Integration:</span> {remediation.integrationNotes}
                 </p>
 
                 {remediation.conflictWarnings.length > 0 && (
-                  <div className="p-2 bg-yellow-50 border border-yellow-200 rounded">
-                    <p className="font-medium text-yellow-800 text-xs mb-1">Potential Conflicts:</p>
-                    <ul className="list-disc list-inside text-yellow-700 text-xs">
+                  <div className="p-2 bg-[color:var(--color-warning-bg)] border border-[color:var(--color-warning-border)] rounded">
+                    <p className="font-medium text-[color:var(--color-warning)] text-xs mb-1">Potential Conflicts:</p>
+                    <ul className="list-disc list-inside text-[color:var(--color-warning)] text-xs">
                       {remediation.conflictWarnings.map((warning, i) => (
                         <li key={i}>{warning}</li>
                       ))}
@@ -372,7 +372,7 @@ export function GapCardAI({
                   </div>
                 )}
 
-                <p className="text-xs text-gray-500 italic mt-2">
+                <p className="text-xs text-[color:var(--color-muted)] italic mt-2">
                   {remediation.legalDisclaimer}
                 </p>
               </div>

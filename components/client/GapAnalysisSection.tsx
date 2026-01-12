@@ -38,15 +38,15 @@ export function GapAnalysisSection({ gaps }: GapAnalysisSectionProps) {
   const getSeverityColor = (severity: string) => {
     switch (severity) {
       case 'CRITICAL':
-        return 'text-red-700 bg-red-50 border-red-300';
+        return 'text-[color:var(--color-error)] bg-[color:var(--color-error-bg)] border-[color:var(--color-error-border)]';
       case 'HIGH':
-        return 'text-orange-700 bg-orange-50 border-orange-300';
+        return 'text-[color:var(--color-warning)] bg-[color:var(--color-warning-bg)] border-[color:var(--color-warning-border)]';
       case 'MEDIUM':
-        return 'text-yellow-700 bg-yellow-50 border-yellow-300';
+        return 'text-[color:var(--color-warning)] bg-[color:var(--color-warning-bg)] border-[color:var(--color-warning-border)]';
       case 'LOW':
-        return 'text-green-700 bg-green-50 border-green-300';
+        return 'text-[color:var(--color-success)] bg-[color:var(--color-success-bg)] border-[color:var(--color-success-border)]';
       default:
-        return 'text-gray-700 bg-gray-50 border-gray-300';
+        return 'text-[color:var(--color-foreground)] bg-[color:var(--color-surface-alt)] border-[color:var(--color-border)]';
     }
   };
 
@@ -54,26 +54,26 @@ export function GapAnalysisSection({ gaps }: GapAnalysisSectionProps) {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'OPEN':
-        return 'text-red-700 bg-red-50';
+        return 'text-[color:var(--color-error)] bg-[color:var(--color-error-bg)]';
       case 'PLANNED':
-        return 'text-blue-700 bg-blue-50';
+        return 'text-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)]';
       case 'IN_PROGRESS':
-        return 'text-yellow-700 bg-yellow-50';
+        return 'text-[color:var(--color-warning)] bg-[color:var(--color-warning-bg)]';
       case 'RESOLVED':
-        return 'text-green-700 bg-green-50';
+        return 'text-[color:var(--color-success)] bg-[color:var(--color-success-bg)]';
       case 'WONT_FIX':
-        return 'text-gray-700 bg-gray-50';
+        return 'text-[color:var(--color-foreground)] bg-[color:var(--color-surface-alt)]';
       default:
-        return 'text-gray-700 bg-gray-50';
+        return 'text-[color:var(--color-foreground)] bg-[color:var(--color-surface-alt)]';
     }
   };
 
   return (
-    <div className="bg-white rounded-xl border-2 border-indigo-200 p-6">
+    <div className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-accent-border)] p-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-gray-900">Gap Analysis</h2>
-        <span className="text-sm text-gray-600">
+        <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">Gap Analysis</h2>
+        <span className="text-sm text-[color:var(--color-muted)]">
           {filteredGaps.length} of {gaps.length} gaps
         </span>
       </div>
@@ -82,13 +82,13 @@ export function GapAnalysisSection({ gaps }: GapAnalysisSectionProps) {
       <div className="flex items-center gap-4 mb-6">
         {/* Severity Filter */}
         <div>
-          <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1 block">
+          <label className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wide mb-1 block">
             Severity
           </label>
           <select
             value={severityFilter}
             onChange={(e) => setSeverityFilter(e.target.value)}
-            className="px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:border-indigo-500 focus:outline-none"
+            className="px-3 py-2 border-2 border-[color:var(--color-border)] rounded-lg text-sm focus:border-[color:var(--color-accent)] focus:outline-none"
           >
             <option value="ALL">All</option>
             <option value="CRITICAL">Critical</option>
@@ -100,13 +100,13 @@ export function GapAnalysisSection({ gaps }: GapAnalysisSectionProps) {
 
         {/* Status Filter */}
         <div>
-          <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1 block">
+          <label className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wide mb-1 block">
             Status
           </label>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-3 py-2 border-2 border-gray-200 rounded-lg text-sm focus:border-indigo-500 focus:outline-none"
+            className="px-3 py-2 border-2 border-[color:var(--color-border)] rounded-lg text-sm focus:border-[color:var(--color-accent)] focus:outline-none"
           >
             <option value="ALL">All</option>
             <option value="OPEN">Open</option>
@@ -122,8 +122,8 @@ export function GapAnalysisSection({ gaps }: GapAnalysisSectionProps) {
       <div className="space-y-4">
         {filteredGaps.length === 0 ? (
           <div className="text-center py-12">
-            <CheckCircledIcon className="w-12 h-12 text-green-500 mx-auto mb-3" />
-            <p className="text-gray-600">No gaps found with current filters</p>
+            <CheckCircledIcon className="w-12 h-12 text-[color:var(--color-success)] mx-auto mb-3" />
+            <p className="text-[color:var(--color-muted)]">No gaps found with current filters</p>
           </div>
         ) : (
           filteredGaps.map((gap) => (
@@ -136,8 +136,8 @@ export function GapAnalysisSection({ gaps }: GapAnalysisSectionProps) {
                 <div className="flex items-center gap-3">
                   <ExclamationTriangleIcon className="w-5 h-5 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="font-semibold text-gray-900">{gap.policyArea}</h3>
-                    <p className="text-xs text-gray-600 mt-0.5">Plan: {gap.planCode}</p>
+                    <h3 className="font-semibold text-[color:var(--color-foreground)]">{gap.policyArea}</h3>
+                    <p className="text-xs text-[color:var(--color-muted)] mt-0.5">Plan: {gap.planCode}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -151,10 +151,10 @@ export function GapAnalysisSection({ gaps }: GapAnalysisSectionProps) {
               </div>
 
               {/* Description */}
-              <p className="text-sm text-gray-700 mb-3 pl-8">{gap.gapDescription}</p>
+              <p className="text-sm text-[color:var(--color-foreground)] mb-3 pl-8">{gap.gapDescription}</p>
 
               {/* Metadata */}
-              <div className="flex items-center gap-4 text-xs text-gray-600 pl-8">
+              <div className="flex items-center gap-4 text-xs text-[color:var(--color-muted)] pl-8">
                 {gap.bhgPolicyRef && (
                   <span>
                     <strong>BHG Policy:</strong> {gap.bhgPolicyRef}

@@ -18,51 +18,51 @@ export default function SectionNavigator({
 }: SectionNavigatorProps) {
   const getStatusIcon = (section: PlanSection) => {
     if (section.completionStatus === 'COMPLETED') {
-      return <CheckCircleIcon className="h-5 w-5 text-green-600" />;
+      return <CheckCircleIcon className="h-5 w-5 text-[color:var(--color-success)]" />;
     } else if (section.completionStatus === 'IN_PROGRESS') {
-      return <ClockIcon className="h-5 w-5 text-yellow-600" />;
+      return <ClockIcon className="h-5 w-5 text-[color:var(--color-warning)]" />;
     } else {
-      return <ExclamationCircleIcon className="h-5 w-5 text-gray-400" />;
+      return <ExclamationCircleIcon className="h-5 w-5 text-[color:var(--color-muted)]" />;
     }
   };
 
   const getStatusColor = (section: PlanSection) => {
     if (section.completionStatus === 'COMPLETED') {
-      return 'border-green-500 bg-green-50';
+      return 'border-[color:var(--color-success-border)] bg-[color:var(--color-success-bg)]';
     } else if (section.completionStatus === 'IN_PROGRESS') {
-      return 'border-yellow-500 bg-yellow-50';
+      return 'border-[color:var(--color-warning-border)] bg-[color:var(--color-warning-bg)]';
     } else {
-      return 'border-gray-300 bg-white';
+      return 'border-[color:var(--color-border)] bg-[color:var(--color-surface)]';
     }
   };
 
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="p-6 border-b border-purple-200">
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">Sections</h2>
+      <div className="p-6 border-b border-[color:var(--color-border)]">
+        <h2 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-3">Sections</h2>
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Overall Progress</span>
-            <span className="font-medium text-purple-600">{planCompletion}%</span>
+            <span className="text-[color:var(--color-muted)]">Overall Progress</span>
+            <span className="font-medium text-[color:var(--color-primary)]">{planCompletion}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-[color:var(--color-border)] rounded-full h-2">
             <div
-              className="bg-gradient-to-r from-purple-600 to-fuchsia-600 h-2 rounded-full transition-all"
+              className="bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] h-2 rounded-full transition-all"
               style={{ width: `${planCompletion}%` }}
             />
           </div>
-          <div className="flex gap-4 text-xs text-gray-500">
+          <div className="flex gap-4 text-xs text-[color:var(--color-muted)]">
             <div className="flex items-center gap-1">
-              <CheckCircleIcon className="h-4 w-4 text-green-600" />
+              <CheckCircleIcon className="h-4 w-4 text-[color:var(--color-success)]" />
               {sections.filter(s => s.completionStatus === 'COMPLETED').length} Complete
             </div>
             <div className="flex items-center gap-1">
-              <ClockIcon className="h-4 w-4 text-yellow-600" />
+              <ClockIcon className="h-4 w-4 text-[color:var(--color-warning)]" />
               {sections.filter(s => s.completionStatus === 'IN_PROGRESS').length} In Progress
             </div>
             <div className="flex items-center gap-1">
-              <ExclamationCircleIcon className="h-4 w-4 text-gray-400" />
+              <ExclamationCircleIcon className="h-4 w-4 text-[color:var(--color-muted)]" />
               {sections.filter(s => s.completionStatus === 'NOT_STARTED').length} Not Started
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function SectionNavigator({
             onClick={() => onSectionSelect(section.id)}
             className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
               selectedSectionId === section.id
-                ? 'border-purple-600 bg-purple-50 shadow-md'
+                ? 'border-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)] shadow-md'
                 : getStatusColor(section)
             } hover:shadow-md`}
           >
@@ -87,33 +87,33 @@ export default function SectionNavigator({
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-medium text-gray-500">
+                  <span className="text-xs font-medium text-[color:var(--color-muted)]">
                     {index + 1}
                   </span>
                   {section.isRequired && (
-                    <span className="text-xs font-medium text-red-600">*</span>
+                    <span className="text-xs font-medium text-[color:var(--color-error)]">*</span>
                   )}
                 </div>
-                <h3 className="font-medium text-gray-900 mb-1 line-clamp-2">
+                <h3 className="font-medium text-[color:var(--color-foreground)] mb-1 line-clamp-2">
                   {section.title}
                 </h3>
                 {section.description && (
-                  <p className="text-xs text-gray-500 line-clamp-2">
+                  <p className="text-xs text-[color:var(--color-muted)] line-clamp-2">
                     {section.description}
                   </p>
                 )}
                 <div className="flex items-center gap-2 mt-2">
                   {section.completionPercentage !== undefined && (
                     <div className="flex-1">
-                      <div className="w-full bg-gray-200 rounded-full h-1">
+                      <div className="w-full bg-[color:var(--color-border)] rounded-full h-1">
                         <div
-                          className="bg-purple-600 h-1 rounded-full transition-all"
+                          className="bg-[color:var(--color-primary)] h-1 rounded-full transition-all"
                           style={{ width: `${section.completionPercentage}%` }}
                         />
                       </div>
                     </div>
                   )}
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-[color:var(--color-muted)]">
                     {section.completionPercentage || 0}%
                   </span>
                 </div>
@@ -124,10 +124,10 @@ export default function SectionNavigator({
       </div>
 
       {/* Footer */}
-      <div className="p-4 border-t border-purple-200 bg-white">
-        <div className="text-xs text-gray-500">
+      <div className="p-4 border-t border-[color:var(--color-border)] bg-[color:var(--color-surface)]">
+        <div className="text-xs text-[color:var(--color-muted)]">
           <div className="flex items-center gap-1 mb-1">
-            <span className="font-medium text-red-600">*</span>
+            <span className="font-medium text-[color:var(--color-error)]">*</span>
             <span>Required sections</span>
           </div>
           <p>Complete all required sections before submitting</p>

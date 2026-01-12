@@ -35,7 +35,7 @@ ${fw.relevantSections && fw.relevantSections.length > 0 ? `- **Relevant Sections
 **Key Requirements:**
 ${fw.content.substring(0, 500)}...
 
-${fw.mandatoryCompliance ? '⚠️ **CRITICAL:** Failure to comply with this framework may result in policy rejection.' : ''}
+${fw.mandatoryCompliance ? '[WARN] **CRITICAL:** Failure to comply with this framework may result in policy rejection.' : ''}
 `).join('\n')}
 
 **Your Task:** Ensure this section complies with ALL mandatory frameworks listed above. Flag any violations as CRITICAL priority.

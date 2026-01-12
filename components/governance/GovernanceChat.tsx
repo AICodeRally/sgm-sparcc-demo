@@ -196,7 +196,7 @@ export function GovernanceChat({
     return (
       <button
         onClick={() => setIsExpanded(true)}
-        className={`${positionClasses[position]} flex items-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 ${className}`}
+        className={`${positionClasses[position]} flex items-center gap-2 px-4 py-3 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105 ${className}`}
       >
         <Sparkles className="w-5 h-5" />
         <span className="font-medium">Ask The Toddfather</span>
@@ -209,20 +209,20 @@ export function GovernanceChat({
     <div
       className={`${position !== 'inline' ? positionClasses[position] : ''} ${className}`}
     >
-      <div className={`bg-white border border-gray-200 rounded-lg shadow-xl flex flex-col ${
+      <div className={`bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg shadow-xl flex flex-col ${
         position === 'inline' ? 'h-[600px]' : 'w-96 h-[500px]'
       }`}>
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-t-lg">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-[color:var(--color-border)] bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] rounded-t-lg">
           <div className="flex items-center gap-2 text-white">
             <Sparkles className="w-5 h-5" />
             <span className="font-semibold">The Toddfather</span>
-            <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">SPM Expert</span>
+            <span className="text-xs bg-[color:var(--color-surface)]/20 px-2 py-0.5 rounded-full">SPM Expert</span>
           </div>
           <div className="flex items-center gap-1">
             <button
               onClick={resetConversation}
-              className="p-1.5 hover:bg-white/20 rounded-md transition-colors text-white"
+              className="p-1.5 hover:bg-[color:var(--color-surface)]/20 rounded-md transition-colors text-white"
               title="New conversation"
             >
               <RefreshCw className="w-4 h-4" />
@@ -230,7 +230,7 @@ export function GovernanceChat({
             {position !== 'inline' && (
               <button
                 onClick={() => setIsExpanded(false)}
-                className="p-1.5 hover:bg-white/20 rounded-md transition-colors text-white"
+                className="p-1.5 hover:bg-[color:var(--color-surface)]/20 rounded-md transition-colors text-white"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -248,10 +248,10 @@ export function GovernanceChat({
               <div
                 className={`max-w-[85%] rounded-lg px-4 py-2 ${
                   message.role === 'user'
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-[color:var(--color-primary)] text-white'
                     : message.isError
-                    ? 'bg-red-50 border border-red-200 text-red-800'
-                    : 'bg-gray-100 text-gray-800'
+                    ? 'bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] text-[color:var(--color-error)]'
+                    : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]'
                 }`}
               >
                 {message.isError && (
@@ -264,12 +264,12 @@ export function GovernanceChat({
 
                 {/* Citations */}
                 {message.citations && message.citations.length > 0 && (
-                  <div className="mt-2 pt-2 border-t border-gray-200">
+                  <div className="mt-2 pt-2 border-t border-[color:var(--color-border)]">
                     <button
                       onClick={() =>
                         setShowCitations(showCitations === message.id ? null : message.id)
                       }
-                      className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800"
+                      className="flex items-center gap-1 text-xs text-[color:var(--color-info)] hover:text-[color:var(--color-info)]"
                     >
                       <BookOpen className="w-3 h-3" />
                       {message.citations.length} source{message.citations.length > 1 ? 's' : ''}
@@ -284,15 +284,15 @@ export function GovernanceChat({
                         {message.citations.map((citation, i) => (
                           <div
                             key={i}
-                            className="text-xs bg-white rounded p-2 border border-gray-200"
+                            className="text-xs bg-[color:var(--color-surface)] rounded p-2 border border-[color:var(--color-border)]"
                           >
-                            <div className="font-medium text-gray-700 mb-1">
+                            <div className="font-medium text-[color:var(--color-foreground)] mb-1">
                               {citation.label}
-                              <span className="ml-2 text-gray-400">
+                              <span className="ml-2 text-[color:var(--color-muted)]">
                                 ({Math.round(citation.score * 100)}% match)
                               </span>
                             </div>
-                            <p className="text-gray-600 line-clamp-3">{citation.excerpt}</p>
+                            <p className="text-[color:var(--color-muted)] line-clamp-3">{citation.excerpt}</p>
                           </div>
                         ))}
                       </div>
@@ -307,7 +307,7 @@ export function GovernanceChat({
                       <button
                         key={i}
                         onClick={() => handleSuggestedQuestion(suggestion)}
-                        className="block w-full text-left text-xs px-2 py-1.5 bg-white border border-gray-200 rounded hover:bg-gray-50 text-gray-700 transition-colors"
+                        className="block w-full text-left text-xs px-2 py-1.5 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded hover:bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] transition-colors"
                       >
                         {suggestion}
                       </button>
@@ -320,9 +320,9 @@ export function GovernanceChat({
 
           {isLoading && (
             <div className="flex justify-start">
-              <div className="bg-gray-100 rounded-lg px-4 py-2 flex items-center gap-2">
-                <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
-                <span className="text-sm text-gray-600">Thinking...</span>
+              <div className="bg-[color:var(--color-surface-alt)] rounded-lg px-4 py-2 flex items-center gap-2">
+                <Loader2 className="w-4 h-4 animate-spin text-[color:var(--color-info)]" />
+                <span className="text-sm text-[color:var(--color-muted)]">Thinking...</span>
               </div>
             </div>
           )}
@@ -331,7 +331,7 @@ export function GovernanceChat({
         </div>
 
         {/* Input */}
-        <div className="p-3 border-t border-gray-200">
+        <div className="p-3 border-t border-[color:var(--color-border)]">
           <div className="flex gap-2">
             <input
               ref={inputRef}
@@ -340,18 +340,18 @@ export function GovernanceChat({
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask about governance, compliance..."
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="flex-1 px-3 py-2 border border-[color:var(--color-border)] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
               disabled={isLoading}
             />
             <button
               onClick={handleSend}
               disabled={!inputValue.trim() || isLoading}
-              className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+              className="px-3 py-2 bg-[color:var(--color-primary)] text-white rounded-md hover:bg-[color:var(--color-secondary)] disabled:bg-[color:var(--color-border)] disabled:cursor-not-allowed transition-colors"
             >
               <Send className="w-4 h-4" />
             </button>
           </div>
-          <p className="text-xs text-gray-400 mt-2 text-center">
+          <p className="text-xs text-[color:var(--color-muted)] mt-2 text-center">
             Powered by The Toddfather RAG
           </p>
         </div>

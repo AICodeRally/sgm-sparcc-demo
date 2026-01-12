@@ -134,13 +134,13 @@ export class RallyLLMClient {
     if (!skipCache) {
       const cached = checkCache(cacheKey);
       if (cached) {
-        console.log('✅ [Rally LLM] Cache hit - returning cached response');
+        console.log('[OK] [Rally LLM] Cache hit - returning cached response');
         return cached;
       }
     }
 
     try {
-      console.log('🔧 [Rally LLM] Sending request to Rally LLaMA SPM model...');
+      console.log('[TOOL] [Rally LLM] Sending request to Rally LLaMA SPM model...');
 
       // Make request with timeout
       const controller = new AbortController();
@@ -206,7 +206,7 @@ export class RallyLLMClient {
       setCache(cacheKey, chatResponse, 300); // 5 minute TTL
 
       console.log(
-        `✅ [Rally LLM] Response received (${outputTokens} tokens, ${content.length} chars)`
+        `[OK] [Rally LLM] Response received (${outputTokens} tokens, ${content.length} chars)`
       );
 
       return chatResponse;
@@ -243,7 +243,7 @@ export class RallyLLMClient {
     const temperature = options?.temperature ?? this.temperature;
 
     try {
-      console.log('🔧 [Rally LLM] Starting streaming request...');
+      console.log('[TOOL] [Rally LLM] Starting streaming request...');
 
       const response = await fetch(`${this.baseUrl}/v1/chat/completions`, {
         method: 'POST',
@@ -303,7 +303,7 @@ export class RallyLLMClient {
         reader.releaseLock();
       }
 
-      console.log('✅ [Rally LLM] Streaming complete');
+      console.log('[OK] [Rally LLM] Streaming complete');
     } catch (error) {
       console.error('❌ [Rally LLM] Streaming error:', error);
       throw error;
@@ -339,7 +339,7 @@ export function initRallyLLMClient(): RallyLLMClient {
 
   if (!baseUrl || !apiKey) {
     console.warn(
-      '⚠️  Rally LLM not configured (missing RALLY_LLM_BASE_URL or RALLY_LLM_API_KEY)'
+      '[WARN]  Rally LLM not configured (missing RALLY_LLM_BASE_URL or RALLY_LLM_API_KEY)'
     );
   }
 

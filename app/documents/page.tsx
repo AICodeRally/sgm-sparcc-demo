@@ -108,14 +108,14 @@ export default function DocumentsPage() {
   // Status color mapping
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
-      DRAFT: 'bg-gray-100 text-gray-800',
-      UNDER_REVIEW: 'bg-yellow-100 text-yellow-800',
-      PENDING_APPROVAL: 'bg-orange-100 text-orange-800',
-      APPROVED: 'bg-blue-100 text-blue-800',
-      ACTIVE: 'bg-green-100 text-green-800',
-      ARCHIVED: 'bg-red-100 text-red-800',
+      DRAFT: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]',
+      UNDER_REVIEW: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]',
+      PENDING_APPROVAL: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]',
+      APPROVED: 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)]',
+      ACTIVE: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]',
+      ARCHIVED: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]',
     };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+    return colors[status] || 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
   };
 
   // Document type icon - Using Radix icons
@@ -135,7 +135,7 @@ export default function DocumentsPage() {
   const leftNav = (
     <div className="p-4">
       <div className="mb-6">
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
           Document Type
         </h2>
         <div className="space-y-1">
@@ -143,8 +143,8 @@ export default function DocumentsPage() {
             onClick={() => setFilters(prev => ({ ...prev, documentType: undefined }))}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
               !filters.documentType
-                ? 'bg-blue-50 text-blue-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             All Documents
@@ -155,8 +155,8 @@ export default function DocumentsPage() {
               onClick={() => setFilters(prev => ({ ...prev, documentType: type }))}
               className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
                 filters.documentType === type
-                  ? 'bg-blue-50 text-blue-700 font-medium'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] font-medium'
+                  : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
               {React.createElement(getDocumentIcon(type), { className: 'w-4 h-4' })}
@@ -167,7 +167,7 @@ export default function DocumentsPage() {
       </div>
 
       <div className="mb-6">
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
           Status
         </h2>
         <div className="space-y-1">
@@ -175,8 +175,8 @@ export default function DocumentsPage() {
             onClick={() => setFilters(prev => ({ ...prev, status: undefined }))}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
               !filters.status
-                ? 'bg-blue-50 text-blue-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             All Statuses
@@ -187,8 +187,8 @@ export default function DocumentsPage() {
               onClick={() => setFilters(prev => ({ ...prev, status }))}
               className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
                 filters.status === status
-                  ? 'bg-blue-50 text-blue-700 font-medium'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] font-medium'
+                  : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
               {status.replace(/_/g, ' ')}
@@ -213,13 +213,13 @@ export default function DocumentsPage() {
       )}
 
       {/* Toolbar */}
-      <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 px-4 py-3">
+      <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] px-4 py-3">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <ModeContextBadge size="sm" />
             <Link
               href="/documents/upload"
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-600 text-white text-sm font-medium rounded-md hover:bg-green-700 transition-colors"
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-[color:var(--color-success)] text-white text-sm font-medium rounded-md hover:bg-[color:var(--color-success)] transition-colors"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clipRule="evenodd" />
@@ -228,7 +228,7 @@ export default function DocumentsPage() {
             </Link>
             <Link
               href="/documents/new"
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-[color:var(--color-primary)] text-white text-sm font-medium rounded-md hover:bg-[color:var(--color-secondary)] transition-colors"
             >
               <PlusIcon className="w-4 h-4" />
               New Document
@@ -245,19 +245,19 @@ export default function DocumentsPage() {
         {/* Search bar */}
         <form onSubmit={handleSearch} className="flex gap-2">
           <div className="relative flex-1">
-            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[color:var(--color-muted)]" />
             <input
               type="text"
               placeholder="Search documents by title, code, or content..."
               value={searchInput}
               onChange={e => setSearchInput(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 text-sm border border-[color:var(--color-border)] rounded-md focus:ring-2 focus:ring-[color:var(--color-info-border)] focus:border-transparent"
             />
           </div>
           <button
             type="button"
             onClick={() => setSortBy(sortBy === 'updated' ? 'code' : 'updated')}
-            className="inline-flex items-center gap-1 px-3 py-2 text-sm text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50"
+            className="inline-flex items-center gap-1 px-3 py-2 text-sm text-[color:var(--color-foreground)] border border-[color:var(--color-border)] rounded-md hover:bg-[color:var(--color-surface-alt)]"
           >
             <CaretSortIcon className="w-4 h-4" />
             Sort
@@ -265,12 +265,12 @@ export default function DocumentsPage() {
         </form>
 
         {/* Results count */}
-        <div className="mt-2 text-xs text-gray-500">
+        <div className="mt-2 text-xs text-[color:var(--color-muted)]">
           {filteredDocuments.length} document{filteredDocuments.length !== 1 ? 's' : ''}
           {filters.documentType && ` • Type: ${filters.documentType}`}
           {filters.status && ` • Status: ${filters.status.replace(/_/g, ' ')}`}
           {demoFilter !== 'all' && (
-            <span className="ml-1 text-orange-600 font-medium">
+            <span className="ml-1 text-[color:var(--color-warning)] font-medium">
               • Showing {demoFilter === 'demo-only' ? 'Demo Only' : 'Real Data Only'}
             </span>
           )}
@@ -281,16 +281,16 @@ export default function DocumentsPage() {
       <div className="flex-1 overflow-y-auto">
         {loading ? (
           <div className="flex items-center justify-center h-full">
-            <p className="text-sm text-gray-500">Loading documents...</p>
+            <p className="text-sm text-[color:var(--color-muted)]">Loading documents...</p>
           </div>
         ) : filteredDocuments.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center px-4">
-            <FileTextIcon className="w-12 h-12 text-gray-400 mb-3" />
-            <p className="text-sm font-medium text-gray-900 mb-1">No documents found</p>
-            <p className="text-sm text-gray-500 mb-4">Get started by creating your first document</p>
+            <FileTextIcon className="w-12 h-12 text-[color:var(--color-muted)] mb-3" />
+            <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-1">No documents found</p>
+            <p className="text-sm text-[color:var(--color-muted)] mb-4">Get started by creating your first document</p>
             <Link
               href="/documents/new"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[color:var(--color-primary)] text-white text-sm font-medium rounded-md hover:bg-[color:var(--color-secondary)]"
             >
               <PlusIcon className="w-4 h-4" />
               New Document
@@ -305,25 +305,25 @@ export default function DocumentsPage() {
                 <Highlight key={doc.id} isDemo={doc.isDemo}>
                   <button
                     onClick={() => setSelectedDoc(doc)}
-                    className={`w-full text-left px-4 py-3 hover:bg-gray-50 transition-colors ${
-                      selectedDoc?.id === doc.id ? 'bg-blue-50' : ''
+                    className={`w-full text-left px-4 py-3 hover:bg-[color:var(--color-surface-alt)] transition-colors ${
+                      selectedDoc?.id === doc.id ? 'bg-[color:var(--color-surface-alt)]' : ''
                     }`}
                   >
                     <div className="flex items-start gap-3">
                       <div className="flex-none mt-0.5">
-                        <IconComponent className="w-5 h-5 text-gray-400" />
+                        <IconComponent className="w-5 h-5 text-[color:var(--color-muted)]" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2">
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-2">
-                              <h3 className="text-sm font-medium text-gray-900 truncate">
+                              <h3 className="text-sm font-medium text-[color:var(--color-foreground)] truncate">
                                 {doc.title}
                               </h3>
                               <DemoBadge isDemo={doc.isDemo} demoMetadata={doc.demoMetadata} size="sm" />
                               <LiveBadge isDemo={doc.isDemo} size="sm" label="LIVE" />
                             </div>
-                            <p className="text-xs text-gray-500 mt-0.5">
+                            <p className="text-xs text-[color:var(--color-muted)] mt-0.5">
                               {doc.documentCode} • v{doc.version}
                             </p>
                           </div>
@@ -336,9 +336,9 @@ export default function DocumentsPage() {
                           </span>
                         </div>
                         {doc.description && (
-                          <p className="text-xs text-gray-600 mt-1 line-clamp-1">{doc.description}</p>
+                          <p className="text-xs text-[color:var(--color-muted)] mt-1 line-clamp-1">{doc.description}</p>
                         )}
-                        <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-3 mt-2 text-xs text-[color:var(--color-muted)]">
                           <span>{doc.owner}</span>
                           <span>•</span>
                           <span>Updated {new Date(doc.lastUpdated).toLocaleDateString()}</span>
@@ -364,17 +364,17 @@ export default function DocumentsPage() {
   // Right Detail Pane - Document preview/actions
   const rightDetail = selectedDoc ? (
     <div className="flex flex-col h-full">
-      <div className="flex-none p-4 border-b border-purple-200">
+      <div className="flex-none p-4 border-b border-[color:var(--color-border)]">
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <div className="flex items-start gap-2">
-              <h2 className="text-lg font-semibold text-gray-900">{selectedDoc.title}</h2>
+              <h2 className="text-lg font-semibold text-[color:var(--color-foreground)]">{selectedDoc.title}</h2>
               <DemoBadge isDemo={selectedDoc.isDemo} demoMetadata={selectedDoc.demoMetadata} size="md" />
               <LiveBadge isDemo={selectedDoc.isDemo} size="md" label="LIVE" />
             </div>
-            <p className="text-sm text-gray-500 mt-1">{selectedDoc.documentCode}</p>
+            <p className="text-sm text-[color:var(--color-muted)] mt-1">{selectedDoc.documentCode}</p>
           </div>
-          <button className="text-gray-400 hover:text-gray-600">
+          <button className="text-[color:var(--color-muted)] hover:text-[color:var(--color-muted)]">
             <DotsHorizontalIcon className="w-5 h-5" />
           </button>
         </div>
@@ -383,7 +383,7 @@ export default function DocumentsPage() {
       <div className="flex-1 overflow-y-auto p-4">
         <div className="space-y-4">
           <div>
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Status
             </h3>
             <span
@@ -396,32 +396,32 @@ export default function DocumentsPage() {
           </div>
 
           <div>
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Document Type
             </h3>
-            <p className="text-sm text-gray-900">{selectedDoc.documentType}</p>
+            <p className="text-sm text-[color:var(--color-foreground)]">{selectedDoc.documentType}</p>
           </div>
 
           <div>
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Version
             </h3>
-            <p className="text-sm text-gray-900">v{selectedDoc.version}</p>
+            <p className="text-sm text-[color:var(--color-foreground)]">v{selectedDoc.version}</p>
           </div>
 
           <div>
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Owner
             </h3>
-            <p className="text-sm text-gray-900">{selectedDoc.owner}</p>
+            <p className="text-sm text-[color:var(--color-foreground)]">{selectedDoc.owner}</p>
           </div>
 
           {selectedDoc.effectiveDate && (
             <div>
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+              <h3 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
                 Effective Date
               </h3>
-              <p className="text-sm text-gray-900">
+              <p className="text-sm text-[color:var(--color-foreground)]">
                 {new Date(selectedDoc.effectiveDate).toLocaleDateString()}
               </p>
             </div>
@@ -429,28 +429,28 @@ export default function DocumentsPage() {
 
           {selectedDoc.description && (
             <div>
-              <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+              <h3 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
                 Description
               </h3>
-              <p className="text-sm text-gray-700">{selectedDoc.description}</p>
+              <p className="text-sm text-[color:var(--color-foreground)]">{selectedDoc.description}</p>
             </div>
           )}
 
           <div>
-            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Last Updated
             </h3>
-            <p className="text-sm text-gray-900">
+            <p className="text-sm text-[color:var(--color-foreground)]">
               {new Date(selectedDoc.lastUpdated).toLocaleDateString()}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex-none p-4 border-t border-purple-200">
+      <div className="flex-none p-4 border-t border-[color:var(--color-border)]">
         <Link
           href={`/documents/${selectedDoc.id}`}
-          className="block w-full text-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700"
+          className="block w-full text-center px-4 py-2 bg-[color:var(--color-primary)] text-white text-sm font-medium rounded-md hover:bg-[color:var(--color-secondary)]"
         >
           View Full Document
         </Link>

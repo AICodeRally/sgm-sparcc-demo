@@ -64,13 +64,13 @@ export default function PolicyCoverageMatrix() {
   const getCoverageColor = (coverage: string) => {
     switch (coverage) {
       case 'FULL':
-        return 'bg-green-500 hover:bg-green-600';
+        return 'bg-transparent hover:bg-[color:var(--color-success)]';
       case 'LIMITED':
-        return 'bg-yellow-500 hover:bg-yellow-600';
+        return 'bg-transparent hover:bg-[color:var(--color-warning)]';
       case 'NO':
-        return 'bg-red-500 hover:bg-red-600';
+        return 'bg-transparent hover:bg-[color:var(--color-error)]';
       default:
-        return 'bg-gray-300 hover:bg-gray-400';
+        return 'bg-[color:var(--color-border)] hover:bg-[color:var(--color-border)]';
     }
   };
 
@@ -112,8 +112,8 @@ export default function PolicyCoverageMatrix() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <p className="text-gray-600">Loading policy coverage matrix...</p>
+      <div className="min-h-screen flex items-center justify-center bg-[color:var(--color-surface-alt)]">
+        <p className="text-[color:var(--color-muted)]">Loading policy coverage matrix...</p>
       </div>
     );
   }
@@ -126,28 +126,28 @@ export default function PolicyCoverageMatrix() {
         title="Henry Schein - Coverage Analysis"
         description="Policy coverage matrix across all compensation plans"
       />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[color:var(--color-surface-alt)]">
         {/* Header */}
-        <div className="bg-white border-b border-purple-200 shadow-sm sticky top-0 z-10">
+        <div className="bg-[color:var(--color-surface)] border-b border-[color:var(--color-border)] shadow-sm sticky top-0 z-10">
           <div className="max-w-full mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Link
                   href="/henryschein"
-                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+                  className="flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)] transition-colors"
                 >
                   <ArrowLeftIcon className="w-4 h-4" />
                   Back to Dashboard
                 </Link>
-                <div className="h-6 w-px bg-gray-300"></div>
+                <div className="h-6 w-px bg-[color:var(--color-border)]"></div>
                 <div>
-                  <p className="text-sm text-gray-600">
-                    {filteredPlans.length} plans × {POLICY_AREAS.length} policy areas
+                  <p className="text-sm text-[color:var(--color-muted)]">
+                    {filteredPlans.length} plans x {POLICY_AREAS.length} policy areas
                   </p>
                 </div>
               </div>
             <div className="flex items-center gap-4">
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all flex items-center gap-2">
+              <button className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md hover:bg-[color:var(--color-secondary)] transition-all flex items-center gap-2">
                 <DownloadIcon className="w-4 h-4" />
                 Export to Excel
               </button>
@@ -158,9 +158,9 @@ export default function PolicyCoverageMatrix() {
 
       <div className="max-w-full mx-auto px-6 py-6">
         {/* Filters */}
-        <div className="mb-6 bg-white rounded-lg border border-purple-200 p-4 shadow-sm">
+        <div className="mb-6 bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-4 shadow-sm">
           <div className="flex items-center gap-4">
-            <span className="text-sm font-medium text-gray-700">Filter by coverage:</span>
+            <span className="text-sm font-medium text-[color:var(--color-foreground)]">Filter by coverage:</span>
             <div className="flex gap-2">
               {(['ALL', 'FULL', 'LIMITED', 'NO'] as const).map((filter) => (
                 <button
@@ -168,8 +168,8 @@ export default function PolicyCoverageMatrix() {
                   onClick={() => setFilterCoverage(filter)}
                   className={`px-3 py-1 text-sm font-medium rounded-md transition-all ${
                     filterCoverage === filter
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-[color:var(--color-primary)] text-white'
+                      : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-border)]'
                   }`}
                 >
                   {filter}
@@ -178,37 +178,37 @@ export default function PolicyCoverageMatrix() {
             </div>
             <div className="ml-auto flex items-center gap-4 text-xs">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-green-500 rounded"></div>
-                <span className="text-gray-600">FULL (F)</span>
+                <div className="w-4 h-4 bg-transparent rounded"></div>
+                <span className="text-[color:var(--color-muted)]">FULL (F)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-yellow-500 rounded"></div>
-                <span className="text-gray-600">LIMITED (L)</span>
+                <div className="w-4 h-4 bg-transparent rounded"></div>
+                <span className="text-[color:var(--color-muted)]">LIMITED (L)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 bg-red-500 rounded"></div>
-                <span className="text-gray-600">NO (N)</span>
+                <div className="w-4 h-4 bg-transparent rounded"></div>
+                <span className="text-[color:var(--color-muted)]">NO (N)</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Matrix */}
-        <div className="bg-white rounded-lg border border-purple-200 shadow-sm overflow-hidden">
+        <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full">
-              <thead className="bg-gray-50 sticky top-[72px] z-10">
+              <thead className="bg-[color:var(--color-surface-alt)] sticky top-[72px] z-10">
                 <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-100 sticky left-0 z-20 min-w-[250px]">
+                  <th className="px-4 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider bg-[color:var(--color-surface-alt)] sticky left-0 z-20 min-w-[250px]">
                     Plan Name
                   </th>
-                  <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-100">
+                  <th className="px-4 py-3 text-center text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider bg-[color:var(--color-surface-alt)]">
                     Coverage %
                   </th>
                   {POLICY_AREAS.map((area) => (
                     <th
                       key={area}
-                      className="px-2 py-3 text-center text-[10px] font-medium text-gray-500 uppercase tracking-wider min-w-[50px]"
+                      className="px-2 py-3 text-center text-[10px] font-medium text-[color:var(--color-muted)] uppercase tracking-wider min-w-[50px]"
                       title={area}
                     >
                       <div className="transform -rotate-45 origin-center whitespace-nowrap">
@@ -218,23 +218,23 @@ export default function PolicyCoverageMatrix() {
                   ))}
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-[color:var(--color-surface)] divide-y divide-gray-200">
                 {filteredPlans.map((plan, planIdx) => (
                   <tr
                     key={plan.planName}
-                    className={planIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                    className={planIdx % 2 === 0 ? 'bg-[color:var(--color-surface)]' : 'bg-[color:var(--color-surface-alt)]'}
                   >
-                    <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50 sticky left-0 z-10">
+                    <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-[color:var(--color-foreground)] bg-[color:var(--color-surface-alt)] sticky left-0 z-10">
                       {plan.planName}
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap text-center">
                       <span
                         className={`px-2 py-1 text-xs font-bold rounded ${
                           plan.coverageStats.percentage >= 80
-                            ? 'bg-green-100 text-green-800'
+                            ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]'
                             : plan.coverageStats.percentage >= 60
-                            ? 'bg-yellow-100 text-yellow-800'
-                            : 'bg-red-100 text-red-800'
+                            ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]'
+                            : 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]'
                         }`}
                       >
                         {plan.coverageStats.percentage.toFixed(0)}%
@@ -270,39 +270,39 @@ export default function PolicyCoverageMatrix() {
 
         {/* Details Panel */}
         {selectedCell && (
-          <div className="mt-6 bg-white rounded-lg border-2 border-purple-300 shadow-lg p-6">
+          <div className="mt-6 bg-[color:var(--color-surface)] rounded-lg border-2 border-[color:var(--color-border)] shadow-lg p-6">
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h3 className="text-lg font-bold text-gray-900">{selectedCell.plan}</h3>
-                <p className="text-sm text-gray-600">{selectedCell.policy}</p>
+                <h3 className="text-lg font-bold text-[color:var(--color-foreground)]">{selectedCell.plan}</h3>
+                <p className="text-sm text-[color:var(--color-muted)]">{selectedCell.policy}</p>
               </div>
               <button
                 onClick={() => setSelectedCell(null)}
-                className="text-gray-400 hover:text-gray-600 text-xl"
+                className="text-[color:var(--color-muted)] hover:text-[color:var(--color-muted)] text-xl"
               >
-                ×
+                x
               </button>
             </div>
             <div className="mb-4">
               <span
                 className={`px-3 py-1 text-sm font-bold rounded ${
                   selectedCell.coverage === 'FULL'
-                    ? 'bg-green-100 text-green-800'
+                    ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]'
                     : selectedCell.coverage === 'LIMITED'
-                    ? 'bg-yellow-100 text-yellow-800'
-                    : 'bg-red-100 text-red-800'
+                    ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]'
+                    : 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]'
                 }`}
               >
                 {selectedCell.coverage} COVERAGE
               </span>
             </div>
-            <div className="bg-gray-50 rounded p-4">
-              <p className="text-sm text-gray-700">{selectedCell.details}</p>
+            <div className="bg-[color:var(--color-surface-alt)] rounded p-4">
+              <p className="text-sm text-[color:var(--color-foreground)]">{selectedCell.details}</p>
             </div>
             {selectedCell.coverage !== 'FULL' && (
-              <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded">
-                <p className="text-sm font-medium text-blue-900">📋 Recommended Action:</p>
-                <p className="text-sm text-blue-800 mt-2">
+              <div className="mt-4 p-4 bg-[color:var(--color-surface-alt)] border border-[color:var(--color-info-border)] rounded">
+                <p className="text-sm font-medium text-[color:var(--color-info)]">[DOC] Recommended Action:</p>
+                <p className="text-sm text-[color:var(--color-info)] mt-2">
                   {selectedCell.coverage === 'NO'
                     ? `Add policy language for ${selectedCell.policy} to ${selectedCell.plan}. Check BHG DRAFT policies for templates.`
                     : `Enhance ${selectedCell.policy} policy in ${selectedCell.plan} to include detailed thresholds, workflows, and SLAs.`}
@@ -314,9 +314,9 @@ export default function PolicyCoverageMatrix() {
 
         {/* Summary Stats */}
         <div className="mt-6 grid grid-cols-4 gap-4">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-            <p className="text-sm font-medium text-green-900">FULL Coverage Cells</p>
-            <p className="text-3xl font-bold text-green-600 mt-2">
+          <div className="bg-[color:var(--color-success-bg)] border border-[color:var(--color-success-border)] rounded-lg p-4">
+            <p className="text-sm font-medium text-[color:var(--color-success)]">FULL Coverage Cells</p>
+            <p className="text-3xl font-bold text-[color:var(--color-success)] mt-2">
               {plans.reduce(
                 (sum, plan) =>
                   sum +
@@ -325,9 +325,9 @@ export default function PolicyCoverageMatrix() {
               )}
             </p>
           </div>
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-            <p className="text-sm font-medium text-yellow-900">LIMITED Coverage Cells</p>
-            <p className="text-3xl font-bold text-yellow-600 mt-2">
+          <div className="bg-[color:var(--color-warning-bg)] border border-[color:var(--color-warning-border)] rounded-lg p-4">
+            <p className="text-sm font-medium text-[color:var(--color-warning)]">LIMITED Coverage Cells</p>
+            <p className="text-3xl font-bold text-[color:var(--color-warning)] mt-2">
               {plans.reduce(
                 (sum, plan) =>
                   sum +
@@ -337,9 +337,9 @@ export default function PolicyCoverageMatrix() {
               )}
             </p>
           </div>
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-            <p className="text-sm font-medium text-red-900">NO Coverage Cells</p>
-            <p className="text-3xl font-bold text-red-600 mt-2">
+          <div className="bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded-lg p-4">
+            <p className="text-sm font-medium text-[color:var(--color-error)]">NO Coverage Cells</p>
+            <p className="text-3xl font-bold text-[color:var(--color-error)] mt-2">
               {plans.reduce(
                 (sum, plan) =>
                   sum +
@@ -348,9 +348,9 @@ export default function PolicyCoverageMatrix() {
               )}
             </p>
           </div>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <p className="text-sm font-medium text-blue-900">Total Matrix Cells</p>
-            <p className="text-3xl font-bold text-blue-600 mt-2">
+          <div className="bg-[color:var(--color-surface-alt)] border border-[color:var(--color-info-border)] rounded-lg p-4">
+            <p className="text-sm font-medium text-[color:var(--color-info)]">Total Matrix Cells</p>
+            <p className="text-3xl font-bold text-[color:var(--color-info)] mt-2">
               {plans.length * POLICY_AREAS.length}
             </p>
           </div>

@@ -11,9 +11,9 @@ export default function SignOutPage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-fuchsia-800 to-yellow-600">
-      <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-2xl p-8">
-        <p className="text-gray-700">Signing you out...</p>
+    <div className="min-h-screen flex items-center justify-center sparcc-hero-bg">
+      <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg shadow-2xl p-8">
+        <p className="text-[color:var(--color-foreground)]">Signing you out...</p>
       </div>
     </div>
   );

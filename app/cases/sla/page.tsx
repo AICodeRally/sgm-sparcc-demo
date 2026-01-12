@@ -85,13 +85,13 @@ export default function CaseSLAPage() {
         title="Case SLA & Load Management"
         description="SLA tracking, compliance monitoring, and workload optimization"
       />
-      <div className="h-screen flex flex-col bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 overflow-hidden">
+      <div className="h-screen flex flex-col sparcc-hero-bg overflow-hidden">
         {/* Stats Bar */}
-        <div className="flex-none bg-white/90 backdrop-blur-sm border-b border-purple-200 px-6 py-4">
+        <div className="flex-none bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] px-6 py-4">
           <div className="flex items-center justify-end">
             <div className="text-right">
-              <p className="text-xs text-gray-500">Overall SLA Compliance</p>
-              <p className="text-2xl font-bold text-purple-600">
+              <p className="text-xs text-[color:var(--color-muted)]">Overall SLA Compliance</p>
+              <p className="text-2xl font-bold text-[color:var(--color-primary)]">
                 {slaMetrics.complianceRate}%
               </p>
             </div>
@@ -103,90 +103,90 @@ export default function CaseSLAPage() {
         <div className="max-w-7xl mx-auto space-y-6">
           {/* SLA Overview Cards */}
           <div className="grid grid-cols-4 gap-6">
-            <div className="bg-white rounded-lg border border-purple-200 p-6">
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
               <div className="flex items-center justify-between mb-2">
-                <ClockIcon className="w-8 h-8 text-blue-500" />
-                <span className="text-3xl font-bold text-blue-600">
+                <ClockIcon className="w-8 h-8 text-[color:var(--color-info)]" />
+                <span className="text-3xl font-bold text-[color:var(--color-info)]">
                   {slaMetrics.total}
                 </span>
               </div>
-              <p className="text-sm font-medium text-gray-700">Active Cases</p>
-              <p className="text-xs text-gray-500 mt-1">Under SLA tracking</p>
+              <p className="text-sm font-medium text-[color:var(--color-foreground)]">Active Cases</p>
+              <p className="text-xs text-[color:var(--color-muted)] mt-1">Under SLA tracking</p>
             </div>
 
-            <div className="bg-white rounded-lg border border-green-200 p-6">
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-success-border)] p-6">
               <div className="flex items-center justify-between mb-2">
-                <CheckCircledIcon className="w-8 h-8 text-green-500" />
-                <span className="text-3xl font-bold text-green-600">
+                <CheckCircledIcon className="w-8 h-8 text-[color:var(--color-success)]" />
+                <span className="text-3xl font-bold text-[color:var(--color-success)]">
                   {slaMetrics.onTrack}
                 </span>
               </div>
-              <p className="text-sm font-medium text-gray-700">On Track</p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-sm font-medium text-[color:var(--color-foreground)]">On Track</p>
+              <p className="text-xs text-[color:var(--color-muted)] mt-1">
                 {Math.round((slaMetrics.onTrack / slaMetrics.total) * 100)}% of cases
               </p>
             </div>
 
-            <div className="bg-white rounded-lg border border-orange-200 p-6">
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-warning-border)] p-6">
               <div className="flex items-center justify-between mb-2">
-                <ExclamationTriangleIcon className="w-8 h-8 text-orange-500" />
-                <span className="text-3xl font-bold text-orange-600">
+                <ExclamationTriangleIcon className="w-8 h-8 text-[color:var(--color-warning)]" />
+                <span className="text-3xl font-bold text-[color:var(--color-warning)]">
                   {slaMetrics.atRisk}
                 </span>
               </div>
-              <p className="text-sm font-medium text-gray-700">At Risk</p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-sm font-medium text-[color:var(--color-foreground)]">At Risk</p>
+              <p className="text-xs text-[color:var(--color-muted)] mt-1">
                 {slaMetrics.shouldEscalate} need escalation
               </p>
             </div>
 
-            <div className="bg-white rounded-lg border border-red-200 p-6">
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-error-border)] p-6">
               <div className="flex items-center justify-between mb-2">
-                <CrossCircledIcon className="w-8 h-8 text-red-500" />
-                <span className="text-3xl font-bold text-red-600">
+                <CrossCircledIcon className="w-8 h-8 text-[color:var(--color-error)]" />
+                <span className="text-3xl font-bold text-[color:var(--color-error)]">
                   {slaMetrics.breached}
                 </span>
               </div>
-              <p className="text-sm font-medium text-gray-700">Breached</p>
-              <p className="text-xs text-gray-500 mt-1">Past SLA deadline</p>
+              <p className="text-sm font-medium text-[color:var(--color-foreground)]">Breached</p>
+              <p className="text-xs text-[color:var(--color-muted)] mt-1">Past SLA deadline</p>
             </div>
           </div>
 
           {/* Assignee Load Distribution */}
-          <div className="bg-white rounded-lg border border-purple-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <BarChartIcon className="w-5 h-5 text-purple-600" />
+          <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+            <h2 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4 flex items-center gap-2">
+              <BarChartIcon className="w-5 h-5 text-[color:var(--color-primary)]" />
               Case Load Distribution
             </h2>
             <div className="space-y-3">
               {assignees.map(assignee => (
-                <div key={assignee.assigneeName} className="border border-gray-200 rounded-lg p-4">
+                <div key={assignee.assigneeName} className="border border-[color:var(--color-border)] rounded-lg p-4">
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
-                      <PersonIcon className="w-5 h-5 text-gray-400" />
+                      <PersonIcon className="w-5 h-5 text-[color:var(--color-muted)]" />
                       <div>
-                        <p className="font-semibold text-gray-900">
+                        <p className="font-semibold text-[color:var(--color-foreground)]">
                           {assignee.assigneeName}
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-[color:var(--color-muted)]">
                           {assignee.activeCases} active cases • Avg {assignee.avgResolutionDays}d resolution
                         </p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="text-right">
-                        <p className="text-sm font-semibold text-gray-700">
+                        <p className="text-sm font-semibold text-[color:var(--color-foreground)]">
                           {assignee.capacity}% capacity
                         </p>
                         <span
                           className={`text-xs font-medium px-2 py-1 rounded ${
                             assignee.workload === 'UNDER'
-                              ? 'bg-blue-100 text-blue-700'
+                              ? 'bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)]'
                               : assignee.workload === 'OPTIMAL'
-                              ? 'bg-green-100 text-green-700'
+                              ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]'
                               : assignee.workload === 'HIGH'
-                              ? 'bg-orange-100 text-orange-700'
-                              : 'bg-red-100 text-red-700'
+                              ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]'
+                              : 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]'
                           }`}
                         >
                           {assignee.workload}
@@ -196,32 +196,32 @@ export default function CaseSLAPage() {
                   </div>
 
                   {/* Capacity Bar */}
-                  <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                  <div className="w-full bg-[color:var(--color-border)] rounded-full h-2 mb-2">
                     <div
                       className={`h-2 rounded-full transition-all ${
                         assignee.workload === 'UNDER'
-                          ? 'bg-blue-500'
+                          ? 'bg-[color:var(--color-surface-alt)]0'
                           : assignee.workload === 'OPTIMAL'
-                          ? 'bg-green-500'
+                          ? 'bg-transparent'
                           : assignee.workload === 'HIGH'
-                          ? 'bg-orange-500'
-                          : 'bg-red-500'
+                          ? 'bg-[color:var(--color-warning)]'
+                          : 'bg-transparent'
                       }`}
                       style={{ width: `${Math.min(100, assignee.capacity)}%` }}
                     />
                   </div>
 
                   {/* Stats */}
-                  <div className="flex items-center gap-6 text-xs text-gray-600">
+                  <div className="flex items-center gap-6 text-xs text-[color:var(--color-muted)]">
                     <span>{assignee.urgentCases} urgent</span>
                     <span>{assignee.highPriorityCases} high priority</span>
                     {assignee.atRiskCases > 0 && (
-                      <span className="text-orange-600 font-medium">
+                      <span className="text-[color:var(--color-warning)] font-medium">
                         {assignee.atRiskCases} at risk
                       </span>
                     )}
                     {assignee.breachedCases > 0 && (
-                      <span className="text-red-600 font-medium">
+                      <span className="text-[color:var(--color-error)] font-medium">
                         {assignee.breachedCases} breached
                       </span>
                     )}
@@ -232,32 +232,32 @@ export default function CaseSLAPage() {
           </div>
 
           {/* Optimization Suggestion */}
-          <div className="bg-gradient-to-r from-purple-50 to-fuchsia-50 rounded-lg border border-purple-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-              <LightningBoltIcon className="w-5 h-5 text-purple-600" />
+          <div className="bg-[color:var(--color-surface-alt)] rounded-lg border border-[color:var(--color-border)] p-6">
+            <h2 className="text-lg font-bold text-[color:var(--color-foreground)] mb-3 flex items-center gap-2">
+              <LightningBoltIcon className="w-5 h-5 text-[color:var(--color-primary)]" />
               Load Optimization Suggestion
             </h2>
-            <div className="bg-white rounded-lg border border-purple-200 p-4">
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-4">
               <div className="flex items-start gap-3">
-                <TargetIcon className="w-6 h-6 text-purple-600 flex-none mt-1" />
+                <TargetIcon className="w-6 h-6 text-[color:var(--color-primary)] flex-none mt-1" />
                 <div className="flex-1">
-                  <p className="font-semibold text-gray-900 mb-2">
+                  <p className="font-semibold text-[color:var(--color-foreground)] mb-2">
                     For next urgent case, assign to:{' '}
-                    <span className="text-purple-600">
+                    <span className="text-[color:var(--color-primary)]">
                       {optimizationSuggestion.assignee}
                     </span>
                   </p>
-                  <p className="text-sm text-gray-600 mb-2">
+                  <p className="text-sm text-[color:var(--color-muted)] mb-2">
                     {optimizationSuggestion.reason}
                   </p>
                   <div className="flex items-center gap-2">
-                    <div className="flex-1 bg-gray-200 rounded-full h-2">
+                    <div className="flex-1 bg-[color:var(--color-border)] rounded-full h-2">
                       <div
-                        className="bg-purple-600 h-2 rounded-full"
+                        className="bg-[color:var(--color-primary)] h-2 rounded-full"
                         style={{ width: `${optimizationSuggestion.confidence}%` }}
                       />
                     </div>
-                    <span className="text-xs font-medium text-gray-600">
+                    <span className="text-xs font-medium text-[color:var(--color-muted)]">
                       {optimizationSuggestion.confidence}% confidence
                     </span>
                   </div>
@@ -267,9 +267,9 @@ export default function CaseSLAPage() {
           </div>
 
           {/* At-Risk and Breached Cases */}
-          <div className="bg-white rounded-lg border border-purple-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <ExclamationTriangleIcon className="w-5 h-5 text-orange-600" />
+          <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+            <h2 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4 flex items-center gap-2">
+              <ExclamationTriangleIcon className="w-5 h-5 text-[color:var(--color-warning)]" />
               Priority Cases (At-Risk & Breached)
             </h2>
             <div className="space-y-2">
@@ -281,8 +281,8 @@ export default function CaseSLAPage() {
                     key={c.id}
                     className={`border rounded-lg p-4 ${
                       sla.status === 'BREACHED'
-                        ? 'border-red-200 bg-red-50'
-                        : 'border-orange-200 bg-orange-50'
+                        ? 'border-[color:var(--color-error-border)] bg-[color:var(--color-error-bg)]'
+                        : 'border-[color:var(--color-warning-border)] bg-[color:var(--color-warning-bg)]'
                     }`}
                   >
                     <div className="flex items-start justify-between">
@@ -291,30 +291,30 @@ export default function CaseSLAPage() {
                           <span
                             className={`text-xs font-semibold px-2 py-1 rounded ${
                               sla.status === 'BREACHED'
-                                ? 'bg-red-100 text-red-700'
-                                : 'bg-orange-100 text-orange-700'
+                                ? 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]'
+                                : 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]'
                             }`}
                           >
                             {sla.status}
                           </span>
-                          <span className="text-xs font-medium text-gray-600">
+                          <span className="text-xs font-medium text-[color:var(--color-muted)]">
                             {c.caseNumber}
                           </span>
-                          <span className="text-xs text-gray-500">•</span>
-                          <span className="text-xs text-gray-500">{c.type}</span>
+                          <span className="text-xs text-[color:var(--color-muted)]">•</span>
+                          <span className="text-xs text-[color:var(--color-muted)]">{c.type}</span>
                           {sla.shouldEscalate && (
                             <>
-                              <span className="text-xs text-gray-500">•</span>
-                              <span className="text-xs font-medium text-red-600">
+                              <span className="text-xs text-[color:var(--color-muted)]">•</span>
+                              <span className="text-xs font-medium text-[color:var(--color-error)]">
                                 AUTO-ESCALATE
                               </span>
                             </>
                           )}
                         </div>
-                        <p className="font-semibold text-gray-900 text-sm mb-1">
+                        <p className="font-semibold text-[color:var(--color-foreground)] text-sm mb-1">
                           {c.title}
                         </p>
-                        <div className="flex items-center gap-4 text-xs text-gray-600">
+                        <div className="flex items-center gap-4 text-xs text-[color:var(--color-muted)]">
                           <span className="flex items-center gap-1">
                             <PersonIcon className="w-3 h-3" />
                             {c.assignedTo}
@@ -324,7 +324,7 @@ export default function CaseSLAPage() {
                             {sla.daysElapsed} / {sla.slaPolicy.targetResolutionDays} days
                           </span>
                           <span className={`font-medium ${
-                            sla.status === 'BREACHED' ? 'text-red-600' : 'text-orange-600'
+                            sla.status === 'BREACHED' ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-warning)]'
                           }`}>
                             {sla.daysRemaining > 0
                               ? `${sla.daysRemaining}d remaining`
@@ -333,15 +333,15 @@ export default function CaseSLAPage() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-gray-900 mb-1">
+                        <div className="text-2xl font-bold text-[color:var(--color-foreground)] mb-1">
                           {Math.round(sla.percentElapsed)}%
                         </div>
-                        <div className="w-24 bg-gray-200 rounded-full h-2">
+                        <div className="w-24 bg-[color:var(--color-border)] rounded-full h-2">
                           <div
                             className={`h-2 rounded-full ${
                               sla.status === 'BREACHED'
-                                ? 'bg-red-600'
-                                : 'bg-orange-600'
+                                ? 'bg-[color:var(--color-error)]'
+                                : 'bg-[color:var(--color-warning)]'
                             }`}
                             style={{ width: `${Math.min(100, sla.percentElapsed)}%` }}
                           />
@@ -354,66 +354,66 @@ export default function CaseSLAPage() {
           </div>
 
           {/* SLA Policy Reference */}
-          <div className="bg-white rounded-lg border border-purple-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <InfoCircledIcon className="w-5 h-5 text-blue-600" />
+          <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+            <h2 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4 flex items-center gap-2">
+              <InfoCircledIcon className="w-5 h-5 text-[color:var(--color-info)]" />
               SLA Policy Reference
             </h2>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
-                <thead className="bg-purple-50 border-b border-purple-200">
+                <thead className="bg-[color:var(--color-surface-alt)] border-b border-[color:var(--color-border)]">
                   <tr>
-                    <th className="text-left px-4 py-3 font-semibold text-gray-700">
+                    <th className="text-left px-4 py-3 font-semibold text-[color:var(--color-foreground)]">
                       Case Type
                     </th>
-                    <th className="text-left px-4 py-3 font-semibold text-gray-700">
+                    <th className="text-left px-4 py-3 font-semibold text-[color:var(--color-foreground)]">
                       Priority
                     </th>
-                    <th className="text-center px-4 py-3 font-semibold text-gray-700">
+                    <th className="text-center px-4 py-3 font-semibold text-[color:var(--color-foreground)]">
                       Target Days
                     </th>
-                    <th className="text-center px-4 py-3 font-semibold text-gray-700">
+                    <th className="text-center px-4 py-3 font-semibold text-[color:var(--color-foreground)]">
                       Warning at
                     </th>
-                    <th className="text-center px-4 py-3 font-semibold text-gray-700">
+                    <th className="text-center px-4 py-3 font-semibold text-[color:var(--color-foreground)]">
                       Escalate at
                     </th>
-                    <th className="text-left px-4 py-3 font-semibold text-gray-700">
+                    <th className="text-left px-4 py-3 font-semibold text-[color:var(--color-foreground)]">
                       Description
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {SLA_POLICIES.map(policy => (
-                    <tr key={policy.id} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 text-gray-900">
+                    <tr key={policy.id} className="hover:bg-[color:var(--color-surface-alt)]">
+                      <td className="px-4 py-3 text-[color:var(--color-foreground)]">
                         {policy.caseType.replace(/_/g, ' ')}
                       </td>
                       <td className="px-4 py-3">
                         <span
                           className={`px-2 py-1 rounded text-xs font-medium ${
                             policy.priority === 'URGENT'
-                              ? 'bg-red-100 text-red-700'
+                              ? 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]'
                               : policy.priority === 'HIGH'
-                              ? 'bg-orange-100 text-orange-700'
+                              ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]'
                               : policy.priority === 'MEDIUM'
-                              ? 'bg-blue-100 text-blue-700'
-                              : 'bg-gray-100 text-gray-700'
+                              ? 'bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)]'
+                              : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]'
                           }`}
                         >
                           {policy.priority}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-center font-semibold text-gray-900">
+                      <td className="px-4 py-3 text-center font-semibold text-[color:var(--color-foreground)]">
                         {policy.targetResolutionDays}d
                       </td>
-                      <td className="px-4 py-3 text-center text-gray-600">
+                      <td className="px-4 py-3 text-center text-[color:var(--color-muted)]">
                         {policy.warningThresholdPercent}%
                       </td>
-                      <td className="px-4 py-3 text-center text-gray-600">
+                      <td className="px-4 py-3 text-center text-[color:var(--color-muted)]">
                         {policy.escalationThresholdPercent}%
                       </td>
-                      <td className="px-4 py-3 text-gray-600 text-xs">
+                      <td className="px-4 py-3 text-[color:var(--color-muted)] text-xs">
                         {policy.description}
                       </td>
                     </tr>

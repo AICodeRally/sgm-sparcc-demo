@@ -75,15 +75,15 @@ export default function HenryScheinGaps() {
   };
 
   const getPriorityColor = (priority: string) => {
-    if (priority === 'CRITICAL') return 'bg-red-100 text-red-800 border-red-300';
-    if (priority === 'HIGH') return 'bg-orange-100 text-orange-800 border-orange-300';
-    return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+    if (priority === 'CRITICAL') return 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]';
+    if (priority === 'HIGH') return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
+    return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <p className="text-gray-600">Loading gaps...</p>
+      <div className="min-h-screen flex items-center justify-center bg-[color:var(--color-surface-alt)]">
+        <p className="text-[color:var(--color-muted)]">Loading gaps...</p>
       </div>
     );
   }
@@ -96,26 +96,26 @@ export default function HenryScheinGaps() {
         title="Henry Schein - Gap Analysis"
         description="Critical gaps, warnings, and recommendations"
       />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[color:var(--color-surface-alt)]">
         {/* Header */}
-        <div className="bg-white border-b border-purple-200 shadow-sm sticky top-0 z-10">
+        <div className="bg-[color:var(--color-surface)] border-b border-[color:var(--color-border)] shadow-sm sticky top-0 z-10">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Link
                   href="/henryschein"
-                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+                  className="flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)] transition-colors"
                 >
                   <ArrowLeftIcon className="w-4 h-4" />
                   Back to Dashboard
                 </Link>
-                <div className="h-6 w-px bg-gray-300"></div>
+                <div className="h-6 w-px bg-[color:var(--color-border)]"></div>
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-                    <ExclamationTriangleIcon className="w-6 h-6 text-red-600" />
+                  <h1 className="text-2xl font-bold text-[color:var(--color-foreground)] flex items-center gap-3">
+                    <ExclamationTriangleIcon className="w-6 h-6 text-[color:var(--color-error)]" />
                     Critical Policy Gaps
                   </h1>
-                  <p className="text-sm text-gray-600">{gaps.length} total gaps identified</p>
+                  <p className="text-sm text-[color:var(--color-muted)]">{gaps.length} total gaps identified</p>
                 </div>
               </div>
             </div>
@@ -124,9 +124,9 @@ export default function HenryScheinGaps() {
 
       <div className="max-w-7xl mx-auto px-6 py-6">
         {/* Filters */}
-        <div className="mb-6 bg-white rounded-lg border border-purple-200 p-4 shadow-sm">
+        <div className="mb-6 bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-4 shadow-sm">
           <div className="flex items-center gap-4">
-            <span className="text-sm font-medium text-gray-700">Filter by coverage level:</span>
+            <span className="text-sm font-medium text-[color:var(--color-foreground)]">Filter by coverage level:</span>
             <div className="flex gap-2">
               {(['ALL', 'NO', 'LIMITED'] as const).map((filter) => (
                 <button
@@ -134,8 +134,8 @@ export default function HenryScheinGaps() {
                   onClick={() => setFilterPriority(filter)}
                   className={`px-3 py-1 text-sm font-medium rounded-md transition-all ${
                     filterPriority === filter
-                      ? 'bg-red-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-[color:var(--color-error)] text-white'
+                      : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-border)]'
                   }`}
                 >
                   {filter} {filter !== 'ALL' && `(${gaps.filter((g) => g.coverage === filter).length})`}
@@ -147,74 +147,74 @@ export default function HenryScheinGaps() {
 
         {/* Summary Stats */}
         <div className="grid grid-cols-3 gap-6 mb-6">
-          <div className="bg-red-50 border-2 border-red-200 rounded-lg p-6">
-            <p className="text-sm font-medium text-red-900">NO Coverage Gaps</p>
-            <p className="text-4xl font-bold text-red-600 mt-2">
+          <div className="bg-[color:var(--color-error-bg)] border-2 border-[color:var(--color-error-border)] rounded-lg p-6">
+            <p className="text-sm font-medium text-[color:var(--color-error)]">NO Coverage Gaps</p>
+            <p className="text-4xl font-bold text-[color:var(--color-error)] mt-2">
               {gaps.filter((g) => g.coverage === 'NO').length}
             </p>
-            <p className="text-xs text-red-700 mt-2">Requires immediate policy creation</p>
+            <p className="text-xs text-[color:var(--color-error)] mt-2">Requires immediate policy creation</p>
           </div>
-          <div className="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-6">
-            <p className="text-sm font-medium text-yellow-900">LIMITED Coverage Gaps</p>
-            <p className="text-4xl font-bold text-yellow-600 mt-2">
+          <div className="bg-[color:var(--color-warning-bg)] border-2 border-[color:var(--color-warning-border)] rounded-lg p-6">
+            <p className="text-sm font-medium text-[color:var(--color-warning)]">LIMITED Coverage Gaps</p>
+            <p className="text-4xl font-bold text-[color:var(--color-warning)] mt-2">
               {gaps.filter((g) => g.coverage === 'LIMITED').length}
             </p>
-            <p className="text-xs text-yellow-700 mt-2">Needs enhancement with details/workflows</p>
+            <p className="text-xs text-[color:var(--color-warning)] mt-2">Needs enhancement with details/workflows</p>
           </div>
-          <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-6">
-            <p className="text-sm font-medium text-blue-900">CRITICAL Priority Gaps</p>
-            <p className="text-4xl font-bold text-blue-600 mt-2">
+          <div className="bg-[color:var(--color-surface-alt)] border-2 border-[color:var(--color-info-border)] rounded-lg p-6">
+            <p className="text-sm font-medium text-[color:var(--color-info)]">CRITICAL Priority Gaps</p>
+            <p className="text-4xl font-bold text-[color:var(--color-info)] mt-2">
               {gaps.filter((g) => g.priority === 'CRITICAL').length}
             </p>
-            <p className="text-xs text-blue-700 mt-2">Must address in Q1 2026</p>
+            <p className="text-xs text-[color:var(--color-primary)] mt-2">Must address in Q1 2026</p>
           </div>
         </div>
 
         {/* Gaps List */}
-        <div className="bg-white rounded-lg border border-purple-200 shadow-sm overflow-hidden">
+        <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
+              <thead className="bg-[color:var(--color-surface-alt)]">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                     Plan
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                     Policy Area
                   </th>
-                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                     Coverage
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                     What's Missing
                   </th>
-                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-center text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                     Priority
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider">
                     BHG Policy
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
+              <tbody className="bg-[color:var(--color-surface)] divide-y divide-gray-200">
                 {filteredGaps.map((gap, idx) => (
-                  <tr key={idx} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                  <tr key={idx} className="hover:bg-[color:var(--color-surface-alt)]">
+                    <td className="px-6 py-4 text-sm font-medium text-[color:var(--color-foreground)]">
                       {gap.plan}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{gap.policyArea}</td>
+                    <td className="px-6 py-4 text-sm text-[color:var(--color-foreground)]">{gap.policyArea}</td>
                     <td className="px-6 py-4 text-center">
                       <span
                         className={`px-2 py-1 text-xs font-bold rounded ${
                           gap.coverage === 'NO'
-                            ? 'bg-red-100 text-red-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                            ? 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]'
+                            : 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]'
                         }`}
                       >
                         {gap.coverage}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700 max-w-md">
+                    <td className="px-6 py-4 text-sm text-[color:var(--color-foreground)] max-w-md">
                       {gap.details}
                     </td>
                     <td className="px-6 py-4 text-center">
@@ -226,7 +226,7 @@ export default function HenryScheinGaps() {
                         {gap.priority}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{gap.bhgPolicy}</td>
+                    <td className="px-6 py-4 text-sm text-[color:var(--color-foreground)]">{gap.bhgPolicy}</td>
                   </tr>
                 ))}
               </tbody>
@@ -235,15 +235,15 @@ export default function HenryScheinGaps() {
 
           {filteredGaps.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-500">No gaps match the selected filter</p>
+              <p className="text-[color:var(--color-muted)]">No gaps match the selected filter</p>
             </div>
           )}
         </div>
 
         {/* Recommended Actions */}
-        <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h3 className="text-lg font-bold text-blue-900 mb-4">Recommended Actions</h3>
-          <ul className="space-y-2 text-sm text-blue-800">
+        <div className="mt-6 bg-[color:var(--color-surface-alt)] border border-[color:var(--color-info-border)] rounded-lg p-6">
+          <h3 className="text-lg font-bold text-[color:var(--color-info)] mb-4">Recommended Actions</h3>
+          <ul className="space-y-2 text-sm text-[color:var(--color-info)]">
             <li className="flex items-start gap-2">
               <span className="font-bold">1.</span>
               <span>

@@ -53,29 +53,29 @@ export default function DocumentDetailPage() {
 
   const getStatusColor = (status: string) => {
     const colors: Record<string, string> = {
-      DRAFT: 'bg-gray-100 text-gray-800',
-      UNDER_REVIEW: 'bg-yellow-100 text-yellow-800',
-      PENDING_APPROVAL: 'bg-orange-100 text-orange-800',
-      APPROVED: 'bg-blue-100 text-blue-800',
-      ACTIVE: 'bg-green-100 text-green-800',
-      ARCHIVED: 'bg-red-100 text-red-800',
+      DRAFT: 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]',
+      UNDER_REVIEW: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]',
+      PENDING_APPROVAL: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]',
+      APPROVED: 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)]',
+      ACTIVE: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]',
+      ARCHIVED: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]',
     };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+    return colors[status] || 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-500">Loading document...</p>
+      <div className="min-h-screen bg-[color:var(--color-surface-alt)] flex items-center justify-center">
+        <p className="text-[color:var(--color-muted)]">Loading document...</p>
       </div>
     );
   }
 
   if (error || !document) {
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
-        <p className="text-red-500 mb-4">{error || 'Document not found'}</p>
-        <Link href="/documents" className="text-blue-600 hover:text-blue-700">
+      <div className="min-h-screen bg-[color:var(--color-surface-alt)] flex flex-col items-center justify-center">
+        <p className="text-[color:var(--color-error)] mb-4">{error || 'Document not found'}</p>
+        <Link href="/documents" className="text-[color:var(--color-info)] hover:text-[color:var(--color-primary)]">
           Back to Documents
         </Link>
       </div>
@@ -86,23 +86,23 @@ export default function DocumentDetailPage() {
   const markdownContent = document.metadata?.markdown_content || '';
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[color:var(--color-surface-alt)]">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10">
+      <div className="bg-[color:var(--color-surface)] border-b border-[color:var(--color-border)] shadow-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-6 py-6">
-          <Link href="/documents" className="text-blue-600 hover:text-blue-700 text-sm mb-4 inline-block">
+          <Link href="/documents" className="text-[color:var(--color-info)] hover:text-[color:var(--color-primary)] text-sm mb-4 inline-block">
             ← Back to Documents
           </Link>
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">{document.title}</h1>
-              <p className="text-gray-600 mt-1">{document.documentCode}</p>
+              <h1 className="text-3xl font-bold text-[color:var(--color-foreground)]">{document.title}</h1>
+              <p className="text-[color:var(--color-muted)] mt-1">{document.documentCode}</p>
             </div>
             <div className="flex gap-3">
-              <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
+              <button className="px-4 py-2 border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)]">
                 Edit
               </button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              <button className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)]">
                 Download
               </button>
             </div>
@@ -114,23 +114,23 @@ export default function DocumentDetailPage() {
         <div className="grid grid-cols-3 gap-6">
           {/* Main Content */}
           <div className="col-span-2">
-            <div className="bg-white rounded-lg border border-gray-200 p-8">
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-8">
               {document.description && (
-                <p className="text-gray-600 mb-6 italic">{document.description}</p>
+                <p className="text-[color:var(--color-muted)] mb-6 italic">{document.description}</p>
               )}
 
               {markdownContent ? (
                 <div className="prose prose-sm max-w-none">
-                  <div className="whitespace-pre-wrap font-mono text-sm text-gray-700 bg-gray-50 p-4 rounded">
+                  <div className="whitespace-pre-wrap font-mono text-sm text-[color:var(--color-foreground)] bg-[color:var(--color-surface-alt)] p-4 rounded">
                     {markdownContent.slice(0, 500)}...
                   </div>
-                  <p className="text-center text-gray-500 mt-4">
+                  <p className="text-center text-[color:var(--color-muted)] mt-4">
                     <em>Preview truncated. Download full document to see complete content.</em>
                   </p>
                 </div>
               ) : (
                 <div className="text-center py-12">
-                  <p className="text-gray-500">No content available for preview</p>
+                  <p className="text-[color:var(--color-muted)]">No content available for preview</p>
                 </div>
               )}
             </div>
@@ -139,11 +139,11 @@ export default function DocumentDetailPage() {
           {/* Right Sidebar - Metadata */}
           <div className="space-y-6">
             {/* Status & Metadata */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Details</h2>
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+              <h2 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">Details</h2>
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-gray-500 uppercase">Status</label>
+                  <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Status</label>
                   <div className="mt-1">
                     <span className={`px-3 py-1 rounded text-sm font-medium ${getStatusColor(document.status)}`}>
                       {document.status}
@@ -151,54 +151,54 @@ export default function DocumentDetailPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-gray-500 uppercase">Type</label>
-                  <p className="mt-1 text-sm text-gray-900">{document.documentType}</p>
+                  <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Type</label>
+                  <p className="mt-1 text-sm text-[color:var(--color-foreground)]">{document.documentType}</p>
                 </div>
                 {document.category && (
                   <div>
-                    <label className="text-xs font-medium text-gray-500 uppercase">Category</label>
-                    <p className="mt-1 text-sm text-gray-900">{document.category}</p>
+                    <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Category</label>
+                    <p className="mt-1 text-sm text-[color:var(--color-foreground)]">{document.category}</p>
                   </div>
                 )}
                 <div>
-                  <label className="text-xs font-medium text-gray-500 uppercase">Version</label>
-                  <p className="mt-1 text-sm text-gray-900">{document.version}</p>
+                  <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Version</label>
+                  <p className="mt-1 text-sm text-[color:var(--color-foreground)]">{document.version}</p>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-gray-500 uppercase">Owner</label>
-                  <p className="mt-1 text-sm text-gray-900">{document.owner}</p>
+                  <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Owner</label>
+                  <p className="mt-1 text-sm text-[color:var(--color-foreground)]">{document.owner}</p>
                 </div>
               </div>
             </div>
 
             {/* Dates */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Lifecycle</h2>
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+              <h2 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">Lifecycle</h2>
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs font-medium text-gray-500 uppercase">Created</label>
-                  <p className="mt-1 text-sm text-gray-900">
+                  <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Created</label>
+                  <p className="mt-1 text-sm text-[color:var(--color-foreground)]">
                     {new Date(document.createdAt).toLocaleDateString()}
                   </p>
                 </div>
                 <div>
-                  <label className="text-xs font-medium text-gray-500 uppercase">Last Updated</label>
-                  <p className="mt-1 text-sm text-gray-900">
+                  <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Last Updated</label>
+                  <p className="mt-1 text-sm text-[color:var(--color-foreground)]">
                     {new Date(document.lastUpdated).toLocaleDateString()}
                   </p>
                 </div>
                 {document.effectiveDate && (
                   <div>
-                    <label className="text-xs font-medium text-gray-500 uppercase">Effective Date</label>
-                    <p className="mt-1 text-sm text-gray-900">
+                    <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Effective Date</label>
+                    <p className="mt-1 text-sm text-[color:var(--color-foreground)]">
                       {new Date(document.effectiveDate).toLocaleDateString()}
                     </p>
                   </div>
                 )}
                 {document.expirationDate && (
                   <div>
-                    <label className="text-xs font-medium text-gray-500 uppercase">Expiration Date</label>
-                    <p className="mt-1 text-sm text-gray-900">
+                    <label className="text-xs font-medium text-[color:var(--color-muted)] uppercase">Expiration Date</label>
+                    <p className="mt-1 text-sm text-[color:var(--color-foreground)]">
                       {new Date(document.expirationDate).toLocaleDateString()}
                     </p>
                   </div>
@@ -208,11 +208,11 @@ export default function DocumentDetailPage() {
 
             {/* Tags */}
             {document.tags && document.tags.length > 0 && (
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Tags</h2>
+              <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+                <h2 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">Tags</h2>
                 <div className="flex flex-wrap gap-2">
                   {document.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">
+                    <span key={tag} className="px-3 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded-full text-sm">
                       {tag}
                     </span>
                   ))}
@@ -221,16 +221,16 @@ export default function DocumentDetailPage() {
             )}
 
             {/* Actions */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Actions</h2>
+            <div className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+              <h2 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">Actions</h2>
               <div className="space-y-2">
-                <button className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">
+                <button className="w-full px-4 py-2 border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] text-sm">
                   View History
                 </button>
-                <button className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">
+                <button className="w-full px-4 py-2 border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] text-sm">
                   Submit for Review
                 </button>
-                <button className="w-full px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 text-sm">
+                <button className="w-full px-4 py-2 border border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] text-sm">
                   Create New Version
                 </button>
               </div>

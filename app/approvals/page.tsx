@@ -47,11 +47,11 @@ export default function ApprovalsPage() {
   // Status badge styling
   const getStatusBadge = (status: string) => {
     const styles: Record<string, { bg: string; text: string; icon: any }> = {
-      PENDING: { bg: 'bg-gray-100', text: 'text-gray-700', icon: ClockIcon },
-      IN_REVIEW: { bg: 'bg-blue-100', text: 'text-blue-700', icon: UpdateIcon },
-      APPROVED: { bg: 'bg-green-100', text: 'text-green-700', icon: CheckCircledIcon },
-      REJECTED: { bg: 'bg-red-100', text: 'text-red-700', icon: CrossCircledIcon },
-      NEEDS_INFO: { bg: 'bg-yellow-100', text: 'text-yellow-700', icon: ChatBubbleIcon },
+      PENDING: { bg: 'bg-[color:var(--color-surface-alt)]', text: 'text-[color:var(--color-foreground)]', icon: ClockIcon },
+      IN_REVIEW: { bg: 'bg-[color:var(--color-info-bg)]', text: 'text-[color:var(--color-primary)]', icon: UpdateIcon },
+      APPROVED: { bg: 'bg-[color:var(--color-success-bg)]', text: 'text-[color:var(--color-success)]', icon: CheckCircledIcon },
+      REJECTED: { bg: 'bg-[color:var(--color-error-bg)]', text: 'text-[color:var(--color-error)]', icon: CrossCircledIcon },
+      NEEDS_INFO: { bg: 'bg-[color:var(--color-warning-bg)]', text: 'text-[color:var(--color-warning)]', icon: ChatBubbleIcon },
     };
     return styles[status] || styles.PENDING;
   };
@@ -59,9 +59,9 @@ export default function ApprovalsPage() {
   // SLA status styling
   const getSLABadge = (slaStatus: string) => {
     const styles: Record<string, { bg: string; text: string; border: string }> = {
-      ON_TIME: { bg: 'bg-green-50', text: 'text-green-700', border: 'border-green-200' },
-      AT_RISK: { bg: 'bg-orange-50', text: 'text-orange-700', border: 'border-orange-200' },
-      OVERDUE: { bg: 'bg-red-50', text: 'text-red-700', border: 'border-red-200' },
+      ON_TIME: { bg: 'bg-[color:var(--color-success-bg)]', text: 'text-[color:var(--color-success)]', border: 'border-[color:var(--color-success-border)]' },
+      AT_RISK: { bg: 'bg-[color:var(--color-warning-bg)]', text: 'text-[color:var(--color-warning)]', border: 'border-[color:var(--color-warning-border)]' },
+      OVERDUE: { bg: 'bg-[color:var(--color-error-bg)]', text: 'text-[color:var(--color-error)]', border: 'border-[color:var(--color-error-border)]' },
     };
     return styles[slaStatus] || styles.ON_TIME;
   };
@@ -69,10 +69,10 @@ export default function ApprovalsPage() {
   // Priority badge
   const getPriorityBadge = (priority: string) => {
     const styles: Record<string, { bg: string; text: string }> = {
-      LOW: { bg: 'bg-gray-100', text: 'text-gray-600' },
-      MEDIUM: { bg: 'bg-blue-100', text: 'text-blue-700' },
-      HIGH: { bg: 'bg-orange-100', text: 'text-orange-700' },
-      URGENT: { bg: 'bg-red-100', text: 'text-red-700' },
+      LOW: { bg: 'bg-[color:var(--color-surface-alt)]', text: 'text-[color:var(--color-muted)]' },
+      MEDIUM: { bg: 'bg-[color:var(--color-info-bg)]', text: 'text-[color:var(--color-primary)]' },
+      HIGH: { bg: 'bg-[color:var(--color-warning-bg)]', text: 'text-[color:var(--color-warning)]' },
+      URGENT: { bg: 'bg-[color:var(--color-error-bg)]', text: 'text-[color:var(--color-error)]' },
     };
     return styles[priority] || styles.MEDIUM;
   };
@@ -81,27 +81,27 @@ export default function ApprovalsPage() {
   const leftNav = (
     <div className="p-4">
       <div className="mb-6">
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider px-3 mb-3">
           Quick Stats
         </h2>
         <div className="space-y-2 px-3">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">Pending</span>
-            <span className="font-semibold text-gray-900">{APPROVAL_STATS.pending}</span>
+            <span className="text-[color:var(--color-muted)]">Pending</span>
+            <span className="font-semibold text-[color:var(--color-foreground)]">{APPROVAL_STATS.pending}</span>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">In Review</span>
-            <span className="font-semibold text-blue-600">{APPROVAL_STATS.inReview}</span>
+            <span className="text-[color:var(--color-muted)]">In Review</span>
+            <span className="font-semibold text-[color:var(--color-info)]">{APPROVAL_STATS.inReview}</span>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <span className="text-gray-600">At Risk</span>
-            <span className="font-semibold text-orange-600">{APPROVAL_STATS.atRisk}</span>
+            <span className="text-[color:var(--color-muted)]">At Risk</span>
+            <span className="font-semibold text-[color:var(--color-warning)]">{APPROVAL_STATS.atRisk}</span>
           </div>
         </div>
       </div>
 
       <div className="mb-6">
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider px-3 mb-3">
           Status
         </h2>
         <div className="space-y-1">
@@ -111,8 +111,8 @@ export default function ApprovalsPage() {
               onClick={() => setFilterStatus(status)}
               className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
                 filterStatus === status
-                  ? 'bg-orange-50 text-orange-700 font-medium'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] font-medium'
+                  : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
               {status === 'all' ? 'All Statuses' : status.replace(/_/g, ' ')}
@@ -122,7 +122,7 @@ export default function ApprovalsPage() {
       </div>
 
       <div className="mb-6">
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-3 mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider px-3 mb-3">
           Committee
         </h2>
         <div className="space-y-1">
@@ -132,8 +132,8 @@ export default function ApprovalsPage() {
               onClick={() => setFilterCommittee(committee)}
               className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors ${
                 filterCommittee === committee
-                  ? 'bg-orange-50 text-orange-700 font-medium'
-                  : 'text-gray-700 hover:bg-gray-100'
+                  ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] font-medium'
+                  : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
               {committee === 'all' ? 'All Committees' : committee}
@@ -158,15 +158,15 @@ export default function ApprovalsPage() {
       )}
 
       {/* Toolbar */}
-      <div className="flex-none bg-white/90 backdrop-blur-sm border-b border-purple-200 px-4 py-3">
+      <div className="flex-none bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] px-4 py-3">
         <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-4 text-xs text-gray-500">
+          <div className="flex items-center gap-4 text-xs text-[color:var(--color-muted)]">
             <ModeContextBadge size="sm" />
             <span>{filteredApprovals.length} item{filteredApprovals.length !== 1 ? 's' : ''}</span>
             {filterStatus !== 'all' && <span>• Status: {filterStatus.replace(/_/g, ' ')}</span>}
             {filterCommittee !== 'all' && <span>• Committee: {filterCommittee}</span>}
             {demoFilter !== 'all' && (
-              <span className="text-orange-600 font-medium">
+              <span className="text-[color:var(--color-warning)] font-medium">
                 • Showing {demoFilter === 'demo-only' ? 'Demo Only' : 'Real Data Only'}
               </span>
             )}
@@ -184,9 +184,9 @@ export default function ApprovalsPage() {
       <div className="flex-1 overflow-y-auto divide-y divide-gray-200">
         {filteredApprovals.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center px-4">
-            <CheckCircledIcon className="w-12 h-12 text-gray-400 mb-3" />
-            <p className="text-sm font-medium text-gray-900 mb-1">No approvals found</p>
-            <p className="text-sm text-gray-500">Try adjusting your filters</p>
+            <CheckCircledIcon className="w-12 h-12 text-[color:var(--color-muted)] mb-3" />
+            <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-1">No approvals found</p>
+            <p className="text-sm text-[color:var(--color-muted)]">Try adjusting your filters</p>
           </div>
         ) : (
           filteredApprovals.map(approval => {
@@ -198,8 +198,8 @@ export default function ApprovalsPage() {
               <DemoHighlight key={approval.id} isDemo={approval.isDemo}>
                 <button
                   onClick={() => setSelectedApproval(approval)}
-                  className={`w-full text-left px-4 py-4 hover:bg-gray-50 transition-colors ${
-                    selectedApproval?.id === approval.id ? 'bg-orange-50' : ''
+                  className={`w-full text-left px-4 py-4 hover:bg-[color:var(--color-surface-alt)] transition-colors ${
+                    selectedApproval?.id === approval.id ? 'bg-[color:var(--color-warning-bg)]' : ''
                   }`}
                 >
                   <div className="flex items-start gap-3">
@@ -207,12 +207,12 @@ export default function ApprovalsPage() {
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <h3 className="text-sm font-semibold text-gray-900 truncate">
+                            <h3 className="text-sm font-semibold text-[color:var(--color-foreground)] truncate">
                               {approval.title}
                             </h3>
                             <DemoBadge isDemo={approval.isDemo} demoMetadata={approval.demoMetadata} size="sm" />
                           </div>
-                        <p className="text-xs text-gray-500 mt-0.5">
+                        <p className="text-xs text-[color:var(--color-muted)] mt-0.5">
                           {approval.type} • {approval.committee}
                           {approval.documentCode && ` • ${approval.documentCode}`}
                         </p>
@@ -228,11 +228,11 @@ export default function ApprovalsPage() {
                       </div>
                     </div>
 
-                    <p className="text-xs text-gray-600 line-clamp-2 mb-2">
+                    <p className="text-xs text-[color:var(--color-muted)] line-clamp-2 mb-2">
                       {approval.description}
                     </p>
 
-                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-4 text-xs text-[color:var(--color-muted)]">
                       <div className="flex items-center gap-1">
                         <PersonIcon className="w-3 h-3" />
                         {approval.requestedBy}
@@ -242,7 +242,7 @@ export default function ApprovalsPage() {
                         {new Date(approval.requestedAt).toLocaleDateString()}
                       </div>
                       {approval.amount && (
-                        <div className="flex items-center gap-1 font-medium text-gray-700">
+                        <div className="flex items-center gap-1 font-medium text-[color:var(--color-foreground)]">
                           ${(approval.amount / 1000).toFixed(0)}K
                         </div>
                       )}
@@ -251,13 +251,13 @@ export default function ApprovalsPage() {
                     {/* Progress & SLA */}
                     <div className="flex items-center gap-3 mt-3">
                       <div className="flex-1">
-                        <div className="flex items-center justify-between text-xs text-gray-500 mb-1">
+                        <div className="flex items-center justify-between text-xs text-[color:var(--color-muted)] mb-1">
                           <span>Step {approval.currentStep + 1} of {approval.totalSteps}</span>
                           <span>{approval.approvers.filter(a => a.status === 'APPROVED').length}/{approval.approvers.length} approved</span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                        <div className="w-full bg-[color:var(--color-border)] rounded-full h-1.5">
                           <div
-                            className="bg-orange-500 h-1.5 rounded-full transition-all"
+                            className="bg-[color:var(--color-warning)] h-1.5 rounded-full transition-all"
                             style={{ width: `${((approval.currentStep + 1) / approval.totalSteps) * 100}%` }}
                           />
                         </div>
@@ -281,18 +281,18 @@ export default function ApprovalsPage() {
   // Right Detail Pane - Approval details
   const rightDetail = selectedApproval ? (
     <div className="flex flex-col h-full">
-      <div className="flex-none p-4 border-b border-purple-200">
+      <div className="flex-none p-4 border-b border-[color:var(--color-border)]">
         <div className="flex items-start justify-between mb-3">
-          <h3 className="text-sm font-semibold text-gray-900">Approval Details</h3>
+          <h3 className="text-sm font-semibold text-[color:var(--color-foreground)]">Approval Details</h3>
           {selectedApproval.slaStatus === 'AT_RISK' && (
-            <ExclamationTriangleIcon className="w-5 h-5 text-orange-600" />
+            <ExclamationTriangleIcon className="w-5 h-5 text-[color:var(--color-warning)]" />
           )}
         </div>
         <div className="flex items-center gap-2">
           <span className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium ${getStatusBadge(selectedApproval.status).bg} ${getStatusBadge(selectedApproval.status).text}`}>
             {selectedApproval.status.replace(/_/g, ' ')}
           </span>
-          <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">
+          <span className="px-2 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded text-xs font-medium">
             {selectedApproval.committee}
           </span>
         </div>
@@ -301,14 +301,14 @@ export default function ApprovalsPage() {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Requestor */}
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+          <p className="text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
             Requested By
           </p>
           <div className="flex items-center gap-2">
-            <PersonIcon className="w-4 h-4 text-gray-400" />
-            <p className="text-sm text-gray-900">{selectedApproval.requestedBy}</p>
+            <PersonIcon className="w-4 h-4 text-[color:var(--color-muted)]" />
+            <p className="text-sm text-[color:var(--color-foreground)]">{selectedApproval.requestedBy}</p>
           </div>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-[color:var(--color-muted)] mt-1">
             {new Date(selectedApproval.requestedAt).toLocaleString()}
           </p>
         </div>
@@ -316,10 +316,10 @@ export default function ApprovalsPage() {
         {/* Amount */}
         {selectedApproval.amount && (
           <div>
-            <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+            <p className="text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Amount
             </p>
-            <p className="text-lg font-bold text-gray-900">
+            <p className="text-lg font-bold text-[color:var(--color-foreground)]">
               ${selectedApproval.amount.toLocaleString()}
             </p>
           </div>
@@ -328,18 +328,18 @@ export default function ApprovalsPage() {
         {/* Deal Info */}
         {selectedApproval.dealId && (
           <div>
-            <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+            <p className="text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Deal Information
             </p>
             <div className="space-y-1 text-sm">
               <div className="flex justify-between">
-                <span className="text-gray-600">Deal ID:</span>
-                <span className="text-gray-900 font-medium">{selectedApproval.dealId}</span>
+                <span className="text-[color:var(--color-muted)]">Deal ID:</span>
+                <span className="text-[color:var(--color-foreground)] font-medium">{selectedApproval.dealId}</span>
               </div>
               {selectedApproval.repName && (
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Rep:</span>
-                  <span className="text-gray-900 font-medium">{selectedApproval.repName}</span>
+                  <span className="text-[color:var(--color-muted)]">Rep:</span>
+                  <span className="text-[color:var(--color-foreground)] font-medium">{selectedApproval.repName}</span>
                 </div>
               )}
             </div>
@@ -349,12 +349,12 @@ export default function ApprovalsPage() {
         {/* Document */}
         {selectedApproval.documentCode && (
           <div>
-            <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+            <p className="text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Document
             </p>
             <Link
               href={`/documents/${selectedApproval.documentCode}`}
-              className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700"
+              className="flex items-center gap-2 text-sm text-[color:var(--color-info)] hover:text-[color:var(--color-primary)]"
             >
               <FileTextIcon className="w-4 h-4" />
               {selectedApproval.documentCode}
@@ -364,17 +364,17 @@ export default function ApprovalsPage() {
 
         {/* SLA */}
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+          <p className="text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
             SLA Status
           </p>
           <div className={`p-3 rounded-lg border ${getSLABadge(selectedApproval.slaStatus).bg} ${getSLABadge(selectedApproval.slaStatus).border}`}>
             <p className={`text-sm font-medium ${getSLABadge(selectedApproval.slaStatus).text}`}>
               {selectedApproval.slaStatus.replace(/_/g, ' ')}
             </p>
-            <p className="text-xs text-gray-600 mt-1">
+            <p className="text-xs text-[color:var(--color-muted)] mt-1">
               {selectedApproval.businessDaysRemaining} business days remaining
             </p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-[color:var(--color-muted)] mt-1">
               Due: {new Date(selectedApproval.dueDate).toLocaleDateString()}
             </p>
           </div>
@@ -382,24 +382,24 @@ export default function ApprovalsPage() {
 
         {/* Approvers */}
         <div>
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+          <p className="text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
             Approvers ({selectedApproval.approvers.filter(a => a.status === 'APPROVED').length}/{selectedApproval.approvers.length})
           </p>
           <div className="space-y-2">
             {selectedApproval.approvers.map(approver => (
               <div
                 key={approver.id}
-                className="p-3 bg-white border border-purple-200 rounded-lg"
+                className="p-3 bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900">{approver.name}</p>
-                    <p className="text-xs text-gray-500">{approver.role}</p>
+                    <p className="text-sm font-medium text-[color:var(--color-foreground)]">{approver.name}</p>
+                    <p className="text-xs text-[color:var(--color-muted)]">{approver.role}</p>
                   </div>
                   <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium ${
-                    approver.status === 'APPROVED' ? 'bg-green-100 text-green-700' :
-                    approver.status === 'REJECTED' ? 'bg-red-100 text-red-700' :
-                    'bg-gray-100 text-gray-700'
+                    approver.status === 'APPROVED' ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]' :
+                    approver.status === 'REJECTED' ? 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]' :
+                    'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]'
                   }`}>
                     {approver.status === 'APPROVED' && <CheckCircledIcon className="w-3 h-3" />}
                     {approver.status === 'REJECTED' && <CrossCircledIcon className="w-3 h-3" />}
@@ -408,12 +408,12 @@ export default function ApprovalsPage() {
                   </span>
                 </div>
                 {approver.decidedAt && (
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-[color:var(--color-muted)] mt-1">
                     {new Date(approver.decidedAt).toLocaleString()}
                   </p>
                 )}
                 {approver.comments && (
-                  <p className="text-xs text-gray-700 mt-2 p-2 bg-gray-50 rounded">
+                  <p className="text-xs text-[color:var(--color-foreground)] mt-2 p-2 bg-[color:var(--color-surface-alt)] rounded">
                     {approver.comments}
                   </p>
                 )}
@@ -425,14 +425,14 @@ export default function ApprovalsPage() {
         {/* CRB Decision Options */}
         {selectedApproval.type === 'WINDFALL' && selectedApproval.status === 'PENDING' && (
           <div>
-            <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
+            <p className="text-xs font-medium text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               CRB Decision Options
             </p>
             <div className="space-y-2">
               {CRB_WINDFALL_DECISIONS.map((option, idx) => (
-                <div key={option.id} className="p-2 bg-gray-50 rounded text-xs">
-                  <p className="font-medium text-gray-900">{idx + 1}. {option.name}</p>
-                  <p className="text-gray-600 mt-0.5">{option.description}</p>
+                <div key={option.id} className="p-2 bg-[color:var(--color-surface-alt)] rounded text-xs">
+                  <p className="font-medium text-[color:var(--color-foreground)]">{idx + 1}. {option.name}</p>
+                  <p className="text-[color:var(--color-muted)] mt-0.5">{option.description}</p>
                 </div>
               ))}
             </div>
@@ -442,14 +442,14 @@ export default function ApprovalsPage() {
 
       {/* Actions */}
       {selectedApproval.status === 'PENDING' && (
-        <div className="flex-none p-4 border-t border-purple-200 space-y-2">
-          <button className="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium text-sm">
+        <div className="flex-none p-4 border-t border-[color:var(--color-border)] space-y-2">
+          <button className="w-full px-4 py-2 bg-[color:var(--color-success)] text-white rounded-md hover:bg-[color:var(--color-success)] font-medium text-sm">
             Approve
           </button>
-          <button className="w-full px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 font-medium text-sm">
+          <button className="w-full px-4 py-2 bg-[color:var(--color-error)] text-white rounded-md hover:bg-[color:var(--color-error)] font-medium text-sm">
             Reject
           </button>
-          <button className="w-full px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 font-medium text-sm">
+          <button className="w-full px-4 py-2 bg-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-md hover:bg-[color:var(--color-border)] font-medium text-sm">
             Request More Info
           </button>
         </div>

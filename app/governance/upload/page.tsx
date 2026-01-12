@@ -56,27 +56,27 @@ export default function GovernanceUploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[color:var(--color-surface-alt)]">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-[color:var(--color-surface)] border-b border-[color:var(--color-border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-[color:var(--color-foreground)]">
               Governance Gap Analysis
             </h1>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-[color:var(--color-muted)]">
               Upload compensation plan documents to analyze policy coverage, detect gaps, and generate remediation patches
             </p>
           </div>
 
           {/* Tabs */}
-          <div className="mt-6 flex gap-4 border-b border-gray-200">
+          <div className="mt-6 flex gap-4 border-b border-[color:var(--color-border)]">
             <button
               onClick={() => setActiveTab('upload')}
               className={`flex items-center gap-2 px-4 py-2 border-b-2 transition-colors ${
                 activeTab === 'upload'
-                  ? 'border-blue-600 text-blue-600 font-medium'
-                  : 'border-transparent text-gray-600 hover:text-gray-900'
+                  ? 'border-[color:var(--color-info)] text-[color:var(--color-info)] font-medium'
+                  : 'border-transparent text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]'
               }`}
             >
               <FileText className="w-4 h-4" />
@@ -87,16 +87,16 @@ export default function GovernanceUploadPage() {
               disabled={!currentAnalysis}
               className={`flex items-center gap-2 px-4 py-2 border-b-2 transition-colors ${
                 activeTab === 'analysis'
-                  ? 'border-blue-600 text-blue-600 font-medium'
+                  ? 'border-[color:var(--color-info)] text-[color:var(--color-info)] font-medium'
                   : currentAnalysis
-                  ? 'border-transparent text-gray-600 hover:text-gray-900'
-                  : 'border-transparent text-gray-400 cursor-not-allowed'
+                  ? 'border-transparent text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]'
+                  : 'border-transparent text-[color:var(--color-muted)] cursor-not-allowed'
               }`}
             >
               <BarChart3 className="w-4 h-4" />
               Analysis
               {currentAnalysis && (
-                <span className="px-2 py-0.5 bg-blue-100 text-blue-800 text-xs rounded-full">
+                <span className="px-2 py-0.5 bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] text-xs rounded-full">
                   {currentAnalysis.result.total_gaps}
                 </span>
               )}
@@ -106,10 +106,10 @@ export default function GovernanceUploadPage() {
               disabled={!currentAnalysis}
               className={`flex items-center gap-2 px-4 py-2 border-b-2 transition-colors ${
                 activeTab === 'patches'
-                  ? 'border-blue-600 text-blue-600 font-medium'
+                  ? 'border-[color:var(--color-info)] text-[color:var(--color-info)] font-medium'
                   : currentAnalysis
-                  ? 'border-transparent text-gray-600 hover:text-gray-900'
-                  : 'border-transparent text-gray-400 cursor-not-allowed'
+                  ? 'border-transparent text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]'
+                  : 'border-transparent text-[color:var(--color-muted)] cursor-not-allowed'
               }`}
             >
               <Wrench className="w-4 h-4" />
@@ -151,8 +151,8 @@ export default function GovernanceUploadPage() {
             />
 
             {/* How It Works */}
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+            <div className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">
                 How It Works
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -212,15 +212,15 @@ interface InfoCardProps {
 
 function InfoCard({ title, description, color }: InfoCardProps) {
   const colors = {
-    blue: 'bg-blue-50 border-blue-200',
-    green: 'bg-green-50 border-green-200',
-    purple: 'bg-purple-50 border-purple-200',
+    blue: 'bg-[color:var(--color-surface-alt)] border-[color:var(--color-info-border)]',
+    green: 'bg-[color:var(--color-success-bg)] border-[color:var(--color-success-border)]',
+    purple: 'bg-[color:var(--color-surface-alt)] border-[color:var(--color-border)]',
   };
 
   return (
     <div className={`border rounded-lg p-4 ${colors[color]}`}>
-      <h3 className="font-semibold text-gray-900 mb-1">{title}</h3>
-      <p className="text-sm text-gray-700">{description}</p>
+      <h3 className="font-semibold text-[color:var(--color-foreground)] mb-1">{title}</h3>
+      <p className="text-sm text-[color:var(--color-foreground)]">{description}</p>
     </div>
   );
 }
@@ -234,11 +234,11 @@ interface StepProps {
 function Step({ number, title, description }: StepProps) {
   return (
     <div className="text-center">
-      <div className="w-12 h-12 rounded-full bg-blue-600 text-white font-bold text-xl flex items-center justify-center mx-auto mb-3">
+      <div className="w-12 h-12 rounded-full bg-[color:var(--color-primary)] text-white font-bold text-xl flex items-center justify-center mx-auto mb-3">
         {number}
       </div>
-      <h4 className="font-semibold text-gray-900 mb-1">{title}</h4>
-      <p className="text-sm text-gray-600">{description}</p>
+      <h4 className="font-semibold text-[color:var(--color-foreground)] mb-1">{title}</h4>
+      <p className="text-sm text-[color:var(--color-muted)]">{description}</p>
     </div>
   );
 }

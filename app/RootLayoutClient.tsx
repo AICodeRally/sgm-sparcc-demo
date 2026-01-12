@@ -15,6 +15,9 @@ import { PageTitleProvider } from "@/components/PageTitle";
 import { WhatsNewModal } from "@/components/modals/WhatsNewModal";
 import { PageKbProvider } from "@/components/kb/PageKbProvider";
 import { PageKbPanel } from "@/components/kb/PageKbPanel";
+import { getActiveModule } from "@/lib/config/module-registry";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { applyThemeVars, getStoredTheme } from "@/lib/config/themes";
 
 interface RootLayoutClientProps {
   children: React.ReactNode;
@@ -91,21 +94,45 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
 export function RootLayoutClient({ children }: RootLayoutClientProps) {
   // Command Palette state
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const activeModule = getActiveModule();
+
+  useEffect(() => {
+    // Apply module defaults, then override with stored theme if present
+    const moduleTheme = {
+      gradient: activeModule.gradient,
+      primary: activeModule.gradient.start,
+      secondary: activeModule.gradient.mid2,
+      accent: activeModule.gradient.end,
+    };
+    applyThemeVars({
+      id: 'module-default',
+      name: activeModule.module.name,
+      description: '',
+      gradient: moduleTheme.gradient,
+      primary: moduleTheme.primary,
+      secondary: moduleTheme.secondary,
+      accent: moduleTheme.accent,
+    });
+    const stored = getStoredTheme();
+    applyThemeVars(stored);
+  }, [activeModule]);
 
   return (
     <SessionProvider>
-      <ModeProvider>
-        <PageTitleProvider>
-          <PageKbProvider>
-            <LayoutWithModeContext
-              commandPaletteOpen={commandPaletteOpen}
-              setCommandPaletteOpen={setCommandPaletteOpen}
-            >
-              {children}
-            </LayoutWithModeContext>
-          </PageKbProvider>
-        </PageTitleProvider>
-      </ModeProvider>
+      <ThemeProvider>
+        <ModeProvider>
+          <PageTitleProvider>
+            <PageKbProvider>
+              <LayoutWithModeContext
+                commandPaletteOpen={commandPaletteOpen}
+                setCommandPaletteOpen={setCommandPaletteOpen}
+              >
+                {children}
+              </LayoutWithModeContext>
+            </PageKbProvider>
+          </PageTitleProvider>
+        </ModeProvider>
+      </ThemeProvider>
     </SessionProvider>
   );
 }

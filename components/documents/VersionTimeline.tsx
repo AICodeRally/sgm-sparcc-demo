@@ -56,75 +56,75 @@ export function VersionTimeline({ timeline, onVersionClick }: VersionTimelinePro
     switch (status) {
       case 'RAW':
         return {
-          bg: 'bg-gray-100',
-          border: 'border-gray-300',
-          text: 'text-gray-700',
-          icon: 'text-gray-600',
-          dot: 'bg-gray-400',
+          bg: 'bg-[color:var(--color-surface-alt)]',
+          border: 'border-[color:var(--color-border)]',
+          text: 'text-[color:var(--color-foreground)]',
+          icon: 'text-[color:var(--color-muted)]',
+          dot: 'bg-[color:var(--color-border)]',
         };
       case 'PROCESSED':
         return {
-          bg: 'bg-blue-100',
-          border: 'border-blue-300',
-          text: 'text-blue-800',
-          icon: 'text-blue-600',
-          dot: 'bg-blue-500',
+          bg: 'bg-[color:var(--color-info-bg)]',
+          border: 'border-[color:var(--color-info-border)]',
+          text: 'text-[color:var(--color-info)]',
+          icon: 'text-[color:var(--color-info)]',
+          dot: 'bg-[color:var(--color-surface-alt)]0',
         };
       case 'DRAFT':
         return {
-          bg: 'bg-yellow-100',
-          border: 'border-yellow-300',
-          text: 'text-yellow-800',
-          icon: 'text-yellow-600',
-          dot: 'bg-yellow-500',
+          bg: 'bg-[color:var(--color-warning-bg)]',
+          border: 'border-[color:var(--color-warning-border)]',
+          text: 'text-[color:var(--color-warning)]',
+          icon: 'text-[color:var(--color-warning)]',
+          dot: 'bg-transparent',
         };
       case 'UNDER_REVIEW':
         return {
-          bg: 'bg-orange-100',
-          border: 'border-orange-300',
-          text: 'text-orange-800',
-          icon: 'text-orange-600',
-          dot: 'bg-orange-500',
+          bg: 'bg-[color:var(--color-warning-bg)]',
+          border: 'border-[color:var(--color-warning-border)]',
+          text: 'text-[color:var(--color-warning)]',
+          icon: 'text-[color:var(--color-warning)]',
+          dot: 'bg-[color:var(--color-warning)]',
         };
       case 'APPROVED':
         return {
-          bg: 'bg-purple-100',
-          border: 'border-purple-300',
-          text: 'text-purple-800',
-          icon: 'text-purple-600',
-          dot: 'bg-purple-500',
+          bg: 'bg-[color:var(--color-surface-alt)]',
+          border: 'border-[color:var(--color-border)]',
+          text: 'text-[color:var(--color-accent)]',
+          icon: 'text-[color:var(--color-primary)]',
+          dot: 'bg-[color:var(--color-surface-alt)]0',
         };
       case 'ACTIVE_FINAL':
         return {
-          bg: 'bg-green-100',
-          border: 'border-green-300',
-          text: 'text-green-800',
-          icon: 'text-green-600',
-          dot: 'bg-green-500',
+          bg: 'bg-[color:var(--color-success-bg)]',
+          border: 'border-[color:var(--color-success-border)]',
+          text: 'text-[color:var(--color-success)]',
+          icon: 'text-[color:var(--color-success)]',
+          dot: 'bg-transparent',
         };
       case 'SUPERSEDED':
         return {
-          bg: 'bg-gray-100',
-          border: 'border-gray-300',
-          text: 'text-gray-600',
-          icon: 'text-gray-500',
-          dot: 'bg-gray-400',
+          bg: 'bg-[color:var(--color-surface-alt)]',
+          border: 'border-[color:var(--color-border)]',
+          text: 'text-[color:var(--color-muted)]',
+          icon: 'text-[color:var(--color-muted)]',
+          dot: 'bg-[color:var(--color-border)]',
         };
       case 'ARCHIVED':
         return {
-          bg: 'bg-gray-50',
-          border: 'border-gray-200',
-          text: 'text-gray-500',
-          icon: 'text-gray-400',
-          dot: 'bg-gray-300',
+          bg: 'bg-[color:var(--color-surface-alt)]',
+          border: 'border-[color:var(--color-border)]',
+          text: 'text-[color:var(--color-muted)]',
+          icon: 'text-[color:var(--color-muted)]',
+          dot: 'bg-[color:var(--color-border)]',
         };
       default:
         return {
-          bg: 'bg-gray-100',
-          border: 'border-gray-300',
-          text: 'text-gray-700',
-          icon: 'text-gray-600',
-          dot: 'bg-gray-400',
+          bg: 'bg-[color:var(--color-surface-alt)]',
+          border: 'border-[color:var(--color-border)]',
+          text: 'text-[color:var(--color-foreground)]',
+          icon: 'text-[color:var(--color-muted)]',
+          dot: 'bg-[color:var(--color-border)]',
         };
     }
   };
@@ -132,15 +132,15 @@ export function VersionTimeline({ timeline, onVersionClick }: VersionTimelinePro
   const getChangeTypeColor = (type: string) => {
     switch (type) {
       case 'MAJOR':
-        return 'bg-red-100 text-red-800 border-red-300';
+        return 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]';
       case 'MINOR':
-        return 'bg-blue-100 text-blue-800 border-blue-300';
+        return 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] border-[color:var(--color-info-border)]';
       case 'PATCH':
-        return 'bg-green-100 text-green-800 border-green-300';
+        return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]';
       case 'EMERGENCY':
-        return 'bg-orange-100 text-orange-800 border-orange-300';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-300';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
     }
   };
 
@@ -148,8 +148,8 @@ export function VersionTimeline({ timeline, onVersionClick }: VersionTimelinePro
     <div className="space-y-6">
       {/* Timeline Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-gray-900">Version History Timeline</h2>
-        <div className="text-sm text-gray-600">
+        <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">Version History Timeline</h2>
+        <div className="text-sm text-[color:var(--color-muted)]">
           {timeline.length} version{timeline.length !== 1 ? 's' : ''}
         </div>
       </div>
@@ -157,7 +157,7 @@ export function VersionTimeline({ timeline, onVersionClick }: VersionTimelinePro
       {/* Timeline */}
       <div className="relative">
         {/* Vertical Line */}
-        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-300 via-fuchsia-300 to-yellow-300"></div>
+        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[linear-gradient(180deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))]"></div>
 
         {/* Timeline Entries */}
         <div className="space-y-8">
@@ -176,12 +176,12 @@ export function VersionTimeline({ timeline, onVersionClick }: VersionTimelinePro
 
                 {/* Content Card */}
                 <div
-                  className={'rounded-xl border-2 p-5 transition-all ' + (entry.isCurrent ? 'border-purple-500 shadow-xl bg-white' : 'border-gray-200 bg-white hover:border-purple-300 hover:shadow-lg') + (onVersionClick ? ' cursor-pointer' : '')}
+                  className={'rounded-xl border-2 p-5 transition-all ' + (entry.isCurrent ? 'border-[color:var(--color-primary)] shadow-xl bg-[color:var(--color-surface)]' : 'border-[color:var(--color-border)] bg-[color:var(--color-surface)] hover:border-[color:var(--color-border)] hover:shadow-lg') + (onVersionClick ? ' cursor-pointer' : '')}
                   onClick={() => onVersionClick?.(entry)}
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-3">
-                      <span className="font-mono font-bold text-lg text-gray-900">
+                      <span className="font-mono font-bold text-lg text-[color:var(--color-foreground)]">
                         v{entry.versionNumber}
                       </span>
                       <span className={'px-3 py-1 rounded-full text-xs font-bold border ' + colors.bg + ' ' + colors.border + ' ' + colors.text}>
@@ -191,13 +191,13 @@ export function VersionTimeline({ timeline, onVersionClick }: VersionTimelinePro
                         {entry.changeType}
                       </span>
                       {entry.isCurrent && (
-                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-purple-600 text-white">
+                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-[color:var(--color-primary)] text-white">
                           CURRENT
                         </span>
                       )}
                     </div>
 
-                    <div className="text-right text-sm text-gray-600">
+                    <div className="text-right text-sm text-[color:var(--color-muted)]">
                       {new Date(entry.createdAt).toLocaleDateString('en-US', {
                         month: 'short',
                         day: 'numeric',
@@ -209,18 +209,18 @@ export function VersionTimeline({ timeline, onVersionClick }: VersionTimelinePro
                   </div>
 
                   {entry.versionLabel && (
-                    <div className="font-semibold text-gray-900 mb-2">
+                    <div className="font-semibold text-[color:var(--color-foreground)] mb-2">
                       {entry.versionLabel}
                     </div>
                   )}
 
                   {entry.changeDescription && (
-                    <p className="text-gray-700 mb-3 text-sm">
+                    <p className="text-[color:var(--color-foreground)] mb-3 text-sm">
                       {entry.changeDescription}
                     </p>
                   )}
 
-                  <div className="flex items-center gap-4 text-xs text-gray-600">
+                  <div className="flex items-center gap-4 text-xs text-[color:var(--color-muted)]">
                     <div>
                       <span className="font-medium">Created by:</span> {entry.createdBy}
                     </div>
@@ -233,7 +233,7 @@ export function VersionTimeline({ timeline, onVersionClick }: VersionTimelinePro
       </div>
 
       {/* Timeline Footer */}
-      <div className="text-center text-sm text-gray-500 pt-4 border-t border-gray-200">
+      <div className="text-center text-sm text-[color:var(--color-muted)] pt-4 border-t border-[color:var(--color-border)]">
         Complete version history with full provenance tracking
       </div>
     </div>

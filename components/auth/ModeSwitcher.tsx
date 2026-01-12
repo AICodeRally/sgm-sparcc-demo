@@ -45,57 +45,21 @@ export function ModeSwitcher() {
   const currentConfig = getModeConfig(currentMode);
   const CurrentIcon = iconMap[currentConfig.icon as keyof typeof iconMap] || GearIcon;
 
-  // Get color classes based on current mode
-  const getColorClasses = () => {
-    switch (currentMode) {
-      case OperationalMode.DESIGN:
-        return {
-          bg: 'bg-teal-50',
-          text: 'text-teal-700',
-          border: 'border-teal-300',
-          dot: 'bg-teal-500',
-        };
-      case OperationalMode.OPERATE:
-        return {
-          bg: 'bg-blue-50',
-          text: 'text-blue-700',
-          border: 'border-blue-300',
-          dot: 'bg-blue-500',
-        };
-      case OperationalMode.DISPUTE:
-        return {
-          bg: 'bg-pink-50',
-          text: 'text-pink-700',
-          border: 'border-pink-300',
-          dot: 'bg-pink-500',
-        };
-      case OperationalMode.OVERSEE:
-        return {
-          bg: 'bg-indigo-50',
-          text: 'text-indigo-700',
-          border: 'border-indigo-300',
-          dot: 'bg-indigo-500',
-        };
-      default:
-        return {
-          bg: 'bg-gray-50',
-          text: 'text-gray-700',
-          border: 'border-gray-300',
-          dot: 'bg-gray-500',
-        };
-    }
-  };
-
-  const colors = getColorClasses();
+  const modeColor = currentConfig.color.hex;
 
   return (
     <div className="relative">
       {/* Current Mode Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2 px-4 py-2 rounded-lg border-2 ${colors.border} ${colors.bg} ${colors.text} hover:shadow-md transition-all`}
+        className="flex items-center gap-2 px-4 py-2 rounded-lg border-2 hover:shadow-md transition-all"
+        style={{
+          borderColor: `${modeColor}70`,
+          background: `${modeColor}14`,
+          color: modeColor,
+        }}
       >
-        <div className={`w-2 h-2 rounded-full ${colors.dot}`} />
+        <div className="w-2 h-2 rounded-full" style={{ background: modeColor }} />
         <CurrentIcon className="w-4 h-4" />
         <span className="font-semibold text-sm">{currentConfig.label}</span>
         <ChevronDownIcon className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
@@ -111,9 +75,9 @@ export function ModeSwitcher() {
           />
 
           {/* Dropdown */}
-          <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border-2 border-gray-200 z-50 overflow-hidden">
+          <div className="absolute right-0 mt-2 w-64 bg-[color:var(--color-surface)] rounded-lg shadow-xl border-2 border-[color:var(--color-border)] z-50 overflow-hidden">
             <div className="p-2">
-              <div className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wide">
+              <div className="px-3 py-2 text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wide">
                 Switch Mode
               </div>
 
@@ -123,33 +87,34 @@ export function ModeSwitcher() {
                 const isActive = mode === currentMode;
 
                 // Get color for this mode
-                const modeColor = mode === OperationalMode.DESIGN ? 'text-teal-600' :
-                                 mode === OperationalMode.OPERATE ? 'text-blue-600' :
-                                 mode === OperationalMode.DISPUTE ? 'text-pink-600' :
-                                 mode === OperationalMode.OVERSEE ? 'text-indigo-600' :
-                                 'text-gray-600';
+                const optionColor = config.color.hex;
+                const activeStyle = {
+                  background: `${optionColor}14`,
+                  borderColor: `${optionColor}70`,
+                };
 
                 return (
                   <button
                     key={mode}
                     onClick={() => handleModeSwitch(mode)}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all ${
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-all border-2 ${
                       isActive
-                        ? 'bg-purple-50 border-2 border-purple-300'
-                        : 'hover:bg-gray-50 border-2 border-transparent'
+                        ? 'border-transparent'
+                        : 'hover:bg-[color:var(--color-surface-alt)] border-transparent'
                     }`}
+                    style={isActive ? activeStyle : undefined}
                   >
-                    <Icon className={`w-5 h-5 ${modeColor}`} />
+                    <Icon className="w-5 h-5" style={{ color: optionColor }} />
                     <div className="flex-1 text-left">
-                      <div className="font-semibold text-sm text-gray-900">
+                      <div className="font-semibold text-sm text-[color:var(--color-foreground)]">
                         {config.label}
                       </div>
-                      <div className="text-xs text-gray-600 line-clamp-1">
+                      <div className="text-xs text-[color:var(--color-muted)] line-clamp-1">
                         {config.tagline}
                       </div>
                     </div>
                     {isActive && (
-                      <CheckIcon className="w-5 h-5 text-purple-600" />
+                      <CheckIcon className="w-5 h-5" style={{ color: optionColor }} />
                     )}
                   </button>
                 );

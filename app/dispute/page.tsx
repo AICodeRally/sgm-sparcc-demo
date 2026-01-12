@@ -42,27 +42,27 @@ export default function DisputeModePage() {
 
           {/* Key Metrics */}
           <div className="grid grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
+            <div className="bg-[color:var(--color-surface)] rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
               <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.activeCases}</p>
-              <p className="text-sm text-gray-600 mt-2">Active Cases</p>
+              <p className="text-sm text-[color:var(--color-muted)] mt-2">Active Cases</p>
             </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
+            <div className="bg-[color:var(--color-surface)] rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
               <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.highPriority}</p>
-              <p className="text-sm text-gray-600 mt-2">High Priority</p>
+              <p className="text-sm text-[color:var(--color-muted)] mt-2">High Priority</p>
             </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
+            <div className="bg-[color:var(--color-surface)] rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
               <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.approachingSLA}</p>
-              <p className="text-sm text-gray-600 mt-2">Approaching SLA</p>
+              <p className="text-sm text-[color:var(--color-muted)] mt-2">Approaching SLA</p>
             </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
+            <div className="bg-[color:var(--color-surface)] rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
               <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.avgResolution}</p>
-              <p className="text-sm text-gray-600 mt-2">Avg Days to Resolve</p>
+              <p className="text-sm text-[color:var(--color-muted)] mt-2">Avg Days to Resolve</p>
             </div>
           </div>
 
           {/* Primary Features */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Primary Features</h2>
+            <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-4">Primary Features</h2>
             <div className="grid grid-cols-3 gap-6">
               <FeatureTile
                 href="/cases"
@@ -92,7 +92,7 @@ export default function DisputeModePage() {
 
           {/* Secondary Features */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Quick Actions</h2>
+            <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-4">Quick Actions</h2>
             <div className="grid grid-cols-3 gap-6">
               <FeatureTile
                 href="/cases/new"
@@ -117,25 +117,25 @@ export default function DisputeModePage() {
           </div>
 
           {/* Field User Info */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-xl border-2 p-6 mb-8" style={{ borderColor: `${config.color.hex}30` }}>
-            <h3 className="text-lg font-bold text-gray-900 mb-4">For Field Sales & Managers</h3>
-            <p className="text-gray-700 mb-4">
+          <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-xl border-2 p-6 mb-8" style={{ borderColor: `${config.color.hex}30` }}>
+            <h3 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4">For Field Sales & Managers</h3>
+            <p className="text-[color:var(--color-foreground)] mb-4">
               Submit formal disputes and exception requests through the case management system.
               Track your submissions, provide additional documentation, and receive real-time updates on resolution status.
             </p>
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white rounded-lg border p-4" style={{ borderColor: `${config.color.hex}30` }}>
-                <p className="text-sm font-semibold text-gray-900 mb-2">Common Dispute Types</p>
-                <ul className="text-xs text-gray-600 space-y-1">
+              <div className="bg-[color:var(--color-surface)] rounded-lg border p-4" style={{ borderColor: `${config.color.hex}30` }}>
+                <p className="text-sm font-semibold text-[color:var(--color-foreground)] mb-2">Common Dispute Types</p>
+                <ul className="text-xs text-[color:var(--color-muted)] space-y-1">
                   <li>• Commission calculation disputes</li>
                   <li>• Territory change requests</li>
                   <li>• Windfall deal approvals</li>
                   <li>• Plan interpretation questions</li>
                 </ul>
               </div>
-              <div className="bg-white rounded-lg border p-4" style={{ borderColor: `${config.color.hex}30` }}>
-                <p className="text-sm font-semibold text-gray-900 mb-2">Resolution SLA</p>
-                <ul className="text-xs text-gray-600 space-y-1">
+              <div className="bg-[color:var(--color-surface)] rounded-lg border p-4" style={{ borderColor: `${config.color.hex}30` }}>
+                <p className="text-sm font-semibold text-[color:var(--color-foreground)] mb-2">Resolution SLA</p>
+                <ul className="text-xs text-[color:var(--color-muted)] space-y-1">
                   <li>• Standard: 5 business days</li>
                   <li>• Urgent: 2 business days</li>
                   <li>• Critical: Same day</li>

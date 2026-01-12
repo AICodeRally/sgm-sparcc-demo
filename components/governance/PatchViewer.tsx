@@ -143,12 +143,12 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
 
   const getSeverityBadge = (severity: string) => {
     const badges: Record<string, string> = {
-      CRITICAL: 'bg-red-100 text-red-800 border-red-200',
-      HIGH: 'bg-orange-100 text-orange-800 border-orange-200',
-      MEDIUM: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-      LOW: 'bg-blue-100 text-blue-800 border-blue-200',
+      CRITICAL: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]',
+      HIGH: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
+      MEDIUM: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
+      LOW: 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] border-[color:var(--color-info-border)]',
     };
-    return badges[severity] || 'bg-gray-100 text-gray-800 border-gray-200';
+    return badges[severity] || 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
   };
 
   const filteredPatches = selectedSeverity === 'all'
@@ -166,8 +166,8 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
-          <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-600">Loading patches...</p>
+          <div className="w-8 h-8 border-4 border-[color:var(--color-primary)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[color:var(--color-muted)]">Loading patches...</p>
         </div>
       </div>
     );
@@ -175,9 +175,9 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-        <p className="text-red-700 font-medium mb-2">Failed to load patches</p>
-        <p className="text-red-600 text-sm">{error}</p>
+      <div className="bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded-lg p-6 text-center">
+        <p className="text-[color:var(--color-error)] font-medium mb-2">Failed to load patches</p>
+        <p className="text-[color:var(--color-error)] text-sm">{error}</p>
       </div>
     );
   }
@@ -185,25 +185,25 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white border border-gray-200 rounded-lg p-6">
+      <div className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg p-6">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">
               Remediation Patches
             </h2>
-            <p className="text-sm text-gray-500">{fileName}</p>
+            <p className="text-sm text-[color:var(--color-muted)]">{fileName}</p>
           </div>
           <button
             onClick={downloadPatches}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md hover:bg-[color:var(--color-secondary)] transition-colors"
           >
             <Download className="w-4 h-4" />
             Download All
           </button>
         </div>
 
-        <div className="bg-blue-50 border border-blue-200 rounded-md p-4">
-          <p className="text-sm text-blue-900">
+        <div className="bg-[color:var(--color-surface-alt)] border border-[color:var(--color-info-border)] rounded-md p-4">
+          <p className="text-sm text-[color:var(--color-info)]">
             <strong>Instructions:</strong> Review each patch with Legal counsel, customize placeholder values [in brackets],
             insert at designated insertion points, then re-run analysis to verify improvements.
           </p>
@@ -211,9 +211,9 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
       </div>
 
       {/* Severity Filters */}
-      <div className="bg-white border border-gray-200 rounded-lg p-6">
+      <div className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-[color:var(--color-foreground)]">
             {filteredPatches.length} Patch{filteredPatches.length !== 1 ? 'es' : ''}
           </h3>
           <div className="flex gap-2">
@@ -221,8 +221,8 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
               onClick={() => setSelectedSeverity('all')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'all'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-[color:var(--color-foreground)] text-[color:var(--color-surface)]'
+                  : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-border)]'
               }`}
             >
               All ({parsedPatches.length})
@@ -231,8 +231,8 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
               onClick={() => setSelectedSeverity('CRITICAL')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'CRITICAL'
-                  ? 'bg-red-600 text-white'
-                  : 'bg-red-100 text-red-700 hover:bg-red-200'
+                  ? 'bg-[color:var(--color-error)] text-white'
+                  : 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] hover:bg-[color:var(--color-error-bg)]'
               }`}
             >
               Critical ({patchesBySeverity.CRITICAL})
@@ -241,8 +241,8 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
               onClick={() => setSelectedSeverity('HIGH')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'HIGH'
-                  ? 'bg-orange-600 text-white'
-                  : 'bg-orange-100 text-orange-700 hover:bg-orange-200'
+                  ? 'bg-[color:var(--color-warning)] text-white'
+                  : 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] hover:bg-[color:var(--color-warning-bg)]'
               }`}
             >
               High ({patchesBySeverity.HIGH})
@@ -251,8 +251,8 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
               onClick={() => setSelectedSeverity('MEDIUM')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'MEDIUM'
-                  ? 'bg-yellow-600 text-white'
-                  : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
+                  ? 'bg-[color:var(--color-warning)] text-white'
+                  : 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] hover:bg-[color:var(--color-warning-bg)]'
               }`}
             >
               Medium ({patchesBySeverity.MEDIUM})
@@ -261,8 +261,8 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
               onClick={() => setSelectedSeverity('LOW')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'LOW'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                  ? 'bg-[color:var(--color-primary)] text-white'
+                  : 'bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)] hover:bg-[color:var(--color-info-bg)]'
               }`}
             >
               Low ({patchesBySeverity.LOW})
@@ -275,19 +275,19 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
           {filteredPatches.map((patch) => (
             <div
               key={patch.number}
-              className="border border-gray-200 rounded-lg overflow-hidden"
+              className="border border-[color:var(--color-border)] rounded-lg overflow-hidden"
             >
               <button
                 onClick={() => togglePatch(patch.number)}
-                className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                className="w-full px-4 py-3 flex items-center justify-between hover:bg-[color:var(--color-surface-alt)] transition-colors"
               >
                 <div className="flex items-center gap-3 flex-1 text-left">
                   {expandedPatches.has(patch.number) ? (
-                    <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                    <ChevronDown className="w-5 h-5 text-[color:var(--color-muted)] flex-shrink-0" />
                   ) : (
-                    <ChevronRight className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                    <ChevronRight className="w-5 h-5 text-[color:var(--color-muted)] flex-shrink-0" />
                   )}
-                  <span className="text-sm font-mono text-gray-500">#{patch.number}</span>
+                  <span className="text-sm font-mono text-[color:var(--color-muted)]">#{patch.number}</span>
                   <div
                     className={`px-2 py-1 rounded-md text-xs font-medium border ${getSeverityBadge(
                       patch.severity
@@ -296,35 +296,35 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
                     {patch.severity}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-gray-900 truncate">{patch.title}</p>
-                    <p className="text-sm text-gray-500 truncate">{patch.policy}</p>
+                    <p className="font-medium text-[color:var(--color-foreground)] truncate">{patch.title}</p>
+                    <p className="text-sm text-[color:var(--color-muted)] truncate">{patch.policy}</p>
                   </div>
                 </div>
               </button>
 
               {expandedPatches.has(patch.number) && (
-                <div className="px-4 py-4 bg-gray-50 border-t border-gray-200">
+                <div className="px-4 py-4 bg-[color:var(--color-surface-alt)] border-t border-[color:var(--color-border)]">
                   {/* Description */}
                   {patch.description && (
                     <div className="mb-4">
-                      <p className="text-sm font-medium text-gray-700 mb-1">Gap Description:</p>
-                      <p className="text-sm text-gray-600">{patch.description}</p>
+                      <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-1">Gap Description:</p>
+                      <p className="text-sm text-[color:var(--color-muted)]">{patch.description}</p>
                     </div>
                   )}
 
                   {/* Insertion Point */}
                   <div className="mb-4">
-                    <p className="text-sm font-medium text-gray-700 mb-1">Insertion Point:</p>
-                    <p className="text-sm text-gray-600">{patch.insertionPoint}</p>
+                    <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-1">Insertion Point:</p>
+                    <p className="text-sm text-[color:var(--color-muted)]">{patch.insertionPoint}</p>
                   </div>
 
                   {/* Recommended Language */}
                   <div className="mb-4">
                     <div className="flex items-center justify-between mb-2">
-                      <p className="text-sm font-medium text-gray-700">Recommended Language:</p>
+                      <p className="text-sm font-medium text-[color:var(--color-foreground)]">Recommended Language:</p>
                       <button
                         onClick={() => copyPatch(patch)}
-                        className="flex items-center gap-1 px-2 py-1 text-sm text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                        className="flex items-center gap-1 px-2 py-1 text-sm text-[color:var(--color-info)] hover:bg-[color:var(--color-surface-alt)] rounded-md transition-colors"
                       >
                         {copiedPatch === patch.number ? (
                           <>
@@ -339,7 +339,7 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
                         )}
                       </button>
                     </div>
-                    <pre className="bg-white border border-gray-200 rounded-md p-4 text-sm text-gray-800 whitespace-pre-wrap overflow-x-auto">
+                    <pre className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-md p-4 text-sm text-[color:var(--color-foreground)] whitespace-pre-wrap overflow-x-auto">
                       {patch.language}
                     </pre>
                   </div>
@@ -347,8 +347,8 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
                   {/* Customization Notes */}
                   {patch.customization && (
                     <div className="mb-4">
-                      <p className="text-sm font-medium text-gray-700 mb-1">Customization Notes:</p>
-                      <pre className="bg-yellow-50 border border-yellow-200 rounded-md p-3 text-sm text-gray-700 whitespace-pre-wrap">
+                      <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-1">Customization Notes:</p>
+                      <pre className="bg-[color:var(--color-warning-bg)] border border-[color:var(--color-warning-border)] rounded-md p-3 text-sm text-[color:var(--color-foreground)] whitespace-pre-wrap">
                         {patch.customization}
                       </pre>
                     </div>
@@ -357,8 +357,8 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
                   {/* State-Specific Notes */}
                   {patch.stateNotes && (
                     <div>
-                      <p className="text-sm font-medium text-gray-700 mb-1">State-Specific Considerations:</p>
-                      <div className="bg-purple-50 border border-purple-200 rounded-md p-3 text-sm text-gray-700 whitespace-pre-wrap">
+                      <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-1">State-Specific Considerations:</p>
+                      <div className="bg-[color:var(--color-surface-alt)] border border-[color:var(--color-border)] rounded-md p-3 text-sm text-[color:var(--color-foreground)] whitespace-pre-wrap">
                         {patch.stateNotes}
                       </div>
                     </div>
@@ -370,7 +370,7 @@ export function PatchViewer({ documentId, fileName, onDownload }: PatchViewerPro
         </div>
 
         {filteredPatches.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-[color:var(--color-muted)]">
             No {selectedSeverity.toLowerCase()} severity patches found
           </div>
         )}

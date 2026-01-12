@@ -184,25 +184,25 @@ export default function NewPlanPage() {
         description="Create a compensation plan from a template"
       />
 
-      <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex flex-col">
+      <div className="h-screen sparcc-hero-bg flex flex-col">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm">
           <div className="max-w-5xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Link
                   href="/plans"
-                  className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+                  className="flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)] transition-colors"
                 >
                   <ArrowLeftIcon className="w-4 h-4" />
                   Cancel
                 </Link>
-                <div className="h-6 w-px bg-purple-300"></div>
+                <div className="h-6 w-px bg-[color:var(--color-accent-border)]"></div>
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
                     Create New Compensation Plan
                   </h1>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-[color:var(--color-muted)]">
                     {currentStep === 'template' && 'Select a template to get started'}
                     {currentStep === 'basics' && 'Enter plan details'}
                     {currentStep === 'sections' && 'Add content to sections'}
@@ -214,16 +214,16 @@ export default function NewPlanPage() {
               {/* Progress */}
               <div className="flex items-center gap-3">
                 <div className="text-right">
-                  <div className="text-sm font-semibold text-purple-600">
+                  <div className="text-sm font-semibold text-[color:var(--color-primary)]">
                     Step {['template', 'basics', 'sections', 'review'].indexOf(currentStep) + 1} of 4
                   </div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-[color:var(--color-muted)]">
                     {Math.round(getStepProgress())}% complete
                   </div>
                 </div>
-                <div className="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="w-32 h-2 bg-[color:var(--color-border)] rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-purple-600 to-fuchsia-600 transition-all duration-300"
+                    className="h-full bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] transition-all duration-300"
                     style={{ width: `${getStepProgress()}%` }}
                   ></div>
                 </div>
@@ -233,7 +233,7 @@ export default function NewPlanPage() {
         </div>
 
         {/* Step Indicator */}
-        <div className="bg-white border-b border-purple-200">
+        <div className="bg-[color:var(--color-surface)] border-b border-[color:var(--color-border)]">
           <div className="max-w-5xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               {[
@@ -252,10 +252,10 @@ export default function NewPlanPage() {
                       <div
                         className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-colors ${
                           isActive
-                            ? 'border-purple-600 bg-purple-600 text-white'
+                            ? 'border-[color:var(--color-primary)] bg-[color:var(--color-primary)] text-white'
                             : isCompleted
-                            ? 'border-green-600 bg-green-600 text-white'
-                            : 'border-gray-300 bg-white text-gray-400'
+                            ? 'border-[color:var(--color-success-border)] bg-[color:var(--color-success)] text-white'
+                            : 'border-[color:var(--color-border)] bg-[color:var(--color-surface)] text-[color:var(--color-muted)]'
                         }`}
                       >
                         {isCompleted ? (
@@ -266,17 +266,17 @@ export default function NewPlanPage() {
                       </div>
                       <span
                         className={`text-sm font-medium ${
-                          isActive ? 'text-purple-700' : isCompleted ? 'text-green-700' : 'text-gray-500'
+                          isActive ? 'text-[color:var(--color-primary)]' : isCompleted ? 'text-[color:var(--color-success)]' : 'text-[color:var(--color-muted)]'
                         }`}
                       >
                         {step.label}
                       </span>
                     </div>
                     {idx < 3 && (
-                      <div className="flex-1 h-0.5 bg-gray-200 mx-4">
+                      <div className="flex-1 h-0.5 bg-[color:var(--color-border)] mx-4">
                         <div
                           className={`h-full transition-all ${
-                            isCompleted ? 'bg-green-600' : 'bg-gray-200'
+                            isCompleted ? 'bg-[color:var(--color-success)]' : 'bg-[color:var(--color-border)]'
                           }`}
                           style={{ width: isCompleted ? '100%' : '0%' }}
                         ></div>
@@ -294,16 +294,16 @@ export default function NewPlanPage() {
           <div className="max-w-5xl mx-auto px-6 py-8">
             {/* Error Message */}
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border-2 border-red-200 rounded-lg flex items-center gap-3">
-                <Cross2Icon className="w-5 h-5 text-red-600 flex-none" />
-                <p className="text-sm text-red-700 font-medium">{error}</p>
+              <div className="mb-6 p-4 bg-[color:var(--color-error-bg)] border-2 border-[color:var(--color-error-border)] rounded-lg flex items-center gap-3">
+                <Cross2Icon className="w-5 h-5 text-[color:var(--color-error)] flex-none" />
+                <p className="text-sm text-[color:var(--color-error)] font-medium">{error}</p>
               </div>
             )}
 
             {/* Step: Template Selection */}
             {currentStep === 'template' && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Select a Template</h2>
+                <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-6">Select a Template</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {templates.map((template) => (
                     <div
@@ -311,32 +311,32 @@ export default function NewPlanPage() {
                       onClick={() => handleSelectTemplate(template)}
                       className={`rounded-lg border-2 p-6 cursor-pointer transition-all ${
                         selectedTemplate?.id === template.id
-                          ? 'border-purple-600 bg-purple-50 shadow-lg'
-                          : 'border-purple-200 bg-white hover:border-purple-300 hover:shadow-md'
+                          ? 'border-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)] shadow-lg'
+                          : 'border-[color:var(--color-border)] bg-[color:var(--color-surface)] hover:border-[color:var(--color-border)] hover:shadow-md'
                       }`}
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex-1">
-                          <h3 className="text-lg font-bold text-gray-900 mb-1">{template.name}</h3>
-                          <p className="text-xs font-mono text-gray-500">{template.code}</p>
+                          <h3 className="text-lg font-bold text-[color:var(--color-foreground)] mb-1">{template.name}</h3>
+                          <p className="text-xs font-mono text-[color:var(--color-muted)]">{template.code}</p>
                         </div>
                         {selectedTemplate?.id === template.id && (
-                          <CheckCircledIcon className="w-6 h-6 text-purple-600 flex-none" />
+                          <CheckCircledIcon className="w-6 h-6 text-[color:var(--color-primary)] flex-none" />
                         )}
                       </div>
 
-                      <p className="text-sm text-gray-600 mb-4">{template.description}</p>
+                      <p className="text-sm text-[color:var(--color-muted)] mb-4">{template.description}</p>
 
                       <div className="flex items-center gap-3">
-                        <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded">
+                        <span className="px-2 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] text-xs font-semibold rounded">
                           {template.planType.replace('_', ' ')}
                         </span>
                         {template.isSystemTemplate && (
-                          <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-semibold rounded">
+                          <span className="px-2 py-1 bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)] text-xs font-semibold rounded">
                             SYSTEM
                           </span>
                         )}
-                        <span className="text-xs text-gray-600">
+                        <span className="text-xs text-[color:var(--color-muted)]">
                           {template.sectionCount} sections
                         </span>
                       </div>
@@ -345,7 +345,7 @@ export default function NewPlanPage() {
                         {template.tags?.map((tag) => (
                           <span
                             key={tag}
-                            className="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded"
+                            className="px-2 py-0.5 bg-[color:var(--color-surface-alt)] text-[color:var(--color-muted)] text-xs rounded"
                           >
                             {tag}
                           </span>
@@ -357,11 +357,11 @@ export default function NewPlanPage() {
 
                 {templates.length === 0 && (
                   <div className="text-center py-12">
-                    <FileTextIcon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                    <p className="text-gray-600 mb-4">No templates available</p>
+                    <FileTextIcon className="w-16 h-16 text-[color:var(--color-muted)] mx-auto mb-4" />
+                    <p className="text-[color:var(--color-muted)] mb-4">No templates available</p>
                     <Link
                       href="/templates/builder"
-                      className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-lg hover:from-purple-700 hover:to-fuchsia-700 transition-all font-semibold"
+                      className="inline-flex items-center gap-2 px-6 py-2 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-lg hover:opacity-90 transition-all font-semibold"
                     >
                       Create a Template First
                     </Link>
@@ -373,24 +373,24 @@ export default function NewPlanPage() {
             {/* Step: Plan Basics */}
             {currentStep === 'basics' && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Plan Details</h2>
-                <div className="bg-white rounded-lg border-2 border-purple-200 shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-6">Plan Details</h2>
+                <div className="bg-[color:var(--color-surface)] rounded-lg border-2 border-[color:var(--color-border)] shadow-lg p-8">
                   <div className="space-y-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Plan Title <span className="text-red-500">*</span>
+                      <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
+                        Plan Title <span className="text-[color:var(--color-error)]">*</span>
                       </label>
                       <input
                         type="text"
                         value={planBasics.title}
                         onChange={(e) => setPlanBasics({ ...planBasics, title: e.target.value })}
                         placeholder="e.g., Medical FSC Sales Plan - FY2025"
-                        className="w-full px-4 py-3 border-2 border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-lg"
+                        className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent text-lg"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
                         Description
                       </label>
                       <textarea
@@ -398,13 +398,13 @@ export default function NewPlanPage() {
                         onChange={(e) => setPlanBasics({ ...planBasics, description: e.target.value })}
                         placeholder="Brief description of this plan's purpose and goals..."
                         rows={4}
-                        className="w-full px-4 py-3 border-2 border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                        className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent resize-none"
                       />
                     </div>
 
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
                           <CalendarIcon className="inline w-4 h-4 mr-1" />
                           Effective Date
                         </label>
@@ -412,12 +412,12 @@ export default function NewPlanPage() {
                           type="date"
                           value={planBasics.effectiveDate}
                           onChange={(e) => setPlanBasics({ ...planBasics, effectiveDate: e.target.value })}
-                          className="w-full px-4 py-3 border-2 border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
                           <CalendarIcon className="inline w-4 h-4 mr-1" />
                           Expiration Date
                         </label>
@@ -425,14 +425,14 @@ export default function NewPlanPage() {
                           type="date"
                           value={planBasics.expirationDate}
                           onChange={(e) => setPlanBasics({ ...planBasics, expirationDate: e.target.value })}
-                          className="w-full px-4 py-3 border-2 border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
                           <PersonIcon className="inline w-4 h-4 mr-1" />
                           Plan Owner
                         </label>
@@ -441,12 +441,12 @@ export default function NewPlanPage() {
                           value={planBasics.owner}
                           onChange={(e) => setPlanBasics({ ...planBasics, owner: e.target.value })}
                           placeholder="e.g., John Smith"
-                          className="w-full px-4 py-3 border-2 border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
                           <ClockIcon className="inline w-4 h-4 mr-1" />
                           Fiscal Year
                         </label>
@@ -455,7 +455,7 @@ export default function NewPlanPage() {
                           value={planBasics.fiscalYear}
                           onChange={(e) => setPlanBasics({ ...planBasics, fiscalYear: e.target.value })}
                           placeholder="e.g., 2025"
-                          className="w-full px-4 py-3 border-2 border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -467,19 +467,19 @@ export default function NewPlanPage() {
             {/* Step: Section Content */}
             {currentStep === 'sections' && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Add Section Content</h2>
-                <p className="text-gray-600 mb-6">
+                <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">Add Section Content</h2>
+                <p className="text-[color:var(--color-muted)] mb-6">
                   You can add content now or skip and add it later in the plan editor.
                 </p>
                 <div className="space-y-4">
                   {sectionContents.map((section, idx) => (
                     <div
                       key={section.sectionId}
-                      className="bg-white rounded-lg border-2 border-purple-200 shadow p-6"
+                      className="bg-[color:var(--color-surface)] rounded-lg border-2 border-[color:var(--color-border)] shadow p-6"
                     >
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-lg font-bold text-gray-900">{section.title}</h3>
-                        <span className="text-sm text-gray-500">Section {idx + 1}</span>
+                        <h3 className="text-lg font-bold text-[color:var(--color-foreground)]">{section.title}</h3>
+                        <span className="text-sm text-[color:var(--color-muted)]">Section {idx + 1}</span>
                       </div>
                       <textarea
                         value={section.content}
@@ -491,7 +491,7 @@ export default function NewPlanPage() {
                         }}
                         placeholder="Add content for this section (optional)..."
                         rows={4}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                        className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent resize-none"
                       />
                     </div>
                   ))}
@@ -502,36 +502,36 @@ export default function NewPlanPage() {
             {/* Step: Review */}
             {currentStep === 'review' && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Review & Create</h2>
+                <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-6">Review & Create</h2>
                 <div className="space-y-6">
                   {/* Plan Summary */}
-                  <div className="bg-white rounded-lg border-2 border-purple-200 shadow-lg p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Plan Summary</h3>
+                  <div className="bg-[color:var(--color-surface)] rounded-lg border-2 border-[color:var(--color-border)] shadow-lg p-6">
+                    <h3 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4">Plan Summary</h3>
                     <dl className="space-y-3">
                       <div>
-                        <dt className="text-sm font-medium text-gray-600">Template</dt>
-                        <dd className="text-base text-gray-900">{selectedTemplate?.name}</dd>
+                        <dt className="text-sm font-medium text-[color:var(--color-muted)]">Template</dt>
+                        <dd className="text-base text-[color:var(--color-foreground)]">{selectedTemplate?.name}</dd>
                       </div>
                       <div>
-                        <dt className="text-sm font-medium text-gray-600">Title</dt>
-                        <dd className="text-base text-gray-900">{planBasics.title}</dd>
+                        <dt className="text-sm font-medium text-[color:var(--color-muted)]">Title</dt>
+                        <dd className="text-base text-[color:var(--color-foreground)]">{planBasics.title}</dd>
                       </div>
                       {planBasics.description && (
                         <div>
-                          <dt className="text-sm font-medium text-gray-600">Description</dt>
-                          <dd className="text-base text-gray-900">{planBasics.description}</dd>
+                          <dt className="text-sm font-medium text-[color:var(--color-muted)]">Description</dt>
+                          <dd className="text-base text-[color:var(--color-foreground)]">{planBasics.description}</dd>
                         </div>
                       )}
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <dt className="text-sm font-medium text-gray-600">Effective Date</dt>
-                          <dd className="text-base text-gray-900">
+                          <dt className="text-sm font-medium text-[color:var(--color-muted)]">Effective Date</dt>
+                          <dd className="text-base text-[color:var(--color-foreground)]">
                             {planBasics.effectiveDate || 'Not set'}
                           </dd>
                         </div>
                         <div>
-                          <dt className="text-sm font-medium text-gray-600">Expiration Date</dt>
-                          <dd className="text-base text-gray-900">
+                          <dt className="text-sm font-medium text-[color:var(--color-muted)]">Expiration Date</dt>
+                          <dd className="text-base text-[color:var(--color-foreground)]">
                             {planBasics.expirationDate || 'Not set'}
                           </dd>
                         </div>
@@ -540,19 +540,19 @@ export default function NewPlanPage() {
                   </div>
 
                   {/* Sections Summary */}
-                  <div className="bg-white rounded-lg border-2 border-purple-200 shadow-lg p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Sections</h3>
+                  <div className="bg-[color:var(--color-surface)] rounded-lg border-2 border-[color:var(--color-border)] shadow-lg p-6">
+                    <h3 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4">Sections</h3>
                     <div className="space-y-2">
                       {sectionContents.map((section) => (
                         <div
                           key={section.sectionId}
-                          className="flex items-center justify-between p-3 bg-gray-50 rounded"
+                          className="flex items-center justify-between p-3 bg-[color:var(--color-surface-alt)] rounded"
                         >
-                          <span className="text-sm text-gray-900">{section.title}</span>
+                          <span className="text-sm text-[color:var(--color-foreground)]">{section.title}</span>
                           {section.isComplete ? (
-                            <CheckCircledIcon className="w-5 h-5 text-green-600" />
+                            <CheckCircledIcon className="w-5 h-5 text-[color:var(--color-success)]" />
                           ) : (
-                            <span className="text-xs text-gray-500">Empty</span>
+                            <span className="text-xs text-[color:var(--color-muted)]">Empty</span>
                           )}
                         </div>
                       ))}
@@ -565,13 +565,13 @@ export default function NewPlanPage() {
         </div>
 
         {/* Footer Actions */}
-        <div className="bg-white border-t border-purple-200 shadow-lg">
+        <div className="bg-[color:var(--color-surface)] border-t border-[color:var(--color-border)] shadow-lg">
           <div className="max-w-5xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <button
                 onClick={handlePrevStep}
                 disabled={currentStep === 'template' || isCreating}
-                className="px-6 py-2 border-2 border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-6 py-2 border-2 border-[color:var(--color-border)] text-[color:var(--color-foreground)] rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
                 <ArrowLeftIcon className="w-4 h-4" />
                 Back
@@ -582,7 +582,7 @@ export default function NewPlanPage() {
                   <button
                     onClick={handleNextStep}
                     disabled={!canProceed()}
-                    className="px-6 py-2 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-lg hover:from-purple-700 hover:to-fuchsia-700 transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    className="px-6 py-2 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-lg hover:opacity-90 transition-all font-medium shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                   >
                     Next
                     <ArrowRightIcon className="w-4 h-4" />
@@ -591,7 +591,7 @@ export default function NewPlanPage() {
                   <button
                     onClick={handleCreatePlan}
                     disabled={isCreating}
-                    className="px-8 py-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-lg hover:from-purple-700 hover:to-fuchsia-700 transition-all font-bold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    className="px-8 py-3 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-lg hover:opacity-90 transition-all font-bold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                   >
                     {isCreating ? (
                       <>

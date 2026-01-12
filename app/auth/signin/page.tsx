@@ -35,22 +35,22 @@ function SignInContent() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-fuchsia-800 to-yellow-600">
+    <div className="min-h-screen flex items-center justify-center sparcc-hero-bg">
       <div className="max-w-md w-full mx-4">
         {/* Card */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-2xl p-8">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg shadow-2xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-500 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
               SGM
             </h1>
-            <p className="text-gray-600 mt-2">Sales Governance Manager</p>
+            <p className="text-[color:var(--color-muted)] mt-2">Sales Governance Manager</p>
           </div>
 
           {/* Error Message */}
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-800">
+            <div className="mb-6 p-4 bg-[color:var(--color-error-bg)] border border-[color:var(--color-error-border)] rounded-md">
+              <p className="text-sm text-[color:var(--color-error)]">
                 {error === 'OAuthAccountNotLinked'
                   ? 'Email already in use with a different provider'
                   : error === 'AccessDenied'
@@ -63,7 +63,7 @@ function SignInContent() {
           {/* Passkey Sign In */}
           <form onSubmit={handlePasskeySignIn} className="space-y-3 mb-6">
             <div>
-              <label htmlFor="passkey" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="passkey" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
                 Enter Passkey
               </label>
               <input
@@ -73,13 +73,13 @@ function SignInContent() {
                 onChange={(e) => setPasskey(e.target.value)}
                 placeholder="bhg2026"
                 disabled={isLoading}
-                className="w-full px-4 py-3 border-2 border-purple-300 rounded-md focus:border-purple-500 focus:outline-none disabled:opacity-50"
+                className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-md focus:border-[color:var(--color-primary)] focus:outline-none disabled:opacity-50"
               />
             </div>
             <button
               type="submit"
               disabled={isLoading || !passkey}
-              className="w-full px-4 py-3 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-500 text-white font-medium rounded-md hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full px-4 py-3 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white font-medium rounded-md hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Sign In with Passkey
             </button>
@@ -88,10 +88,10 @@ function SignInContent() {
           {/* Divider */}
           <div className="relative mb-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-purple-300"></div>
+              <div className="w-full border-t border-[color:var(--color-border)]"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white/90 text-gray-500">Or continue with</span>
+              <span className="px-2 bg-[color:var(--surface-glass)] text-[color:var(--color-muted)]">Or continue with</span>
             </div>
           </div>
 
@@ -100,7 +100,7 @@ function SignInContent() {
             <button
               onClick={handleGoogleSignIn}
               disabled={isLoading}
-              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-white border-2 border-purple-300 rounded-md hover:bg-gray-50 hover:border-gray-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[color:var(--color-surface)] border-2 border-[color:var(--color-border)] rounded-md hover:bg-[color:var(--color-surface-alt)] hover:border-[color:var(--color-border)] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
@@ -120,14 +120,14 @@ function SignInContent() {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                 />
               </svg>
-              <span className="font-medium text-gray-700">Continue with Google</span>
+              <span className="font-medium text-[color:var(--color-foreground)]">Continue with Google</span>
             </button>
 
             {process.env.NEXT_PUBLIC_ENABLE_GITHUB_AUTH && (
               <button
                 onClick={handleGitHubSignIn}
                 disabled={isLoading}
-                className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-[color:var(--color-foreground)] text-[color:var(--color-surface)] rounded-md hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.840 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
@@ -138,23 +138,23 @@ function SignInContent() {
           </div>
 
           {/* Footer */}
-          <div className="mt-8 text-center text-sm text-gray-600">
+          <div className="mt-8 text-center text-sm text-[color:var(--color-muted)]">
             <p>Powered by Rally Stack</p>
             <p className="mt-1">
               By signing in, you agree to our{' '}
-              <a href="/terms" className="text-purple-600 hover:underline">
+              <a href="/terms" className="text-[color:var(--color-primary)] hover:underline">
                 Terms
               </a>{' '}
               and{' '}
-              <a href="/privacy" className="text-purple-600 hover:underline">
+              <a href="/privacy" className="text-[color:var(--color-primary)] hover:underline">
                 Privacy Policy
               </a>
             </p>
           </div>
 
           {/* Tenant Info */}
-          <div className="mt-6 p-4 bg-purple-50 rounded-md">
-            <p className="text-xs text-gray-600 text-center">
+          <div className="mt-6 p-4 bg-[color:var(--color-surface-alt)] rounded-md">
+            <p className="text-xs text-[color:var(--color-muted)] text-center">
               <strong>Supported Tenants:</strong>
               <br />
               @henryschein.com → Henry Schein
@@ -173,7 +173,7 @@ function SignInContent() {
 export default function SignInPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-fuchsia-800 to-yellow-600">
+      <div className="min-h-screen flex items-center justify-center sparcc-hero-bg">
         <div className="text-white">Loading...</div>
       </div>
     }>

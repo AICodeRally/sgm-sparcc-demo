@@ -7,6 +7,8 @@ import { FeatureTile } from '@/components/modes/FeatureTile';
 import { Breadcrumb } from '@/components/Breadcrumb';
 import { OperationalMode } from '@/types/operational-mode';
 import { MODE_CONFIGS } from '@/lib/auth/mode-permissions';
+import { ThemeBadge } from '@/components/ThemeBadge';
+import { getToneStyles } from '@/lib/config/themes';
 import {
   FileTextIcon,
   ClipboardIcon,
@@ -26,6 +28,7 @@ export default function OperateModePage() {
     activePlans: 0,
     notifications: 0,
   });
+  const toneStyles = getToneStyles('secondary');
 
   useEffect(() => {
     // Fetch metrics
@@ -64,28 +67,31 @@ export default function OperateModePage() {
           <ModeHeader mode={OperationalMode.OPERATE} />
 
           {/* Key Metrics */}
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">Operate Control Center</h2>
+            <ThemeBadge />
+          </div>
           <div className="grid grid-cols-4 gap-6 mb-8">
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.documents}</p>
-              <p className="text-sm text-gray-600 mt-2">Documents</p>
-            </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.pendingApprovals}</p>
-              <p className="text-sm text-gray-600 mt-2">Pending Approvals</p>
-            </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.activePlans}</p>
-              <p className="text-sm text-gray-600 mt-2">Active Plans</p>
-            </div>
-            <div className="bg-white rounded-xl border-2 p-6 text-center" style={{ borderColor: `${config.color.hex}30` }}>
-              <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{metrics.notifications}</p>
-              <p className="text-sm text-gray-600 mt-2">Notifications</p>
-            </div>
+            {[
+              { label: 'Documents', value: metrics.documents },
+              { label: 'Pending Approvals', value: metrics.pendingApprovals },
+              { label: 'Active Plans', value: metrics.activePlans },
+              { label: 'Notifications', value: metrics.notifications },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-xl border-2 p-6 text-center theme-card"
+                style={{ border: toneStyles.border, boxShadow: toneStyles.shadow }}
+              >
+                <p className="text-4xl font-bold" style={{ color: config.color.hex }}>{item.value}</p>
+                <p className="text-sm text-[color:var(--color-muted)] mt-2">{item.label}</p>
+              </div>
+            ))}
           </div>
 
           {/* Primary Features */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Primary Features</h2>
+            <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-4">Primary Features</h2>
             <div className="grid grid-cols-3 gap-6">
               <FeatureTile
                 href="/documents"
@@ -116,7 +122,7 @@ export default function OperateModePage() {
 
           {/* Secondary Features */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Tools & Utilities</h2>
+            <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-4">Tools & Utilities</h2>
             <div className="grid grid-cols-4 gap-6">
               <FeatureTile
                 href="/calendar"

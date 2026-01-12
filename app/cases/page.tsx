@@ -79,19 +79,19 @@ export default function CasesPage() {
   const getStatusColor = (status: CaseItem['status']) => {
     switch (status) {
       case 'NEW':
-        return 'bg-blue-100 text-blue-700';
+        return 'bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)]';
       case 'UNDER_REVIEW':
-        return 'bg-yellow-100 text-yellow-700';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]';
       case 'PENDING_INFO':
-        return 'bg-orange-100 text-orange-700';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]';
       case 'ESCALATED':
-        return 'bg-red-100 text-red-700';
+        return 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]';
       case 'RESOLVED':
-        return 'bg-green-100 text-green-700';
+        return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]';
       case 'CLOSED':
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
     }
   };
 
@@ -115,15 +115,15 @@ export default function CasesPage() {
   const getPriorityColor = (priority: CaseItem['priority']) => {
     switch (priority) {
       case 'URGENT':
-        return 'text-red-600';
+        return 'text-[color:var(--color-error)]';
       case 'HIGH':
-        return 'text-orange-600';
+        return 'text-[color:var(--color-warning)]';
       case 'MEDIUM':
-        return 'text-yellow-600';
+        return 'text-[color:var(--color-warning)]';
       case 'LOW':
-        return 'text-gray-500';
+        return 'text-[color:var(--color-muted)]';
       default:
-        return 'text-gray-500';
+        return 'text-[color:var(--color-muted)]';
     }
   };
 
@@ -169,34 +169,34 @@ export default function CasesPage() {
     <div className="p-4 space-y-6">
       {/* Quick Stats */}
       <div>
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
           Quick Stats
         </h2>
         <div className="space-y-2">
-          <div className="bg-pink-50 rounded-md p-3">
+          <div className="bg-[color:var(--color-accent-bg)] rounded-md p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-pink-700 font-medium">Active</span>
-              <span className="text-lg font-bold text-pink-700">
+              <span className="text-xs text-[color:var(--color-accent)] font-medium">Active</span>
+              <span className="text-lg font-bold text-[color:var(--color-accent)]">
                 {CASE_STATS.new + CASE_STATS.underReview + CASE_STATS.pendingInfo + CASE_STATS.escalated}
               </span>
             </div>
           </div>
-          <div className="bg-green-50 rounded-md p-3">
+          <div className="bg-[color:var(--color-success-bg)] rounded-md p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-green-700 font-medium">Resolved</span>
-              <span className="text-lg font-bold text-green-700">{CASE_STATS.resolved}</span>
+              <span className="text-xs text-[color:var(--color-success)] font-medium">Resolved</span>
+              <span className="text-lg font-bold text-[color:var(--color-success)]">{CASE_STATS.resolved}</span>
             </div>
           </div>
-          <div className="bg-gray-50 rounded-md p-3">
+          <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-gray-600 font-medium">Closed</span>
-              <span className="text-lg font-bold text-gray-600">{CASE_STATS.closed}</span>
+              <span className="text-xs text-[color:var(--color-muted)] font-medium">Closed</span>
+              <span className="text-lg font-bold text-[color:var(--color-muted)]">{CASE_STATS.closed}</span>
             </div>
           </div>
-          <div className="bg-blue-50 rounded-md p-3">
+          <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3">
             <div className="flex items-center justify-between">
-              <span className="text-xs text-blue-700 font-medium">Avg Days</span>
-              <span className="text-lg font-bold text-blue-700">{CASE_STATS.avgResolutionDays}</span>
+              <span className="text-xs text-[color:var(--color-primary)] font-medium">Avg Days</span>
+              <span className="text-lg font-bold text-[color:var(--color-primary)]">{CASE_STATS.avgResolutionDays}</span>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default function CasesPage() {
 
       {/* Status Filter */}
       <div>
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
           Status
         </h2>
         <div className="space-y-1">
@@ -212,8 +212,8 @@ export default function CasesPage() {
             onClick={() => setFilterStatus('all')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterStatus === 'all'
-                ? 'bg-pink-50 text-pink-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <LayersIcon className="w-4 h-4" />
@@ -223,8 +223,8 @@ export default function CasesPage() {
             onClick={() => setFilterStatus('NEW')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterStatus === 'NEW'
-                ? 'bg-pink-50 text-pink-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <DotFilledIcon className="w-4 h-4" />
@@ -234,8 +234,8 @@ export default function CasesPage() {
             onClick={() => setFilterStatus('UNDER_REVIEW')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterStatus === 'UNDER_REVIEW'
-                ? 'bg-pink-50 text-pink-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <ClockIcon className="w-4 h-4" />
@@ -245,8 +245,8 @@ export default function CasesPage() {
             onClick={() => setFilterStatus('PENDING_INFO')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterStatus === 'PENDING_INFO'
-                ? 'bg-pink-50 text-pink-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <ExclamationTriangleIcon className="w-4 h-4" />
@@ -256,8 +256,8 @@ export default function CasesPage() {
             onClick={() => setFilterStatus('ESCALATED')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterStatus === 'ESCALATED'
-                ? 'bg-pink-50 text-pink-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <DoubleArrowUpIcon className="w-4 h-4" />
@@ -267,8 +267,8 @@ export default function CasesPage() {
             onClick={() => setFilterStatus('RESOLVED')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterStatus === 'RESOLVED'
-                ? 'bg-pink-50 text-pink-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <CheckCircledIcon className="w-4 h-4" />
@@ -279,7 +279,7 @@ export default function CasesPage() {
 
       {/* Case Type Filter */}
       <div>
-        <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+        <h2 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
           Case Type
         </h2>
         <div className="space-y-1">
@@ -287,8 +287,8 @@ export default function CasesPage() {
             onClick={() => setFilterType('all')}
             className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
               filterType === 'all'
-                ? 'bg-pink-50 text-pink-700 font-medium'
-                : 'text-gray-700 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)] font-medium'
+                : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <LayersIcon className="w-4 h-4" />
@@ -303,8 +303,8 @@ export default function CasesPage() {
                 onClick={() => setFilterType(key)}
                 className={`w-full text-left px-3 py-2 text-sm rounded-md transition-colors flex items-center gap-2 ${
                   filterType === key
-                    ? 'bg-pink-50 text-pink-700 font-medium'
-                    : 'text-gray-700 hover:bg-gray-100'
+                    ? 'bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)] font-medium'
+                    : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -331,7 +331,7 @@ export default function CasesPage() {
       )}
 
       {/* Toolbar */}
-      <div className="flex-none bg-white/90 backdrop-blur-sm border-b border-purple-200 p-6">
+      <div className="flex-none bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] p-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <ModeContextBadge size="sm" />
@@ -342,7 +342,7 @@ export default function CasesPage() {
               mode="compact"
             />
           </div>
-          <button className="px-4 py-2 bg-pink-600 text-white rounded-md text-sm font-medium hover:bg-pink-700 transition-colors flex items-center gap-2">
+          <button className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-secondary)] transition-colors flex items-center gap-2">
             <FileTextIcon className="w-4 h-4" />
             New Case
           </button>
@@ -350,13 +350,13 @@ export default function CasesPage() {
 
         {/* Search */}
         <div className="relative">
-          <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[color:var(--color-muted)]" />
           <input
             type="text"
             placeholder="Search cases by title or case number..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 border border-[color:var(--color-border)] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
           />
         </div>
       </div>
@@ -366,8 +366,8 @@ export default function CasesPage() {
         <div className="space-y-3">
           {sortedCases.length === 0 ? (
             <div className="text-center py-12">
-              <FileTextIcon className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-              <p className="text-gray-600">No cases found</p>
+              <FileTextIcon className="w-12 h-12 text-[color:var(--color-muted)] mx-auto mb-3" />
+              <p className="text-[color:var(--color-muted)]">No cases found</p>
             </div>
           ) : (
             sortedCases.map((caseItem) => {
@@ -379,25 +379,25 @@ export default function CasesPage() {
                 <DemoHighlight key={caseItem.id} isDemo={caseItem.isDemo}>
                   <button
                     onClick={() => setSelectedCase(caseItem)}
-                    className={`w-full text-left bg-white/80 backdrop-blur-sm rounded-md border transition-all hover:shadow-md ${
+                    className={`w-full text-left bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-md border transition-all hover:shadow-md ${
                       selectedCase?.id === caseItem.id
-                        ? 'border-pink-300 shadow-sm'
-                        : 'border-purple-200'
+                        ? 'border-[color:var(--color-accent-border)] shadow-sm'
+                        : 'border-[color:var(--color-border)]'
                     }`}
                   >
                     <div className="p-4">
                       {/* Header Row */}
                       <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center gap-2 flex-1 min-w-0">
-                          <TypeIcon className="w-5 h-5 text-pink-600 flex-shrink-0" />
+                          <TypeIcon className="w-5 h-5 text-[color:var(--color-accent)] flex-shrink-0" />
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center gap-2">
-                              <h3 className="font-semibold text-gray-900 text-sm truncate">
+                              <h3 className="font-semibold text-[color:var(--color-foreground)] text-sm truncate">
                                 {caseItem.title}
                               </h3>
                               <DemoBadge isDemo={caseItem.isDemo} demoMetadata={caseItem.demoMetadata} size="sm" />
                             </div>
-                          <p className="text-xs text-gray-500 mt-0.5">
+                          <p className="text-xs text-[color:var(--color-muted)] mt-0.5">
                             {caseItem.caseNumber}
                           </p>
                         </div>
@@ -411,23 +411,23 @@ export default function CasesPage() {
                         {React.createElement(StatusIcon, { className: 'w-3 h-3' })}
                         {caseItem.status.replace(/_/g, ' ')}
                       </span>
-                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">
+                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] rounded text-xs">
                         {formatCaseType(caseItem.type)}
                       </span>
                       {caseItem.committee && (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded text-xs font-medium">
                           {caseItem.committee}
                         </span>
                       )}
                       {caseItem.financialImpact && (
-                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">
+                        <span className="inline-flex items-center gap-1 px-2 py-1 bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)] rounded text-xs font-medium">
                           ${(caseItem.financialImpact / 1000).toFixed(0)}K
                         </span>
                       )}
                     </div>
 
                     {/* Info Row */}
-                    <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
+                    <div className="grid grid-cols-2 gap-2 text-xs text-[color:var(--color-muted)]">
                       <div className="flex items-center gap-1">
                         <PersonIcon className="w-3 h-3" />
                         {caseItem.affectedRep || caseItem.submittedBy.split(' (')[0]}
@@ -452,17 +452,17 @@ export default function CasesPage() {
   const rightDetail = selectedCase ? (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="flex-none border-b border-purple-200 p-4">
+      <div className="flex-none border-b border-[color:var(--color-border)] p-4">
         <div className="flex items-start justify-between mb-3">
           <div className="flex items-center gap-2">
             {React.createElement(getCaseTypeIcon(selectedCase.type), {
-              className: 'w-5 h-5 text-pink-600 flex-shrink-0'
+              className: 'w-5 h-5 text-[color:var(--color-accent)] flex-shrink-0'
             })}
             <div>
-              <h2 className="font-semibold text-gray-900 text-sm">
+              <h2 className="font-semibold text-[color:var(--color-foreground)] text-sm">
                 {selectedCase.caseNumber}
               </h2>
-              <p className="text-xs text-gray-500 mt-0.5">
+              <p className="text-xs text-[color:var(--color-muted)] mt-0.5">
                 {formatCaseType(selectedCase.type)}
               </p>
             </div>
@@ -472,7 +472,7 @@ export default function CasesPage() {
           })}
         </div>
 
-        <h3 className="font-semibold text-gray-900 mb-2">
+        <h3 className="font-semibold text-[color:var(--color-foreground)] mb-2">
           {selectedCase.title}
         </h3>
 
@@ -483,7 +483,7 @@ export default function CasesPage() {
             {selectedCase.status.replace(/_/g, ' ')}
           </span>
           {selectedCase.committee && (
-            <span className="inline-flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 rounded text-xs font-medium">
+            <span className="inline-flex items-center gap-1 px-2 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded text-xs font-medium">
               {selectedCase.committee}
             </span>
           )}
@@ -494,68 +494,68 @@ export default function CasesPage() {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Description */}
         <div>
-          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+          <h4 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
             Description
           </h4>
-          <p className="text-sm text-gray-700 leading-relaxed">
+          <p className="text-sm text-[color:var(--color-foreground)] leading-relaxed">
             {selectedCase.description}
           </p>
         </div>
 
         {/* Key Information */}
-        <div className="bg-gray-50 rounded-md p-3 space-y-2">
+        <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3 space-y-2">
           <div className="flex items-start justify-between text-xs">
-            <span className="text-gray-600">Submitted By</span>
-            <span className="text-gray-900 font-medium text-right">
+            <span className="text-[color:var(--color-muted)]">Submitted By</span>
+            <span className="text-[color:var(--color-foreground)] font-medium text-right">
               {selectedCase.submittedBy}
             </span>
           </div>
           {selectedCase.affectedRep && (
             <div className="flex items-start justify-between text-xs">
-              <span className="text-gray-600">Affected Rep</span>
-              <span className="text-gray-900 font-medium">
+              <span className="text-[color:var(--color-muted)]">Affected Rep</span>
+              <span className="text-[color:var(--color-foreground)] font-medium">
                 {selectedCase.affectedRep}
               </span>
             </div>
           )}
           {selectedCase.assignedTo && (
             <div className="flex items-start justify-between text-xs">
-              <span className="text-gray-600">Assigned To</span>
-              <span className="text-gray-900 font-medium text-right">
+              <span className="text-[color:var(--color-muted)]">Assigned To</span>
+              <span className="text-[color:var(--color-foreground)] font-medium text-right">
                 {selectedCase.assignedTo}
               </span>
             </div>
           )}
           <div className="flex items-start justify-between text-xs">
-            <span className="text-gray-600">Submitted</span>
-            <span className="text-gray-900 font-medium">
+            <span className="text-[color:var(--color-muted)]">Submitted</span>
+            <span className="text-[color:var(--color-foreground)] font-medium">
               {formatDate(selectedCase.submittedAt)}
             </span>
           </div>
           <div className="flex items-start justify-between text-xs">
-            <span className="text-gray-600">Due Date</span>
-            <span className="text-gray-900 font-medium">
+            <span className="text-[color:var(--color-muted)]">Due Date</span>
+            <span className="text-[color:var(--color-foreground)] font-medium">
               {formatDate(selectedCase.resolutionDueDate)}
             </span>
           </div>
           <div className="flex items-start justify-between text-xs">
-            <span className="text-gray-600">Days Elapsed</span>
-            <span className="text-gray-900 font-medium">
+            <span className="text-[color:var(--color-muted)]">Days Elapsed</span>
+            <span className="text-[color:var(--color-foreground)] font-medium">
               {selectedCase.businessDaysElapsed} business days
             </span>
           </div>
           {selectedCase.financialImpact !== undefined && (
             <div className="flex items-start justify-between text-xs">
-              <span className="text-gray-600">Financial Impact</span>
-              <span className="text-gray-900 font-medium">
+              <span className="text-[color:var(--color-muted)]">Financial Impact</span>
+              <span className="text-[color:var(--color-foreground)] font-medium">
                 ${selectedCase.financialImpact.toLocaleString()}
               </span>
             </div>
           )}
           {selectedCase.relatedDealId && (
             <div className="flex items-start justify-between text-xs">
-              <span className="text-gray-600">Related Deal</span>
-              <span className="text-blue-600 font-medium hover:underline cursor-pointer">
+              <span className="text-[color:var(--color-muted)]">Related Deal</span>
+              <span className="text-[color:var(--color-info)] font-medium hover:underline cursor-pointer">
                 {selectedCase.relatedDealId}
               </span>
             </div>
@@ -564,30 +564,30 @@ export default function CasesPage() {
 
         {/* Timeline */}
         <div>
-          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+          <h4 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-3">
             Timeline
           </h4>
           <div className="space-y-3">
             {selectedCase.timeline.map((event, index) => (
               <div key={index} className="flex gap-3">
                 <div className="flex-none">
-                  <div className="w-2 h-2 bg-pink-500 rounded-full mt-1.5"></div>
+                  <div className="w-2 h-2 bg-[color:var(--color-accent-bg)]0 rounded-full mt-1.5"></div>
                   {index < selectedCase.timeline.length - 1 && (
-                    <div className="w-0.5 h-full bg-gray-200 ml-0.75 mt-1"></div>
+                    <div className="w-0.5 h-full bg-[color:var(--color-border)] ml-0.75 mt-1"></div>
                   )}
                 </div>
                 <div className="flex-1 pb-4">
                   <div className="flex items-start justify-between mb-1">
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-[color:var(--color-foreground)]">
                       {event.action}
                     </p>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-[color:var(--color-muted)]">
                       {formatDate(event.timestamp)}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-600 mb-1">{event.actor}</p>
+                  <p className="text-xs text-[color:var(--color-muted)] mb-1">{event.actor}</p>
                   {event.notes && (
-                    <p className="text-xs text-gray-700 bg-gray-50 rounded p-2 mt-2">
+                    <p className="text-xs text-[color:var(--color-foreground)] bg-[color:var(--color-surface-alt)] rounded p-2 mt-2">
                       {event.notes}
                     </p>
                   )}
@@ -599,30 +599,30 @@ export default function CasesPage() {
 
         {/* Resolution (if exists) */}
         {selectedCase.resolution && (
-          <div className="bg-green-50 border border-green-200 rounded-md p-3">
-            <h4 className="text-xs font-semibold text-green-700 uppercase tracking-wider mb-2">
+          <div className="bg-[color:var(--color-success-bg)] border border-[color:var(--color-success-border)] rounded-md p-3">
+            <h4 className="text-xs font-semibold text-[color:var(--color-success)] uppercase tracking-wider mb-2">
               Resolution
             </h4>
             <div className="space-y-2">
               <div className="flex items-start justify-between text-xs">
-                <span className="text-green-700 font-medium">Decision</span>
-                <span className="text-green-900 font-semibold">
+                <span className="text-[color:var(--color-success)] font-medium">Decision</span>
+                <span className="text-[color:var(--color-success)] font-semibold">
                   {selectedCase.resolution.decision}
                 </span>
               </div>
               <div className="flex items-start justify-between text-xs">
-                <span className="text-green-700">Decided By</span>
-                <span className="text-green-900">
+                <span className="text-[color:var(--color-success)]">Decided By</span>
+                <span className="text-[color:var(--color-success)]">
                   {selectedCase.resolution.decidedBy}
                 </span>
               </div>
               <div className="flex items-start justify-between text-xs">
-                <span className="text-green-700">Date</span>
-                <span className="text-green-900">
+                <span className="text-[color:var(--color-success)]">Date</span>
+                <span className="text-[color:var(--color-success)]">
                   {formatDate(selectedCase.resolution.decidedAt)}
                 </span>
               </div>
-              <div className="text-xs text-green-900 mt-3 leading-relaxed">
+              <div className="text-xs text-[color:var(--color-success)] mt-3 leading-relaxed">
                 <p className="font-medium mb-1">Rationale:</p>
                 <p>{selectedCase.resolution.rationale}</p>
               </div>
@@ -633,21 +633,21 @@ export default function CasesPage() {
         {/* Attachments */}
         {selectedCase.attachments && selectedCase.attachments.length > 0 && (
           <div>
-            <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            <h4 className="text-xs font-semibold text-[color:var(--color-muted)] uppercase tracking-wider mb-2">
               Attachments ({selectedCase.attachments.length})
             </h4>
             <div className="space-y-2">
               {selectedCase.attachments.map((attachment, index) => (
                 <div
                   key={index}
-                  className="flex items-center gap-2 p-2 bg-gray-50 rounded hover:bg-gray-100 cursor-pointer transition-colors"
+                  className="flex items-center gap-2 p-2 bg-[color:var(--color-surface-alt)] rounded hover:bg-[color:var(--color-surface-alt)] cursor-pointer transition-colors"
                 >
-                  <FileTextIcon className="w-4 h-4 text-gray-400" />
+                  <FileTextIcon className="w-4 h-4 text-[color:var(--color-muted)]" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-gray-900 truncate">
+                    <p className="text-xs font-medium text-[color:var(--color-foreground)] truncate">
                       {attachment.name}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-[color:var(--color-muted)]">
                       {attachment.type} • {formatDate(attachment.uploadedAt)}
                     </p>
                   </div>
@@ -660,15 +660,15 @@ export default function CasesPage() {
 
       {/* Actions (for active cases) */}
       {selectedCase.status !== 'RESOLVED' && selectedCase.status !== 'CLOSED' && (
-        <div className="flex-none p-4 border-t border-purple-200 space-y-2">
-          <button className="w-full px-4 py-2 bg-pink-600 text-white rounded-md text-sm font-medium hover:bg-pink-700 transition-colors">
+        <div className="flex-none p-4 border-t border-[color:var(--color-border)] space-y-2">
+          <button className="w-full px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-secondary)] transition-colors">
             Update Case
           </button>
-          <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">
+          <button className="w-full px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-secondary)] transition-colors">
             Request Information
           </button>
           {selectedCase.status === 'UNDER_REVIEW' && (
-            <button className="w-full px-4 py-2 bg-red-600 text-white rounded-md text-sm font-medium hover:bg-red-700 transition-colors">
+            <button className="w-full px-4 py-2 bg-[color:var(--color-error)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-error)] transition-colors">
               Escalate to {selectedCase.committee || 'Committee'}
             </button>
           )}

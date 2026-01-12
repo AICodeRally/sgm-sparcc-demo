@@ -70,9 +70,9 @@ export default function RichEditor({
     // Simple markdown rendering (in production, use a library like react-markdown)
     let html = text
       // Headers
-      .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">$1</h3>')
-      .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">$1</h2>')
-      .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-gray-900 mt-8 mb-4">$1</h1>')
+      .replace(/^### (.*$)/gim, '<h3 class="text-xl font-semibold text-[color:var(--color-foreground)] mt-6 mb-3">$1</h3>')
+      .replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-[color:var(--color-foreground)] mt-8 mb-4">$1</h2>')
+      .replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-[color:var(--color-foreground)] mt-8 mb-4">$1</h1>')
       // Bold
       .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>')
       // Italic
@@ -91,36 +91,36 @@ export default function RichEditor({
   return (
     <div className="h-full flex flex-col">
       {/* Section Header */}
-      <div className="p-6 border-b border-purple-200 bg-white/90">
+      <div className="p-6 border-b border-[color:var(--color-border)] bg-[color:var(--surface-glass)]">
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-2">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-2xl font-bold text-[color:var(--color-foreground)]">
                 {section.title}
               </h2>
               {section.isRequired && (
-                <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-medium rounded">
+                <span className="px-2 py-1 bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] text-xs font-medium rounded">
                   Required
                 </span>
               )}
               <span className={`px-2 py-1 text-xs font-medium rounded ${
                 section.completionStatus === 'COMPLETED'
-                  ? 'bg-green-100 text-green-700'
+                  ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]'
                   : section.completionStatus === 'IN_PROGRESS'
-                  ? 'bg-yellow-100 text-yellow-700'
-                  : 'bg-gray-100 text-gray-700'
+                  ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]'
+                  : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]'
               }`}>
                 {section.completionStatus?.replace('_', ' ')}
               </span>
             </div>
             {section.description && (
-              <p className="text-gray-600">{section.description}</p>
+              <p className="text-[color:var(--color-muted)]">{section.description}</p>
             )}
           </div>
           {section.completionStatus !== 'COMPLETED' && (
             <button
               onClick={onMarkComplete}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2"
+              className="px-4 py-2 bg-[color:var(--color-success)] text-white rounded-lg hover:bg-[color:var(--color-success)] transition-colors flex items-center gap-2"
             >
               <CheckIcon className="h-5 w-5" />
               Mark Complete
@@ -134,8 +134,8 @@ export default function RichEditor({
             onClick={() => setMode('write')}
             className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
               mode === 'write'
-                ? 'bg-purple-100 text-purple-700 font-medium'
-                : 'text-gray-600 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] font-medium'
+                : 'text-[color:var(--color-muted)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <Pencil1Icon className="h-4 w-4" />
@@ -145,8 +145,8 @@ export default function RichEditor({
             onClick={() => setMode('preview')}
             className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
               mode === 'preview'
-                ? 'bg-purple-100 text-purple-700 font-medium'
-                : 'text-gray-600 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] font-medium'
+                : 'text-[color:var(--color-muted)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             <EyeOpenIcon className="h-4 w-4" />
@@ -156,8 +156,8 @@ export default function RichEditor({
             onClick={() => setMode('split')}
             className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
               mode === 'split'
-                ? 'bg-purple-100 text-purple-700 font-medium'
-                : 'text-gray-600 hover:bg-gray-100'
+                ? 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] font-medium'
+                : 'text-[color:var(--color-muted)] hover:bg-[color:var(--color-surface-alt)]'
             }`}
           >
             Split
@@ -167,48 +167,48 @@ export default function RichEditor({
 
       {/* Toolbar */}
       {(mode === 'write' || mode === 'split') && (
-        <div className="p-4 border-b border-purple-200 bg-white/80">
+        <div className="p-4 border-b border-[color:var(--color-border)] bg-[color:var(--surface-glass)]">
           <div className="flex items-center gap-2">
             <button
               onClick={() => insertMarkdown('**', '**')}
-              className="p-2 hover:bg-gray-100 rounded transition-colors"
+              className="p-2 hover:bg-[color:var(--color-surface-alt)] rounded transition-colors"
               title="Bold"
             >
               <span className="font-bold">B</span>
             </button>
             <button
               onClick={() => insertMarkdown('*', '*')}
-              className="p-2 hover:bg-gray-100 rounded transition-colors"
+              className="p-2 hover:bg-[color:var(--color-surface-alt)] rounded transition-colors"
               title="Italic"
             >
               <span className="italic">I</span>
             </button>
-            <div className="w-px h-6 bg-gray-300" />
+            <div className="w-px h-6 bg-[color:var(--color-border)]" />
             <button
               onClick={() => insertMarkdown('# ', '')}
-              className="p-2 hover:bg-gray-100 rounded transition-colors text-sm font-medium"
+              className="p-2 hover:bg-[color:var(--color-surface-alt)] rounded transition-colors text-sm font-medium"
               title="Heading 1"
             >
               H1
             </button>
             <button
               onClick={() => insertMarkdown('## ', '')}
-              className="p-2 hover:bg-gray-100 rounded transition-colors text-sm font-medium"
+              className="p-2 hover:bg-[color:var(--color-surface-alt)] rounded transition-colors text-sm font-medium"
               title="Heading 2"
             >
               H2
             </button>
             <button
               onClick={() => insertMarkdown('### ', '')}
-              className="p-2 hover:bg-gray-100 rounded transition-colors text-sm font-medium"
+              className="p-2 hover:bg-[color:var(--color-surface-alt)] rounded transition-colors text-sm font-medium"
               title="Heading 3"
             >
               H3
             </button>
-            <div className="w-px h-6 bg-gray-300" />
+            <div className="w-px h-6 bg-[color:var(--color-border)]" />
             <button
               onClick={() => insertMarkdown('- ', '')}
-              className="p-2 hover:bg-gray-100 rounded transition-colors"
+              className="p-2 hover:bg-[color:var(--color-surface-alt)] rounded transition-colors"
               title="Bullet List"
             >
               <ListBulletIcon className="h-5 w-5" />
@@ -225,7 +225,7 @@ export default function RichEditor({
             value={content}
             onChange={(e) => handleContentChange(e.target.value)}
             placeholder="Start writing in markdown... Use # for headings, **bold**, *italic*, - for lists"
-            className="w-full h-full p-8 resize-none focus:outline-none font-mono text-gray-800"
+            className="w-full h-full p-8 resize-none focus:outline-none font-mono text-[color:var(--color-foreground)]"
             style={{ minHeight: '100%' }}
           />
         )}
@@ -239,13 +239,13 @@ export default function RichEditor({
 
         {mode === 'split' && (
           <div className="flex h-full">
-            <div className="w-1/2 border-r border-purple-200">
+            <div className="w-1/2 border-r border-[color:var(--color-border)]">
               <textarea
                 id="markdown-editor"
                 value={content}
                 onChange={(e) => handleContentChange(e.target.value)}
                 placeholder="Start writing in markdown..."
-                className="w-full h-full p-8 resize-none focus:outline-none font-mono text-gray-800"
+                className="w-full h-full p-8 resize-none focus:outline-none font-mono text-[color:var(--color-foreground)]"
               />
             </div>
             <div className="w-1/2 overflow-y-auto">
@@ -259,8 +259,8 @@ export default function RichEditor({
       </div>
 
       {/* Footer Info */}
-      <div className="p-4 border-t border-purple-200 bg-white/90">
-        <div className="flex items-center justify-between text-sm text-gray-500">
+      <div className="p-4 border-t border-[color:var(--color-border)] bg-[color:var(--surface-glass)]">
+        <div className="flex items-center justify-between text-sm text-[color:var(--color-muted)]">
           <div>
             {content.length} characters, {content.split(/\s+/).filter(w => w.length > 0).length} words
           </div>

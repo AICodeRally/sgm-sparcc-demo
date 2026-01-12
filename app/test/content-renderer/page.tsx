@@ -7,6 +7,7 @@
  */
 
 import { useState } from 'react';
+import { CheckCircledIcon } from '@radix-ui/react-icons';
 import JSONContentRenderer from '@/components/content/JSONContentRenderer';
 import type { ContentJSON } from '@/lib/contracts/content-json.contract';
 
@@ -256,14 +257,14 @@ export default function ContentRendererTestPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-[color:var(--color-surface-alt)] py-8">
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="bg-[color:var(--color-surface)] rounded-lg shadow-sm p-6 mb-6">
+          <h1 className="text-3xl font-bold text-[color:var(--color-foreground)] mb-2">
             JSON Content Renderer Test
           </h1>
-          <p className="text-gray-600">
+          <p className="text-[color:var(--color-muted)]">
             Demonstrating clean HTML rendering from ContentJSON with zero markdown
             artifacts.
           </p>
@@ -275,20 +276,20 @@ export default function ContentRendererTestPage() {
                 type="checkbox"
                 checked={showBlockTypes}
                 onChange={(e) => setShowBlockTypes(e.target.checked)}
-                className="rounded border-gray-300"
+                className="rounded border-[color:var(--color-border)]"
               />
-              <span className="text-sm text-gray-700">Show block type indicators</span>
+              <span className="text-sm text-[color:var(--color-foreground)]">Show block type indicators</span>
             </label>
           </div>
         </div>
 
         {/* Sample 1: Full policy section */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="mb-4 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">
+        <div className="bg-[color:var(--color-surface)] rounded-lg shadow-sm p-6 mb-6">
+          <div className="mb-4 pb-4 border-b border-[color:var(--color-border)]">
+            <h2 className="text-xl font-semibold text-[color:var(--color-foreground)]">
               Sample 1: Complete Policy Section
             </h2>
-            <p className="text-sm text-gray-600 mt-1">
+            <p className="text-sm text-[color:var(--color-muted)] mt-1">
               Demonstrates all block types: headings, paragraphs, lists, table, callouts,
               divider
             </p>
@@ -298,12 +299,12 @@ export default function ContentRendererTestPage() {
         </div>
 
         {/* Sample 2: Formatted text */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <div className="mb-4 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">
+        <div className="bg-[color:var(--color-surface)] rounded-lg shadow-sm p-6 mb-6">
+          <div className="mb-4 pb-4 border-b border-[color:var(--color-border)]">
+            <h2 className="text-xl font-semibold text-[color:var(--color-foreground)]">
               Sample 2: Text Formatting
             </h2>
-            <p className="text-sm text-gray-600 mt-1">
+            <p className="text-sm text-[color:var(--color-muted)] mt-1">
               Demonstrates bold, italic, underline formatting
             </p>
           </div>
@@ -315,22 +316,25 @@ export default function ContentRendererTestPage() {
         </div>
 
         {/* Raw JSON view */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="mb-4 pb-4 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">Raw ContentJSON</h2>
-            <p className="text-sm text-gray-600 mt-1">
+        <div className="bg-[color:var(--color-surface)] rounded-lg shadow-sm p-6">
+          <div className="mb-4 pb-4 border-b border-[color:var(--color-border)]">
+            <h2 className="text-xl font-semibold text-[color:var(--color-foreground)]">Raw ContentJSON</h2>
+            <p className="text-sm text-[color:var(--color-muted)] mt-1">
               The underlying JSON structure being rendered
             </p>
           </div>
 
-          <pre className="bg-gray-50 p-4 rounded overflow-x-auto text-xs">
+          <pre className="bg-[color:var(--color-surface-alt)] p-4 rounded overflow-x-auto text-xs">
             {JSON.stringify(sampleContent, null, 2)}
           </pre>
         </div>
 
         {/* Footer */}
-        <div className="mt-8 text-center text-sm text-gray-500">
-          <p>✅ Zero markdown artifacts • Clean semantic HTML • Accessible markup</p>
+        <div className="mt-8 text-center text-sm text-[color:var(--color-muted)]">
+          <p className="inline-flex items-center gap-2 text-[color:var(--color-success)]">
+            <CheckCircledIcon className="w-4 h-4" />
+            Zero markdown artifacts • Clean semantic HTML • Accessible markup
+          </p>
         </div>
       </div>
     </div>

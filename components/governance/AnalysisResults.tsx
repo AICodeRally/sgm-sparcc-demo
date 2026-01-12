@@ -46,34 +46,34 @@ export function AnalysisResults({
   };
 
   const getCoverageGrade = (score: number) => {
-    if (score >= 0.8) return { grade: 'A', color: 'bg-green-100 text-green-800 border-green-200' };
-    if (score >= 0.4) return { grade: 'B', color: 'bg-yellow-100 text-yellow-800 border-yellow-200' };
-    return { grade: 'C', color: 'bg-red-100 text-red-800 border-red-200' };
+    if (score >= 0.8) return { grade: 'A', color: 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]' };
+    if (score >= 0.4) return { grade: 'B', color: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]' };
+    return { grade: 'C', color: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]' };
   };
 
   const getLiabilityColor = (score: number) => {
-    if (score >= 4) return 'bg-red-100 text-red-800 border-red-200';
-    if (score >= 3) return 'bg-orange-100 text-orange-800 border-orange-200';
-    if (score >= 2) return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-    return 'bg-green-100 text-green-800 border-green-200';
+    if (score >= 4) return 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]';
+    if (score >= 3) return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
+    if (score >= 2) return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
+    return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]';
   };
 
   const getSeverityBadge = (severity: string) => {
     const badges = {
-      CRITICAL: 'bg-red-100 text-red-800 border-red-200',
-      HIGH: 'bg-orange-100 text-orange-800 border-orange-200',
-      MEDIUM: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-      LOW: 'bg-blue-100 text-blue-800 border-blue-200',
+      CRITICAL: 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] border-[color:var(--color-error-border)]',
+      HIGH: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
+      MEDIUM: 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]',
+      LOW: 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] border-[color:var(--color-info-border)]',
     };
     return badges[severity as keyof typeof badges] || badges.LOW;
   };
 
   const getSeverityIcon = (severity: string) => {
     const icons = {
-      CRITICAL: <AlertCircle className="w-4 h-4 text-red-600" />,
-      HIGH: <AlertTriangle className="w-4 h-4 text-orange-600" />,
-      MEDIUM: <Info className="w-4 h-4 text-yellow-600" />,
-      LOW: <Info className="w-4 h-4 text-blue-600" />,
+      CRITICAL: <AlertCircle className="w-4 h-4 text-[color:var(--color-error)]" />,
+      HIGH: <AlertTriangle className="w-4 h-4 text-[color:var(--color-warning)]" />,
+      MEDIUM: <Info className="w-4 h-4 text-[color:var(--color-warning)]" />,
+      LOW: <Info className="w-4 h-4 text-[color:var(--color-info)]" />,
     };
     return icons[severity as keyof typeof icons] || icons.LOW;
   };
@@ -94,13 +94,13 @@ export function AnalysisResults({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white border border-gray-200 rounded-lg p-6">
+      <div className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg p-6">
         <div className="flex items-start justify-between mb-4">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            <h2 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">
               Gap Analysis Results
             </h2>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-[color:var(--color-muted)]">
               {fileName} • Analyzed {new Date(result.analyzed_at).toLocaleString()}
             </p>
           </div>
@@ -108,7 +108,7 @@ export function AnalysisResults({
             {onViewPatches && (
               <button
                 onClick={onViewPatches}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors text-sm"
+                className="flex items-center gap-2 px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md hover:bg-[color:var(--color-secondary)] transition-colors text-sm"
               >
                 <Download className="w-4 h-4" />
                 View Patches
@@ -117,7 +117,7 @@ export function AnalysisResults({
             {onViewChecklist && (
               <button
                 onClick={onViewChecklist}
-                className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors text-sm"
+                className="flex items-center gap-2 px-4 py-2 bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] border border-[color:var(--color-border)] rounded-md hover:bg-[color:var(--color-surface-alt)] transition-colors text-sm"
               >
                 <Download className="w-4 h-4" />
                 Checklist
@@ -144,21 +144,21 @@ export function AnalysisResults({
             label="Total Gaps"
             value={result.total_gaps.toString()}
             subtitle={`of ${result.total_requirements} requirements`}
-            className="bg-gray-100 text-gray-800 border-gray-200"
+            className="bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]"
           />
           <MetricCard
             label="Risk Triggers"
             value={result.risk_triggers.length.toString()}
             subtitle="patterns detected"
-            className="bg-purple-100 text-purple-800 border-purple-200"
+            className="bg-[color:var(--color-surface-alt)] text-[color:var(--color-accent)] border-[color:var(--color-border)]"
           />
         </div>
       </div>
 
       {/* Risk Triggers */}
       {result.risk_triggers.length > 0 && (
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+        <div className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">
             Risk Triggers Detected
           </h3>
           <div className="space-y-3">
@@ -170,9 +170,9 @@ export function AnalysisResults({
       )}
 
       {/* Gap Filters */}
-      <div className="bg-white border border-gray-200 rounded-lg p-6">
+      <div className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] rounded-lg p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">
+          <h3 className="text-lg font-semibold text-[color:var(--color-foreground)]">
             Policy Gaps ({filteredGaps.length})
           </h3>
           <div className="flex gap-2">
@@ -180,8 +180,8 @@ export function AnalysisResults({
               onClick={() => setSelectedSeverity('all')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'all'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-[color:var(--color-foreground)] text-[color:var(--color-surface)]'
+                  : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-border)]'
               }`}
             >
               All ({result.gaps.length})
@@ -190,8 +190,8 @@ export function AnalysisResults({
               onClick={() => setSelectedSeverity('CRITICAL')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'CRITICAL'
-                  ? 'bg-red-600 text-white'
-                  : 'bg-red-100 text-red-700 hover:bg-red-200'
+                  ? 'bg-[color:var(--color-error)] text-white'
+                  : 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] hover:bg-[color:var(--color-error-bg)]'
               }`}
             >
               Critical ({gapsBySeverity.CRITICAL})
@@ -200,8 +200,8 @@ export function AnalysisResults({
               onClick={() => setSelectedSeverity('HIGH')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'HIGH'
-                  ? 'bg-orange-600 text-white'
-                  : 'bg-orange-100 text-orange-700 hover:bg-orange-200'
+                  ? 'bg-[color:var(--color-warning)] text-white'
+                  : 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] hover:bg-[color:var(--color-warning-bg)]'
               }`}
             >
               High ({gapsBySeverity.HIGH})
@@ -210,8 +210,8 @@ export function AnalysisResults({
               onClick={() => setSelectedSeverity('MEDIUM')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'MEDIUM'
-                  ? 'bg-yellow-600 text-white'
-                  : 'bg-yellow-100 text-yellow-700 hover:bg-yellow-200'
+                  ? 'bg-[color:var(--color-warning)] text-white'
+                  : 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] hover:bg-[color:var(--color-warning-bg)]'
               }`}
             >
               Medium ({gapsBySeverity.MEDIUM})
@@ -220,8 +220,8 @@ export function AnalysisResults({
               onClick={() => setSelectedSeverity('LOW')}
               className={`px-3 py-1 rounded-md text-sm font-medium transition-colors ${
                 selectedSeverity === 'LOW'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                  ? 'bg-[color:var(--color-primary)] text-white'
+                  : 'bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)] hover:bg-[color:var(--color-info-bg)]'
               }`}
             >
               Low ({gapsBySeverity.LOW})
@@ -245,7 +245,7 @@ export function AnalysisResults({
         </div>
 
         {filteredGaps.length === 0 && (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-[color:var(--color-muted)]">
             No {selectedSeverity.toLowerCase()} severity gaps found
           </div>
         )}
@@ -277,32 +277,32 @@ interface RiskTriggerCardProps {
 
 function RiskTriggerCard({ trigger }: RiskTriggerCardProps) {
   const getImpactColor = (impact: number) => {
-    if (impact >= 3) return 'bg-red-100 border-red-200';
-    if (impact >= 2) return 'bg-orange-100 border-orange-200';
-    return 'bg-yellow-100 border-yellow-200';
+    if (impact >= 3) return 'bg-[color:var(--color-error-bg)] border-[color:var(--color-error-border)]';
+    if (impact >= 2) return 'bg-[color:var(--color-warning-bg)] border-[color:var(--color-warning-border)]';
+    return 'bg-[color:var(--color-warning-bg)] border-[color:var(--color-warning-border)]';
   };
 
   return (
     <div className={`border rounded-md p-4 ${getImpactColor(trigger.impact)}`}>
       <div className="flex items-start justify-between mb-2">
         <div className="flex-1">
-          <h4 className="font-semibold text-gray-900">{trigger.name}</h4>
-          <p className="text-sm text-gray-700 mt-1">{trigger.description}</p>
+          <h4 className="font-semibold text-[color:var(--color-foreground)]">{trigger.name}</h4>
+          <p className="text-sm text-[color:var(--color-foreground)] mt-1">{trigger.description}</p>
         </div>
-        <span className="text-xs font-medium px-2 py-1 bg-white rounded-md ml-4">
+        <span className="text-xs font-medium px-2 py-1 bg-[color:var(--color-surface)] rounded-md ml-4">
           Impact: +{trigger.impact}
         </span>
       </div>
       {trigger.matched_patterns.length > 0 && (
         <div className="mt-3">
-          <p className="text-xs font-medium text-gray-700 mb-1">
+          <p className="text-xs font-medium text-[color:var(--color-foreground)] mb-1">
             Matched Patterns:
           </p>
           <div className="flex flex-wrap gap-1">
             {trigger.matched_patterns.map((pattern, i) => (
               <span
                 key={i}
-                className="text-xs px-2 py-1 bg-white rounded-md text-gray-700"
+                className="text-xs px-2 py-1 bg-[color:var(--color-surface)] rounded-md text-[color:var(--color-foreground)]"
               >
                 {pattern}
               </span>
@@ -313,4 +313,3 @@ function RiskTriggerCard({ trigger }: RiskTriggerCardProps) {
     </div>
   );
 }
-

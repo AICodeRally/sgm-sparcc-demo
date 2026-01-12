@@ -32,23 +32,23 @@ export default function Toast({ type, message, onClose, duration = 5000 }: Toast
   const config = {
     success: {
       icon: CheckCircledIcon,
-      className: 'bg-green-50 border-green-500 text-green-800',
-      iconColor: 'text-green-500',
+      className: 'bg-[color:var(--color-success-bg)] border-[color:var(--color-success-border)] text-[color:var(--color-success)]',
+      iconColor: 'text-[color:var(--color-success)]',
     },
     error: {
       icon: ExclamationTriangleIcon,
-      className: 'bg-red-50 border-red-500 text-red-800',
-      iconColor: 'text-red-500',
+      className: 'bg-[color:var(--color-error-bg)] border-[color:var(--color-error-border)] text-[color:var(--color-error)]',
+      iconColor: 'text-[color:var(--color-error)]',
     },
     warning: {
       icon: ExclamationTriangleIcon,
-      className: 'bg-yellow-50 border-yellow-500 text-yellow-800',
-      iconColor: 'text-yellow-500',
+      className: 'bg-[color:var(--color-warning-bg)] border-[color:var(--color-warning-border)] text-[color:var(--color-warning)]',
+      iconColor: 'text-[color:var(--color-warning)]',
     },
     info: {
       icon: InfoCircledIcon,
-      className: 'bg-blue-50 border-blue-500 text-blue-800',
-      iconColor: 'text-blue-500',
+      className: 'bg-[color:var(--color-surface-alt)] border-[color:var(--color-primary)] text-[color:var(--color-info)]',
+      iconColor: 'text-[color:var(--color-info)]',
     },
   };
 

@@ -65,15 +65,15 @@ export default function ReportsPage() {
   const getCategoryColor = (category: ReportCategory) => {
     switch (category) {
       case 'COMPLIANCE':
-        return 'bg-purple-100 text-purple-700 border-purple-200';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] border-[color:var(--color-border)]';
       case 'PERFORMANCE':
-        return 'bg-blue-100 text-blue-700 border-blue-200';
+        return 'bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)] border-[color:var(--color-info-border)]';
       case 'OPERATIONS':
-        return 'bg-green-100 text-green-700 border-green-200';
+        return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]';
       case 'AUDIT':
-        return 'bg-orange-100 text-orange-700 border-orange-200';
+        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
       default:
-        return 'bg-gray-100 text-gray-700 border-purple-200';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
     }
   };
 
@@ -81,15 +81,15 @@ export default function ReportsPage() {
   const getFormatColor = (format: ReportFormat) => {
     switch (format) {
       case 'PDF':
-        return 'bg-red-100 text-red-700';
+        return 'bg-[color:var(--color-error-bg)] text-[color:var(--color-error)]';
       case 'EXCEL':
-        return 'bg-green-100 text-green-700';
+        return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]';
       case 'CSV':
-        return 'bg-blue-100 text-blue-700';
+        return 'bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)]';
       case 'JSON':
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
       default:
-        return 'bg-gray-100 text-gray-700';
+        return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]';
     }
   };
 
@@ -99,19 +99,19 @@ export default function ReportsPage() {
         title="Reports & Export"
         description="9 pre-built report templates with multiple export formats"
       />
-      <div className="h-screen bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50 flex flex-col">
+      <div className="h-screen sparcc-hero-bg flex flex-col">
         {/* Header */}
-        <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 shadow-sm">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm">
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-sm">
-              <div className="bg-purple-100 px-3 py-1 rounded-full">
-                <span className="font-semibold text-purple-700">{REPORT_STATS.totalTemplates}</span>
-                <span className="text-purple-600 ml-1">templates</span>
+              <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
+                <span className="font-semibold text-[color:var(--color-primary)]">{REPORT_STATS.totalTemplates}</span>
+                <span className="text-[color:var(--color-primary)] ml-1">templates</span>
               </div>
-              <div className="bg-green-100 px-3 py-1 rounded-full">
-                <span className="font-semibold text-green-700">{REPORT_STATS.recentlyGenerated}</span>
-                <span className="text-green-600 ml-1">this week</span>
+              <div className="bg-[color:var(--color-success-bg)] px-3 py-1 rounded-full">
+                <span className="font-semibold text-[color:var(--color-success)]">{REPORT_STATS.recentlyGenerated}</span>
+                <span className="text-[color:var(--color-success)] ml-1">this week</span>
               </div>
             </div>
           </div>
@@ -127,8 +127,8 @@ export default function ReportsPage() {
               onClick={() => setFilterCategory('all')}
               className={`px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
                 filterCategory === 'all'
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-white border border-purple-200 text-gray-700 hover:bg-purple-50'
+                  ? 'bg-[color:var(--color-primary)] text-white'
+                  : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
               All Templates ({REPORT_TEMPLATES.length})
@@ -137,8 +137,8 @@ export default function ReportsPage() {
               onClick={() => setFilterCategory('COMPLIANCE')}
               className={`px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
                 filterCategory === 'COMPLIANCE'
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-white border border-purple-200 text-gray-700 hover:bg-purple-50'
+                  ? 'bg-[color:var(--color-primary)] text-white'
+                  : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
               Compliance ({REPORT_STATS.byCategory.COMPLIANCE})
@@ -147,8 +147,8 @@ export default function ReportsPage() {
               onClick={() => setFilterCategory('PERFORMANCE')}
               className={`px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
                 filterCategory === 'PERFORMANCE'
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-white border border-purple-200 text-gray-700 hover:bg-purple-50'
+                  ? 'bg-[color:var(--color-primary)] text-white'
+                  : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
               Performance ({REPORT_STATS.byCategory.PERFORMANCE})
@@ -157,8 +157,8 @@ export default function ReportsPage() {
               onClick={() => setFilterCategory('OPERATIONS')}
               className={`px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
                 filterCategory === 'OPERATIONS'
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-white border border-purple-200 text-gray-700 hover:bg-purple-50'
+                  ? 'bg-[color:var(--color-primary)] text-white'
+                  : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
               Operations ({REPORT_STATS.byCategory.OPERATIONS})
@@ -167,8 +167,8 @@ export default function ReportsPage() {
               onClick={() => setFilterCategory('AUDIT')}
               className={`px-4 py-2 rounded-md text-sm font-medium whitespace-nowrap transition-colors ${
                 filterCategory === 'AUDIT'
-                  ? 'bg-purple-600 text-white'
-                  : 'bg-white border border-purple-200 text-gray-700 hover:bg-purple-50'
+                  ? 'bg-[color:var(--color-primary)] text-white'
+                  : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
               Audit ({REPORT_STATS.byCategory.AUDIT})
@@ -190,14 +190,14 @@ export default function ReportsPage() {
                   }}
                   className={`text-left p-5 rounded-lg border-2 transition-all hover:shadow-lg ${
                     isSelected
-                      ? 'border-purple-500 bg-gradient-to-br from-purple-50 to-fuchsia-50'
-                      : 'border-purple-200 bg-white/80 backdrop-blur-sm hover:border-purple-300'
+                      ? 'border-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)]'
+                      : 'border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm hover:border-[color:var(--color-border)]'
                   }`}
                 >
                   {/* Icon & Category */}
                   <div className="flex items-start justify-between mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-purple-600" />
+                    <div className="w-10 h-10 rounded-lg bg-[color:var(--color-surface-alt)] flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-[color:var(--color-primary)]" />
                     </div>
                     <span className={`text-xs font-medium px-2 py-1 rounded border ${getCategoryColor(template.category)}`}>
                       {template.category}
@@ -205,17 +205,17 @@ export default function ReportsPage() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-semibold text-gray-900 mb-2">
+                  <h3 className="font-semibold text-[color:var(--color-foreground)] mb-2">
                     {template.name}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                  <p className="text-sm text-[color:var(--color-muted)] mb-3 line-clamp-2">
                     {template.description}
                   </p>
 
                   {/* Meta */}
-                  <div className="flex items-center gap-2 text-xs text-gray-500">
+                  <div className="flex items-center gap-2 text-xs text-[color:var(--color-muted)]">
                     <ClockIcon className="w-3 h-3" />
                     <span>{template.estimatedTime}</span>
                   </div>
@@ -237,9 +237,9 @@ export default function ReportsPage() {
           </div>
 
           {/* Recent Reports */}
-          <div className="bg-white/80 backdrop-blur-sm rounded-lg border border-purple-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <ArchiveIcon className="w-5 h-5 text-purple-600" />
+          <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border border-[color:var(--color-border)] p-6">
+            <h2 className="text-lg font-bold text-[color:var(--color-foreground)] mb-4 flex items-center gap-2">
+              <ArchiveIcon className="w-5 h-5 text-[color:var(--color-primary)]" />
               Recently Generated Reports
             </h2>
 
@@ -247,17 +247,17 @@ export default function ReportsPage() {
               {GENERATED_REPORTS.map(report => (
                 <div
                   key={report.id}
-                  className="flex items-center justify-between p-3 rounded-lg bg-white border border-purple-200 hover:shadow-md transition-all"
+                  className="flex items-center justify-between p-3 rounded-lg bg-[color:var(--color-surface)] border border-[color:var(--color-border)] hover:shadow-md transition-all"
                 >
                   <div className="flex items-center gap-3 flex-1 min-w-0">
-                    <div className="w-10 h-10 rounded bg-purple-100 flex items-center justify-center flex-shrink-0">
-                      <FileTextIcon className="w-5 h-5 text-purple-600" />
+                    <div className="w-10 h-10 rounded bg-[color:var(--color-surface-alt)] flex items-center justify-center flex-shrink-0">
+                      <FileTextIcon className="w-5 h-5 text-[color:var(--color-primary)]" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-gray-900 truncate">
+                      <p className="text-sm font-semibold text-[color:var(--color-foreground)] truncate">
                         {report.templateName}
                       </p>
-                      <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-[color:var(--color-muted)]">
                         <span>{report.generatedBy}</span>
                         <span>•</span>
                         <span>{new Date(report.generatedAt).toLocaleDateString()}</span>
@@ -270,7 +270,7 @@ export default function ReportsPage() {
                       </div>
                     </div>
                   </div>
-                  <button className="flex items-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-md text-sm font-medium hover:bg-purple-700 transition-colors">
+                  <button className="flex items-center gap-2 px-3 py-2 bg-[color:var(--color-primary)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-secondary)] transition-colors">
                     <DownloadIcon className="w-4 h-4" />
                     Download
                   </button>
@@ -282,7 +282,7 @@ export default function ReportsPage() {
 
         {/* Right Panel - Report Configuration */}
         {selectedTemplate && (
-          <div className="w-96 border-l border-purple-200 bg-white/90 backdrop-blur-sm overflow-y-auto">
+          <div className="w-96 border-l border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
             <div className="p-6">
               {/* Template Info */}
               <div className="mb-6">
@@ -290,13 +290,13 @@ export default function ReportsPage() {
                   {(() => {
                     const Icon = getReportIcon(selectedTemplate.icon);
                     return (
-                      <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center flex-shrink-0">
-                        <Icon className="w-6 h-6 text-purple-600" />
+                      <div className="w-12 h-12 rounded-lg bg-[color:var(--color-surface-alt)] flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-6 h-6 text-[color:var(--color-primary)]" />
                       </div>
                     );
                   })()}
                   <div className="flex-1">
-                    <h2 className="text-lg font-bold text-gray-900">
+                    <h2 className="text-lg font-bold text-[color:var(--color-foreground)]">
                       {selectedTemplate.name}
                     </h2>
                     <span className={`inline-block text-xs font-medium px-2 py-1 rounded border mt-1 ${getCategoryColor(selectedTemplate.category)}`}>
@@ -305,11 +305,11 @@ export default function ReportsPage() {
                   </div>
                 </div>
 
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-sm text-[color:var(--color-muted)] leading-relaxed">
                   {selectedTemplate.description}
                 </p>
 
-                <div className="flex items-center gap-2 mt-3 text-sm text-gray-500">
+                <div className="flex items-center gap-2 mt-3 text-sm text-[color:var(--color-muted)]">
                   <ClockIcon className="w-4 h-4" />
                   <span>Estimated generation time: {selectedTemplate.estimatedTime}</span>
                 </div>
@@ -317,7 +317,7 @@ export default function ReportsPage() {
 
               {/* Format Selection */}
               <div className="mb-6">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-[color:var(--color-foreground)] mb-2">
                   Export Format
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -327,8 +327,8 @@ export default function ReportsPage() {
                       onClick={() => setSelectedFormat(format)}
                       className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                         selectedFormat === format
-                          ? 'bg-purple-600 text-white'
-                          : 'bg-white border border-purple-200 text-gray-700 hover:bg-purple-50'
+                          ? 'bg-[color:var(--color-primary)] text-white'
+                          : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
                       }`}
                     >
                       {format}
@@ -339,17 +339,17 @@ export default function ReportsPage() {
 
               {/* Parameters */}
               <div className="mb-6">
-                <h3 className="text-sm font-semibold text-gray-700 mb-3">Report Parameters</h3>
+                <h3 className="text-sm font-semibold text-[color:var(--color-foreground)] mb-3">Report Parameters</h3>
                 <div className="space-y-4">
                   {selectedTemplate.parameters.map(param => (
                     <div key={param.id}>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-[color:var(--color-foreground)] mb-1">
                         {param.label}
-                        {param.required && <span className="text-red-500 ml-1">*</span>}
+                        {param.required && <span className="text-[color:var(--color-error)] ml-1">*</span>}
                       </label>
 
                       {param.type === 'select' && param.options && (
-                        <select className="w-full px-3 py-2 border border-purple-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <select className="w-full px-3 py-2 border border-[color:var(--color-border)] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent-border)]">
                           {param.options.map(opt => (
                             <option key={opt.value} value={opt.value}>
                               {opt.label}
@@ -359,10 +359,10 @@ export default function ReportsPage() {
                       )}
 
                       {param.type === 'multi_select' && param.options && (
-                        <div className="space-y-1 border border-purple-200 rounded-md p-2 max-h-40 overflow-y-auto">
+                        <div className="space-y-1 border border-[color:var(--color-border)] rounded-md p-2 max-h-40 overflow-y-auto">
                           {param.options.map(opt => (
-                            <label key={opt.value} className="flex items-center gap-2 text-sm p-1 hover:bg-purple-50 rounded">
-                              <input type="checkbox" className="rounded border-purple-300" />
+                            <label key={opt.value} className="flex items-center gap-2 text-sm p-1 hover:bg-[color:var(--color-surface-alt)] rounded">
+                              <input type="checkbox" className="rounded border-[color:var(--color-border)]" />
                               <span>{opt.label}</span>
                             </label>
                           ))}
@@ -373,12 +373,12 @@ export default function ReportsPage() {
                         <div className="grid grid-cols-2 gap-2">
                           <input
                             type="date"
-                            className="px-3 py-2 border border-purple-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="px-3 py-2 border border-[color:var(--color-border)] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent-border)]"
                             placeholder="Start date"
                           />
                           <input
                             type="date"
-                            className="px-3 py-2 border border-purple-200 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="px-3 py-2 border border-[color:var(--color-border)] rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[color:var(--color-accent-border)]"
                             placeholder="End date"
                           />
                         </div>
@@ -389,9 +389,9 @@ export default function ReportsPage() {
                           <input
                             type="checkbox"
                             defaultChecked={param.defaultValue}
-                            className="rounded border-purple-300"
+                            className="rounded border-[color:var(--color-border)]"
                           />
-                          <span className="text-gray-600">Enable this option</span>
+                          <span className="text-[color:var(--color-muted)]">Enable this option</span>
                         </label>
                       )}
                     </div>
@@ -400,14 +400,14 @@ export default function ReportsPage() {
               </div>
 
               {/* Generate Button */}
-              <button className="w-full px-4 py-3 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 transition-colors flex items-center justify-center gap-2">
+              <button className="w-full px-4 py-3 bg-[color:var(--color-primary)] text-white rounded-lg font-medium hover:bg-[color:var(--color-secondary)] transition-colors flex items-center justify-center gap-2">
                 <DownloadIcon className="w-5 h-5" />
                 Generate Report
               </button>
 
               {/* Help Text */}
-              <div className="mt-4 p-3 bg-purple-50 rounded-md">
-                <p className="text-xs text-gray-600">
+              <div className="mt-4 p-3 bg-[color:var(--color-surface-alt)] rounded-md">
+                <p className="text-xs text-[color:var(--color-muted)]">
                   <strong>Note:</strong> Report generation may take a few minutes depending on the data range and parameters selected. You'll receive a notification when it's ready for download.
                 </p>
               </div>

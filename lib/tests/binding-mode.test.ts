@@ -14,14 +14,14 @@ function assert(condition: boolean, message: string): void {
 }
 
 function testBindingConfig() {
-  console.log('\n📝 Test: Binding Configuration');
+  console.log('\n[DOC] Test: Binding Configuration');
 
   const config = loadBindingConfig();
 
   // Test 1: Default binding mode should be synthetic
   const defaultMode = process.env.BINDING_MODE || 'synthetic';
   assert(defaultMode === 'synthetic', 'Default BINDING_MODE should be synthetic');
-  console.log('  ✅ Default binding mode is synthetic');
+  console.log('  [OK] Default binding mode is synthetic');
 
   // Test 2: All providers should respect BINDING_MODE
   Object.keys(config.providers).forEach(provider => {
@@ -31,11 +31,11 @@ function testBindingConfig() {
       `Provider ${provider} has invalid mode: ${mode}`
     );
   });
-  console.log('  ✅ All provider modes are valid');
+  console.log('  [OK] All provider modes are valid');
 }
 
 function testSchemaIsolation() {
-  console.log('\n📝 Test: Schema Isolation');
+  console.log('\n[DOC] Test: Schema Isolation');
 
   const databaseUrl = process.env.DATABASE_URL || '';
 
@@ -46,7 +46,7 @@ function testSchemaIsolation() {
       hasSchemaParam,
       'DATABASE_URL must include schema=sgm_summit_demo parameter'
     );
-    console.log('  ✅ DATABASE_URL includes schema parameter');
+    console.log('  [OK] DATABASE_URL includes schema parameter');
 
     // Test 4: Schema parameter must be sgm_summit_demo
     const schemaMatch = databaseUrl.match(/schema=([^&]+)/);
@@ -55,7 +55,7 @@ function testSchemaIsolation() {
         schemaMatch[1] === 'sgm_summit_demo',
         'Schema parameter must be sgm_summit_demo'
       );
-      console.log('  ✅ Schema is correctly set to sgm_summit_demo');
+      console.log('  [OK] Schema is correctly set to sgm_summit_demo');
     }
   } else {
     console.log('  ⏭️  Skipping schema tests (no DATABASE_URL)');
@@ -63,7 +63,7 @@ function testSchemaIsolation() {
 }
 
 function testRegistryDiagnostics() {
-  console.log('\n📝 Test: Registry Diagnostics');
+  console.log('\n[DOC] Test: Registry Diagnostics');
 
   const registry = getRegistry();
   const diagnostics = registry.getDiagnostics();
@@ -72,7 +72,7 @@ function testRegistryDiagnostics() {
   assert(diagnostics.providers !== undefined, 'Diagnostics should include providers');
   assert(diagnostics.modes !== undefined, 'Diagnostics should include modes');
   assert(diagnostics.database !== undefined, 'Diagnostics should include database info');
-  console.log('  ✅ Diagnostics structure is complete');
+  console.log('  [OK] Diagnostics structure is complete');
 
   // Test 6: Database diagnostics should validate schema parameter
   if (diagnostics.database.hasUrl) {
@@ -81,12 +81,12 @@ function testRegistryDiagnostics() {
       diagnostics.database.schemaTarget === 'MISSING/INVALID',
       'Schema target should be sgm_summit_demo or MISSING/INVALID'
     );
-    console.log(`  ✅ Schema target: ${diagnostics.database.schemaTarget}`);
+    console.log(`  [OK] Schema target: ${diagnostics.database.schemaTarget}`);
   }
 }
 
 function testLiveModeGuards() {
-  console.log('\n📝 Test: Live Mode Guards');
+  console.log('\n[DOC] Test: Live Mode Guards');
 
   const config = loadBindingConfig();
   const isLiveMode = Object.values(config.providers).some(mode => mode === 'live');
@@ -95,19 +95,19 @@ function testLiveModeGuards() {
     // Test 7: Live mode requires DATABASE_URL
     const hasUrl = !!process.env.DATABASE_URL;
     assert(hasUrl, 'Live mode requires DATABASE_URL');
-    console.log('  ✅ DATABASE_URL present for live mode');
+    console.log('  [OK] DATABASE_URL present for live mode');
 
     // Test 8: Live mode requires schema parameter
     const hasSchemaParam = (process.env.DATABASE_URL || '').includes('schema=sgm_summit_demo');
     assert(hasSchemaParam, 'Live mode requires schema=sgm_summit_demo in DATABASE_URL');
-    console.log('  ✅ Schema parameter present for live mode');
+    console.log('  [OK] Schema parameter present for live mode');
   } else {
     console.log('  ⏭️  Skipping live mode tests (synthetic mode active)');
   }
 }
 
 function testSyntheticDefault() {
-  console.log('\n📝 Test: Synthetic Default');
+  console.log('\n[DOC] Test: Synthetic Default');
 
   const config = loadBindingConfig();
 
@@ -119,7 +119,7 @@ function testSyntheticDefault() {
         `Provider ${provider} should default to synthetic, got ${mode}`
       );
     });
-    console.log('  ✅ All providers default to synthetic');
+    console.log('  [OK] All providers default to synthetic');
   } else {
     console.log(`  ⏭️  Skipping default test (BINDING_MODE=${process.env.BINDING_MODE})`);
   }
@@ -135,7 +135,7 @@ async function runTests() {
     testLiveModeGuards();
     testSyntheticDefault();
 
-    console.log('\n✅ All tests passed!\n');
+    console.log('\n[OK] All tests passed!\n');
     process.exit(0);
   } catch (error) {
     console.error('\n❌ Test failed:', error);

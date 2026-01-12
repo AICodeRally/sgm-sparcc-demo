@@ -30,13 +30,13 @@ function AuthErrorContent() {
   const errorMessage = error ? errorMessages[error] || errorMessages.Default : errorMessages.Default;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-fuchsia-800 to-yellow-600">
+    <div className="min-h-screen flex items-center justify-center sparcc-hero-bg">
       <div className="max-w-md w-full mx-4">
-        <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-2xl p-8">
+        <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg shadow-2xl p-8">
           <div className="text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-[color:var(--color-error-bg)] rounded-full mb-4">
               <svg
-                className="w-8 h-8 text-red-600"
+                className="w-8 h-8 text-[color:var(--color-error)]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -50,20 +50,20 @@ function AuthErrorContent() {
               </svg>
             </div>
 
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Authentication Error</h1>
-            <p className="text-gray-600 mb-6">{errorMessage}</p>
+            <h1 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-2">Authentication Error</h1>
+            <p className="text-[color:var(--color-muted)] mb-6">{errorMessage}</p>
 
             <Link
               href="/auth/signin"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white rounded-md hover:from-purple-700 hover:to-fuchsia-700 transition-all"
+              className="inline-block px-6 py-3 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white rounded-md hover:opacity-90 transition-all"
             >
               Try Again
             </Link>
           </div>
 
           {error && (
-            <div className="mt-6 p-4 bg-gray-50 rounded-md">
-              <p className="text-xs text-gray-500 text-center">Error Code: {error}</p>
+            <div className="mt-6 p-4 bg-[color:var(--color-surface-alt)] rounded-md">
+              <p className="text-xs text-[color:var(--color-muted)] text-center">Error Code: {error}</p>
             </div>
           )}
         </div>
@@ -75,7 +75,7 @@ function AuthErrorContent() {
 export default function AuthErrorPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-fuchsia-800 to-yellow-600">
+      <div className="min-h-screen flex items-center justify-center sparcc-hero-bg">
         <div className="text-white">Loading...</div>
       </div>
     }>

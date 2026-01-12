@@ -23,6 +23,7 @@ import {
 import { OpsChiefOrb } from '@/components/ai/OpsChiefOrb';
 import { AskDock } from '@/components/ai/AskDock';
 import { AppChatbot } from '@/components/ai/AppChatbot';
+import { useTheme } from '@/components/ThemeProvider';
 
 const navigation = [
   { name: 'Dashboard', path: '/sgm', icon: DashboardIcon },
@@ -42,12 +43,12 @@ interface AppLayoutProps {
 export default function AppLayout({ children }: AppLayoutProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { resolvedMode, toggle } = useTheme();
 
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="flex h-screen bg-[color:var(--color-surface-alt)]">
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div
@@ -58,18 +59,18 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-white border-r border-gray-200 transition-transform lg:static lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col bg-[color:var(--color-surface)] border-r border-[color:var(--color-border)] transition-transform lg:static lg:translate-x-0 ${
           isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         {/* Logo */}
-        <div className="flex h-16 items-center gap-3 border-b border-gray-200 px-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 text-white font-bold">
+        <div className="flex h-16 items-center gap-3 border-b border-[color:var(--color-border)] px-6">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white font-bold">
             SGM
           </div>
           <div>
-            <h1 className="text-lg font-bold text-gray-900">SGM</h1>
-            <p className="text-xs text-gray-500">Sales Governance</p>
+            <h1 className="text-lg font-bold text-[color:var(--color-foreground)]">SGM</h1>
+            <p className="text-xs text-[color:var(--color-muted)]">Sales Governance</p>
           </div>
         </div>
 
@@ -85,8 +86,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
                   href={item.path as any}
                   className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                     isActive
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-700 hover:bg-gray-100'
+                      ? 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-info)]'
+                      : 'text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -99,8 +100,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
         </nav>
 
         {/* Footer */}
-        <div className="border-t border-gray-200 p-4">
-          <div className="text-xs text-gray-500">
+        <div className="border-t border-[color:var(--color-border)] p-4">
+          <div className="text-xs text-[color:var(--color-muted)]">
             <p className="font-medium">Demo Mode</p>
             <p>Synthetic Data</p>
           </div>
@@ -110,12 +111,12 @@ export default function AppLayout({ children }: AppLayoutProps) {
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Top Navigation */}
-        <div className="flex h-16 items-center justify-between border-b border-gray-200 bg-white px-4">
+        <div className="flex h-16 items-center justify-between border-b border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4">
           <div className="flex items-center gap-4">
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="rounded-lg p-2 text-gray-600 hover:bg-gray-100 lg:hidden"
+              className="rounded-lg p-2 text-[color:var(--color-muted)] hover:bg-[color:var(--color-surface-alt)] lg:hidden"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -127,7 +128,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
             {/* Breadcrumb or Title */}
             <div className="hidden md:block">
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold text-[color:var(--color-foreground)]">
                 {navigation.find((item) => item.path === pathname)?.name || 'SGM'}
               </h2>
             </div>
@@ -137,11 +138,11 @@ export default function AppLayout({ children }: AppLayoutProps) {
             <AppChatbot appName="SGM Edge" enabled={true} />
 
             <button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              className="rounded-lg p-2 text-gray-600 hover:bg-gray-100"
+              onClick={toggle}
+              className="rounded-lg p-2 text-[color:var(--color-muted)] hover:bg-[color:var(--color-surface-alt)]"
               aria-label="Toggle dark mode"
             >
-              {isDarkMode ? (
+              {resolvedMode === 'dark' ? (
                 <SunIcon className="h-4 w-4" />
               ) : (
                 <MoonIcon className="h-4 w-4" />
@@ -154,10 +155,10 @@ export default function AppLayout({ children }: AppLayoutProps) {
                 className="flex items-center gap-2"
               >
                 <div className="hidden md:flex flex-col items-end">
-                  <p className="text-sm font-medium text-gray-800">Demo User</p>
-                  <p className="text-xs text-gray-500">Administrator</p>
+                  <p className="text-sm font-medium text-[color:var(--color-foreground)]">Demo User</p>
+                  <p className="text-xs text-[color:var(--color-muted)]">Administrator</p>
                 </div>
-                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-semibold">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white text-sm font-semibold">
                   DU
                 </div>
               </button>
@@ -168,17 +169,17 @@ export default function AppLayout({ children }: AppLayoutProps) {
                     className="fixed inset-0 z-30"
                     onClick={() => setIsUserMenuOpen(false)}
                   />
-                  <div className="absolute right-0 top-full mt-2 w-48 rounded-lg border border-gray-200 bg-white py-1 shadow-lg z-40">
-                    <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  <div className="absolute right-0 top-full mt-2 w-48 rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface)] py-1 shadow-lg z-40">
+                    <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]">
                       <PersonIcon className="h-4 w-4" />
                       Profile
                     </button>
-                    <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]">
                       <GearIcon className="h-4 w-4" />
                       Settings
                     </button>
-                    <hr className="my-1 border-gray-200" />
-                    <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    <hr className="my-1 border-[color:var(--color-border)]" />
+                    <button className="flex w-full items-center gap-2 px-4 py-2 text-sm text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]">
                       <ExitIcon className="h-4 w-4" />
                       Logout
                     </button>

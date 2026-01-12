@@ -12,6 +12,7 @@ import {
   LightningBoltIcon,
   MixIcon,
 } from '@radix-ui/react-icons';
+import { renderTokenizedText } from '@/components/content/tokenUtils';
 
 export default function GovernanceFrameworkPrimer() {
   const [selectedSection, setSelectedSection] = useState<string>('overview');
@@ -99,15 +100,15 @@ The framework consists of **4 core pillars**:
 **Common Exemptions**:
 
 1. **Outside Sales Exemption (§213(a)(1))**
-   - ✅ Employee's PRIMARY duty is making sales
-   - ✅ Regularly engaged AWAY from employer's place of business
-   - ⚠️ Does NOT apply to inside sales (phone/online)
+   - [OK] Employee's PRIMARY duty is making sales
+   - [OK] Regularly engaged AWAY from employer's place of business
+   - [WARN] Does NOT apply to inside sales (phone/online)
 
 2. **FLSA §7(i) Retail/Service Commission Exemption**
-   - ✅ Employed by retail/service establishment
-   - ✅ Regular rate of pay > 1.5x minimum wage
-   - ✅ More than half compensation from commissions
-   - ⚠️ ONLY for retail/service - NOT software/tech
+   - [OK] Employed by retail/service establishment
+   - [OK] Regular rate of pay > 1.5x minimum wage
+   - [OK] More than half compensation from commissions
+   - [WARN] ONLY for retail/service - NOT software/tech
 
 3. **Administrative Exemption**
    - ❌ RARELY applies to sales roles
@@ -117,7 +118,7 @@ The framework consists of **4 core pillars**:
 **Critical Issues**:
 - ❌ **FLSA §7(i) for inside sales** = CRITICAL violation
 - ❌ **Administrative exemption for sales** = Misclassification risk
-- ⚠️ **Hybrid roles** (inside + outside) require careful analysis`,
+- [WARN] **Hybrid roles** (inside + outside) require careful analysis`,
         },
         {
           heading: 'State Wage Deduction Laws',
@@ -126,11 +127,11 @@ The framework consists of **4 core pillars**:
 **What this means**:
 - ❌ CANNOT deduct prior commission overpayments from wages
 - ❌ CANNOT withhold final paycheck to recover draw
-- ✅ CAN prospectively adjust future commission payments
-- ✅ CAN require separate repayment agreement (not wage deduction)
+- [OK] CAN prospectively adjust future commission payments
+- [OK] CAN require separate repayment agreement (not wage deduction)
 
 **Compliant Language**:
-✅ "If termination occurs during a draw period, any unearned draw will be recovered from future commission payments IF the employee continues to earn commissions. No deduction from base wages will occur."
+[OK] "If termination occurs during a draw period, any unearned draw will be recovered from future commission payments IF the employee continues to earn commissions. No deduction from base wages will occur."
 
 **Non-Compliant Language**:
 ❌ "Unearned draw will be deducted from final paycheck or wages."
@@ -155,11 +156,11 @@ The framework consists of **4 core pillars**:
    - Common for ramp periods
 
 **Compliance Requirements**:
-✅ Written agreement BEFORE draw period starts
-✅ Clear recovery schedule (e.g., "over next 6 months")
-✅ Forgiveness clause (e.g., "forgiven after 12 months if still employed")
-✅ State-specific deduction language
-✅ Separate from base wage
+[OK] Written agreement BEFORE draw period starts
+[OK] Clear recovery schedule (e.g., "over next 6 months")
+[OK] Forgiveness clause (e.g., "forgiven after 12 months if still employed")
+[OK] State-specific deduction language
+[OK] Separate from base wage
 
 **Red Flags**:
 ❌ Verbal draw agreement only
@@ -185,14 +186,14 @@ The framework consists of **4 core pillars**:
 **Gaming Scenario**:
 - Rep brings forward $2M deal from Q1 to Q4 (timing manipulation)
 - Q4 attainment: 200% of quota
-- Commission: $2M × 10% × 2.5 = $500K (vs $200K expected)
+- Commission: $2M x 10% x 2.5 = $500K (vs $200K expected)
 
 **Financial Impact**: 150% cost overrun
 
 **Best Practice**:
-✅ Cap accelerators at **200-250% of target total compensation**
-✅ Example: OTE $200K → cap at $400-500K total payout
-✅ OR cap accelerator duration: "2.5x rate applies to first $500K over quota"
+[OK] Cap accelerators at **200-250% of target total compensation**
+[OK] Example: OTE $200K → cap at $400-500K total payout
+[OK] OR cap accelerator duration: "2.5x rate applies to first $500K over quota"
 
 **When Uncapped is Acceptable**:
 - Strategic new product launch (time-limited)
@@ -209,26 +210,26 @@ The framework consists of **4 core pillars**:
    - SaaS contracts often have 60-90 day cancellation windows
 
 2. **Pay at booking, no clawback**
-   - 🚨 CRITICAL RISK: Unlimited exposure
+   - [ALERT] CRITICAL RISK: Unlimited exposure
    - If 20% of bookings don't convert to revenue = 25% commission waste
 
 **Best Practices**:
 
 **Option 1: Revenue Recognition Payment**
-✅ Pay commission when revenue is recognized (invoiced + collected)
-✅ Zero revenue risk
-⚠️ Longer time to payment (may impact motivation)
+[OK] Pay commission when revenue is recognized (invoiced + collected)
+[OK] Zero revenue risk
+[WARN] Longer time to payment (may impact motivation)
 
 **Option 2: Booking Payment with Extended Clawback**
-✅ Pay at booking (motivational benefit)
-✅ 120-180 day clawback period
-✅ Covers typical cancellation windows
-⚠️ Requires tracking and recovery process
+[OK] Pay at booking (motivational benefit)
+[OK] 120-180 day clawback period
+[OK] Covers typical cancellation windows
+[WARN] Requires tracking and recovery process
 
 **Option 3: Hybrid Model**
-✅ 50% at booking
-✅ 50% at revenue recognition
-✅ Balances motivation and risk`,
+[OK] 50% at booking
+[OK] 50% at revenue recognition
+[OK] Balances motivation and risk`,
         },
         {
           heading: 'Deal Splitting & Timing Manipulation',
@@ -241,7 +242,7 @@ The framework consists of **4 core pillars**:
    - Rep accelerates Q1 close into Q4 to hit accelerator tier
 
 2. **Deal Splitting**
-   - $1M annual contract split into 2 × $500K deals to stay under cap
+   - $1M annual contract split into 2 x $500K deals to stay under cap
    - Multi-year deals structured as separate year-over-year contracts
 
 3. **Sandbagging (No Carryover)**
@@ -251,19 +252,19 @@ The framework consists of **4 core pillars**:
 **Prevention Strategies**:
 
 **Deal Splitting Controls**:
-✅ Require VP approval for any deal split among multiple reps
-✅ Define "single opportunity" in CRM (e.g., same decision-maker, same budget)
-✅ Pro-rate credit for partial contributions
+[OK] Require VP approval for any deal split among multiple reps
+[OK] Define "single opportunity" in CRM (e.g., same decision-maker, same budget)
+[OK] Pro-rate credit for partial contributions
 
 **Timing Controls**:
-✅ Use quarterly quotas instead of monthly (reduces timing granularity)
-✅ Implement rolling quotas (e.g., "trailing 12 months")
-✅ Limit accelerator duration to first $X over quota
+[OK] Use quarterly quotas instead of monthly (reduces timing granularity)
+[OK] Implement rolling quotas (e.g., "trailing 12 months")
+[OK] Limit accelerator duration to first $X over quota
 
 **Carryover Policy**:
-✅ Allow 20-30% carryover of overachievement into next period
-✅ Reduces sandbagging incentive
-✅ Smooths quota attainment across periods`,
+[OK] Allow 20-30% carryover of overachievement into next period
+[OK] Reduces sandbagging incentive
+[OK] Smooths quota attainment across periods`,
         },
       ],
     },
@@ -288,9 +289,9 @@ The framework consists of **4 core pillars**:
 **Leverage** = Variable Earnings at 100% Quota
 
 **Best Practices**:
-✅ Higher variable % for roles with direct revenue responsibility
-✅ Lower variable % for roles with longer sales cycles (less control)
-✅ Adjust for market: tech/SaaS tends toward 50/50, traditional sales 60/40
+[OK] Higher variable % for roles with direct revenue responsibility
+[OK] Lower variable % for roles with longer sales cycles (less control)
+[OK] Adjust for market: tech/SaaS tends toward 50/50, traditional sales 60/40
 
 **Red Flags**:
 ❌ 60/40 for inside sales (too aggressive unless highly transactional)
@@ -304,25 +305,25 @@ The framework consists of **4 core pillars**:
 1. **Top-Down (Revenue Target)**
    - Start with company revenue goal
    - Allocate to territories/reps based on capacity
-   - ✅ Aligns with business objectives
-   - ⚠️ May not reflect territory potential
+   - [OK] Aligns with business objectives
+   - [WARN] May not reflect territory potential
 
 2. **Bottom-Up (Territory Potential)**
    - Assess addressable market per territory
    - Aggregate to company total
-   - ✅ Reflects market reality
-   - ⚠️ May not meet revenue goals
+   - [OK] Reflects market reality
+   - [WARN] May not meet revenue goals
 
 3. **Hybrid Model**
    - Start with territory capacity analysis
    - Adjust for strategic priorities
    - Validate against company targets
-   - ✅ **Best practice**
+   - [OK] **Best practice**
 
 **Quota Distribution Targets**:
-✅ **60-70% of reps should hit 80-120% of quota**
-✅ Top 10% should hit 150%+ quota
-✅ Bottom 10% should be below 50% (and managed out)
+[OK] **60-70% of reps should hit 80-120% of quota**
+[OK] Top 10% should hit 150%+ quota
+[OK] Bottom 10% should be below 50% (and managed out)
 
 **Red Flags**:
 ❌ Less than 50% of reps hitting quota = quotas too high
@@ -334,14 +335,14 @@ The framework consists of **4 core pillars**:
           content: `**Caps**: Maximum payout limit
 
 **When to Cap**:
-✅ Uncapped accelerators (cap total comp at 200-250% of target)
-✅ SPIFs and contests (cap per-rep payout)
-✅ New product launches (time-limited cap waiver acceptable)
+[OK] Uncapped accelerators (cap total comp at 200-250% of target)
+[OK] SPIFs and contests (cap per-rep payout)
+[OK] New product launches (time-limited cap waiver acceptable)
 
 **When NOT to Cap**:
-✅ Standard commission rates without accelerators
-✅ Account-based comp (inherent ceiling due to account size)
-✅ Strategic land-grab scenarios (new market entry)
+[OK] Standard commission rates without accelerators
+[OK] Account-based comp (inherent ceiling due to account size)
+[OK] Strategic land-grab scenarios (new market entry)
 
 **Thresholds**: Minimum performance before payout starts
 
@@ -351,9 +352,9 @@ The framework consists of **4 core pillars**:
 - **No threshold**: Pay at $1 (high-volume transactional)
 
 **Best Practices**:
-✅ Use thresholds to manage low performers (50-70% threshold)
-✅ Accelerator thresholds at 80-100% quota
-✅ Avoid "cliff" thresholds (e.g., 0% at 99%, 100% at 100%)
+[OK] Use thresholds to manage low performers (50-70% threshold)
+[OK] Accelerator thresholds at 80-100% quota
+[OK] Avoid "cliff" thresholds (e.g., 0% at 99%, 100% at 100%)
 
 **Graduated Thresholds (Best Practice)**:
 - 0-50% quota: 0% payout
@@ -405,26 +406,26 @@ The framework consists of **4 core pillars**:
           content: `**Plan Health Metrics**:
 
 **Attainment Distribution**:
-✅ Target: 60-70% of reps at 80-120% quota
+[OK] Target: 60-70% of reps at 80-120% quota
 - Actual < 50%? → Quotas too high
 - Actual > 80%? → Quotas too low
 
 **Payout Ratio** (Total Comp Paid / Target OTE):
-✅ Target: 95-105% at company level
+[OK] Target: 95-105% at company level
 - Ratio < 90%? → Low attainment (morale risk)
 - Ratio > 120%? → Over-payout (budget risk)
 
 **Gaming Indicators**:
-🚨 Period-end spikes (deals closing last week of quarter)
-🚨 Deal size clustering (just under cap thresholds)
-🚨 Territory transfer requests (chasing easy quota)
-🚨 Dispute volume (>10% of reps filing monthly)
+[ALERT] Period-end spikes (deals closing last week of quarter)
+[ALERT] Deal size clustering (just under cap thresholds)
+[ALERT] Territory transfer requests (chasing easy quota)
+[ALERT] Dispute volume (>10% of reps filing monthly)
 
 **Compliance Metrics**:
-✅ 100% signed plan agreements
-✅ 0 wage deduction violations
-✅ 0 FLSA misclassification risks
-✅ Draw recovery rate >80%
+[OK] 100% signed plan agreements
+[OK] 0 wage deduction violations
+[OK] 0 FLSA misclassification risks
+[OK] Draw recovery rate >80%
 
 **Operational Metrics**:
 - Average time to resolve dispute: <5 business days
@@ -460,11 +461,11 @@ The framework consists of **4 core pillars**:
 - Schedule rollout activities
 
 **Annual Plan Retrospective**:
-✅ What worked well?
-✅ What gaming vectors emerged?
-✅ Did attainment distribution hit target?
-✅ How did disputes trend?
-✅ What would we change?`,
+[OK] What worked well?
+[OK] What gaming vectors emerged?
+[OK] Did attainment distribution hit target?
+[OK] How did disputes trend?
+[OK] What would we change?`,
         },
       ],
     },
@@ -473,22 +474,22 @@ The framework consists of **4 core pillars**:
   const currentContent = content[selectedSection];
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50">
+    <div className="h-screen flex flex-col sparcc-hero-bg">
       {/* Header */}
-      <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 px-8 py-6">
+      <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] px-8 py-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-4 mb-4">
             <Link
               href="/governance-framework"
-              className="text-purple-600 hover:text-purple-700 transition-colors"
+              className="text-[color:var(--color-primary)] hover:text-[color:var(--color-primary)] transition-colors"
             >
               ← Back to Framework Library
             </Link>
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
             Governance Framework Primer
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-[color:var(--color-muted)] mt-2">
             Learn SPM best practices for compensation governance
           </p>
         </div>
@@ -496,9 +497,9 @@ The framework consists of **4 core pillars**:
 
       <div className="flex-1 flex overflow-hidden">
         {/* Left Navigation */}
-        <div className="w-80 border-r border-gray-200 bg-white/80 backdrop-blur-sm overflow-y-auto">
+        <div className="w-80 border-r border-[color:var(--color-border)] bg-[color:var(--surface-glass)] backdrop-blur-sm overflow-y-auto">
           <div className="p-4">
-            <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Sections</h3>
+            <h3 className="text-sm font-semibold text-[color:var(--color-muted)] uppercase mb-3">Sections</h3>
             <div className="space-y-1">
               {sections.map((section) => {
                 const Icon = section.icon;
@@ -508,8 +509,8 @@ The framework consists of **4 core pillars**:
                     onClick={() => setSelectedSection(section.id)}
                     className={`w-full text-left px-4 py-3 rounded-lg transition-all flex items-center gap-3 ${
                       selectedSection === section.id
-                        ? 'bg-gradient-to-r from-purple-600 to-fuchsia-600 text-white shadow-md'
-                        : 'hover:bg-gray-100 text-gray-700'
+                        ? 'bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-md'
+                        : 'hover:bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]'
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -524,16 +525,16 @@ The framework consists of **4 core pillars**:
         {/* Main Content */}
         <div className="flex-1 overflow-y-auto p-8">
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white rounded-xl shadow-lg p-8 mb-6">
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <div className="bg-[color:var(--color-surface)] rounded-xl shadow-lg p-8 mb-6">
+              <h2 className="text-3xl font-bold text-[color:var(--color-foreground)] mb-2">
                 {currentContent.title}
               </h2>
-              <p className="text-gray-600">{currentContent.subtitle}</p>
+              <p className="text-[color:var(--color-muted)]">{currentContent.subtitle}</p>
             </div>
 
             {currentContent.sections.map((section: any, idx: number) => (
-              <div key={idx} className="bg-white rounded-xl shadow-lg p-8 mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <div key={idx} className="bg-[color:var(--color-surface)] rounded-xl shadow-lg p-8 mb-6">
+                <h3 className="text-2xl font-bold text-[color:var(--color-foreground)] mb-4">
                   {section.heading}
                 </h3>
                 <div className="prose max-w-none">
@@ -541,20 +542,20 @@ The framework consists of **4 core pillars**:
                     // Check if it's a heading
                     if (paragraph.startsWith('**') && paragraph.endsWith('**:')) {
                       return (
-                        <h4 key={pIdx} className="text-lg font-bold text-gray-800 mt-6 mb-3">
+                        <h4 key={pIdx} className="text-lg font-bold text-[color:var(--color-foreground)] mt-6 mb-3">
                           {paragraph.replace(/\*\*/g, '').replace(':', '')}
                         </h4>
                       );
                     }
 
                     // Check if it's a list item
-                    if (paragraph.startsWith('- ') || paragraph.startsWith('✅ ') || paragraph.startsWith('❌ ') || paragraph.startsWith('⚠️ ')) {
+                    if (paragraph.startsWith('- ') || paragraph.startsWith('[OK] ') || paragraph.startsWith('❌ ') || paragraph.startsWith('[WARN] ')) {
                       const items = paragraph.split('\n');
                       return (
                         <ul key={pIdx} className="list-none space-y-2 my-4">
                           {items.map((item, iIdx) => (
-                            <li key={iIdx} className="text-gray-700">
-                              {item}
+                            <li key={iIdx} className="text-[color:var(--color-foreground)]">
+                              {renderTokenizedText(item)}
                             </li>
                           ))}
                         </ul>
@@ -563,8 +564,8 @@ The framework consists of **4 core pillars**:
 
                     // Regular paragraph
                     return (
-                      <p key={pIdx} className="text-gray-700 leading-relaxed mb-4">
-                        {paragraph}
+                      <p key={pIdx} className="text-[color:var(--color-foreground)] leading-relaxed mb-4">
+                        {renderTokenizedText(paragraph)}
                       </p>
                     );
                   })}

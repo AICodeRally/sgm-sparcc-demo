@@ -75,47 +75,47 @@ export default function GovernanceFrameworkPage() {
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'METHODOLOGY':
-        return 'text-blue-600 bg-blue-50 border-blue-200';
+        return 'text-[color:var(--color-info)] bg-[color:var(--color-surface-alt)] border-[color:var(--color-info-border)]';
       case 'STANDARDS':
-        return 'text-green-600 bg-green-50 border-green-200';
+        return 'text-[color:var(--color-success)] bg-[color:var(--color-success-bg)] border-[color:var(--color-success-border)]';
       case 'COMPLIANCE':
-        return 'text-red-600 bg-red-50 border-red-200';
+        return 'text-[color:var(--color-error)] bg-[color:var(--color-error-bg)] border-[color:var(--color-error-border)]';
       case 'REGULATORY':
-        return 'text-orange-600 bg-orange-50 border-orange-200';
+        return 'text-[color:var(--color-warning)] bg-[color:var(--color-warning-bg)] border-[color:var(--color-warning-border)]';
       case 'BEST_PRACTICES':
-        return 'text-purple-600 bg-purple-50 border-purple-200';
+        return 'text-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)] border-[color:var(--color-border)]';
       default:
-        return 'text-gray-600 bg-gray-50 border-gray-200';
+        return 'text-[color:var(--color-muted)] bg-[color:var(--color-surface-alt)] border-[color:var(--color-border)]';
     }
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-br from-purple-50 via-fuchsia-50 to-yellow-50">
+    <div className="h-screen flex flex-col sparcc-hero-bg">
       {/* Header */}
-      <div className="bg-white/90 backdrop-blur-sm border-b border-purple-200 px-8 py-6">
+      <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] px-8 py-6">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 via-fuchsia-600 to-yellow-600 bg-clip-text text-transparent mb-2">
+          <h1 className="text-3xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent mb-2">
             Governance Framework Library
           </h1>
-          <p className="text-gray-600">
+          <p className="text-[color:var(--color-muted)]">
             SPM governance guardrails for compensation planning and policy creation
           </p>
         </div>
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-purple-200 px-8 py-4">
+      <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] px-8 py-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex gap-4">
             {/* Search */}
             <div className="flex-1 relative">
-              <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-[color:var(--color-muted)]" />
               <input
                 type="text"
                 placeholder="Search frameworks..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
               />
             </div>
 
@@ -123,7 +123,7 @@ export default function GovernanceFrameworkPage() {
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
             >
               <option value="">All Categories</option>
               <option value="METHODOLOGY">Methodology</option>
@@ -137,7 +137,7 @@ export default function GovernanceFrameworkPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="px-4 py-2 border border-[color:var(--color-border)] rounded-lg focus:ring-2 focus:ring-[color:var(--color-accent-border)] focus:border-transparent"
             >
               <option value="">All Statuses</option>
               <option value="ACTIVE">Active</option>
@@ -154,11 +154,11 @@ export default function GovernanceFrameworkPage() {
         <div className="max-w-7xl mx-auto">
           {loading ? (
             <div className="flex items-center justify-center h-64">
-              <div className="text-gray-500">Loading frameworks...</div>
+              <div className="text-[color:var(--color-muted)]">Loading frameworks...</div>
             </div>
           ) : filteredFrameworks.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-64 text-gray-500">
-              <FileTextIcon className="h-16 w-16 mb-4 text-gray-300" />
+            <div className="flex flex-col items-center justify-center h-64 text-[color:var(--color-muted)]">
+              <FileTextIcon className="h-16 w-16 mb-4 text-[color:var(--color-muted)]" />
               <p>No governance frameworks found</p>
               <p className="text-sm">Try adjusting your filters or search query</p>
             </div>
@@ -168,7 +168,7 @@ export default function GovernanceFrameworkPage() {
                 <div
                   key={framework.id}
                   onClick={() => router.push(`/governance-framework/${framework.id}`)}
-                  className="bg-white/80 backdrop-blur-sm rounded-lg border-2 border-purple-200 p-6 hover:border-purple-400 hover:shadow-lg transition-all cursor-pointer"
+                  className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border-2 border-[color:var(--color-border)] p-6 hover:border-[color:var(--color-primary)] hover:shadow-lg transition-all cursor-pointer"
                 >
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
@@ -177,12 +177,12 @@ export default function GovernanceFrameworkPage() {
                     </div>
                     <div className="flex flex-col items-end gap-1">
                       {framework.isMandatory && (
-                        <span className="px-2 py-1 text-xs font-semibold bg-red-100 text-red-800 rounded border border-red-300">
+                        <span className="px-2 py-1 text-xs font-semibold bg-[color:var(--color-error-bg)] text-[color:var(--color-error)] rounded border border-[color:var(--color-error-border)]">
                           MANDATORY
                         </span>
                       )}
                       {framework.isGlobal && (
-                        <span className="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded border border-blue-300">
+                        <span className="px-2 py-1 text-xs font-semibold bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] rounded border border-[color:var(--color-info-border)]">
                           GLOBAL
                         </span>
                       )}
@@ -190,36 +190,36 @@ export default function GovernanceFrameworkPage() {
                   </div>
 
                   {/* Code */}
-                  <div className="text-sm font-mono text-purple-600 mb-2">
+                  <div className="text-sm font-mono text-[color:var(--color-primary)] mb-2">
                     {framework.code}
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+                  <h3 className="font-semibold text-[color:var(--color-foreground)] mb-2 line-clamp-2">
                     {framework.title}
                   </h3>
 
                   {/* Category */}
-                  <div className="text-sm text-gray-600 mb-3">
+                  <div className="text-sm text-[color:var(--color-muted)] mb-3">
                     {framework.category.replace('_', ' ')}
                   </div>
 
                   {/* Content Preview */}
-                  <p className="text-sm text-gray-500 line-clamp-3 mb-4">
+                  <p className="text-sm text-[color:var(--color-muted)] line-clamp-3 mb-4">
                     {framework.content.substring(0, 150)}...
                   </p>
 
                   {/* Footer */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                    <span className="text-xs text-gray-500">
+                  <div className="flex items-center justify-between pt-4 border-t border-[color:var(--color-border)]">
+                    <span className="text-xs text-[color:var(--color-muted)]">
                       Version {framework.version}
                     </span>
                     <span className={`text-xs px-2 py-1 rounded ${
                       framework.status === 'ACTIVE'
-                        ? 'bg-green-100 text-green-800'
+                        ? 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)]'
                         : framework.status === 'DRAFT'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-gray-100 text-gray-800'
+                        ? 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)]'
+                        : 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)]'
                     }`}>
                       {framework.status}
                     </span>
@@ -227,13 +227,13 @@ export default function GovernanceFrameworkPage() {
 
                   {/* Applicable To */}
                   {framework.applicableTo && framework.applicableTo.length > 0 && (
-                    <div className="mt-3 pt-3 border-t border-gray-200">
-                      <div className="text-xs text-gray-500 mb-1">Applicable to:</div>
+                    <div className="mt-3 pt-3 border-t border-[color:var(--color-border)]">
+                      <div className="text-xs text-[color:var(--color-muted)] mb-1">Applicable to:</div>
                       <div className="flex flex-wrap gap-1">
                         {framework.applicableTo.map((planType: string) => (
                           <span
                             key={planType}
-                            className="text-xs px-2 py-0.5 bg-purple-100 text-purple-700 rounded"
+                            className="text-xs px-2 py-0.5 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded"
                           >
                             {planType.replace('_', ' ')}
                           </span>

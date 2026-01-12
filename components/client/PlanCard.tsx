@@ -39,10 +39,10 @@ export function PlanCard({
 
   // Determine risk color
   const getRiskColor = (score: number) => {
-    if (score >= 75) return 'text-red-600 bg-red-50 border-red-300';
-    if (score >= 50) return 'text-orange-600 bg-orange-50 border-orange-300';
-    if (score >= 25) return 'text-yellow-600 bg-yellow-50 border-yellow-300';
-    return 'text-green-600 bg-green-50 border-green-300';
+    if (score >= 75) return 'text-[color:var(--color-error)] bg-[color:var(--color-error-bg)] border-[color:var(--color-error-border)]';
+    if (score >= 50) return 'text-[color:var(--color-warning)] bg-[color:var(--color-warning-bg)] border-[color:var(--color-warning-border)]';
+    if (score >= 25) return 'text-[color:var(--color-warning)] bg-[color:var(--color-warning-bg)] border-[color:var(--color-warning-border)]';
+    return 'text-[color:var(--color-success)] bg-[color:var(--color-success-bg)] border-[color:var(--color-success-border)]';
   };
 
   const riskLabel = (score: number) => {
@@ -53,21 +53,21 @@ export function PlanCard({
   };
 
   return (
-    <div className="bg-white rounded-xl border-2 border-indigo-200 p-6 transition-all hover:shadow-lg hover:border-indigo-300">
+    <div className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-accent-border)] p-6 transition-all hover:shadow-lg hover:border-[color:var(--color-accent-border)]">
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-lg font-bold text-gray-900">{planCode}</h3>
+            <h3 className="text-lg font-bold text-[color:var(--color-foreground)]">{planCode}</h3>
             {planType && (
-              <span className="px-2 py-0.5 bg-indigo-100 text-indigo-700 text-xs font-semibold rounded">
+              <span className="px-2 py-0.5 bg-[color:var(--color-accent-bg)] text-[color:var(--color-accent)] text-xs font-semibold rounded">
                 {planType}
               </span>
             )}
           </div>
-          <p className="text-sm text-gray-700">{planName}</p>
+          <p className="text-sm text-[color:var(--color-foreground)]">{planName}</p>
           {businessUnit && (
-            <p className="text-xs text-gray-500 mt-1">{businessUnit}</p>
+            <p className="text-xs text-[color:var(--color-muted)] mt-1">{businessUnit}</p>
           )}
         </div>
 
@@ -81,29 +81,29 @@ export function PlanCard({
       {/* Coverage Bars */}
       <div className="mb-4">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-sm font-semibold text-gray-700">Policy Coverage</p>
-          <p className="text-sm font-bold text-indigo-600">{coveragePercentage}%</p>
+          <p className="text-sm font-semibold text-[color:var(--color-foreground)]">Policy Coverage</p>
+          <p className="text-sm font-bold text-[color:var(--color-accent)]">{coveragePercentage}%</p>
         </div>
 
         {/* Visual coverage bar */}
-        <div className="h-3 bg-gray-200 rounded-full overflow-hidden flex">
+        <div className="h-3 bg-[color:var(--color-border)] rounded-full overflow-hidden flex">
           {coverageFull > 0 && (
             <div
-              className="bg-green-500 h-full"
+              className="bg-transparent h-full"
               style={{ width: `${(coverageFull / totalPolicies) * 100}%` }}
               title={`Full Coverage: ${coverageFull}`}
             />
           )}
           {coverageLimited > 0 && (
             <div
-              className="bg-yellow-500 h-full"
+              className="bg-transparent h-full"
               style={{ width: `${(coverageLimited / totalPolicies) * 100}%` }}
               title={`Limited Coverage: ${coverageLimited}`}
             />
           )}
           {coverageNo > 0 && (
             <div
-              className="bg-red-500 h-full"
+              className="bg-transparent h-full"
               style={{ width: `${(coverageNo / totalPolicies) * 100}%` }}
               title={`No Coverage: ${coverageNo}`}
             />
@@ -113,16 +113,16 @@ export function PlanCard({
         {/* Legend */}
         <div className="flex items-center gap-4 mt-2 text-xs">
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-green-500 rounded" />
-            <span className="text-gray-600">Full ({coverageFull})</span>
+            <div className="w-3 h-3 bg-transparent rounded" />
+            <span className="text-[color:var(--color-muted)]">Full ({coverageFull})</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-yellow-500 rounded" />
-            <span className="text-gray-600">Limited ({coverageLimited})</span>
+            <div className="w-3 h-3 bg-transparent rounded" />
+            <span className="text-[color:var(--color-muted)]">Limited ({coverageLimited})</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-3 h-3 bg-red-500 rounded" />
-            <span className="text-gray-600">None ({coverageNo})</span>
+            <div className="w-3 h-3 bg-transparent rounded" />
+            <span className="text-[color:var(--color-muted)]">None ({coverageNo})</span>
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@ export function PlanCard({
       {/* Details Link */}
       {detailsHref && (
         <Link href={detailsHref as any}>
-          <div className="flex items-center justify-between text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer mt-4 pt-4 border-t border-gray-200">
+          <div className="flex items-center justify-between text-[color:var(--color-accent)] hover:text-[color:var(--color-accent)] transition-colors cursor-pointer mt-4 pt-4 border-t border-[color:var(--color-border)]">
             <span className="text-sm font-semibold">View Details</span>
             <ArrowRightIcon className="w-4 h-4" />
           </div>
