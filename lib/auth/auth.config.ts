@@ -21,18 +21,20 @@ import {
 const providers: any[] = [
   CredentialsProvider({
     id: 'passkey',
-    name: 'Passkey',
+    name: 'Email',
     credentials: {
-      passkey: { label: 'Passkey', type: 'password' },
+      passkey: { label: 'Email', type: 'email' },
     },
     async authorize(credentials: any) {
-      // Passkey check using environment variable
-      const demoPasskey = process.env.DEMO_PASSKEY;
-      if (demoPasskey && credentials?.passkey === demoPasskey) {
+      // Demo mode: accept any valid email
+      const email = credentials?.passkey?.trim();
+      if (email && email.includes('@')) {
+        // Extract name from email
+        const name = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
         return {
-          id: 'demo-user-001',
-          name: 'Demo User',
-          email: 'demo@demo.com',
+          id: `user-${email.replace(/[^a-z0-9]/gi, '-')}`,
+          name: name || 'Demo User',
+          email: email,
         };
       }
       return null;
