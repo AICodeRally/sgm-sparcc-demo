@@ -67,7 +67,7 @@ export function Footer() {
                 >
                   AICR
                 </span>
-                <span className="text-[color:var(--color-muted)] ml-1">• SPARCC</span>
+                <span className="text-[color:var(--color-muted)] ml-1">• Part of the SPARCC suite of SPM tools</span>
               </div>
             </div>
           </div>

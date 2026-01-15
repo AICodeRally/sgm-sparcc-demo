@@ -21,7 +21,7 @@ export function PageKbPanel({ enabled = true }: PageKbPanelProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 left-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-lg transition-transform hover:scale-105"
+          className="fixed bottom-4 left-20 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-lg transition-transform hover:scale-105"
           aria-label="Open page knowledge base"
           title="Page knowledge base"
         >
@@ -30,7 +30,7 @@ export function PageKbPanel({ enabled = true }: PageKbPanelProps) {
       )}
 
       {isOpen && (
-        <div className="fixed bottom-4 left-4 z-40 flex h-[600px] w-96 flex-col rounded-lg border border-[color:var(--color-info-border)] bg-[color:var(--color-surface)] shadow-2xl">
+        <div className="fixed bottom-4 left-20 z-40 flex h-[600px] w-96 flex-col rounded-lg border border-[color:var(--color-info-border)] bg-[color:var(--color-surface)] shadow-2xl">
           <div className="flex items-center justify-between rounded-t-lg bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] p-4 text-white">
             <div className="flex items-center gap-2">
               <InfoCircledIcon className="h-5 w-5" />

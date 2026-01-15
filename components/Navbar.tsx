@@ -1,27 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { usePageTitle } from './PageTitle';
-import { ModeSwitcher } from './auth/ModeSwitcher';
 import { getActiveModule } from '@/lib/config/module-registry';
-import {
-  SunIcon,
-  MoonIcon,
-  DesktopIcon,
-} from '@radix-ui/react-icons';
-import { useTheme } from '@/components/ThemeProvider';
-import { ThemeBadge } from '@/components/ThemeBadge';
 
 export function Navbar() {
   const { title, description } = usePageTitle();
   const activeModule = getActiveModule();
-  const [user, setUser] = useState({
-    name: 'Sarah Chen',
-    role: 'Governance Administrator',
-    email: 'sarah.chen@henryschein.com'
-  });
-  const { mode: themeMode, setMode: setThemeMode } = useTheme();
+  const { data: session } = useSession();
+
+  // Get user info from session, fallback to defaults
+  const user = {
+    name: session?.user?.name || 'Guest',
+    role: (session?.user as any)?.role || 'User',
+    email: session?.user?.email || ''
+  };
 
   return (
     <nav
@@ -82,54 +76,10 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Right side: Mode Switcher + User info */}
+          {/* Right side: User info */}
           <div className="flex items-center gap-4">
-            <ModeSwitcher />
-            <Link
-              href={"/themes" as any}
-              className="hidden md:inline-flex items-center rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] px-3 py-1 text-xs font-medium text-[color:var(--color-foreground)] hover:border-[color:var(--color-accent-border)]"
-            >
-              Themes
-            </Link>
-            <div className="flex items-center gap-1 rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] p-1">
-              <button
-                type="button"
-                onClick={() => setThemeMode('light')}
-                className={`rounded-full p-1.5 transition-colors ${
-                  themeMode === 'light'
-                    ? 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] shadow-sm'
-                    : 'text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]'
-                }`}
-                aria-label="Light mode"
-              >
-                <SunIcon />
-              </button>
-              <button
-                type="button"
-                onClick={() => setThemeMode('dark')}
-                className={`rounded-full p-1.5 transition-colors ${
-                  themeMode === 'dark'
-                    ? 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] shadow-sm'
-                    : 'text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]'
-                }`}
-                aria-label="Dark mode"
-              >
-                <MoonIcon />
-              </button>
-              <button
-                type="button"
-                onClick={() => setThemeMode('system')}
-                className={`rounded-full p-1.5 transition-colors ${
-                  themeMode === 'system'
-                    ? 'bg-[color:var(--color-surface)] text-[color:var(--color-foreground)] shadow-sm'
-                    : 'text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]'
-                }`}
-                aria-label="System theme"
-              >
-                <DesktopIcon />
-              </button>
-            </div>
-            <ThemeBadge className="hidden lg:inline-flex" />
+            {/* TODO: Future - Theme switcher */}
+            {/* TODO: Future - SPARCC SPM module switcher */}
             <div className="border-l border-[color:var(--color-border)] pl-4 text-right">
               <p className="text-sm font-semibold text-[color:var(--color-foreground)]">{user.name}</p>
               <p className="text-xs text-[color:var(--color-muted)]">{user.role}</p>
