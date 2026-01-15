@@ -11,6 +11,7 @@ import {
 } from '@radix-ui/react-icons';
 import { MetricGroup, getGroupColors, STATUS_COLORS } from '@/lib/data/metric-registry';
 import { Tone, getToneStyles } from '@/lib/config/themes';
+import { getModeConfig } from '@/lib/auth/mode-permissions';
 
 interface RotatingMetricTileProps {
   group: MetricGroup;
@@ -36,6 +37,8 @@ export default function RotatingMetricTile({ group, metricData, tone = 'primary'
   const statusColors = STATUS_COLORS[currentMetric.status];
   const Icon = ICON_MAP[group.icon as keyof typeof ICON_MAP];
   const toneStyles = getToneStyles(tone);
+  const modeConfig = getModeConfig(group.mode);
+  const modeLabel = modeConfig.label;
 
   // Load click tracking from localStorage
   useEffect(() => {
@@ -81,22 +84,12 @@ export default function RotatingMetricTile({ group, metricData, tone = 'primary'
         boxShadow: toneStyles.shadow,
       }}
     >
-      {/* Colored top bar */}
-      <div className="h-1.5" style={{ background: toneStyles.hover.replace('1px solid ', '') }} />
-      <div className="p-6">
-      {/* Position Indicator */}
-      <div className="absolute top-2 right-2 text-[10px] font-medium text-[color:var(--color-muted)]">
-        {currentIndex + 1}/{group.metrics.length}
+      {/* Colored top bar with mode label */}
+      <div className="h-7 flex items-center px-3" style={{ background: toneStyles.color }}>
+        <span className="text-[10px] font-semibold text-white uppercase tracking-wider">{modeLabel}</span>
+        <span className="text-[10px] text-white/60 ml-auto">{currentIndex + 1}/{group.metrics.length}</span>
       </div>
-
-      {/* Status Indicator */}
-      {currentMetric.status !== 'normal' && (
-        <div
-          className={`absolute top-2 left-2 w-2 h-2 rounded-full ${
-            currentMetric.status === 'critical' ? 'bg-transparent animate-pulse' : 'bg-transparent'
-          }`}
-        />
-      )}
+      <div className="p-5">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-3">

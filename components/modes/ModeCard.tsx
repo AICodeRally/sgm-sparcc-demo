@@ -12,20 +12,27 @@ import {
 } from '@radix-ui/react-icons';
 import { OperationalMode } from '@/types/operational-mode';
 import { getModeConfig } from '@/lib/auth/mode-permissions';
+import { getMetricGroupsByMode } from '@/lib/data/metric-registry';
 
 interface ModeCardProps {
   mode: OperationalMode;
   className?: string;
+  metricData?: Record<string, number | string>;
 }
 
 /**
  * Hero card for an operational mode
  * Displays mode info with gradient background and feature list
  */
-export function ModeCard({ mode, className = '' }: ModeCardProps) {
+export function ModeCard({ mode, className = '', metricData = {} }: ModeCardProps) {
   const config = getModeConfig(mode);
   // Demo mode: always allow access
   const canAccess = true;
+
+  // Get metrics for this mode
+  const metricGroups = getMetricGroupsByMode(mode);
+  // Flatten all metrics from all groups for this mode (take first 4)
+  const allMetrics = metricGroups.flatMap(g => g.metrics).slice(0, 4);
 
   // Map icon names to actual icon components
   const iconMap = {
@@ -85,22 +92,33 @@ export function ModeCard({ mode, className = '' }: ModeCardProps) {
         {config.description}
       </p>
 
-      {/* Feature List */}
+      {/* Metrics Grid - 2x2 */}
       <div className="mb-6">
         <p className="text-[color:var(--color-foreground)] font-semibold mb-3 text-sm uppercase tracking-wide">
-          Key Features
+          Key Metrics
         </p>
-        <ul className="space-y-2">
-          {topFeatures.map((feature, index) => (
-            <li
-              key={index}
-              className="text-[color:var(--color-muted)] text-sm flex items-center gap-2"
-            >
-              <span className="font-bold" style={{ color: baseColor }}>•</span>
-              {feature}
-            </li>
-          ))}
-        </ul>
+        <div className="grid grid-cols-2 gap-2">
+          {allMetrics.map((metric) => {
+            const value = metricData[metric.fetchKey] ?? metric.value;
+            return (
+              <div
+                key={metric.id}
+                className="rounded-lg p-3 border transition-all hover:scale-[1.02]"
+                style={{
+                  borderColor: `${baseColor}30`,
+                  backgroundColor: `${baseColor}08`,
+                }}
+              >
+                <p className="text-xl font-bold" style={{ color: baseColor }}>
+                  {value}{metric.suffix || ''}
+                </p>
+                <p className="text-xs text-[color:var(--color-muted)] truncate">
+                  {metric.label}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* CTA Button or Locked Message */}

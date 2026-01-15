@@ -110,10 +110,10 @@ export default function SGMDashboard() {
 
           {/* 4 Operational Mode Hero Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <ModeCard mode={OperationalMode.DESIGN} />
-            <ModeCard mode={OperationalMode.OPERATE} />
-            <ModeCard mode={OperationalMode.DISPUTE} />
-            <ModeCard mode={OperationalMode.OVERSEE} />
+            <ModeCard mode={OperationalMode.DESIGN} metricData={metricData} />
+            <ModeCard mode={OperationalMode.OPERATE} metricData={metricData} />
+            <ModeCard mode={OperationalMode.DISPUTE} metricData={metricData} />
+            <ModeCard mode={OperationalMode.OVERSEE} metricData={metricData} />
           </div>
         </div>
       </div>
