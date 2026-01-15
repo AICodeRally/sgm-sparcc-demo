@@ -15,7 +15,35 @@ import {
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import type { PlanSectionWithGaps } from '@/lib/data/plan-with-gaps.data';
-import type { HenryScheinPlan } from '@/lib/data/henryschein-plans';
+// Plan type for document display
+interface PlanData {
+  metadata: {
+    planCode: string;
+    title: string;
+    division: string;
+    role: string;
+    effectiveDate: string;
+    planYear: number;
+    version: string;
+    status: string;
+    company: string;
+  };
+  sections: Array<{
+    id: string;
+    sectionNumber: string;
+    title: string;
+    content: string;
+    level: number;
+    category: string;
+    gapStatus?: string;
+    gapDetails?: string;
+    policyName?: string;
+    draftContent?: string;
+    draftPurpose?: string;
+    draftKeyProvisions?: string[];
+  }>;
+  rawContent?: string;
+}
 
 interface Props {
   params: Promise<{ planCode: string }>;
@@ -26,21 +54,26 @@ export default function PlanDocumentPage({ params }: Props) {
   const searchParams = useSearchParams();
   const isReviewMode = searchParams.get('view') === 'review';
 
-  const [realPlan, setRealPlan] = useState<HenryScheinPlan | null>(null);
+  const [realPlan, setRealPlan] = useState<PlanData | null>(null);
   const [gapAnalysis, setGapAnalysis] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch real Henry Schein plan data WITH gap analysis from API
+  // Fetch plan data WITH gap analysis from API
   useEffect(() => {
     async function fetchPlan() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch('/api/henryschein/plans/' + planCode + '/gaps');
+        // Try the client API first, fall back to mock data
+        const response = await fetch('/api/client/demo-tenant-001/plans?planCode=' + planCode);
 
         if (!response.ok) {
-          throw new Error('Plan not found');
+          // Use mock data as fallback
+          const mockData = getMockPlanData(planCode);
+          setRealPlan(mockData.plan);
+          setGapAnalysis(mockData.gapAnalysis);
+          return;
         }
 
         const data = await response.json();
@@ -48,7 +81,10 @@ export default function PlanDocumentPage({ params }: Props) {
         setGapAnalysis(data.gapAnalysis);
       } catch (err) {
         console.error('Error loading plan:', err);
-        setError(err instanceof Error ? err.message : 'Failed to load plan');
+        // Use mock data as fallback
+        const mockData = getMockPlanData(planCode);
+        setRealPlan(mockData.plan);
+        setGapAnalysis(mockData.gapAnalysis);
       } finally {
         setLoading(false);
       }
@@ -80,7 +116,7 @@ export default function PlanDocumentPage({ params }: Props) {
           <p className="text-[color:var(--color-muted)] mb-4">Plan code: {planCode}</p>
           <p className="text-sm text-[color:var(--color-error)] mb-4">{error}</p>
           <Link
-            href="/henryschein/plans"
+            href="/plans"
             className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] transition-colors inline-flex items-center gap-2"
           >
             <ArrowLeftIcon className="w-4 h-4" />
@@ -207,7 +243,7 @@ export default function PlanDocumentPage({ params }: Props) {
                 {!isReviewMode && (
                   <>
                     <Link
-                      href="/henryschein/plans"
+                      href="/plans"
                       className="flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)] transition-colors"
                     >
                       <ArrowLeftIcon className="w-4 h-4" />
@@ -545,4 +581,72 @@ export default function PlanDocumentPage({ params }: Props) {
       </div>
     </>
   );
+}
+
+// Mock plan data for development/demo
+function getMockPlanData(planCode: string) {
+  return {
+    plan: {
+      metadata: {
+        planCode,
+        title: 'Executive Sales Compensation Plan',
+        division: 'Corporate Sales',
+        role: 'Sales Executive',
+        effectiveDate: '2025-01-01',
+        planYear: 2025,
+        version: '1.0',
+        status: 'Active',
+        company: 'Demo Client',
+      },
+      sections: [
+        {
+          id: 'section-1',
+          sectionNumber: '1.0',
+          title: 'Plan Overview',
+          content: 'This plan governs compensation for all eligible sales executives.',
+          level: 2,
+          category: 'PLAN_OVERVIEW',
+        },
+        {
+          id: 'section-2',
+          sectionNumber: '2.0',
+          title: 'Commission Structure',
+          content: 'Base commission rate of 5% on all closed deals.',
+          level: 2,
+          category: 'COMPENSATION',
+          gapStatus: 'LIMITED',
+          gapDetails: 'Missing accelerator tiers for over-quota performance',
+          policyName: 'Commission Calculation Policy',
+        },
+        {
+          id: 'section-3',
+          sectionNumber: '3.0',
+          title: 'Territory Management',
+          content: 'Territories are assigned annually by Sales Operations.',
+          level: 2,
+          category: 'TERMS_CONDITIONS',
+          gapStatus: 'NO',
+          gapDetails: 'No policy for territory change documentation',
+          policyName: 'Territory Management Policy',
+          draftContent: 'Territory changes must be documented in writing and approved by the direct manager. All territory reassignments require 30-day notice.',
+          draftPurpose: 'Establish clear process for territory changes',
+        },
+      ],
+    },
+    gapAnalysis: {
+      coverageStats: {
+        full: 1,
+        limited: 1,
+        no: 1,
+        total: 3,
+        percentage: 33,
+      },
+      frameworkPolicies: [
+        'Commission Calculation',
+        'Territory Management',
+        'Quota Setting',
+        'Clawback and Recovery',
+      ],
+    },
+  };
 }

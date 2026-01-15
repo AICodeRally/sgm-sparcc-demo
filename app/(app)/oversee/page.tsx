@@ -9,6 +9,7 @@ import { OperationalMode } from '@/types/operational-mode';
 import { MODE_CONFIGS } from '@/lib/auth/mode-permissions';
 import { ThemeBadge } from '@/components/ThemeBadge';
 import { getToneStyles } from '@/lib/config/themes';
+import { useClientName } from '@/hooks/useClientName';
 import {
   AvatarIcon,
   ClockIcon,
@@ -20,6 +21,7 @@ import {
 
 export default function OverseeModePage() {
   const config = MODE_CONFIGS[OperationalMode.OVERSEE];
+  const clientName = useClientName();
   const [metrics] = useState({
     committees: 2,
     upcomingMeetings: 3,
@@ -116,9 +118,9 @@ export default function OverseeModePage() {
                 count={`${metrics.complianceScore}%`}
               />
               <FeatureTile
-                href="/henryschein"
+                href="/client/demo-tenant-001"
                 label="Client Dashboards"
-                description="Henry Schein gap analysis (template)"
+                description={`${clientName} coverage and gap analysis`}
                 icon={<DashboardIcon className="w-8 h-8" />}
               />
               <FeatureTile

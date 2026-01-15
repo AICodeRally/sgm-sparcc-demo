@@ -31,7 +31,7 @@ interface Policy {
   category: string;
   frameworkArea: string;
   status: 'DRAFT' | 'TEMPLATE' | 'APPROVED';
-  source: 'HenrySchein' | 'Jamf';
+  source: 'Template' | 'Custom';
   wordCount: number;
   legalReviewRequired: boolean;
   content: string;
@@ -251,8 +251,8 @@ export default function PolicyLibraryPage() {
               className="px-4 py-2 border-2 border-[color:var(--color-border)] rounded-lg text-sm focus:border-[color:var(--color-primary)] focus:outline-none"
             >
               <option value="all">All Sources</option>
-              <option value="HenrySchein">Henry Schein</option>
-              <option value="Jamf">Jamf</option>
+              <option value="Template">Template</option>
+              <option value="Custom">Custom</option>
             </select>
 
             {(searchQuery || statusFilter !== 'all' || categoryFilter !== 'all' || sourceFilter !== 'all') && (

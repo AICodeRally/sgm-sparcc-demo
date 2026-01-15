@@ -182,7 +182,7 @@ export const AUDIT_EVENTS: AuditEvent[] = [
       approvalType: 'SPIF',
       budget: 40000,
       incentivePerDeal: 500,
-      product: 'Jamf Protect Enterprise',
+      product: 'Enterprise Security Suite',
     },
     impactLevel: 'MEDIUM',
     committee: 'SGCC',
@@ -198,7 +198,7 @@ export const AUDIT_EVENTS: AuditEvent[] = [
     targetId: 'approval-003',
     targetName: 'Q1 2026 New Product Launch SPIF',
     action: 'Submitted for Approval',
-    description: 'Product launch incentive for Jamf Protect Enterprise submitted to SGCC. $40K budget.',
+    description: 'Product launch incentive for Enterprise Security Suite submitted to SGCC. $40K budget.',
     metadata: {
       approvalType: 'SPIF',
       budget: 40000,

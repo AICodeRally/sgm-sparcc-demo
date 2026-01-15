@@ -9,6 +9,7 @@ import { OperationalMode } from '@/types/operational-mode';
 import { MODE_CONFIGS } from '@/lib/auth/mode-permissions';
 import { ThemeBadge } from '@/components/ThemeBadge';
 import { getToneStyles } from '@/lib/config/themes';
+import { useClientName } from '@/hooks/useClientName';
 import {
   ReaderIcon,
   FileTextIcon,
@@ -21,6 +22,7 @@ import {
 
 export default function DesignModePage() {
   const config = MODE_CONFIGS[OperationalMode.DESIGN];
+  const clientName = useClientName();
   const [metrics, setMetrics] = useState({
     policies: 26,
     templates: 56,
@@ -109,9 +111,9 @@ export default function DesignModePage() {
                 icon={<TableIcon className="w-8 h-8" />}
               />
               <FeatureTile
-                href="/henryschein/plans"
+                href="/client/demo-tenant-001/gaps"
                 label="Gap Analysis"
-                description="Policy coverage and risk scoring"
+                description={`${clientName} policy coverage and risk scoring`}
                 icon={<BarChartIcon className="w-8 h-8" />}
                 count={metrics.planCount}
               />

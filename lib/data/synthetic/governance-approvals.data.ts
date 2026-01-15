@@ -135,7 +135,7 @@ export const APPROVAL_ITEMS: ApprovalItem[] = [
     id: 'approval-003',
     type: 'SPIF',
     title: 'Q1 2026 New Product Launch SPIF',
-    description: 'Product launch incentive for Jamf Protect Enterprise: $500 per qualified deal, $40K total budget',
+    description: 'Product launch incentive for Enterprise Security Suite: $500 per qualified deal, $40K total budget',
     requestedBy: 'Lisa Park (Sales Compensation Manager)',
     requestedAt: '2025-12-10T14:00:00.000Z',
     committee: 'SGCC',

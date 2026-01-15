@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import { PersonIcon, GearIcon, MixerHorizontalIcon, BellIcon, BarChartIcon } from '@radix-ui/react-icons';
+import { PersonIcon, GearIcon, MixerHorizontalIcon, BellIcon, BarChartIcon, AvatarIcon } from '@radix-ui/react-icons';
 
 export default function SettingsPage() {
   const settingsSections = [
@@ -23,6 +23,12 @@ export default function SettingsPage() {
       description: 'Configure which metrics appear in dashboard stacks',
       href: '/settings/metrics',
       icon: BarChartIcon,
+    },
+    {
+      title: 'Client Name',
+      description: 'Set the demo client name used throughout the app',
+      href: '/settings/client',
+      icon: AvatarIcon,
     },
     {
       title: 'Notifications',

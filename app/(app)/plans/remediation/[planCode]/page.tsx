@@ -102,7 +102,7 @@ export default function PlanRemediationPage({ params }: Props) {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
                 <Link
-                  href="/henryschein/plans"
+                  href="/plans"
                   className="flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)] transition-colors"
                 >
                   <ArrowLeftIcon className="w-4 h-4" />

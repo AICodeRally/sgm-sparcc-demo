@@ -115,7 +115,7 @@ export default function NewTenantPage() {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="mt-1 block w-full rounded-md border-[color:var(--color-border)] shadow-sm focus:border-[color:var(--color-primary)] focus:ring-[color:var(--color-accent-border)]"
-                placeholder="Henry Schein, Inc."
+                placeholder="Acme Corporation"
               />
             </div>
 
@@ -132,7 +132,7 @@ export default function NewTenantPage() {
                   setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '') })
                 }
                 className="mt-1 block w-full rounded-md border-[color:var(--color-border)] shadow-sm focus:border-[color:var(--color-primary)] focus:ring-[color:var(--color-accent-border)]"
-                placeholder="henryschein"
+                placeholder="acme-corp"
                 pattern="[a-z0-9-]+"
               />
               <p className="mt-1 text-sm text-[color:var(--color-muted)]">
@@ -287,7 +287,7 @@ export default function NewTenantPage() {
                 value={formData.logo}
                 onChange={(e) => setFormData({ ...formData, logo: e.target.value })}
                 className="mt-1 block w-full rounded-md border-[color:var(--color-border)] shadow-sm focus:border-[color:var(--color-primary)] focus:ring-[color:var(--color-accent-border)]"
-                placeholder="/logos/henryschein.png"
+                placeholder="/logos/client-logo.png"
               />
             </div>
           </div>
