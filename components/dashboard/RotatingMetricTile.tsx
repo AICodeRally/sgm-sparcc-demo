@@ -74,14 +74,16 @@ export default function RotatingMetricTile({ group, metricData, tone = 'primary'
   return (
     <button
       onClick={handleClick}
-      className={`group relative theme-card rounded-xl border p-6 transition-all duration-200 cursor-pointer ${
+      className={`group relative theme-card rounded-xl overflow-hidden transition-all duration-200 cursor-pointer ${
         statusColors.border
       } ${colors.hover} ${statusColors.glow} ${isAnimating ? 'scale-95' : 'scale-100'}`}
       style={{
-        border: toneStyles.border,
         boxShadow: toneStyles.shadow,
       }}
     >
+      {/* Colored top bar */}
+      <div className="h-1.5" style={{ background: toneStyles.hover.replace('1px solid ', '') }} />
+      <div className="p-6">
       {/* Position Indicator */}
       <div className="absolute top-2 right-2 text-[10px] font-medium text-[color:var(--color-muted)]">
         {currentIndex + 1}/{group.metrics.length}
@@ -132,6 +134,7 @@ export default function RotatingMetricTile({ group, metricData, tone = 'primary'
           </span>
         </div>
       )}
+      </div>
     </button>
   );
 }

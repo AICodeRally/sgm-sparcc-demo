@@ -12,7 +12,6 @@ import {
 } from '@radix-ui/react-icons';
 import { OperationalMode } from '@/types/operational-mode';
 import { getModeConfig } from '@/lib/auth/mode-permissions';
-import { useModePermission } from '@/lib/auth/mode-context';
 
 interface ModeCardProps {
   mode: OperationalMode;
@@ -25,7 +24,8 @@ interface ModeCardProps {
  */
 export function ModeCard({ mode, className = '' }: ModeCardProps) {
   const config = getModeConfig(mode);
-  const permission = useModePermission(mode);
+  // Demo mode: always allow access
+  const canAccess = true;
 
   // Map icon names to actual icon components
   const iconMap = {
@@ -46,7 +46,7 @@ export function ModeCard({ mode, className = '' }: ModeCardProps) {
   const content = (
     <div
       className={`bg-gradient-to-br rounded-xl border-2 p-8 transition-all duration-300 ${
-        permission.canAccess
+        canAccess
           ? 'hover:shadow-2xl hover:scale-[1.02] cursor-pointer'
           : 'opacity-60 cursor-not-allowed'
       } ${className}`}
@@ -59,10 +59,10 @@ export function ModeCard({ mode, className = '' }: ModeCardProps) {
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-4">
           <div
-            className="bg-[color:var(--color-surface)] rounded-lg p-3 shadow-md border border-[color:var(--color-border)]"
-            style={{ color: baseColor }}
+            className="rounded-lg p-3 shadow-md"
+            style={{ backgroundColor: baseColor }}
           >
-            <IconComponent className="w-8 h-8" />
+            <IconComponent className="w-8 h-8 text-white" />
           </div>
           <div>
             <h2 className="text-2xl font-bold text-[color:var(--color-foreground)]">
@@ -73,7 +73,7 @@ export function ModeCard({ mode, className = '' }: ModeCardProps) {
             </p>
           </div>
         </div>
-        {!permission.canAccess && (
+        {!canAccess && (
           <div className="bg-[color:var(--color-surface)] rounded-lg p-2 shadow-sm border border-[color:var(--color-border)]">
             <LockClosedIcon className="w-5 h-5 text-[color:var(--color-muted)]" />
           </div>
@@ -104,7 +104,7 @@ export function ModeCard({ mode, className = '' }: ModeCardProps) {
       </div>
 
       {/* CTA Button or Locked Message */}
-      {permission.canAccess ? (
+      {canAccess ? (
         <div
           className="text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:opacity-90"
           style={{ background: `linear-gradient(to right, ${baseColor}, ${baseColor}dd)` }}
@@ -122,7 +122,7 @@ export function ModeCard({ mode, className = '' }: ModeCardProps) {
   );
 
   // If user has access, wrap in Link
-  if (permission.canAccess) {
+  if (canAccess) {
     return <Link href={config.defaultRoute as any}>{content}</Link>;
   }
 

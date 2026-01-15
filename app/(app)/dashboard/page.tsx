@@ -87,10 +87,10 @@ export default function SGMDashboard() {
 
   // Get one metric group per mode for the 4 rotating tiles
   const modeMetrics = [
-    { group: getMetricGroupsByMode(OperationalMode.DESIGN)[0], tone: 'primary' as const, label: 'Studio / Build' },
-    { group: getMetricGroupsByMode(OperationalMode.OPERATE)[0], tone: 'secondary' as const, label: 'Edge / Operate' },
-    { group: getMetricGroupsByMode(OperationalMode.DISPUTE)[0], tone: 'accent' as const, label: 'Summit / Roll Out' },
-    { group: getMetricGroupsByMode(OperationalMode.OVERSEE)[0], tone: 'infra' as const, label: 'Governance / Control' },
+    { group: getMetricGroupsByMode(OperationalMode.DESIGN)[0], tone: 'primary' as const },
+    { group: getMetricGroupsByMode(OperationalMode.OPERATE)[0], tone: 'secondary' as const },
+    { group: getMetricGroupsByMode(OperationalMode.DISPUTE)[0], tone: 'accent' as const },
+    { group: getMetricGroupsByMode(OperationalMode.OVERSEE)[0], tone: 'infra' as const },
   ].filter((item) => item.group); // Filter out undefined
 
   return (
@@ -106,25 +106,6 @@ export default function SGMDashboard() {
             {modeMetrics.map(({ group, tone }) => (
               <RotatingMetricTile key={group.id} group={group} metricData={metricData} tone={tone} />
             ))}
-          </div>
-          <div className="flex flex-wrap items-center gap-3 text-xs text-[color:var(--color-muted)] mb-8">
-            <span className="font-semibold text-[color:var(--color-foreground)]">Palette legend</span>
-            <span className="inline-flex items-center gap-1">
-              <span className="w-3 h-3 rounded-full" style={{ background: 'var(--color-primary)' }} />
-              Studio / Build
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <span className="w-3 h-3 rounded-full" style={{ background: 'var(--color-secondary)' }} />
-              Edge / Operate
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <span className="w-3 h-3 rounded-full" style={{ background: 'var(--color-accent)' }} />
-              Summit / Roll Out
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <span className="w-3 h-3 rounded-full bg-[#0f172a]" />
-              Governance / Control
-            </span>
           </div>
 
           {/* 4 Operational Mode Hero Cards */}
