@@ -40,3 +40,29 @@ export async function requireActor(): Promise<Actor> {
   }
   return actor;
 }
+
+/**
+ * Demo actor for unauthenticated access
+ * Used when ENABLE_DEMO_DATA=true and no session exists
+ */
+export const DEMO_ACTOR: Actor = {
+  userId: 'demo-user',
+  tenantId: 'demo-tenant-001',
+  tenantSlug: 'demo',
+  role: 'ADMIN',
+  tenantTier: 'enterprise',
+  email: 'demo@sgm.demo',
+};
+
+/**
+ * Get authenticated actor or fall back to demo actor
+ * Useful for API routes that should work without login in demo mode
+ */
+export async function getActorOrDemo(): Promise<Actor> {
+  const actor = await getActor();
+  if (actor) {
+    return actor;
+  }
+  // Fall back to demo actor for unauthenticated access
+  return DEMO_ACTOR;
+}

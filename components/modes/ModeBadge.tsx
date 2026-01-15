@@ -7,6 +7,20 @@
 
 import { OperationalMode } from '@/types/operational-mode';
 import { MODE_CONFIGS } from '@/lib/auth/mode-permissions';
+import {
+  Pencil2Icon,
+  GearIcon,
+  ExclamationTriangleIcon,
+  EyeOpenIcon,
+} from '@radix-ui/react-icons';
+
+// Map icon names to actual Radix icon components
+const IconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Pencil2Icon,
+  GearIcon,
+  ExclamationTriangleIcon,
+  EyeOpenIcon,
+};
 
 interface ModeBadgeProps {
   mode: OperationalMode;
@@ -29,6 +43,8 @@ export function ModeBadge({ mode, size = 'md', showIcon = true }: ModeBadgeProps
     lg: 'w-5 h-5',
   };
 
+  const IconComponent = IconMap[config.icon];
+
   return (
     <div
       className={`inline-flex items-center gap-1.5 rounded-full font-semibold ${sizeClasses[size]}`}
@@ -38,8 +54,8 @@ export function ModeBadge({ mode, size = 'md', showIcon = true }: ModeBadgeProps
         border: `2px solid ${config.color.hex}40`,
       }}
     >
-      {showIcon && (
-        <span className={iconSizeClasses[size]} dangerouslySetInnerHTML={{ __html: config.icon }} />
+      {showIcon && IconComponent && (
+        <IconComponent className={iconSizeClasses[size]} />
       )}
       <span>{config.label}</span>
     </div>

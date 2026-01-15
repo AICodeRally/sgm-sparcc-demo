@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   CheckCircledIcon,
@@ -16,10 +16,27 @@ import {
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
-import { APPROVAL_ITEMS, APPROVAL_STATS, CRB_WINDFALL_DECISIONS, type ApprovalItem } from '@/lib/data/synthetic/governance-approvals.data';
-import { DemoBadge, DemoHighlight } from '@/components/demo/DemoBadge';
+import type { ApprovalItem } from '@/lib/data/synthetic/governance-approvals.data';
+import { DataTypeBadge, DataTypeHighlight } from '@/components/demo/DemoBadge';
+import type { DataType } from '@/lib/contracts/data-type.contract';
 import { DemoToggle, DemoFilter, DemoWarningBanner } from '@/components/demo/DemoToggle';
 import { ModeContextBadge } from '@/components/modes/ModeBadge';
+
+interface ApprovalStats {
+  pending: number;
+  inReview: number;
+  approved: number;
+  rejected: number;
+  needsInfo: number;
+  atRisk: number;
+  overdue: number;
+}
+
+interface CRBDecision {
+  id: string;
+  name: string;
+  description: string;
+}
 
 export default function ApprovalsPage() {
   const [selectedApproval, setSelectedApproval] = useState<ApprovalItem | null>(null);
@@ -27,21 +44,52 @@ export default function ApprovalsPage() {
   const [filterCommittee, setFilterCommittee] = useState<string>('all');
   const [demoFilter, setDemoFilter] = useState<DemoFilter>('all');
 
-  // Filter approvals
-  const filteredApprovals = APPROVAL_ITEMS.filter(approval => {
+  // API data state
+  const [allApprovals, setAllApprovals] = useState<ApprovalItem[]>([]);
+  const [stats, setStats] = useState<ApprovalStats>({ pending: 0, inReview: 0, approved: 0, rejected: 0, needsInfo: 0, atRisk: 0, overdue: 0 });
+  const [crbDecisions, setCrbDecisions] = useState<CRBDecision[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch approvals from API
+  useEffect(() => {
+    async function fetchApprovals() {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/approvals');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch approvals: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setAllApprovals(data.approvals || []);
+        setStats(data.stats || { pending: 0, inReview: 0, approved: 0, rejected: 0, needsInfo: 0, atRisk: 0, overdue: 0 });
+        setCrbDecisions(data.crbDecisions || []);
+        setError(null);
+      } catch (err: any) {
+        setError(err.message);
+        setAllApprovals([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchApprovals();
+  }, []);
+
+  // Filter approvals (client-side)
+  const filteredApprovals = allApprovals.filter(approval => {
     if (filterStatus !== 'all' && approval.status !== filterStatus) return false;
     if (filterCommittee !== 'all' && approval.committee !== filterCommittee) return false;
     // Demo filter
-    if (demoFilter === 'demo-only' && !approval.isDemo) return false;
-    if (demoFilter === 'real-only' && approval.isDemo) return false;
+    if (demoFilter === 'demo-only' && approval.dataType !== 'demo') return false;
+    if (demoFilter === 'real-only' && approval.dataType === 'demo') return false;
     return true;
   });
 
   // Calculate demo counts
   const demoCounts = {
-    total: APPROVAL_ITEMS.length,
-    demo: APPROVAL_ITEMS.filter(a => a.isDemo).length,
-    real: APPROVAL_ITEMS.filter(a => !a.isDemo).length,
+    total: allApprovals.length,
+    demo: allApprovals.filter(a => a.dataType === 'demo').length,
+    real: allApprovals.filter(a => a.dataType !== 'demo').length,
   };
 
   // Status badge styling
@@ -87,15 +135,15 @@ export default function ApprovalsPage() {
         <div className="space-y-2 px-3">
           <div className="flex items-center justify-between text-sm">
             <span className="text-[color:var(--color-muted)]">Pending</span>
-            <span className="font-semibold text-[color:var(--color-foreground)]">{APPROVAL_STATS.pending}</span>
+            <span className="font-semibold text-[color:var(--color-foreground)]">{stats.pending}</span>
           </div>
           <div className="flex items-center justify-between text-sm">
             <span className="text-[color:var(--color-muted)]">In Review</span>
-            <span className="font-semibold text-[color:var(--color-info)]">{APPROVAL_STATS.inReview}</span>
+            <span className="font-semibold text-[color:var(--color-info)]">{stats.inReview}</span>
           </div>
           <div className="flex items-center justify-between text-sm">
             <span className="text-[color:var(--color-muted)]">At Risk</span>
-            <span className="font-semibold text-[color:var(--color-warning)]">{APPROVAL_STATS.atRisk}</span>
+            <span className="font-semibold text-[color:var(--color-warning)]">{stats.atRisk}</span>
           </div>
         </div>
       </div>
@@ -147,6 +195,21 @@ export default function ApprovalsPage() {
   // Center Content - Approval list
   const centerContent = (
     <div className="flex flex-col h-full">
+      {loading ? (
+        <div className="flex flex-col items-center justify-center h-full">
+          <UpdateIcon className="h-12 w-12 text-[color:var(--color-muted)] mb-4 animate-spin" />
+          <p className="text-[color:var(--color-muted)]">Loading approvals...</p>
+        </div>
+      ) : error ? (
+        <div className="flex flex-col items-center justify-center h-full">
+          <FileTextIcon className="h-16 w-16 text-[color:var(--color-error)] mb-4" />
+          <h3 className="text-lg font-medium text-[color:var(--color-foreground)] mb-2">
+            Error loading approvals
+          </h3>
+          <p className="text-[color:var(--color-muted)]">{error}</p>
+        </div>
+      ) : (
+      <>
       {/* Demo Warning Banner */}
       {demoCounts.demo > 0 && (
         <div className="px-4 pt-4">
@@ -195,7 +258,7 @@ export default function ApprovalsPage() {
             const priorityStyle = getPriorityBadge(approval.priority);
 
             return (
-              <DemoHighlight key={approval.id} isDemo={approval.isDemo}>
+              <DataTypeHighlight key={approval.id} dataType={approval.dataType || 'client'}>
                 <button
                   onClick={() => setSelectedApproval(approval)}
                   className={`w-full text-left px-4 py-4 hover:bg-[color:var(--color-surface-alt)] transition-colors ${
@@ -210,7 +273,7 @@ export default function ApprovalsPage() {
                             <h3 className="text-sm font-semibold text-[color:var(--color-foreground)] truncate">
                               {approval.title}
                             </h3>
-                            <DemoBadge isDemo={approval.isDemo} demoMetadata={approval.demoMetadata} size="sm" />
+                            <DataTypeBadge dataType={approval.dataType || 'client'} demoMetadata={approval.demoMetadata} size="sm" />
                           </div>
                         <p className="text-xs text-[color:var(--color-muted)] mt-0.5">
                           {approval.type} • {approval.committee}
@@ -270,11 +333,13 @@ export default function ApprovalsPage() {
                   </div>
                 </div>
               </button>
-              </DemoHighlight>
+              </DataTypeHighlight>
             );
           })
         )}
       </div>
+      </>
+      )}
     </div>
   );
 
@@ -429,7 +494,7 @@ export default function ApprovalsPage() {
               CRB Decision Options
             </p>
             <div className="space-y-2">
-              {CRB_WINDFALL_DECISIONS.map((option, idx) => (
+              {crbDecisions.map((option, idx) => (
                 <div key={option.id} className="p-2 bg-[color:var(--color-surface-alt)] rounded text-xs">
                   <p className="font-medium text-[color:var(--color-foreground)]">{idx + 1}. {option.name}</p>
                   <p className="text-[color:var(--color-muted)] mt-0.5">{option.description}</p>

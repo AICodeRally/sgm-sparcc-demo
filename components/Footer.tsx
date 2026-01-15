@@ -51,7 +51,17 @@ export function Footer() {
                 <a href="#" className="hover:text-[color:var(--color-primary)] transition-colors">Support</a>
               </div>
               <div className="text-xs">
-                <span className="text-[color:var(--color-muted)]">Powered by </span>
+                <span className="text-[color:var(--color-muted)]">Part of the </span>
+                <span
+                  className="font-bold bg-clip-text text-transparent"
+                  style={{
+                    backgroundImage:
+                      'linear-gradient(90deg, var(--sparcc-gradient-start), var(--sparcc-gradient-mid2), var(--sparcc-gradient-end))',
+                  }}
+                >
+                  SPARCC
+                </span>
+                <span className="text-[color:var(--color-muted)]"> suite of SPM tools • Powered by </span>
                 <span
                   className="font-bold bg-clip-text text-transparent"
                   style={{
@@ -61,7 +71,6 @@ export function Footer() {
                 >
                   AICR
                 </span>
-                <span className="text-[color:var(--color-muted)] ml-1">• Part of the SPARCC suite of SPM tools</span>
               </div>
             </div>
           </div>

@@ -6,6 +6,9 @@
  * and runtime validation via Zod.
  */
 
+// Data Type (shared enum for demo/template/client classification)
+export * from './data-type.contract';
+
 // Policy
 export * from './policy.contract';
 

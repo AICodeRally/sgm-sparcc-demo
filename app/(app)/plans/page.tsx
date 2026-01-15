@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import {
   PlusIcon,
@@ -12,10 +12,13 @@ import {
   CheckCircledIcon,
   CrossCircledIcon,
   FileTextIcon,
+  UpdateIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import PlanCreationWizard from '@/components/plans/PlanCreationWizard';
+import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import type { Plan } from '@/lib/contracts/plan.contract';
+import type { DataType } from '@/lib/contracts/data-type.contract';
 
 type PlanStatus = 'DRAFT' | 'IN_PROGRESS' | 'UNDER_REVIEW' | 'PENDING_APPROVAL' | 'APPROVED' | 'PUBLISHED' | 'SUPERSEDED' | 'ARCHIVED';
 type PlanType = 'COMPENSATION_PLAN' | 'GOVERNANCE_PLAN' | 'POLICY_CREATION_PLAN';
@@ -44,8 +47,6 @@ const planTypeLabels: Record<PlanType, string> = {
 };
 
 export default function PlansPage() {
-  const [plans, setPlans] = useState<Plan[]>([]);
-  const [loading, setLoading] = useState(true);
   const [showWizard, setShowWizard] = useState(false);
   const [filters, setFilters] = useState<PlanFilters>({
     search: '',
@@ -53,41 +54,58 @@ export default function PlansPage() {
     status: 'ALL',
   });
   const [showFilters, setShowFilters] = useState(false);
+  const [allPlans, setAllPlans] = useState<Plan[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
+  // Fetch plans from API
   useEffect(() => {
-    fetchPlans();
-  }, [filters]);
-
-  const fetchPlans = async () => {
-    setLoading(true);
-    try {
-      const params = new URLSearchParams();
-      if (filters.planType !== 'ALL') params.append('planType', filters.planType);
-      if (filters.status !== 'ALL') params.append('status', filters.status);
-
-      const response = await fetch(`/api/plans?${params.toString()}`);
-      if (!response.ok) throw new Error('Failed to fetch plans');
-
-      const data = await response.json();
-      let filtered = data.plans || [];
-
-      // Client-side search filter
-      if (filters.search) {
-        const search = filters.search.toLowerCase();
-        filtered = filtered.filter((p: Plan) =>
-          p.title.toLowerCase().includes(search) ||
-          p.description?.toLowerCase().includes(search) ||
-          p.planCode.toLowerCase().includes(search)
-        );
+    async function fetchPlans() {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/plans');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch plans: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setAllPlans(data.plans || []);
+        setError(null);
+      } catch (err: any) {
+        setError(err.message);
+        setAllPlans([]);
+      } finally {
+        setLoading(false);
       }
-
-      setPlans(filtered);
-    } catch (error) {
-      console.error('Error fetching plans:', error);
-    } finally {
-      setLoading(false);
     }
-  };
+    fetchPlans();
+  }, []);
+
+  // Apply client-side filters
+  const plans = useMemo(() => {
+    let filtered = [...allPlans];
+
+    // Filter by plan type
+    if (filters.planType !== 'ALL') {
+      filtered = filtered.filter(p => p.planType === filters.planType);
+    }
+
+    // Filter by status
+    if (filters.status !== 'ALL') {
+      filtered = filtered.filter(p => p.status === filters.status);
+    }
+
+    // Client-side search filter
+    if (filters.search) {
+      const search = filters.search.toLowerCase();
+      filtered = filtered.filter((p: Plan) =>
+        p.title.toLowerCase().includes(search) ||
+        p.description?.toLowerCase().includes(search) ||
+        p.planCode.toLowerCase().includes(search)
+      );
+    }
+
+    return filtered;
+  }, [filters, allPlans]);
 
   return (
     <>
@@ -180,8 +198,17 @@ export default function PlansPage() {
       {/* Content */}
       <div className="flex-1 overflow-y-auto px-8 py-6">
         {loading ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="text-[color:var(--color-muted)]">Loading plans...</div>
+          <div className="flex flex-col items-center justify-center h-64 text-center">
+            <UpdateIcon className="h-12 w-12 text-[color:var(--color-muted)] mb-4 animate-spin" />
+            <p className="text-[color:var(--color-muted)]">Loading plans...</p>
+          </div>
+        ) : error ? (
+          <div className="flex flex-col items-center justify-center h-64 text-center">
+            <FileTextIcon className="h-16 w-16 text-[color:var(--color-error)] mb-4" />
+            <h3 className="text-lg font-medium text-[color:var(--color-foreground)] mb-2">
+              Error loading plans
+            </h3>
+            <p className="text-[color:var(--color-muted)] mb-4">{error}</p>
           </div>
         ) : plans.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-64 text-center">
@@ -211,10 +238,7 @@ export default function PlansPage() {
       {/* Creation Wizard */}
       <PlanCreationWizard
         isOpen={showWizard}
-        onClose={() => {
-          setShowWizard(false);
-          fetchPlans();
-        }}
+        onClose={() => setShowWizard(false)}
       />
       </div>
     </>
@@ -228,9 +252,14 @@ function PlanCard({ plan }: { plan: Plan }) {
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
-            <h3 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-2">
-              {plan.title}
-            </h3>
+            <div className="flex items-center gap-2 mb-2">
+              <h3 className="text-lg font-semibold text-[color:var(--color-foreground)]">
+                {plan.title}
+              </h3>
+              {plan.dataType && (
+                <DataTypeBadge dataType={plan.dataType as DataType} size="sm" />
+              )}
+            </div>
             <p className="text-sm text-[color:var(--color-muted)]">{plan.planCode}</p>
           </div>
           <div className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[plan.status as PlanStatus]}`}>

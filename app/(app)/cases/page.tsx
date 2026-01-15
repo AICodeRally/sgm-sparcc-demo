@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MagnifyingGlassIcon,
   FileTextIcon,
@@ -16,13 +16,33 @@ import {
   DoubleArrowUpIcon,
   ArrowUpIcon,
   DashIcon,
+  UpdateIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
-import { CASE_ITEMS, CASE_STATS, CASE_TYPE_INFO, CaseItem } from '@/lib/data/synthetic/cases.data';
-import { DemoBadge, DemoHighlight } from '@/components/demo/DemoBadge';
+import type { CaseItem } from '@/lib/data/synthetic/cases.data';
+import { DataTypeBadge, DataTypeHighlight } from '@/components/demo/DemoBadge';
+import type { DataType } from '@/lib/contracts/data-type.contract';
 import { DemoToggle, DemoFilter, DemoWarningBanner } from '@/components/demo/DemoToggle';
 import { ModeContextBadge } from '@/components/modes/ModeBadge';
+
+interface CaseStats {
+  new: number;
+  underReview: number;
+  pendingInfo: number;
+  escalated: number;
+  resolved: number;
+  closed: number;
+  avgResolutionDays: number;
+}
+
+interface CaseTypeInfo {
+  [key: string]: {
+    name: string;
+    description: string;
+    exampleScenarios: string[];
+  };
+}
 
 export default function CasesPage() {
   const [selectedCase, setSelectedCase] = useState<CaseItem | null>(null);
@@ -31,23 +51,54 @@ export default function CasesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [demoFilter, setDemoFilter] = useState<DemoFilter>('all');
 
-  // Filter cases
-  const filteredCases = CASE_ITEMS.filter(c => {
+  // API data state
+  const [allCases, setAllCases] = useState<CaseItem[]>([]);
+  const [caseStats, setCaseStats] = useState<CaseStats>({ new: 0, underReview: 0, pendingInfo: 0, escalated: 0, resolved: 0, closed: 0, avgResolutionDays: 0 });
+  const [caseTypeInfo, setCaseTypeInfo] = useState<CaseTypeInfo>({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch cases from API
+  useEffect(() => {
+    async function fetchCases() {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/cases');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch cases: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setAllCases(data.cases || []);
+        setCaseStats(data.stats || { new: 0, underReview: 0, pendingInfo: 0, escalated: 0, resolved: 0, closed: 0, avgResolutionDays: 0 });
+        setCaseTypeInfo(data.typeInfo || {});
+        setError(null);
+      } catch (err: any) {
+        setError(err.message);
+        setAllCases([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCases();
+  }, []);
+
+  // Filter cases (client-side)
+  const filteredCases = allCases.filter(c => {
     if (filterType !== 'all' && c.type !== filterType) return false;
     if (filterStatus !== 'all' && c.status !== filterStatus) return false;
     if (searchQuery && !c.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
         !c.caseNumber.toLowerCase().includes(searchQuery.toLowerCase())) return false;
     // Demo filter
-    if (demoFilter === 'demo-only' && !c.isDemo) return false;
-    if (demoFilter === 'real-only' && c.isDemo) return false;
+    if (demoFilter === 'demo-only' && c.dataType !== 'demo') return false;
+    if (demoFilter === 'real-only' && c.dataType === 'demo') return false;
     return true;
   });
 
   // Calculate demo counts
   const demoCounts = {
-    total: CASE_ITEMS.length,
-    demo: CASE_ITEMS.filter(c => c.isDemo).length,
-    real: CASE_ITEMS.filter(c => !c.isDemo).length,
+    total: allCases.length,
+    demo: allCases.filter(c => c.dataType === 'demo').length,
+    real: allCases.filter(c => c.dataType !== 'demo').length,
   };
 
   // Sort by most recent first
@@ -177,26 +228,26 @@ export default function CasesPage() {
             <div className="flex items-center justify-between">
               <span className="text-xs text-[color:var(--color-accent)] font-medium">Active</span>
               <span className="text-lg font-bold text-[color:var(--color-accent)]">
-                {CASE_STATS.new + CASE_STATS.underReview + CASE_STATS.pendingInfo + CASE_STATS.escalated}
+                {caseStats.new + caseStats.underReview + caseStats.pendingInfo + caseStats.escalated}
               </span>
             </div>
           </div>
           <div className="bg-[color:var(--color-success-bg)] rounded-md p-3">
             <div className="flex items-center justify-between">
               <span className="text-xs text-[color:var(--color-success)] font-medium">Resolved</span>
-              <span className="text-lg font-bold text-[color:var(--color-success)]">{CASE_STATS.resolved}</span>
+              <span className="text-lg font-bold text-[color:var(--color-success)]">{caseStats.resolved}</span>
             </div>
           </div>
           <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3">
             <div className="flex items-center justify-between">
               <span className="text-xs text-[color:var(--color-muted)] font-medium">Closed</span>
-              <span className="text-lg font-bold text-[color:var(--color-muted)]">{CASE_STATS.closed}</span>
+              <span className="text-lg font-bold text-[color:var(--color-muted)]">{caseStats.closed}</span>
             </div>
           </div>
           <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3">
             <div className="flex items-center justify-between">
               <span className="text-xs text-[color:var(--color-primary)] font-medium">Avg Days</span>
-              <span className="text-lg font-bold text-[color:var(--color-primary)]">{CASE_STATS.avgResolutionDays}</span>
+              <span className="text-lg font-bold text-[color:var(--color-primary)]">{caseStats.avgResolutionDays}</span>
             </div>
           </div>
         </div>
@@ -228,7 +279,7 @@ export default function CasesPage() {
             }`}
           >
             <DotFilledIcon className="w-4 h-4" />
-            New ({CASE_STATS.new})
+            New ({caseStats.new})
           </button>
           <button
             onClick={() => setFilterStatus('UNDER_REVIEW')}
@@ -239,7 +290,7 @@ export default function CasesPage() {
             }`}
           >
             <ClockIcon className="w-4 h-4" />
-            Under Review ({CASE_STATS.underReview})
+            Under Review ({caseStats.underReview})
           </button>
           <button
             onClick={() => setFilterStatus('PENDING_INFO')}
@@ -250,7 +301,7 @@ export default function CasesPage() {
             }`}
           >
             <ExclamationTriangleIcon className="w-4 h-4" />
-            Pending Info ({CASE_STATS.pendingInfo})
+            Pending Info ({caseStats.pendingInfo})
           </button>
           <button
             onClick={() => setFilterStatus('ESCALATED')}
@@ -261,7 +312,7 @@ export default function CasesPage() {
             }`}
           >
             <DoubleArrowUpIcon className="w-4 h-4" />
-            Escalated ({CASE_STATS.escalated})
+            Escalated ({caseStats.escalated})
           </button>
           <button
             onClick={() => setFilterStatus('RESOLVED')}
@@ -272,7 +323,7 @@ export default function CasesPage() {
             }`}
           >
             <CheckCircledIcon className="w-4 h-4" />
-            Resolved ({CASE_STATS.resolved})
+            Resolved ({caseStats.resolved})
           </button>
         </div>
       </div>
@@ -294,9 +345,9 @@ export default function CasesPage() {
             <LayersIcon className="w-4 h-4" />
             All Types
           </button>
-          {Object.entries(CASE_TYPE_INFO).map(([key, info]) => {
+          {Object.entries(caseTypeInfo).map(([key, info]) => {
             const Icon = getCaseTypeIcon(key as CaseItem['type']);
-            const count = CASE_ITEMS.filter(c => c.type === key).length;
+            const count = allCases.filter(c => c.type === key).length;
             return (
               <button
                 key={key}
@@ -320,6 +371,21 @@ export default function CasesPage() {
   // Center Content - Case List
   const centerContent = (
     <div className="h-full flex flex-col">
+      {loading ? (
+        <div className="flex flex-col items-center justify-center h-full">
+          <UpdateIcon className="h-12 w-12 text-[color:var(--color-muted)] mb-4 animate-spin" />
+          <p className="text-[color:var(--color-muted)]">Loading cases...</p>
+        </div>
+      ) : error ? (
+        <div className="flex flex-col items-center justify-center h-full">
+          <FileTextIcon className="h-16 w-16 text-[color:var(--color-error)] mb-4" />
+          <h3 className="text-lg font-medium text-[color:var(--color-foreground)] mb-2">
+            Error loading cases
+          </h3>
+          <p className="text-[color:var(--color-muted)]">{error}</p>
+        </div>
+      ) : (
+      <>
       {/* Demo Warning Banner */}
       {demoCounts.demo > 0 && (
         <div className="px-4 pt-4">
@@ -376,7 +442,7 @@ export default function CasesPage() {
               const TypeIcon = getCaseTypeIcon(caseItem.type);
 
               return (
-                <DemoHighlight key={caseItem.id} isDemo={caseItem.isDemo}>
+                <DataTypeHighlight key={caseItem.id} dataType={caseItem.dataType || 'client'}>
                   <button
                     onClick={() => setSelectedCase(caseItem)}
                     className={`w-full text-left bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-md border transition-all hover:shadow-md ${
@@ -395,7 +461,7 @@ export default function CasesPage() {
                               <h3 className="font-semibold text-[color:var(--color-foreground)] text-sm truncate">
                                 {caseItem.title}
                               </h3>
-                              <DemoBadge isDemo={caseItem.isDemo} demoMetadata={caseItem.demoMetadata} size="sm" />
+                              <DataTypeBadge dataType={caseItem.dataType || 'client'} demoMetadata={caseItem.demoMetadata} size="sm" />
                             </div>
                           <p className="text-xs text-[color:var(--color-muted)] mt-0.5">
                             {caseItem.caseNumber}
@@ -439,12 +505,14 @@ export default function CasesPage() {
                     </div>
                   </div>
                 </button>
-                </DemoHighlight>
+                </DataTypeHighlight>
               );
             })
           )}
         </div>
       </div>
+      </>
+      )}
     </div>
   );
 

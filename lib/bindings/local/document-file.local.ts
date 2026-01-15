@@ -262,6 +262,7 @@ export class LocalFileDocumentProvider implements IDocumentPort {
       createdBy: changes.updatedBy || existing.owner,
       retentionPeriod: existing.retentionPeriod,
       legalReviewStatus: 'NOT_REQUIRED',
+      dataType: existing.dataType || 'client',
     });
   }
 
@@ -409,6 +410,8 @@ export class LocalFileDocumentProvider implements IDocumentPort {
       metadata: doc.metadata,
       nextReview: doc.nextReview,
       approvers: doc.approvers,
+      dataType: doc.dataType || 'client',
+      demoMetadata: doc.demoMetadata,
     };
   }
 }

@@ -27,7 +27,18 @@ export interface BindingConfig {
   };
 
   /**
-   * Demo data configuration
+   * Data loading configuration
+   * Controls which data types are loaded at startup
+   */
+  dataLoad: {
+    /** Load demo data (sample data for demonstrations) */
+    demo: boolean;
+    /** Load template data (baseline governance documents) */
+    templates: boolean;
+  };
+
+  /**
+   * @deprecated Use dataLoad.demo instead
    */
   demoData?: {
     enabled: boolean;
@@ -69,6 +80,10 @@ export const defaultBindingConfig: BindingConfig = {
     plan: 'synthetic',
     governanceFramework: 'synthetic',
   },
+  dataLoad: {
+    demo: false,
+    templates: false,
+  },
 };
 
 /**
@@ -92,6 +107,11 @@ export function loadBindingConfig(): BindingConfig {
       plan: (process.env.BINDING_MODE_PLAN || mode) as BindingMode,
       governanceFramework: (process.env.BINDING_MODE_GOVERNANCE_FRAMEWORK || mode) as BindingMode,
     },
+    dataLoad: {
+      demo: process.env.ENABLE_DEMO_DATA === 'true',
+      templates: process.env.ENABLE_TEMPLATE_DATA === 'true',
+    },
+    // Legacy support
     demoData: {
       enabled: process.env.ENABLE_DEMO_DATA === 'true',
     },
@@ -116,4 +136,21 @@ export function loadBindingConfig(): BindingConfig {
  */
 export function isDemoDataEnabled(): boolean {
   return process.env.ENABLE_DEMO_DATA === 'true';
+}
+
+/**
+ * Check if template data is enabled
+ */
+export function isTemplateDataEnabled(): boolean {
+  return process.env.ENABLE_TEMPLATE_DATA === 'true';
+}
+
+/**
+ * Get current data load configuration
+ */
+export function getDataLoadConfig(): { demo: boolean; templates: boolean } {
+  return {
+    demo: process.env.ENABLE_DEMO_DATA === 'true',
+    templates: process.env.ENABLE_TEMPLATE_DATA === 'true',
+  };
 }

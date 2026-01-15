@@ -2,6 +2,8 @@
  * SPARCC Governance Committees
  */
 
+import type { DataType, DemoMetadata } from '@/lib/contracts/data-type.contract';
+
 export interface CommitteeMember {
   id: string;
   name: string;
@@ -26,14 +28,9 @@ export interface Committee {
   charterDocument: string;
   status: 'ACTIVE' | 'INACTIVE';
   createdAt: string;
-  // Demo Data Management
-  isDemo?: boolean;
-  demoMetadata?: {
-    year?: number;
-    bu?: string;
-    division?: string;
-    category?: string;
-  } | null;
+  // Data Type (demo, template, or client)
+  dataType?: DataType;
+  demoMetadata?: DemoMetadata;
 }
 
 /**
@@ -151,7 +148,7 @@ export const SGCC_COMMITTEE: Committee = {
   charterDocument: 'GC-001',
   status: 'ACTIVE',
   createdAt: '2025-01-01T00:00:00.000Z',
-  isDemo: true,
+  dataType: 'demo',
   demoMetadata: { year: 2025, bu: 'SPARCC', division: 'Governance', category: 'Sample Data' },
 };
 
@@ -229,7 +226,7 @@ export const CRB_COMMITTEE: Committee = {
   charterDocument: 'CRB-001',
   status: 'ACTIVE',
   createdAt: '2025-01-01T00:00:00.000Z',
-  isDemo: true,
+  dataType: 'demo',
   demoMetadata: { year: 2025, bu: 'SPARCC', division: 'Governance', category: 'Sample Data' },
 };
 

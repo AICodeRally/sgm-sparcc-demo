@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { DataTypeSchema, DemoMetadataSchema } from './data-type.contract';
 
 /**
  * Document Type
@@ -117,14 +118,9 @@ export const DocumentSchema = z.object({
   // Metadata (flexible JSON for client-specific fields)
   metadata: z.record(z.string(), z.any()).optional(),
 
-  // Demo Data Management
-  isDemo: z.boolean().default(false).optional(),
-  demoMetadata: z.object({
-    year: z.number().optional(),
-    bu: z.string().optional(),
-    division: z.string().optional(),
-    category: z.string().optional(),
-  }).optional().nullable(),
+  // Data Type Classification (demo, template, or client)
+  dataType: DataTypeSchema.default('client'),
+  demoMetadata: DemoMetadataSchema,
 });
 
 export type Document = z.infer<typeof DocumentSchema>;
@@ -162,7 +158,7 @@ export const DocumentFiltersSchema = z.object({
   search: z.string().optional(), // Full-text search
   effectiveBefore: z.coerce.date().optional(),
   effectiveAfter: z.coerce.date().optional(),
-  isDemo: z.boolean().optional(), // Filter demo data
+  dataType: DataTypeSchema.optional(), // Filter by data type (demo, template, client)
 }).partial();
 
 export type DocumentFilters = z.infer<typeof DocumentFiltersSchema>;

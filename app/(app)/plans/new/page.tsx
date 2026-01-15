@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -14,6 +14,7 @@ import {
   ClockIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
+import { syntheticPlanTemplates, syntheticTemplateSections } from '@/lib/data/synthetic/plan-templates.data';
 
 // Wizard steps
 type WizardStep = 'template' | 'basics' | 'sections' | 'review';
@@ -49,7 +50,6 @@ export default function NewPlanPage() {
   const router = useRouter();
 
   const [currentStep, setCurrentStep] = useState<WizardStep>('template');
-  const [templates, setTemplates] = useState<Template[]>([]);
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
   const [planBasics, setPlanBasics] = useState<PlanBasics>({
     title: '',
@@ -63,23 +63,21 @@ export default function NewPlanPage() {
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Load templates on mount
-  useEffect(() => {
-    fetchTemplates();
+  // Load templates from synthetic data (no API call needed)
+  const templates = useMemo(() => {
+    return syntheticPlanTemplates
+      .filter(t => t.status === 'ACTIVE')
+      .map(t => ({
+        id: t.id,
+        code: t.code,
+        name: t.name,
+        description: t.description || '',
+        planType: t.planType,
+        sectionCount: syntheticTemplateSections.filter(s => s.templateId === t.id).length,
+        isSystemTemplate: t.isSystemTemplate,
+        tags: t.tags || [],
+      }));
   }, []);
-
-  const fetchTemplates = async () => {
-    try {
-      const response = await fetch('/api/plan-templates?status=ACTIVE');
-      if (!response.ok) throw new Error('Failed to fetch templates');
-
-      const data = await response.json();
-      setTemplates(data.templates || []);
-    } catch (err) {
-      console.error('Error fetching templates:', err);
-      setError('Failed to load templates');
-    }
-  };
 
   const handleSelectTemplate = (template: Template) => {
     setSelectedTemplate(template);
@@ -124,45 +122,11 @@ export default function NewPlanPage() {
     setIsCreating(true);
     setError(null);
 
-    try {
-      const response = await fetch('/api/plans/from-template', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          templateId: selectedTemplate.id,
-          tenantId: 'demo-tenant-001',
-          title: planBasics.title,
-          description: planBasics.description,
-          owner: planBasics.owner || 'current-user',
-          createdBy: 'current-user', // TODO: Get from auth
-          effectiveDate: planBasics.effectiveDate || undefined,
-          expirationDate: planBasics.expirationDate || undefined,
-          metadata: {
-            fiscalYear: planBasics.fiscalYear,
-          },
-          sections: sectionContents.map((s) => ({
-            sectionKey: s.sectionId,
-            title: s.title,
-            content: s.content || undefined,
-          })),
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to create plan');
-      }
-
-      const data = await response.json();
-      console.log('Plan created:', data.plan);
-
-      // Redirect to the new plan
-      router.push(`/plans/${data.plan.id}`);
-    } catch (err) {
-      console.error('Error creating plan:', err);
-      setError(err instanceof Error ? err.message : 'Failed to create plan');
-      setIsCreating(false);
-    }
+    // In demo mode, show success message and redirect to plans list
+    setTimeout(() => {
+      alert('Plan created successfully! (Demo mode - plan is in-memory only)');
+      router.push('/plans');
+    }, 1000);
   };
 
   const canProceed = () => {

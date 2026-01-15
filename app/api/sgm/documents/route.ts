@@ -107,6 +107,8 @@ export async function POST(request: NextRequest) {
       createdBy: body.createdBy || 'system',
       retentionPeriod: body.retentionPeriod || 7,
       legalReviewStatus: body.legalReviewStatus || 'NOT_REQUIRED',
+      dataType: body.dataType || 'client',
+      demoMetadata: body.demoMetadata,
     });
 
     return NextResponse.json(

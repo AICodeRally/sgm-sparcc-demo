@@ -15,7 +15,7 @@ import {
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
 import { SGCC_COMMITTEE, CRB_COMMITTEE, CRB_DECISION_OPTIONS, type Committee } from '@/lib/data/synthetic/committees.data';
-import { DemoBadge } from '@/components/demo/DemoBadge';
+import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import { DemoWarningBanner } from '@/components/demo/DemoToggle';
 import { ModeContextBadge } from '@/components/modes/ModeBadge';
 
@@ -50,7 +50,7 @@ export default function CommitteesPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <p className="text-sm font-medium truncate">{committee.code}</p>
-                    <DemoBadge isDemo={committee.isDemo} demoMetadata={committee.demoMetadata} size="sm" />
+                    <DataTypeBadge dataType={committee.dataType || 'client'} demoMetadata={committee.demoMetadata} size="sm" />
                   </div>
                   <p className="text-xs text-[color:var(--color-muted)] mt-0.5 line-clamp-2">{committee.name}</p>
                   <div className="flex items-center gap-2 mt-2 text-xs text-[color:var(--color-muted)]">
@@ -83,10 +83,10 @@ export default function CommitteesPage() {
   const centerContent = selectedCommittee ? (
     <div className="flex flex-col h-full">
       {/* Demo Warning Banner */}
-      {ALL_COMMITTEES.some(c => c.isDemo) && (
+      {ALL_COMMITTEES.some(c => c.dataType === 'demo') && (
         <div className="px-4 pt-4">
           <DemoWarningBanner
-            demoCount={ALL_COMMITTEES.filter(c => c.isDemo).length}
+            demoCount={ALL_COMMITTEES.filter(c => c.dataType === 'demo').length}
             onViewDemoLibrary={() => window.location.href = '/demo-library'}
           />
         </div>

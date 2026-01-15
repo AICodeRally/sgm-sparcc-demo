@@ -1,5 +1,6 @@
 import type { PlanTemplate } from '@/lib/contracts/plan-template.contract';
 import type { TemplateSection } from '@/lib/contracts/template-section.contract';
+import type { DataType, DemoMetadata } from '@/lib/contracts/data-type.contract';
 
 /**
  * Synthetic Plan Template Data
@@ -35,6 +36,8 @@ export const template1: PlanTemplate = {
   effectiveDate: NOW,
   usageCount: 0,
   metadata: {},
+  dataType: 'template' as DataType,
+  demoMetadata: { year: 2026, bu: 'SPARCC', division: 'Governance', category: 'System Template' } as DemoMetadata,
 };
 
 export const template1Sections: TemplateSection[] = [
@@ -229,6 +232,8 @@ export const template2: PlanTemplate = {
   effectiveDate: NOW,
   usageCount: 0,
   metadata: {},
+  dataType: 'template' as DataType,
+  demoMetadata: { year: 2026, bu: 'SPARCC', division: 'Governance', category: 'System Template' } as DemoMetadata,
 };
 
 export const template2Sections: TemplateSection[] = [
@@ -345,6 +350,8 @@ export const template3: PlanTemplate = {
   effectiveDate: NOW,
   usageCount: 0,
   metadata: {},
+  dataType: 'template' as DataType,
+  demoMetadata: { year: 2026, bu: 'SPARCC', division: 'Governance', category: 'System Template' } as DemoMetadata,
 };
 
 export const template3Sections: TemplateSection[] = [

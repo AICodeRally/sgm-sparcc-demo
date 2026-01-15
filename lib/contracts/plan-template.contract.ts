@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { DataTypeSchema, DemoMetadataSchema } from './data-type.contract';
 
 /**
  * Plan Template Contract
@@ -56,6 +57,9 @@ export const PlanTemplateSchema = z.object({
   effectiveDate: z.coerce.date().optional(),
   usageCount: z.number().int().min(0).default(0),
   metadata: z.record(z.string(), z.any()).optional(),
+  // Data Type Classification (demo, template, or client)
+  dataType: DataTypeSchema.default('template'),
+  demoMetadata: DemoMetadataSchema,
 });
 
 export type PlanTemplate = z.infer<typeof PlanTemplateSchema>;
@@ -110,6 +114,7 @@ export const PlanTemplateFiltersSchema = z.object({
   search: z.string().optional(),
   tags: z.array(z.string()).optional(),
   category: z.string().optional(),
+  dataType: DataTypeSchema.optional(), // Filter by data type (demo, template, client)
 });
 
 export type PlanTemplateFilters = z.infer<typeof PlanTemplateFiltersSchema>;

@@ -1,20 +1,56 @@
 'use client';
 
-interface DemoBadgeProps {
-  /** Whether this item is demo data */
-  isDemo?: boolean;
-  /** Optional demo metadata (year, BU, division, category) */
-  demoMetadata?: {
-    year?: number;
-    bu?: string;
-    division?: string;
-    category?: string;
-  } | null;
+import { FileTextIcon, InfoCircledIcon, CheckCircledIcon, PersonIcon } from '@radix-ui/react-icons';
+import type { DataType, DemoMetadata } from '@/lib/contracts/data-type.contract';
+
+// =============================================================================
+// SHARED TYPES
+// =============================================================================
+
+interface BadgeProps {
   /** Size of the badge */
   size?: 'sm' | 'md' | 'lg';
   /** Optional custom className */
   className?: string;
 }
+
+interface DemoBadgeProps extends BadgeProps {
+  /** @deprecated Use dataType instead. Whether this item is demo data */
+  isDemo?: boolean;
+  /** Data type classification (preferred over isDemo) */
+  dataType?: DataType;
+  /** Optional demo metadata (year, BU, division, category) */
+  demoMetadata?: DemoMetadata;
+}
+
+interface TemplateBadgeProps extends BadgeProps {
+  /** Optional label override */
+  label?: string;
+}
+
+interface DataTypeBadgeProps extends BadgeProps {
+  /** The data type to display badge for */
+  dataType: DataType;
+  /** Optional demo metadata for demo items */
+  demoMetadata?: DemoMetadata;
+}
+
+// Size classes shared across badges
+const sizeClasses = {
+  sm: 'px-1.5 py-0.5 text-[10px]',
+  md: 'px-2 py-0.5 text-xs',
+  lg: 'px-2.5 py-1 text-sm',
+};
+
+const iconSizes = {
+  sm: 'w-3 h-3',
+  md: 'w-3.5 h-3.5',
+  lg: 'w-4 h-4',
+};
+
+// =============================================================================
+// DEMO BADGE (Orange)
+// =============================================================================
 
 /**
  * DemoBadge - Visual indicator for demo/sample data
@@ -23,22 +59,23 @@ interface DemoBadgeProps {
  * - Color-coded badge (orange gradient) to make demo data very apparent
  * - Shows "DEMO" label with optional metadata (year, BU, division)
  * - Multiple sizes (sm, md, lg)
- * - Only renders if isDemo is true
- * - For real data, use LiveBadge component instead
+ * - Only renders if isDemo is true OR dataType is 'demo'
  *
  * Usage:
- * <DemoBadge isDemo={document.isDemo} demoMetadata={document.demoMetadata} />
+ * <DemoBadge dataType="demo" demoMetadata={document.demoMetadata} />
+ * <DemoBadge isDemo={true} /> // Legacy support
  */
-export function DemoBadge({ isDemo, demoMetadata, size = 'md', className = '' }: DemoBadgeProps) {
-  // Don't render anything if not demo data
-  if (isDemo === false || isDemo === undefined) return null;
+export function DemoBadge({
+  isDemo,
+  dataType,
+  demoMetadata,
+  size = 'md',
+  className = ''
+}: DemoBadgeProps) {
+  // Determine if should show based on new dataType or legacy isDemo
+  const shouldShow = dataType === 'demo' || (dataType === undefined && isDemo === true);
 
-  // Size classes
-  const sizeClasses = {
-    sm: 'px-1.5 py-0.5 text-[10px]',
-    md: 'px-2 py-0.5 text-xs',
-    lg: 'px-2.5 py-1 text-sm',
-  };
+  if (!shouldShow) return null;
 
   // Build badge text
   let badgeText = 'DEMO';
@@ -62,19 +99,137 @@ export function DemoBadge({ isDemo, demoMetadata, size = 'md', className = '' }:
         color: 'white',
         boxShadow: '0 2px 4px rgba(255, 107, 53, 0.3)',
       }}
-      title="This is sample/demo data. You can remove it when you're ready to add your own data."
+      title="This is sample/demo data for demonstration purposes."
     >
-      <svg
-        className={size === 'sm' ? 'w-3 h-3' : size === 'md' ? 'w-3.5 h-3.5' : 'w-4 h-4'}
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
-      </svg>
+      <InfoCircledIcon className={iconSizes[size]} />
       {badgeText}
     </span>
   );
 }
+
+// =============================================================================
+// CLIENT BADGE (Green)
+// =============================================================================
+
+/**
+ * ClientBadge - Visual indicator for client/production data
+ *
+ * Features:
+ * - Color-coded badge (green gradient) to identify client data
+ * - Shows "CLIENT" label
+ * - Multiple sizes (sm, md, lg)
+ * - Used for real client data in the system
+ *
+ * Usage:
+ * <ClientBadge />
+ * <ClientBadge size="sm" label="Live" />
+ */
+export function ClientBadge({
+  size = 'md',
+  className = '',
+  label = 'CLIENT'
+}: {
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  label?: string;
+}) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded font-semibold uppercase tracking-wide ${sizeClasses[size]} ${className}`}
+      style={{
+        background: 'linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%)',
+        color: 'white',
+        boxShadow: '0 2px 4px rgba(5, 150, 105, 0.3)',
+      }}
+      title="This is live client data."
+    >
+      <PersonIcon className={iconSizes[size]} />
+      {label}
+    </span>
+  );
+}
+
+// =============================================================================
+// TEMPLATE BADGE (Teal/Cyan)
+// =============================================================================
+
+/**
+ * TemplateBadge - Visual indicator for template/baseline data
+ *
+ * Features:
+ * - Color-coded badge (teal/cyan gradient) for template items
+ * - Shows "TEMPLATE" label
+ * - Multiple sizes (sm, md, lg)
+ * - Used for baseline governance documents consultants deliver to clients
+ *
+ * Usage:
+ * <TemplateBadge />
+ * <TemplateBadge size="sm" label="Baseline" />
+ */
+export function TemplateBadge({
+  size = 'md',
+  className = '',
+  label = 'TEMPLATE'
+}: TemplateBadgeProps) {
+  return (
+    <span
+      className={`inline-flex items-center gap-1 rounded font-semibold uppercase tracking-wide ${sizeClasses[size]} ${className}`}
+      style={{
+        background: 'linear-gradient(135deg, #0D9488 0%, #14B8A6 50%, #22D3EE 100%)',
+        color: 'white',
+        boxShadow: '0 2px 4px rgba(13, 148, 136, 0.3)',
+      }}
+      title="This is a template/baseline document that can be customized for your organization."
+    >
+      <FileTextIcon className={iconSizes[size]} />
+      {label}
+    </span>
+  );
+}
+
+// =============================================================================
+// DATA TYPE BADGE (Smart Wrapper)
+// =============================================================================
+
+/**
+ * DataTypeBadge - Smart badge that renders appropriate badge based on data type
+ *
+ * Features:
+ * - Renders DemoBadge for 'demo' type (orange)
+ * - Renders TemplateBadge for 'template' type (teal)
+ * - Renders nothing for 'client' type (no visual indicator)
+ *
+ * Usage:
+ * <DataTypeBadge dataType={document.dataType} demoMetadata={document.demoMetadata} />
+ */
+export function DataTypeBadge({
+  dataType,
+  demoMetadata,
+  size = 'md',
+  className = ''
+}: DataTypeBadgeProps) {
+  switch (dataType) {
+    case 'demo':
+      return (
+        <DemoBadge
+          dataType="demo"
+          demoMetadata={demoMetadata}
+          size={size}
+          className={className}
+        />
+      );
+    case 'template':
+      return <TemplateBadge size={size} className={className} />;
+    case 'client':
+      return <ClientBadge size={size} className={className} />;
+    default:
+      return null;
+  }
+}
+
+// =============================================================================
+// HIGHLIGHT WRAPPERS
+// =============================================================================
 
 /**
  * DemoHighlight - Wrapper component that adds demo-specific styling to children
@@ -85,20 +240,24 @@ export function DemoBadge({ isDemo, demoMetadata, size = 'md', className = '' }:
  * - Can be used to wrap cards, rows, or any container
  *
  * Usage:
- * <DemoHighlight isDemo={item.isDemo}>
+ * <DemoHighlight dataType="demo">
  *   <div>Your content here</div>
  * </DemoHighlight>
  */
 export function DemoHighlight({
   isDemo,
+  dataType,
   children,
   className = ''
 }: {
   isDemo?: boolean;
+  dataType?: DataType;
   children: React.ReactNode;
   className?: string;
 }) {
-  if (!isDemo) {
+  const shouldHighlight = dataType === 'demo' || (dataType === undefined && isDemo === true);
+
+  if (!shouldHighlight) {
     return <>{children}</>;
   }
 
@@ -116,79 +275,28 @@ export function DemoHighlight({
 }
 
 /**
- * LiveBadge - Visual indicator for real/production data
+ * TemplateHighlight - Wrapper component that adds template-specific styling to children
  *
  * Features:
- * - Color-coded badge (green gradient) to show real production data
- * - Shows "LIVE" or "PRODUCTION" label
- * - Multiple sizes (sm, md, lg)
- * - Only renders if isDemo is explicitly false
- *
- * Usage:
- * <LiveBadge isDemo={document.isDemo} size="sm" />
- */
-export function LiveBadge({ isDemo, size = 'md', className = '', label = 'LIVE' }: {
-  isDemo?: boolean;
-  size?: 'sm' | 'md' | 'lg';
-  className?: string;
-  label?: 'LIVE' | 'PRODUCTION' | 'REAL';
-}) {
-  // Only render for real data (isDemo === false)
-  if (isDemo !== false) return null;
-
-  // Size classes
-  const sizeClasses = {
-    sm: 'px-1.5 py-0.5 text-[10px]',
-    md: 'px-2 py-0.5 text-xs',
-    lg: 'px-2.5 py-1 text-sm',
-  };
-
-  return (
-    <span
-      className={`inline-flex items-center gap-1 rounded font-semibold uppercase tracking-wide ${sizeClasses[size]} ${className}`}
-      style={{
-        background: 'linear-gradient(135deg, #10B981 0%, #059669 50%, #047857 100%)',
-        color: 'white',
-        boxShadow: '0 2px 4px rgba(16, 185, 129, 0.3)',
-      }}
-      title="This is real production data from your organization."
-    >
-      <svg
-        className={size === 'sm' ? 'w-3 h-3' : size === 'md' ? 'w-3.5 h-3.5' : 'w-4 h-4'}
-        fill="currentColor"
-        viewBox="0 0 20 20"
-      >
-        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-      </svg>
-      {label}
-    </span>
-  );
-}
-
-/**
- * LiveHighlight - Wrapper component that adds production-data styling to children
- *
- * Features:
- * - Adds subtle green border and background tint to real items
- * - Makes production items visually distinct from demo items
+ * - Adds subtle teal border and background tint to template items
+ * - Makes template items visually distinct in lists
  * - Can be used to wrap cards, rows, or any container
  *
  * Usage:
- * <LiveHighlight isDemo={item.isDemo}>
+ * <TemplateHighlight dataType="template">
  *   <div>Your content here</div>
- * </LiveHighlight>
+ * </TemplateHighlight>
  */
-export function LiveHighlight({
-  isDemo,
+export function TemplateHighlight({
+  dataType,
   children,
   className = ''
 }: {
-  isDemo?: boolean;
+  dataType?: DataType;
   children: React.ReactNode;
   className?: string;
 }) {
-  // Only apply for real data
-  if (isDemo !== false) {
+  if (dataType !== 'template') {
     return <>{children}</>;
   }
 
@@ -196,11 +304,131 @@ export function LiveHighlight({
     <div
       className={`relative ${className}`}
       style={{
-        borderLeft: '3px solid #10B981',
-        backgroundColor: 'rgba(16, 185, 129, 0.04)',
+        borderLeft: '3px solid #0D9488',
+        backgroundColor: 'rgba(13, 148, 136, 0.04)',
       }}
     >
       {children}
     </div>
   );
+}
+
+/**
+ * ClientHighlight - Wrapper component that adds client-specific styling to children
+ *
+ * Features:
+ * - Adds subtle green border and background tint to client items
+ * - Makes client items visually distinct in lists
+ * - Can be used to wrap cards, rows, or any container
+ *
+ * Usage:
+ * <ClientHighlight dataType="client">
+ *   <div>Your content here</div>
+ * </ClientHighlight>
+ */
+export function ClientHighlight({
+  dataType,
+  children,
+  className = ''
+}: {
+  dataType?: DataType;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  if (dataType !== 'client') {
+    return <>{children}</>;
+  }
+
+  return (
+    <div
+      className={`relative ${className}`}
+      style={{
+        borderLeft: '3px solid #059669',
+        backgroundColor: 'rgba(5, 150, 105, 0.04)',
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/**
+ * DataTypeHighlight - Smart highlight wrapper based on data type
+ *
+ * Features:
+ * - Applies DemoHighlight styling for 'demo' type
+ * - Applies TemplateHighlight styling for 'template' type
+ * - Applies ClientHighlight styling for 'client' type
+ *
+ * Usage:
+ * <DataTypeHighlight dataType={item.dataType}>
+ *   <Card>...</Card>
+ * </DataTypeHighlight>
+ */
+export function DataTypeHighlight({
+  dataType,
+  children,
+  className = ''
+}: {
+  dataType: DataType;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  switch (dataType) {
+    case 'demo':
+      return (
+        <DemoHighlight dataType="demo" className={className}>
+          {children}
+        </DemoHighlight>
+      );
+    case 'template':
+      return (
+        <TemplateHighlight dataType="template" className={className}>
+          {children}
+        </TemplateHighlight>
+      );
+    case 'client':
+      return (
+        <ClientHighlight dataType="client" className={className}>
+          {children}
+        </ClientHighlight>
+      );
+    default:
+      return <>{children}</>;
+  }
+}
+
+// =============================================================================
+// LEGACY EXPORTS (Deprecated - for backwards compatibility)
+// =============================================================================
+
+/**
+ * @deprecated LiveBadge has been removed. Client data no longer shows a badge.
+ * This is a no-op component for backwards compatibility.
+ */
+export function LiveBadge(_props: {
+  isDemo?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+  label?: 'LIVE' | 'PRODUCTION' | 'REAL';
+}) {
+  // LiveBadge has been removed - client data shows no badge
+  // Keeping for backwards compatibility during migration
+  return null;
+}
+
+/**
+ * @deprecated LiveHighlight has been removed. Client data no longer gets special styling.
+ * This is a pass-through component for backwards compatibility.
+ */
+export function LiveHighlight({
+  children,
+}: {
+  isDemo?: boolean;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  // LiveHighlight has been removed - client data gets no special styling
+  // Just render children for backwards compatibility
+  return <>{children}</>;
 }

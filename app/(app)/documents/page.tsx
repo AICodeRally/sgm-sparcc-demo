@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import {
@@ -14,9 +14,11 @@ import {
   PlusIcon,
   CaretSortIcon,
   DotsHorizontalIcon,
+  UpdateIcon,
 } from '@radix-ui/react-icons';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
-import { DemoBadge, DemoHighlight, LiveBadge, LiveHighlight } from '@/components/demo/DemoBadge';
+import { DataTypeBadge, DataTypeHighlight } from '@/components/demo/DemoBadge';
+import type { DataType } from '@/lib/contracts/data-type.contract';
 import { DemoToggle, DemoFilter, DemoWarningBanner } from '@/components/demo/DemoToggle';
 import { ModeContextBadge } from '@/components/modes/ModeBadge';
 
@@ -32,7 +34,7 @@ interface Document {
   owner: string;
   description?: string;
   effectiveDate?: string;
-  isDemo?: boolean;
+  dataType?: DataType;
   demoMetadata?: {
     year?: number;
     bu?: string;
@@ -49,55 +51,93 @@ interface FilterState {
 }
 
 export default function DocumentsPage() {
-  const [documents, setDocuments] = useState<Document[]>([]);
-  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<FilterState>({});
   const [searchInput, setSearchInput] = useState('');
   const [selectedDoc, setSelectedDoc] = useState<Document | null>(null);
   const [sortBy, setSortBy] = useState<'updated' | 'code' | 'title'>('updated');
   const [demoFilter, setDemoFilter] = useState<DemoFilter>('all');
+  const [documents, setDocuments] = useState<Document[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // Fetch documents
+  // Fetch documents from API
   useEffect(() => {
-    const fetchDocuments = async () => {
+    async function fetchDocuments() {
       try {
-        const queryParams = new URLSearchParams();
-        if (filters.status) queryParams.append('status', filters.status);
-        if (filters.documentType) queryParams.append('documentType', filters.documentType);
-        if (filters.category) queryParams.append('category', filters.category);
-        if (filters.search) queryParams.append('search', filters.search);
-        queryParams.append('tenantId', 'demo-tenant-001');
-
-        const response = await fetch(`/api/sgm/documents?${queryParams}`);
+        setLoading(true);
+        const response = await fetch('/api/sgm/documents');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch documents: ${response.statusText}`);
+        }
         const data = await response.json();
-        setDocuments(data.documents || []);
-      } catch (error) {
-        console.error('Failed to fetch documents:', error);
+        // Transform API response to match our Document interface
+        const docs = (data.documents || []).map((doc: any) => ({
+          id: doc.id || `doc-${doc.documentCode?.toLowerCase()}`,
+          documentCode: doc.documentCode,
+          title: doc.title,
+          documentType: doc.documentType,
+          category: doc.category,
+          status: doc.status,
+          version: doc.version,
+          lastUpdated: doc.effectiveDate || doc.lastUpdated || '2026-01-01',
+          owner: doc.owner,
+          description: doc.description,
+          effectiveDate: doc.effectiveDate,
+          dataType: doc.dataType || 'demo' as DataType,
+          demoMetadata: doc.demoMetadata || { year: 2026, bu: 'SPARCC', division: 'Governance', category: doc.category },
+        }));
+        setDocuments(docs);
+        setError(null);
+      } catch (err: any) {
+        setError(err.message);
+        setDocuments([]);
       } finally {
         setLoading(false);
       }
-    };
-
+    }
     fetchDocuments();
-  }, [filters]);
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     setFilters(prev => ({ ...prev, search: searchInput }));
   };
 
-  // Filter documents based on demo filter
-  const filteredDocuments = documents.filter(doc => {
-    if (demoFilter === 'demo-only') return doc.isDemo === true;
-    if (demoFilter === 'real-only') return doc.isDemo !== true;
-    return true; // 'all'
-  });
+  // Filter documents based on all filters
+  const filteredDocuments = useMemo(() => {
+    return documents.filter(doc => {
+      // Filter by status
+      if (filters.status && doc.status !== filters.status) return false;
+
+      // Filter by document type
+      if (filters.documentType && doc.documentType !== filters.documentType) return false;
+
+      // Filter by category
+      if (filters.category && doc.category !== filters.category) return false;
+
+      // Filter by search
+      if (filters.search) {
+        const search = filters.search.toLowerCase();
+        const matchesSearch =
+          doc.title.toLowerCase().includes(search) ||
+          doc.documentCode.toLowerCase().includes(search) ||
+          doc.description?.toLowerCase().includes(search);
+        if (!matchesSearch) return false;
+      }
+
+      // Filter by demo filter
+      if (demoFilter === 'demo-only' && doc.dataType !== 'demo') return false;
+      if (demoFilter === 'real-only' && doc.dataType === 'demo') return false;
+
+      return true;
+    });
+  }, [documents, filters, demoFilter]);
 
   // Calculate demo counts
   const demoCounts = {
     total: documents.length,
-    demo: documents.filter(d => d.isDemo).length,
-    real: documents.filter(d => !d.isDemo).length,
+    demo: documents.filter(d => d.dataType === 'demo').length,
+    real: documents.filter(d => d.dataType !== 'demo').length,
   };
 
   // Get unique document types and categories
@@ -202,6 +242,21 @@ export default function DocumentsPage() {
   // Center Content - Document list
   const centerContent = (
     <div className="flex flex-col h-full">
+      {loading ? (
+        <div className="flex flex-col items-center justify-center h-full">
+          <UpdateIcon className="h-12 w-12 text-[color:var(--color-muted)] mb-4 animate-spin" />
+          <p className="text-[color:var(--color-muted)]">Loading documents...</p>
+        </div>
+      ) : error ? (
+        <div className="flex flex-col items-center justify-center h-full">
+          <FileTextIcon className="h-16 w-16 text-[color:var(--color-error)] mb-4" />
+          <h3 className="text-lg font-medium text-[color:var(--color-foreground)] mb-2">
+            Error loading documents
+          </h3>
+          <p className="text-[color:var(--color-muted)]">{error}</p>
+        </div>
+      ) : (
+      <>
       {/* Demo Warning Banner */}
       {demoCounts.demo > 0 && (
         <div className="px-4 pt-4">
@@ -279,11 +334,7 @@ export default function DocumentsPage() {
 
       {/* Document list */}
       <div className="flex-1 overflow-y-auto">
-        {loading ? (
-          <div className="flex items-center justify-center h-full">
-            <p className="text-sm text-[color:var(--color-muted)]">Loading documents...</p>
-          </div>
-        ) : filteredDocuments.length === 0 ? (
+        {filteredDocuments.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full text-center px-4">
             <FileTextIcon className="w-12 h-12 text-[color:var(--color-muted)] mb-3" />
             <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-1">No documents found</p>
@@ -300,9 +351,8 @@ export default function DocumentsPage() {
           <div className="divide-y divide-gray-200">
             {filteredDocuments.map(doc => {
               const IconComponent = getDocumentIcon(doc.documentType);
-              const Highlight = doc.isDemo ? DemoHighlight : LiveHighlight;
               return (
-                <Highlight key={doc.id} isDemo={doc.isDemo}>
+                <DataTypeHighlight key={doc.id} dataType={doc.dataType || 'client'}>
                   <button
                     onClick={() => setSelectedDoc(doc)}
                     className={`w-full text-left px-4 py-3 hover:bg-[color:var(--color-surface-alt)] transition-colors ${
@@ -320,8 +370,7 @@ export default function DocumentsPage() {
                               <h3 className="text-sm font-medium text-[color:var(--color-foreground)] truncate">
                                 {doc.title}
                               </h3>
-                              <DemoBadge isDemo={doc.isDemo} demoMetadata={doc.demoMetadata} size="sm" />
-                              <LiveBadge isDemo={doc.isDemo} size="sm" label="LIVE" />
+                              <DataTypeBadge dataType={doc.dataType || 'client'} demoMetadata={doc.demoMetadata} size="sm" />
                             </div>
                             <p className="text-xs text-[color:var(--color-muted)] mt-0.5">
                               {doc.documentCode} • v{doc.version}
@@ -352,12 +401,14 @@ export default function DocumentsPage() {
                       </div>
                     </div>
                   </button>
-                </Highlight>
+                </DataTypeHighlight>
               );
             })}
           </div>
         )}
       </div>
+      </>
+      )}
     </div>
   );
 
@@ -369,8 +420,7 @@ export default function DocumentsPage() {
           <div className="flex-1">
             <div className="flex items-start gap-2">
               <h2 className="text-lg font-semibold text-[color:var(--color-foreground)]">{selectedDoc.title}</h2>
-              <DemoBadge isDemo={selectedDoc.isDemo} demoMetadata={selectedDoc.demoMetadata} size="md" />
-              <LiveBadge isDemo={selectedDoc.isDemo} size="md" label="LIVE" />
+              <DataTypeBadge dataType={selectedDoc.dataType || 'client'} demoMetadata={selectedDoc.demoMetadata} size="md" />
             </div>
             <p className="text-sm text-[color:var(--color-muted)] mt-1">{selectedDoc.documentCode}</p>
           </div>

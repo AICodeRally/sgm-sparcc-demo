@@ -1,5 +1,6 @@
 import type { Plan } from '@/lib/contracts/plan.contract';
 import type { PlanSection } from '@/lib/contracts/plan-section.contract';
+import type { DataType, DemoMetadata } from '@/lib/contracts/data-type.contract';
 
 /**
  * Synthetic Plan Data
@@ -43,6 +44,8 @@ export const plan1: Plan = {
   sectionsCompleted: 2,
   sectionsTotal: 5,
   metadata: {},
+  dataType: 'demo' as DataType,
+  demoMetadata: { year: 2026, bu: 'SPARCC', division: 'Sales', category: 'Sample Data' } as DemoMetadata,
 };
 
 export const plan1Sections: PlanSection[] = [
@@ -217,6 +220,8 @@ export const plan2: Plan = {
   sectionsCompleted: 0,
   sectionsTotal: 2,
   metadata: {},
+  dataType: 'demo' as DataType,
+  demoMetadata: { year: 2026, bu: 'SPARCC', division: 'Marketing', category: 'Sample Data' } as DemoMetadata,
 };
 
 export const plan2Sections: PlanSection[] = [

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { DataTypeSchema } from './data-type.contract';
 
 /**
  * Document Lifecycle Status Enum
@@ -95,8 +96,8 @@ export const DocumentVersionSchema = z.object({
   // Metadata
   metadata: z.record(z.string(), z.any()).optional(),
 
-  // Demo Data
-  isDemo: z.boolean().default(false),
+  // Data Type Classification (demo, template, or client)
+  dataType: DataTypeSchema.default('client'),
 });
 
 export type DocumentVersion = z.infer<typeof DocumentVersionSchema>;

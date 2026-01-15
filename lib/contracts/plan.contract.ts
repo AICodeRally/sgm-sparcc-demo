@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { PlanTypeSchema } from './plan-template.contract';
+import { DataTypeSchema, DemoMetadataSchema } from './data-type.contract';
 
 /**
  * Plan Contract
@@ -55,6 +56,9 @@ export const PlanSchema = z.object({
   sectionsCompleted: z.number().int().min(0).default(0),
   sectionsTotal: z.number().int().min(0).default(0),
   metadata: z.record(z.string(), z.any()).optional(),
+  // Data Type Classification (demo, template, or client)
+  dataType: DataTypeSchema.default('client'),
+  demoMetadata: DemoMetadataSchema,
 });
 
 export type Plan = z.infer<typeof PlanSchema>;
@@ -153,6 +157,7 @@ export const PlanFiltersSchema = z.object({
   category: z.string().optional(),
   createdAfter: z.coerce.date().optional(),
   createdBefore: z.coerce.date().optional(),
+  dataType: DataTypeSchema.optional(), // Filter by data type (demo, template, client)
 }).optional();
 
 export type PlanFilters = z.infer<typeof PlanFiltersSchema>;

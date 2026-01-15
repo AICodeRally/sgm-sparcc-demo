@@ -23,7 +23,6 @@ import {
   GlobeIcon,
   Cross2Icon
 } from '@radix-ui/react-icons';
-import { ModeContextBadge } from '@/components/modes/ModeBadge';
 
 interface Policy {
   code: string;
@@ -87,9 +86,9 @@ export default function PolicyLibraryPage() {
       case 'APPROVED':
         return <CheckCircledIcon className="w-5 h-5 text-[color:var(--color-success)]" />;
       case 'TEMPLATE':
-        return <FileIcon className="w-5 h-5 text-[color:var(--color-info)]" />;
+        return <FileIcon className="w-5 h-5 text-teal-600" />;
       case 'DRAFT':
-        return <ClockIcon className="w-5 h-5 text-[color:var(--color-warning)]" />;
+        return <ClockIcon className="w-5 h-5 text-slate-500" />;
       default:
         return <FileTextIcon className="w-5 h-5 text-[color:var(--color-muted)]" />;
     }
@@ -100,9 +99,9 @@ export default function PolicyLibraryPage() {
       case 'APPROVED':
         return 'bg-[color:var(--color-success-bg)] text-[color:var(--color-success)] border-[color:var(--color-success-border)]';
       case 'TEMPLATE':
-        return 'bg-[color:var(--color-info-bg)] text-[color:var(--color-info)] border-[color:var(--color-info-border)]';
+        return 'bg-teal-50 text-teal-700 border-teal-300';
       case 'DRAFT':
-        return 'bg-[color:var(--color-warning-bg)] text-[color:var(--color-warning)] border-[color:var(--color-warning-border)]';
+        return 'bg-slate-100 text-slate-600 border-slate-300';
       default:
         return 'bg-[color:var(--color-surface-alt)] text-[color:var(--color-foreground)] border-[color:var(--color-border)]';
     }
@@ -167,7 +166,6 @@ export default function PolicyLibraryPage() {
                     <h1 className="text-4xl font-bold text-[color:var(--color-foreground)]">
                       Policy Library
                     </h1>
-                    <ModeContextBadge size="md" />
                   </div>
                   <p className="text-[color:var(--color-muted)] mt-1">
                     Comprehensive compensation governance policy templates
@@ -187,13 +185,13 @@ export default function PolicyLibraryPage() {
                   <div className="text-3xl font-bold text-[color:var(--color-success)]">{stats.byStatus.APPROVED || 0}</div>
                   <div className="text-sm text-[color:var(--color-success)]">Approved</div>
                 </div>
-                <div className="bg-[color:var(--color-info-bg)] rounded-lg p-4 border border-[color:var(--color-info-border)]">
-                  <div className="text-3xl font-bold text-[color:var(--color-info)]">{stats.byStatus.TEMPLATE || 0}</div>
-                  <div className="text-sm text-[color:var(--color-primary)]">Templates</div>
+                <div className="bg-teal-50 rounded-lg p-4 border border-teal-300">
+                  <div className="text-3xl font-bold text-teal-700">{stats.byStatus.TEMPLATE || 0}</div>
+                  <div className="text-sm text-teal-600">Templates</div>
                 </div>
-                <div className="bg-[color:var(--color-warning-bg)] rounded-lg p-4 border border-[color:var(--color-warning-border)]">
-                  <div className="text-3xl font-bold text-[color:var(--color-warning)]">{stats.byStatus.DRAFT || 0}</div>
-                  <div className="text-sm text-[color:var(--color-warning)]">Drafts</div>
+                <div className="bg-slate-100 rounded-lg p-4 border border-slate-300">
+                  <div className="text-3xl font-bold text-slate-600">{stats.byStatus.DRAFT || 0}</div>
+                  <div className="text-sm text-slate-500">Drafts</div>
                 </div>
               </div>
             )}
@@ -279,9 +277,9 @@ export default function PolicyLibraryPage() {
 
         {/* Policy Grid */}
         <div className="grid grid-cols-1 gap-4">
-          {filteredPolicies.map(policy => (
+          {filteredPolicies.map((policy, index) => (
             <div
-              key={policy.code}
+              key={`${policy.code}-${index}`}
               className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-border)] p-6 hover:shadow-xl hover:border-[color:var(--color-primary)] transition-all"
             >
               <div className="flex items-start justify-between">

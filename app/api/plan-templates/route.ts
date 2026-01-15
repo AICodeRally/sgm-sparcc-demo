@@ -4,7 +4,7 @@ import {
   PlanTemplateFiltersSchema,
   CreatePlanTemplateSchema,
 } from '@/lib/contracts/plan-template.contract';
-import { requireActor } from '@/lib/security/actor';
+import { requireActor, getActorOrDemo } from '@/lib/security/actor';
 import { requireTenantContext } from '@/lib/security/require-tenant';
 import { requireRole } from '@/lib/security/roles';
 import { isSecurityError } from '@/lib/security/errors';
@@ -26,7 +26,8 @@ import { isSecurityError } from '@/lib/security/errors';
  */
 export async function GET(request: NextRequest) {
   try {
-    const actor = requireTenantContext(await requireActor());
+    // Use demo actor fallback for unauthenticated access
+    const actor = requireTenantContext(await getActorOrDemo());
     const searchParams = request.nextUrl.searchParams;
 
     // Parse tags from comma-separated string

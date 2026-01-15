@@ -60,6 +60,14 @@ enum TenantTier {
   PRODUCTION
 }
 
+// Data Type Classification (for demo/template/client distinction)
+// Used to mark data as: demo (sample data), template (baseline docs), or client (real data)
+enum DataType {
+  demo
+  template
+  client
+}
+
 enum TenantStatus {
   ACTIVE
   SUSPENDED

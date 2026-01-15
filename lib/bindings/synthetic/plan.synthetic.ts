@@ -130,6 +130,8 @@ export class SyntheticPlanProvider implements IPlanPort {
       completionPercentage: 0,
       sectionsCompleted: 0,
       sectionsTotal: 0,
+      dataType: data.dataType || 'demo',
+      demoMetadata: data.demoMetadata || { year: new Date().getFullYear(), bu: 'SPARCC', division: 'Sales', category: 'Sample Data' },
     };
 
     this.plans.set(plan.id, plan);
@@ -170,6 +172,8 @@ export class SyntheticPlanProvider implements IPlanPort {
       sectionsCompleted: 0,
       sectionsTotal: 0,
       metadata: data.metadata || {},
+      dataType: 'demo', // Plans created from templates in synthetic mode are demo data
+      demoMetadata: { year: new Date().getFullYear(), bu: 'SPARCC', division: 'Sales', category: 'Sample Data' },
     };
 
     this.plans.set(plan.id, plan);

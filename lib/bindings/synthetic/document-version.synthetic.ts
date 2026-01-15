@@ -178,7 +178,7 @@ export class SyntheticDocumentVersionProvider implements IDocumentVersionPort {
       checksum,
       fileSize,
       metadata: data.metadata,
-      isDemo: false,
+      dataType: 'client',
     });
   }
 
@@ -213,7 +213,7 @@ export class SyntheticDocumentVersionProvider implements IDocumentVersionPort {
       fileSize,
       previousVersionId: rawVersion.id,
       metadata: rawVersion.metadata,
-      isDemo: rawVersion.isDemo,
+      dataType: rawVersion.dataType,
     });
   }
 
@@ -254,7 +254,7 @@ export class SyntheticDocumentVersionProvider implements IDocumentVersionPort {
       fileSize,
       previousVersionId: sourceVersion.id,
       metadata: sourceVersion.metadata,
-      isDemo: sourceVersion.isDemo,
+      dataType: sourceVersion.dataType,
     });
   }
 

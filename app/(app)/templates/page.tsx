@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import {
   FileTextIcon,
@@ -12,10 +12,13 @@ import {
   Pencil2Icon,
   CheckCircledIcon,
   ClockIcon,
-  ArchiveIcon
+  ArchiveIcon,
+  UpdateIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
+import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import type { PlanTemplate } from '@/lib/contracts/plan-template.contract';
+import type { DataType } from '@/lib/contracts/data-type.contract';
 
 type TemplateStatus = 'ACTIVE' | 'DRAFT' | 'DEPRECATED' | 'ARCHIVED';
 type PlanType = 'COMPENSATION_PLAN' | 'GOVERNANCE_PLAN' | 'POLICY_CREATION_PLAN';
@@ -48,8 +51,6 @@ const planTypeLabels: Record<PlanType, string> = {
 };
 
 export default function TemplatesPage() {
-  const [templates, setTemplates] = useState<PlanTemplate[]>([]);
-  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<TemplateFilters>({
     search: '',
     planType: 'ALL',
@@ -57,60 +58,70 @@ export default function TemplatesPage() {
     source: 'ALL',
   });
   const [showFilters, setShowFilters] = useState(false);
+  const [allTemplates, setAllTemplates] = useState<PlanTemplate[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
+  // Fetch templates from API
   useEffect(() => {
-    fetchTemplates();
-  }, [filters]);
-
-  const fetchTemplates = async () => {
-    setLoading(true);
-    try {
-      const params = new URLSearchParams();
-      if (filters.planType !== 'ALL') params.append('planType', filters.planType);
-      if (filters.status !== 'ALL') params.append('status', filters.status);
-      if (filters.source !== 'ALL') params.append('source', filters.source);
-
-      const response = await fetch(`/api/plan-templates?${params.toString()}`);
-      if (!response.ok) throw new Error('Failed to fetch templates');
-
-      const data = await response.json();
-      let filtered = data.templates || [];
-
-      // Client-side search filter
-      if (filters.search) {
-        const search = filters.search.toLowerCase();
-        filtered = filtered.filter((t: PlanTemplate) =>
-          t.name.toLowerCase().includes(search) ||
-          t.description?.toLowerCase().includes(search) ||
-          t.code.toLowerCase().includes(search)
-        );
+    async function fetchTemplates() {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/plan-templates');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch templates: ${response.statusText}`);
+        }
+        const data = await response.json();
+        setAllTemplates(data.templates || []);
+        setError(null);
+      } catch (err: any) {
+        setError(err.message);
+        setAllTemplates([]);
+      } finally {
+        setLoading(false);
       }
-
-      setTemplates(filtered);
-    } catch (error) {
-      console.error('Error fetching templates:', error);
-    } finally {
-      setLoading(false);
     }
-  };
+    fetchTemplates();
+  }, []);
+
+  // Apply client-side filters
+  const templates = useMemo(() => {
+    let filtered = [...allTemplates];
+
+    // Filter by plan type
+    if (filters.planType !== 'ALL') {
+      filtered = filtered.filter(t => t.planType === filters.planType);
+    }
+
+    // Filter by status
+    if (filters.status !== 'ALL') {
+      filtered = filtered.filter(t => t.status === filters.status);
+    }
+
+    // Filter by source
+    if (filters.source === 'SYSTEM') {
+      filtered = filtered.filter(t => t.isSystemTemplate);
+    } else if (filters.source === 'USER_CREATED') {
+      filtered = filtered.filter(t => !t.isSystemTemplate);
+    }
+
+    // Client-side search filter
+    if (filters.search) {
+      const search = filters.search.toLowerCase();
+      filtered = filtered.filter((t: PlanTemplate) =>
+        t.name.toLowerCase().includes(search) ||
+        t.description?.toLowerCase().includes(search) ||
+        t.code.toLowerCase().includes(search)
+      );
+    }
+
+    return filtered;
+  }, [filters, allTemplates]);
 
   const handleClone = async (templateId: string) => {
-    try {
-      const response = await fetch(`/api/plan-templates/${templateId}/clone`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: 'Copy of Template',
-          createdBy: 'current-user', // TODO: Get from auth
-        }),
-      });
-
-      if (!response.ok) throw new Error('Failed to clone template');
-
-      fetchTemplates(); // Refresh list
-    } catch (error) {
-      console.error('Error cloning template:', error);
-    }
+    // Clone functionality would require API - show message for now
+    console.log('Clone template:', templateId);
+    alert('Clone functionality coming soon!');
   };
 
   const filteredTemplates = templates;
@@ -220,11 +231,20 @@ export default function TemplatesPage() {
       {/* Content */}
       <div className="flex-1 overflow-y-auto px-8 py-6">
         {loading ? (
-          <div className="flex items-center justify-center h-64">
-            <div className="text-[color:var(--color-muted)]">Loading templates...</div>
+          <div className="flex flex-col items-center justify-center h-64 text-center">
+            <UpdateIcon className="h-12 w-12 text-[color:var(--color-muted)] mb-4 animate-spin" />
+            <p className="text-[color:var(--color-muted)]">Loading templates...</p>
+          </div>
+        ) : error ? (
+          <div className="flex flex-col items-center justify-center h-64 text-center">
+            <FileTextIcon className="h-16 w-16 text-[color:var(--color-error)] mb-4" />
+            <h3 className="text-lg font-medium text-[color:var(--color-foreground)] mb-2">
+              Error loading templates
+            </h3>
+            <p className="text-[color:var(--color-muted)] mb-4">{error}</p>
           </div>
         ) : (
-          <div className="space-y-8">
+        <div className="space-y-8">
             {/* System Templates */}
             {systemTemplates.length > 0 && (
               <div>
@@ -314,6 +334,9 @@ function TemplateCard({
                 <span className="px-2 py-0.5 bg-[color:var(--color-info-bg)] text-[color:var(--color-primary)] text-xs font-medium rounded">
                   System
                 </span>
+              )}
+              {template.dataType && (
+                <DataTypeBadge dataType={template.dataType as DataType} size="sm" />
               )}
             </div>
             <p className="text-sm text-[color:var(--color-muted)]">{template.code}</p>

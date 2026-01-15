@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, use, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -14,41 +14,40 @@ import {
 } from '@radix-ui/react-icons';
 import type { PlanTemplate, UpdatePlanTemplate } from '@/lib/contracts/plan-template.contract';
 import type { TemplateSection } from '@/lib/contracts/template-section.contract';
+import { syntheticPlanTemplates, syntheticTemplateSections } from '@/lib/data/synthetic/plan-templates.data';
 
 interface SectionData extends TemplateSection {}
 
 export default function TemplateEditorPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [template, setTemplate] = useState<PlanTemplate | null>(null);
-  const [sections, setSections] = useState<SectionData[]>([]);
   const [tagInput, setTagInput] = useState('');
 
-  useEffect(() => {
-    fetchTemplate();
+  // Load template from synthetic data
+  const initialTemplate = useMemo(() => {
+    return syntheticPlanTemplates.find(t => t.id === id) || null;
   }, [id]);
 
-  const fetchTemplate = async () => {
-    try {
-      const response = await fetch(`/api/plan-templates/${id}`);
-      if (!response.ok) throw new Error('Failed to fetch template');
+  const initialSections = useMemo(() => {
+    return syntheticTemplateSections.filter(s => s.templateId === id);
+  }, [id]);
 
-      const data = await response.json();
-      setTemplate(data.template);
-      setSections(data.template.sections || []);
-    } catch (error) {
-      console.error('Error fetching template:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [template, setTemplate] = useState<PlanTemplate | null>(initialTemplate);
+  const [sections, setSections] = useState<SectionData[]>(initialSections);
 
-  const addSection = async () => {
+  // Update state when ID changes
+  useEffect(() => {
+    setTemplate(initialTemplate);
+    setSections(initialSections);
+  }, [initialTemplate, initialSections]);
+
+  const addSection = () => {
     if (!template) return;
 
-    const newSection = {
+    const newSection: SectionData = {
+      id: `section-new-${Date.now()}`,
+      templateId: template.id,
       sectionKey: `section-${sections.length + 1}`,
       title: `New Section ${sections.length + 1}`,
       description: '',
@@ -59,55 +58,18 @@ export default function TemplateEditorPage({ params }: { params: Promise<{ id: s
       contentTemplate: '',
       fieldDefinitions: [],
       aiAgentRoles: [],
+      metadata: {},
     };
 
-    try {
-      const response = await fetch(`/api/plan-templates/${id}/sections`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newSection),
-      });
-
-      if (!response.ok) throw new Error('Failed to add section');
-
-      const data = await response.json();
-      setSections([...sections, data.section]);
-    } catch (error) {
-      console.error('Error adding section:', error);
-    }
+    setSections([...sections, newSection]);
   };
 
-  const removeSection = async (sectionId: string) => {
-    try {
-      const response = await fetch(`/api/plan-templates/${id}/sections/${sectionId}`, {
-        method: 'DELETE',
-      });
-
-      if (!response.ok) throw new Error('Failed to delete section');
-
-      setSections(sections.filter(s => s.id !== sectionId));
-    } catch (error) {
-      console.error('Error removing section:', error);
-    }
+  const removeSection = (sectionId: string) => {
+    setSections(sections.filter(s => s.id !== sectionId));
   };
 
-  const updateSection = async (sectionId: string, updates: Partial<SectionData>) => {
-    try {
-      const section = sections.find(s => s.id === sectionId);
-      if (!section) return;
-
-      const response = await fetch(`/api/plan-templates/${id}/sections/${sectionId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...section, ...updates }),
-      });
-
-      if (!response.ok) throw new Error('Failed to update section');
-
-      setSections(sections.map(s => s.id === sectionId ? { ...s, ...updates } : s));
-    } catch (error) {
-      console.error('Error updating section:', error);
-    }
+  const updateSection = (sectionId: string, updates: Partial<SectionData>) => {
+    setSections(sections.map(s => s.id === sectionId ? { ...s, ...updates } : s));
   };
 
   const moveSectionUp = (index: number) => {
@@ -144,65 +106,14 @@ export default function TemplateEditorPage({ params }: { params: Promise<{ id: s
     });
   };
 
-  const handleSave = async () => {
-    if (!template) return;
-
-    setSaving(true);
-    try {
-      const updateData: UpdatePlanTemplate = {
-        id: template.id,
-        name: template.name,
-        description: template.description,
-        category: template.category,
-        tags: template.tags,
-        status: template.status,
-      };
-
-      const response = await fetch(`/api/plan-templates/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updateData),
-      });
-
-      if (!response.ok) throw new Error('Failed to update template');
-
-      alert('Template saved successfully');
-    } catch (error) {
-      console.error('Error saving template:', error);
-      alert('Failed to save template');
-    } finally {
-      setSaving(false);
-    }
+  const handleSave = () => {
+    // In demo mode, changes are in-memory only
+    alert('Changes saved (demo mode - changes are in-memory only)');
   };
 
-  const handleClone = async () => {
-    try {
-      const response = await fetch(`/api/plan-templates/${id}/clone`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: `Copy of ${template?.name}`,
-          createdBy: 'current-user', // TODO: Get from auth
-        }),
-      });
-
-      if (!response.ok) throw new Error('Failed to clone template');
-
-      const data = await response.json();
-      router.push(`/templates/${data.template.id}`);
-    } catch (error) {
-      console.error('Error cloning template:', error);
-      alert('Failed to clone template');
-    }
+  const handleClone = () => {
+    alert('Clone functionality coming soon!');
   };
-
-  if (loading) {
-    return (
-      <div className="h-screen flex items-center justify-center">
-        <div className="text-[color:var(--color-muted)]">Loading template...</div>
-      </div>
-    );
-  }
 
   if (!template) {
     return (

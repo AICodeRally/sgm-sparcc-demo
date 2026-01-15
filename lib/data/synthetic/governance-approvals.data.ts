@@ -3,6 +3,8 @@
  * Based on SGCC and CRB approval thresholds
  */
 
+import type { DataType, DemoMetadata } from '@/lib/contracts/data-type.contract';
+
 export interface ApprovalItem {
   id: string;
   type: 'POLICY' | 'SPIF' | 'WINDFALL' | 'EXCEPTION' | 'DOCUMENT';
@@ -30,14 +32,9 @@ export interface ApprovalItem {
   totalSteps: number;
   slaStatus: 'ON_TIME' | 'AT_RISK' | 'OVERDUE';
   businessDaysRemaining: number;
-  // Demo Data Management
-  isDemo?: boolean;
-  demoMetadata?: {
-    year?: number;
-    bu?: string;
-    division?: string;
-    category?: string;
-  } | null;
+  // Data Type (demo, template, or client)
+  dataType?: DataType;
+  demoMetadata?: DemoMetadata;
 }
 
 /**
@@ -83,7 +80,7 @@ export const APPROVAL_ITEMS: ApprovalItem[] = [
     totalSteps: 5,
     slaStatus: 'ON_TIME',
     businessDaysRemaining: 22,
-    isDemo: true,
+    dataType: 'demo',
     demoMetadata: { year: 2025, bu: "SPARCC", division: "Governance", category: "Sample Data" },
   },
 
@@ -126,7 +123,7 @@ export const APPROVAL_ITEMS: ApprovalItem[] = [
     totalSteps: 1,
     slaStatus: 'AT_RISK',
     businessDaysRemaining: 5,
-    isDemo: true,
+    dataType: 'demo',
     demoMetadata: { year: 2025, bu: "SPARCC", division: "Governance", category: "Sample Data" },
   },
 
@@ -157,7 +154,7 @@ export const APPROVAL_ITEMS: ApprovalItem[] = [
     totalSteps: 1,
     slaStatus: 'ON_TIME',
     businessDaysRemaining: 0,
-    isDemo: true,
+    dataType: 'demo',
     demoMetadata: { year: 2025, bu: "SPARCC", division: "Governance", category: "Sample Data" },
   },
 
@@ -194,7 +191,7 @@ export const APPROVAL_ITEMS: ApprovalItem[] = [
     totalSteps: 2,
     slaStatus: 'ON_TIME',
     businessDaysRemaining: 7,
-    isDemo: true,
+    dataType: 'demo',
     demoMetadata: { year: 2025, bu: "SPARCC", division: "Governance", category: "Sample Data" },
   },
 
@@ -225,7 +222,7 @@ export const APPROVAL_ITEMS: ApprovalItem[] = [
     totalSteps: 1,
     slaStatus: 'ON_TIME',
     businessDaysRemaining: 10,
-    isDemo: true,
+    dataType: 'demo',
     demoMetadata: { year: 2025, bu: "SPARCC", division: "Governance", category: "Sample Data" },
   },
 
@@ -268,7 +265,7 @@ export const APPROVAL_ITEMS: ApprovalItem[] = [
     totalSteps: 5,
     slaStatus: 'ON_TIME',
     businessDaysRemaining: 18,
-    isDemo: true,
+    dataType: 'demo',
     demoMetadata: { year: 2025, bu: "SPARCC", division: "Governance", category: "Sample Data" },
   },
 
@@ -309,7 +306,7 @@ export const APPROVAL_ITEMS: ApprovalItem[] = [
     totalSteps: 1,
     slaStatus: 'ON_TIME',
     businessDaysRemaining: 0,
-    isDemo: true,
+    dataType: 'demo',
     demoMetadata: { year: 2025, bu: "SPARCC", division: "Governance", category: "Sample Data" },
   },
 ];
