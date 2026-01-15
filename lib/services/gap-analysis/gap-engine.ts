@@ -217,14 +217,15 @@ export class GapAnalysisEngine {
     // Base severity on policy category
     let baseSeverity: GapSeverity = 'MEDIUM';
 
-    if (policy.category === 'Compliance' || policy.category === 'Governance') {
+    // Compliance is critical (legal/regulatory requirements)
+    if (policy.category === 'Compliance') {
       baseSeverity = 'CRITICAL';
-    } else if (policy.category === 'Calculation') {
+    } else if (policy.category === 'Financial Controls' || policy.category === 'Payment Processing') {
+      // Financial policies are high severity
       baseSeverity = 'HIGH';
-    } else if (policy.category === 'Process') {
+    } else if (policy.category === 'Sales Operations' || policy.category === 'Territory Management') {
+      // Operations policies are medium severity
       baseSeverity = 'MEDIUM';
-    } else if (policy.category === 'Documentation') {
-      baseSeverity = 'LOW';
     }
 
     // Adjust based on coverage score

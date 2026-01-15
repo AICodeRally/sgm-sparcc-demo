@@ -373,15 +373,15 @@ export async function getReviewStatsByTenant(tenantId: string): Promise<ReviewSt
 
   const totalReviews = reviews.length;
   const avgCoverageScore = totalReviews > 0
-    ? reviews.reduce((sum, r) => sum + r.coverageScore, 0) / totalReviews
+    ? reviews.reduce((sum: number, r: typeof reviews[0]) => sum + r.coverageScore, 0) / totalReviews
     : 0;
-  const totalGaps = reviews.reduce((sum, r) => sum + r.totalGaps, 0);
-  const totalAiValidated = reviews.filter((r) => r.aiValidated).length;
+  const totalGaps = reviews.reduce((sum: number, r: typeof reviews[0]) => sum + r.totalGaps, 0);
+  const totalAiValidated = reviews.filter((r: typeof reviews[0]) => r.aiValidated).length;
 
   const coverageDistribution = {
-    high: reviews.filter((r) => r.coverageScore >= 0.7).length,
-    medium: reviews.filter((r) => r.coverageScore >= 0.4 && r.coverageScore < 0.7).length,
-    low: reviews.filter((r) => r.coverageScore < 0.4).length,
+    high: reviews.filter((r: typeof reviews[0]) => r.coverageScore >= 0.7).length,
+    medium: reviews.filter((r: typeof reviews[0]) => r.coverageScore >= 0.4 && r.coverageScore < 0.7).length,
+    low: reviews.filter((r: typeof reviews[0]) => r.coverageScore < 0.4).length,
   };
 
   return {
@@ -415,34 +415,36 @@ export async function getGapStatsByReview(reviewId: string): Promise<GapStats> {
 
   const total = gaps.length;
 
+  type GapRecord = typeof gaps[0];
+
   const byFinding = {
-    EVIDENCED: gaps.filter((g) => g.finding === 'EVIDENCED').length,
-    PARTIAL: gaps.filter((g) => g.finding === 'PARTIAL').length,
-    NOT_EVIDENCED: gaps.filter((g) => g.finding === 'NOT_EVIDENCED').length,
+    EVIDENCED: gaps.filter((g: GapRecord) => g.finding === 'EVIDENCED').length,
+    PARTIAL: gaps.filter((g: GapRecord) => g.finding === 'PARTIAL').length,
+    NOT_EVIDENCED: gaps.filter((g: GapRecord) => g.finding === 'NOT_EVIDENCED').length,
   };
 
   const bySeverity = {
-    CRITICAL: gaps.filter((g) => g.severity === 'CRITICAL').length,
-    HIGH: gaps.filter((g) => g.severity === 'HIGH').length,
-    MEDIUM: gaps.filter((g) => g.severity === 'MEDIUM').length,
-    LOW: gaps.filter((g) => g.severity === 'LOW').length,
+    CRITICAL: gaps.filter((g: GapRecord) => g.severity === 'CRITICAL').length,
+    HIGH: gaps.filter((g: GapRecord) => g.severity === 'HIGH').length,
+    MEDIUM: gaps.filter((g: GapRecord) => g.severity === 'MEDIUM').length,
+    LOW: gaps.filter((g: GapRecord) => g.severity === 'LOW').length,
   };
 
   const byDisposition = {
-    PENDING: gaps.filter((g) => g.disposition === 'PENDING').length,
-    GAP_CONFIRMED: gaps.filter((g) => g.disposition === 'GAP_CONFIRMED').length,
-    COVERED_ELSEWHERE: gaps.filter((g) => g.disposition === 'COVERED_ELSEWHERE').length,
-    NOT_APPLICABLE: gaps.filter((g) => g.disposition === 'NOT_APPLICABLE').length,
-    REMEDIATION_ADDED: gaps.filter((g) => g.disposition === 'REMEDIATION_ADDED').length,
-    WONT_FIX: gaps.filter((g) => g.disposition === 'WONT_FIX').length,
+    PENDING: gaps.filter((g: GapRecord) => g.disposition === 'PENDING').length,
+    GAP_CONFIRMED: gaps.filter((g: GapRecord) => g.disposition === 'GAP_CONFIRMED').length,
+    COVERED_ELSEWHERE: gaps.filter((g: GapRecord) => g.disposition === 'COVERED_ELSEWHERE').length,
+    NOT_APPLICABLE: gaps.filter((g: GapRecord) => g.disposition === 'NOT_APPLICABLE').length,
+    REMEDIATION_ADDED: gaps.filter((g: GapRecord) => g.disposition === 'REMEDIATION_ADDED').length,
+    WONT_FIX: gaps.filter((g: GapRecord) => g.disposition === 'WONT_FIX').length,
   };
 
   const aiValidationRate = total > 0
-    ? gaps.filter((g) => g.aiValidated).length / total
+    ? gaps.filter((g: GapRecord) => g.aiValidated).length / total
     : 0;
 
   const remediationRate = total > 0
-    ? gaps.filter((g) => g.remediationGenerated).length / total
+    ? gaps.filter((g: GapRecord) => g.remediationGenerated).length / total
     : 0;
 
   return {

@@ -109,7 +109,7 @@ export async function processDocument(documentId: string): Promise<ProcessingRes
       await db.sectionMapping.create({
         data: {
           documentId,
-          detectedTitle: mapping.parsedSection.title || 'Untitled Section',
+          detectedTitle: mapping.parsedSection.detectedTitle || 'Untitled Section',
           detectedContent: {
             blocks: mapping.parsedSection.blocks,
             wordCount: mapping.parsedSection.blocks.length,
@@ -120,7 +120,7 @@ export async function processDocument(documentId: string): Promise<ProcessingRes
           confidenceScore: mapping.confidenceScore,
           mappingMethod: mapping.mappingMethod,
           status: mapping.status,
-          alternatives: mapping.alternatives as any,
+          alternatives: mapping.alternativeSuggestions as any,
         },
       });
     }
@@ -159,12 +159,12 @@ export async function processDocument(documentId: string): Promise<ProcessingRes
         data: {
           documentId,
           planId: null, // Will be set when plan is created
-          gapId: rec.gapAnalysis.gapId,
+          gapId: rec.gapId || null,
           policyCode: rec.policyCode,
           policyData: rec.policyData as any,
           recommendationDetails: rec.recommendationDetails as any,
           priority: rec.recommendationDetails.priority,
-          severity: rec.gapAnalysis.severity,
+          severity: rec.recommendationDetails.priority, // priority == severity in this context
           status: 'PENDING',
         },
       });

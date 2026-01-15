@@ -1,7 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { ChatBubbleIcon, Cross2Icon, PaperPlaneIcon } from '@radix-ui/react-icons';
+import {
+  ChatBubbleIcon,
+  Cross2Icon,
+  PaperPlaneIcon,
+  RocketIcon,
+  FileTextIcon,
+  LightningBoltIcon,
+  GearIcon,
+} from '@radix-ui/react-icons';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { usePageKb } from '@/components/kb/PageKbProvider';
@@ -127,8 +135,8 @@ export function AppChatbot({ appName = 'Demo', enabled = true }: AppChatbotProps
                       <p className="mt-1 text-[color:var(--color-muted)]">{pageKb.meta.description}</p>
                     )}
                     {showPageGuide && (
-                      <div className="mt-3 max-h-56 overflow-y-auto rounded border border-[color:var(--color-accent-border)] bg-[color:var(--color-accent-bg)] p-3">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]} className="prose prose-sm max-w-none text-[color:var(--color-foreground)]">
+                      <div className="mt-3 max-h-56 overflow-y-auto rounded border border-[color:var(--color-accent-border)] bg-[color:var(--color-accent-bg)] p-3 prose prose-sm max-w-none text-[color:var(--color-foreground)]">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
                           {pageKb.content}
                         </ReactMarkdown>
                       </div>

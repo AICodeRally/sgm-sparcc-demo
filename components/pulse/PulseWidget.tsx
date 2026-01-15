@@ -52,7 +52,7 @@ export function PulseWidget({ maxCards = 3, tone = 'accent' }: PulseWidgetProps)
           </span>
         </div>
         <Link
-          href="/pulse"
+          href={"/pulse" as any}
           className="flex items-center gap-1 text-sm text-[color:var(--color-info)] hover:text-[color:var(--color-info)] font-medium"
         >
           View All

@@ -183,11 +183,8 @@ export class JSONContentGenerator {
       title: policy.name,
       blocks,
       metadata: {
-        source: 'policy-recommendation',
-        policyCode: policy.code,
-        generatedAt: new Date().toISOString(),
-        formatStyle: style,
-      },
+        source: { type: 'policy' as const },
+      } as any, // Extended metadata: policyCode, generatedAt, formatStyle
     };
 
     return contentJSON;
@@ -221,11 +218,8 @@ export class JSONContentGenerator {
       title: policy.name,
       blocks,
       metadata: {
-        source: 'policy-recommendation',
-        policyCode: policy.code,
-        generatedAt: new Date().toISOString(),
-        formatStyle: 'minimal',
-      },
+        source: { type: 'policy' as const },
+      } as any,
     };
   }
 
@@ -280,11 +274,8 @@ export class JSONContentGenerator {
       title: policy.name,
       blocks,
       metadata: {
-        source: 'policy-recommendation',
-        policyCode: policy.code,
-        generatedAt: new Date().toISOString(),
-        formatStyle: 'compliance',
-      },
+        source: { type: 'policy' as const },
+      } as any,
     };
   }
 

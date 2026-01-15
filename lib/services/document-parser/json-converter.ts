@@ -108,13 +108,14 @@ export class JSONConverter {
       ];
     }
 
-    const sections: ParsedSection[] = [];
-    let currentSection: {
+    type SectionAccumulator = {
       title: string;
       elements: ExtractedElement[];
       startPage?: number;
       endPage?: number;
-    } | null = null;
+    };
+    const sections: ParsedSection[] = [];
+    let currentSection: SectionAccumulator | null = null;
 
     parsed.elements.forEach((element, index) => {
       // Detect section breaks
@@ -166,14 +167,15 @@ export class JSONConverter {
       }
     });
 
-    // Save last section
-    if (currentSection && currentSection.elements.length > 0) {
+    // Save last section - type assertion to work around forEach control flow limitation
+    const finalSection = currentSection as SectionAccumulator | null;
+    if (finalSection && finalSection.elements.length > 0) {
       sections.push({
-        detectedTitle: currentSection.title,
-        blocks: this.convertElements(currentSection.elements),
+        detectedTitle: finalSection.title,
+        blocks: this.convertElements(finalSection.elements),
         pageRange:
-          currentSection.startPage !== undefined
-            ? { start: currentSection.startPage, end: currentSection.endPage || currentSection.startPage }
+          finalSection.startPage !== undefined
+            ? { start: finalSection.startPage, end: finalSection.endPage || finalSection.startPage }
             : undefined,
         confidence: 0.9,
         detectionMethod: 'heading',

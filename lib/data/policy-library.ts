@@ -94,7 +94,9 @@ function loadHenryScheinPolicies(): PolicyTemplate[] {
         policyJSON = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
         // Generate clean content string from JSON for backward compatibility
-        content = generateContentFromJSON(policyJSON);
+        if (policyJSON) {
+          content = generateContentFromJSON(policyJSON);
+        }
       } catch (error) {
         console.error(`Error loading JSON for ${policyMeta.code}:`, error);
       }

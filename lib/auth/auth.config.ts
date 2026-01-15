@@ -26,8 +26,9 @@ const providers: any[] = [
       passkey: { label: 'Passkey', type: 'password' },
     },
     async authorize(credentials: any) {
-      // Simple passkey check for demo
-      if (credentials?.passkey === 'bhg2026') {
+      // Passkey check using environment variable
+      const demoPasskey = process.env.DEMO_PASSKEY;
+      if (demoPasskey && credentials?.passkey === demoPasskey) {
         return {
           id: 'demo-user-001',
           name: 'Demo User',

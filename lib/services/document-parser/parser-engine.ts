@@ -166,13 +166,13 @@ export class DocumentParser {
     // Split text into paragraphs
     const paragraphs = data.text
       .split(/\n\n+/)
-      .map((p) => p.trim())
-      .filter((p) => p.length > 0);
+      .map((p: string) => p.trim())
+      .filter((p: string) => p.length > 0);
 
     let currentPage = 1;
     const linesPerPage = data.numpages > 0 ? data.text.split('\n').length / data.numpages : 100;
 
-    paragraphs.forEach((para, index) => {
+    paragraphs.forEach((para: string, index: number) => {
       // Estimate page number
       const estimatedPage = Math.ceil((index * linesPerPage) / paragraphs.length);
 

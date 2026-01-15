@@ -67,7 +67,7 @@ async function main() {
           block.items.forEach((item, i) => {
             const prefix =
               block.listType === 'ordered' ? `${i + 1}.` : '•';
-            const indent = '  '.repeat(item.indent);
+            const indent = '  '.repeat(item.indent ?? 0);
             console.log(`${indent}${prefix} ${item.text}`);
           });
           console.log('');

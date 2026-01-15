@@ -192,10 +192,10 @@ export class PatchApplicator {
 
       // Numbered list
       else if (trimmed.match(/^\d+\./)) {
-        const listItems: string[] = [];
+        const listItems: { text: string }[] = [];
         while (i < lines.length && lines[i].trim().match(/^\d+\./)) {
           const item = lines[i].trim().replace(/^\d+\.\s*/, '');
-          listItems.push(item);
+          listItems.push({ text: item });
           i++;
         }
         blocks.push({
@@ -209,10 +209,10 @@ export class PatchApplicator {
 
       // Bullet list
       else if (trimmed.startsWith('-')) {
-        const listItems: string[] = [];
+        const listItems: { text: string }[] = [];
         while (i < lines.length && lines[i].trim().startsWith('-')) {
           const item = lines[i].trim().replace(/^-\s*/, '');
-          listItems.push(item);
+          listItems.push({ text: item });
           i++;
         }
         blocks.push({
@@ -236,7 +236,7 @@ export class PatchApplicator {
       i++;
     }
 
-    return { blocks };
+    return { version: '1.0', blocks };
   }
 
   /**

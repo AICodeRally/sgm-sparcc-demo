@@ -98,11 +98,17 @@ export function RootLayoutClient({ children }: RootLayoutClientProps) {
 
   useEffect(() => {
     // Apply module defaults, then override with stored theme if present
+    const g = activeModule.gradient;
     const moduleTheme = {
-      gradient: activeModule.gradient,
-      primary: activeModule.gradient.start,
-      secondary: activeModule.gradient.mid2,
-      accent: activeModule.gradient.end,
+      gradient: {
+        start: g.start,
+        mid1: g.mid1 || g.start,
+        mid2: g.mid2 || g.end,
+        end: g.end,
+      },
+      primary: g.start,
+      secondary: g.mid2 || g.end,
+      accent: g.end,
     };
     applyThemeVars({
       id: 'module-default',

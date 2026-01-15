@@ -176,7 +176,7 @@ export class GovernanceAnalyzer {
   private buildPlanText(sections: ParsedSection[]): string {
     return sections
       .map((section) => {
-        const titleText = section.title || '';
+        const titleText = section.detectedTitle || '';
         const contentText = extractTextFromJSON({ blocks: section.blocks } as any);
         return `${titleText}\n${contentText}`;
       })
@@ -213,7 +213,7 @@ export class GovernanceAnalyzer {
             sections.forEach((section) => {
               const sectionText = extractTextFromJSON({ blocks: section.blocks } as any);
               if (regex.test(sectionText)) {
-                foundIn.push(section.title || 'Untitled Section');
+                foundIn.push(section.detectedTitle || 'Untitled Section');
               }
             });
           }

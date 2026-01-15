@@ -2,7 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ArrowLeftIcon, CheckCircledIcon, CrossCircledIcon, ExclamationTriangleIcon } from '@radix-ui/react-icons';
+import {
+  ArrowLeftIcon,
+  CheckCircledIcon,
+  CrossCircledIcon,
+  ExclamationTriangleIcon,
+  ClipboardIcon,
+  GearIcon,
+} from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 
 interface PlanCoverage {

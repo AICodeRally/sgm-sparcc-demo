@@ -10,6 +10,8 @@ import {
   Cross2Icon,
   DownloadIcon,
   ReloadIcon,
+  ClipboardIcon,
+  BarChartIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import type { PlanSectionWithGaps } from '@/lib/data/plan-with-gaps.data';

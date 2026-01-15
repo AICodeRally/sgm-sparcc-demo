@@ -48,7 +48,7 @@ export function TaskWidget({ tone = 'infra' as const }) {
           </span>
         </div>
         <Link
-          href="/tasks"
+          href={"/tasks" as any}
           className="flex items-center gap-1 text-sm text-[color:var(--color-info)] hover:text-[color:var(--color-info)] font-medium"
         >
           View All

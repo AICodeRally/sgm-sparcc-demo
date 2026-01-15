@@ -127,7 +127,7 @@ export default function ModuleSettingsPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Link
-                  href="/themes"
+                  href={"/themes" as any}
                   className="text-sm font-medium text-[color:var(--color-accent)] hover:text-[color:var(--color-primary)]"
                 >
                   Open Theme Library →

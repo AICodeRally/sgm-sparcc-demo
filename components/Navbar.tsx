@@ -86,7 +86,7 @@ export function Navbar() {
           <div className="flex items-center gap-4">
             <ModeSwitcher />
             <Link
-              href="/themes"
+              href={"/themes" as any}
               className="hidden md:inline-flex items-center rounded-full border border-[color:var(--color-border)] bg-[color:var(--color-surface-alt)] px-3 py-1 text-xs font-medium text-[color:var(--color-foreground)] hover:border-[color:var(--color-accent-border)]"
             >
               Themes

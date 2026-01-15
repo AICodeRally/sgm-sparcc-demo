@@ -9,6 +9,7 @@ import {
   ReloadIcon,
   InfoCircledIcon,
   ExclamationTriangleIcon,
+  CheckCircledIcon,
 } from '@radix-ui/react-icons';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -229,8 +230,8 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                         <p className="mt-1 text-[color:var(--color-muted)]">{pageKb.meta.description}</p>
                       )}
                       {showPageGuide && (
-                        <div className="mt-3 max-h-56 overflow-y-auto rounded border border-[color:var(--color-accent-border)] bg-[color:var(--color-surface-alt)] p-3">
-                          <ReactMarkdown remarkPlugins={[remarkGfm]} className="prose prose-sm max-w-none text-[color:var(--color-foreground)]">
+                        <div className="mt-3 max-h-56 overflow-y-auto rounded border border-[color:var(--color-accent-border)] bg-[color:var(--color-surface-alt)] p-3 prose prose-sm max-w-none text-[color:var(--color-foreground)]">
+                          <ReactMarkdown remarkPlugins={[remarkGfm]}>
                             {pageKb.content}
                           </ReactMarkdown>
                         </div>

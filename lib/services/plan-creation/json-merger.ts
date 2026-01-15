@@ -223,7 +223,8 @@ export class JSONContentMerger {
         return `divider:${block.id}`;
 
       default:
-        return `unknown:${block.id}`;
+        // TypeScript exhaustiveness check - all Block types should be handled above
+        return `unknown:${(block as any).id || 'no-id'}`;
     }
   }
 

@@ -74,11 +74,8 @@ export function PageKbPanel({ enabled = true }: PageKbPanelProps) {
                   </div>
                 </div>
 
-                <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-3">
-                  <ReactMarkdown
-                    remarkPlugins={[remarkGfm]}
-                    className="prose prose-sm max-w-none text-[color:var(--color-foreground)]"
-                  >
+                <div className="rounded-lg border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-3 prose prose-sm max-w-none text-[color:var(--color-foreground)]">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {pageKb.content}
                   </ReactMarkdown>
                 </div>

@@ -350,4 +350,33 @@ export interface RiskTriggerDefinition {
 
   /** Description */
   description: string;
+
+  /** Category for grouping triggers */
+  category?: string;
+}
+
+/**
+ * Jurisdiction Definition
+ */
+export interface JurisdictionDefinition {
+  /** Jurisdiction code (e.g., 'CA', 'NY', 'FEDERAL') */
+  code: string;
+
+  /** Display name */
+  name: string;
+
+  /** Description of jurisdiction-specific rules */
+  description?: string;
+
+  /** Required policies for this jurisdiction */
+  requiredPolicies?: string[];
+
+  /** Special considerations */
+  specialConsiderations?: string[];
+
+  /** Multiplier for jurisdiction-specific calculations */
+  multiplier?: number;
+
+  /** Wage law flags */
+  wageLawFlags?: string[];
 }

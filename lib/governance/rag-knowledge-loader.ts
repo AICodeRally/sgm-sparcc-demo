@@ -174,8 +174,8 @@ function loadHenryScheinPolicies(): CitablePolicy[] {
     severity: p.severity,
     effectiveDate: '2026-01-01',
     source: 'henry-schein' as const,
-    description: p.description,
-    requiredElements: p.requiredElements.map(e => e.name),
+    description: p.summary,
+    requiredElements: p.requiredElements,
     goldStandardLanguage: p.goldStandardLanguage,
   }));
 }

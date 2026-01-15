@@ -297,9 +297,10 @@ export class SectionDetector {
       }
     });
 
-    // Save final subsection
-    if (currentSubsection && currentSubsection.blocks.length > 0) {
-      subsections.push(currentSubsection);
+    // Save final subsection - type assertion to work around forEach control flow limitation
+    const finalSubsection = currentSubsection as ParsedSection | null;
+    if (finalSubsection && finalSubsection.blocks.length > 0) {
+      subsections.push(finalSubsection);
     }
 
     return subsections.length > 0 ? subsections : [section];
