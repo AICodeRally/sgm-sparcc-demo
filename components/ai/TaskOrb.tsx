@@ -68,13 +68,14 @@ export function TaskOrb({ enabled = true }: TaskOrbProps) {
       {/* Floating Orb - Right side, next to AskDock */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 right-20 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#0f172a] text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
+        className="fixed bottom-4 right-20 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
+        style={{ backgroundColor: 'var(--sparcc-gradient-end)' }}
         aria-label="Open Tasks"
         title="Tasks - Governance Task Management"
       >
         <ListBulletIcon className="h-6 w-6" />
         {/* Pulse glow on hover */}
-        <div className="absolute inset-0 rounded-full bg-[#0f172a] opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" />
+        <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" style={{ backgroundColor: 'var(--sparcc-gradient-end)' }} />
         {/* Active count badge */}
         {activeCount > 0 && (
           <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[color:var(--color-warning)] text-xs font-bold text-white">
@@ -102,7 +103,7 @@ export function TaskOrb({ enabled = true }: TaskOrbProps) {
             {/* Header */}
             <div className="flex items-center justify-between border-b border-[color:var(--color-border)] p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0f172a]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--sparcc-gradient-end)' }}>
                   <ListBulletIcon className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -173,7 +174,7 @@ export function TaskOrb({ enabled = true }: TaskOrbProps) {
                 </div>
               ) : isLoading && tasks.length === 0 ? (
                 <div className="flex items-center justify-center py-12">
-                  <ReloadIcon className="h-8 w-8 animate-spin text-[#0f172a]" />
+                  <ReloadIcon className="h-8 w-8 animate-spin" style={{ color: 'var(--sparcc-gradient-end)' }} />
                   <span className="ml-3 text-[color:var(--color-muted)]">Loading tasks...</span>
                 </div>
               ) : tasks.length === 0 ? (

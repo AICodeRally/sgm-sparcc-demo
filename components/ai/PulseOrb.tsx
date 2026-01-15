@@ -109,13 +109,14 @@ export function PulseOrb({ enabled = true }: PulseOrbProps) {
       {/* Floating Orb - Left side, next to OpsChief */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 left-20 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[color:var(--color-accent)] text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
+        className="fixed bottom-4 left-20 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
+        style={{ backgroundColor: 'var(--sparcc-gradient-mid1)' }}
         aria-label="Open Pulse Insights"
         title="Pulse - AI Insights & Notifications"
       >
         <LightningBoltIcon className="h-6 w-6" />
         {/* Pulse glow on hover */}
-        <div className="absolute inset-0 rounded-full bg-[color:var(--color-accent)] opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" />
+        <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" style={{ backgroundColor: 'var(--sparcc-gradient-mid1)' }} />
         {/* Active count badge */}
         {activeCount > 0 && (
           <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[color:var(--color-error)] text-xs font-bold text-white">
@@ -137,7 +138,7 @@ export function PulseOrb({ enabled = true }: PulseOrbProps) {
             {/* Header */}
             <div className="flex items-center justify-between border-b border-[color:var(--color-border)] p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--color-accent)]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--sparcc-gradient-mid1)' }}>
                   <LightningBoltIcon className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -178,7 +179,7 @@ export function PulseOrb({ enabled = true }: PulseOrbProps) {
                 </div>
               ) : isLoading && cards.length === 0 ? (
                 <div className="flex items-center justify-center py-12">
-                  <ReloadIcon className="h-8 w-8 animate-spin text-[color:var(--color-accent)]" />
+                  <ReloadIcon className="h-8 w-8 animate-spin" style={{ color: 'var(--sparcc-gradient-mid1)' }} />
                   <span className="ml-3 text-[color:var(--color-muted)]">Loading insights...</span>
                 </div>
               ) : cards.length === 0 ? (

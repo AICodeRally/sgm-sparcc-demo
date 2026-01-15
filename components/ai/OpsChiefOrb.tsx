@@ -109,7 +109,8 @@ export function OpsChiefOrb({ appName = 'SGM SPARCC', enabled = true }: OpsChief
       {/* Floating Orb - Lower Left (Purple disc with pulse) */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[color:var(--color-primary)] text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
+        className="fixed bottom-4 left-4 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
+        style={{ backgroundColor: 'var(--sparcc-gradient-start)' }}
         aria-label="Open OpsChief Insights"
         title="OpsChief - System Health & Insights"
       >
@@ -131,7 +132,7 @@ export function OpsChiefOrb({ appName = 'SGM SPARCC', enabled = true }: OpsChief
             {/* Header */}
             <div className="flex items-center justify-between border-b border-[color:var(--color-border)] p-4">
               <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--color-primary)]">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full" style={{ backgroundColor: 'var(--sparcc-gradient-start)' }}>
                   <ActivityLogIcon className="h-5 w-5 text-white" />
                 </div>
                 <div>

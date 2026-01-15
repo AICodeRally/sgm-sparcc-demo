@@ -21,12 +21,13 @@ export function PageKbPanel({ enabled = true }: PageKbPanelProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 left-36 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
+          className="fixed bottom-4 left-36 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
+          style={{ backgroundColor: 'var(--sparcc-gradient-mid2)' }}
           aria-label="Open page knowledge base"
           title="Page KB - Quick Usage Guide"
         >
           <InfoCircledIcon className="h-6 w-6" />
-          <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" style={{ background: 'var(--sparcc-gradient-start)' }} />
+          <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" style={{ backgroundColor: 'var(--sparcc-gradient-mid2)' }} />
         </button>
       )}
 
