@@ -24,4 +24,4 @@ Use this page for executive reviews, committee oversight, compliance monitoring,
 Committee counts, meeting cadence, decision volume, and compliance score.
 
 ## Related
-/committees, /audit, /analytics, /governance-matrix, /henryschein
+/committees, /audit, /analytics, /governance-matrix, /client

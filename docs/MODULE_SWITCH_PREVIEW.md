@@ -208,7 +208,7 @@ This script:
 
 **Audit Trail:**
 ```
-[MODULE_SWITCH] User sarah.chen@henryschein.com switched module to: sparcc-finance
+[MODULE_SWITCH] User sarah.chen@company.com switched module to: sparcc-finance
 ```
 
 ---

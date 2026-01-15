@@ -9,7 +9,7 @@
   "legalReviewRequired": true,
 
   "purpose": {
-    "summary": "This policy establishes the framework for recovering sales compensation payments that were made in error, based on inaccurate data, or where the underlying business transaction has been reversed or cancelled. This policy ensures Henry Schein maintains appropriate financial controls and protects against improper payments while maintaining fairness and transparency with sales team members.",
+    "summary": "This policy establishes the framework for recovering sales compensation payments that were made in error, based on inaccurate data, or where the underlying business transaction has been reversed or cancelled. This policy ensures the Company maintains appropriate financial controls and protects against improper payments while maintaining fairness and transparency with sales team members.",
     "objectives": [
       "Establish clear framework for recovering overpaid compensation",
       "Maintain appropriate financial controls and protect against improper payments",
@@ -23,7 +23,7 @@
     "appliesTo": [
       "All sales compensation plans including commissions, bonuses, and incentive payments",
       "All sales team members eligible for variable compensation",
-      "All Henry Schein divisions and business units in the United States",
+      "All Company divisions and business units in the United States",
       "All clawback situations regardless of the amount (subject to minimum thresholds defined below)"
     ],
     "exclusions": [],
@@ -48,7 +48,7 @@
     },
     {
       "term": "Recovery Period",
-      "definition": "The timeframe during which Henry Schein may pursue recovery of overpaid compensation, typically not exceeding 24 months from the original payment date.",
+      "definition": "The timeframe during which the Company may pursue recovery of overpaid compensation, typically not exceeding 24 months from the original payment date.",
       "examples": []
     },
     {
@@ -135,7 +135,7 @@
     {
       "id": "prov-003",
       "title": "Recovery Mechanisms",
-      "content": "Henry Schein will use the following methods to recover overpaid compensation, listed in order of preference:",
+      "content": "The Company will use the following methods to recover overpaid compensation, listed in order of preference:",
       "priority": "HIGH",
       "subProvisions": [
         {
@@ -278,7 +278,7 @@
         {
           "id": "prov-005-3",
           "title": "Retention Period",
-          "content": "All clawback documentation must be retained for seven (7) years following the date of final recovery or case closure, in accordance with Henry Schein's data retention policy and applicable legal requirements.",
+          "content": "All clawback documentation must be retained for seven (7) years following the date of final recovery or case closure, in accordance with the Company's data retention policy and applicable legal requirements.",
           "items": []
         }
       ],
@@ -352,7 +352,7 @@
         {
           "id": "prov-007-4",
           "title": "Statute of Limitations",
-          "content": "Henry Schein will not pursue clawbacks more than 24 months from the original payment date, except in cases of fraud or intentional misconduct where longer statutory periods may apply.",
+          "content": "The Company will not pursue clawbacks more than 24 months from the original payment date, except in cases of fraud or intentional misconduct where longer statutory periods may apply.",
           "items": []
         }
       ],

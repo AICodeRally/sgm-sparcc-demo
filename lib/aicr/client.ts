@@ -12,7 +12,7 @@
  */
 
 const AICR_API = process.env.AICR_API_URL || 'http://localhost:3000';
-const AICR_TENANT_ID = process.env.AICR_TENANT_ID || 'henry-schein';
+const AICR_TENANT_ID = process.env.AICR_TENANT_ID || 'demo';
 
 export interface AskSGMRequest {
   message: string;

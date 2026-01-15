@@ -5,7 +5,7 @@ import openpyxl
 import os
 from pathlib import Path
 
-ARCHIVE_ROOT = Path(os.environ.get("ARCHIVE_ROOT", "data/henryschein-archive"))
+ARCHIVE_ROOT = Path(os.environ.get("ARCHIVE_ROOT", "data/demo-client-archive"))
 EXCEL_FILE = ARCHIVE_ROOT / "Analysis/Comp Analysis/workbooks/master/BHG_01_HS_Comp_Plan_Analysis_FINAL.xlsx"
 
 wb = openpyxl.load_workbook(EXCEL_FILE, data_only=True)

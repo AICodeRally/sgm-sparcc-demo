@@ -29,7 +29,7 @@ Establish governance standards for SPIFs (Sales Performance Incentive Funds) and
 
 ---
 
-## SPIF TYPES AT JAMF
+## SPIF TYPES AT the Company
 
 ### 1. Multi-Year Deal SPIF/Kicker
 
@@ -49,7 +49,7 @@ Establish governance standards for SPIFs (Sales Performance Incentive Funds) and
 
 ### 2. New Logo SPIF/Kicker
 
-**Definition:** First-time customer to JAMF
+**Definition:** First-time customer to the Company
 
 **Payout:** Bonus beyond regular commission
 - Recognizes higher effort for new customer acquisition

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Extract Henry Schein Policy Documents to Markdown
+Extract Demo Client Policy Documents to Markdown
 
 Extracts text from all 16 policy DOCX files (6 drafts + 10 templates)
 and converts them to markdown format for use in the policy library.
@@ -30,7 +30,7 @@ except ImportError:
     exit(1)
 
 # Paths
-POLICIES_PATH = Path("/Users/toddlebaron/Documents/SPM/clients/HenrySchein/02_POLICIES")
+POLICIES_PATH = Path("/Users/toddlebaron/Documents/SPM/clients/DemoClient/02_POLICIES")
 DRAFT_PATH = POLICIES_PATH / "DRAFT_FOR_REVIEW"
 OUTPUT_PATH = Path(__file__).parent.parent / "lib" / "data" / "policies"
 
@@ -197,7 +197,7 @@ def extract_text_from_docx(file_path: Path) -> str:
 
 def extract_all_policies():
     """Extract all policy documents to markdown."""
-    print("🚀 Extracting Henry Schein Policy Documents to Markdown")
+    print("🚀 Extracting Demo Client Policy Documents to Markdown")
     print("=" * 70)
 
     # Create output directory

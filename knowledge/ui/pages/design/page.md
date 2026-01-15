@@ -24,4 +24,4 @@ Use this page when authoring or updating policies, building template sections, o
 Policy counts, template section counts, framework totals, and plan analysis metrics used for coverage visibility.
 
 ## Related
-/policies, /templates, /governance-framework, /governance-matrix, /henryschein/plans, /framework/primer, /links
+/policies, /templates, /governance-framework, /governance-matrix, /client, /framework/primer, /links

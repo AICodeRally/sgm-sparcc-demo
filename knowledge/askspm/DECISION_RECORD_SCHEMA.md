@@ -322,7 +322,7 @@
   "decision_id": "dec_a1b2c3d4-e5f6-7890-abcd-ef1234567890",
   "decision_type": "RULING",
   "status": "Proposed",
-  "tenant_id": "tenant_henryschein",
+  "tenant_id": "tenant_demo",
   "created_at": "2026-01-09T16:12:00-07:00",
   "created_by": "user_ops_456",
   "requester_role": "SalesOps",

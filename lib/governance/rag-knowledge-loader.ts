@@ -2,7 +2,7 @@
  * RAG Knowledge Loader for SPM Governance
  *
  * Unified knowledge base combining:
- * - 21 Henry Schein policies (A-001 to F-003) with Gold Standard Language
+ * - 21 Template policies (A-001 to F-003) with Gold Standard Language
  * - 15 SPM Governance policies (SPM-POL-001 to SPM-POL-015) for operations
  * - 16 SCP policies from original knowledge base
  * - Procedures, Controls, Evidence for citation
@@ -38,7 +38,7 @@ export interface CitablePolicy {
   section: string;
   severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
   effectiveDate: string;
-  source: 'henry-schein' | 'spm-governance' | 'scp-legacy';
+  source: 'template' | 'spm-governance' | 'scp-legacy';
   description: string;
   requiredElements: string[];
   goldStandardLanguage?: string;
@@ -121,7 +121,7 @@ export interface PrecedentTag {
 
 export interface RAGKnowledgeBase {
   // Policy libraries
-  henryScheinPolicies: CitablePolicy[];
+  templatePolicies: CitablePolicy[];
   spmGovernancePolicies: CitablePolicy[];
   scpLegacyPolicies: CitablePolicy[];
   allPolicies: CitablePolicy[];
@@ -146,7 +146,7 @@ export interface RAGKnowledgeBase {
   version: string;
   counts: {
     totalPolicies: number;
-    henryScheinPolicies: number;
+    templatePolicies: number;
     spmGovernancePolicies: number;
     scpLegacyPolicies: number;
     procedures: number;
@@ -164,7 +164,7 @@ export interface RAGKnowledgeBase {
 // LOADERS
 // ============================================================================
 
-function loadHenryScheinPolicies(): CitablePolicy[] {
+function loadTemplatePolicies(): CitablePolicy[] {
   return ALL_POLICIES_V2.map((p: PolicyV2) => ({
     policyId: p.code,
     policyVersionId: `${p.code}@v1.0`,
@@ -173,7 +173,7 @@ function loadHenryScheinPolicies(): CitablePolicy[] {
     section: p.section,
     severity: p.severity,
     effectiveDate: '2026-01-01',
-    source: 'henry-schein' as const,
+    source: 'template' as const,
     description: p.summary,
     requiredElements: p.requiredElements,
     goldStandardLanguage: p.goldStandardLanguage,
@@ -325,10 +325,10 @@ export function loadRAGKnowledgeBase(forceReload = false): RAGKnowledgeBase {
     return cachedKnowledgeBase;
   }
 
-  const henryScheinPolicies = loadHenryScheinPolicies();
+  const templatePolicies = loadTemplatePolicies();
   const spmGovernancePolicies = loadSPMGovernancePolicies();
   const scpLegacyPolicies = loadSCPLegacyPolicies();
-  const allPolicies = [...henryScheinPolicies, ...spmGovernancePolicies, ...scpLegacyPolicies];
+  const allPolicies = [...templatePolicies, ...spmGovernancePolicies, ...scpLegacyPolicies];
 
   const procedures = loadProcedures();
   const controls = loadControls();
@@ -338,7 +338,7 @@ export function loadRAGKnowledgeBase(forceReload = false): RAGKnowledgeBase {
   const precedentTags = loadPrecedentTags();
 
   cachedKnowledgeBase = {
-    henryScheinPolicies,
+    templatePolicies,
     spmGovernancePolicies,
     scpLegacyPolicies,
     allPolicies,
@@ -355,7 +355,7 @@ export function loadRAGKnowledgeBase(forceReload = false): RAGKnowledgeBase {
     version: '1.0.0',
     counts: {
       totalPolicies: allPolicies.length,
-      henryScheinPolicies: henryScheinPolicies.length,
+      templatePolicies: templatePolicies.length,
       spmGovernancePolicies: spmGovernancePolicies.length,
       scpLegacyPolicies: scpLegacyPolicies.length,
       procedures: procedures.length,
@@ -489,7 +489,7 @@ Version: ${kb.version} | Loaded: ${kb.loadedAt}
 
 ### Entity Counts
 - Total Policies: ${kb.counts.totalPolicies}
-  - Henry Schein (A-001 to F-003): ${kb.counts.henryScheinPolicies}
+  - Template (A-001 to F-003): ${kb.counts.templatePolicies}
   - SPM Governance (SPM-POL-001 to 015): ${kb.counts.spmGovernancePolicies}
   - SCP Legacy: ${kb.counts.scpLegacyPolicies}
 - Procedures: ${kb.counts.procedures}

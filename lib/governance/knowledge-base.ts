@@ -1,7 +1,7 @@
 /**
  * SPM Governance Knowledge Base
  *
- * Real governance knowledge from the Henry Schein Governance Library 2026.
+ * Real governance knowledge from the Governance Library 2026.
  * This replaces synthetic mock data with actual policy requirements,
  * detection patterns, and remediation templates.
  *
@@ -1014,7 +1014,7 @@ ${jurisdictionSummary}`;
 // ============================================================================
 
 export const GOVERNANCE_KNOWLEDGE_SUMMARY = `
-## SPM Governance Framework - Henry Schein Library 2026
+## SPM Governance Framework - Policy Library 2026
 
 ### Policy Categories
 1. **Financial Controls**: Clawback (SCP-001), Draws (SCP-008)

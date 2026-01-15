@@ -82,7 +82,7 @@ Click **Checklist** button:
 
 ## 📊 Sample Results
 
-**Upload**: `2025 Henry Schein Incentive Plan.pdf`
+**Upload**: `2025 Demo Client Incentive Plan.pdf`
 
 **Analysis Results** (after 8 seconds):
 ```

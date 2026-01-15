@@ -18,7 +18,7 @@ from docx import Document
 from typing import Dict, List, Any
 
 # File paths
-ARCHIVE_ROOT = Path(os.environ.get("ARCHIVE_ROOT", "data/henryschein-archive"))
+ARCHIVE_ROOT = Path(os.environ.get("ARCHIVE_ROOT", "data/demo-client-archive"))
 DRAFT_DIR = ARCHIVE_ROOT / "CLIENT_DELIVERY_PACKAGE/02_POLICIES/DRAFT_FOR_REVIEW"
 OUTPUT_DIR = Path(__file__).parent / "output"
 OUTPUT_FILE = OUTPUT_DIR / "draft-policies-summary.json"

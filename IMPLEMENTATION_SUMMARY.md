@@ -142,9 +142,9 @@
    }
    ```
 
-10. **Import Henry Schein Documents**
+10. **Import Demo Client Documents**
     ```bash
-    npx tsx scripts/import-henryschein-docs.ts
+    npx tsx scripts/import-demo-client-docs.ts
     ```
 
 11. **Switch to Live Binding Mode**
@@ -237,15 +237,15 @@
 
 ## 🎯 Success Criteria
 
-### For Henry Schein Beta Launch
+### For Demo Client Beta Launch
 
 - [x] Tenant model supports BETA tier
-- [x] Can create Henry Schein tenant
-- [x] Can assign users to Henry Schein tenant
-- [ ] Henry Schein documents imported (49 files)
-- [ ] @henryschein.com emails auto-assign to tenant
+- [x] Can create Demo Client tenant
+- [x] Can assign users to Demo Client tenant
+- [ ] Demo Client documents imported (49 files)
+- [ ] @demo-client.com emails auto-assign to tenant
 - [ ] All API routes tenant-aware
-- [ ] Custom Henry Schein branding applied
+- [ ] Custom Demo Client branding applied
 - [ ] 10 test users can sign in
 - [ ] Audit trail captures all governance actions
 
@@ -261,8 +261,8 @@ Edit `lib/auth/auth.config.ts`:
 const emailDomain = user.email!.split('@')[1];
 let tenantSlug = 'demo';
 
-if (emailDomain === 'henryschein.com') {
-  tenantSlug = 'henryschein';
+if (emailDomain === 'demo-client.com') {
+  tenantSlug = 'demo-client';
 } else if (emailDomain.includes('bluehorizonsgroup')) {
   tenantSlug = 'bhg';
 } else if (emailDomain === 'yourclient.com') {
@@ -286,7 +286,7 @@ if (emailDomain === 'henryschein.com') {
 
 ```json
 {
-  "logo": "/logos/henryschein.png",
+  "logo": "/logos/demo-client.png",
   "primaryColor": "#005EB8",
   "secondaryColor": "#00A3E0",
   "industry": "Healthcare Distribution",
@@ -331,6 +331,6 @@ Before deploying to production:
 
 ---
 
-**Status**: ✅ Foundation Complete - Ready for API Route Updates & Henry Schein Document Import
+**Status**: ✅ Foundation Complete - Ready for API Route Updates & Demo Client Document Import
 
 **Next Action**: Run `npm install next-auth@latest @next-auth/prisma-adapter` and follow "Immediate (Required)" steps above.

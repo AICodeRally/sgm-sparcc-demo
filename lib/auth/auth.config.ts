@@ -198,9 +198,8 @@ export const authOptions: AuthOptions = {
           const emailDomain = user.email!.split('@')[1];
           let tenantSlug = 'demo';
 
-          if (emailDomain === 'henryschein.com') {
-            tenantSlug = 'henryschein';
-          } else if (emailDomain.includes('bluehorizonsgroup')) {
+          // Domain-based tenant mapping - customize as needed
+          if (emailDomain.includes('bluehorizonsgroup')) {
             tenantSlug = 'bhg';
           }
 

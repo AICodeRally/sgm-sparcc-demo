@@ -374,7 +374,7 @@ Company may recover commissions in these situations:
 
 ### Plan Administrator
 - **Sales Compensation Team** administers this plan
-- Contact: salescomp@henryschein.com | ext. 5500
+- Contact: salescomp@company.com | ext. 5500
 
 ### Data & Systems
 - Sales data sourced from: SAP (invoicing), Salesforce (CRM)
@@ -465,7 +465,7 @@ All participants must acknowledge and accept plan terms via DocuSign by January 
 Failure to acknowledge constitutes acceptance of plan terms. Participation in plan (accepting commission payments) constitutes binding acceptance.
 
 ### Questions
-Contact Sales Compensation Team: salescomp@henryschein.com`,
+Contact Sales Compensation Team: salescomp@company.com`,
   },
 ];
 

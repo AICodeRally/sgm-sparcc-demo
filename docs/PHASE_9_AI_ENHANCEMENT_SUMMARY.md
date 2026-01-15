@@ -84,7 +84,7 @@ patch = client.generate_custom_patch(
     gap_desc="...",
     policy_code="SCP-005",
     policy_name="Section 409A Compliance",
-    org_name="Henry Schein, Inc.",
+    org_name="the Company, Inc.",
     state="NY",
     industry="Healthcare",
     plan_context="..."
@@ -154,7 +154,7 @@ adjusted_matches = validator.apply_ai_adjustments(matches, validations)
 generator = AIPatchGenerator()
 
 org_context = OrganizationContext(
-    name="Henry Schein, Inc.",
+    name="the Company, Inc.",
     state="NY",
     industry="Healthcare Distribution"
 )

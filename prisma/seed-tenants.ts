@@ -4,7 +4,7 @@
  *
  * Creates initial tenants for SGM multi-tenant deployment:
  * - Demo tenant (for general demos)
- * - Henry Schein tenant (beta client)
+ * - Sample client tenant (beta client)
  * - BHG tenant (Blue Horizons Group - consultant)
  *
  * Usage:
@@ -54,13 +54,13 @@ async function main() {
 
   console.log(`✅ Demo Tenant: ${demoTenant.name} (${demoTenant.slug})`);
 
-  // 2. Henry Schein Tenant
-  const henryScheinTenant = await prisma.tenant.upsert({
-    where: { slug: 'henryschein' },
+  // 2. Sample Client Tenant
+  const sampleClientTenant = await prisma.tenant.upsert({
+    where: { slug: 'sample-client' },
     update: {},
     create: {
-      name: 'Henry Schein, Inc.',
-      slug: 'henryschein',
+      name: 'Sample Client, Inc.',
+      slug: 'sample-client',
       tier: 'BETA',
       status: 'ACTIVE',
       features: {
@@ -71,23 +71,21 @@ async function main() {
         customBranding: true,
       },
       settings: {
-        logo: '/logos/henryschein.png',
-        primaryColor: '#005EB8', // Henry Schein blue
+        logo: '/logos/sample-client.png',
+        primaryColor: '#005EB8',
         secondaryColor: '#00A3E0',
         industry: 'Healthcare Distribution',
         employeeCount: 21000,
         description: 'Beta client - Sales compensation governance framework implementation',
         consultant: 'Blue Horizons Group',
-        engagementPeriod: 'September 2024 - November 2025',
         riskExposure: 1750000,
         potentialSavings: 1020000,
-        website: 'https://www.henryschein.com',
       },
       expiresAt: new Date('2026-12-31'), // Beta expires end of 2026
     },
   });
 
-  console.log(`✅ Henry Schein Tenant: ${henryScheinTenant.name} (${henryScheinTenant.slug})`);
+  console.log(`✅ Sample Client Tenant: ${sampleClientTenant.name} (${sampleClientTenant.slug})`);
 
   // 3. Blue Horizons Group Tenant
   const bhgTenant = await prisma.tenant.upsert({
@@ -120,14 +118,13 @@ async function main() {
 
   console.log('\n📊 Tenant Summary:');
   console.log('═══════════════════════════════════════════════════════');
-  console.log(`   Demo:         ${demoTenant.id}`);
-  console.log(`   Henry Schein: ${henryScheinTenant.id}`);
-  console.log(`   BHG:          ${bhgTenant.id}`);
+  console.log(`   Demo:          ${demoTenant.id}`);
+  console.log(`   Sample Client: ${sampleClientTenant.id}`);
+  console.log(`   BHG:           ${bhgTenant.id}`);
   console.log('═══════════════════════════════════════════════════════');
 
   console.log('\n📧 Email Domain Mapping:');
   console.log('═══════════════════════════════════════════════════════');
-  console.log('   @henryschein.com         → Henry Schein tenant');
   console.log('   @bluehorizonsgroup.com   → BHG tenant');
   console.log('   All others               → Demo tenant');
   console.log('═══════════════════════════════════════════════════════');
@@ -137,7 +134,6 @@ async function main() {
   console.log('  1. Sign in with Google OAuth');
   console.log('  2. Your user will be auto-assigned to a tenant based on email');
   console.log('  3. Set your role to SUPER_ADMIN to access /admin/tenants');
-  console.log('  4. Import Henry Schein documents: npx tsx scripts/import-henryschein-docs.ts');
 }
 
 main()

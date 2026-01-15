@@ -124,13 +124,13 @@ async function main() {
     },
   });
 
-  // Create Henry Schein Tenant
-  const henryScheinTenant = await prisma.tenant.upsert({
-    where: { slug: 'henryschein' },
+  // Create Demo Client Tenant
+  const sampleClientTenant = await prisma.tenant.upsert({
+    where: { slug: 'demo-client' },
     update: {},
     create: {
-      name: 'Henry Schein, Inc.',
-      slug: 'henryschein',
+      name: 'Demo Client, Inc.',
+      slug: 'demo-client',
       tier: 'BETA',
       status: 'ACTIVE',
       features: {
@@ -141,7 +141,7 @@ async function main() {
         customBranding: true,
       },
       settings: {
-        logo: '/logos/henryschein.png',
+        logo: '/logos/demo-client.png',
         primaryColor: '#005EB8',
         industry: 'Healthcare Distribution',
         employeeCount: 21000,
@@ -173,7 +173,7 @@ async function main() {
 
   console.log('✅ Tenants seeded:', {
     demo: demoTenant.id,
-    henryschein: henryScheinTenant.id,
+    demo-client: sampleClientTenant.id,
     bhg: bhgTenant.id,
   });
 }
@@ -226,7 +226,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 4. Sign in with Google
 
 5. Your user will be created and assigned to a tenant based on email domain:
-   - `@henryschein.com` → Henry Schein tenant
+   - `@demo-client.com` → Demo Client tenant
    - `@bluehorizonsgroup.com` → BHG tenant
    - Others → Demo tenant
 
@@ -262,7 +262,7 @@ The system automatically assigns users to tenants based on their email domain:
 
 | Email Domain | Tenant | Tier |
 |--------------|--------|------|
-| @henryschein.com | Henry Schein | BETA |
+| @demo-client.com | Demo Client | BETA |
 | @bluehorizonsgroup.com | BHG | PRODUCTION |
 | Others | Demo | DEMO |
 
@@ -270,8 +270,8 @@ To add more mappings, edit `lib/auth/auth.config.ts`:
 
 ```typescript
 // Map email domains to tenants
-if (emailDomain === 'henryschein.com') {
-  tenantSlug = 'henryschein';
+if (emailDomain === 'demo-client.com') {
+  tenantSlug = 'demo-client';
 } else if (emailDomain.includes('bluehorizonsgroup')) {
   tenantSlug = 'bhg';
 } else if (emailDomain === 'yourclient.com') {
@@ -363,9 +363,9 @@ export async function POST(request: NextRequest) {
 
 ## Next Steps
 
-1. **Import Henry Schein Documents**:
+1. **Import Demo Client Documents**:
    ```bash
-   npx tsx scripts/import-henryschein-docs.ts
+   npx tsx scripts/import-demo-client-docs.ts
    ```
 
 2. **Switch to Live Binding Mode**:

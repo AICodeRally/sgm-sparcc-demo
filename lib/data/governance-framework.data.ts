@@ -1,6 +1,6 @@
 /**
  * Governance Framework - 16 Policy Areas
- * Based on Henry Schein SPM Assessment
+ * Based on SPM Best Practice Assessment
  */
 
 export interface GovernancePolicy {
@@ -177,10 +177,10 @@ export interface PlanPolicyCoverage {
 }
 
 /**
- * Henry Schein Plan Coverage Data
+ * Demo Client Plan Coverage Data
  * Based on GOVERNANCE_FRAMEWORK_ASSESSMENT.md
  */
-export const HENRYSCHEIN_PLAN_COVERAGE: PlanPolicyCoverage[] = [
+export const CLIENT_PLAN_COVERAGE: PlanPolicyCoverage[] = [
   // Medical FSC Standard - Example Plan
   {
     planId: 'hs-plan-023',
@@ -292,7 +292,7 @@ The following scenarios require documented split credit:
  * Get policy coverage for a specific plan
  */
 export function getPlanCoverage(planCode: string): PlanPolicyCoverage[] {
-  return HENRYSCHEIN_PLAN_COVERAGE.filter((c) => c.planCode === planCode);
+  return CLIENT_PLAN_COVERAGE.filter((c) => c.planCode === planCode);
 }
 
 /**

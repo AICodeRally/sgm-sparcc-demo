@@ -189,7 +189,7 @@ Define commission treatment during employee leave of absence (unpaid, medical, p
 
 ### Sabbatical
 
-- Not standard JAMF leave (require discussion with HR)
+- Not standard the Company leave (require discussion with HR)
 - If approved: Extended leave with return commitment
 - Commission and territory treated as extended LOA
 

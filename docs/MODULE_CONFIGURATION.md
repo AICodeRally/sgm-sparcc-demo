@@ -178,7 +178,7 @@ For SaaS platforms where different organizations (tenants) use different SPARCC 
 ALTER TABLE tenants ADD COLUMN module_id VARCHAR(50) DEFAULT 'sgm';
 
 -- Example data:
--- Henry Schein       → sgm
+-- the Company       → sgm
 -- Acme Corp Finance  → sparcc-finance
 -- Enterprise Sales   → sparcc-sales
 ```

@@ -164,30 +164,6 @@
     "file": "knowledge/ui/pages/governance/upload/page.md"
   },
   {
-    "route": "/henryschein",
-    "file": "knowledge/ui/pages/henryschein/page.md"
-  },
-  {
-    "route": "/henryschein/coverage",
-    "file": "knowledge/ui/pages/henryschein/coverage/page.md"
-  },
-  {
-    "route": "/henryschein/gaps",
-    "file": "knowledge/ui/pages/henryschein/gaps/page.md"
-  },
-  {
-    "route": "/henryschein/plans",
-    "file": "knowledge/ui/pages/henryschein/plans/page.md"
-  },
-  {
-    "route": "/henryschein/policies",
-    "file": "knowledge/ui/pages/henryschein/policies/page.md"
-  },
-  {
-    "route": "/henryschein/roadmap",
-    "file": "knowledge/ui/pages/henryschein/roadmap/page.md"
-  },
-  {
     "route": "/links",
     "file": "knowledge/ui/pages/links/page.md"
   },

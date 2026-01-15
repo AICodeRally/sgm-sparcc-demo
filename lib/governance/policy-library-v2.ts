@@ -1,10 +1,8 @@
 /**
  * SPM Governance Policy Library v2
  *
- * Complete 21-policy library from Henry Schein Governance Framework 2026.
+ * Complete 21-policy library from Governance Framework 2026.
  * Includes Gold Standard Language for each policy area.
- *
- * Source: /Users/toddlebaron/Dev/HenrySchein/framework/policy_library/base/
  */
 
 // ============================================================================

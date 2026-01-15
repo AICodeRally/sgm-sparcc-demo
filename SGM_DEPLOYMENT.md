@@ -142,7 +142,7 @@ AWS_BUCKET_NAME=sgm-documents
 
 ## Sample Data
 
-The system includes 10 JAMF governance documents:
+The system includes 10 Demo Client governance documents:
 - **Frameworks**: SGCC Charter, CRB Charter
 - **Policies**: Sales Crediting, Quota Management, Payment Timing, SPIF, Windfall, Clawback
 - **Procedures**: Commission Reconciliation, Dispute Resolution
@@ -210,7 +210,7 @@ Uses **Contracts/Ports/Bindings** pattern for clean separation:
 ### Adding New Document Types
 1. Update `DocumentTypeSchema` in `contracts/document.contract.ts`
 2. Add default values to `defaultBindingConfig` in `config/binding-config.ts`
-3. Add sample data to `JAMF_SAMPLE_DOCUMENTS` in `bindings/synthetic/document.synthetic.ts`
+3. Add sample data to `Demo Client_SAMPLE_DOCUMENTS` in `bindings/synthetic/document.synthetic.ts`
 
 ### Adding New Committees
 1. Add to `initializeSampleCommittees()` in `bindings/synthetic/committee.synthetic.ts`

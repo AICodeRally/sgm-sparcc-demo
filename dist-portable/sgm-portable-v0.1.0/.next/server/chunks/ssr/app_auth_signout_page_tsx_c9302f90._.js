@@ -1,3 +1,0 @@
-module.exports=[5038,a=>{"use strict";var b=a.i(87924),c=a.i(75003),d=a.i(72131);function e(){return(0,d.useEffect)(()=>{(0,c.signOut)({callbackUrl:"/auth/signin"})},[]),(0,b.jsx)("div",{className:"min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-900 via-fuchsia-800 to-yellow-600",children:(0,b.jsx)("div",{className:"bg-white/90 backdrop-blur-sm rounded-lg shadow-2xl p-8",children:(0,b.jsx)("p",{className:"text-gray-700",children:"Signing you out..."})})})}a.s(["default",()=>e,"dynamic",0,"force-dynamic"])}];
-
-//# sourceMappingURL=app_auth_signout_page_tsx_c9302f90._.js.map

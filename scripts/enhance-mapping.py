@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Enhance Henry Schein Deliverables Mapping
+Enhance Demo Client Deliverables Mapping
 
 Reads existing CSV and enhances it with:
 - File existence validation
@@ -13,7 +13,7 @@ Usage:
     python3 scripts/enhance-mapping.py
 
 Output:
-    Henry_Schein_Deliverables_Mapping_CORRECTED.xlsx
+    Demo_Client_Deliverables_Mapping_CORRECTED.xlsx
 """
 
 import csv
@@ -27,10 +27,10 @@ from openpyxl.utils import get_column_letter
 from typing import Dict, List, Any
 
 # File paths
-ARCHIVE_ROOT = Path(os.environ.get("ARCHIVE_ROOT", "data/henryschein-archive"))
+ARCHIVE_ROOT = Path(os.environ.get("ARCHIVE_ROOT", "data/demo-client-archive"))
 DELIVERY_PKG = ARCHIVE_ROOT / "CLIENT_DELIVERY_PACKAGE"
-INPUT_CSV = Path("Henry_Schein_Readout_Deliverables_Mapping.csv")
-OUTPUT_FILE = Path("Henry_Schein_Deliverables_Mapping_CORRECTED.xlsx")
+INPUT_CSV = Path("Demo_Client_Readout_Deliverables_Mapping.csv")
+OUTPUT_FILE = Path("Demo_Client_Deliverables_Mapping_CORRECTED.xlsx")
 JSON_PLAN_FILE = Path("scripts/output/json-plan-analysis.json")
 
 # Risk exposure by deliverable type/priority
@@ -166,7 +166,7 @@ def calculate_risk_mitigated(priority: str, deliverable_type: str, plans_count: 
 
 
 def main():
-    print("🚀 Enhancing Henry Schein deliverables mapping...")
+    print("🚀 Enhancing Demo Client deliverables mapping...")
     print(f"📂 Input: {INPUT_CSV}")
     print(f"📂 Output: {OUTPUT_FILE}\n")
 
@@ -254,7 +254,7 @@ def main():
     ws.title = "Deliverables Mapping"
 
     # Title
-    ws['A1'] = "Henry Schein Deliverables Mapping - CORRECTED & ENHANCED"
+    ws['A1'] = "Demo Client Deliverables Mapping - CORRECTED & ENHANCED"
     ws['A1'].font = Font(bold=True, size=14)
     ws.merge_cells('A1:Q1')
 

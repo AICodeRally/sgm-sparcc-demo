@@ -739,10 +739,10 @@
           "details": "Top-line sales achievement from 70%–130% maps to bonus payouts from 0%–200%; payouts are prorated between listed points (p.002).",
           "originalPolicy": "Achievement Chart"
         },
-        "Henry Schein Products Kicker": {
+        "Demo Client Products Kicker": {
           "coverage": "LIMITED",
           "details": "Quarterly HS Products goal ≥100% pays an additional $1,000 gross bonus (p.002).",
-          "originalPolicy": "Henry Schein Products Kicker"
+          "originalPolicy": "Demo Client Products Kicker"
         },
         "Sales Crediting": {
           "coverage": "FULL",
@@ -797,7 +797,7 @@
       "policyCoverage": {
         "HSP Fixed Rate": {
           "coverage": "FULL",
-          "details": "Henry Schein Product sales pay a fixed monthly commission rate regardless of performance tiers; Access FSC quarterly goals weight HSP at 25% of the KPI mix (2025 Dental FSC Compensation Plan updated.pdf p.004, p.022).",
+          "details": "Demo Client Product sales pay a fixed monthly commission rate regardless of performance tiers; Access FSC quarterly goals weight HSP at 25% of the KPI mix (2025 Dental FSC Compensation Plan updated.pdf p.004, p.022).",
           "originalPolicy": "HSP Fixed Rate"
         },
         "Plan Levels & Mileage Options": {

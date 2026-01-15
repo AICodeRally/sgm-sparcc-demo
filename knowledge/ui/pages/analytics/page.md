@@ -23,4 +23,4 @@ Use this page for executive reviews, compliance tracking, and trend analysis.
 Coverage percentages, gap counts, SLA compliance, and risk scores.
 
 ## Related
-/reports, /governance-matrix, /audit, /committees, /henryschein
+/reports, /governance-matrix, /audit, /committees, /client

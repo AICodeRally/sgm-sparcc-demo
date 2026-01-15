@@ -45,7 +45,7 @@ Upload a compensation plan document for processing.
   "success": true,
   "documentId": "clx1234567890",
   "status": "UPLOADED",
-  "fileName": "Henry Schein Compensation Plan 2025.pdf",
+  "fileName": "the Company Compensation Plan 2025.pdf",
   "fileSize": 12582912
 }
 ```
@@ -98,11 +98,11 @@ Returns current processing status and progress for uploaded document.
 {
   "id": "clx1234567890",
   "status": "ANALYZING",
-  "fileName": "Henry Schein Compensation Plan 2025.pdf",
+  "fileName": "the Company Compensation Plan 2025.pdf",
   "fileType": "pdf",
   "fileSize": 12582912,
   "uploadedAt": "2026-01-08T21:30:00.000Z",
-  "uploadedBy": "sarah.johnson@henryschein.com",
+  "uploadedBy": "sarah.johnson@company.com",
   "parsedAt": "2026-01-08T21:30:15.000Z",
   "totalSections": 48,
   "totalWords": 15432,
@@ -169,8 +169,8 @@ FAILED (0%) - Processing failed, see errorMessage
 ```bash
 # Upload document
 curl -X POST \
-  http://localhost:3000/api/client/henryschein/documents/upload \
-  -H "x-user-id: sarah.johnson@henryschein.com" \
+  http://localhost:3000/api/client/company/documents/upload \
+  -H "x-user-id: sarah.johnson@company.com" \
   -F "file=@/path/to/plan.pdf"
 
 # Response:
@@ -183,7 +183,7 @@ curl -X POST \
 # }
 
 # Poll status
-curl http://localhost:3000/api/client/henryschein/documents/clx1234567890/status
+curl http://localhost:3000/api/client/company/documents/clx1234567890/status
 
 # Response:
 # {
@@ -201,11 +201,11 @@ const formData = new FormData();
 formData.append('file', fileInput.files[0]);
 
 const uploadResponse = await fetch(
-  '/api/client/henryschein/documents/upload',
+  '/api/client/company/documents/upload',
   {
     method: 'POST',
     headers: {
-      'x-user-id': 'sarah.johnson@henryschein.com',
+      'x-user-id': 'sarah.johnson@company.com',
     },
     body: formData,
   }
@@ -216,7 +216,7 @@ const { documentId } = await uploadResponse.json();
 // Poll status until complete
 const pollStatus = async () => {
   const statusResponse = await fetch(
-    `/api/client/henryschein/documents/${documentId}/status`
+    `/api/client/company/documents/${documentId}/status`
   );
 
   const status = await statusResponse.json();
@@ -250,11 +250,11 @@ async function uploadDocument(filePath: string) {
   form.append('file', fs.createReadStream(filePath));
 
   const response = await fetch(
-    'http://localhost:3000/api/client/henryschein/documents/upload',
+    'http://localhost:3000/api/client/company/documents/upload',
     {
       method: 'POST',
       headers: {
-        'x-user-id': 'sarah.johnson@henryschein.com',
+        'x-user-id': 'sarah.johnson@company.com',
       },
       body: form as any,
     }
@@ -266,7 +266,7 @@ async function uploadDocument(filePath: string) {
 // Get status
 async function getStatus(documentId: string) {
   const response = await fetch(
-    `http://localhost:3000/api/client/henryschein/documents/${documentId}/status`
+    `http://localhost:3000/api/client/company/documents/${documentId}/status`
   );
 
   return response.json();
@@ -323,7 +323,7 @@ npx tsx scripts/test-document-upload.ts
 #    File Type: txt
 #    File Size: 125.50 KB
 #    Uploaded: 1/8/2026, 9:30:00 PM
-#    Uploaded By: test-user@henryschein.com
+#    Uploaded By: test-user@company.com
 #
 # 📊 PARSING RESULTS
 #    Total Sections: 48

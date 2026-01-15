@@ -1,14 +1,14 @@
 #!/usr/bin/env tsx
 
 /**
- * Import ALL Henry Schein Governance Policies
+ * Import ALL Demo Client Governance Policies
  * Creates a comprehensive policy library for the governance framework
  */
 
 import fs from 'fs';
 import path from 'path';
 
-const POLICIES_PATH = '/Users/toddlebaron/Documents/SPM/clients/HenrySchein/02_POLICIES';
+const POLICIES_PATH = '/Users/toddlebaron/Documents/SPM/clients/DemoClient/02_POLICIES';
 const OUTPUT_PATH = path.join(process.cwd(), 'lib/data/governance-policies.json');
 
 interface PolicyDocument {

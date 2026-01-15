@@ -337,7 +337,7 @@ export async function POST(request: Request) {
 **Top Plans**:
 | Rank | Document | Coverage | Liability | Gaps |
 |------|----------|----------|-----------|------|
-| 1 | Henry Schein Incentive Plan | 21.3% | 1.92 | 53 |
+| 1 | the Company Incentive Plan | 21.3% | 1.92 | 53 |
 | 2 | Dental FSC Compensation Plan | 19.8% | 2.11 | 50 |
 | 3 | HS ONE Commission Plan_SC | 18.9% | 1.99 | 51 |
 
@@ -348,7 +348,7 @@ export async function POST(request: Request) {
 | SPIFF Employment Requirement | 11/20 (55%) | +1 |
 | Earned-After-Deductions | 7/20 (35%) | +2 |
 
-**Key Finding**: All 20 plans show significant governance gaps. The most compliant plan (Henry Schein Incentive Plan) still only covers 21% of requirements.
+**Key Finding**: All 20 plans show significant governance gaps. The most compliant plan (the Company Incentive Plan) still only covers 21% of requirements.
 
 ---
 

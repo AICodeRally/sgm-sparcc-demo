@@ -86,28 +86,28 @@ const pageTitles: Record<string, { title: string; description: string }> = {
     title: 'Decision Log',
     description: 'Track governance decisions and committee resolutions'
   },
-  '/app/henryschein/page.tsx': {
-    title: 'Henry Schein - Gap Analysis',
+  '/app/demo-client/page.tsx': {
+    title: 'Demo Client - Gap Analysis',
     description: '27 plans analyzed | 67% avg coverage | Beta client dashboard'
   },
-  '/app/henryschein/coverage/page.tsx': {
-    title: 'Henry Schein - Coverage Analysis',
+  '/app/demo-client/coverage/page.tsx': {
+    title: 'Demo Client - Coverage Analysis',
     description: 'Policy coverage matrix across all compensation plans'
   },
-  '/app/henryschein/plans/page.tsx': {
-    title: 'Henry Schein - Plans Overview',
+  '/app/demo-client/plans/page.tsx': {
+    title: 'Demo Client - Plans Overview',
     description: '27 compensation plans with governance scoring'
   },
-  '/app/henryschein/gaps/page.tsx': {
-    title: 'Henry Schein - Gap Analysis',
+  '/app/demo-client/gaps/page.tsx': {
+    title: 'Demo Client - Gap Analysis',
     description: 'Critical gaps, warnings, and recommendations'
   },
-  '/app/henryschein/policies/page.tsx': {
-    title: 'Henry Schein - Policies',
+  '/app/demo-client/policies/page.tsx': {
+    title: 'Demo Client - Policies',
     description: 'Policy documents and compliance status'
   },
-  '/app/henryschein/roadmap/page.tsx': {
-    title: 'Henry Schein - Implementation Roadmap',
+  '/app/demo-client/roadmap/page.tsx': {
+    title: 'Demo Client - Implementation Roadmap',
     description: '3-year governance improvement plan with prioritized initiatives'
   },
 };

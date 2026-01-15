@@ -206,7 +206,7 @@ import { AnalysisResults } from '@/components/governance/AnalysisResults';
 import { PatchViewer } from '@/components/governance/PatchViewer';
 
 <PatchViewer
-  documentId="2025_Henry_Schein_Incentive_Plan"
+  documentId="2025_Demo_Client_Incentive_Plan"
   fileName="plan.pdf"
   onDownload={() => {}}                // Optional: custom download handler
 />
@@ -216,7 +216,7 @@ import { PatchViewer } from '@/components/governance/PatchViewer';
 
 ## 📊 Real Example
 
-**Upload**: `2025 Henry Schein Incentive Plan.pdf` (87 pages, 12MB)
+**Upload**: `2025 the Company Incentive Plan.pdf` (87 pages, 12MB)
 
 **Analysis Results** (after 8 seconds):
 ```

@@ -28,7 +28,7 @@ curl http://localhost:8000/api/health
 curl -s http://localhost:8000/api/reports | jq '.total_reports'
 # 20
 
-# Get patches for Henry Schein plan
+# Get patches for Demo Client plan
 curl -s "http://localhost:8000/api/reports/2025%20Henry%20Schein%20Incentive%20Plan/patches" > patches.txt
 # 130KB of ready-to-copy remediation language ✅
 
@@ -96,7 +96,7 @@ console.log(patch.contentJson.blocks);
 
 ## 📈 Sample Results (from real data)
 
-**Henry Schein Incentive Plan**:
+**Demo Client Incentive Plan**:
 - Coverage: **21.3%** (best of 20 plans)
 - Liability: **1.92/5.0**
 - Total Gaps: **53**

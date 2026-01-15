@@ -518,7 +518,7 @@ export class SyntheticDocumentVersionProvider implements IDocumentVersionPort {
   // ===========================================================================
 
   private initializeDemoData() {
-    // Will be populated with Henry Schein plan versions
+    // Will be populated with client plan versions
     console.log('[DocumentVersion] Demo data initialization ready');
   }
 

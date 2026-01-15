@@ -1,7 +1,7 @@
 /**
  * SPM Governance Document Library
  *
- * Comprehensive catalog of governance documents from the Henry Schein Library 2026.
+ * Comprehensive catalog of governance documents from the Governance Library 2026.
  * Includes policies, templates, procedures, checklists, and reference materials.
  *
  * Source: <CLIENT_DELIVERY_PACKAGE>/

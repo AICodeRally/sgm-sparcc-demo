@@ -14,7 +14,7 @@ import * as path from 'path';
 import FormData from 'form-data';
 
 const API_BASE_URL = 'http://localhost:3000';
-const TENANT_SLUG = 'henryschein';
+const TENANT_SLUG = 'demo-client';
 const TEST_FILE_PATH = '/tmp/test-compensation-plan-structured.txt';
 
 /**
@@ -31,7 +31,7 @@ async function uploadDocument(filePath: string): Promise<any> {
   const response = await fetch(`${API_BASE_URL}/api/client/${TENANT_SLUG}/documents/upload`, {
     method: 'POST',
     headers: {
-      'x-user-id': 'test-user@henryschein.com',
+      'x-user-id': 'test-user@demo-client.com',
     },
     body: form as any,
   });

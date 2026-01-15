@@ -20,12 +20,12 @@ RAW_RESPONSE=$(curl -s -X POST "$API_BASE/documents/versions/import-raw" \
   -H "Content-Type: application/json" \
   -d '{
     "tenantId": "'"$TENANT_ID"'",
-    "sourceFileUrl": "/Users/toddlebaron/Documents/SPM/clients/HenrySchein/HS_Comp_Plans/source/HS-MED-FSC-2025.pdf",
+    "sourceFileUrl": "/Users/toddlebaron/Documents/SPM/clients/DemoClient/HS_Comp_Plans/source/HS-MED-FSC-2025.pdf",
     "sourceFileName": "HS-MED-FSC-2025.pdf",
     "sourceFileType": "pdf",
     "createdBy": "'"$USER"'",
     "metadata": {
-      "clientName": "Henry Schein",
+      "clientName": "Demo Client",
       "planType": "Compensation Plan",
       "division": "Medical Division"
     }
@@ -44,8 +44,8 @@ echo ""
 echo "⚙️  Step 2: Process RAW to Markdown"
 echo "------------------------------------"
 
-# Load actual markdown content from Henry Schein plan
-MARKDOWN_CONTENT=$(cat /Users/toddlebaron/Documents/SPM/clients/HenrySchein/HS_Comp_Plans/processed/HS-MED-FSC-2025.md | head -n 50)
+# Load actual markdown content from Demo Client plan
+MARKDOWN_CONTENT=$(cat /Users/toddlebaron/Documents/SPM/clients/DemoClient/HS_Comp_Plans/processed/HS-MED-FSC-2025.md | head -n 50)
 
 PROCESSED_RESPONSE=$(curl -s -X POST "$API_BASE/documents/versions/$RAW_VERSION_ID/process" \
   -H "Content-Type: application/json" \
@@ -110,7 +110,7 @@ echo "---------------------------"
 APPROVE_RESPONSE=$(curl -s -X POST "$API_BASE/documents/versions/$REVIEW_VERSION_ID/approve" \
   -H "Content-Type: application/json" \
   -d '{
-    "approvedBy": "approver@henryschein.com",
+    "approvedBy": "approver@demo-client.com",
     "approvalComments": "Reviewed and approved for publication. All governance requirements met."
   }')
 
@@ -125,7 +125,7 @@ echo "-----------------------------------"
 PUBLISH_RESPONSE=$(curl -s -X POST "$API_BASE/documents/versions/$REVIEW_VERSION_ID/publish" \
   -H "Content-Type: application/json" \
   -d '{
-    "publishedBy": "publisher@henryschein.com",
+    "publishedBy": "publisher@demo-client.com",
     "effectiveDate": "2025-01-01T00:00:00Z"
   }')
 

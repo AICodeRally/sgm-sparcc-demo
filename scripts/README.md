@@ -21,15 +21,15 @@ Automated setup for multi-tenancy and authentication.
 
 ---
 
-### **2. import-henryschein-docs.ts**
-Imports 49 Henry Schein governance documents from the archived BHG project into the production database.
+### **2. import-demo-client-docs.ts**
+Imports 49 Demo Client governance documents from the archived BHG project into the production database.
 
 ```bash
-npx tsx scripts/import-henryschein-docs.ts
+npx tsx scripts/import-demo-client-docs.ts
 ```
 
 **Prerequisites:**
-- Henry Schein tenant exists (run `npx tsx prisma/seed-tenants.ts`)
+- Demo Client tenant exists (run `npx tsx prisma/seed-tenants.ts`)
 - Archive directory accessible: `<ARCHIVE_ROOT>/`
 - Database migrated and running
 
@@ -46,8 +46,8 @@ npx tsx scripts/import-henryschein-docs.ts
 
 **Output:**
 ```
-🚀 Starting Henry Schein document import...
-✅ Found tenant: Henry Schein, Inc.
+🚀 Starting Demo Client document import...
+✅ Found tenant: Demo Client, Inc.
 📂 Processing 02_POLICIES/DRAFT_FOR_REVIEW (6 files)
    ✅ Imported: HS-SCP-001 - Clawback and Recovery Policy
    ...
@@ -59,7 +59,7 @@ npx tsx scripts/import-henryschein-docs.ts
 
 **Storage location:** `storage/{tenant-id}/documents/`
 
-**See also:** `HENRY_SCHEIN_INTEGRATION.md` for detailed documentation.
+**See also:** `DEMO_CLIENT_INTEGRATION.md` for detailed documentation.
 
 ---
 
@@ -67,7 +67,7 @@ npx tsx scripts/import-henryschein-docs.ts
 
 ### In `/prisma/`
 
-**seed-tenants.ts** - Creates initial tenants (Demo, Henry Schein, BHG)
+**seed-tenants.ts** - Creates initial tenants (Demo, Demo Client, BHG)
 
 ```bash
 npx tsx prisma/seed-tenants.ts
@@ -75,16 +75,16 @@ npx tsx prisma/seed-tenants.ts
 
 Creates:
 - **Demo** tenant (slug: `demo`)
-- **Henry Schein** tenant (slug: `henryschein`, tier: BETA)
+- **Demo Client** tenant (slug: `demo-client`, tier: BETA)
 - **BHG** tenant (slug: `bhg`, tier: PRODUCTION)
 
 ### In `/lib/data/synthetic/`
 
-**henryschein-documents.data.ts** - Synthetic data for demos
+**demo-client-documents.data.ts** - Synthetic data for demos
 
 Import in code:
 ```typescript
-import { ALL_HENRY_SCHEIN_DOCUMENTS, HENRY_SCHEIN_STATS } from '@/lib/data/synthetic';
+import { ALL_DEMO_CLIENT_DOCUMENTS, DEMO_CLIENT_STATS } from '@/lib/data/synthetic';
 ```
 
 Use for quick demos without database setup.
@@ -113,9 +113,9 @@ Use for quick demos without database setup.
    npx tsx prisma/seed-tenants.ts
    ```
 
-5. **Import Henry Schein documents:**
+5. **Import Demo Client documents:**
    ```bash
-   npx tsx scripts/import-henryschein-docs.ts
+   npx tsx scripts/import-demo-client-docs.ts
    ```
 
 6. **Start server:**
@@ -131,7 +131,7 @@ Use for quick demos without database setup.
 
 8. **Access admin panel:**
    - Go to `http://localhost:3003/admin/tenants`
-   - View Henry Schein tenant and documents
+   - View Demo Client tenant and documents
 
 ---
 
@@ -139,13 +139,13 @@ Use for quick demos without database setup.
 
 1. **Use synthetic data in your component:**
    ```typescript
-   import { ALL_HENRY_SCHEIN_DOCUMENTS } from '@/lib/data/synthetic';
+   import { ALL_DEMO_CLIENT_DOCUMENTS } from '@/lib/data/synthetic';
 
-   export function HenryScheinDemo() {
+   export function DemoClientDemo() {
      return (
        <div>
-         <h2>Henry Schein Documents ({ALL_HENRY_SCHEIN_DOCUMENTS.length})</h2>
-         {ALL_HENRY_SCHEIN_DOCUMENTS.map(doc => (
+         <h2>Demo Client Documents ({ALL_DEMO_CLIENT_DOCUMENTS.length})</h2>
+         {ALL_DEMO_CLIENT_DOCUMENTS.map(doc => (
            <div key={doc.documentCode}>{doc.title}</div>
          ))}
        </div>
@@ -166,7 +166,7 @@ Use for quick demos without database setup.
 
 ### **Import Script Fails**
 
-**Error: "Tenant 'henryschein' not found"**
+**Error: "Tenant 'demo-client' not found"**
 ```bash
 # Solution: Create tenant first
 npx tsx prisma/seed-tenants.ts
@@ -175,8 +175,8 @@ npx tsx prisma/seed-tenants.ts
 **Error: "Archive directory not found"**
 ```bash
 # Solution: Update path in script or copy archive
-# Edit: scripts/import-henryschein-docs.ts
-# Update: HENRY_SCHEIN_ARCHIVE constant
+# Edit: scripts/import-demo-client-docs.ts
+# Update: DEMO_CLIENT_ARCHIVE constant
 ```
 
 **Error: "Permission denied"**
@@ -198,7 +198,7 @@ chmod -R 755 storage
 **Error: "Unique constraint violation"**
 ```bash
 # Solution: Tenants already exist, this is safe to ignore
-# Or delete and re-create: DELETE FROM tenants WHERE slug IN ('demo', 'henryschein', 'bhg');
+# Or delete and re-create: DELETE FROM tenants WHERE slug IN ('demo', 'demo-client', 'bhg');
 ```
 
 ---
@@ -207,7 +207,7 @@ chmod -R 755 storage
 
 - **MULTI_TENANCY_SETUP.md** - Complete multi-tenancy setup guide
 - **IMPLEMENTATION_SUMMARY.md** - Implementation checklist and next steps
-- **HENRY_SCHEIN_INTEGRATION.md** - Henry Schein document import guide
+- **DEMO_CLIENT_INTEGRATION.md** - Demo Client document import guide
 
 ---
 

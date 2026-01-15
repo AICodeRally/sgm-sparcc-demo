@@ -69,7 +69,7 @@ The GovLens Python API service is fully integrated with the Next.js TypeScript a
 ### Sample Data Available
 
 **20 analyzed compensation plans** in output directory:
-- 2025 Henry Schein Incentive Plan (53 gaps, 21.3% coverage)
+- 2025 the Company Incentive Plan (53 gaps, 21.3% coverage)
 - 2025 Dental FSC Compensation Plan (50 gaps, 19.8% coverage)
 - HS ONE Commission Plan_SC (51 gaps, 18.9% coverage)
 - ...and 17 more

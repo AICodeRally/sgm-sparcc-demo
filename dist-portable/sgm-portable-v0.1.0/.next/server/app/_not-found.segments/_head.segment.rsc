@@ -1,5 +1,0 @@
-1:"$Sreact.fragment"
-2:I[97367,["/_next/static/chunks/18742e4abe785207.js","/_next/static/chunks/803a574de9eda7ae.js","/_next/static/chunks/11316e4fd9f353d8.js","/_next/static/chunks/11e985e407c6768e.js"],"ViewportBoundary"]
-3:I[97367,["/_next/static/chunks/18742e4abe785207.js","/_next/static/chunks/803a574de9eda7ae.js","/_next/static/chunks/11316e4fd9f353d8.js","/_next/static/chunks/11e985e407c6768e.js"],"MetadataBoundary"]
-4:"$Sreact.suspense"
-0:{"buildId":"BNJs9pUU4MWCFmBh6tcDB","rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"SGM Summit Demo"}],["$","meta","1",{"name":"description","content":"Sales Governance Manager - Summit tier demo application"}]]}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"loading":null,"isPartial":false}

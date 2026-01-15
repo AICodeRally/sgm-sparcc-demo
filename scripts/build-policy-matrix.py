@@ -2,14 +2,14 @@
 """
 Build 27x16 Policy Coverage Matrix Workbook
 
-Creates a 4-tab Excel workbook showing which Henry Schein plans have
+Creates a 4-tab Excel workbook showing which Demo Client plans have
 which policy coverage (FULL/LIMITED/NO) and BHG policy applicability.
 
 Usage:
     python3 scripts/build-policy-matrix.py
 
 Output:
-    Henry_Schein_Policy_Coverage_Matrix.xlsx
+    Demo_Client_Policy_Coverage_Matrix.xlsx
 """
 
 import json
@@ -21,7 +21,7 @@ from typing import Dict, List, Any
 
 # File paths
 OUTPUT_DIR = Path(".")
-OUTPUT_FILE = OUTPUT_DIR / "Henry_Schein_Policy_Coverage_Matrix.xlsx"
+OUTPUT_FILE = OUTPUT_DIR / "Demo_Client_Policy_Coverage_Matrix.xlsx"
 JSON_PLAN_FILE = Path("scripts/output/json-plan-analysis.json")
 DRAFT_POLICIES_FILE = Path("scripts/output/draft-policies-summary.json")
 
@@ -68,7 +68,7 @@ def create_tab1_coverage_summary(wb: Workbook, plans: List[Dict], policy_areas: 
     ws = wb.create_sheet("Plan Coverage Summary", 0)
 
     # Title
-    ws['A1'] = "Henry Schein Compensation Plans - Policy Coverage Matrix"
+    ws['A1'] = "Demo Client Compensation Plans - Policy Coverage Matrix"
     ws['A1'].font = Font(bold=True, size=14)
     ws.merge_cells('A1:R1')
 
@@ -332,7 +332,7 @@ def create_tab4_plan_details(wb: Workbook, plans: List[Dict]):
     ws = wb.create_sheet("Plan Details", 3)
 
     # Title
-    ws['A1'] = "Henry Schein Compensation Plan Inventory"
+    ws['A1'] = "Demo Client Compensation Plan Inventory"
     ws['A1'].font = Font(bold=True, size=14)
     ws.merge_cells('A1:H1')
 

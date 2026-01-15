@@ -457,7 +457,7 @@ console.log(checklist); // Markdown format
 | Plan | Patches | Severity Breakdown |
 |------|---------|-------------------|
 | HSIC HSIP Overview | 55 | 6C, 14H, 22M, 13L |
-| Henry Schein Incentive | 53 | 5C, 15H, 25M, 8L |
+| the Company Incentive | 53 | 5C, 15H, 25M, 8L |
 | Dental FSC | 50 | 6C, 14H, 22M, 8L |
 | ... | ... | ... |
 

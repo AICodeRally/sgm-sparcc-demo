@@ -35,7 +35,7 @@ This policy establishes standardized rules for crediting sales transactions to c
 
 ### NEW LOGO DEALS
 
-**Definition:** First-time customer purchases (no prior ARR with JAMF)
+**Definition:** First-time customer purchases (no prior ARR with the Company)
 
 **Primary Credit:** Account Development Rep (New Logo team member)
 - 100% commission credit to AE who closed the deal
@@ -49,12 +49,12 @@ This policy establishes standardized rules for crediting sales transactions to c
 **Multi-rep Scenarios:**
 - **New Logo + Named Account Support:** 100% to New Logo, Named Account SE/CSM receives separate incentive if applicable
 - **Territory Source + New Logo Closer:** New Logo rep gets 100% (effort closest to close)
-- **Channel + New Logo:** New Logo rep gets 100% if deal registration with JAMF
+- **Channel + New Logo:** New Logo rep gets 100% if deal registration with the Company
 
 **Examples:**
 - New Logo AE closes deal for Microsoft ($500K ARR) → 100% to New Logo AE
 - Channel partner sources Microsoft, New Logo AE qualifies and closes → 100% to New Logo AE
-- Named Account manager brings in Microsoft (existing relationship) → 0% to New Logo (not a new logo to JAMF)
+- Named Account manager brings in Microsoft (existing relationship) → 0% to New Logo (not a new logo to the Company)
 
 ---
 
@@ -155,13 +155,13 @@ Rule of precedence:
 ### Deal Registration Crediting
 
 **Reseller/Partner Deals:**
-- Credit to JAMF rep who registered deal with partner
-- OR credit to JAMF rep supporting deal
+- Credit to the Company rep who registered deal with partner
+- OR credit to the Company rep supporting deal
 - Territory assignment rule: Territory of partner relationship owner
 
 **SPIF Consideration:**
 - Partners may receive SPIF (separate from direct sales comp)
-- Multi-year deal SPIF: 2% of bookings to eligible JAMF reps
+- Multi-year deal SPIF: 2% of bookings to eligible the Company reps
 - Segment conversion SPIF: Extra quota retirement per SPIF policy
 
 ---
@@ -196,7 +196,7 @@ Rule of precedence:
 ### New Logo Segment
 - **Scenario:** AE1 sources lead, AE2 closes deal
   - **Credit:** 100% AE2 (closer)
-- **Scenario:** Partner sources, JAMF New Logo AE qualifies and closes
+- **Scenario:** Partner sources, the Company New Logo AE qualifies and closes
   - **Credit:** 100% New Logo AE
 
 ### Named Account Segment
@@ -225,14 +225,14 @@ Rule of precedence:
 - Credit goes to rep who closed the deal
 
 ### Legacy Customers (Acquisitions/Mergers)
-- New JAMF customers from M&A: New Logo credit
-- If pre-existing JAMF relationship: Assigned account owner credit
+- New the Company customers from M&A: New Logo credit
+- If pre-existing the Company relationship: Assigned account owner credit
 
 ### Do-Not-Credit Situations
 - Professional services-only deals (no software sale)
 - Pilot programs not converting to paid license
 - Free or promotional licenses
-- Insider sales (not JAMF reps - e.g., executive relationships)
+- Insider sales (not the Company reps - e.g., executive relationships)
 
 ---
 

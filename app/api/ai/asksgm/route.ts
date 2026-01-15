@@ -180,7 +180,7 @@ No page guide found for ${body.context?.currentPage || 'current page'}.`;
 
 ## Unified RAG Knowledge Base (The Toddfather)
 - **Total Policies**: ${ragStats.totalPolicies}
-  - Client Custom (A-001 to F-003): ${ragStats.henryScheinPolicies} policies with Gold Standard Language
+  - Template Policies (A-001 to F-003): ${ragStats.templatePolicies} policies with Gold Standard Language
   - SPM Governance (SPM-POL-001 to 015): ${ragStats.spmGovernancePolicies} operational policies
   - SCP Legacy: ${ragStats.scpLegacyPolicies} compliance policies
 - **Procedures**: ${ragStats.procedures} state machines

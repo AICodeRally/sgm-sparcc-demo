@@ -9,7 +9,7 @@
   "legalReviewRequired": true,
 
   "purpose": {
-    "summary": "This policy establishes a standardized framework for setting, managing, and adjusting sales quotas across Henry Schein. The policy ensures quotas are fair, achievable, aligned with business objectives, and consistently applied while providing appropriate governance over mid-year adjustments.",
+    "summary": "This policy establishes a standardized framework for setting, managing, and adjusting sales quotas across the Company. The policy ensures quotas are fair, achievable, aligned with business objectives, and consistently applied while providing appropriate governance over mid-year adjustments.",
     "objectives": [
       "Establish standardized framework for setting sales quotas",
       "Ensure quotas are fair, achievable, and aligned with business objectives",
@@ -22,7 +22,7 @@
   "scope": {
     "appliesTo": [
       "All sales roles with defined quota targets",
-      "All divisions and business units within Henry Schein",
+      "All divisions and business units within the Company",
       "Annual quota setting and mid-year quota adjustments",
       "Both individual and team-based quotas"
     ],
@@ -72,7 +72,7 @@
     {
       "id": "prov-001",
       "title": "Quota Setting Principles and Methodology",
-      "content": "Henry Schein's quota setting process is guided by core principles and a balanced methodology.",
+      "content": "the Company's quota setting process is guided by core principles and a balanced methodology.",
       "priority": "CRITICAL",
       "subProvisions": [
         {

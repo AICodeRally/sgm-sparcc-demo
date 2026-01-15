@@ -18,4 +18,4 @@ export {
 } from './plans.data';
 export { syntheticGovernanceFrameworks } from './governance-frameworks.data';
 
-// Henry Schein specific data - REMOVED (no client-specific data in system)
+// Client-specific data exports can be added here as needed

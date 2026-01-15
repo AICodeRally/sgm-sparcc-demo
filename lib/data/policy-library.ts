@@ -3,7 +3,7 @@
  *
  * Loads all governance policy templates from JSON files.
  * JSON format eliminates markdown artifacts and enables structured queries.
- * Supports both HenrySchein policies (SCP-xxx.json) and legacy Jamf policies.
+ * Supports both Template policies (SCP-xxx.json) and legacy Custom policies.
  */
 
 import fs from 'fs';
@@ -20,11 +20,11 @@ export interface PolicyTemplate {
   content: string; // Deprecated: kept for backward compatibility
   contentJSON?: PolicyJSON; // NEW: Structured policy data
   wordCount: number;
-  source: 'HenrySchein' | 'Jamf';
+  source: 'Template' | 'Custom';
 }
 
-// Framework area mapping for Jamf policies (based on filename)
-const JAMF_FRAMEWORK_MAPPING: Record<string, string> = {
+// Framework area mapping for Custom policies (based on filename)
+const CUSTOM_FRAMEWORK_MAPPING: Record<string, string> = {
   'CLAWBACK_RECOVERY_POLICY.md': 'Clawback/Recovery',
   'DATA_RETENTION_POLICY.md': 'Data/Systems/Controls',
   'LEAVE_OF_ABSENCE_POLICY.md': 'Leave of Absence',
@@ -50,25 +50,25 @@ export function loadAllPolicies(): PolicyTemplate[] {
 
   const policies: PolicyTemplate[] = [];
 
-  // Load HenrySchein policies (SCP-xxx.md format)
-  const henryScheinPolicies = loadHenryScheinPolicies();
-  policies.push(...henryScheinPolicies);
+  // Load Template policies (SCP-xxx.md format)
+  const templatePolicies = loadTemplatePolicies();
+  policies.push(...templatePolicies);
 
-  // Load Jamf policies
-  const jamfPolicies = loadJamfPolicies();
-  policies.push(...jamfPolicies);
+  // Load Custom policies
+  const customPolicies = loadCustomPolicies();
+  policies.push(...customPolicies);
 
   cachedPolicies = policies;
   return policies;
 }
 
 /**
- * Load HenrySchein policies (SCP-xxx.json format)
+ * Load Template policies (SCP-xxx.json format)
  *
  * Reads structured JSON files instead of markdown to eliminate artifacts.
  * Falls back to markdown if JSON not available (for backward compatibility).
  */
-function loadHenryScheinPolicies(): PolicyTemplate[] {
+function loadTemplatePolicies(): PolicyTemplate[] {
   const policies: PolicyTemplate[] = [];
 
   // Load index file
@@ -123,7 +123,7 @@ function loadHenryScheinPolicies(): PolicyTemplate[] {
       content,
       contentJSON: policyJSON,
       wordCount: policyMeta.word_count,
-      source: 'HenrySchein',
+      source: 'Template',
     });
   }
 
@@ -245,12 +245,12 @@ function generateContentFromJSON(policy: PolicyJSON): string {
 }
 
 /**
- * Load Jamf policies (direct markdown files)
+ * Load Custom policies (direct markdown files)
  */
-function loadJamfPolicies(): PolicyTemplate[] {
+function loadCustomPolicies(): PolicyTemplate[] {
   const policies: PolicyTemplate[] = [];
 
-  for (const [filename, frameworkArea] of Object.entries(JAMF_FRAMEWORK_MAPPING)) {
+  for (const [filename, frameworkArea] of Object.entries(CUSTOM_FRAMEWORK_MAPPING)) {
     const filePath = path.join(POLICIES_DIR, filename);
 
     if (!fs.existsSync(filePath)) {
@@ -264,7 +264,7 @@ function loadJamfPolicies(): PolicyTemplate[] {
     const codeMatch = content.match(/\*\*Policy Code:\*\*\s+(\S+)/);
 
     const name = nameMatch ? nameMatch[1] : filename.replace('.md', '').replace(/_/g, ' ');
-    const code = codeMatch ? codeMatch[1] : `JAMF-${policies.length + 1}`;
+    const code = codeMatch ? codeMatch[1] : `CUSTOM-${policies.length + 1}`;
 
     policies.push({
       code,
@@ -275,7 +275,7 @@ function loadJamfPolicies(): PolicyTemplate[] {
       legalReviewRequired: false,
       content,
       wordCount: content.split(/\s+/).length,
-      source: 'Jamf',
+      source: 'Custom',
     });
   }
 
@@ -386,8 +386,8 @@ export function getPolicyLibraryStats() {
       approved: policies.filter(p => p.status === 'APPROVED').length,
     },
     bySource: {
-      henrySchein: policies.filter(p => p.source === 'HenrySchein').length,
-      jamf: policies.filter(p => p.source === 'Jamf').length,
+      template: policies.filter(p => p.source === 'Template').length,
+      custom: policies.filter(p => p.source === 'Custom').length,
     },
     frameworkAreas: Array.from(new Set(policies.map(p => p.frameworkArea))).sort(),
     withJSON: policies.filter(p => p.contentJSON !== undefined).length,

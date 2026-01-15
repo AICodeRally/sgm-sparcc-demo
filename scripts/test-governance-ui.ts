@@ -64,7 +64,7 @@ async function testGovernanceUI() {
   totalTests++;
 
   try {
-    const documentId = '2025 Henry Schein Incentive Plan';
+    const documentId = '2025 Demo Client Incentive Plan';
     const response = await fetch(
       `http://localhost:8000/api/reports/${encodeURIComponent(documentId)}/patches`
     );
@@ -86,7 +86,7 @@ async function testGovernanceUI() {
   totalTests++;
 
   try {
-    const documentId = '2025 Henry Schein Incentive Plan';
+    const documentId = '2025 Demo Client Incentive Plan';
     const response = await fetch(
       `http://localhost:8000/api/reports/${encodeURIComponent(documentId)}/checklist`
     );

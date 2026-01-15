@@ -1,13 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "SPM Governance Policy Taxonomy",
-  "description": "15 SPM Governance Pack policies (SPM-POL-001 to SPM-POL-015) - Complementary to the 21 Henry Schein Framework policies (A-001 to F-003)",
+  "description": "15 SPM Governance Pack policies (SPM-POL-001 to SPM-POL-015) - Complementary to the 21 Template Framework policies (A-001 to F-003)",
   "version": "1.0.0",
   "effective_date": "2026-01-01",
   "policy_count": 15,
-  "relationship_to_hs_framework": {
-    "description": "These 15 policies complement the 21 Henry Schein Framework policies by focusing on governance procedures, controls, and operational processes rather than plan language requirements",
-    "hs_policies": "A-001 to F-003 (21 policies) - Plan language and compliance requirements",
+  "relationship_to_template_framework": {
+    "description": "These 15 policies complement the 21 Template Framework policies by focusing on governance procedures, controls, and operational processes rather than plan language requirements",
+    "template_policies": "A-001 to F-003 (21 policies) - Plan language and compliance requirements",
     "spm_policies": "SPM-POL-001 to SPM-POL-015 (15 policies) - Governance procedures and controls"
   },
   "policies": [

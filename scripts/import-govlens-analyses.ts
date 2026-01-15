@@ -55,19 +55,19 @@ interface GovLensAnalysis {
 async function main() {
   console.log('🚀 Importing GovLens analysis results...\n');
 
-  // 1. Ensure Henry Schein tenant and engagement exist
-  console.log('🏢 Checking Henry Schein tenant...');
+  // 1. Ensure Demo Client tenant and engagement exist
+  console.log('🏢 Checking Demo Client tenant...');
   let tenant = await prisma.tenant.findUnique({
-    where: { slug: 'henryschein' },
+    where: { slug: 'demo-client' },
     include: { clientEngagement: true },
   });
 
   if (!tenant) {
-    console.log('   Creating Henry Schein tenant...');
+    console.log('   Creating Demo Client tenant...');
     tenant = await prisma.tenant.create({
       data: {
-        name: 'Henry Schein, Inc.',
-        slug: 'henryschein',
+        name: 'Demo Client, Inc.',
+        slug: 'demo-client',
         tier: 'BETA',
         status: 'ACTIVE',
         features: {
@@ -107,13 +107,13 @@ async function main() {
           { id: 'consultant-2', name: 'Michael Chen', role: 'Governance Specialist' },
         ],
         clientContacts: [
-          { name: 'David Miller', title: 'VP Sales Operations', email: 'david.miller@henryschein.com' },
-          { name: 'Lisa Wang', title: 'Director Compensation', email: 'lisa.wang@henryschein.com' },
+          { name: 'David Miller', title: 'VP Sales Operations', email: 'david.miller@demo-client.com' },
+          { name: 'Lisa Wang', title: 'Director Compensation', email: 'lisa.wang@demo-client.com' },
         ],
         brandingConfig: {
           primaryColor: '#0066cc',
           secondaryColor: '#003d7a',
-          companyName: 'Henry Schein',
+          companyName: 'Demo Client',
         },
         metadata: {
           source: 'GovLens API Analysis',
@@ -204,7 +204,7 @@ async function main() {
   console.log('📈 Summary:');
   console.log(`   Tenant: ${tenant.name}`);
   console.log(`   Total Plans in Database: ${totalPlans}`);
-  console.log(`\n🔗 View at: http://localhost:3003/client/henryschein/plans\n`);
+  console.log(`\n🔗 View at: http://localhost:3003/client/demo-client/plans\n`);
 }
 
 // Helper Functions
