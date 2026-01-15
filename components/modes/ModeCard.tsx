@@ -12,7 +12,8 @@ import {
 } from '@radix-ui/react-icons';
 import { OperationalMode } from '@/types/operational-mode';
 import { getModeConfig } from '@/lib/auth/mode-permissions';
-import { getMetricGroupsByMode } from '@/lib/data/metric-registry';
+import { getMetricGroupsByMode, METRIC_GROUPS } from '@/lib/data/metric-registry';
+import { StackableMetric } from '@/components/dashboard/StackableMetric';
 
 interface ModeCardProps {
   mode: OperationalMode;
@@ -29,10 +30,16 @@ export function ModeCard({ mode, className = '', metricData = {} }: ModeCardProp
   // Demo mode: always allow access
   const canAccess = true;
 
-  // Get metrics for this mode
+  // Get metrics for this mode and organize into 4 stacks
   const metricGroups = getMetricGroupsByMode(mode);
-  // Flatten all metrics from all groups for this mode (take first 4)
-  const allMetrics = metricGroups.flatMap(g => g.metrics).slice(0, 4);
+  const allMetrics = metricGroups.flatMap(g => g.metrics);
+
+  // Create 4 stacks - distribute metrics across stacks so each stack can rotate
+  // Stack 0: metrics 0, 4, 8...  Stack 1: metrics 1, 5, 9...  etc.
+  const stacks = [0, 1, 2, 3].map(stackIndex => {
+    const stackMetrics = allMetrics.filter((_, i) => i % 4 === stackIndex);
+    return stackMetrics.length > 0 ? stackMetrics : [allMetrics[stackIndex] || allMetrics[0]];
+  }).filter(stack => stack && stack[0]); // Filter out empty stacks
 
   // Map icon names to actual icon components
   const iconMap = {
@@ -92,32 +99,26 @@ export function ModeCard({ mode, className = '', metricData = {} }: ModeCardProp
         {config.description}
       </p>
 
-      {/* Metrics Grid - 2x2 */}
+      {/* Stackable Metrics Grid - 2x2 */}
       <div className="mb-6">
-        <p className="text-[color:var(--color-foreground)] font-semibold mb-3 text-sm uppercase tracking-wide">
+        <p className="text-[color:var(--color-foreground)] font-semibold mb-3 text-sm uppercase tracking-wide flex items-center gap-2">
           Key Metrics
+          <span className="text-[10px] font-normal text-[color:var(--color-muted)]">
+            (click to rotate)
+          </span>
         </p>
         <div className="grid grid-cols-2 gap-2">
-          {allMetrics.map((metric) => {
-            const value = metricData[metric.fetchKey] ?? metric.value;
-            return (
-              <div
-                key={metric.id}
-                className="rounded-lg p-3 border transition-all hover:scale-[1.02]"
-                style={{
-                  borderColor: `${baseColor}30`,
-                  backgroundColor: `${baseColor}08`,
-                }}
-              >
-                <p className="text-xl font-bold" style={{ color: baseColor }}>
-                  {value}{metric.suffix || ''}
-                </p>
-                <p className="text-xs text-[color:var(--color-muted)] truncate">
-                  {metric.label}
-                </p>
-              </div>
-            );
-          })}
+          {stacks.map((stackMetrics, stackIndex) => (
+            <StackableMetric
+              key={`${mode}-stack-${stackIndex}`}
+              stackId={`${mode}-stack-${stackIndex}`}
+              metrics={stackMetrics}
+              metricData={metricData}
+              color={baseColor}
+              mode={mode}
+              stackIndex={stackIndex}
+            />
+          ))}
         </div>
       </div>
 

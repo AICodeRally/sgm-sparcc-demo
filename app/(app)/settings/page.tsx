@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import { PersonIcon, GearIcon, MixerHorizontalIcon, BellIcon } from '@radix-ui/react-icons';
+import { PersonIcon, GearIcon, MixerHorizontalIcon, BellIcon, BarChartIcon } from '@radix-ui/react-icons';
 
 export default function SettingsPage() {
   const settingsSections = [
@@ -17,6 +17,12 @@ export default function SettingsPage() {
       description: 'Configure module-specific options and themes',
       href: '/settings/module',
       icon: MixerHorizontalIcon,
+    },
+    {
+      title: 'Metric Stacks',
+      description: 'Configure which metrics appear in dashboard stacks',
+      href: '/settings/metrics',
+      icon: BarChartIcon,
     },
     {
       title: 'Notifications',

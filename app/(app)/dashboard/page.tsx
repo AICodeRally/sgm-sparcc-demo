@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import RotatingMetricTile from '@/components/dashboard/RotatingMetricTile';
 import { ModeCard } from '@/components/modes/ModeCard';
-import { getMetricGroupsByMode } from '@/lib/data/metric-registry';
 import { OperationalMode } from '@/types/operational-mode';
 
 export default function SGMDashboard() {
@@ -85,14 +83,6 @@ export default function SGMDashboard() {
     }
   };
 
-  // Get one metric group per mode for the 4 rotating tiles
-  const modeMetrics = [
-    { group: getMetricGroupsByMode(OperationalMode.DESIGN)[0], tone: 'primary' as const },
-    { group: getMetricGroupsByMode(OperationalMode.OPERATE)[0], tone: 'secondary' as const },
-    { group: getMetricGroupsByMode(OperationalMode.DISPUTE)[0], tone: 'accent' as const },
-    { group: getMetricGroupsByMode(OperationalMode.OVERSEE)[0], tone: 'infra' as const },
-  ].filter((item) => item.group); // Filter out undefined
-
   return (
     <>
       <SetPageTitle
@@ -101,14 +91,7 @@ export default function SGMDashboard() {
       />
       <div className="min-h-screen sparcc-hero-bg">
         <div className="max-w-7xl mx-auto px-6 py-8">
-          {/* Mode Metrics Bar - 4 rotating tiles, one per mode */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-3">
-            {modeMetrics.map(({ group, tone }) => (
-              <RotatingMetricTile key={group.id} group={group} metricData={metricData} tone={tone} />
-            ))}
-          </div>
-
-          {/* 4 Operational Mode Hero Cards */}
+          {/* 4 Operational Mode Hero Cards with Stackable Metrics */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ModeCard mode={OperationalMode.DESIGN} metricData={metricData} />
             <ModeCard mode={OperationalMode.OPERATE} metricData={metricData} />
