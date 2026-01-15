@@ -21,16 +21,17 @@ export function PageKbPanel({ enabled = true }: PageKbPanelProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 left-20 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-lg transition-transform hover:scale-105"
+          className="fixed bottom-4 left-36 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"
           aria-label="Open page knowledge base"
-          title="Page knowledge base"
+          title="Page KB - Quick Usage Guide"
         >
-          <InfoCircledIcon className="h-5 w-5" />
+          <InfoCircledIcon className="h-6 w-6" />
+          <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" style={{ background: 'var(--sparcc-gradient-start)' }} />
         </button>
       )}
 
       {isOpen && (
-        <div className="fixed bottom-4 left-20 z-40 flex h-[600px] w-96 flex-col rounded-lg border border-[color:var(--color-info-border)] bg-[color:var(--color-surface)] shadow-2xl">
+        <div className="fixed bottom-4 left-36 z-40 flex h-[600px] w-96 flex-col rounded-lg border border-[color:var(--color-info-border)] bg-[color:var(--color-surface)] shadow-2xl">
           <div className="flex items-center justify-between rounded-t-lg bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] p-4 text-white">
             <div className="flex items-center gap-2">
               <InfoCircledIcon className="h-5 w-5" />

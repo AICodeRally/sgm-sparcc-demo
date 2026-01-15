@@ -1,20 +1,39 @@
 'use client';
 
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { usePageTitle } from './PageTitle';
 import { getActiveModule } from '@/lib/config/module-registry';
+import { PersonIcon, GearIcon, ExitIcon, ChevronDownIcon } from '@radix-ui/react-icons';
 
 export function Navbar() {
   const { title, description } = usePageTitle();
   const activeModule = getActiveModule();
   const { data: session } = useSession();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Get user info from session, fallback to defaults
   const user = {
     name: session?.user?.name || 'Guest',
     role: (session?.user as any)?.role || 'User',
     email: session?.user?.email || ''
+  };
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleSignOut = () => {
+    signOut({ callbackUrl: '/' });
   };
 
   return (
@@ -76,23 +95,69 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Right side: User info */}
-          <div className="flex items-center gap-4">
-            {/* TODO: Future - Theme switcher */}
-            {/* TODO: Future - SPARCC SPM module switcher */}
-            <div className="border-l border-[color:var(--color-border)] pl-4 text-right">
-              <p className="text-sm font-semibold text-[color:var(--color-foreground)]">{user.name}</p>
-              <p className="text-xs text-[color:var(--color-muted)]">{user.role}</p>
-            </div>
-            <div
-              className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-md"
-              style={{
-                backgroundImage:
-                  'linear-gradient(135deg, var(--sparcc-gradient-start), var(--sparcc-gradient-mid2), var(--sparcc-gradient-end))',
-              }}
+          {/* Right side: User dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors"
             >
-              {user.name.split(' ').map(n => n[0]).join('')}
-            </div>
+              <div className="text-right">
+                <p className="text-sm font-semibold text-[color:var(--color-foreground)]">{user.name}</p>
+                <p className="text-xs text-[color:var(--color-muted)]">{user.role}</p>
+              </div>
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shadow-md"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(135deg, var(--sparcc-gradient-start), var(--sparcc-gradient-mid2), var(--sparcc-gradient-end))',
+                }}
+              >
+                {user.name.split(' ').map(n => n[0]).join('')}
+              </div>
+              <ChevronDownIcon className={`w-4 h-4 text-[color:var(--color-muted)] transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            {/* Dropdown Menu */}
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-56 bg-[color:var(--color-surface)] rounded-lg shadow-xl border border-[color:var(--color-border)] py-2 z-50">
+                {/* User Info Header */}
+                <div className="px-4 py-3 border-b border-[color:var(--color-border)]">
+                  <p className="text-sm font-semibold text-[color:var(--color-foreground)]">{user.name}</p>
+                  <p className="text-xs text-[color:var(--color-muted)]">{user.email}</p>
+                </div>
+
+                {/* Menu Items */}
+                <div className="py-1">
+                  <Link
+                    href="/settings/profile"
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="flex items-center gap-3 px-4 py-2 text-sm text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)] transition-colors"
+                  >
+                    <PersonIcon className="w-4 h-4" />
+                    Profile
+                  </Link>
+                  <Link
+                    href="/settings"
+                    onClick={() => setIsDropdownOpen(false)}
+                    className="flex items-center gap-3 px-4 py-2 text-sm text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)] transition-colors"
+                  >
+                    <GearIcon className="w-4 h-4" />
+                    Settings
+                  </Link>
+                </div>
+
+                {/* Logout */}
+                <div className="border-t border-[color:var(--color-border)] pt-1">
+                  <button
+                    onClick={handleSignOut}
+                    className="flex items-center gap-3 w-full px-4 py-2 text-sm text-[color:var(--color-error)] hover:bg-[color:var(--color-error-bg)] transition-colors"
+                  >
+                    <ExitIcon className="w-4 h-4" />
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

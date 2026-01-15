@@ -20,16 +20,10 @@ export function Footer() {
           'linear-gradient(to right, var(--sparcc-gradient-start), var(--sparcc-gradient-mid2), var(--sparcc-gradient-end)) 1',
       }}
     >
-      <div className="w-full px-6 py-6">
-        <div className="flex items-center justify-between">
-          {/* Left side - OpsChief Label - positioned near the orb */}
-          <div className="text-xs text-[color:var(--color-muted)]" style={{ marginLeft: '4.5rem' }}>
-            <p className="font-semibold">OpsChief</p>
-            <p>System Health</p>
-          </div>
-
+      <div className="w-full px-6 py-4">
+        <div className="flex items-center justify-center">
           {/* Center - Footer Info */}
-          <div className="text-center flex-1 mx-8">
+          <div className="text-center">
             <div className="space-y-2">
               {/* Mode Quick Links */}
               <div className="flex items-center justify-center gap-6 mb-2">
@@ -70,12 +64,6 @@ export function Footer() {
                 <span className="text-[color:var(--color-muted)] ml-1">• Part of the SPARCC suite of SPM tools</span>
               </div>
             </div>
-          </div>
-
-          {/* Right side - AskSGM Label - positioned near the orb */}
-          <div className="text-xs text-[color:var(--color-muted)] text-right" style={{ marginRight: '4.5rem' }}>
-            <p className="font-semibold">AskSGM</p>
-            <p>AI Assistant</p>
           </div>
         </div>
       </div>

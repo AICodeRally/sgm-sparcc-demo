@@ -9,6 +9,8 @@ import { aiManifest } from "../ai.manifest";
 import { CommandPalette } from "@/components/CommandPalette";
 import { OpsChiefOrb } from "@/components/ai/OpsChiefOrb";
 import { AskDock } from "@/components/ai/AskDock";
+import { PulseOrb } from "@/components/ai/PulseOrb";
+import { TaskOrb } from "@/components/ai/TaskOrb";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PageTitleProvider } from "@/components/PageTitle";
@@ -83,6 +85,8 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
       {isAuthenticated && <WhatsNewModal />}
       {/* AI Widgets - only show after authentication */}
       {isAuthenticated && <OpsChiefOrb appName="SGM SPARCC" enabled={true} />}
+      {isAuthenticated && <PulseOrb enabled={true} />}
+      {isAuthenticated && <TaskOrb enabled={true} />}
       {isAuthenticated && <AskDock appName="SGM" enabled={true} />}
       {isAuthenticated && <PageKbPanel enabled={true} />}
     </div>

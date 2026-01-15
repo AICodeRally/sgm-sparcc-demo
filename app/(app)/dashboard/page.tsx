@@ -6,8 +6,6 @@ import RotatingMetricTile from '@/components/dashboard/RotatingMetricTile';
 import { ModeCard } from '@/components/modes/ModeCard';
 import { getMetricGroupsByMode } from '@/lib/data/metric-registry';
 import { OperationalMode } from '@/types/operational-mode';
-import { PulseWidget } from '@/components/pulse/PulseWidget';
-import { TaskWidget } from '@/components/tasks/TaskWidget';
 
 export default function SGMDashboard() {
   const [metricData, setMetricData] = useState<Record<string, number | string>>({});
@@ -135,12 +133,6 @@ export default function SGMDashboard() {
             <ModeCard mode={OperationalMode.OPERATE} />
             <ModeCard mode={OperationalMode.DISPUTE} />
             <ModeCard mode={OperationalMode.OVERSEE} />
-          </div>
-
-          {/* AICR Platform Integration - Pulse & Tasks */}
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <PulseWidget tone="accent" />
-            <TaskWidget tone="infra" />
           </div>
         </div>
       </div>
