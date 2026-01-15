@@ -8,6 +8,8 @@ import { OperationalMode } from '@/types/operational-mode';
 import { CommandPalette } from '@/components/CommandPalette';
 import { OpsChiefOrb } from '@/components/ai/OpsChiefOrb';
 import { AskDock } from '@/components/ai/AskDock';
+import { PulseOrb } from '@/components/ai/PulseOrb';
+import { TaskOrb } from '@/components/ai/TaskOrb';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { PageTitleProvider } from '@/components/PageTitle';
@@ -97,6 +99,8 @@ function AppLayoutInner({
       <CommandPalette isOpen={commandPaletteOpen} onClose={() => setCommandPaletteOpen(false)} />
       <WhatsNewModal />
       <OpsChiefOrb appName="SGM SPARCC" enabled={true} />
+      <PulseOrb enabled={true} />
+      <TaskOrb enabled={true} />
       <AskDock appName="SGM" enabled={true} />
       <PageKbPanel enabled={true} />
     </div>

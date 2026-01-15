@@ -9,8 +9,9 @@ import {
   BellIcon,
   CheckIcon,
   EyeOpenIcon,
+  ExclamationTriangleIcon,
 } from '@radix-ui/react-icons';
-import { getPulseFeed, dismissPulseCard, markPulseCardRead } from '@/lib/pulse/pulse-service';
+import { getPulseFeed, dismissCard, pursueCard } from '@/lib/pulse/pulse-service';
 import type { PulseCard } from '@/lib/pulse/pulse-service';
 
 interface PulseOrbProps {
@@ -60,40 +61,40 @@ export function PulseOrb({ enabled = true }: PulseOrbProps) {
   }, [isOpen]);
 
   const handleDismiss = async (cardId: string) => {
-    await dismissPulseCard(cardId);
+    await dismissCard(cardId);
     setCards((prev) => prev.filter((c) => c.id !== cardId));
   };
 
-  const handleMarkRead = async (cardId: string) => {
-    await markPulseCardRead(cardId);
+  const handlePursue = async (cardId: string) => {
+    await pursueCard(cardId);
     setCards((prev) =>
-      prev.map((c) => (c.id === cardId ? { ...c, read: true } : c))
+      prev.map((c) => (c.id === cardId ? { ...c, dismissed: true } : c))
     );
   };
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case 'alert':
+  const getUrgencyColor = (urgency: string) => {
+    switch (urgency) {
+      case 'critical':
         return 'border-l-4 border-[color:var(--color-error)]';
-      case 'insight':
-        return 'border-l-4 border-[color:var(--color-accent)]';
-      case 'action':
+      case 'high':
         return 'border-l-4 border-[color:var(--color-warning)]';
-      case 'update':
+      case 'medium':
+        return 'border-l-4 border-[color:var(--color-accent)]';
+      case 'low':
         return 'border-l-4 border-[color:var(--color-info)]';
       default:
         return 'border-l-4 border-[color:var(--color-border)]';
     }
   };
 
-  const getTypeIcon = (type: string) => {
-    switch (type) {
-      case 'alert':
-        return <BellIcon className="h-4 w-4 text-[color:var(--color-error)]" />;
-      case 'insight':
+  const getUrgencyIcon = (urgency: string) => {
+    switch (urgency) {
+      case 'critical':
+        return <ExclamationTriangleIcon className="h-4 w-4 text-[color:var(--color-error)]" />;
+      case 'high':
+        return <BellIcon className="h-4 w-4 text-[color:var(--color-warning)]" />;
+      case 'medium':
         return <LightningBoltIcon className="h-4 w-4 text-[color:var(--color-accent)]" />;
-      case 'action':
-        return <CheckIcon className="h-4 w-4 text-[color:var(--color-warning)]" />;
       default:
         return <EyeOpenIcon className="h-4 w-4 text-[color:var(--color-info)]" />;
     }
@@ -101,7 +102,7 @@ export function PulseOrb({ enabled = true }: PulseOrbProps) {
 
   if (!enabled) return null;
 
-  const unreadCount = cards.filter((c) => !c.read).length;
+  const activeCount = cards.filter((c) => !c.dismissed).length;
 
   return (
     <>
@@ -115,10 +116,10 @@ export function PulseOrb({ enabled = true }: PulseOrbProps) {
         <LightningBoltIcon className="h-6 w-6" />
         {/* Pulse glow on hover */}
         <div className="absolute inset-0 rounded-full bg-[color:var(--color-accent)] opacity-0 group-hover:opacity-30 transition-opacity blur-lg -z-10" />
-        {/* Unread badge */}
-        {unreadCount > 0 && (
+        {/* Active count badge */}
+        {activeCount > 0 && (
           <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[color:var(--color-error)] text-xs font-bold text-white">
-            {unreadCount}
+            {activeCount}
           </span>
         )}
         {/* Offline indicator */}
@@ -190,27 +191,27 @@ export function PulseOrb({ enabled = true }: PulseOrbProps) {
                   {cards.map((card) => (
                     <div
                       key={card.id}
-                      className={`rounded-lg bg-[color:var(--color-surface-alt)] p-4 ${getTypeColor(card.type)} ${
-                        card.read ? 'opacity-60' : ''
+                      className={`rounded-lg bg-[color:var(--color-surface-alt)] p-4 ${getUrgencyColor(card.urgency)} ${
+                        card.dismissed ? 'opacity-60' : ''
                       }`}
                     >
                       <div className="flex items-start gap-3">
-                        <span className="mt-0.5">{getTypeIcon(card.type)}</span>
+                        <span className="mt-0.5">{getUrgencyIcon(card.urgency)}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-start justify-between gap-2">
                             <h4 className="font-medium text-[color:var(--color-foreground)]">{card.title}</h4>
                             <span className="text-xs text-[color:var(--color-muted)] whitespace-nowrap">
-                              {new Date(card.timestamp).toLocaleDateString()}
+                              {new Date(card.createdAt).toLocaleDateString()}
                             </span>
                           </div>
                           <p className="mt-1 text-sm text-[color:var(--color-muted)]">{card.summary}</p>
                           <div className="mt-3 flex items-center gap-2">
-                            {!card.read && (
+                            {!card.dismissed && (
                               <button
-                                onClick={() => handleMarkRead(card.id)}
+                                onClick={() => handlePursue(card.id)}
                                 className="text-xs text-[color:var(--color-info)] hover:underline"
                               >
-                                Mark read
+                                Mark done
                               </button>
                             )}
                             <button
