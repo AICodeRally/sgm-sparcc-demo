@@ -46,6 +46,12 @@ export default function SettingsPage() {
       icon: LightningBoltIcon,
     },
     {
+      title: 'User Management',
+      description: 'Manage users and assign roles',
+      href: '/admin/users',
+      icon: PersonIcon,
+    },
+    {
       title: 'Tenant Management',
       description: 'Manage tenants and client configurations',
       href: '/admin/tenants',
