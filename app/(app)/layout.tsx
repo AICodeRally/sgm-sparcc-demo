@@ -17,6 +17,7 @@ import { WhatsNewModal } from '@/components/modals/WhatsNewModal';
 import { PageKbProvider } from '@/components/kb/PageKbProvider';
 import { PageKbPanel } from '@/components/kb/PageKbPanel';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { AISettingsProvider, useAISettings } from '@/components/ai/AISettingsProvider';
 import { getActiveModule } from '@/lib/config/module-registry';
 import { applyThemeVars, getStoredTheme } from '@/lib/config/themes';
 
@@ -57,6 +58,7 @@ function AppLayoutInner({
   setCommandPaletteOpen: (open: boolean) => void;
 }) {
   const { switchMode, canSwitchMode } = useMode();
+  const { isFeatureEnabled } = useAISettings();
 
   // Global keyboard shortcuts
   useEffect(() => {
@@ -98,11 +100,11 @@ function AppLayoutInner({
       <Footer />
       <CommandPalette isOpen={commandPaletteOpen} onClose={() => setCommandPaletteOpen(false)} />
       <WhatsNewModal />
-      <OpsChiefOrb appName="SGM SPARCC" enabled={true} />
-      <PulseOrb enabled={true} />
-      <TaskOrb enabled={true} />
-      <AskDock appName="SGM" enabled={true} />
-      <PageKbPanel enabled={true} />
+      <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />
+      <PulseOrb enabled={isFeatureEnabled('pulse')} />
+      <TaskOrb enabled={isFeatureEnabled('tasks')} />
+      <AskDock appName="SGM" enabled={isFeatureEnabled('askDock')} />
+      <PageKbPanel enabled={isFeatureEnabled('pageKb')} />
     </div>
   );
 }
@@ -159,18 +161,20 @@ function AuthProtectedLayout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <ModeProvider>
-      <PageTitleProvider>
-        <PageKbProvider>
-          <AppLayoutInner
-            commandPaletteOpen={commandPaletteOpen}
-            setCommandPaletteOpen={setCommandPaletteOpen}
-          >
-            {children}
-          </AppLayoutInner>
-        </PageKbProvider>
-      </PageTitleProvider>
-    </ModeProvider>
+    <AISettingsProvider>
+      <ModeProvider>
+        <PageTitleProvider>
+          <PageKbProvider>
+            <AppLayoutInner
+              commandPaletteOpen={commandPaletteOpen}
+              setCommandPaletteOpen={setCommandPaletteOpen}
+            >
+              {children}
+            </AppLayoutInner>
+          </PageKbProvider>
+        </PageTitleProvider>
+      </ModeProvider>
+    </AISettingsProvider>
   );
 }
 
