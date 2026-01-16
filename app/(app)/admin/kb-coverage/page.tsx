@@ -176,12 +176,18 @@ export default function KBCoveragePage() {
                       <CrossCircledIcon className="h-5 w-5 text-[color:var(--color-error)]" />
                     )}
                     <div>
-                      <Link
-                        href={page.route}
-                        className="font-medium text-[color:var(--color-foreground)] hover:text-[color:var(--color-primary)] hover:underline"
-                      >
-                        {page.route}
-                      </Link>
+                      {page.route.includes('[') ? (
+                        <span className="font-medium text-[color:var(--color-foreground)]">
+                          {page.route}
+                        </span>
+                      ) : (
+                        <Link
+                          href={page.route}
+                          className="font-medium text-[color:var(--color-foreground)] hover:text-[color:var(--color-primary)] hover:underline"
+                        >
+                          {page.route}
+                        </Link>
+                      )}
                       <p className="text-xs text-[color:var(--color-muted)]">
                         {page.pagePath}
                       </p>
