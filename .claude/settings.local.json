@@ -113,7 +113,15 @@
       "Bash(git revert:*)",
       "mcp__plugin_playwright_playwright__browser_wait_for",
       "mcp__plugin_playwright_playwright__browser_evaluate",
-      "mcp__plugin_playwright_playwright__browser_console_messages"
+      "mcp__plugin_playwright_playwright__browser_console_messages",
+      "Skill(vercel:deploy)",
+      "Bash(for port in 3000 3010 3030 3031 3032 3033)",
+      "Bash(do printf \"Port $port: \")",
+      "Bash(for host in aicr.local sparcc.local sgm.local vpms.local np.local ps.local)",
+      "Bash(do printf \"$host: \")",
+      "Bash(sudo lsof:*)",
+      "Bash(fuser:*)",
+      "Bash(for p in 3010 3030 3032 3033 3034)"
     ]
   }
 }
