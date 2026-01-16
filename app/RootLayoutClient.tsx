@@ -20,6 +20,7 @@ import { PageKbPanel } from "@/components/kb/PageKbPanel";
 import { getActiveModule } from "@/lib/config/module-registry";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { applyThemeVars, getStoredTheme } from "@/lib/config/themes";
+import { AISettingsProvider, useAISettings } from "@/components/ai/AISettingsProvider";
 
 interface RootLayoutClientProps {
   children: React.ReactNode;
@@ -35,6 +36,7 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
 }) {
   const { switchMode, canSwitchMode } = useMode();
   const { data: session, status } = useSession();
+  const { isFeatureEnabled } = useAISettings();
   const isAuthenticated = status === 'authenticated' && !!session;
 
   // Global keyboard shortcuts
@@ -83,12 +85,12 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
       />
       {/* What's New Modal - only show after authentication */}
       {isAuthenticated && <WhatsNewModal />}
-      {/* AI Widgets - only show after authentication */}
-      {isAuthenticated && <OpsChiefOrb appName="SGM SPARCC" enabled={true} />}
-      {isAuthenticated && <PulseOrb enabled={true} />}
-      {isAuthenticated && <TaskOrb enabled={true} />}
-      {isAuthenticated && <AskDock appName="SGM" enabled={true} />}
-      {isAuthenticated && <PageKbPanel enabled={true} />}
+      {/* AI Widgets - controlled by AI Settings */}
+      {isAuthenticated && <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />}
+      {isAuthenticated && <PulseOrb enabled={isFeatureEnabled('pulse')} />}
+      {isAuthenticated && <TaskOrb enabled={isFeatureEnabled('tasks')} />}
+      {isAuthenticated && <AskDock appName="SGM" enabled={isFeatureEnabled('askDock')} />}
+      {isAuthenticated && <PageKbPanel enabled={isFeatureEnabled('pageKb')} />}
     </div>
   );
 }
@@ -132,18 +134,20 @@ export function RootLayoutClient({ children }: RootLayoutClientProps) {
   return (
     <SessionProvider>
       <ThemeProvider>
-        <ModeProvider>
-          <PageTitleProvider>
-            <PageKbProvider>
-              <LayoutWithModeContext
-                commandPaletteOpen={commandPaletteOpen}
-                setCommandPaletteOpen={setCommandPaletteOpen}
-              >
-                {children}
-              </LayoutWithModeContext>
-            </PageKbProvider>
-          </PageTitleProvider>
-        </ModeProvider>
+        <AISettingsProvider>
+          <ModeProvider>
+            <PageTitleProvider>
+              <PageKbProvider>
+                <LayoutWithModeContext
+                  commandPaletteOpen={commandPaletteOpen}
+                  setCommandPaletteOpen={setCommandPaletteOpen}
+                >
+                  {children}
+                </LayoutWithModeContext>
+              </PageKbProvider>
+            </PageTitleProvider>
+          </ModeProvider>
+        </AISettingsProvider>
       </ThemeProvider>
     </SessionProvider>
   );

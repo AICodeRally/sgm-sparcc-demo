@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import { PersonIcon, GearIcon, MixerHorizontalIcon, BellIcon, BarChartIcon, AvatarIcon, ReaderIcon, FileTextIcon } from '@radix-ui/react-icons';
+import { PersonIcon, GearIcon, MixerHorizontalIcon, BellIcon, BarChartIcon, AvatarIcon, ReaderIcon, FileTextIcon, LightningBoltIcon } from '@radix-ui/react-icons';
 
 export default function SettingsPage() {
   const settingsSections = [
@@ -39,6 +39,12 @@ export default function SettingsPage() {
   ];
 
   const adminSections = [
+    {
+      title: 'AI Features',
+      description: 'Toggle AI assistants for client policy compliance',
+      href: '/settings/ai',
+      icon: LightningBoltIcon,
+    },
     {
       title: 'Tenant Management',
       description: 'Manage tenants and client configurations',
