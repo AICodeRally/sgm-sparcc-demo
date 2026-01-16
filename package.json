@@ -29,7 +29,8 @@
     "docker:run": "docker run -d -p 3003:3003 -v ~/SGM-Data:/data --name sgm sgm:latest",
     "portable:build": "node scripts/build-portable.js",
     "kb:check": "node scripts/check-kb.js",
-    "kb:report": "node scripts/kbcc-report.js"
+    "kb:report": "node scripts/kbcc-report.js",
+    "smoke-test": "node scripts/smoke-test.js"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
