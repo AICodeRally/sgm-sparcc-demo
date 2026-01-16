@@ -17,9 +17,7 @@ import {
   UploadIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import type { PlanTemplate } from '@/lib/contracts/plan-template.contract';
-import type { DataType } from '@/lib/contracts/data-type.contract';
 
 type TemplateStatus = 'ACTIVE' | 'DRAFT' | 'DEPRECATED' | 'ARCHIVED';
 type PlanType = 'COMPENSATION_PLAN' | 'GOVERNANCE_PLAN' | 'POLICY_CREATION_PLAN';

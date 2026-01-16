@@ -12,14 +12,12 @@ import {
   ChevronRightIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import type {
   DocumentVersion,
   VersionDiff,
   VersionStats,
   VersionComparison,
 } from '@/lib/data/synthetic/versions.data';
-import type { DataType } from '@/lib/contracts/data-type.contract';
 
 export default function VersionComparePage() {
   const [selectedDocCode, setSelectedDocCode] = useState<string>('SCP-001');
@@ -133,7 +131,6 @@ export default function VersionComparePage() {
                   <h1 className="text-3xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
                     Version Compare
                   </h1>
-                  <DataTypeBadge dataType={dataType} size="sm" />
                 </div>
                 <p className="text-sm text-[color:var(--color-muted)] mt-1">
                   Side-by-side document version comparison

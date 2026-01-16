@@ -95,8 +95,25 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Right side: User dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          {/* Right side: Demo badge + User dropdown */}
+          <div className="flex items-center gap-4">
+            {/* Demo Badge */}
+            <div className="flex items-center gap-4">
+              <span
+                className="px-3 py-1 text-sm font-bold uppercase tracking-wide rounded"
+                style={{
+                  background: 'linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FDB813 100%)',
+                  color: 'white',
+                  boxShadow: '0 2px 4px rgba(255, 107, 53, 0.3)',
+                }}
+              >
+                Demo Data
+              </span>
+              <span className="text-[color:var(--color-border)]">|</span>
+            </div>
+
+            {/* User dropdown */}
+            <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[color:var(--color-surface-alt)] transition-colors"
@@ -179,6 +196,7 @@ export function Navbar() {
                 </div>
               </div>
             )}
+            </div>
           </div>
         </div>
       </div>

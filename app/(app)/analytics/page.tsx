@@ -15,8 +15,6 @@ import {
   LayersIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import { DataTypeBadge } from '@/components/demo/DemoBadge';
-import type { DataType } from '@/lib/contracts/data-type.contract';
 import type { MetricData } from '@/lib/data/synthetic/analytics.data';
 
 export default function AnalyticsPage() {
@@ -101,7 +99,6 @@ export default function AnalyticsPage() {
         <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] shadow-sm">
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex items-center justify-between">
-              <DataTypeBadge dataType={dataType} size="sm" />
               <span className="text-xs font-semibold tracking-wider uppercase text-[color:var(--color-primary)] bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
                 Last Updated: Just Now
               </span>

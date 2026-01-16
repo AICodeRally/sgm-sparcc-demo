@@ -15,7 +15,6 @@ import {
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
 import type { Committee, CRBDecisionOption } from '@/lib/data/synthetic/committees.data';
-import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import { DemoWarningBanner } from '@/components/demo/DemoToggle';
 import { ModeContextBadge } from '@/components/modes/ModeBadge';
 

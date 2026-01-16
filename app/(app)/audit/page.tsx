@@ -20,9 +20,7 @@ import {
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
-import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import type { AuditEvent, AuditStats } from '@/lib/data/synthetic/audit.data';
-import type { DataType } from '@/lib/contracts/data-type.contract';
 
 export default function AuditPage() {
   const [selectedEvent, setSelectedEvent] = useState<AuditEvent | null>(null);
@@ -346,7 +344,6 @@ export default function AuditPage() {
       {/* Toolbar */}
       <div className="flex-none bg-[color:var(--surface-glass)] backdrop-blur-sm border-b border-[color:var(--color-border)] p-6">
         <div className="flex items-center justify-between mb-4">
-          <DataTypeBadge dataType={dataType} size="sm" />
           <button className="px-4 py-2 bg-[color:var(--color-success)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-success)] transition-colors flex items-center gap-2">
             <CalendarIcon className="w-4 h-4" />
             Export Log

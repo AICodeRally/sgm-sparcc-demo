@@ -23,8 +23,6 @@ import {
   GlobeIcon,
   Cross2Icon
 } from '@radix-ui/react-icons';
-import { DataTypeBadge } from '@/components/demo/DemoBadge';
-import type { DataType } from '@/lib/contracts/data-type.contract';
 
 interface Policy {
   code: string;
@@ -170,7 +168,6 @@ export default function PolicyLibraryPage() {
                     <h1 className="text-4xl font-bold text-[color:var(--color-foreground)]">
                       Policy Library
                     </h1>
-                    <DataTypeBadge dataType={dataType} size="sm" />
                   </div>
                   <p className="text-[color:var(--color-muted)] mt-1">
                     Comprehensive compensation governance policy templates

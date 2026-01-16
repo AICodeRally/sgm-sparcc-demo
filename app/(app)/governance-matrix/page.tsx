@@ -25,8 +25,6 @@ import type {
   AuthorityInfo,
 } from '@/lib/data/synthetic/governance-matrix.data';
 import { getToneStyles } from '@/lib/config/themes';
-import { DataTypeBadge } from '@/components/demo/DemoBadge';
-import type { DataType } from '@/lib/contracts/data-type.contract';
 
 export default function GovernanceMatrixPage() {
   const [selectedEntry, setSelectedEntry] = useState<MatrixEntry | null>(null);
@@ -608,7 +606,6 @@ export default function GovernanceMatrixPage() {
                   <div>
                     <div className="flex items-center gap-2">
                       <h2 className="text-lg font-semibold text-[color:var(--color-foreground)]">Coverage Overview</h2>
-                      <DataTypeBadge dataType={dataType} size="sm" />
                     </div>
                     <p className="text-sm text-[color:var(--color-muted)]">Search and filter governance coverage</p>
                   </div>

@@ -3,13 +3,10 @@
 import { useEffect, useState } from 'react';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ModeCard } from '@/components/modes/ModeCard';
-import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import { OperationalMode } from '@/types/operational-mode';
-import type { DataType } from '@/lib/contracts/data-type.contract';
 
 export default function SGMDashboard() {
   const [metricData, setMetricData] = useState<Record<string, number | string>>({});
-  const [dataType] = useState<DataType>('demo');
 
   useEffect(() => {
     // Fetch live metrics from APIs
@@ -94,9 +91,6 @@ export default function SGMDashboard() {
       />
       <div className="min-h-screen sparcc-hero-bg">
         <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="mb-4">
-            <DataTypeBadge dataType={dataType} size="sm" />
-          </div>
           {/* 4 Operational Mode Hero Cards with Stackable Metrics */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ModeCard mode={OperationalMode.DESIGN} metricData={metricData} />
