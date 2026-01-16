@@ -11,12 +11,67 @@ const CreateUserSchema = z.object({
   tenantId: z.string().min(1),
 });
 
+// Synthetic users for demo mode
+const syntheticUsers = [
+  {
+    id: 'demo-user-001',
+    name: 'Todd LeBaron',
+    email: 'todd@demo.com',
+    role: 'SUPER_ADMIN',
+    tenantId: 'demo-tenant-001',
+    createdAt: new Date('2024-01-01'),
+    updatedAt: new Date(),
+    tenant: { name: 'Demo Organization', slug: 'demo' },
+  },
+  {
+    id: 'demo-user-002',
+    name: 'Sarah Chen',
+    email: 'sarah@demo.com',
+    role: 'ADMIN',
+    tenantId: 'demo-tenant-001',
+    createdAt: new Date('2024-01-15'),
+    updatedAt: new Date(),
+    tenant: { name: 'Demo Organization', slug: 'demo' },
+  },
+  {
+    id: 'demo-user-003',
+    name: 'Mike Johnson',
+    email: 'mike@demo.com',
+    role: 'MANAGER',
+    tenantId: 'demo-tenant-001',
+    createdAt: new Date('2024-02-01'),
+    updatedAt: new Date(),
+    tenant: { name: 'Demo Organization', slug: 'demo' },
+  },
+  {
+    id: 'demo-user-004',
+    name: 'Emily Davis',
+    email: 'emily@demo.com',
+    role: 'USER',
+    tenantId: 'demo-tenant-001',
+    createdAt: new Date('2024-02-15'),
+    updatedAt: new Date(),
+    tenant: { name: 'Demo Organization', slug: 'demo' },
+  },
+  {
+    id: 'demo-user-005',
+    name: 'Alex Kim',
+    email: 'alex@demo.com',
+    role: 'VIEWER',
+    tenantId: 'demo-tenant-001',
+    createdAt: new Date('2024-03-01'),
+    updatedAt: new Date(),
+    tenant: { name: 'Demo Organization', slug: 'demo' },
+  },
+];
+
 // GET /api/admin/users - List all users (with optional tenant filter)
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
     const role = (session as any)?.user?.role;
     const userTenantId = (session as any)?.user?.tenantId;
+    const bindingMode = process.env.BINDING_MODE || 'synthetic';
 
     if (!session) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -31,7 +86,38 @@ export async function GET(request: NextRequest) {
     const tenantId = searchParams.get('tenantId');
     const search = searchParams.get('search');
 
-    // Build where clause
+    // In synthetic mode, return synthetic users
+    if (bindingMode === 'synthetic') {
+      let users = [...syntheticUsers];
+
+      // Filter by tenant for ADMIN
+      if (role === 'ADMIN') {
+        users = users.filter(u => u.tenantId === userTenantId);
+      } else if (tenantId) {
+        users = users.filter(u => u.tenantId === tenantId);
+      }
+
+      // Search filter
+      if (search) {
+        const searchLower = search.toLowerCase();
+        users = users.filter(u =>
+          u.name.toLowerCase().includes(searchLower) ||
+          u.email.toLowerCase().includes(searchLower)
+        );
+      }
+
+      const stats = {
+        total: users.length,
+        byRole: users.reduce((acc, u) => {
+          acc[u.role] = (acc[u.role] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>),
+      };
+
+      return NextResponse.json({ users, stats });
+    }
+
+    // Build where clause for database mode
     const where: any = {};
 
     // ADMIN can only see their own tenant
