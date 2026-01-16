@@ -1,8 +1,7 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import { CASE_ITEMS } from '@/lib/data/synthetic/cases.data';
 import {
   generateHistoricalMetrics,
   generateVolumeForecast,
@@ -11,6 +10,7 @@ import {
   generateAlerts,
   detectBottlenecks,
   analyzeCapacity,
+  type CaseItem,
 } from '@/lib/data/synthetic/case-analytics.data';
 import {
   BarChartIcon,
@@ -26,13 +26,33 @@ import {
 } from '@radix-ui/react-icons';
 
 export default function CaseAnalyticsPage() {
+  const [cases, setCases] = useState<CaseItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCases = async () => {
+      try {
+        const response = await fetch('/api/cases');
+        if (response.ok) {
+          const data = await response.json();
+          setCases(data.cases || []);
+        }
+      } catch (err) {
+        console.error('Error loading cases:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchCases();
+  }, []);
+
   const historical = useMemo(() => generateHistoricalMetrics(), []);
   const forecast = useMemo(() => generateVolumeForecast(historical), [historical]);
-  const breaches = useMemo(() => predictBreaches(CASE_ITEMS), []);
-  const benchmarks = useMemo(() => generatePerformanceBenchmarks(CASE_ITEMS), []);
-  const alerts = useMemo(() => generateAlerts(CASE_ITEMS), []);
-  const bottlenecks = useMemo(() => detectBottlenecks(CASE_ITEMS), []);
-  const capacity = useMemo(() => analyzeCapacity(CASE_ITEMS, forecast), [forecast]);
+  const breaches = useMemo(() => predictBreaches(cases), [cases]);
+  const benchmarks = useMemo(() => generatePerformanceBenchmarks(cases), [cases]);
+  const alerts = useMemo(() => generateAlerts(cases), [cases]);
+  const bottlenecks = useMemo(() => detectBottlenecks(cases), [cases]);
+  const capacity = useMemo(() => analyzeCapacity(cases, forecast), [cases, forecast]);
 
   // Get latest metrics
   const latestMetrics = historical[historical.length - 1];

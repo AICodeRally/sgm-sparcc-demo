@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import {
   ClockIcon,
   CheckCircledIcon,
@@ -13,17 +13,37 @@ import {
   InfoCircledIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import { CASE_ITEMS } from '@/lib/data/synthetic/cases.data';
 import {
   calculateCaseSLA,
   calculateAssigneeLoad,
   suggestOptimalAssignment,
   SLA_POLICIES,
+  type CaseItem,
 } from '@/lib/data/synthetic/case-sla-config.data';
 
 export default function CaseSLAPage() {
+  const [allCases, setAllCases] = useState<CaseItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCases = async () => {
+      try {
+        const response = await fetch('/api/cases');
+        if (response.ok) {
+          const data = await response.json();
+          setAllCases(data.cases || []);
+        }
+      } catch (err) {
+        console.error('Error loading cases:', err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchCases();
+  }, []);
+
   // Calculate SLA status for all active cases
-  const activeCases = CASE_ITEMS.filter(
+  const activeCases = allCases.filter(
     c => c.status !== 'RESOLVED' && c.status !== 'CLOSED'
   );
 
@@ -54,8 +74,8 @@ export default function CaseSLAPage() {
 
   // Get unique assignees
   const assignees = useMemo(() => {
-    const names = [...new Set(CASE_ITEMS.map(c => c.assignedTo).filter(Boolean))];
-    return names.map(name => calculateAssigneeLoad(CASE_ITEMS, name!));
+    const names = [...new Set(allCases.map(c => c.assignedTo).filter(Boolean))];
+    return names.map(name => calculateAssigneeLoad(allCases, name!));
   }, []);
 
   // Sort cases by SLA urgency
@@ -73,7 +93,7 @@ export default function CaseSLAPage() {
   // Get optimization suggestion for a new urgent case
   const optimizationSuggestion = useMemo(() => {
     return suggestOptimalAssignment(
-      CASE_ITEMS,
+      allCases,
       assignees.map(a => a.assigneeName),
       'URGENT'
     );

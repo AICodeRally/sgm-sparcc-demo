@@ -5,6 +5,9 @@
 
 import { CaseItem } from './cases.data';
 
+// Re-export CaseItem type for pages that import SLA functions
+export type { CaseItem };
+
 /**
  * SLA Policy Configuration
  * Defines expected resolution times by case type and priority

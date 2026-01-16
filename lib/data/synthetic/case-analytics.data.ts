@@ -4,6 +4,9 @@
  */
 
 import { CaseItem } from './cases.data';
+
+// Re-export CaseItem type for pages that import analytics functions
+export type { CaseItem };
 import { calculateCaseSLA, calculateAssigneeLoad, SLAPolicy } from './case-sla-config.data';
 
 /**
