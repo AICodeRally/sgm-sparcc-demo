@@ -40,6 +40,12 @@ export interface GeneratedReport {
   downloadUrl?: string;
 }
 
+export interface ReportStats {
+  totalTemplates: number;
+  recentlyGenerated: number;
+  byCategory: Record<ReportCategory, number>;
+}
+
 /**
  * Report templates
  */

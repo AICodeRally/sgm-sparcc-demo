@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   FileTextIcon,
   ClockIcon,
@@ -12,14 +12,11 @@ import {
   ChevronRightIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import {
-  DOCUMENT_VERSIONS,
-  VERSION_STATS,
-  getDocumentVersions,
-  getVersion,
-  compareVersions,
+import type {
   DocumentVersion,
   VersionDiff,
+  VersionStats,
+  VersionComparison,
 } from '@/lib/data/synthetic/versions.data';
 
 export default function VersionComparePage() {
@@ -27,28 +24,50 @@ export default function VersionComparePage() {
   const [oldVersionId, setOldVersionId] = useState<string>('ver-001-v2');
   const [newVersionId, setNewVersionId] = useState<string>('ver-001-v3');
 
+  // Data from API
+  const [documentVersions, setDocumentVersions] = useState<DocumentVersion[]>([]);
+  const [versionComparisons, setVersionComparisons] = useState<VersionComparison[]>([]);
+  const [versionStats, setVersionStats] = useState<VersionStats>({ totalVersions: 0, recentUpdates: 0 });
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/versions');
+      if (response.ok) {
+        const data = await response.json();
+        setDocumentVersions(data.versions || []);
+        setVersionComparisons(data.comparisons || []);
+        setVersionStats(data.stats || { totalVersions: 0, recentUpdates: 0 });
+      }
+    };
+    fetchData();
+  }, []);
+
   // Get unique document codes
   const documentCodes = useMemo(() => {
-    const codes = new Set(DOCUMENT_VERSIONS.map(v => v.documentCode));
+    const codes = new Set(documentVersions.map(v => v.documentCode));
     return Array.from(codes).sort();
-  }, []);
+  }, [documentVersions]);
 
   // Get versions for selected document
   const versions = useMemo(() => {
-    return getDocumentVersions(selectedDocCode);
-  }, [selectedDocCode]);
+    return documentVersions
+      .filter(v => v.documentCode === selectedDocCode)
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }, [selectedDocCode, documentVersions]);
 
   // Get selected versions
-  const oldVersion = useMemo(() => getVersion(oldVersionId), [oldVersionId]);
-  const newVersion = useMemo(() => getVersion(newVersionId), [newVersionId]);
+  const oldVersion = useMemo(() => documentVersions.find(v => v.id === oldVersionId), [oldVersionId, documentVersions]);
+  const newVersion = useMemo(() => documentVersions.find(v => v.id === newVersionId), [newVersionId, documentVersions]);
 
   // Get diff
   const diffs = useMemo(() => {
     if (oldVersionId && newVersionId) {
-      return compareVersions(oldVersionId, newVersionId);
+      const comparison = versionComparisons.find(c => c.oldVersionId === oldVersionId && c.newVersionId === newVersionId);
+      return comparison?.diffs || [];
     }
     return [];
-  }, [oldVersionId, newVersionId]);
+  }, [oldVersionId, newVersionId, versionComparisons]);
 
   // Get change type color
   const getChangeColor = (type: string) => {
@@ -115,11 +134,11 @@ export default function VersionComparePage() {
               </div>
             <div className="flex items-center gap-4 text-sm">
               <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-primary)]">{VERSION_STATS.totalVersions}</span>
+                <span className="font-semibold text-[color:var(--color-primary)]">{versionStats.totalVersions}</span>
                 <span className="text-[color:var(--color-primary)] ml-1">versions</span>
               </div>
               <div className="bg-[color:var(--color-success-bg)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-success)]">{VERSION_STATS.recentUpdates}</span>
+                <span className="font-semibold text-[color:var(--color-success)]">{versionStats.recentUpdates}</span>
                 <span className="text-[color:var(--color-success)] ml-1">recent</span>
               </div>
             </div>
@@ -141,7 +160,9 @@ export default function VersionComparePage() {
                   value={selectedDocCode}
                   onChange={(e) => {
                     setSelectedDocCode(e.target.value);
-                    const newVersions = getDocumentVersions(e.target.value);
+                    const newVersions = documentVersions
+                      .filter(v => v.documentCode === e.target.value)
+                      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
                     if (newVersions.length >= 2) {
                       setNewVersionId(newVersions[0].id);
                       setOldVersionId(newVersions[1].id);

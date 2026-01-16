@@ -30,6 +30,17 @@ export interface DocumentNode {
   outgoingLinks: number;
 }
 
+export interface LinkTypeInfo {
+  name: string;
+  description: string;
+  color: string;
+}
+
+export interface GraphStats {
+  totalDocuments: number;
+  totalLinks: number;
+}
+
 /**
  * Document relationship links
  */

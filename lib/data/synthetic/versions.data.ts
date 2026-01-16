@@ -40,6 +40,17 @@ export interface Change {
   context?: string;
 }
 
+export interface VersionStats {
+  totalVersions: number;
+  recentUpdates: number;
+}
+
+export interface VersionComparison {
+  oldVersionId: string;
+  newVersionId: string;
+  diffs: VersionDiff[];
+}
+
 /**
  * Sample document versions
  */

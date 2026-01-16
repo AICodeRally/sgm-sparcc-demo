@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   BellIcon,
   CheckCircledIcon,
@@ -16,14 +16,11 @@ import {
   ReaderIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import {
-  NOTIFICATIONS,
-  NOTIFICATION_TYPE_INFO,
-  NOTIFICATION_STATS,
-  getUnreadNotifications,
-  getActionRequiredNotifications,
+import type {
   Notification,
   NotificationType,
+  NotificationTypeInfo,
+  NotificationStats,
 } from '@/lib/data/synthetic/notifications.data';
 
 export default function NotificationsPage() {
@@ -33,9 +30,28 @@ export default function NotificationsPage() {
   const [showOnlyUnread, setShowOnlyUnread] = useState(false);
   const [showOnlyActionRequired, setShowOnlyActionRequired] = useState(false);
 
+  // Data from API
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [notificationStats, setNotificationStats] = useState<NotificationStats>({ total: 0, unread: 0, actionRequired: 0, byType: {} });
+  const [notificationTypeInfo, setNotificationTypeInfo] = useState<Record<NotificationType, NotificationTypeInfo>>({} as Record<NotificationType, NotificationTypeInfo>);
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/notifications');
+      if (response.ok) {
+        const data = await response.json();
+        setNotifications(data.notifications || []);
+        setNotificationStats(data.stats || { total: 0, unread: 0, actionRequired: 0, byType: {} });
+        setNotificationTypeInfo(data.preferences?.typeInfo || data.typeInfo || {});
+      }
+    };
+    fetchData();
+  }, []);
+
   // Filter notifications
   const filteredNotifications = useMemo(() => {
-    let filtered = NOTIFICATIONS.filter(n => !n.isArchived);
+    let filtered = notifications.filter(n => !n.isArchived);
 
     if (filterType !== 'all') {
       filtered = filtered.filter(n => n.type === filterType);
@@ -151,11 +167,11 @@ export default function NotificationsPage() {
             <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-sm">
               <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-primary)]">{NOTIFICATION_STATS.unread}</span>
+                <span className="font-semibold text-[color:var(--color-primary)]">{notificationStats.unread}</span>
                 <span className="text-[color:var(--color-primary)] ml-1">unread</span>
               </div>
               <div className="bg-[color:var(--color-error-bg)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-error)]">{NOTIFICATION_STATS.actionRequired}</span>
+                <span className="font-semibold text-[color:var(--color-error)]">{notificationStats.actionRequired}</span>
                 <span className="text-[color:var(--color-error)] ml-1">action required</span>
               </div>
             </div>
@@ -183,7 +199,7 @@ export default function NotificationsPage() {
                   }`}
                 >
                   <EnvelopeClosedIcon className="w-4 h-4" />
-                  Unread ({NOTIFICATION_STATS.unread})
+                  Unread ({notificationStats.unread})
                 </button>
                 <button
                   onClick={() => {
@@ -197,7 +213,7 @@ export default function NotificationsPage() {
                   }`}
                 >
                   <ExclamationTriangleIcon className="w-4 h-4" />
-                  Action Required ({NOTIFICATION_STATS.actionRequired})
+                  Action Required ({notificationStats.actionRequired})
                 </button>
               </div>
 
@@ -213,8 +229,8 @@ export default function NotificationsPage() {
                 >
                   All Types
                 </button>
-                {Object.entries(NOTIFICATION_TYPE_INFO).map(([key, info]) => {
-                  const count = NOTIFICATIONS.filter(n => n.type === key && !n.isArchived).length;
+                {Object.entries(notificationTypeInfo).map(([key, info]) => {
+                  const count = notifications.filter(n => n.type === key && !n.isArchived).length;
                   if (count === 0) return null;
                   return (
                     <button
@@ -266,7 +282,7 @@ export default function NotificationsPage() {
                   <div className="space-y-1">
                     {notifications.map(notification => {
                       const Icon = getNotificationIcon(notification.type);
-                      const typeInfo = NOTIFICATION_TYPE_INFO[notification.type];
+                      const typeInfo = notificationTypeInfo[notification.type];
                       const isSelected = selectedNotification?.id === notification.id;
 
                       return (
@@ -391,9 +407,9 @@ export default function NotificationsPage() {
               <div className="flex items-center gap-2 mb-4">
                 <span
                   className="inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium text-white"
-                  style={{ backgroundColor: NOTIFICATION_TYPE_INFO[selectedNotification.type].color }}
+                  style={{ backgroundColor: notificationTypeInfo[selectedNotification.type].color }}
                 >
-                  {NOTIFICATION_TYPE_INFO[selectedNotification.type].name}
+                  {notificationTypeInfo[selectedNotification.type].name}
                 </span>
                 <span className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium border ${getPriorityColor(selectedNotification.priority)}`}>
                   {selectedNotification.priority}

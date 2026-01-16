@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Link2Icon,
   FileTextIcon,
@@ -10,16 +10,12 @@ import {
   DotFilledIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import {
-  DOCUMENT_NODES,
-  DOCUMENT_LINKS,
-  LINK_TYPE_INFO,
-  GRAPH_STATS,
-  getDocumentLinks,
-  getRelatedDocuments,
+import type {
   DocumentNode,
   DocumentLink,
   LinkType,
+  LinkTypeInfo,
+  GraphStats,
 } from '@/lib/data/synthetic/document-links.data';
 
 export default function DocumentLinksPage() {
@@ -27,17 +23,53 @@ export default function DocumentLinksPage() {
   const [filterLinkType, setFilterLinkType] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Data from API
+  const [documentNodes, setDocumentNodes] = useState<DocumentNode[]>([]);
+  const [documentLinks, setDocumentLinks] = useState<DocumentLink[]>([]);
+  const [linkTypeInfo, setLinkTypeInfo] = useState<Record<LinkType, LinkTypeInfo>>({} as Record<LinkType, LinkTypeInfo>);
+  const [graphStats, setGraphStats] = useState<GraphStats>({ totalDocuments: 0, totalLinks: 0 });
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/links');
+      if (response.ok) {
+        const data = await response.json();
+        setDocumentNodes(data.nodes || []);
+        setDocumentLinks(data.links || []);
+        setLinkTypeInfo(data.linkTypes || {});
+        setGraphStats(data.stats || { totalDocuments: 0, totalLinks: 0 });
+      }
+    };
+    fetchData();
+  }, []);
+
   // Filter documents
   const filteredNodes = searchQuery
-    ? DOCUMENT_NODES.filter(node =>
+    ? documentNodes.filter(node =>
         node.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         node.documentCode.toLowerCase().includes(searchQuery.toLowerCase())
       )
-    : DOCUMENT_NODES;
+    : documentNodes;
 
   // Get links for selected node
-  const selectedNodeLinks = selectedNode ? getDocumentLinks(selectedNode.documentCode) : [];
-  const relatedDocs = selectedNode ? getRelatedDocuments(selectedNode.documentCode) : [];
+  const selectedNodeLinks = useMemo(() => {
+    if (!selectedNode) return [];
+    return documentLinks.filter(
+      l => l.sourceDocCode === selectedNode.documentCode || l.targetDocCode === selectedNode.documentCode
+    );
+  }, [selectedNode, documentLinks]);
+
+  // Get related documents
+  const relatedDocs = useMemo(() => {
+    if (!selectedNode) return [];
+    const relatedCodes = new Set<string>();
+    documentLinks.forEach(link => {
+      if (link.sourceDocCode === selectedNode.documentCode) relatedCodes.add(link.targetDocCode);
+      if (link.targetDocCode === selectedNode.documentCode) relatedCodes.add(link.sourceDocCode);
+    });
+    return documentNodes.filter(n => relatedCodes.has(n.documentCode));
+  }, [selectedNode, documentLinks, documentNodes]);
 
   // Filter links by type
   const filteredLinks = filterLinkType === 'all'
@@ -73,11 +105,11 @@ export default function DocumentLinksPage() {
             <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-sm">
               <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-primary)]">{GRAPH_STATS.totalDocuments}</span>
+                <span className="font-semibold text-[color:var(--color-primary)]">{graphStats.totalDocuments}</span>
                 <span className="text-[color:var(--color-primary)] ml-1">documents</span>
               </div>
               <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-primary)]">{GRAPH_STATS.totalLinks}</span>
+                <span className="font-semibold text-[color:var(--color-primary)]">{graphStats.totalLinks}</span>
                 <span className="text-[color:var(--color-primary)] ml-1">links</span>
               </div>
             </div>
@@ -191,7 +223,7 @@ export default function DocumentLinksPage() {
                 >
                   All Links ({selectedNodeLinks.length})
                 </button>
-                {Object.entries(LINK_TYPE_INFO).map(([key, info]) => {
+                {Object.entries(linkTypeInfo).map(([key, info]) => {
                   const count = selectedNodeLinks.filter(l => l.linkType === key).length;
                   if (count === 0) return null;
                   return (
@@ -222,10 +254,10 @@ export default function DocumentLinksPage() {
                   </div>
                 ) : (
                   filteredLinks.map(link => {
-                    const linkInfo = LINK_TYPE_INFO[link.linkType];
+                    const linkInfo = linkTypeInfo[link.linkType];
                     const isOutgoing = link.sourceDocCode === selectedNode.documentCode;
                     const otherDocCode = isOutgoing ? link.targetDocCode : link.sourceDocCode;
-                    const otherDoc = DOCUMENT_NODES.find(n => n.documentCode === otherDocCode);
+                    const otherDoc = documentNodes.find(n => n.documentCode === otherDocCode);
 
                     return (
                       <div
@@ -295,7 +327,7 @@ export default function DocumentLinksPage() {
                 <Link2Icon className="w-16 h-16 text-[color:var(--color-accent)] mx-auto mb-4" />
                 <p className="text-[color:var(--color-muted)] text-lg mb-2">Select a document to explore links</p>
                 <p className="text-[color:var(--color-muted)] text-sm">
-                  {GRAPH_STATS.totalDocuments} documents • {GRAPH_STATS.totalLinks} relationships
+                  {graphStats.totalDocuments} documents • {graphStats.totalLinks} relationships
                 </p>
               </div>
             </div>

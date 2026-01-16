@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   CalendarIcon,
   ChevronLeftIcon,
@@ -12,14 +12,11 @@ import {
   FileTextIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import {
-  CALENDAR_EVENTS,
-  EVENT_TYPE_INFO,
-  CALENDAR_STATS,
-  getEventsForDate,
-  getEventsForMonth,
+import type {
   CalendarEvent,
   EventType,
+  EventTypeInfo,
+  CalendarStats,
 } from '@/lib/data/synthetic/calendar.data';
 
 export default function CalendarPage() {
@@ -27,11 +24,35 @@ export default function CalendarPage() {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [filterEventType, setFilterEventType] = useState<string>('all');
 
+  // Data from API
+  const [calendarEvents, setCalendarEvents] = useState<CalendarEvent[]>([]);
+  const [eventTypeInfo, setEventTypeInfo] = useState<Record<EventType, EventTypeInfo>>({} as Record<EventType, EventTypeInfo>);
+  const [calendarStats, setCalendarStats] = useState<CalendarStats>({ upcomingEvents: 0, criticalEvents: 0 });
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/calendar');
+      if (response.ok) {
+        const data = await response.json();
+        setCalendarEvents(data.events || []);
+        setEventTypeInfo(data.eventTypes || {});
+        setCalendarStats(data.stats || { upcomingEvents: 0, criticalEvents: 0 });
+      }
+    };
+    fetchData();
+  }, []);
+
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
 
   // Get events for current month
-  const monthEvents = useMemo(() => getEventsForMonth(year, month + 1), [year, month]);
+  const monthEvents = useMemo(() => {
+    return calendarEvents.filter(event => {
+      const eventDate = new Date(event.date);
+      return eventDate.getFullYear() === year && eventDate.getMonth() === month;
+    });
+  }, [year, month, calendarEvents]);
 
   // Filter events by type
   const filteredEvents = useMemo(() => {
@@ -40,7 +61,10 @@ export default function CalendarPage() {
   }, [monthEvents, filterEventType]);
 
   // Get events for selected date
-  const selectedDateEvents = selectedDate ? getEventsForDate(selectedDate) : [];
+  const selectedDateEvents = useMemo(() => {
+    if (!selectedDate) return [];
+    return calendarEvents.filter(e => e.date === selectedDate);
+  }, [selectedDate, calendarEvents]);
 
   // Calendar helpers
   const monthNames = [
@@ -63,12 +87,12 @@ export default function CalendarPage() {
     // Days of month
     for (let day = 1; day <= daysInMonth; day++) {
       const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-      const dayEvents = getEventsForDate(dateStr);
+      const dayEvents = calendarEvents.filter(e => e.date === dateStr);
       days.push({ day, dateStr, events: dayEvents });
     }
 
     return days;
-  }, [year, month, daysInMonth, firstDayOfMonth]);
+  }, [year, month, daysInMonth, firstDayOfMonth, calendarEvents]);
 
   // Navigation
   const goToPreviousMonth = () => {
@@ -88,7 +112,7 @@ export default function CalendarPage() {
 
   // Get event type color
   const getEventColor = (type: EventType) => {
-    return EVENT_TYPE_INFO[type]?.color || '#6b7280';
+    return eventTypeInfo[type]?.color || '#6b7280';
   };
 
   // Get priority badge color
@@ -120,11 +144,11 @@ export default function CalendarPage() {
             <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-sm">
               <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-primary)]">{CALENDAR_STATS.upcomingEvents}</span>
+                <span className="font-semibold text-[color:var(--color-primary)]">{calendarStats.upcomingEvents}</span>
                 <span className="text-[color:var(--color-primary)] ml-1">upcoming</span>
               </div>
               <div className="bg-[color:var(--color-error-bg)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-error)]">{CALENDAR_STATS.criticalEvents}</span>
+                <span className="font-semibold text-[color:var(--color-error)]">{calendarStats.criticalEvents}</span>
                 <span className="text-[color:var(--color-error)] ml-1">critical</span>
               </div>
             </div>
@@ -176,7 +200,7 @@ export default function CalendarPage() {
               >
                 All Events ({monthEvents.length})
               </button>
-              {Object.entries(EVENT_TYPE_INFO).map(([key, info]) => {
+              {Object.entries(eventTypeInfo).map(([key, info]) => {
                 const count = monthEvents.filter(e => e.type === key).length;
                 if (count === 0) return null;
                 return (
@@ -268,7 +292,7 @@ export default function CalendarPage() {
               Event Types
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {Object.entries(EVENT_TYPE_INFO).map(([key, info]) => (
+              {Object.entries(eventTypeInfo).map(([key, info]) => (
                 <div key={key} className="flex items-center gap-2">
                   <div
                     className="w-3 h-3 rounded"
@@ -304,7 +328,7 @@ export default function CalendarPage() {
 
               <div className="space-y-4">
                 {selectedDateEvents.map(event => {
-                  const eventInfo = EVENT_TYPE_INFO[event.type];
+                  const eventInfo = eventTypeInfo[event.type];
                   return (
                     <div
                       key={event.id}

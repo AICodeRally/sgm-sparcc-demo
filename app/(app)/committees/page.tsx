@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   AvatarIcon,
@@ -14,16 +14,36 @@ import {
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
-import { SGCC_COMMITTEE, CRB_COMMITTEE, CRB_DECISION_OPTIONS, type Committee } from '@/lib/data/synthetic/committees.data';
+import type { Committee, CRBDecisionOption } from '@/lib/data/synthetic/committees.data';
 import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import { DemoWarningBanner } from '@/components/demo/DemoToggle';
 import { ModeContextBadge } from '@/components/modes/ModeBadge';
 
-const ALL_COMMITTEES = [SGCC_COMMITTEE, CRB_COMMITTEE];
-
 export default function CommitteesPage() {
-  const [selectedCommittee, setSelectedCommittee] = useState<Committee | null>(SGCC_COMMITTEE);
+  const [selectedCommittee, setSelectedCommittee] = useState<Committee | null>(null);
   const [activeTab, setActiveTab] = useState<'members' | 'authority' | 'decisions'>('members');
+
+  // Data from API
+  const [committees, setCommittees] = useState<Committee[]>([]);
+  const [crbDecisionOptions, setCrbDecisionOptions] = useState<CRBDecisionOption[]>([]);
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/committees');
+      if (response.ok) {
+        const data = await response.json();
+        const comms = data.committees || [];
+        setCommittees(comms);
+        setCrbDecisionOptions(data.decisionOptions || []);
+        // Select first committee by default
+        if (comms.length > 0 && !selectedCommittee) {
+          setSelectedCommittee(comms[0]);
+        }
+      }
+    };
+    fetchData();
+  }, []);
 
   // Left Nav - Committee list
   const leftNav = (
@@ -33,7 +53,7 @@ export default function CommitteesPage() {
           Committees
         </h2>
         <div className="space-y-1">
-          {ALL_COMMITTEES.map(committee => (
+          {committees.map(committee => (
             <button
               key={committee.id}
               onClick={() => setSelectedCommittee(committee)}
@@ -83,10 +103,10 @@ export default function CommitteesPage() {
   const centerContent = selectedCommittee ? (
     <div className="flex flex-col h-full">
       {/* Demo Warning Banner */}
-      {ALL_COMMITTEES.some(c => c.dataType === 'demo') && (
+      {committees.some(c => c.dataType === 'demo') && (
         <div className="px-4 pt-4">
           <DemoWarningBanner
-            demoCount={ALL_COMMITTEES.filter(c => c.dataType === 'demo').length}
+            demoCount={committees.filter(c => c.dataType === 'demo').length}
             onViewDemoLibrary={() => window.location.href = '/demo-library'}
           />
         </div>
@@ -274,7 +294,7 @@ export default function CommitteesPage() {
                   6 decision options for deals &gt;$1M ARR, &gt;$100K commission, or &gt;50% quarterly quota
                 </p>
                 <div className="space-y-3">
-                  {CRB_DECISION_OPTIONS.map((option, idx) => (
+                  {crbDecisionOptions.map((option, idx) => (
                     <div
                       key={option.id}
                       className="bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-4"

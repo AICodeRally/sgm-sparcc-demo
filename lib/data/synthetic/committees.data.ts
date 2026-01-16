@@ -33,6 +33,14 @@ export interface Committee {
   demoMetadata?: DemoMetadata;
 }
 
+export interface CRBDecisionOption {
+  id: string;
+  name: string;
+  description: string;
+  rationale: string;
+  example: string;
+}
+
 /**
  * Sales Compensation Governance Committee (SGCC)
  * 7 voting members - GC-001 Charter

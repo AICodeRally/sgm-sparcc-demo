@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MagnifyingGlassIcon,
   ClockIcon,
@@ -20,7 +20,7 @@ import {
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
-import { AUDIT_EVENTS, AUDIT_STATS, EVENT_TYPE_INFO, AuditEvent } from '@/lib/data/synthetic/audit.data';
+import type { AuditEvent, AuditStats } from '@/lib/data/synthetic/audit.data';
 
 export default function AuditPage() {
   const [selectedEvent, setSelectedEvent] = useState<AuditEvent | null>(null);
@@ -29,8 +29,25 @@ export default function AuditPage() {
   const [filterTimeRange, setFilterTimeRange] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
+  // Data from API
+  const [auditEvents, setAuditEvents] = useState<AuditEvent[]>([]);
+  const [auditStats, setAuditStats] = useState<AuditStats>({ totalEvents: 0, last24Hours: 0, last7Days: 0, byCategory: {}, byImpact: {} });
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/audit');
+      if (response.ok) {
+        const data = await response.json();
+        setAuditEvents(data.events || []);
+        setAuditStats(data.stats || { totalEvents: 0, last24Hours: 0, last7Days: 0, byCategory: {}, byImpact: {} });
+      }
+    };
+    fetchData();
+  }, []);
+
   // Filter events
-  const filteredEvents = AUDIT_EVENTS.filter(e => {
+  const filteredEvents = auditEvents.filter(e => {
     if (filterCategory !== 'all' && e.category !== filterCategory) return false;
     if (filterImpact !== 'all' && e.impactLevel !== filterImpact) return false;
 
@@ -172,19 +189,19 @@ export default function AuditPage() {
           <div className="bg-[color:var(--color-success-bg)] rounded-md p-3">
             <div className="flex items-center justify-between">
               <span className="text-xs text-[color:var(--color-success)] font-medium">Total Events</span>
-              <span className="text-lg font-bold text-[color:var(--color-success)]">{AUDIT_STATS.totalEvents}</span>
+              <span className="text-lg font-bold text-[color:var(--color-success)]">{auditStats.totalEvents}</span>
             </div>
           </div>
           <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3">
             <div className="flex items-center justify-between">
               <span className="text-xs text-[color:var(--color-primary)] font-medium">Last 24h</span>
-              <span className="text-lg font-bold text-[color:var(--color-primary)]">{AUDIT_STATS.last24Hours}</span>
+              <span className="text-lg font-bold text-[color:var(--color-primary)]">{auditStats.last24Hours}</span>
             </div>
           </div>
           <div className="bg-[color:var(--color-surface-alt)] rounded-md p-3">
             <div className="flex items-center justify-between">
               <span className="text-xs text-[color:var(--color-primary)] font-medium">Last 7d</span>
-              <span className="text-lg font-bold text-[color:var(--color-primary)]">{AUDIT_STATS.last7Days}</span>
+              <span className="text-lg font-bold text-[color:var(--color-primary)]">{auditStats.last7Days}</span>
             </div>
           </div>
         </div>
@@ -216,7 +233,7 @@ export default function AuditPage() {
             }`}
           >
             <ClockIcon className="w-4 h-4" />
-            Last 24 Hours ({AUDIT_STATS.last24Hours})
+            Last 24 Hours ({auditStats.last24Hours})
           </button>
           <button
             onClick={() => setFilterTimeRange('7d')}
@@ -227,7 +244,7 @@ export default function AuditPage() {
             }`}
           >
             <ClockIcon className="w-4 h-4" />
-            Last 7 Days ({AUDIT_STATS.last7Days})
+            Last 7 Days ({auditStats.last7Days})
           </button>
           <button
             onClick={() => setFilterTimeRange('30d')}
@@ -260,7 +277,7 @@ export default function AuditPage() {
             <LayersIcon className="w-4 h-4" />
             All Categories
           </button>
-          {Object.entries(AUDIT_STATS.byCategory).map(([key, count]) => {
+          {Object.entries(auditStats.byCategory).map(([key, count]) => {
             const Icon = getCategoryIcon(key as AuditEvent['category']);
             return (
               <button
@@ -297,7 +314,7 @@ export default function AuditPage() {
             <BarChartIcon className="w-4 h-4" />
             All Levels
           </button>
-          {Object.entries(AUDIT_STATS.byImpact).map(([key, count]) => {
+          {Object.entries(auditStats.byImpact).map(([key, count]) => {
             const Icon = getImpactIcon(key as AuditEvent['impactLevel']);
             return (
               <button

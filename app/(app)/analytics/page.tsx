@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BarChartIcon,
   ArrowUpIcon,
@@ -15,20 +15,37 @@ import {
   LayersIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import {
-  GOVERNANCE_KPIS,
-  APPROVAL_VELOCITY_TREND,
-  CASE_VOLUME_BY_TYPE,
-  SLA_COMPLIANCE_BY_MODULE,
-  RISK_DISTRIBUTION,
-  POLICY_COVERAGE_HEALTH,
-  APPROVAL_DECISIONS,
-  TOP_PERFORMERS,
-  RECENT_HIGHLIGHTS,
-  MetricData,
-} from '@/lib/data/synthetic/analytics.data';
+import type { MetricData } from '@/lib/data/synthetic/analytics.data';
 
 export default function AnalyticsPage() {
+  // Data from API
+  const [governanceKpis, setGovernanceKpis] = useState<MetricData[]>([]);
+  const [approvalVelocityTrend, setApprovalVelocityTrend] = useState<Array<{ label: string; value: number }>>([]);
+  const [caseVolumeByType, setCaseVolumeByType] = useState<Array<{ category: string; count: number; percentage: number; color: string }>>([]);
+  const [slaComplianceByModule, setSlaComplianceByModule] = useState<Array<{ category: string; percentage: number }>>([]);
+  const [riskDistribution, setRiskDistribution] = useState<Array<{ category: string; count: number; percentage: number; color: string }>>([]);
+  const [policyCoverageHealth, setPolicyCoverageHealth] = useState<{ coveragePercentage: number; fullCoverage: number; gaps: number; total: number }>({ coveragePercentage: 0, fullCoverage: 0, gaps: 0, total: 0 });
+  const [topPerformers, setTopPerformers] = useState<Array<{ name: string; role: string; decisions: number; avgDays: number }>>([]);
+  const [recentHighlights, setRecentHighlights] = useState<Array<{ id: string; title: string; description: string; type: string; date: string }>>([]);
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/analytics');
+      if (response.ok) {
+        const data = await response.json();
+        setGovernanceKpis(data.governanceKpis || []);
+        setApprovalVelocityTrend(data.approvalVelocityTrend || []);
+        setCaseVolumeByType(data.caseVolumeByType || []);
+        setSlaComplianceByModule(data.slaComplianceByModule || []);
+        setRiskDistribution(data.riskDistribution || []);
+        setPolicyCoverageHealth(data.policyCoverageHealth || { coveragePercentage: 0, fullCoverage: 0, gaps: 0, total: 0 });
+        setTopPerformers(data.topPerformers || []);
+        setRecentHighlights(data.recentHighlights || []);
+      }
+    };
+    fetchData();
+  }, []);
   // Get trend icon
   const getTrendIcon = (trend: MetricData['trend']) => {
     switch (trend) {
@@ -96,7 +113,7 @@ export default function AnalyticsPage() {
             Key Performance Indicators
           </h2>
           <div className="grid grid-cols-4 gap-6">
-            {GOVERNANCE_KPIS.map((kpi, index) => {
+            {governanceKpis.map((kpi, index) => {
               const TrendIcon = getTrendIcon(kpi.trend);
               return (
                 <div
@@ -137,8 +154,8 @@ export default function AnalyticsPage() {
               Approval Volume (Last 6 Months)
             </h3>
             <div className="h-48 flex items-end justify-between gap-2">
-              {APPROVAL_VELOCITY_TREND.map((point, index) => {
-                const maxValue = Math.max(...APPROVAL_VELOCITY_TREND.map(p => p.value));
+              {approvalVelocityTrend.map((point, index) => {
+                const maxValue = Math.max(...approvalVelocityTrend.map(p => p.value));
                 const heightPercent = (point.value / maxValue) * 100;
                 return (
                   <div key={index} className="flex-1 flex flex-col items-center gap-2">
@@ -162,7 +179,7 @@ export default function AnalyticsPage() {
               Case Volume by Type
             </h3>
             <div className="space-y-3">
-              {CASE_VOLUME_BY_TYPE.map((item, index) => (
+              {caseVolumeByType.map((item, index) => (
                 <div key={index}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium text-[color:var(--color-foreground)]">{item.category}</span>
@@ -189,7 +206,7 @@ export default function AnalyticsPage() {
               SLA Compliance by Module
             </h3>
             <div className="space-y-3">
-              {SLA_COMPLIANCE_BY_MODULE.map((item, index) => (
+              {slaComplianceByModule.map((item, index) => (
                 <div key={index}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium text-[color:var(--color-foreground)]">{item.category}</span>
@@ -216,7 +233,7 @@ export default function AnalyticsPage() {
               Risk Distribution
             </h3>
             <div className="space-y-3">
-              {RISK_DISTRIBUTION.map((item, index) => (
+              {riskDistribution.map((item, index) => (
                 <div key={index}>
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-sm font-medium text-[color:var(--color-foreground)]">{item.category}</span>
@@ -248,22 +265,22 @@ export default function AnalyticsPage() {
             <div className="text-center mb-4">
               <div className="inline-flex items-center justify-center w-32 h-32 rounded-full bg-[color:var(--color-surface-alt)] mb-2">
                 <span className="text-4xl font-bold bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] bg-clip-text text-transparent">
-                  {POLICY_COVERAGE_HEALTH.coveragePercentage}%
+                  {policyCoverageHealth.coveragePercentage}%
                 </span>
               </div>
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-[color:var(--color-muted)]">Full Coverage</span>
-                <span className="font-bold text-[color:var(--color-success)]">{POLICY_COVERAGE_HEALTH.fullCoverage}</span>
+                <span className="font-bold text-[color:var(--color-success)]">{policyCoverageHealth.fullCoverage}</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-[color:var(--color-muted)]">Coverage Gaps</span>
-                <span className="font-bold text-[color:var(--color-error)]">{POLICY_COVERAGE_HEALTH.gaps}</span>
+                <span className="font-bold text-[color:var(--color-error)]">{policyCoverageHealth.gaps}</span>
               </div>
               <div className="flex items-center justify-between text-sm">
                 <span className="text-[color:var(--color-muted)]">Total Policies</span>
-                <span className="font-bold text-[color:var(--color-foreground)]">{POLICY_COVERAGE_HEALTH.total}</span>
+                <span className="font-bold text-[color:var(--color-foreground)]">{policyCoverageHealth.total}</span>
               </div>
             </div>
           </div>
@@ -275,7 +292,7 @@ export default function AnalyticsPage() {
               Top Performers (Most Active Reviewers)
             </h3>
             <div className="space-y-3">
-              {TOP_PERFORMERS.map((performer, index) => (
+              {topPerformers.map((performer, index) => (
                 <div
                   key={index}
                   className="flex items-center justify-between p-3 bg-[color:var(--color-surface-alt)] rounded-md hover:bg-[color:var(--color-surface-alt)] transition-colors"
@@ -311,7 +328,7 @@ export default function AnalyticsPage() {
             Recent Highlights
           </h3>
           <div className="grid grid-cols-2 gap-4">
-            {RECENT_HIGHLIGHTS.map((highlight) => (
+            {recentHighlights.map((highlight) => (
               <div
                 key={highlight.id}
                 className={`p-4 rounded-md border-l-4 ${

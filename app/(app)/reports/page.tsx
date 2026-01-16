@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   DownloadIcon,
   FileTextIcon,
@@ -14,15 +14,12 @@ import {
   ReaderIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
-import {
-  REPORT_TEMPLATES,
-  GENERATED_REPORTS,
-  REPORT_STATS,
-  getReportsByCategory,
+import type {
   ReportTemplate,
   GeneratedReport,
   ReportFormat,
   ReportCategory,
+  ReportStats,
 } from '@/lib/data/synthetic/reports.data';
 
 export default function ReportsPage() {
@@ -30,10 +27,29 @@ export default function ReportsPage() {
   const [selectedFormat, setSelectedFormat] = useState<ReportFormat>('PDF');
   const [filterCategory, setFilterCategory] = useState<string>('all');
 
+  // Data from API
+  const [reportTemplates, setReportTemplates] = useState<ReportTemplate[]>([]);
+  const [generatedReports, setGeneratedReports] = useState<GeneratedReport[]>([]);
+  const [reportStats, setReportStats] = useState<ReportStats>({ totalTemplates: 0, recentlyGenerated: 0, byCategory: { COMPLIANCE: 0, PERFORMANCE: 0, OPERATIONS: 0, AUDIT: 0 } });
+
+  // Fetch data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/reports');
+      if (response.ok) {
+        const data = await response.json();
+        setReportTemplates(data.reports || []);
+        setGeneratedReports(data.generatedReports || []);
+        setReportStats(data.stats || { totalTemplates: 0, recentlyGenerated: 0, byCategory: {} });
+      }
+    };
+    fetchData();
+  }, []);
+
   // Filter templates by category
   const filteredTemplates = filterCategory === 'all'
-    ? REPORT_TEMPLATES
-    : REPORT_TEMPLATES.filter(t => t.category === filterCategory);
+    ? reportTemplates
+    : reportTemplates.filter(t => t.category === filterCategory);
 
   // Get icon for report
   const getReportIcon = (icon: string) => {
@@ -106,11 +122,11 @@ export default function ReportsPage() {
             <div className="flex items-center justify-between">
             <div className="flex items-center gap-4 text-sm">
               <div className="bg-[color:var(--color-surface-alt)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-primary)]">{REPORT_STATS.totalTemplates}</span>
+                <span className="font-semibold text-[color:var(--color-primary)]">{reportStats.totalTemplates}</span>
                 <span className="text-[color:var(--color-primary)] ml-1">templates</span>
               </div>
               <div className="bg-[color:var(--color-success-bg)] px-3 py-1 rounded-full">
-                <span className="font-semibold text-[color:var(--color-success)]">{REPORT_STATS.recentlyGenerated}</span>
+                <span className="font-semibold text-[color:var(--color-success)]">{reportStats.recentlyGenerated}</span>
                 <span className="text-[color:var(--color-success)] ml-1">this week</span>
               </div>
             </div>
@@ -131,7 +147,7 @@ export default function ReportsPage() {
                   : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
-              All Templates ({REPORT_TEMPLATES.length})
+              All Templates ({reportTemplates.length})
             </button>
             <button
               onClick={() => setFilterCategory('COMPLIANCE')}
@@ -141,7 +157,7 @@ export default function ReportsPage() {
                   : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
-              Compliance ({REPORT_STATS.byCategory.COMPLIANCE})
+              Compliance ({reportStats.byCategory.COMPLIANCE})
             </button>
             <button
               onClick={() => setFilterCategory('PERFORMANCE')}
@@ -151,7 +167,7 @@ export default function ReportsPage() {
                   : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
-              Performance ({REPORT_STATS.byCategory.PERFORMANCE})
+              Performance ({reportStats.byCategory.PERFORMANCE})
             </button>
             <button
               onClick={() => setFilterCategory('OPERATIONS')}
@@ -161,7 +177,7 @@ export default function ReportsPage() {
                   : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
-              Operations ({REPORT_STATS.byCategory.OPERATIONS})
+              Operations ({reportStats.byCategory.OPERATIONS})
             </button>
             <button
               onClick={() => setFilterCategory('AUDIT')}
@@ -171,7 +187,7 @@ export default function ReportsPage() {
                   : 'bg-[color:var(--color-surface)] border border-[color:var(--color-border)] text-[color:var(--color-foreground)] hover:bg-[color:var(--color-surface-alt)]'
               }`}
             >
-              Audit ({REPORT_STATS.byCategory.AUDIT})
+              Audit ({reportStats.byCategory.AUDIT})
             </button>
           </div>
 
@@ -244,7 +260,7 @@ export default function ReportsPage() {
             </h2>
 
             <div className="space-y-2">
-              {GENERATED_REPORTS.map(report => (
+              {generatedReports.map(report => (
                 <div
                   key={report.id}
                   className="flex items-center justify-between p-3 rounded-lg bg-[color:var(--color-surface)] border border-[color:var(--color-border)] hover:shadow-md transition-all"

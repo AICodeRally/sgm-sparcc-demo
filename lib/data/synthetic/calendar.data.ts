@@ -3,6 +3,17 @@
  * Unified governance event calendar
  */
 
+export interface EventTypeInfo {
+  name: string;
+  color: string;
+  description: string;
+}
+
+export interface CalendarStats {
+  upcomingEvents: number;
+  criticalEvents: number;
+}
+
 export type EventType =
   | 'APPROVAL_DEADLINE'
   | 'COMMITTEE_MEETING'

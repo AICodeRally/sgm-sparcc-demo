@@ -3,6 +3,21 @@
  * Centralized inbox for governance actions
  */
 
+export interface NotificationTypeInfo {
+  name: string;
+  color: string;
+  icon: string;
+}
+
+export interface NotificationStats {
+  total: number;
+  unread: number;
+  actionRequired: number;
+  critical?: number;
+  high?: number;
+  byType?: Record<string, number>;
+}
+
 export type NotificationType =
   | 'APPROVAL_REQUIRED'
   | 'CASE_ASSIGNED'

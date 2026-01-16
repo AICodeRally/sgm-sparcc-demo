@@ -3,6 +3,14 @@
  * Append-only event stream for compliance and traceability
  */
 
+export interface AuditStats {
+  totalEvents: number;
+  last24Hours: number;
+  last7Days: number;
+  byCategory: Record<string, number>;
+  byImpact: Record<string, number>;
+}
+
 export interface AuditEvent {
   id: string;
   timestamp: string;
