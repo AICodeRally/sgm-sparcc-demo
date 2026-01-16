@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          DATABASE_URL: ''
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Build
+        run: npm run build
+        env:
+          DATABASE_URL: ''
+          BINDING_MODE: synthetic
+
+      - name: Start server and run smoke test
+        run: |
+          # Start the production server in background
+          npm run start &
+          SERVER_PID=$!
+
+          # Wait for server to be ready
+          echo "Waiting for server to start..."
+          for i in {1..30}; do
+            if curl -s http://localhost:4200 > /dev/null 2>&1; then
+              echo "Server is ready!"
+              break
+            fi
+            sleep 1
+          done
+
+          # Run smoke test
+          npm run smoke-test -- --url=http://localhost:4200
+          TEST_EXIT_CODE=$?
+
+          # Cleanup
+          kill $SERVER_PID 2>/dev/null || true
+
+          exit $TEST_EXIT_CODE
+        env:
+          BINDING_MODE: synthetic
+          NEXTAUTH_SECRET: ci-test-secret
+          NEXTAUTH_URL: http://localhost:4200
