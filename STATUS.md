@@ -5,7 +5,7 @@
 - **Name**: SGM (Sales Governance Manager)
 - **Type**: Standalone Next.js 14+ application
 - **Architecture**: Contracts + Ports + Bindings (3-layer clean architecture)
-- **Port**: 3003 (Summit tier standard)
+- **Port**: 4200 (SGM Summit Demo)
 - **Status**: ✅ MVP Complete
 
 ## Implementation Summary
@@ -73,24 +73,24 @@
 
 **Diagnostics:**
 ```bash
-curl http://localhost:3003/api/sgm/diagnostics
+curl http://localhost:4200/api/sgm/diagnostics
 ```
 ✅ Returns: status: ok, all providers: synthetic, data counts: 10 policies, 10 territories, 3 approvals, 12 links
 
 **Policies List:**
 ```bash
-curl "http://localhost:3003/api/sgm/policies?status=published"
+curl "http://localhost:4200/api/sgm/policies?status=published"
 ```
 ✅ Returns: 6 published policies with full metadata
 
 **Policy Detail:**
 ```bash
-curl http://localhost:3003/api/sgm/policies/pol-001
+curl http://localhost:4200/api/sgm/policies/pol-001
 ```
 ✅ Returns: policy + empty audit logs + 4 links (versioning + coverage)
 
 ### Homepage ✅
-- URL: http://localhost:3003
+- URL: http://localhost:4200
 - Status: 200 OK
 - Features: Architecture diagram, feature list, API links
 
@@ -115,7 +115,7 @@ curl http://localhost:3003/api/sgm/policies/pol-001
 - Multi-level approval workflows
 
 ### Summit Tier Standards
-- Port 3003 (matches aicoderally-stack/apps/summit)
+- Port 4200 (SGM Summit Demo)
 - Navy/Cyan color scheme
 - Radix UI icons (mandatory)
 - Glass-morphism design
@@ -210,7 +210,7 @@ sgm-summit-demo/
 - Next.js build command: `next build`
 - Output directory: `.next`
 - Environment variables: None required for synthetic mode
-- Port: 3003
+- Port: 4200
 
 ### Docker Deployment ✅
 - Node.js 18+ required
@@ -233,7 +233,7 @@ sgm-summit-demo/
 ## Success Criteria: All Met ✅
 
 1. ✅ Repository exists at ~/dev/sgm-summit-demo
-2. ✅ npm run dev starts on port 3003
+2. ✅ npm run dev starts on port 4200
 3. ✅ Diagnostics endpoint returns binding mode: synthetic
 4. ✅ All 6 providers operational
 5. ✅ Data loaded: 10 policies, 10 territories, 3 approvals, 12 links

@@ -54,7 +54,7 @@ npm run type-check
 
 ## Port
 
-Runs on port **3003** (Summit tier standard)
+Runs on port **4200** (SGM Summit Demo)
 
 ## Key Principles
 
