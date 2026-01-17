@@ -23,4 +23,5 @@ Use this page to adjust module behavior.
 Module configuration, toggles, and current status.
 
 ## Related
-/admin/tenants
+/settings
+/admin/onboard

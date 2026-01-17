@@ -24,5 +24,5 @@ Use this page to add new users, modify roles, or review user access.
 User name, email, role (SUPER_ADMIN, ADMIN, MANAGER, USER, VIEWER), tenant assignment.
 
 ## Related
-/admin/tenants
 /settings/profile
+/admin/onboard

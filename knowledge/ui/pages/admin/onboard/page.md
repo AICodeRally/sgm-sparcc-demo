@@ -25,5 +25,5 @@ Use this page when bringing a new client organization onto the platform.
 Organization name, slug, industry, contact information, initial configuration.
 
 ## Related
-/admin/tenants
-/admin/tenants/new
+/admin/users
+/settings
