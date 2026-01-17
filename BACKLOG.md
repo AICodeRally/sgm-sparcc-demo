@@ -14,7 +14,7 @@ All KB stubs are located in `knowledge/ui/pages/` with status `stub` in their fr
 
 #### Core Dashboard (7 pages)
 - [ ] `/` - Home page
-- [ ] `/dashboard` - Main dashboard
+- [x] `/dashboard` - Main dashboard ✅
 - [ ] `/pulse` - Activity pulse/dashboard
 - [ ] `/analytics` - Analytics overview
 - [ ] `/reports` - Reports
