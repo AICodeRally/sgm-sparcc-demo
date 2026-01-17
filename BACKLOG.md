@@ -73,10 +73,10 @@ All KB stubs are located in `knowledge/ui/pages/` with status `stub` in their fr
 - [ ] `/demo-library` - Demo library
 
 #### Operations (9 pages)
-- [ ] `/operate` - Operations
-- [ ] `/oversee` - Oversight
-- [ ] `/design` - Design
-- [ ] `/dispute` - Disputes
+- [x] `/operate` - Operations ✅
+- [x] `/oversee` - Oversight ✅
+- [x] `/design` - Design ✅
+- [x] `/dispute` - Disputes ✅
 - [ ] `/compliance` - Compliance
 - [ ] `/audit` - Audit
 - [ ] `/links` - Links
