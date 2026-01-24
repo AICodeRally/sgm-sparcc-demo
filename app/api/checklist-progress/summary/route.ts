@@ -1,16 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { SyntheticChecklistProgressProvider } from '@/lib/bindings/synthetic/checklist-progress.synthetic';
+import { getRegistry } from '@/lib/bindings/registry';
 
-/**
- * Singleton provider instance (shared with main route via module-level state)
- */
-let _provider: SyntheticChecklistProgressProvider | null = null;
-
-function getProvider(): SyntheticChecklistProgressProvider {
-  if (!_provider) {
-    _provider = new SyntheticChecklistProgressProvider();
-  }
-  return _provider;
+function getProvider() {
+  return getRegistry().getChecklistProgress();
 }
 
 /**

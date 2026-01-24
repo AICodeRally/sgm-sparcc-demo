@@ -1,17 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { SyntheticChecklistProgressProvider } from '@/lib/bindings/synthetic/checklist-progress.synthetic';
+import { getRegistry } from '@/lib/bindings/registry';
 import { CreateChecklistProgressSchema } from '@/lib/contracts/checklist-progress.contract';
 
-/**
- * Singleton provider instance (in-memory state persists across requests in dev)
- */
-let _provider: SyntheticChecklistProgressProvider | null = null;
-
-function getProvider(): SyntheticChecklistProgressProvider {
-  if (!_provider) {
-    _provider = new SyntheticChecklistProgressProvider();
-  }
-  return _provider;
+function getProvider() {
+  return getRegistry().getChecklistProgress();
 }
 
 /**

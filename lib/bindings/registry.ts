@@ -298,7 +298,8 @@ export class ProviderRegistry {
         throw new Error('Mapped checklist progress provider not implemented yet');
 
       case 'live':
-        throw new Error('Live checklist progress provider not implemented yet');
+        const { LiveChecklistProgressProvider } = require('@/lib/bindings/live/checklist-progress.live');
+        return new LiveChecklistProgressProvider();
 
       default:
         throw new Error(`Unknown binding mode for checklist progress: ${mode}`);

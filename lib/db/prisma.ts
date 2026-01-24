@@ -30,13 +30,8 @@ function validateSchemaParam(): boolean {
  * - Returns null if in synthetic mode (binding mode check)
  */
 export function getPrismaClient(): PrismaClient {
-  // Check if we're in synthetic mode - skip Prisma initialization
-  const bindingMode = process.env.BINDING_MODE || 'synthetic';
-  if (bindingMode === 'synthetic') {
-    throw new Error(
-      'Cannot access Prisma client in synthetic mode. Use in-memory providers instead.'
-    );
-  }
+  // Allow Prisma access when DATABASE_URL is present, even if global BINDING_MODE is synthetic.
+  // Individual providers may use live mode via per-provider overrides (e.g., BINDING_MODE_CHECKLIST_PROGRESS=live).
 
   if (!process.env.DATABASE_URL) {
     throw new Error(
