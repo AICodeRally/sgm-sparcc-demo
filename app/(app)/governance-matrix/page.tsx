@@ -226,7 +226,7 @@ export default function GovernanceMatrixPage() {
             }`}
           >
             <CheckCircledIcon className="w-4 h-4 text-[color:var(--color-success)]" />
-            Full ({stats?.fullCoverage ?? 0})
+            Full ({loading ? '—' : stats?.fullCoverage ?? 0})
           </button>
           <button
             onClick={() => setFilterCoverage('PARTIAL')}
@@ -237,7 +237,7 @@ export default function GovernanceMatrixPage() {
             }`}
           >
             <ExclamationTriangleIcon className="w-4 h-4 text-[color:var(--color-warning)]" />
-            Partial ({stats?.partialCoverage ?? 0})
+            Partial ({loading ? '—' : stats?.partialCoverage ?? 0})
           </button>
           <button
             onClick={() => setFilterCoverage('GAP')}
@@ -248,7 +248,7 @@ export default function GovernanceMatrixPage() {
             }`}
           >
             <CrossCircledIcon className="w-4 h-4 text-[color:var(--color-error)]" />
-            Gaps ({stats?.gaps ?? 0})
+            Gaps ({loading ? '—' : stats?.gaps ?? 0})
           </button>
         </div>
       </div>
@@ -377,7 +377,13 @@ export default function GovernanceMatrixPage() {
               </tr>
             </thead>
             <tbody className="bg-[color:var(--color-surface)] divide-y divide-gray-200">
-              {filteredEntries.length === 0 ? (
+              {loading ? (
+                <tr>
+                  <td colSpan={6} className="px-4 py-12 text-center text-[color:var(--color-muted)]">
+                    Loading governance matrix...
+                  </td>
+                </tr>
+              ) : filteredEntries.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="px-4 py-12 text-center text-[color:var(--color-muted)]">
                     No policies found
