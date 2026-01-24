@@ -306,6 +306,20 @@ Feb 1:     Handoff to testing
 - Error boundaries in place at app level
 - AI orbs show "service offline" gracefully
 
+**Demo Data Seeding (Task 2.4):** ✅ Complete
+- 8,061 lines of synthetic data across 23 files
+- 7 demo cases with realistic timelines and actors
+- 7 approval items across SGCC and CRB
+- Realistic personas (Sarah Chen, Lisa Park, Amanda Foster, etc.)
+- Financial impacts and SLA tracking included
+
+**Demo Script (Task 2.5):** ✅ Complete
+- Created `/docs/DEMO_WALKTHROUGH.md`
+- 15-20 minute structured demo flow
+- Covers all 4 modes + AI orbs
+- Common questions section
+- Quick reference tables
+
 ---
 
 ## References
