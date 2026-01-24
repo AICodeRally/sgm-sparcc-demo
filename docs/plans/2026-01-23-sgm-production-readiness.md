@@ -142,15 +142,15 @@ const data = await response.json();
 
 **Subtotal Priority 2:** ~2.5 days
 
-### Priority 3: Low (Nice to Have)
+### Priority 3: Low (Nice to Have) ✅ Complete
 
-| # | Task | Description | Est. Effort |
-|---|------|-------------|-------------|
-| 3.1 | Export to PDF | Gap analysis, matrices exportable | 1 day |
-| 3.2 | Print-friendly Views | Governance matrix, coverage matrix | 0.5 day |
-| 3.3 | Quick-action Dashboard | "3 pending approvals" summary | 0.5 day |
+| # | Task | Description | Status |
+|---|------|-------------|--------|
+| 3.1 | Export to PDF | Gap analysis, matrices exportable | ✅ Done |
+| 3.2 | Print-friendly Views | Governance matrix, coverage matrix | ✅ Done |
+| 3.3 | Quick-action Dashboard | "3 pending approvals" summary | ✅ Done |
 
-**Subtotal Priority 3:** ~2 days
+**Subtotal Priority 3:** ✅ Complete
 
 ---
 
@@ -333,6 +333,29 @@ Feb 1:     Handoff to testing
 - Covers all 4 modes + AI orbs
 - Common questions section
 - Quick reference tables
+
+### 2026-01-23: Priority 3 Polish Pass
+
+**Export to PDF (Task 3.1):** ✅ Complete
+- Added `window.print()` to Export Matrix buttons
+- Governance Matrix: Export button wired at line 631
+- Coverage Matrix: Export button added with handler
+
+**Print-friendly Views (Task 3.2):** ✅ Complete
+- Added comprehensive `@media print` styles to `app/globals.css`
+- Hides navigation, buttons, and interactive elements for print
+- Optimizes table layout for paper
+- Added print headers with stats summary
+- Coverage badges styled for print visibility
+
+**Quick-action Dashboard (Task 3.3):** ✅ Complete
+- Created `components/dashboard/QuickActionSummary.tsx`
+- Shows pending approvals (with overdue count)
+- Shows active cases (with high priority count)
+- Shows documents expiring in 30 days
+- Shows upcoming committee meetings
+- Clickable cards link to relevant pages
+- Component integrated into dashboard page
 
 ---
 

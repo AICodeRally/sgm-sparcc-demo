@@ -592,6 +592,33 @@ export default function GovernanceMatrixPage() {
         title="Governance Matrix"
         description="Policy coverage, approval authorities, and compliance mapping"
       />
+
+      {/* Print Header - only visible when printing */}
+      <div className="hidden print:block print-header mb-6">
+        <h1 className="text-2xl font-bold">SGM Governance Matrix</h1>
+        <p className="text-sm text-gray-600">
+          Generated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+        <div className="print-stats mt-4 flex justify-around border border-gray-300 rounded p-3">
+          <div>
+            <div className="text-lg font-bold">{stats?.totalPolicies ?? 0}</div>
+            <div className="text-xs text-gray-500">Total Policies</div>
+          </div>
+          <div>
+            <div className="text-lg font-bold text-green-600">{stats?.fullCoverage ?? 0}</div>
+            <div className="text-xs text-gray-500">Full Coverage</div>
+          </div>
+          <div>
+            <div className="text-lg font-bold text-amber-600">{stats?.partialCoverage ?? 0}</div>
+            <div className="text-xs text-gray-500">Partial</div>
+          </div>
+          <div>
+            <div className="text-lg font-bold text-red-600">{stats?.gaps ?? 0}</div>
+            <div className="text-xs text-gray-500">Gaps</div>
+          </div>
+        </div>
+      </div>
+
       <ThreePaneWorkspace
         leftNav={
           <div className="space-y-4">
@@ -628,9 +655,12 @@ export default function GovernanceMatrixPage() {
                   <h2 className="text-lg font-semibold text-[color:var(--color-foreground)]">Filters</h2>
                   <p className="text-sm text-[color:var(--color-muted)]">Slice by policy area, authority, coverage, and risk</p>
                 </div>
-                <button className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-secondary)] transition-colors flex items-center gap-2">
+                <button
+                  onClick={() => window.print()}
+                  className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-secondary)] transition-colors flex items-center gap-2 no-print"
+                >
                   <TableIcon className="w-4 h-4" />
-                  Export Matrix
+                  Export to PDF
                 </button>
               </div>
 

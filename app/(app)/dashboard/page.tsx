@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ModeCard } from '@/components/modes/ModeCard';
 import { OperationalMode } from '@/types/operational-mode';
+import { QuickActionSummary } from '@/components/dashboard/QuickActionSummary';
 
 export default function SGMDashboard() {
   const [metricData, setMetricData] = useState<Record<string, number | string>>({});
@@ -91,6 +92,9 @@ export default function SGMDashboard() {
       />
       <div className="min-h-screen sparcc-hero-bg">
         <div className="max-w-7xl mx-auto px-6 py-8">
+          {/* Quick Action Summary - Task 3.3 */}
+          <QuickActionSummary />
+
           {/* 4 Operational Mode Hero Cards with Stackable Metrics */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <ModeCard mode={OperationalMode.DESIGN} metricData={metricData} />

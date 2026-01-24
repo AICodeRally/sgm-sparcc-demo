@@ -27,6 +27,10 @@ interface CoverageMatrixProps {
 export function CoverageMatrix({ plans, policyAreas }: CoverageMatrixProps) {
   const [selectedCell, setSelectedCell] = useState<{ planCode: string; policyArea: string } | null>(null);
 
+  const handleExport = () => {
+    window.print();
+  };
+
   // Get coverage for a specific plan and policy area
   const getCoverage = (planCode: string, policyArea: string): PolicyCoverage | undefined => {
     const plan = plans.find((p) => p.planCode === planCode);
@@ -65,14 +69,44 @@ export function CoverageMatrix({ plans, policyAreas }: CoverageMatrixProps) {
     ? getCoverage(selectedCell.planCode, selectedCell.policyArea)
     : null;
 
+  // Calculate coverage stats
+  const coverageStats = {
+    full: plans.reduce((acc, plan) => acc + plan.policies.filter(p => p.coverage === 'FULL').length, 0),
+    limited: plans.reduce((acc, plan) => acc + plan.policies.filter(p => p.coverage === 'LIMITED').length, 0),
+    no: plans.reduce((acc, plan) => acc + plan.policies.filter(p => p.coverage === 'NO').length, 0),
+  };
+
   return (
-    <div className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-accent-border)] p-6">
-      {/* Header */}
-      <div className="mb-6">
-        <h2 className="text-xl font-bold text-[color:var(--color-foreground)] mb-2">Policy Coverage Matrix</h2>
-        <p className="text-sm text-[color:var(--color-muted)]">
-          Click any cell to view coverage details
+    <div className="bg-[color:var(--color-surface)] rounded-xl border-2 border-[color:var(--color-accent-border)] p-6 print:border-0 print:p-0">
+      {/* Print Header - only visible when printing */}
+      <div className="hidden print:block print-header mb-6 text-center">
+        <h1 className="text-2xl font-bold">Policy Coverage Matrix</h1>
+        <p className="text-sm text-gray-600">
+          Generated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
         </p>
+        <div className="flex justify-center gap-8 mt-4 text-sm">
+          <span className="text-green-600 font-medium">Full: {coverageStats.full}</span>
+          <span className="text-amber-600 font-medium">Limited: {coverageStats.limited}</span>
+          <span className="text-red-600 font-medium">None: {coverageStats.no}</span>
+        </div>
+      </div>
+
+      {/* Header */}
+      <div className="mb-6 print:hidden">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-xl font-bold text-[color:var(--color-foreground)] mb-2">Policy Coverage Matrix</h2>
+            <p className="text-sm text-[color:var(--color-muted)]">
+              Click any cell to view coverage details
+            </p>
+          </div>
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 bg-[color:var(--color-primary)] text-white rounded-md text-sm font-medium hover:bg-[color:var(--color-secondary)] transition-colors no-print"
+          >
+            Export to PDF
+          </button>
+        </div>
 
         {/* Legend */}
         <div className="flex items-center gap-4 mt-4 text-xs">
