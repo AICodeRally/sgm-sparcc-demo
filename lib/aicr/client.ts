@@ -211,3 +211,81 @@ export async function askGovernance(
     escalate: options?.escalate,
   });
 }
+
+// ============================================================================
+// AICR Telemetry API (for Ops and Pulse orbs)
+// ============================================================================
+
+export type TelemetrySignalType = 'OPS' | 'PULSE' | 'AI_TEL' | 'ALL';
+
+export interface TelemetrySignal {
+  id: string;
+  type: string;
+  title: string;
+  description: string;
+  severity: 'critical' | 'high' | 'medium' | 'low';
+  timestamp: string;
+  metadata?: Record<string, unknown>;
+  actionUrl?: string;
+  suggestedAction?: string;
+}
+
+export interface TelemetryResponse {
+  signals: TelemetrySignal[];
+  count: number;
+  timestamp: string;
+}
+
+/**
+ * Fetch telemetry signals from AICR platform
+ * @param signalType - OPS, PULSE, AI_TEL, or ALL
+ * @param limit - Maximum number of signals to return
+ */
+export async function fetchTelemetry(
+  signalType: TelemetrySignalType = 'ALL',
+  limit: number = 20
+): Promise<TelemetryResponse> {
+  const apiUrl = process.env.AICR_API_URL || process.env.NEXT_PUBLIC_AICR_API_BASE || 'http://localhost:3000';
+
+  try {
+    const response = await fetch(
+      `${apiUrl}/api/aicc/telemetry?signals=${signalType}&limit=${limit}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        cache: 'no-store',
+      }
+    );
+
+    if (!response.ok) {
+      // Return empty on error - orbs handle this gracefully
+      return { signals: [], count: 0, timestamp: new Date().toISOString() };
+    }
+
+    const data = await response.json();
+    return {
+      signals: data.signals || data.data || [],
+      count: data.count || data.signals?.length || 0,
+      timestamp: data.timestamp || new Date().toISOString(),
+    };
+  } catch {
+    // Return empty on network error - orbs handle this gracefully
+    return { signals: [], count: 0, timestamp: new Date().toISOString() };
+  }
+}
+
+/**
+ * Fetch OPS signals (anomalies, thresholds, drift)
+ */
+export async function fetchOpsSignals(limit: number = 20): Promise<TelemetryResponse> {
+  return fetchTelemetry('OPS', limit);
+}
+
+/**
+ * Fetch PULSE signals (recommendations, learning, actions)
+ */
+export async function fetchPulseSignals(limit: number = 10): Promise<TelemetryResponse> {
+  return fetchTelemetry('PULSE', limit);
+}

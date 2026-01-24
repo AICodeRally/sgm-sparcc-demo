@@ -17,6 +17,7 @@ import {
   ArrowUpIcon,
   DashIcon,
   UpdateIcon,
+  PlusIcon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
@@ -432,7 +433,12 @@ export default function CasesPage() {
           {sortedCases.length === 0 ? (
             <div className="text-center py-12">
               <FileTextIcon className="w-12 h-12 text-[color:var(--color-muted)] mx-auto mb-3" />
-              <p className="text-[color:var(--color-muted)]">No cases found</p>
+              <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-1">No cases found</p>
+              <p className="text-sm text-[color:var(--color-muted)] mb-4">Try adjusting your filters or create a new case</p>
+              <a href="/cases/new" className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-[color:var(--color-accent)] text-white hover:bg-[color:var(--color-accent-hover)] transition-colors text-sm font-medium">
+                <PlusIcon className="w-4 h-4" />
+                New Case
+              </a>
             </div>
           ) : (
             sortedCases.map((caseItem) => {

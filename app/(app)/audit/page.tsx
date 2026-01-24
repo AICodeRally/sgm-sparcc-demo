@@ -369,7 +369,25 @@ export default function AuditPage() {
         {sortedEvents.length === 0 ? (
           <div className="text-center py-12">
             <ClockIcon className="w-12 h-12 text-[color:var(--color-muted)] mx-auto mb-3" />
-            <p className="text-[color:var(--color-muted)]">No events found</p>
+            <p className="text-sm font-medium text-[color:var(--color-foreground)] mb-1">No events found</p>
+            <p className="text-sm text-[color:var(--color-muted)] mb-4">
+              {searchQuery || filterCategory !== 'all' || filterImpact !== 'all' || filterTimeRange !== 'all'
+                ? 'Try adjusting your filters or search query'
+                : 'Events will appear here as actions are taken in the system'}
+            </p>
+            {(searchQuery || filterCategory !== 'all' || filterImpact !== 'all' || filterTimeRange !== 'all') && (
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setFilterCategory('all');
+                  setFilterImpact('all');
+                  setFilterTimeRange('all');
+                }}
+                className="text-sm text-[color:var(--color-success)] hover:text-[color:var(--color-success)] font-medium"
+              >
+                Clear all filters
+              </button>
+            )}
           </div>
         ) : (
           <div className="space-y-6">
