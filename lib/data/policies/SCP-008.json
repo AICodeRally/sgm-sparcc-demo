@@ -3,49 +3,426 @@
   "name": "Draws and Guarantees Policy",
   "category": "Financial Controls",
   "frameworkArea": "Draws/Guarantees",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
-  "effectiveDate": "2024-01-01T00:00:00Z",
-  "legalReviewRequired": false,
+  "status": "DRAFT",
+  "version": "1.0.0",
+  "effectiveDate": "2026-01-01T00:00:00Z",
+  "legalReviewRequired": true,
+
   "purpose": {
-    "summary": "Policy governing draws/guarantees.",
+    "summary": "Establish consistent guidelines for providing draws (advances against future commissions) and guarantees (minimum payment commitments) to ensure fair and consistent application, financial risk management, legal compliance, clear terms and documentation, and appropriate approval and oversight.",
     "objectives": [
-      "Establish framework for draws/guarantees",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Fair and consistent application",
+      "Financial risk management",
+      "Legal compliance",
+      "Clear terms and documentation",
+      "Appropriate approval and oversight"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "New hire guarantees",
+      "Ramping draws",
+      "Performance improvement draws",
+      "Market-based guarantees (competitive situations)",
+      "Special circumstance guarantees"
     ],
-    "exclusions": [],
+    "exclusions": [
+      "Poor performers (does not solve performance issue)",
+      "Punishment avoidance (employee underperforming and requesting guarantee)",
+      "Routine situations (dilutes incentive effectiveness)"
+    ],
     "geographic": []
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Draw",
+      "definition": "An advance payment against future earned commissions. Employee receives advance which is reconciled against earned commissions.",
+      "examples": ["Recoverable Draw: Employee must repay if commissions don't cover (rare)", "Non-Recoverable Draw: Employee keeps draw even if commissions don't cover (common)"]
+    },
+    {
+      "term": "Guarantee",
+      "definition": "A minimum payment commitment for a specified period. Employee receives guaranteed amount regardless of performance with no repayment required. Typically time-limited (3-6 months).",
+      "examples": ["New Hire Guarantee: For new sales hires during ramp period", "Performance Guarantee: During territory transition or plan changes", "Market Guarantee: To attract/retain talent in competitive market"]
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "When Draws/Guarantees Are Appropriate",
+      "content": "Guidelines for when draws and guarantees should be used based on specific business situations.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "New Hire Situations",
+          "content": "Typical Duration: 3-6 months. Typical Amount: 50-100% of target incentive.",
+          "items": [
+            "Sales role with long sales cycle (>90 days)",
+            "New hire needs time to build pipeline",
+            "Territory is new or has limited existing pipeline",
+            "Competitive talent market requires guarantee to attract candidates"
+          ]
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Territory Transition",
+          "content": "Typical Duration: 1-3 months. Typical Amount: 50-75% of prior average earnings.",
+          "items": [
+            "Major territory change mid-year",
+            "Territory significantly smaller than previous",
+            "Requires time to rebuild pipeline"
+          ]
+        },
+        {
+          "id": "prov-001-3",
+          "title": "Plan Change",
+          "content": "Typical Duration: 1 quarter. Typical Amount: 75% of prior average earnings.",
+          "items": [
+            "Significant plan redesign mid-year",
+            "New plan may result in short-term income disruption",
+            "Bridge payment to ensure smooth transition"
+          ]
+        },
+        {
+          "id": "prov-001-4",
+          "title": "Competitive Retention",
+          "content": "Typical Duration: 3-12 months. Typical Amount: Varies based on market offer.",
+          "items": [
+            "Top performer at risk of leaving",
+            "Competitive offer includes guarantee",
+            "Retain key talent during restructuring"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Standard Terms & Conditions",
+      "content": "Duration limits, amount limits, and recoverable vs. non-recoverable terms for draws and guarantees.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Duration Limits",
+          "content": "Extension Beyond Maximum requires CFO approval and must document exceptional circumstances.",
+          "items": []
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Amount Limits",
+          "content": "New Hire Guarantee Maximum: 100% of target incentive. Recommended: 75% of target incentive for first 3 months, 50% for months 4-6. Draw Maximum: $10,000/month or 100% of target incentive (whichever is less). Exceptions: Executive or strategic roles may exceed limits with CFO approval.",
+          "items": []
+        },
+        {
+          "id": "prov-002-3",
+          "title": "Recoverable vs. Non-Recoverable",
+          "content": "Company Standard: Non-Recoverable.",
+          "items": [
+            "Simpler administration",
+            "Avoids wage law complications",
+            "More attractive to candidates",
+            "Lower legal risk",
+            "Recoverable Draw only if employee explicitly agrees in writing",
+            "Recoverable Draw subject to state wage law restrictions and requires Legal review"
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-002-1",
+          "caption": "Duration Limits by Situation",
+          "headers": ["Situation", "Maximum Duration", "Approval Required"],
+          "rows": [
+            ["New Hire", "6 months", "Compensation Manager"],
+            ["Territory Transition", "3 months", "Sales Operations Manager"],
+            ["Plan Change", "1 quarter", "Compensation Manager"],
+            ["Competitive Retention", "12 months", "CFO + VP Sales"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-003",
+      "title": "Draw Mechanics",
+      "content": "How draws work, including monthly reconciliation and end-of-period transition.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "How Draws Work",
+          "content": "Employee receives draw amount each month. If earned commissions exceed draw, employee receives the higher amount. If earned commissions are less than draw, employee receives the draw amount (non-recoverable).",
+          "items": []
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Draw Reconciliation",
+          "content": "Monthly Reconciliation process and end of draw period transition.",
+          "items": [
+            "Calculate earned commissions for the month",
+            "Compare to draw amount",
+            "Pay higher of: draw or earned commissions",
+            "Track cumulative draw vs. earned (for reporting, not recovery if non-recoverable)",
+            "End of Draw Period: Employee transitions to standard commission plan",
+            "No repayment required (if non-recoverable)",
+            "Final reconciliation statement provided"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Guarantee Mechanics",
+      "content": "How guarantees work: each month, employee receives the GREATER of the guarantee amount or earned commission.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "How Guarantees Work",
+          "content": "Each month, employee receives the GREATER of: Guarantee amount, OR Earned commission.",
+          "items": []
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Guarantee vs. Earned Commission",
+          "content": "Employee Always Receives Higher Amount. No 'Give Back' - once guarantee period ends, employee doesn't repay. Employee keeps all payments received.",
+          "items": [
+            "If earned commission < guarantee: Paid guarantee",
+            "If earned commission > guarantee: Paid earned commission (employee does better than guarantee)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Approval Process",
+      "content": "Approval authority and request process for draws and guarantees.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Request Process",
+          "content": "Five-step process for requesting draws or guarantees. Timeline: Approval process should complete within 5 business days.",
+          "items": [
+            "Step 1: Submit Request - Sales Manager submits Draw/Guarantee Request Form including business justification, amount, duration, candidate/employee info",
+            "Step 2: Review - Compensation team reviews request, verifies within policy limits, assesses precedent and consistency, recommends approval or denial",
+            "Step 3: Approval - Route to appropriate approver(s) per authority matrix, obtain signatures",
+            "Step 4: Documentation - Create written agreement, employee signs acknowledgment, file in employee file and ICMT",
+            "Step 5: Implementation - Set up draw/guarantee in ICMT, communicate to Payroll, begin payments"
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-005-1",
+          "caption": "Approval Authority Matrix",
+          "headers": ["Amount", "Duration", "Approval Required"],
+          "rows": [
+            ["<$15,000 total", "<=3 months", "Sales Operations Manager"],
+            ["$15,000-$50,000 total", "<=6 months", "Compensation Manager + Sales Manager"],
+            ["$50,000-$100,000 total", "<=12 months", "VP Sales + Compensation Manager"],
+            [">$100,000 total", "Any duration", "CFO + VP Sales"],
+            ["Executive level", "Any amount", "CFO + CEO (or Board if required)"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-006",
+      "title": "Written Agreement Requirements",
+      "content": "All draw/guarantee agreements must include required elements and may require legal review.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Required Elements",
+          "content": "All draw/guarantee agreements must include the following elements:",
+          "items": [
+            "Employee Information: Name, ID, job title, start date",
+            "Amount: $ per month or total $",
+            "Duration: Start date, end date, # of months",
+            "Type: Draw (recoverable or non-recoverable) or Guarantee",
+            "Reconciliation: How earned commissions are reconciled",
+            "Termination Impact: What happens if employee leaves early",
+            "Transition: What happens when draw/guarantee period ends",
+            "Tax Treatment: Subject to normal tax withholding",
+            "Plan Participation: How this relates to standard incentive plan",
+            "Signatures: Employee and Company (authorized approver)"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Legal Review",
+          "content": "Legal review required for specific situations:",
+          "items": [
+            "Recoverable draws (always)",
+            "Guarantees >$100,000 total",
+            "Executive guarantees (always)",
+            "Non-standard terms"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Termination During Draw/Guarantee Period",
+      "content": "Treatment of draws and guarantees when employment terminates during the active period.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Voluntary Resignation",
+          "content": "Treatment varies by draw type.",
+          "items": [
+            "Non-Recoverable Draw: Employee keeps all draw payments received, no repayment required, no further draw payments after termination date",
+            "Recoverable Draw: Employee may owe repayment of unearned portion, calculate earned commissions vs. total draw paid, consult Legal before pursuing collection",
+            "Guarantee: Guarantee payments stop at termination date, no further payments, employee keeps payments received to date"
+          ]
+        },
+        {
+          "id": "prov-007-2",
+          "title": "Involuntary Termination - Without Cause",
+          "content": "Pro-rate guarantee for partial month. No further payments after termination. Employee keeps all prior payments.",
+          "items": []
+        },
+        {
+          "id": "prov-007-3",
+          "title": "Involuntary Termination - For Cause",
+          "content": "Draw/guarantee payments stop immediately. No pro-ration. Company may seek recovery (if recoverable draw and misconduct inflated results). Consult Legal before withholding any payment.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-008",
+      "title": "Tax & Accounting Treatment",
+      "content": "Draws and Guarantees are Taxable Compensation.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Tax Treatment",
+          "content": "Draws and Guarantees are Taxable Compensation.",
+          "items": [
+            "Subject to income tax withholding",
+            "Subject to FICA/Medicare",
+            "Reported on W-2",
+            "Typically supplemental wage rate (22% federal, varies by state)",
+            "Same as bonus/commission payments"
+          ]
+        },
+        {
+          "id": "prov-008-2",
+          "title": "Accounting Treatment",
+          "content": "Consult Finance for specific accounting treatment.",
+          "items": [
+            "Draws: Accrued as expense when paid; may create deferred asset if recoverable and recovery expected",
+            "Guarantees: Accrued as compensation expense over guarantee period; budgeted as part of sales compensation"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-009",
+      "title": "Monitoring & Reporting",
+      "content": "Active draw/guarantee tracking, quarterly reporting to CRB, and annual review requirements.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-009-1",
+          "title": "Active Draw/Guarantee Tracking",
+          "content": "Compensation team maintains tracker with monthly review.",
+          "items": [
+            "Verify all active draws/guarantees processed",
+            "Reconcile earned commissions vs. draw/guarantee",
+            "Flag upcoming expirations (30 days out)"
+          ]
+        },
+        {
+          "id": "prov-009-2",
+          "title": "Quarterly Reporting to CRB",
+          "content": "Metrics and trends reported quarterly.",
+          "items": [
+            "Number of active draws/guarantees",
+            "Total financial commitment ($ outstanding)",
+            "By type (new hire, territory, retention, etc.)",
+            "Approval rate (# requests vs. # approved)",
+            "Effectiveness (% of employees exceeding guarantee by end)",
+            "Trends: Are draws/guarantees increasing or decreasing?",
+            "Are they achieving intended purpose (retention, ramp success)?",
+            "Are limits being followed?"
+          ]
+        },
+        {
+          "id": "prov-009-3",
+          "title": "Annual Review",
+          "content": "Assess Policy Effectiveness annually.",
+          "items": [
+            "Success rate (% of new hires with guarantee who succeed long-term)",
+            "Cost vs. benefit (retention achieved vs. $ spent)",
+            "Policy compliance (were limits followed?)",
+            "Recommendations for policy updates"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-010",
+      "title": "Ramping Schedules (Alternative to Guarantee)",
+      "content": "Alternative to flat guarantee: Ramping quota. Achieves similar effect as guarantee (higher payout during ramp) without fixed guarantee payment.",
+      "priority": "MEDIUM",
+      "subProvisions": [],
+      "tables": []
+    },
+    {
+      "id": "prov-011",
+      "title": "State Law Considerations",
+      "content": "Wage Laws Vary by State. This policy assumes non-recoverable draws/guarantees to minimize legal risk.",
       "priority": "HIGH",
       "subProvisions": [],
       "tables": []
     }
   ],
+
   "compliance": {
-    "federalLaws": [],
-    "stateLaws": [],
+    "federalLaws": [
+      "FICA/Medicare",
+      "Federal income tax withholding (supplemental wage rate)"
+    ],
+    "stateLaws": [
+      "California: Advances and draws subject to specific rules",
+      "New York: Commission pay regulated",
+      "State wage law restrictions on recovery of draws",
+      "State-specific rules on recoverable draws"
+    ],
     "industryStandards": [],
     "keywords": [
-      "draws and guarantees policy",
       "draws",
       "guarantees",
-      "policy",
-      "draws/guarantees"
+      "non-recoverable draw",
+      "recoverable draw",
+      "new hire guarantee",
+      "performance guarantee",
+      "market guarantee",
+      "ramping",
+      "commission advance",
+      "minimum payment commitment",
+      "draw reconciliation",
+      "guarantee mechanics"
     ]
   },
+
   "relatedPolicies": [],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -59,6 +436,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-19",
+        "author": "Governance Lead",
+        "description": "Full policy content structured from markdown source"
       }
     ]
   }

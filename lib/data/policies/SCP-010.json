@@ -3,49 +3,349 @@
   "name": "Mid-Period Change Policy",
   "category": "Plan Administration",
   "frameworkArea": "Mid-Period Changes",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
-  "effectiveDate": "2024-01-01T00:00:00Z",
+  "status": "DRAFT",
+  "version": "1.0.0",
+  "effectiveDate": "2026-01-01T00:00:00Z",
   "legalReviewRequired": false,
+
   "purpose": {
-    "summary": "Policy governing mid-period changes.",
+    "summary": "Establish guidelines for handling changes to compensation plans, quotas, and participant circumstances that occur during an active performance period to ensure fairness to affected participants, business flexibility when needed, clear approval requirements, proper calculation and pro-ration, and minimization of mid-period changes.",
     "objectives": [
-      "Establish framework for mid-period changes",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Fairness to affected participants",
+      "Business flexibility when needed",
+      "Clear approval requirements",
+      "Proper calculation and pro-ration",
+      "Minimization of mid-period changes (encourage planning)"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "Plan design changes (measures, formulas, caps, thresholds)",
+      "Quota changes (increases or decreases)",
+      "Participant status changes (promotions, demotions, transfers, leaves)",
+      "Territory changes",
+      "Organizational changes (mergers, acquisitions, restructuring)"
     ],
     "exclusions": [],
     "geographic": []
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Stability Principle",
+      "definition": "Compensation plans should be stable and predictable. Plans designed and approved before period begins; mid-period changes minimized; changes made only when necessary for business reasons.",
+      "examples": []
+    },
+    {
+      "term": "No Retroactive Changes (General Rule)",
+      "definition": "Do not change the rules after performance has occurred. Changes apply prospectively (from change date forward). Exception: Correcting company errors (may apply retroactively).",
+      "examples": []
+    },
+    {
+      "term": "Participant Protection",
+      "definition": "Changes should not unfairly penalize participants. If change reduces earnings potential, consider grandfathering or phase-in. If change due to company action (reorg, etc.), participant should be made whole.",
+      "examples": []
+    },
+    {
+      "term": "Blended Annual Quota",
+      "definition": "Pro-rated quota calculation: (Old Quota x % of Year in Old Quota) + (New Quota x % of Year in New Quota).",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Plan Design Changes",
+      "content": "Changes to plan structure, measures, formulas, caps, thresholds, or other plan terms. STRONGLY DISCOURAGED.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "When Permitted",
+          "content": "Plan design changes are only permitted in limited circumstances. Approval Required: CRB (always).",
+          "items": [
+            "Legal/regulatory requirement (must change to comply with law)",
+            "Significant business change (acquisition, product line discontinuation, etc.)",
+            "Plan error that is unsustainable (e.g., calculation error causing massive overpayment)"
+          ]
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Participant Impact Mitigation",
+          "content": "If change reduces earnings potential, consider mitigation options:",
+          "items": [
+            "Grandfathering current participants (apply change to new hires only)",
+            "Phase-in over multiple periods",
+            "One-time transition payment to offset impact"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Quota Changes",
+      "content": "Changing individual quota assignment mid-period. DISCOURAGED but more common than plan design changes.",
       "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Permitted Reasons",
+          "content": "Quota changes may be made for specific justified reasons.",
+          "items": [
+            "Territory change",
+            "Promotion or role change",
+            "Organizational restructuring",
+            "Significant business change (lost major customer, gained major account)",
+            "Correction of error (quota set incorrectly)"
+          ]
+        },
+        {
+          "id": "prov-002-2",
+          "title": "NOT Permitted",
+          "content": "Quota changes are not permitted for these reasons:",
+          "items": [
+            "Performance-based (participant underperforming, so lower quota to make easier)",
+            "Favoritism or inequity",
+            "Retroactive change without justification"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Mid-Period Quota Increase",
+      "content": "When business opportunity increases and quota needs to be raised.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Option A: Increase Quota Pro-Rated",
+          "content": "Increase quota pro-rated for remaining period. Blended Annual Quota = (Old period quota) + (New period quota).",
+          "items": []
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Option B: Stretch Goal with Accelerator (Recommended)",
+          "content": "Provide stretch goal with accelerator rather than raise base quota.",
+          "items": [
+            "Keeps base quota stable",
+            "Rewards extra performance with accelerator",
+            "Easier to communicate"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Mid-Period Quota Decrease",
+      "content": "When territory is reduced, major customer is lost, or role scope is decreased. Pro-rate quota for remaining period.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Approval and Rationale",
+          "content": "Approval: Sales VP + Compensation Manager + CRB (if decrease >25%). Must clearly explain why quota decreased.",
+          "items": [
+            "Quota decreases can be perceived as making it easier",
+            "Must ensure decrease is justified (territory actually reduced, not helping underperformer)",
+            "Document evidence of scope reduction"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Promotion or Role Change",
+      "content": "Employee promoted mid-year to new role with different compensation plan.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Option A: Immediate Transition",
+          "content": "Effective promotion date, switch to new plan. Old plan: Pro-rated for time in old role. New plan: Pro-rated for time in new role. Two separate calculations; two separate payments.",
+          "items": []
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Option B: Deferred Transition",
+          "content": "Complete current period on old plan. Start new plan at beginning of next period (e.g., next quarter or next year).",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Organizational Restructuring",
+      "content": "Division reorganization affects multiple participants. Case-by-case basis with CRB approval for plan changes.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Approach",
+          "content": "Structured approach to organizational restructuring affecting compensation.",
+          "items": [
+            "Assess Impact: How many participants affected? Nature of change? Projected financial impact?",
+            "Develop Transition Plan: Will quotas change? Will territories change? Will plan design change?",
+            "Grandfathering Consideration: If change disadvantages current participants, consider applying change to new hires or new period only",
+            "Communication Plan: Town hall or team meetings, individual meetings, written summary, Q&A support",
+            "CRB Approval: For plan changes and major organizational comp impacts"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Quota Pro-Ration Methodology",
+      "content": "Standard Pro-Ration Formula: Blended Annual Quota = (Old Quota x % of Year in Old Quota) + (New Quota x % of Year in New Quota).",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Monthly vs. Annual Plans",
+          "content": "Monthly Plans: If quota changes mid-month, pro-rate that month; subsequent months use new quota. Annual Plans: Pro-rate based on days in year.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-008",
+      "title": "Communication Requirements",
+      "content": "All changes must be clearly communicated in advance with minimum notice periods.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Advance Notice",
+          "content": "Minimum notice periods for different change types. Exception: Emergency changes may have shorter notice.",
+          "items": [
+            "Plan design changes: 30 days",
+            "Quota changes: 15 days",
+            "Territory changes: 10 days (or as soon as known)"
+          ]
+        },
+        {
+          "id": "prov-008-2",
+          "title": "What to Communicate",
+          "content": "For any mid-period change, communicate all relevant details.",
+          "items": [
+            "What is changing: Plan, quota, territory, etc.",
+            "Why: Business rationale",
+            "When: Effective date",
+            "Impact: How this affects the participant (calculation examples)",
+            "Transition: What happens between now and effective date",
+            "Questions: Who to contact"
+          ]
+        },
+        {
+          "id": "prov-008-3",
+          "title": "Communication Methods",
+          "content": "Methods vary by number of affected participants.",
+          "items": [
+            "Individual Changes (1-10 people): One-on-one meeting followed by written confirmation",
+            "Group Changes (>10 people): Team meeting or town hall, individual follow-up, written FAQ, office hours for questions"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-009",
+      "title": "Documentation Requirements",
+      "content": "For all mid-period changes, proper documentation must be maintained. Retention: 7 years per Data Retention Policy.",
+      "priority": "MEDIUM",
       "subProvisions": [],
+      "tables": []
+    },
+    {
+      "id": "prov-010",
+      "title": "Dispute Resolution",
+      "content": "If participant disagrees with mid-period change, follow Dispute Resolution Procedures.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-010-1",
+          "title": "Resolution Process",
+          "content": "Resolution approach for mid-period change disputes.",
+          "items": [
+            "If change was properly approved and communicated, change stands",
+            "If error in process (e.g., insufficient notice), may delay effective date",
+            "If participant has valid concern, escalate to CRB"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-011",
+      "title": "Best Practices",
+      "content": "Guidelines for minimizing and managing mid-period changes effectively.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-011-1",
+          "title": "Minimize Mid-Period Changes",
+          "content": "Strategies to reduce the need for mid-period changes.",
+          "items": [
+            "Thorough planning before period begins",
+            "Annual planning process (quota setting, territory design, plan design)",
+            "Buffer in plans for expected changes (e.g., ramping quota for new hires)"
+          ]
+        },
+        {
+          "id": "prov-011-2",
+          "title": "Grandfather When Possible",
+          "content": "If change is disadvantageous to current participants, consider applying change to new hires or new period only. Current participants continue on old terms until natural transition point.",
+          "items": []
+        },
+        {
+          "id": "prov-011-3",
+          "title": "Phase-In Major Changes",
+          "content": "For significant changes, phase in over multiple periods to reduce shock and allow participants to adapt.",
+          "items": []
+        }
+      ],
       "tables": []
     }
   ],
+
   "compliance": {
     "federalLaws": [],
-    "stateLaws": [],
+    "stateLaws": [
+      "California: Limitations on retroactive changes to commission plans",
+      "State wage laws may restrict mid-period changes to commission plans",
+      "State-specific requirements vary"
+    ],
     "industryStandards": [],
     "keywords": [
-      "mid-period change policy",
-      "mid-period",
-      "change",
-      "policy",
-      "changes"
+      "mid-period change",
+      "quota change",
+      "plan design change",
+      "territory change",
+      "quota pro-ration",
+      "blended quota",
+      "grandfathering",
+      "phase-in",
+      "promotion",
+      "organizational restructuring",
+      "participant protection",
+      "stability principle",
+      "retroactive changes"
     ]
   },
-  "relatedPolicies": [],
+
+  "relatedPolicies": [
+    "SCP-009"
+  ],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -59,6 +359,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-19",
+        "author": "Governance Lead",
+        "description": "Full policy content structured from markdown source"
       }
     ]
   }

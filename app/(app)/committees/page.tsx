@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import type { DataType } from '@/lib/contracts/data-type.contract';
+import { DataTypeBadge } from '@/components/demo/DemoBadge';
 import {
   AvatarIcon,
   PersonIcon,

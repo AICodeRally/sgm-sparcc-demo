@@ -3,48 +3,399 @@
   "name": "Payment Timing Policy",
   "category": "Payroll",
   "frameworkArea": "Payment Timing",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
-  "effectiveDate": "2024-01-01T00:00:00Z",
+  "status": "DRAFT",
+  "version": "1.0.0",
+  "effectiveDate": "2026-01-01T00:00:00Z",
   "legalReviewRequired": false,
+
   "purpose": {
-    "summary": "Policy governing payment timing.",
+    "summary": "This policy establishes standard payment timing for all sales incentive compensation to ensure compliance with state wage payment laws, consistent participant experience, adequate time for calculation and validation, alignment with payroll cycles, and financial planning and accrual accuracy.",
     "objectives": [
-      "Establish framework for payment timing",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Compliance with state wage payment laws",
+      "Consistent participant experience",
+      "Adequate time for calculation and validation",
+      "Alignment with payroll cycles",
+      "Financial planning and accrual accuracy"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "All sales incentive compensation payments across all divisions and plans"
     ],
     "exclusions": [],
     "geographic": []
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Data Cut-Off",
+      "definition": "The 5th business day of the month following the performance period, by which all sales must be finalized in source systems (CRM, ERP). Finance validates revenue data and Sales Operations locks data for calculation.",
+      "examples": []
+    },
+    {
+      "term": "Minimum Payment Threshold",
+      "definition": "The minimum amount ($50) per payment period below which payments are carried forward to next period. Paid annually if cumulative amount remains below threshold. Paid upon termination regardless of amount.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Payment Frequency Standards",
+      "content": "Standard payment frequencies based on plan type.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Rationale for Timing",
+          "content": "Payment frequency rationale by plan type.",
+          "items": [
+            "Monthly: For high-transaction plans where participants need regular feedback and cash flow",
+            "Quarterly: Balances administrative efficiency with timely payout for quota-based plans",
+            "Annual: For long-cycle sales or strategic metrics requiring full-year assessment"
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-001-1",
+          "caption": "Standard Payment Frequencies",
+          "headers": ["Plan Type", "Standard Frequency", "Payment Timing"],
+          "rows": [
+            ["Transactional/High Volume", "Monthly", "By last business day of following month"],
+            ["Territory/Quota-Based", "Quarterly", "Within 30 days of quarter end"],
+            ["Annual Plans", "Annually", "Within 45 days of year end"],
+            ["SPIFs", "At program end", "Within 15 days of program close"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-002",
+      "title": "Data Cut-Off Requirements",
+      "content": "Data finalization on 5th business day of the month following performance period.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Standard Cut-Off",
+          "content": "All sales must be finalized in source systems (CRM, ERP) by cut-off. Finance validates revenue data. Sales Operations locks data for calculation.",
+          "items": []
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Late Transactions",
+          "content": "Transactions after cut-off included in next period's payment. No retroactive adjustments to prior period (unless error).",
+          "items": [
+            "Exception: Material transactions may be included if identified before calculation begins, approved by Finance, and documented in payment memo"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Calculation & Validation Timeline",
+      "content": "Standard process timeline for monthly payment calculation.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Expedited Timeline",
+          "content": "For critical situations, timeline may be compressed with approval from Finance and Sales Operations leadership.",
+          "items": []
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-003-1",
+          "caption": "Standard Monthly Process Timeline",
+          "headers": ["Day", "Activity", "Owner"],
+          "rows": [
+            ["Month End", "Performance period closes", "-"],
+            ["Day 1-5", "Data entry and finalization", "Sales, Finance"],
+            ["Day 5", "Data cut-off", "Systems"],
+            ["Day 6-8", "Extract data, run calculations", "Sales Operations"],
+            ["Day 9-12", "Validate calculations, audit sample", "Sales Ops + Finance"],
+            ["Day 13-15", "Resolve discrepancies", "Sales Operations"],
+            ["Day 16-18", "Final review and approval", "Finance Manager"],
+            ["Day 19-20", "Submit to Payroll", "Sales Operations"],
+            ["Day 21-30", "Payroll processing", "Payroll/Finance"],
+            ["Day 30", "Payment date", "Payroll"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-004",
+      "title": "Payment Methods",
+      "content": "All incentive payments made via direct deposit to account on file for regular payroll.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Payment Statements",
+          "content": "Participants receive electronic statement showing performance period, performance data, calculation breakdown, gross payment, taxes withheld, and net payment. Available in ICMT system/employee portal by payment date.",
+          "items": []
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-004-1",
+          "caption": "Payment Delivery Methods",
+          "headers": ["Payment Type", "Delivery Method"],
+          "rows": [
+            ["Regular monthly/quarterly incentive", "Included in regular payroll run"],
+            ["Annual/year-end bonus", "Separate payroll run or included in January payroll"],
+            ["SPIF payments", "Separate payment or next regular payroll"],
+            ["Final payments (upon termination)", "Per state law requirements"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-005",
+      "title": "Tax Withholding",
+      "content": "Incentive compensation tax withholding treatment. Taxes withheld at time of payment, not when earned.",
       "priority": "HIGH",
       "subProvisions": [],
       "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Delayed Payments",
+      "content": "Handling of delayed payments including notification and make-up payment requirements.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Reasons for Delay",
+          "content": "Payments may be delayed due to various circumstances.",
+          "items": [
+            "Data quality issues requiring additional validation",
+            "System failures",
+            "Calculation errors requiring correction",
+            "Pending dispute resolution",
+            "Legal hold or investigation",
+            "Exceptional business circumstances"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Notification",
+          "content": "If payment will be delayed, participants notified by Sales Operations at least 3 business days before scheduled payment date. Notification includes: Reason, expected resolution date, contact for questions.",
+          "items": []
+        },
+        {
+          "id": "prov-006-3",
+          "title": "Expedited Make-Up Payment",
+          "content": "Once delay is resolved, payment processed on next available payroll run or special off-cycle payment if delay is significant. Company does not pay interest on delayed payments unless required by state law.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Adjustments & Corrections",
+      "content": "Post-payment adjustments and correction process.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Post-Payment Adjustments",
+          "content": "Adjustments made in next regular payment cycle. Overpayments recovered per Overpayment Recovery Policy. Underpayments paid in next cycle or expedited payment.",
+          "items": [
+            "Customer cancellations or returns (within clawback period)",
+            "Data corrections",
+            "Calculation errors",
+            "Credit reallocation"
+          ]
+        },
+        {
+          "id": "prov-007-2",
+          "title": "Correction Process",
+          "content": "Step-by-step process for correcting payment errors.",
+          "items": [
+            "Error identified (by participant, Sales Ops, Finance, or audit)",
+            "Investigation and root cause analysis",
+            "Calculation of correction amount",
+            "Approval by Finance Manager",
+            "Participant notification",
+            "Correction processed in next payment or expedited if material"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-008",
+      "title": "State Wage Payment Law Compliance",
+      "content": "Compliance with state-specific wage payment requirements for earned commissions.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Compliance Process",
+          "content": "Ongoing process for maintaining state wage law compliance.",
+          "items": [
+            "Sales Operations tracks employee locations",
+            "Payment timing designed to comply with most restrictive applicable state law",
+            "Legal reviews payment timing annually",
+            "Upon termination, state-specific rules applied"
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-008-1",
+          "caption": "Example State Requirements (Illustrative)",
+          "headers": ["State", "Regular Payment", "Payment Upon Termination"],
+          "rows": [
+            ["California", "Next regular payday after commission is earned and amount can be reasonably ascertained", "Immediately if terminated involuntarily; next payday if resigned"],
+            ["New York", "As per plan terms", "Next regular payday"],
+            ["Texas", "As per plan terms", "Next regular payday"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-009",
+      "title": "Payment Upon Termination",
+      "content": "Payment timing and amount upon different types of employment termination.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-009-1",
+          "title": "Voluntary Resignation",
+          "content": "Timing per plan terms and applicable state law (typically next regular payment date). Pro-rated through last day of employment. Completed performance periods only. No payout for in-flight opportunities (unless plan specifies otherwise).",
+          "items": []
+        },
+        {
+          "id": "prov-009-2",
+          "title": "Involuntary Termination",
+          "content": "Timing per applicable state law. Per plan terms (may forfeit some or all unpaid incentive if terminated for cause). Pro-rated through last day worked.",
+          "items": []
+        },
+        {
+          "id": "prov-009-3",
+          "title": "Death",
+          "content": "Within 30 days of notification. All earned incentive paid to estate/beneficiary. Payee as designated in beneficiary forms or to estate.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-010",
+      "title": "Minimum Payment Thresholds",
+      "content": "Threshold: $50 per payment period for administrative efficiency.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-010-1",
+          "title": "Treatment of Below-Threshold Amounts",
+          "content": "Amounts below threshold are carried forward.",
+          "items": [
+            "Carried forward to next period",
+            "Paid annually if cumulative amount remains below threshold",
+            "Paid upon termination regardless of amount"
+          ]
+        },
+        {
+          "id": "prov-010-2",
+          "title": "Exceptions",
+          "content": "No minimum threshold for certain payment types.",
+          "items": [
+            "Final payments upon termination",
+            "Annual payment periods",
+            "Correction payments (underpayments)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-011",
+      "title": "Exceptions & Approvals",
+      "content": "Payment timing exceptions and required approvals.",
+      "priority": "MEDIUM",
+      "subProvisions": [],
+      "tables": [
+        {
+          "id": "table-011-1",
+          "caption": "Payment Timing Exception Approvals",
+          "headers": ["Exception Type", "Approval Required"],
+          "rows": [
+            ["Expedited payment (off-cycle)", "Finance Manager"],
+            ["Payment delay", "Finance Manager + Sales Ops Leader"],
+            ["Payment more than 15 days late", "CFO notification required"],
+            ["Waiver of minimum threshold", "Finance Manager"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-012",
+      "title": "Roles & Responsibilities",
+      "content": "Defined roles for payment timing compliance.",
+      "priority": "MEDIUM",
+      "subProvisions": [],
+      "tables": [
+        {
+          "id": "table-012-1",
+          "caption": "Roles & Responsibilities",
+          "headers": ["Role", "Responsibility"],
+          "rows": [
+            ["Sales Operations", "Calculate payouts, validate data, submit to payroll"],
+            ["Finance", "Validate revenue data, approve calculations, manage accruals"],
+            ["Payroll", "Process payments, withhold taxes, issue statements"],
+            ["Participants", "Review statements, report discrepancies promptly"],
+            ["Managers", "Support participants, escalate issues"]
+          ]
+        }
+      ]
     }
   ],
+
   "compliance": {
-    "federalLaws": [],
-    "stateLaws": [],
+    "federalLaws": [
+      "Federal Income Tax: Supplemental wage rate (22% for amounts up to $1M per year)",
+      "FICA: Social Security (6.2% up to wage base) and Medicare (1.45%, plus 0.9% additional Medicare tax for high earners)"
+    ],
+    "stateLaws": [
+      "California: Next regular payday after commission earned; immediately upon involuntary termination",
+      "New York: As per plan terms; next regular payday upon termination",
+      "Texas: As per plan terms; next regular payday upon termination",
+      "State wage payment laws (vary by state)",
+      "State income tax withholding requirements",
+      "State disability and local taxes where applicable"
+    ],
     "industryStandards": [],
     "keywords": [
-      "payment timing policy",
-      "payment",
-      "timing",
-      "policy"
+      "payment timing",
+      "payment schedule",
+      "data cut-off",
+      "payroll cycle",
+      "tax withholding",
+      "supplemental wages",
+      "delayed payment",
+      "payment correction",
+      "state wage law",
+      "final pay",
+      "minimum payment threshold",
+      "direct deposit",
+      "payment frequency"
     ]
   },
-  "relatedPolicies": [],
+
+  "relatedPolicies": [
+    "SCP-001",
+    "SCP-012"
+  ],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -58,6 +409,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-17",
+        "author": "Finance / Sales Operations",
+        "description": "Full policy content structured from markdown source"
       }
     ]
   }

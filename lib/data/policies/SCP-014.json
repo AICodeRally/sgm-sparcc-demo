@@ -1,53 +1,355 @@
 {
   "code": "SCP-014",
-  "name": "Territory Management Guidelines",
+  "name": "Cap and Threshold Guidelines",
   "category": "Territory Rules",
   "frameworkArea": "Territory Management",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
-  "effectiveDate": "2024-01-01T00:00:00Z",
+  "status": "DRAFT",
+  "version": "1.0.0",
+  "effectiveDate": "2026-01-01T00:00:00Z",
   "legalReviewRequired": false,
+
   "purpose": {
-    "summary": "Policy governing territory management.",
+    "summary": "This policy establishes corporate guidelines for payout caps and performance thresholds in all sales incentive compensation plans, ensuring financial predictability and budget management, fairness and consistency across divisions, prevention of windfall payouts, and motivation for minimum performance standards.",
     "objectives": [
-      "Establish framework for territory management",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Ensure financial predictability and budget management",
+      "Maintain fairness and consistency across divisions",
+      "Prevent windfall payouts",
+      "Establish motivation for minimum performance standards"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "All sales incentive compensation plans across all divisions unless explicitly exempted by the Compensation Review Board"
     ],
-    "exclusions": [],
+    "exclusions": [
+      "Plans explicitly exempted by the Compensation Review Board"
+    ],
     "geographic": []
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Threshold",
+      "definition": "The minimum performance level required to earn any payout for a component or plan.",
+      "examples": []
+    },
+    {
+      "term": "Cap (Maximum Payout)",
+      "definition": "The maximum incentive payout regardless of performance level achieved.",
+      "examples": []
+    },
+    {
+      "term": "Leverage",
+      "definition": "Ratio calculated as (Base Salary + Maximum Possible Incentive) / Base Salary. Maximum leverage limit is 3.0x base salary.",
+      "examples": []
+    },
+    {
+      "term": "Target Incentive (TI)",
+      "definition": "The expected incentive payment at 100% quota attainment, used as the basis for cap calculations.",
+      "examples": []
+    },
+    {
+      "term": "Windfall",
+      "definition": "Unusually large payouts that may be reviewed even within cap limits, triggered when individual payout exceeds a threshold amount or exceeds 3x historical average.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Threshold Guidelines",
+      "content": "Standard Threshold: 75% of quota. Performance below 75% of quota results in $0 payout. Performance at 75% of quota results in minimum payout (typically 50-75% pro-rata credit). Performance above 75% results in payout per plan curve.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Threshold Variations by Role",
+          "content": "Recommended thresholds vary by role type:",
+          "items": [
+            "Individual Contributors (IC): 75% of quota - Standard expectation",
+            "Sales Managers: 80% of quota - Higher accountability",
+            "Executives: 80-90% of quota - Strategic leadership requirement",
+            "New Hires (first year): 50-60% of quota - Ramp period accommodation"
+          ]
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Threshold Exceptions",
+          "content": "Thresholds below 75% or above 90% require:",
+          "items": [
+            "Written justification",
+            "Finance approval (budget impact)",
+            "Compensation Review Board approval"
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-001-1",
+          "caption": "Threshold Variations by Role Type",
+          "headers": ["Role Type", "Recommended Threshold", "Rationale"],
+          "rows": [
+            ["Individual Contributors (IC)", "75% of quota", "Standard expectation"],
+            ["Sales Managers", "80% of quota", "Higher accountability"],
+            ["Executives", "80-90% of quota", "Strategic leadership requirement"],
+            ["New Hires (first year)", "50-60% of quota", "Ramp period accommodation"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-002",
+      "title": "Individual Cap Guidelines",
+      "content": "Standard Individual Cap: 200% of Target Incentive. Caps manage budget predictability, prevent excessive payouts from unusual events, align with market practices, and manage shareholder/board concerns.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Leverage Limits",
+          "content": "Maximum Leverage: 3.0x base salary. Plans exceeding 3.0x leverage require executive approval.",
+          "items": []
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Performance-Based Caps",
+          "content": "Some plans may cap credit at a maximum attainment level rather than dollar amount. Example: No credit for performance above 150% of quota.",
+          "items": []
+        },
+        {
+          "id": "prov-002-3",
+          "title": "Budget Caps (Aggregate)",
+          "content": "Division Budget Cap: Total incentive payout for a division may be capped at a percentage of division revenue or absolute dollar budget limit. If division reaches budget cap:",
+          "items": [
+            "Individual payouts may be reduced pro-rata",
+            "Payout curves may be adjusted",
+            "Next year planning may be reviewed"
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-002-1",
+          "caption": "Standard Cap by Role Level",
+          "headers": ["Role Level", "Standard Cap", "Maximum Allowable Cap"],
+          "rows": [
+            ["Individual Contributor", "200% of TI", "250% of TI"],
+            ["Manager/Director", "175% of TI", "200% of TI"],
+            ["VP/Executive", "150% of TI", "175% of TI"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-003",
+      "title": "Implementation Requirements",
+      "content": "Requirements for properly implementing caps and thresholds in plan documentation and communication.",
       "priority": "HIGH",
-      "subProvisions": [],
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Plan Documentation",
+          "content": "All plan documents must:",
+          "items": [
+            "Clearly state the threshold (if any)",
+            "Clearly state the cap (if any)",
+            "Explain the rationale for threshold and cap levels",
+            "Provide examples showing threshold and cap impact"
+          ]
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Participant Communication",
+          "content": "Plans with thresholds or caps must:",
+          "items": [
+            "Clearly disclose in plan document",
+            "Include in participant communications",
+            "Provide worked examples",
+            "Answer FAQs about caps and thresholds"
+          ]
+        },
+        {
+          "id": "prov-003-3",
+          "title": "Manager Training",
+          "content": "Sales managers must:",
+          "items": [
+            "Understand cap and threshold guidelines",
+            "Be able to explain to their teams",
+            "Factor caps/thresholds into coaching and territory planning"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Governance and Exceptions",
+      "content": "Approval requirements for variances from standard cap and threshold guidelines.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Exception Criteria",
+          "content": "Exceptions may be granted for:",
+          "items": [
+            "New products/markets with high uncertainty",
+            "Turnaround situations",
+            "Recruitment/retention of key talent",
+            "Unique business circumstances",
+            "Ramp/transition periods"
+          ]
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Required Documentation",
+          "content": "Exception requests must include:",
+          "items": [
+            "Business justification",
+            "Financial impact analysis",
+            "Risk assessment",
+            "Mitigation plans",
+            "Duration (temporary exceptions only)"
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-004-1",
+          "caption": "Approval Requirements by Variance",
+          "headers": ["Variance from Guideline", "Approval Required"],
+          "rows": [
+            ["Threshold 70-75%", "Compensation Manager"],
+            ["Threshold <70% or >80%", "Comp Review Board"],
+            ["Cap 200-250% for IC", "Finance + Comp Manager"],
+            ["Cap >250% for IC", "Comp Review Board"],
+            ["Cap >200% for Manager+", "Comp Review Board"],
+            ["Leverage >3.0x", "CFO + Comp Review Board"],
+            ["No cap", "CFO + Comp Review Board (requires strong justification)"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-005",
+      "title": "Market Benchmarking",
+      "content": "Caps and thresholds are benchmarked annually against industry standards (medical/dental sales), role-specific market data, and peer company practices.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Adjustment Process",
+          "content": "Annual process for adjusting guidelines:",
+          "items": [
+            "Review market data annually in Q4",
+            "Propose updates to guidelines if needed",
+            "CRB approval of any changes",
+            "Implement for next plan year"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Monitoring and Reporting",
+      "content": "Regular monitoring to assess effectiveness of caps and thresholds.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Quarterly Reporting",
+          "content": "Sales Operations reports quarterly on:",
+          "items": [
+            "% of participants hitting caps",
+            "% of participants below threshold",
+            "Average payout % of TI",
+            "Budget impact of caps"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Annual Analysis",
+          "content": "Compensation conducts annual analysis of:",
+          "items": [
+            "Effectiveness of cap levels (too many hitting cap = consider adjustment)",
+            "Threshold impact (too many below = quota/plan design issue)",
+            "Financial impact",
+            "Recommendations for next year"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Special Circumstances",
+      "content": "Provisions for handling windfall payouts, new products/markets, and guarantees.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Windfalls",
+          "content": "Even within cap limits, unusually large payouts may be reviewed. Windfall Review Trigger: Individual payout exceeds threshold amount OR exceeds 3x historical average.",
+          "items": [
+            "Finance + Compensation review circumstances",
+            "Determine if payout is earned vs. windfall (luck, one-time event, data error)",
+            "CRB may exercise discretion to adjust if windfall is unearned"
+          ]
+        },
+        {
+          "id": "prov-007-2",
+          "title": "New Products/Markets",
+          "content": "Plans for new products or new markets may have:",
+          "items": [
+            "Lower thresholds (or no threshold) during launch period",
+            "Higher caps to incentivize adoption",
+            "Sunset provisions (revert to standard guidelines after specified period)"
+          ]
+        },
+        {
+          "id": "prov-007-3",
+          "title": "Guarantees and Draws",
+          "content": "For new hires or roles with guarantees:",
+          "items": [
+            "Guarantees do not count toward cap calculations",
+            "Once guarantee period ends, standard caps apply",
+            "Draw recoveries are not subject to caps"
+          ]
+        }
+      ],
       "tables": []
     }
   ],
+
   "compliance": {
     "federalLaws": [],
     "stateLaws": [],
-    "industryStandards": [],
+    "industryStandards": [
+      "Compensation surveys (e.g., Radford, Mercer)",
+      "Industry associations benchmarks",
+      "Medical/dental sales industry standards"
+    ],
     "keywords": [
-      "territory management guidelines",
-      "territory",
-      "management",
-      "guidelines"
+      "cap",
+      "threshold",
+      "maximum payout",
+      "minimum performance",
+      "leverage",
+      "target incentive",
+      "budget cap",
+      "windfall",
+      "quota attainment",
+      "payout curve",
+      "accelerator"
     ]
   },
+
   "relatedPolicies": [],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
-    "updatedAt": "2025-11-01T00:00:00Z",
+    "updatedAt": "2025-11-17T00:00:00Z",
     "createdBy": "policy-team",
     "approvedBy": "Pending Legal & Executive Review",
     "sourceFile": "lib/data/policies/SCP-014.md",
@@ -58,6 +360,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-17",
+        "author": "Compensation Lead",
+        "description": "Full policy content structured from markdown source"
       }
     ]
   }

@@ -18,12 +18,13 @@ export interface BindingConfig {
     audit: BindingMode;
     link: BindingMode;
     search: BindingMode;
-    document?: BindingMode;
-    documentVersion?: BindingMode;
-    committee?: BindingMode;
-    planTemplate?: BindingMode;
-    plan?: BindingMode;
-    governanceFramework?: BindingMode;
+    document: BindingMode;
+    documentVersion: BindingMode;
+    committee: BindingMode;
+    planTemplate: BindingMode;
+    plan: BindingMode;
+    governanceFramework: BindingMode;
+    fileStorage: BindingMode;
   };
 
   /**
@@ -79,6 +80,7 @@ export const defaultBindingConfig: BindingConfig = {
     planTemplate: 'synthetic',
     plan: 'synthetic',
     governanceFramework: 'synthetic',
+    fileStorage: 'synthetic',
   },
   dataLoad: {
     demo: false,
@@ -87,10 +89,13 @@ export const defaultBindingConfig: BindingConfig = {
 };
 
 /**
- * Load configuration from environment variables
+ * Load configuration from environment variables.
+ * Auto-detects DATABASE_URL: defaults to 'live' when present, 'synthetic' otherwise.
  */
 export function loadBindingConfig(): BindingConfig {
-  const mode = (process.env.BINDING_MODE || 'synthetic') as BindingMode;
+  const hasDatabase = !!process.env.DATABASE_URL;
+  const defaultMode: BindingMode = hasDatabase ? 'live' : 'synthetic';
+  const mode = (process.env.BINDING_MODE || defaultMode) as BindingMode;
 
   return {
     providers: {
@@ -106,6 +111,7 @@ export function loadBindingConfig(): BindingConfig {
       planTemplate: (process.env.BINDING_MODE_PLAN_TEMPLATE || mode) as BindingMode,
       plan: (process.env.BINDING_MODE_PLAN || mode) as BindingMode,
       governanceFramework: (process.env.BINDING_MODE_GOVERNANCE_FRAMEWORK || mode) as BindingMode,
+      fileStorage: (process.env.BINDING_MODE_FILE_STORAGE || mode) as BindingMode,
     },
     dataLoad: {
       demo: process.env.ENABLE_DEMO_DATA === 'true',

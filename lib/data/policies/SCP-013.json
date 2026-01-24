@@ -1,54 +1,437 @@
 {
   "code": "SCP-013",
-  "name": "Data and Systems Controls Policy",
+  "name": "Data Retention and Archival Policy",
   "category": "IT Governance",
   "frameworkArea": "Data/Systems/Controls",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
-  "effectiveDate": "2024-01-01T00:00:00Z",
-  "legalReviewRequired": false,
+  "status": "DRAFT",
+  "version": "1.0.0",
+  "effectiveDate": "2026-01-01T00:00:00Z",
+  "legalReviewRequired": true,
+
   "purpose": {
-    "summary": "Policy governing data/systems/controls.",
+    "summary": "Establish consistent retention requirements for compensation-related documents and data to ensure compliance with legal and regulatory requirements, audit readiness and supportability, appropriate data destruction, and balance between retention needs and cost/risk management.",
     "objectives": [
-      "Establish framework for data/systems/controls",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Ensure compliance with legal and regulatory requirements",
+      "Maintain audit readiness and supportability",
+      "Establish appropriate data destruction procedures",
+      "Balance retention needs with cost and risk management"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "Electronic documents (Word, Excel, PDF, etc.)",
+      "System data (ICMT, CRM, ERP, HRIS)",
+      "Email communications",
+      "Paper records",
+      "Audio/video recordings (if any)"
     ],
     "exclusions": [],
-    "geographic": []
+    "geographic": ["United States"]
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Active Storage",
+      "definition": "Storage for current plus 3 years of data in primary systems (ICMT, HRIS, Finance/ERP, Email) readily accessible by authorized users.",
+      "examples": []
+    },
+    {
+      "term": "Archive Storage",
+      "definition": "Storage for years 4-7 in secure archive server, cloud archive, or offline backup media, retrievable within 5 business days upon request.",
+      "examples": []
+    },
+    {
+      "term": "Legal Hold",
+      "definition": "Exception to normal destruction schedule when litigation, investigation, or audit is pending or reasonably anticipated, requiring immediate suspension of all destruction of potentially relevant records.",
+      "examples": []
+    },
+    {
+      "term": "Destruction Log",
+      "definition": "A permanent log maintaining date of destruction, description of records destroyed, retention period applied, authorization, method of destruction, and certificate of destruction.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Retention Schedule",
+      "content": "All compensation-related records must be retained according to the defined schedule, with 7 years as the standard retention period.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Plan Design Documentation",
+          "content": "Retention requirements for plan design documents:",
+          "items": [
+            "Plan documents (approved versions): 7 years after plan ends - Governance repository",
+            "Plan design models and analysis: 7 years after plan ends - Shared drive",
+            "Market benchmark data: 3 years - Comp team files",
+            "Approval records (CRB minutes, etc.): 7 years - Secure archive"
+          ]
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Participant Data",
+          "content": "Retention requirements for participant data:",
+          "items": [
+            "Eligibility records: 7 years after termination - HRIS + ICMT",
+            "Quota assignments: 7 years - ICMT",
+            "Performance data: 7 years - ICMT + Data warehouse",
+            "Payout calculations: 7 years after payment - ICMT",
+            "Payment records: 7 years after payment - Finance systems",
+            "Participant statements: 7 years after issuance - ICMT / Archive"
+          ]
+        },
+        {
+          "id": "prov-001-3",
+          "title": "Financial Records",
+          "content": "Retention requirements for financial records:",
+          "items": [
+            "Accrual calculations: 7 years - Finance systems",
+            "GL reconciliations: 7 years - Finance systems",
+            "Budget vs. actual reports: 7 years - Finance systems",
+            "Tax withholding records: 7 years minimum - Payroll/Finance",
+            "W-2 copies: Permanent - HR/Payroll"
+          ]
+        },
+        {
+          "id": "prov-001-4",
+          "title": "System and Audit Documentation",
+          "content": "Retention requirements for system and audit documentation:",
+          "items": [
+            "System configuration history: 7 years - ICMT / IT",
+            "Audit reports (internal/external): 7 years - Governance archive",
+            "Control testing documentation: 7 years - Finance / Audit files",
+            "Data validation logs: 3 years - ICMT logs"
+          ]
+        },
+        {
+          "id": "prov-001-5",
+          "title": "Communications",
+          "content": "Retention requirements for communications:",
+          "items": [
+            "Plan rollout communications: 7 years - Governance repository",
+            "Participant acknowledgments: 7 years after termination - ICMT / HR",
+            "Email re: plan interpretation: 3 years - Email archive",
+            "Training materials: Current version + 3 years - Training repository"
+          ]
+        },
+        {
+          "id": "prov-001-6",
+          "title": "Disputes and Exceptions",
+          "content": "Retention requirements for dispute and exception records:",
+          "items": [
+            "Dispute records: 7 years after resolution - ICMT / Legal files",
+            "Exception requests and approvals: 7 years - ICMT / Governance files",
+            "Investigation files: 7 years after close - HR / Legal files"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Legal and Regulatory Basis",
+      "content": "Retention periods are based on key legal and regulatory requirements. A conservative approach of 7 years standard is used to cover all requirements.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Key Requirements",
+          "content": "Legal and regulatory retention requirements:",
+          "items": [
+            "IRS: Minimum 3 years (typically 7 years for caution)",
+            "SOX: Audit documentation for 7 years",
+            "State Wage Laws: Vary by state (3-7 years)",
+            "FLSA: 3 years (certain records)",
+            "EEOC: 1 year (employment records)",
+            "Securities Laws: 6-7 years (if applicable)"
+          ]
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Legal Hold",
+          "content": "If litigation, investigation, or audit is pending or reasonably anticipated:",
+          "items": [
+            "STOP all destruction of potentially relevant records",
+            "Implement legal hold procedures",
+            "Consult Legal before any deletion",
+            "Maintain records until legal hold is lifted"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Retention Period Calculation",
+      "content": "Retention period start dates depend on the type of record.",
       "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Start Date",
+          "content": "Retention period begins on:",
+          "items": [
+            "Plan documents: End date of plan year",
+            "Participant data: Termination date or last payment date, whichever is later",
+            "Payments: Date of payment",
+            "Disputes: Date of resolution",
+            "Financial records: End of fiscal year",
+            "Audits: Date of audit report"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Storage Requirements",
+      "content": "Data must be stored according to its age and access requirements.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Active Storage (Current + 3 Years)",
+          "content": "Readily accessible by authorized users in primary systems:",
+          "items": [
+            "ICMT (primary compensation system)",
+            "HRIS",
+            "Finance/ERP systems",
+            "Email systems"
+          ]
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Archive Storage (Years 4-7)",
+          "content": "Retrievable within 5 business days upon request, encrypted and access-controlled:",
+          "items": [
+            "Secure archive server",
+            "Cloud archive (if approved)",
+            "Offline backup media"
+          ]
+        },
+        {
+          "id": "prov-004-3",
+          "title": "Paper Records",
+          "content": "Paper may be scanned and destroyed after verification if scanning meets quality standards, electronic copy is legally equivalent, index allows easy retrieval, and approved by Legal.",
+          "items": [
+            "Current: On-site secure storage",
+            "Archive: Off-site secure facility or converted to electronic and destroyed"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Data Destruction",
+      "content": "Data must be destroyed securely using certified methods.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Destruction Methods",
+          "content": "Approved methods for data destruction:",
+          "items": [
+            "Electronic Data: Secure deletion using certified data wiping software",
+            "Electronic Data: Destruction of physical media via certified vendor",
+            "Paper Records: Shredding via certified vendor",
+            "Paper Records: Certificate of destruction obtained"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Destruction Process",
+          "content": "Annual review conducted in January each year:",
+          "items": [
+            "IT/Records Manager identifies data/documents eligible for destruction",
+            "Legal reviews and confirms no legal holds",
+            "Governance Lead approves destruction list",
+            "Execute destruction",
+            "Document destruction (what, when, by whom)",
+            "Retain destruction certificates"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Data Privacy Considerations",
+      "content": "Balance data privacy rights with legal retention obligations.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "GDPR / CCPA",
+          "content": "Participants may request deletion of personal data. Process for deletion requests:",
+          "items": [
+            "Participant submits request to Privacy Contact",
+            "Privacy/Legal reviews against retention obligations",
+            "If within retention period: Explain legal requirement to retain",
+            "If past retention period: Execute deletion and confirm to participant"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Data Minimization",
+          "content": "Retain only what is necessary:",
+          "items": [
+            "Purge unnecessary personal data even before retention period ends",
+            "Anonymize data sets when personal identifiers not needed",
+            "Aggregate data for analysis where possible"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Roles and Responsibilities",
+      "content": "Clearly defined roles for all parties involved in data retention.",
+      "priority": "MEDIUM",
+      "subProvisions": [],
+      "tables": [
+        {
+          "id": "table-007-1",
+          "caption": "Data Retention Roles and Responsibilities",
+          "headers": ["Role", "Responsibility"],
+          "rows": [
+            ["Legal", "Define retention requirements, manage legal holds, approve destruction"],
+            ["IT", "Implement storage systems, execute secure deletion, backup management"],
+            ["Governance Lead", "Maintain retention schedule, coordinate reviews, approve destruction"],
+            ["Sales Operations", "Tag data for retention, prepare for archival"],
+            ["Finance", "Retain financial records per schedule, coordinate with Tax"],
+            ["Records Manager", "(If role exists) Coordinate retention program"],
+            ["All Employees", "Follow retention policy, identify records for legal hold"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-008",
+      "title": "Exceptions and Special Cases",
+      "content": "Provisions for permanent retention, shortened retention, and extended retention.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Permanent Retention",
+          "content": "Retain permanently:",
+          "items": [
+            "Corporate governance charters",
+            "Significant policy documents",
+            "Board-approved compensation programs (summary level)"
+          ]
+        },
+        {
+          "id": "prov-008-2",
+          "title": "Shortened Retention",
+          "content": "May be destroyed earlier than 7 years (with Legal approval):",
+          "items": [
+            "Duplicate copies (retain one official copy)",
+            "Drafts (after final version approved)",
+            "Routine communications with no legal significance"
+          ]
+        },
+        {
+          "id": "prov-008-3",
+          "title": "Extended Retention",
+          "content": "Retain beyond 7 years if:",
+          "items": [
+            "Required by specific law (e.g., certain securities matters)",
+            "Legal hold in effect",
+            "Historical significance for company",
+            "Approved by Legal for business reasons"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-009",
+      "title": "Audit and Compliance",
+      "content": "Regular audits to ensure compliance with the retention schedule.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-009-1",
+          "title": "Internal Audit",
+          "content": "Annual review includes:",
+          "items": [
+            "Compliance with retention schedule",
+            "Proper archival of records",
+            "Timely destruction of eligible records",
+            "Adequacy of backup/recovery procedures",
+            "Security of archived data"
+          ]
+        },
+        {
+          "id": "prov-009-2",
+          "title": "External Audit Support",
+          "content": "For external audits:",
+          "items": [
+            "Provide records as requested",
+            "Demonstrate retention policy compliance",
+            "Show documentation is complete for audit period",
+            "Provide destruction logs if requested"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-010",
+      "title": "Training and Awareness",
+      "content": "All employees handling compensation data must understand retention requirements, know how to identify records for legal hold, follow proper procedures for archival and destruction, and report retention policy violations.",
+      "priority": "LOW",
       "subProvisions": [],
       "tables": []
     }
   ],
+
   "compliance": {
-    "federalLaws": [],
-    "stateLaws": [],
-    "industryStandards": [],
+    "federalLaws": [
+      "IRS retention requirements (minimum 3 years, 7 years recommended)",
+      "SOX (Sarbanes-Oxley Act) audit documentation requirements",
+      "FLSA (Fair Labor Standards Act) - 3 years certain records",
+      "EEOC - 1 year employment records"
+    ],
+    "stateLaws": [
+      "State wage laws (3-7 years depending on state)",
+      "California: 3 years minimum (4 years recommended)",
+      "New York: 6 years (wage theft prevention)",
+      "Texas: Federal standards (FLSA 3 years)",
+      "CCPA data privacy requirements"
+    ],
+    "industryStandards": [
+      "GDPR data privacy requirements",
+      "Securities laws (6-7 years if applicable)"
+    ],
     "keywords": [
-      "data and systems controls policy",
-      "systems",
-      "controls",
-      "policy",
-      "data/systems/controls"
+      "data retention",
+      "archival",
+      "destruction",
+      "legal hold",
+      "privacy",
+      "GDPR",
+      "CCPA",
+      "SOX compliance",
+      "audit",
+      "records management",
+      "data minimization",
+      "retention schedule"
     ]
   },
+
   "relatedPolicies": [],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
-    "updatedAt": "2025-11-01T00:00:00Z",
+    "updatedAt": "2025-11-17T00:00:00Z",
     "createdBy": "policy-team",
     "approvedBy": "Pending Legal & Executive Review",
     "sourceFile": "lib/data/policies/SCP-013.md",
@@ -59,6 +442,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-17",
+        "author": "Legal / IT / Governance Lead",
+        "description": "Full policy content structured from markdown source"
       }
     ]
   }

@@ -67,7 +67,8 @@ export class ProviderRegistry {
         throw new Error('Mapped territory provider not implemented yet');
 
       case 'live':
-        throw new Error('Live territory provider not implemented yet');
+        const { LiveTerritoryProvider } = require('@/lib/bindings/live/territory.live');
+        return new LiveTerritoryProvider();
 
       default:
         throw new Error(`Unknown binding mode for territory: ${mode}`);
@@ -89,7 +90,8 @@ export class ProviderRegistry {
         throw new Error('Mapped approval provider not implemented yet');
 
       case 'live':
-        throw new Error('Live approval provider not implemented yet');
+        const { LiveApprovalProvider } = require('@/lib/bindings/live/approval.live');
+        return new LiveApprovalProvider();
 
       default:
         throw new Error(`Unknown binding mode for approval: ${mode}`);
@@ -111,7 +113,8 @@ export class ProviderRegistry {
         throw new Error('Mapped audit provider not implemented yet');
 
       case 'live':
-        throw new Error('Live audit provider not implemented yet');
+        const { LiveAuditProvider } = require('@/lib/bindings/live/audit.live');
+        return new LiveAuditProvider();
 
       default:
         throw new Error(`Unknown binding mode for audit: ${mode}`);
@@ -133,7 +136,8 @@ export class ProviderRegistry {
         throw new Error('Mapped link provider not implemented yet');
 
       case 'live':
-        throw new Error('Live link provider not implemented yet');
+        const { LiveLinkProvider } = require('@/lib/bindings/live/link.live');
+        return new LiveLinkProvider();
 
       default:
         throw new Error(`Unknown binding mode for link: ${mode}`);
@@ -155,7 +159,8 @@ export class ProviderRegistry {
         throw new Error('Mapped search provider not implemented yet');
 
       case 'live':
-        throw new Error('Live search provider not implemented yet');
+        const { LiveSearchProvider } = require('@/lib/bindings/live/search.live');
+        return new LiveSearchProvider();
 
       default:
         throw new Error(`Unknown binding mode for search: ${mode}`);
@@ -166,7 +171,7 @@ export class ProviderRegistry {
    * Get Document provider
    */
   getDocument(): IDocumentPort {
-    const mode = this.config.providers.document || 'synthetic';
+    const mode = this.config.providers.document;
 
     switch (mode) {
       case 'synthetic':
@@ -177,7 +182,8 @@ export class ProviderRegistry {
         throw new Error('Mapped document provider not implemented yet');
 
       case 'live':
-        throw new Error('Live document provider not implemented yet');
+        const { LiveDocumentProvider } = require('@/lib/bindings/live/document.live');
+        return new LiveDocumentProvider();
 
       default:
         throw new Error(`Unknown binding mode for document: ${mode}`);
@@ -188,7 +194,7 @@ export class ProviderRegistry {
    * Get Committee provider
    */
   getCommittee(): ICommitteePort {
-    const mode = this.config.providers.committee || 'synthetic';
+    const mode = this.config.providers.committee;
 
     switch (mode) {
       case 'synthetic':
@@ -199,7 +205,8 @@ export class ProviderRegistry {
         throw new Error('Mapped committee provider not implemented yet');
 
       case 'live':
-        throw new Error('Live committee provider not implemented yet');
+        const { LiveCommitteeProvider } = require('@/lib/bindings/live/committee.live');
+        return new LiveCommitteeProvider();
 
       default:
         throw new Error(`Unknown binding mode for committee: ${mode}`);
@@ -210,7 +217,7 @@ export class ProviderRegistry {
    * Get Plan Template provider
    */
   getPlanTemplate(): IPlanTemplatePort {
-    const mode = this.config.providers.planTemplate || 'synthetic';
+    const mode = this.config.providers.planTemplate;
 
     switch (mode) {
       case 'synthetic':
@@ -221,7 +228,8 @@ export class ProviderRegistry {
         throw new Error('Mapped plan template provider not implemented yet');
 
       case 'live':
-        throw new Error('Live plan template provider not implemented yet');
+        const { LivePlanTemplateProvider } = require('@/lib/bindings/live/plan-template.live');
+        return new LivePlanTemplateProvider();
 
       default:
         throw new Error(`Unknown binding mode for plan template: ${mode}`);
@@ -232,7 +240,7 @@ export class ProviderRegistry {
    * Get Plan provider
    */
   getPlan(): IPlanPort {
-    const mode = this.config.providers.plan || 'synthetic';
+    const mode = this.config.providers.plan;
 
     switch (mode) {
       case 'synthetic':
@@ -243,7 +251,8 @@ export class ProviderRegistry {
         throw new Error('Mapped plan provider not implemented yet');
 
       case 'live':
-        throw new Error('Live plan provider not implemented yet');
+        const { LivePlanProvider } = require('@/lib/bindings/live/plan.live');
+        return new LivePlanProvider();
 
       default:
         throw new Error(`Unknown binding mode for plan: ${mode}`);
@@ -278,7 +287,7 @@ export class ProviderRegistry {
    * Full provenance tracking for document versions
    */
   getDocumentVersion(): IDocumentVersionPort {
-    const mode = this.config.providers.documentVersion || 'synthetic';
+    const mode = this.config.providers.documentVersion;
 
     switch (mode) {
       case 'synthetic':
@@ -289,9 +298,8 @@ export class ProviderRegistry {
         throw new Error('Mapped document version provider not implemented yet');
 
       case 'live':
-        throw new Error('Live document version provider not implemented yet');
-        // const { LiveDocumentVersionProvider } = require('@/lib/bindings/live/document-version.live');
-        // return new LiveDocumentVersionProvider();
+        const { LiveDocumentVersionProvider } = require('@/lib/bindings/live/document-version.live');
+        return new LiveDocumentVersionProvider();
 
       default:
         throw new Error(`Unknown binding mode for document version: ${mode}`);
@@ -302,10 +310,23 @@ export class ProviderRegistry {
    * Get File Storage provider
    */
   getFileStorage(): IFileStoragePort {
-    // For now, always use synthetic (in-memory) file storage
-    // In production, this would be configurable for S3/local storage
-    const { SyntheticFileStorageProvider } = require('@/lib/bindings/synthetic/file-storage.synthetic');
-    return new SyntheticFileStorageProvider();
+    const mode = this.config.providers.fileStorage;
+
+    switch (mode) {
+      case 'synthetic':
+        const { SyntheticFileStorageProvider } = require('@/lib/bindings/synthetic/file-storage.synthetic');
+        return new SyntheticFileStorageProvider();
+
+      case 'mapped':
+        throw new Error('Mapped file storage provider not implemented yet');
+
+      case 'live':
+        const { LiveFileStorageProvider } = require('@/lib/bindings/live/file-storage.live');
+        return new LiveFileStorageProvider();
+
+      default:
+        throw new Error(`Unknown binding mode for file storage: ${mode}`);
+    }
   }
 
   /**
@@ -334,12 +355,13 @@ export class ProviderRegistry {
         audit: this.config.providers.audit,
         link: this.config.providers.link,
         search: this.config.providers.search,
-        document: this.config.providers.document || 'synthetic',
-        documentVersion: this.config.providers.documentVersion || 'synthetic',
-        committee: this.config.providers.committee || 'synthetic',
-        planTemplate: this.config.providers.planTemplate || 'synthetic',
-        plan: this.config.providers.plan || 'synthetic',
-        governanceFramework: this.config.providers.governanceFramework || 'synthetic',
+        document: this.config.providers.document,
+        documentVersion: this.config.providers.documentVersion,
+        committee: this.config.providers.committee,
+        planTemplate: this.config.providers.planTemplate,
+        plan: this.config.providers.plan,
+        governanceFramework: this.config.providers.governanceFramework,
+        fileStorage: this.config.providers.fileStorage,
       },
       hasExternalDependencies: Object.values(this.config.providers).some(
         (mode) => mode !== 'synthetic'

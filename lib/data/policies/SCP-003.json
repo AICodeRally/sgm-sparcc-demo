@@ -4,17 +4,21 @@
   "category": "Deal Governance",
   "frameworkArea": "Windfall/Large Deals",
   "status": "DRAFT",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "effectiveDate": "2024-01-01T00:00:00Z",
   "legalReviewRequired": true,
+
   "purpose": {
     "summary": "This policy establishes governance and treatment guidelines for windfall sales transactions and unusually large deals that have the potential to create disproportionate compensation outcomes. The policy ensures fair treatment of exceptional sales while maintaining the integrity and sustainability of the Company's sales compensation program.",
     "objectives": [
-      "Establish framework for windfall/large deals",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Establish governance and treatment guidelines for windfall sales transactions and unusually large deals",
+      "Ensure fair treatment of exceptional sales while maintaining integrity and sustainability of compensation program",
+      "Provide clear criteria for identifying windfall transactions",
+      "Define treatment options for the Compensation Review Board",
+      "Maintain transparency and communication with sales representatives"
     ]
   },
+
   "scope": {
     "appliesTo": [
       "All sales compensation plans with commission or bonus components",
@@ -25,6 +29,7 @@
     "exclusions": [],
     "geographic": []
   },
+
   "definitions": [
     {
       "term": "Windfall Transaction",
@@ -57,30 +62,392 @@
       "examples": []
     }
   ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Windfall Identification Criteria",
+      "content": "A transaction is classified as a potential windfall if it meets ANY of the following criteria:",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Size-Based Criteria",
+          "content": "Thresholds based on transaction value and compensation impact:",
+          "items": [
+            "Transaction value exceeds $1,000,000",
+            "Commission payment would exceed $100,000",
+            "Single transaction represents >50% of annual quota",
+            "Deal would result in annual quota attainment >200%"
+          ]
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Effort-Based Criteria",
+          "content": "Criteria based on the level of sales effort relative to deal size:",
+          "items": [
+            "Sales cycle was unusually short (<30 days) relative to deal size",
+            "Minimal sales rep involvement (customer-initiated inquiry, <5 touchpoints)",
+            "Significant corporate support/involvement beyond normal selling",
+            "Existing customer significantly expanding without competitive displacement"
+          ]
+        },
+        {
+          "id": "prov-001-3",
+          "title": "Circumstance-Based Criteria",
+          "content": "Criteria based on external circumstances driving the deal:",
+          "items": [
+            "Deal resulted from corporate partnership or alliance",
+            "Transaction driven primarily by marketing campaign or trade show",
+            "Merger/acquisition bringing large customer into territory",
+            "Industry consolidation creating large customer"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Compensation Review Board (CRB) Review Process",
+      "content": "Sales Compensation monitors all transactions and automatically flags potential windfalls based on criteria in Section 4. Flagged deals are held for CRB review before commission payment is processed.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Identification and Flagging",
+          "content": "Sales Compensation monitors all transactions and automatically flags potential windfalls based on criteria in Section 4. Flagged deals are held for CRB review before commission payment is processed.",
+          "items": []
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Information Package for CRB",
+          "content": "For each windfall under review, the CRB receives:",
+          "items": [
+            "Transaction details (size, scope, timeline)",
+            "Sales representative information (tenure, YTD performance, historical attainment)",
+            "Sales effort documentation (activities, timeline, customer interactions)",
+            "Commission calculation under standard plan rules",
+            "Sales manager assessment and recommendation",
+            "Comparable transaction analysis",
+            "Proposed treatment options with financial impact"
+          ]
+        },
+        {
+          "id": "prov-002-3",
+          "title": "Review Timeline",
+          "content": "Target timeline from deal close to decision:",
+          "items": [
+            "Flagged within 5 business days of deal closing",
+            "Information package prepared within 10 business days",
+            "CRB review completed within 15 business days",
+            "Decision communicated to sales rep within 2 business days of CRB meeting",
+            "Total timeline target: 30 days from deal close to decision"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Windfall Treatment Options",
+      "content": "The CRB may approve one or more of the following treatments based on the specific circumstances:",
       "priority": "HIGH",
-      "subProvisions": [],
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Option 1: Full Payment Under Plan (No Modification)",
+          "content": "Pay commission according to standard plan terms without modification. Used when sales rep demonstrated exceptional effort and sales strategy, deal was fully within rep's control and influence, competitive win or complex sales process, or rep's overall performance is at or below target.",
+          "items": [
+            "Sales rep demonstrated exceptional effort and sales strategy",
+            "Deal was fully within rep's control and influence",
+            "Competitive win or complex sales process",
+            "Rep's overall performance is at or below target"
+          ]
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Option 2: Commission Cap",
+          "content": "Applied when transaction significantly exceeds typical deal size for role, some sales effort but not commensurate with commission amount, or need to maintain reasonable compensation/performance relationship.",
+          "items": [
+            "Cap commission at 2x annual target incentive",
+            "Cap at 150% of annual quota attainment contribution",
+            "Cap at $250,000 total commission payment",
+            "Any excess commission above cap is absorbed (not paid)"
+          ]
+        },
+        {
+          "id": "prov-003-3",
+          "title": "Option 3: Amortization",
+          "content": "Used for multi-year contracts or phased delivery, payment timing misalignment with value delivery, or risk mitigation for contract cancellation or non-payment.",
+          "items": [
+            "Spread commission payments over contract term (up to 36 months)",
+            "Align payments with customer payment milestones",
+            "Align payments with product/service delivery schedule",
+            "Payments subject to continued employment (unless otherwise specified)"
+          ]
+        },
+        {
+          "id": "prov-003-4",
+          "title": "Option 4: Split Credit",
+          "content": "Used when multiple parties significantly contributed to sale, corporate team involvement, or transition from previous rep or inherited relationship.",
+          "items": [
+            "Allocate commission among contributors based on documented effort",
+            "Primary rep typically receives 50-70% of credit",
+            "Supporting contributors receive 10-30% each",
+            "Total allocation may exceed 100% for exceptional team selling"
+          ]
+        },
+        {
+          "id": "prov-003-5",
+          "title": "Option 5: Special Recognition Bonus",
+          "content": "Used when deal has strategic importance beyond commission value, rep went above and beyond normal expectations, or to recognize effort while modifying standard commission.",
+          "items": [
+            "Award discretionary bonus separate from commission plan",
+            "Typical range: $25,000 - $100,000",
+            "May be combined with capped or amortized commission",
+            "Approved by CRB with CEO sign-off"
+          ]
+        },
+        {
+          "id": "prov-003-6",
+          "title": "Combination Approaches",
+          "content": "The CRB may approve a combination of treatments. For example:",
+          "items": [
+            "Amortize commission over 3 years AND apply a $200K cap",
+            "Split credit 70/30 AND provide special recognition bonus",
+            "Cap commission at $150K AND amortize payment over 2 years"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Documentation and Approval Workflow",
+      "content": "Comprehensive documentation requirements for all windfall reviews.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Windfall Review Form",
+          "content": "Required information for all windfall reviews:",
+          "items": [
+            "Transaction identification and details",
+            "Sales representative profile",
+            "Windfall criteria met",
+            "Sales effort assessment (completed by manager)",
+            "Standard commission calculation",
+            "Comparable deals analysis",
+            "Recommended treatment with rationale",
+            "Financial impact summary"
+          ]
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Sales Manager Input",
+          "content": "The direct sales manager must provide:",
+          "items": [
+            "Assessment of sales rep's effort level (scale 1-5)",
+            "Chronology of sales activities",
+            "Competitive situation assessment",
+            "Unique circumstances or context",
+            "Recommendation for treatment",
+            "Impact assessment on rep morale and motivation"
+          ]
+        },
+        {
+          "id": "prov-004-3",
+          "title": "CRB Decision Documentation",
+          "content": "The CRB decision record includes:",
+          "items": [
+            "Meeting date and attendees",
+            "Summary of discussion and considerations",
+            "Treatment decision with specific terms",
+            "Rationale for decision",
+            "Vote results (if not unanimous)",
+            "Effective date and payment schedule",
+            "Communication plan for sales rep"
+          ]
+        },
+        {
+          "id": "prov-004-4",
+          "title": "Retention Period",
+          "content": "All windfall review documentation is retained for seven (7) years in accordance with the Company's data retention policy.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Transparency and Communication",
+      "content": "Requirements for communicating the policy and windfall decisions to sales team members.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Policy Communication",
+          "content": "This policy is communicated to all sales team members:",
+          "items": [
+            "Included in annual compensation plan document",
+            "Referenced in offer letters and employment agreements",
+            "Reviewed during new hire onboarding",
+            "Reinforced in annual sales meetings"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Notification to Sales Representative",
+          "content": "When a windfall is identified:",
+          "items": [
+            "Rep is notified within 5 days of deal flagging",
+            "Explanation of review process and timeline",
+            "Opportunity for rep to provide input and documentation",
+            "Rep may request meeting with manager to discuss"
+          ]
+        },
+        {
+          "id": "prov-005-3",
+          "title": "Decision Communication",
+          "content": "Following CRB decision:",
+          "items": [
+            "Written notification within 2 business days",
+            "Clear explanation of treatment and rationale",
+            "Updated commission calculation",
+            "Payment schedule (if amortized)",
+            "Appeal rights and process"
+          ]
+        },
+        {
+          "id": "prov-005-4",
+          "title": "Annual Reporting",
+          "content": "Sales Compensation provides annual summary to executive leadership:",
+          "items": [
+            "Number of windfall reviews conducted",
+            "Treatment outcomes distribution",
+            "Financial impact (commissions paid vs. modified)",
+            "Policy effectiveness assessment"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Appeal Process",
+      "content": "Sales representatives may appeal windfall treatment decisions.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Initial Appeal",
+          "content": "First-level appeal process:",
+          "items": [
+            "Submit written appeal within 15 days of decision notification",
+            "Provide additional documentation supporting full payment",
+            "CRB reviews new information",
+            "Decision within 10 business days"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Executive Review",
+          "content": "Second-level appeal if unsatisfied with initial appeal outcome:",
+          "items": [
+            "Escalate to SVP of Sales and CFO",
+            "Executive review within 10 business days",
+            "May adjust treatment or uphold CRB decision",
+            "Executive decision is final"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Roles and Responsibilities",
+      "content": "Clearly defined roles for all parties involved in the windfall review process.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Sales Compensation Team",
+          "content": "Primary responsibilities:",
+          "items": [
+            "Monitor transactions against windfall criteria",
+            "Flag potential windfalls for review",
+            "Prepare information packages for CRB",
+            "Process approved payments according to CRB decision",
+            "Maintain windfall review documentation"
+          ]
+        },
+        {
+          "id": "prov-007-2",
+          "title": "Sales Managers",
+          "content": "Manager responsibilities:",
+          "items": [
+            "Provide sales effort assessment for windfall reviews",
+            "Submit recommendations to CRB",
+            "Communicate decisions to sales reps",
+            "Support reps through review and appeal process"
+          ]
+        },
+        {
+          "id": "prov-007-3",
+          "title": "Compensation Review Board",
+          "content": "CRB responsibilities:",
+          "items": [
+            "Review flagged windfall transactions",
+            "Determine appropriate treatment",
+            "Document decisions and rationale",
+            "Review appeals and render final decisions"
+          ]
+        },
+        {
+          "id": "prov-007-4",
+          "title": "Finance",
+          "content": "Financial oversight:",
+          "items": [
+            "Validate transaction financial data",
+            "Assess financial impact of treatment options",
+            "Approve payments exceeding standard thresholds"
+          ]
+        },
+        {
+          "id": "prov-007-5",
+          "title": "Legal",
+          "content": "Legal compliance:",
+          "items": [
+            "Review treatment decisions for compliance",
+            "Advise on contractual obligations",
+            "Review appeal determinations"
+          ]
+        }
+      ],
       "tables": []
     }
   ],
+
   "compliance": {
     "federalLaws": [],
     "stateLaws": [],
     "industryStandards": [],
     "keywords": [
-      "windfall and large deal policy",
       "windfall",
-      "large",
-      "policy",
-      "windfall/large",
-      "deals"
+      "large deal",
+      "disproportionate outcome",
+      "commission cap",
+      "amortization",
+      "split credit",
+      "compensation review board",
+      "special recognition bonus",
+      "sales effort",
+      "windfall treatment"
     ]
   },
+
   "relatedPolicies": [],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -94,6 +461,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-01",
+        "author": "Sales Compensation Governance Committee",
+        "description": "Full structured content populated from markdown source"
       }
     ]
   }

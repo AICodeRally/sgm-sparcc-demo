@@ -3,48 +3,374 @@
   "name": "Sales Crediting Policy",
   "category": "Commission Rules",
   "frameworkArea": "Sales Crediting",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
+  "status": "DRAFT",
+  "version": "1.0.0",
   "effectiveDate": "2024-01-01T00:00:00Z",
   "legalReviewRequired": false,
+
   "purpose": {
-    "summary": "Policy governing sales crediting.",
+    "summary": "Establish clear, consistent rules for crediting sales performance to ensure fair attribution of sales to appropriate sales representatives, transparency and predictability, dispute minimization, data integrity, and support for business objectives (collaboration, customer focus).",
     "objectives": [
-      "Establish framework for sales crediting",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Fair attribution of sales to appropriate sales representatives",
+      "Transparency and predictability in crediting decisions",
+      "Dispute minimization through clear rules",
+      "Data integrity in performance tracking",
+      "Support for business objectives (collaboration, customer focus)"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "All sales performance tracked for incentive compensation purposes",
+      "Revenue (bookings, billings)",
+      "Orders",
+      "Units sold",
+      "New customer acquisition",
+      "Other performance measures per plan documents"
     ],
     "exclusions": [],
     "geographic": []
   },
+
   "definitions": [],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
-      "priority": "HIGH",
-      "subProvisions": [],
+      "title": "Core Crediting Principles",
+      "content": "Fundamental rules governing how sales credit is assigned.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Territory-Based Crediting (Primary Rule)",
+          "content": "Credit goes to the sales representative assigned to the customer's territory at the time of sale. Rationale: Clear ownership and accountability, encourages territory management, minimizes disputes. Territory determined by customer location (billing address, shipping address, or designated office), territory assignments documented in CRM (Salesforce), territory maps maintained by Sales Operations.",
+          "items": []
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Closed Date Determines Credit",
+          "content": "Performance is credited based on when the transaction is officially closed/booked. For Revenue: Close Date = Date order is booked in ERP system or contract is signed (whichever represents commitment). For Orders: Close Date = Date purchase order received or contract signed.",
+          "items": []
+        },
+        {
+          "id": "prov-001-3",
+          "title": "One Transaction, One Credit (No Double-Dipping)",
+          "content": "Each transaction is credited only once (100% to one rep or split among multiple reps totaling 100%). Exception: Overlay/Specialist roles may receive separate credit (see Section 7).",
+          "items": []
+        }
+      ],
       "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Standard Crediting Scenarios",
+      "content": "Rules for common crediting situations.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Standard Sale (Single Rep)",
+          "content": "Rep in assigned territory closes deal: 100% credit to assigned territory rep.",
+          "items": []
+        },
+        {
+          "id": "prov-002-2",
+          "title": "New Customer vs. Existing Customer",
+          "content": "Crediting Rule: Same - credit to assigned territory rep. Exception - New Customer Bonus: If plan includes new customer acquisition bonus, rep receives bonus for first sale to new customer. Subsequent sales to same customer credited normally (no repeat bonus).",
+          "items": []
+        },
+        {
+          "id": "prov-002-3",
+          "title": "Repeat/Renewal Business",
+          "content": "Current territory owner receives credit, even if prior rep established relationship. Rationale: Encourages ongoing customer relationship management.",
+          "items": []
+        },
+        {
+          "id": "prov-002-4",
+          "title": "Customer Relocates",
+          "content": "Credit to territory where customer is located at time of sale. If customer relocates mid-sales cycle and deal was substantially developed by original rep, may split credit (see Split Credit Scenarios).",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Split Credit Scenarios",
+      "content": "Rules for dividing sales credit among multiple representatives.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Team Selling (Planned Collaboration)",
+          "content": "Two or more reps collaborate on sale. Standard Split: 50/50 if two reps collaborate equally; other splits (60/40, 70/30, etc.) if contribution differs.",
+          "items": [
+            "Both reps documented in CRM opportunity (before close)",
+            "Split percentage agreed in advance (documented in CRM)",
+            "Manager approval (if not pre-approved split rule)"
+          ]
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Territory Transition (Mid-Sales Cycle)",
+          "content": "Territory reassigned while deal is in progress. Documentation Required: Deal stage documented in CRM at time of transition, manager approval of credit allocation, notification to both reps.",
+          "items": []
+        },
+        {
+          "id": "prov-003-3",
+          "title": "House Accounts / National Accounts",
+          "content": "Account managed at corporate level, but local rep supports. National Account Manager (NAM): Receives primary credit (e.g., 70-80%). Local Territory Rep: Receives support credit (e.g., 20-30%). Split defined in advance for each house account.",
+          "items": [
+            "House account list maintained by Sales Operations",
+            "Split percentages documented",
+            "Updated annually or when accounts change"
+          ]
+        },
+        {
+          "id": "prov-003-4",
+          "title": "Channel/Partner Sales",
+          "content": "Sale facilitated by channel partner, but territory rep supports. Company policy: Full credit to territory rep for channel sales in their territory (Option A - encourages partner enablement).",
+          "items": []
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-003-1",
+          "caption": "Territory Transition Crediting Rules by Deal Stage",
+          "headers": ["Deal Stage at Transition", "Crediting"],
+          "rows": [
+            ["Early (Qualified, Discovery)", "100% to new rep (must close it)"],
+            ["Mid (Proposal, Negotiation)", "50/50 split OR 100% to new rep (manager decides)"],
+            ["Late (Verbal Commit, Contract Pending)", "100% to old rep if closes within 30 days; otherwise 50/50"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-004",
+      "title": "Special Situations",
+      "content": "Crediting rules for non-standard sales scenarios.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Online/E-Commerce Sales",
+          "content": "Customer purchases via website or e-commerce platform. Credit to territory rep assigned to customer's location. If customer not previously assigned, use billing/shipping address to determine territory. Rationale: Territory rep still responsible for customer relationship, even if purchase is self-service.",
+          "items": []
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Inside Sales / BDR Support",
+          "content": "Inside sales or BDR generates lead; field rep closes deal. Field Rep: Receives full credit for revenue/order. Inside Sales/BDR: May receive separate credit/bonus for qualified lead (if plan includes lead generation bonus). No Split: Field rep and inside sales on different plans; not split.",
+          "items": []
+        },
+        {
+          "id": "prov-004-3",
+          "title": "Customer Service / Account Manager Orders",
+          "content": "Customer places routine order with customer service (not sales rep). Credit to assigned territory rep. Customer service not commissioned on sales. Exception: If customer service on sales incentive plan, may receive credit per their plan terms.",
+          "items": []
+        },
+        {
+          "id": "prov-004-4",
+          "title": "Demo/Loaner/Internal Use Equipment",
+          "content": "Product provided as demo, loaner, or for internal company use. No Credit: Demo units, loaners, and internal use do not count toward sales quota. Exception: If demo converts to sale, then credit per standard rules. Documentation: Demo/loaner transactions tagged in ERP system (exclude from comp calculation).",
+          "items": []
+        },
+        {
+          "id": "prov-004-5",
+          "title": "Returns, Cancellations, Chargebacks",
+          "content": "Customer cancels order or returns product after rep received credit. Chargeback: Rep's performance is reduced (clawback of credit). Applies to rep who received original credit (even if they've left territory or company). Chargeback applied in month/quarter when cancellation occurs. Plan Language Required: Clawback provision must be in plan document and acknowledged by participant.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Overlay and Specialist Roles",
+      "content": "Crediting for specialist and overlay positions.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Overlay Structure",
+          "content": "Specialist (e.g., product specialist, solutions architect) supports field rep but also has own quota. Field Rep: Receives credit for full revenue (per standard rules). Specialist: Receives credit for specific products/services (double crediting, but measured on different metrics). Each has different quota and plan; not splitting one pool.",
+          "items": []
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Sales Engineer / Pre-Sales Support",
+          "content": "Sales Engineer typically NOT directly commissioned on revenue. May receive team-based bonus or activity-based incentive (not deal credit).",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Crediting Timeframes",
+      "content": "Rules governing when credit is applied and cut-off dates.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "When Credit is Applied",
+          "content": "Credit applied when order is booked in ERP system (official system of record). Date captured: Close date, booking date, or contract effective date (per company standard). Company Standard: Credit applied on booking date (when order enters ERP).",
+          "items": [
+            "NOT when verbal commitment received (not yet booked)",
+            "NOT when quote issued (not yet closed)",
+            "NOT when invoice issued (too late - use booking date)"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Cut-Off Dates",
+          "content": "Deadline rules for crediting periods:",
+          "items": [
+            "For monthly plans: Cut-off is last day of month at 11:59 PM (per ERP system timestamp)",
+            "For quarterly plans: Cut-off is last day of quarter at 11:59 PM",
+            "No exceptions: Orders booked after cut-off count in next period"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Credit Disputes",
+      "content": "Process for disputing and resolving credit allocation disagreements.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "How to Dispute Credit",
+          "content": "If rep believes credit is incorrect:",
+          "items": [
+            "Review Data: Check CRM and ICMT to understand how credit was assigned",
+            "Contact Sales Operations: Submit dispute per Dispute Resolution Procedures",
+            "Provide Evidence: CRM opportunity details, customer location, timeline, etc.",
+            "Timeline: Dispute must be raised within 30 days of performance period close"
+          ]
+        },
+        {
+          "id": "prov-007-2",
+          "title": "Dispute Resolution Process",
+          "content": "Three-step resolution process:",
+          "items": [
+            "Step 1: Sales Operations Review - Review CRM data, territory assignments, policy rules; determine correct crediting per policy",
+            "Step 2: Manager Decision - If policy unclear or judgment call needed, Sales Manager decides; document rationale",
+            "Step 3: Appeal - If rep disagrees, may appeal to Sales VP; VP decision is final"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-008",
+      "title": "Territory and Account Assignments",
+      "content": "Rules for maintaining territory and account assignment data.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Territory Master Data",
+          "content": "Sales Operations maintains territory maps (geographic boundaries or account lists), territory assignments (which rep owns which territory), and effective dates of assignments. System of Record: CRM (Salesforce). Updates: Sales Operations updates within 2 business days of change.",
+          "items": []
+        },
+        {
+          "id": "prov-008-2",
+          "title": "Account Assignment",
+          "content": "How customers are assigned to territories:",
+          "items": [
+            "Geographic: Customer location (billing or shipping address)",
+            "Named Accounts: Specific accounts assigned to specific reps (for strategic accounts)",
+            "Industry/Segment: By customer industry or size",
+            "Conflicts: If customer could belong to multiple territories, Sales Operations determines assignment (documented)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-009",
+      "title": "Data Integrity",
+      "content": "Requirements for maintaining accurate crediting data.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-009-1",
+          "title": "Rep Responsibilities",
+          "content": "Reps must maintain accurate CRM data:",
+          "items": [
+            "Accurately log opportunities in CRM",
+            "Tag correct customer account",
+            "Update deal stage as sales progresses",
+            "Document any split credit agreements in CRM (before close)",
+            "Failure to Document: If split not documented in advance, Sales Operations will apply standard policy (may not be favorable to rep)"
+          ]
+        },
+        {
+          "id": "prov-009-2",
+          "title": "Sales Operations Audit",
+          "content": "Regular audit procedures:",
+          "items": [
+            "Quarterly: Audit sample of transactions for crediting accuracy, verify CRM data matches ERP data, identify and correct errors",
+            "Annual: Comprehensive review of territory assignments, update territory maps, clean up account assignments"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-010",
+      "title": "Roles and Responsibilities",
+      "content": "Clearly defined roles for all parties involved in sales crediting.",
+      "priority": "MEDIUM",
+      "subProvisions": [],
+      "tables": [
+        {
+          "id": "table-010-1",
+          "caption": "Roles and Responsibilities for Sales Crediting",
+          "headers": ["Role", "Responsibility"],
+          "rows": [
+            ["Sales Operations", "Maintain territory assignments; apply crediting policy; resolve disputes"],
+            ["Sales Manager", "Approve split credit arrangements; resolve crediting disputes (first level)"],
+            ["Sales Rep", "Document opportunities in CRM; adhere to policy; raise disputes promptly"],
+            ["CRM Admin", "Ensure CRM fields support crediting (territory, account assignment, split %)"],
+            ["Compensation", "Ensure policy aligns with plan design; approve policy updates"]
+          ]
+        }
+      ]
     }
   ],
+
   "compliance": {
     "federalLaws": [],
     "stateLaws": [],
     "industryStandards": [],
     "keywords": [
-      "sales crediting policy",
-      "sales",
-      "crediting",
-      "policy"
+      "sales crediting",
+      "territory-based crediting",
+      "split credit",
+      "team selling",
+      "territory transition",
+      "house accounts",
+      "national accounts",
+      "channel sales",
+      "overlay",
+      "chargeback",
+      "credit dispute",
+      "booking date",
+      "CRM",
+      "ERP"
     ]
   },
-  "relatedPolicies": [],
+
+  "relatedPolicies": [
+    "SCP-001"
+  ],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -58,6 +384,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-01",
+        "author": "Sales Compensation Governance Committee",
+        "description": "Full structured content populated from markdown source"
       }
     ]
   }

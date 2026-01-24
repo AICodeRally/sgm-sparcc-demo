@@ -3,48 +3,394 @@
   "name": "Leave of Absence Policy",
   "category": "HR Policies",
   "frameworkArea": "Leave of Absence",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
-  "effectiveDate": "2024-01-01T00:00:00Z",
-  "legalReviewRequired": false,
+  "status": "DRAFT",
+  "version": "1.0.0",
+  "effectiveDate": "2026-01-01T00:00:00Z",
+  "legalReviewRequired": true,
+
   "purpose": {
-    "summary": "Policy governing leave of absence.",
+    "summary": "Establish clear guidelines for how leaves of absence (LOAs) affect incentive compensation to ensure compliance with federal and state leave laws, fair and consistent treatment of employees on leave, clear communication to affected employees, and proper calculation and payment procedures.",
     "objectives": [
-      "Establish framework for leave of absence",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Compliance with federal and state leave laws",
+      "Fair and consistent treatment of employees on leave",
+      "Clear communication to affected employees",
+      "Proper calculation and payment procedures"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "All employees eligible for incentive compensation who take a leave of absence",
+      "FMLA (Family and Medical Leave Act) leave",
+      "Military leave",
+      "Disability leave (short-term and long-term)",
+      "Personal leave",
+      "Parental leave (maternity, paternity, adoption)",
+      "Other company-approved leaves"
     ],
-    "exclusions": [],
+    "exclusions": [
+      "Unauthorized absence (absence without approval; may result in termination)"
+    ],
     "geographic": []
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Protected Leaves",
+      "definition": "Leaves protected by federal or state law including FMLA (up to 12 weeks), Military leave (USERRA), State-specific leave laws, and Disability leave (may be protected under ADA). Generally receive more favorable compensation treatment.",
+      "examples": ["FMLA", "Military leave (USERRA)", "State-specific leave laws", "Disability leave (ADA)"]
+    },
+    {
+      "term": "Company-Approved Non-Protected Leaves",
+      "definition": "Leaves approved by the company that are not legally protected. Generally less favorable treatment than protected leaves; subject to company discretion.",
+      "examples": ["Extended personal leave", "Sabbatical", "Education leave"]
+    },
+    {
+      "term": "Intermittent Leave",
+      "definition": "Leave taken intermittently (e.g., 1 day per week for medical treatment). Quota adjusted based on total leave days.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Compensation Treatment by Leave Duration",
+      "content": "Compensation treatment varies based on the duration of the leave of absence.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Short-Term Leave (<30 Days)",
+          "content": "Remains eligible for incentive plan, continues to accrue performance credit. No adjustment to quota or goals. Paid on normal schedule based on performance.",
+          "items": [
+            "No adjustment to quota or goals",
+            "Performance measured based on actual results",
+            "Paid on normal schedule based on performance",
+            "No reduction or pro-ration for leave period"
+          ]
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Medium-Term Leave (30-90 Days)",
+          "content": "Remains eligible for incentive plan during leave. Quota pro-rated based on active days. Adjusted Quota = Annual Quota x (Active Days / Total Days in Period).",
+          "items": [
+            "Performance credit may be paused during leave; resumes upon return",
+            "Credit for in-flight deals closed during leave (if applicable to role)",
+            "Paid on normal schedule based on pro-rated quota",
+            "Attainment calculated: Actual Performance / Pro-Rated Quota"
+          ]
+        },
+        {
+          "id": "prov-001-3",
+          "title": "Long-Term Leave (>90 Days)",
+          "content": "Suspended from incentive plan during leave period. Reinstated upon return to active status.",
+          "items": [
+            "Quota suspended during leave",
+            "New quota assigned upon return (pro-rated for remaining period)",
+            "No credit for performance during leave period",
+            "Territory reassigned to interim coverage (if applicable)",
+            "No incentive payments during leave",
+            "Upon return: Participate in plan for remaining period with pro-rated quota",
+            "Earned incentive for periods worked prior to leave paid out per plan terms"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "FMLA Leave (Family & Medical Leave Act)",
+      "content": "Up to 12 weeks unpaid leave with job protection and benefits continuation. Cannot penalize employee for taking FMLA.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Quota Adjustment",
+          "content": "Pro-rate quota for periods >30 days on FMLA. Formula: Adjusted Annual Quota = Original Quota x [(365 - FMLA Days) / 365].",
+          "items": [
+            "Eligible for payment based on pro-rated quota",
+            "Attainment calculated on adjusted quota",
+            "No penalty for taking FMLA leave",
+            "Must not discourage employees from taking FMLA",
+            "Quota pro-ration is permissible (employee not working)",
+            "Cannot reduce payout rate or change plan terms punitively"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Parental Leave (Maternity, Paternity, Adoption)",
+      "content": "Compensation treatment for paid and unpaid parental leave.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Paid Parental Leave (Company Benefit)",
+          "content": "Quota pro-rated for time on leave >30 days. Eligible for incentive based on pro-rated quota.",
+          "items": [
+            "Quota pro-rated for time on leave >30 days",
+            "Eligible for incentive based on pro-rated quota",
+            "In-flight deals: Credit to returning parent if closes within 30 days of return; otherwise to interim coverage"
+          ]
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Unpaid Parental Leave (FMLA)",
+          "content": "Treat per FMLA policy.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Military Leave (USERRA)",
+      "content": "Job protection, benefits continuation, no adverse action due to military service.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Compensation Treatment",
+          "content": "Quota pro-rated for military leave period. Upon return, reinstated with adjusted quota.",
+          "items": [
+            "Pay earned incentive for periods worked before leave",
+            "Eligible to participate upon return",
+            "Cannot penalize for military service",
+            "Employee returns to same or similar position",
+            "Compensation plan participation restored",
+            "Pro-rated quota for remainder of year"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Disability Leave (Short-Term & Long-Term)",
+      "content": "Compensation treatment for short-term and long-term disability leaves.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Short-Term Disability (STD)",
+          "content": "Typically <6 months.",
+          "items": [
+            "Quota pro-rated if leave >30 days",
+            "Incentive paid based on pro-rated quota",
+            "Upon return, reinstated with adjusted quota for remaining period"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Long-Term Disability (LTD)",
+          "content": "Typically >6 months. LTD insurance provides income replacement. Incentive comp generally not included in LTD calculation (base salary only).",
+          "items": [
+            "Suspended from active plan participation during LTD",
+            "No incentive payments during LTD period",
+            "If returns to work: Reinstated with pro-rated quota for remaining period",
+            "If unable to return: Treated per Termination Policy"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Personal/Sabbatical Leave (Non-Protected)",
+      "content": "Company discretion; not legally required.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Unpaid Personal Leave",
+          "content": "Suspended from plan during leave. Quota pro-rated upon return. No credit for performance during leave.",
+          "items": []
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Sabbatical (Paid Company Benefit)",
+          "content": "Treat as short-term leave (<30 days) if sabbatical <=30 days. Quota pro-rated if sabbatical >30 days. Eligible for incentive based on pro-rated quota.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Communication to Employees on Leave",
+      "content": "Communication requirements before, during, and after leave.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Before Leave Begins",
+          "content": "HR & Manager must explain compensation impact and provide documentation.",
+          "items": [
+            "Explain compensation impact (use this policy as reference)",
+            "Provide written summary of how leave affects comp",
+            "Calculate and communicate pro-rated quota (if applicable)",
+            "Explain payment timing",
+            "Answer employee questions",
+            "Provide copy of this policy, calculation showing pro-rated quota, expected payment schedule, contact for questions"
+          ]
+        },
+        {
+          "id": "prov-007-2",
+          "title": "During Leave",
+          "content": "Minimal work-related communication during protected leave. Do not pressure employee about performance or return date.",
+          "items": [
+            "If payment due while on leave, process normally",
+            "Provide participant statement explaining calculation"
+          ]
+        },
+        {
+          "id": "prov-007-3",
+          "title": "Upon Return",
+          "content": "Reinstatement procedures when employee returns from leave.",
+          "items": [
+            "Confirm return date with HR",
+            "Update employee status in ICMT (active)",
+            "Assign pro-rated quota for remaining period",
+            "Communicate new quota to employee",
+            "Welcome back and set expectations"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-008",
+      "title": "Operational Procedures",
+      "content": "Step-by-step procedures for handling leaves in the compensation system.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Employee Notifies of Leave",
+          "content": "Three-step process when leave is initiated.",
+          "items": [
+            "Step 1: HR Notification - Employee notifies HR of planned leave; HR determines leave type and eligibility",
+            "Step 2: HR Notifies Sales Operations within 2 business days with employee name, ID, leave type, start date, expected return date",
+            "Step 3: Sales Ops Updates Systems - Update ICMT employee status to On Leave, calculate pro-rated quota, suspend performance credit"
+          ]
+        },
+        {
+          "id": "prov-008-2",
+          "title": "During Leave",
+          "content": "Monthly: HR provides Sales Ops with updated LOA list. Sales Ops verifies employee status in ICMT.",
+          "items": [
+            "If payment due: Process payment per policy (based on pro-rated quota or prior period performance)",
+            "Send participant statement to employee"
+          ]
+        },
+        {
+          "id": "prov-008-3",
+          "title": "Employee Returns from Leave",
+          "content": "Three-step return process.",
+          "items": [
+            "Step 1: HR notifies Sales Ops of return date; confirm with employee",
+            "Step 2: Update ICMT status to Active; calculate pro-rated quota for remaining period; document quota adjustment",
+            "Step 3: Sales Ops sends welcome back email with quota info; Manager meets with employee to set expectations"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-009",
+      "title": "Territory Coverage During Leave",
+      "content": "If employee's territory needs coverage during leave.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-009-1",
+          "title": "Short-Term Leave (<30 days)",
+          "content": "Manager or peers provide interim coverage. Credit goes to whoever closes the deal.",
+          "items": []
+        },
+        {
+          "id": "prov-009-2",
+          "title": "Medium/Long-Term Leave (>30 days)",
+          "content": "Territory reassigned per Territory Change Procedures. In-flight deals per Crediting Rules Documentation. Upon return: Territory restored (or adjusted per business needs).",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-010",
+      "title": "Special Situations",
+      "content": "Handling of intermittent leave, extended leave, and multiple leaves.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-010-1",
+          "title": "Intermittent Leave",
+          "content": "Calculate total leave days in period. Pro-rate quota based on total leave days. Formula: Adjusted Quota = Annual Quota x [(Total Days - Leave Days) / Total Days].",
+          "items": []
+        },
+        {
+          "id": "prov-010-2",
+          "title": "Leave Extending Beyond Expected Return",
+          "content": "HR notifies Sales Ops of new expected return date. Sales Ops recalculates pro-rated quota. If employee does not return (termination): Treat per Termination Policy.",
+          "items": []
+        },
+        {
+          "id": "prov-010-3",
+          "title": "Multiple Leaves in One Year",
+          "content": "Calculate cumulative leave days. Pro-rate quota based on total leave days. Treat each leave per policy based on type and duration.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-011",
+      "title": "Employee Rights",
+      "content": "Employees on leave have specific rights regarding compensation treatment.",
       "priority": "HIGH",
       "subProvisions": [],
       "tables": []
     }
   ],
+
   "compliance": {
-    "federalLaws": [],
-    "stateLaws": [],
+    "federalLaws": [
+      "FMLA (Family & Medical Leave Act) - 12 weeks unpaid leave for qualifying reasons",
+      "USERRA (Uniformed Services Employment and Reemployment Rights Act)",
+      "ADA (Americans with Disabilities Act)"
+    ],
+    "stateLaws": [
+      "California: CFRA, PDL, SDI",
+      "New York: Paid Family Leave",
+      "State-specific leave laws (vary by state)",
+      "State law may be more generous than federal; follow most generous"
+    ],
     "industryStandards": [],
     "keywords": [
-      "leave of absence policy",
-      "leave",
-      "absence",
-      "policy"
+      "leave of absence",
+      "FMLA",
+      "military leave",
+      "USERRA",
+      "disability leave",
+      "parental leave",
+      "personal leave",
+      "sabbatical",
+      "quota pro-ration",
+      "intermittent leave",
+      "territory coverage",
+      "ADA",
+      "protected leave"
     ]
   },
-  "relatedPolicies": [],
+
+  "relatedPolicies": [
+    "SCP-012"
+  ],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -58,6 +404,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-19",
+        "author": "Governance Lead",
+        "description": "Full policy content structured from markdown source"
       }
     ]
   }

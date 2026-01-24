@@ -3,53 +3,456 @@
   "name": "New Hire and Onboarding Policy",
   "category": "HR Policies",
   "frameworkArea": "New Hire/Onboarding",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
-  "effectiveDate": "2024-01-01T00:00:00Z",
+  "status": "DRAFT",
+  "version": "1.0.0",
+  "effectiveDate": "2026-01-01T00:00:00Z",
   "legalReviewRequired": false,
+
   "purpose": {
-    "summary": "Policy governing new hire/onboarding.",
+    "summary": "This policy establishes the framework for onboarding new sales representatives into the Company's compensation plans, defining ramp schedules, training requirements, quota phase-ins, and commission eligibility during the initial employment period.",
     "objectives": [
-      "Establish framework for new hire/onboarding",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Define ramp schedules for new sales representatives",
+      "Establish training requirements during onboarding",
+      "Set quota phase-in structures",
+      "Define commission eligibility during initial employment period"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "All newly hired sales representatives eligible for variable compensation",
+      "All sales roles transferred from non-sales positions",
+      "All the Company divisions and business units",
+      "Internal promotions to sales roles requiring compensation plan transition"
     ],
     "exclusions": [],
     "geographic": []
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "New Hire",
+      "definition": "Any sales representative in their first 180 days of employment in a variable compensation role.",
+      "examples": []
+    },
+    {
+      "term": "Ramp Period",
+      "definition": "The defined timeframe during which a new hire's quota and/or commission rates are adjusted to account for learning curve and territory development, typically 90-180 days.",
+      "examples": []
+    },
+    {
+      "term": "Quota Ramp",
+      "definition": "Progressive increase in sales quota from reduced levels to full quota over the ramp period.",
+      "examples": []
+    },
+    {
+      "term": "Training Period",
+      "definition": "The initial phase (typically 30-60 days) focused primarily on product training, systems training, and territory familiarization.",
+      "examples": []
+    },
+    {
+      "term": "Full Productivity Date",
+      "definition": "The date on which a new hire transitions to 100% quota and standard commission rates.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Standard Ramp Schedule",
+      "content": "New sales representatives follow a progressive ramp schedule over 5 months.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Month 1 (Days 1-30)",
+          "content": "Training period with 0% of territory quota. Eligible for commission on any closed deals at standard rates.",
+          "items": [
+            "Quota: 0% of territory quota (training period)",
+            "Commission: Eligible for commission on any closed deals at standard rates",
+            "Focus: Product training, systems training, territory review, customer introductions"
+          ]
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Month 2 (Days 31-60)",
+          "content": "Initial selling phase with 25% of territory quota.",
+          "items": [
+            "Quota: 25% of territory quota",
+            "Commission: Standard rates apply",
+            "Focus: Initial customer meetings, pipeline building, first deals"
+          ]
+        },
+        {
+          "id": "prov-001-3",
+          "title": "Month 3 (Days 61-90)",
+          "content": "Active selling phase with 50% of territory quota.",
+          "items": [
+            "Quota: 50% of territory quota",
+            "Commission: Standard rates apply",
+            "Focus: Active selling, pipeline management, first quota attainment"
+          ]
+        },
+        {
+          "id": "prov-001-4",
+          "title": "Month 4 (Days 91-120)",
+          "content": "Near-full productivity with 75% of territory quota. Accelerators not eligible until Month 5.",
+          "items": [
+            "Quota: 75% of territory quota",
+            "Commission: Standard rates apply",
+            "Accelerators: Not eligible until Month 5"
+          ]
+        },
+        {
+          "id": "prov-001-5",
+          "title": "Month 5+ (Days 121+)",
+          "content": "Full Productivity Date: 100% of territory quota with full plan including accelerators.",
+          "items": [
+            "Quota: 100% of territory quota (Full Productivity Date)",
+            "Commission: Full plan including accelerators",
+            "Status: Standard plan participant"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Accelerated Ramp (Experienced Hires)",
+      "content": "Alternative schedule for sales representatives with 3+ years industry experience, previous Company employment in sales role, or transfer from competitor in same vertical. Requires Hiring Manager and Sales Operations Director approval.",
       "priority": "HIGH",
-      "subProvisions": [],
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Accelerated Schedule",
+          "content": "Compressed ramp for experienced hires:",
+          "items": [
+            "Month 1: 50% quota",
+            "Month 2: 75% quota",
+            "Month 3+: 100% quota (Full Productivity Date)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Extended Ramp (Complex Territories)",
+      "content": "For highly technical or complex territories (e.g., specialty medical equipment, large enterprise accounts).",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Extended Schedule",
+          "content": "Longer ramp for complex territories:",
+          "items": [
+            "Month 1: 0% (training)",
+            "Month 2-3: 25% quota",
+            "Month 4-5: 50% quota",
+            "Month 6: 75% quota",
+            "Month 7+: 100% quota"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Commission Eligibility",
+      "content": "Defines what new hires are and are not eligible for during training and ramp periods.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "During Training Period (Month 1)",
+          "content": "New hires are eligible for commission on deals they personally source and close, split credit if assisting on existing opportunities, and SPIFs/contests if explicitly included.",
+          "items": [
+            "NOT eligible: House accounts assigned to territory (unless actively managed)",
+            "NOT eligible: Pipeline inherited from previous rep (unless they close the deal)",
+            "NOT eligible: Residual/renewal commissions from prior rep activity"
+          ]
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Ramp Period Commission (Months 2-4)",
+          "content": "Full commission eligibility at standard rates on:",
+          "items": [
+            "All new business closed",
+            "Upsells and cross-sells to existing customers",
+            "Renewals where rep actively engaged customer",
+            "House account activity if rep manages relationship"
+          ]
+        },
+        {
+          "id": "prov-004-3",
+          "title": "Quota Attainment Bonuses",
+          "content": "Quota attainment bonuses are calculated based on ramped quota, not full territory quota. Example: Rep at 50% ramp quota who achieves 60% of full quota = 120% attainment for bonus purposes.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Territory Assignment",
+      "content": "Rules for initial territory assignment, inherited pipeline, and house accounts during ramp.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Initial Territory Assignment",
+          "content": "New hires receive:",
+          "items": [
+            "Defined geographic territory or account list",
+            "Access to CRM with full account history",
+            "Introduction package with top 20 accounts",
+            "Pipeline report showing active opportunities"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Inherited Pipeline",
+          "content": "Opportunities in progress from previous rep:",
+          "items": [
+            "Month 1-2: 50% commission to new rep, 50% to departing rep (if applicable)",
+            "Month 3+: 100% commission to new rep if they close the deal",
+            "Closed deals awaiting implementation: Commission to departing rep"
+          ]
+        },
+        {
+          "id": "prov-005-3",
+          "title": "House Accounts",
+          "content": "Large strategic accounts may remain house accounts during ramp:",
+          "items": [
+            "Rep receives reduced commission rate (e.g., 50% of standard) during ramp",
+            "Rep transitions to full commission after demonstrating competency",
+            "Sales Manager provides coverage during initial period"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Training Requirements",
+      "content": "Mandatory training during onboarding and certification requirements for transition to full quota.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Mandatory Training (Month 1)",
+          "content": "All new sales reps must complete Week 1-4 training:",
+          "items": [
+            "Week 1: Company orientation, product catalog overview (40+ hours), systems training (CRM, CPQ, ordering), compliance training (HIPAA, anti-kickback, etc.)",
+            "Week 2-3: Territory deep-dive with manager, top 25 customer introductions, ride-alongs with senior reps (minimum 5 days), first solo customer meetings",
+            "Week 4: Sales process certification, product line certification (core products), first deal submission"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Ongoing Training (Months 2-4)",
+          "content": "Continued development during ramp:",
+          "items": [
+            "Weekly manager 1-on-1s",
+            "Monthly product training sessions",
+            "Quarterly business reviews",
+            "Peer mentorship program"
+          ]
+        },
+        {
+          "id": "prov-006-3",
+          "title": "Certification Requirements",
+          "content": "To transition to full quota (Month 5+), rep must demonstrate:",
+          "items": [
+            "Product knowledge certification (80% score on assessment)",
+            "CRM proficiency (all opportunities logged correctly)",
+            "Pipeline coverage (minimum 3x quota in pipeline)",
+            "Customer satisfaction (no major complaints during ramp)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Compensation During Ramp",
+      "content": "Base salary, commission payments, and draws/guarantees during ramp period.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Base Salary",
+          "content": "Same base salary as fully ramped reps in same role level. No reduction during training/ramp period. Paid biweekly per standard payroll schedule.",
+          "items": []
+        },
+        {
+          "id": "prov-007-2",
+          "title": "Commission Payments",
+          "content": "Paid on same schedule as tenured reps. No draws or guarantees during ramp unless specified in offer letter. Advances available per standard Draws & Guarantees Policy.",
+          "items": []
+        },
+        {
+          "id": "prov-007-3",
+          "title": "Draws and Guarantees (If Applicable)",
+          "content": "Some roles may include guaranteed commission during ramp:",
+          "items": [
+            "Specified in offer letter only",
+            "Typical range: $2,000-$5,000/month for first 90 days",
+            "Recoverable or non-recoverable per offer terms",
+            "Subject to Draws and Guarantees Policy (SCP-008)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-008",
+      "title": "Performance Expectations",
+      "content": "Minimum performance standards and consequences during ramp period.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Minimum Performance Standards (During Ramp)",
+          "content": "Progressive minimums and targets by month:",
+          "items": [
+            "Month 2: Minimum 10% of ramped quota (2.5% of full quota); Target 50% of ramped quota (12.5% of full quota)",
+            "Month 3: Minimum 25% of ramped quota (12.5% of full quota); Target 75% of ramped quota (37.5% of full quota)",
+            "Month 4: Minimum 50% of ramped quota (37.5% of full quota); Target 100% of ramped quota (75% of full quota)"
+          ]
+        },
+        {
+          "id": "prov-008-2",
+          "title": "Performance Review and Consequences",
+          "content": "Failure to meet minimums results in escalating action:",
+          "items": [
+            "Month 2: Manager coaching, action plan developed",
+            "Month 3: Formal performance improvement plan (PIP)",
+            "Month 4: Consideration for termination if below minimum"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-009",
+      "title": "Special Circumstances",
+      "content": "Provisions for mid-quarter starts, leaves during ramp, and termination during ramp.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-009-1",
+          "title": "Mid-Quarter Start Dates",
+          "content": "If hired mid-quarter:",
+          "items": [
+            "Quota prorated based on days remaining in quarter",
+            "Commission eligibility begins on start date",
+            "Ramp schedule begins on start date (not quarter start)"
+          ]
+        },
+        {
+          "id": "prov-009-2",
+          "title": "Leaves of Absence During Ramp",
+          "content": "If new hire takes leave during ramp period:",
+          "items": [
+            "Ramp schedule pauses during leave",
+            "Upon return, rep resumes at same ramp stage",
+            "Example: Rep completes Month 2, takes 30-day leave, returns to Month 3 ramp"
+          ]
+        },
+        {
+          "id": "prov-009-3",
+          "title": "Termination During Ramp",
+          "content": "Treatment depends on type of termination:",
+          "items": [
+            "Voluntary resignation: Commission paid on all closed deals per standard policy, no commission on pipeline, training costs not recovered",
+            "Involuntary termination: Commission paid on deals closed before termination date, no commission on pending deals, Company may recover training costs if within first 90 days (per offer letter)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-010",
+      "title": "Internal Transfers",
+      "content": "Rules for sales-to-sales and non-sales-to-sales transfers.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-010-1",
+          "title": "Sales to Sales Transfers",
+          "content": "Ramp varies by transfer type:",
+          "items": [
+            "Same product line, different territory: No ramp period, immediate 100% quota",
+            "Different product line, same territory: 30-day training (0% Month 1), Month 2+ 100% quota",
+            "Different product line, different territory: Standard ramp applies (Months 1-4)"
+          ]
+        },
+        {
+          "id": "prov-010-2",
+          "title": "Non-Sales to Sales Transfers",
+          "content": "Internal transfers from non-sales roles treated as new hire with standard ramp schedule. May receive preferential consideration for accelerated ramp if internal product knowledge is strong.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-011",
+      "title": "Manager Responsibilities",
+      "content": "Sales managers must fulfill specific responsibilities during the onboarding process.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-011-1",
+          "title": "Manager Onboarding Activities",
+          "content": "Required activities by phase:",
+          "items": [
+            "Week 1: Provide territory overview, schedule customer introductions, assign peer mentor, review compensation plan",
+            "Month 1: Daily check-ins for first 2 weeks, weekly 1-on-1s, attend first 3-5 customer meetings, provide CRM/systems access",
+            "Months 2-4: Weekly 1-on-1s reviewing pipeline, monthly performance review, coaching needs identification, approve quota adjustments if needed",
+            "Month 5 (Full Productivity): Final ramp review meeting, certification approval, transition to standard management cadence"
+          ]
+        }
+      ],
       "tables": []
     }
   ],
+
   "compliance": {
-    "federalLaws": [],
+    "federalLaws": [
+      "FMLA (Family and Medical Leave Act)",
+      "HIPAA (Health Insurance Portability and Accountability Act)"
+    ],
     "stateLaws": [],
-    "industryStandards": [],
+    "industryStandards": [
+      "Anti-kickback regulations (medical/dental sales)"
+    ],
     "keywords": [
-      "new hire and onboarding policy",
+      "new hire",
       "onboarding",
-      "policy",
-      "hire/onboarding"
+      "ramp period",
+      "ramp schedule",
+      "quota ramp",
+      "training period",
+      "full productivity",
+      "commission eligibility",
+      "territory assignment",
+      "inherited pipeline",
+      "certification",
+      "accelerated ramp",
+      "extended ramp"
     ]
   },
+
   "relatedPolicies": [
     "SCP-008"
   ],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
-    "updatedAt": "2025-11-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z",
     "createdBy": "policy-team",
     "approvedBy": "Pending Legal & Executive Review",
     "sourceFile": "lib/data/policies/SCP-016.md",
@@ -60,6 +463,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2026-01-01",
+        "author": "Sales Operations and HR",
+        "description": "Full policy content structured from markdown source"
       }
     ]
   }

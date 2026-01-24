@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import type { DataType } from '@/lib/contracts/data-type.contract';
 import {
   DownloadIcon,
   FileTextIcon,

@@ -8,28 +8,35 @@ import {
 } from './mode-permissions';
 
 /**
- * NextAuth.js Configuration (Standalone - no @rally/auth dependency)
+ * NextAuth.js Configuration
  *
  * Configured for multi-tenant SGM application with:
- * - Credentials (passkey) for demo
+ * - Email/password credentials (bcrypt-verified in live mode, passkey in synthetic)
  * - Google OAuth (optional)
  * - GitHub OAuth (optional)
- * - Synthetic mode support for offline/demo operation
  */
 
 // Build provider array dynamically
 const providers: any[] = [
   CredentialsProvider({
-    id: 'passkey',
-    name: 'Email',
+    id: 'credentials',
+    name: 'Email & Password',
     credentials: {
-      passkey: { label: 'Email', type: 'email' },
+      email: { label: 'Email', type: 'email' },
+      password: { label: 'Password', type: 'password' },
     },
     async authorize(credentials: any) {
-      // Demo mode: accept any valid email
-      const email = credentials?.passkey?.trim();
-      if (email && email.includes('@')) {
-        // Extract name from email
+      const email = credentials?.email?.trim()?.toLowerCase();
+      const password = credentials?.password;
+
+      if (!email || !email.includes('@')) {
+        return null;
+      }
+
+      const bindingMode = process.env.BINDING_MODE || 'synthetic';
+
+      // Synthetic mode: accept any valid email (no password required)
+      if (bindingMode === 'synthetic') {
         const name = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase());
         return {
           id: `user-${email.replace(/[^a-z0-9]/gi, '-')}`,
@@ -37,7 +44,36 @@ const providers: any[] = [
           email: email,
         };
       }
-      return null;
+
+      // Live mode: validate against database with bcrypt
+      if (!password) return null;
+
+      try {
+        const { prisma } = require('@/lib/db/prisma');
+        const bcrypt = require('bcryptjs');
+
+        const user = await prisma.user.findUnique({
+          where: { email },
+          include: { tenant: true },
+        });
+
+        if (!user || !user.isActive || !user.password) {
+          return null;
+        }
+
+        const isValid = await bcrypt.compare(password, user.password);
+        if (!isValid) {
+          return null;
+        }
+
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+        };
+      } catch {
+        return null;
+      }
     },
   }),
 ];

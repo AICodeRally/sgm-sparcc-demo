@@ -3,68 +3,489 @@
   "name": "International Requirements Policy",
   "category": "Legal Compliance",
   "frameworkArea": "International Requirements",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
-  "effectiveDate": "2024-01-01T00:00:00Z",
-  "legalReviewRequired": false,
+  "status": "DRAFT",
+  "version": "1.0.0",
+  "effectiveDate": "2026-01-08T00:00:00Z",
+  "legalReviewRequired": true,
+
   "purpose": {
-    "summary": "Policy governing international requirements.",
+    "summary": "This policy establishes the framework for adapting the Company's US-based compensation plans to international jurisdictions. It mandates that all international compensation arrangements undergo local legal review and compliance verification before implementation, ensuring adherence to country-specific employment laws, tax regulations, data privacy requirements, and labor standards.",
     "objectives": [
-      "Establish framework for international requirements",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Establish framework for adapting US-based compensation plans to international jurisdictions",
+      "Mandate local legal review for all international compensation arrangements",
+      "Ensure adherence to country-specific employment laws and tax regulations",
+      "Comply with data privacy requirements and labor standards in each jurisdiction"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "All the Company sales compensation plans implemented outside the United States",
+      "All sales representatives employed in international markets",
+      "Expatriate assignments involving compensation plan administration",
+      "Third-party sales agents and representatives in foreign jurisdictions",
+      "All divisions and business units operating internationally"
     ],
     "exclusions": [],
-    "geographic": []
+    "geographic": ["International (all non-US jurisdictions)"]
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Home Country",
+      "definition": "The country where the Company maintains its primary legal entity and where the employee's employment contract originates.",
+      "examples": []
+    },
+    {
+      "term": "Host Country",
+      "definition": "The country where the employee physically works and where local employment laws apply.",
+      "examples": []
+    },
+    {
+      "term": "Local Legal Review",
+      "definition": "Examination of compensation plan terms by qualified employment counsel licensed to practice law in the host country, specifically assessing compliance with local labor laws, tax regulations, and employment standards.",
+      "examples": []
+    },
+    {
+      "term": "Split Payroll",
+      "definition": "Compensation arrangement where portions of an employee's pay are processed through different country payrolls to manage tax obligations, social security contributions, and compliance requirements across jurisdictions.",
+      "examples": []
+    },
+    {
+      "term": "US Plan Baseline",
+      "definition": "The standard the Company US compensation plan structure (e.g., SCP-001 through SCP-016) used as the starting template for international adaptation.",
+      "examples": []
+    },
+    {
+      "term": "Expatriate (Expat)",
+      "definition": "Employee transferred from their home country to work in a host country, typically maintaining home-country employment contract with host-country supplements.",
+      "examples": []
+    },
+    {
+      "term": "Local National",
+      "definition": "Employee hired directly in the host country under local employment contract and terms.",
+      "examples": []
+    },
+    {
+      "term": "Third-Country National (TCN)",
+      "definition": "Employee from one country working in a second country for a company headquartered in a third country.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Policy Principles",
+      "content": "Four core principles governing international compensation plan adaptation.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "US Plans as Baseline Reference",
+          "content": "All the Company international compensation plans shall use the corresponding US plan as the structural baseline, ensuring consistency in plan philosophy, alignment with corporate strategy, shared terminology, and streamlined administration.",
+          "items": []
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Local Legal Review Mandatory",
+          "content": "No exceptions. Every international compensation plan or plan modification must undergo review by qualified local employment counsel before implementation.",
+          "items": []
+        },
+        {
+          "id": "prov-001-3",
+          "title": "Compliance Over Consistency",
+          "content": "When local law conflicts with US plan terms, local law always prevails. The Company prioritizes legal compliance over administrative convenience or global consistency.",
+          "items": []
+        },
+        {
+          "id": "prov-001-4",
+          "title": "Document All Adaptations",
+          "content": "Every deviation from the US baseline plan must be:",
+          "items": [
+            "Documented in writing",
+            "Approved by local legal counsel",
+            "Reviewed by Global HR and Finance",
+            "Maintained in the plan governance repository"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Legal Review Requirements",
+      "content": "When, who, and what must be included in local legal review.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "When Legal Review is Required",
+          "content": "Local legal review is mandatory for:",
+          "items": [
+            "New Market Entry - Before implementing any compensation plan in a new country",
+            "Plan Changes - Any modification to existing international plan terms",
+            "Policy Adoptions - Applying any US policy (SCP-001 through SCP-016) internationally",
+            "Expatriate Assignments - Compensation arrangements for international transfers",
+            "Agent Agreements - Third-party sales representative contracts",
+            "Annual Compliance Check - Minimum once per year for active plans"
+          ]
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Who Conducts the Review",
+          "content": "Legal review must be performed by employment law counsel licensed in the host country, with expertise in local labor and employment law, tax and social security regulations, data privacy and GDPR (if applicable), and commercial agent regulations (if applicable).",
+          "items": []
+        },
+        {
+          "id": "prov-002-3",
+          "title": "What Must Be Reviewed",
+          "content": "Legal counsel must assess:",
+          "items": [
+            "Compensation Structure: commission methodologies, bonus eligibility, payment timing, currency, minimum wage compliance",
+            "Tax and Social Security: withholding requirements, social security contributions, cross-border tax, split payroll, tax equalization",
+            "Termination and Final Pay: notice periods, severance, commission on termination, garden leave, non-compete enforceability",
+            "Data Privacy: GDPR compliance, employee data collection, cross-border data transfers, consent, retention obligations",
+            "Worker Classification: employee vs contractor status, commission-only arrangements, agency relationships, co-employment risks",
+            "Contractual Terms: employment contract requirements, mandatory benefits, works council notification, language requirements"
+          ]
+        },
+        {
+          "id": "prov-002-4",
+          "title": "Documentation Standards",
+          "content": "Legal review deliverables must include:",
+          "items": [
+            "Written opinion letter from counsel",
+            "Redlined plan document showing required changes",
+            "List of local law conflicts with US baseline",
+            "Risk assessment and mitigation strategies",
+            "Approval signatures from local legal counsel, Country HR Director, Global HR leadership, and Finance/Tax department"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Key Compliance Areas",
+      "content": "Critical areas requiring adaptation when implementing compensation plans internationally.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Tax Withholding and Social Security",
+          "content": "Each country has unique tax withholding tables and schedules. Social security contributions vary. Totalization agreements may reduce double-taxation. Exchange rate management required for multi-currency arrangements.",
+          "items": []
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Worker Classification",
+          "content": "Misclassification penalties can be severe. Tests vary by country. Commission-only arrangements may trigger employee status. Agency laws differ significantly (especially in EU).",
+          "items": []
+        },
+        {
+          "id": "prov-003-3",
+          "title": "GDPR and Data Privacy",
+          "content": "Key requirements for EU/EEA operations:",
+          "items": [
+            "Lawful basis for processing employee data",
+            "Data minimization - collect only necessary information",
+            "Employee consent for non-essential data collection",
+            "Data subject rights (access, correction, deletion)",
+            "Cross-border data transfer restrictions",
+            "Data breach notification obligations"
+          ]
+        },
+        {
+          "id": "prov-003-4",
+          "title": "Commission Payment Timing",
+          "content": "Many countries mandate specific payment deadlines. Delays can trigger penalties and interest obligations. 'Reasonably prompt' may be defined by statute (e.g., 30 days).",
+          "items": []
+        },
+        {
+          "id": "prov-003-5",
+          "title": "Termination Rights (EU Commercial Agents Directive)",
+          "content": "Key requirements for EU/EEA:",
+          "items": [
+            "Minimum notice periods: 1 month (Year 1), 2 months (Year 2), 3 months (Year 3+)",
+            "Termination indemnity or compensation required (typically 6-24 months of average annual compensation)",
+            "Cannot be waived by contract choice-of-law clause",
+            "Applies to independent sales agents, not employees (but definitions vary)"
+          ]
+        },
+        {
+          "id": "prov-003-6",
+          "title": "Notice Periods and Severance",
+          "content": "Statutory notice periods often longer than US standards. Severance pay may be mandatory. Garden leave common in some jurisdictions.",
+          "items": []
+        },
+        {
+          "id": "prov-003-7",
+          "title": "Final Pay and Commission on Termination",
+          "content": "Many countries require immediate or near-immediate final pay. Commission on pending deals may be required by law. Clawback provisions may be restricted or prohibited.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Adaptation Process",
+      "content": "Five-step process for adapting US plans to international jurisdictions.",
       "priority": "HIGH",
-      "subProvisions": [],
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Five-Step Process",
+          "content": "Required steps for international plan adaptation:",
+          "items": [
+            "Step 1: Select US Plan as Template - Identify the relevant US baseline policy",
+            "Step 2: Identify Local Requirements - Engage local counsel to review baseline and categorize provisions as conflicting, risky, administrative differences, or acceptable",
+            "Step 3: Document Required Changes - Redline the US plan, add explanatory notes, include legal citations, flag areas for ongoing monitoring",
+            "Step 4: Obtain Approvals - From local legal counsel, Country HR Director, Global HR Corporate, Finance/Tax, and SGCC",
+            "Step 5: Implement with Local HR - Translate documents if required, obtain acknowledgments, notify works council, update payroll, train managers, monitor compliance"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Country-Specific Considerations",
+      "content": "Key requirements for major regions and cross-references to affected policies.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "European Union / EEA",
+          "content": "Applies to all EU Member States plus Iceland, Liechtenstein, Norway:",
+          "items": [
+            "EU Commercial Agents Directive: minimum notice periods, termination indemnity rights (cannot be waived)",
+            "GDPR: Strict data privacy requirements",
+            "Works Councils: Notification/consultation may be required (especially Germany, Netherlands, France)",
+            "Posted Workers Directive: Applies to employees temporarily working in another EU country"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "United Kingdom (Post-Brexit)",
+          "content": "Key UK-specific requirements:",
+          "items": [
+            "Commercial Agents Regulations 1993 still in force (mirrors EU Directive)",
+            "Statutory notice period minimums apply",
+            "IR35 Rules: Complex contractor vs employee tests",
+            "Restrictive covenants enforceable but must be reasonable"
+          ]
+        },
+        {
+          "id": "prov-005-3",
+          "title": "Canada",
+          "content": "Employment law is provincial (not federal):",
+          "items": [
+            "Notice period or pay in lieu (varies by province)",
+            "No at-will employment",
+            "Quebec: French language requirements for employment documents",
+            "Different rules in Alberta, Ontario, British Columbia, etc."
+          ]
+        },
+        {
+          "id": "prov-005-4",
+          "title": "Australia / New Zealand",
+          "content": "Key APAC requirements:",
+          "items": [
+            "Fair Work Act (Australia): National employment standards",
+            "Minimum Award wages: Industry-specific minimums",
+            "Superannuation (pension) contributions mandatory",
+            "Unfair dismissal protections",
+            "Good faith bargaining obligations (New Zealand)"
+          ]
+        },
+        {
+          "id": "prov-005-5",
+          "title": "Latin America",
+          "content": "Strong labor protections (employee-favorable):",
+          "items": [
+            "Mandatory 13th/14th month salary common",
+            "Profit-sharing requirements (e.g., Mexico)",
+            "Severance formulas often statutory",
+            "Extremely difficult to terminate employees (e.g., Brazil)"
+          ]
+        },
+        {
+          "id": "prov-005-6",
+          "title": "Asia Pacific",
+          "content": "Varies dramatically by country:",
+          "items": [
+            "Japan: Lifetime employment culture, difficult terminations",
+            "Singapore: Employment Act, Foreign Worker Quotas",
+            "India: State-specific labor laws, provident fund",
+            "China: Labor Contract Law, severance calculations, FESCO arrangements",
+            "Hong Kong: Mandatory Provident Fund (MPF)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Prohibited Practices",
+      "content": "Practices strictly prohibited without local legal approval.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Prohibited Actions",
+          "content": "The following are strictly prohibited without local legal approval:",
+          "items": [
+            "Applying US-only legal references (Section 409A, FLSA, US state wage laws) in non-US plans",
+            "Ignoring mandatory local benefits (statutory pension/social security, 13th month salary, works council notification)",
+            "Inadequate data protection (transferring EU data to US without legal basis, processing without consent, failing to honor data subject requests)",
+            "Misclassifying workers (treating employees as contractors, commission-only arrangements triggering employee status, sham agency relationships)",
+            "Unenforceable clawback provisions (clawing back legally-earned commissions, applying prohibited clawbacks, withholding final pay where prohibited)",
+            "Insufficient notice periods (applying US at-will termination, notice shorter than statutory minimum, failing to pay in lieu)",
+            "At-will employment language in international contracts"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Documentation and Audit",
+      "content": "Requirements for maintaining local plan variants, legal review sign-offs, annual compliance audit, and change management.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Local Plan Variants",
+          "content": "For each country, maintain:",
+          "items": [
+            "Plan Document: Full plan text with local adaptations",
+            "Legal Opinion: Counsel's review and approval",
+            "Redline Comparison: US baseline vs local version",
+            "Translation: If required by local law",
+            "Employee Acknowledgments: Signed receipt of plan",
+            "Works Council Notification: If applicable"
+          ]
+        },
+        {
+          "id": "prov-007-2",
+          "title": "Annual Compliance Audit",
+          "content": "Conduct annual review:",
+          "items": [
+            "Have local laws changed?",
+            "Are plan terms still compliant?",
+            "Do translations need updating?",
+            "Have exchange rates affected compensation levels?",
+            "Are payment deadlines being met?"
+          ]
+        },
+        {
+          "id": "prov-007-3",
+          "title": "Change Management Process",
+          "content": "When US baseline plans change:",
+          "items": [
+            "Assess impact on international plans",
+            "Determine if local changes required",
+            "Engage local counsel for review",
+            "Update local plan documents",
+            "Notify affected employees",
+            "Update training materials"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-008",
+      "title": "Governance",
+      "content": "Policy ownership, approval authority, review frequency, and exception process.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Approval Authority",
+          "content": "Approval requirements by action type:",
+          "items": [
+            "New Country Entry: Global CHRO + General Counsel",
+            "Plan Changes: Country HR Director + Local Counsel + Global HR",
+            "Exceptions: Global CHRO"
+          ]
+        },
+        {
+          "id": "prov-008-2",
+          "title": "Review Frequency",
+          "content": "Annual review of all active international plans. Event-driven review when entering new country, changing US baseline plans, local laws change, or compliance issues arise.",
+          "items": []
+        },
+        {
+          "id": "prov-008-3",
+          "title": "Exception Process",
+          "content": "Exceptions require:",
+          "items": [
+            "Global CHRO approval",
+            "Documented risk assessment",
+            "Elevated legal review and sign-off",
+            "Subject to additional audit scrutiny"
+          ]
+        }
+      ],
       "tables": []
     }
   ],
+
   "compliance": {
     "federalLaws": [],
     "stateLaws": [],
-    "industryStandards": [],
+    "industryStandards": [
+      "GDPR (General Data Protection Regulation)",
+      "EU Commercial Agents Directive",
+      "UK Commercial Agents Regulations 1993",
+      "Fair Work Act (Australia)",
+      "Posted Workers Directive (EU)"
+    ],
     "keywords": [
-      "international requirements policy",
       "international",
-      "requirements",
-      "policy"
+      "cross-border",
+      "expatriate",
+      "local legal review",
+      "GDPR",
+      "data privacy",
+      "worker classification",
+      "termination rights",
+      "notice period",
+      "severance",
+      "commercial agent",
+      "split payroll",
+      "tax withholding",
+      "social security",
+      "works council",
+      "clawback restrictions"
     ]
   },
+
   "relatedPolicies": [
     "SCP-001",
-    "SCP-016",
-    "SCP-007",
-    "SCP-011",
-    "SCP-013",
-    "SCP-012",
     "SCP-002",
     "SCP-003",
     "SCP-004",
     "SCP-005",
     "SCP-006",
+    "SCP-007",
     "SCP-008",
     "SCP-009",
     "SCP-010",
+    "SCP-011",
+    "SCP-012",
+    "SCP-013",
     "SCP-014",
-    "SCP-015"
+    "SCP-015",
+    "SCP-016"
   ],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
-    "updatedAt": "2025-11-01T00:00:00Z",
+    "updatedAt": "2026-01-08T00:00:00Z",
     "createdBy": "policy-team",
     "approvedBy": "Pending Legal & Executive Review",
     "sourceFile": "lib/data/policies/SCP-017.md",
@@ -75,6 +496,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2026-01-08",
+        "author": "Global HR & Legal",
+        "description": "Full policy content structured from markdown source"
       }
     ]
   }

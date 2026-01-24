@@ -75,22 +75,27 @@ enum TenantStatus {
   EXPIRED
 }
 
-// User Model - NextAuth compatible
+// User Model
 model User {
   id            String    @id @default(cuid())
-  name          String?  
+  name          String?
   email         String    @unique
   emailVerified DateTime? @map("email_verified")
-  image         String?  
+  image         String?
+  password      String?   // bcrypt hashed password (null for OAuth-only users)
+  isActive      Boolean   @default(true) @map("is_active")
 
   // Role & Tenant
   role          UserRole  @default(USER)
   tenantId      String    @map("tenant_id")
   tenant        Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
 
-  // NextAuth relations
+  // OAuth relations (kept for Google/GitHub OAuth support)
   accounts      Account[]
   sessions      Session[]
+
+  // Password reset
+  passwordResetTokens PasswordResetToken[]
 
   // Audit
   createdAt     DateTime  @default(now()) @map("created_at")
@@ -144,14 +149,30 @@ model Session {
   @@map("sessions")
 }
 
-// VerificationToken Model - NextAuth email verification
+// VerificationToken Model - Email verification
 model VerificationToken {
-  identifier String  
+  identifier String
   token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
   @@map("verification_tokens")
+}
+
+// PasswordResetToken Model - Secure password reset flow
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String    @map("user_id")
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String    @unique // SHA-256 hashed token
+  expiresAt DateTime  @map("expires_at")
+  usedAt    DateTime? @map("used_at") // null until token is consumed
+
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([token])
+  @@map("password_reset_tokens")
 }
 
 // =============================================================================

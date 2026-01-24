@@ -3,49 +3,361 @@
   "name": "Termination and Final Pay Policy",
   "category": "HR Policies",
   "frameworkArea": "Termination/Final Pay",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
+  "status": "DRAFT",
+  "version": "1.0.0",
   "effectiveDate": "2024-01-01T00:00:00Z",
-  "legalReviewRequired": false,
+  "legalReviewRequired": true,
+
   "purpose": {
-    "summary": "Policy governing termination/final pay.",
+    "summary": "This policy establishes the procedures for calculating and paying final sales compensation upon employee separation, including earned commissions, pipeline deal treatment, post-termination payment obligations, and clawback triggers. The policy ensures compliance with state final pay laws while protecting the Company's interests regarding outstanding obligations, recoverable draws, and post-termination deal crediting.",
     "objectives": [
-      "Establish framework for termination/final pay",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Define final commission calculation methodology for all separation types",
+      "Establish pipeline deal treatment rules for voluntary and involuntary terminations",
+      "Ensure compliance with state-specific final pay timing requirements",
+      "Set clear rules for post-termination commission payments on earned transactions",
+      "Define clawback triggers and recovery procedures specific to terminated employees",
+      "Provide consistent treatment across all separation scenarios"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "All voluntary resignations by commission-eligible employees",
+      "All involuntary terminations including performance-based and restructuring",
+      "Retirement of commission-eligible employees",
+      "Mutual separation agreements involving commissioned sales roles",
+      "Contract expiration for fixed-term sales positions",
+      "Death or permanent disability of commissioned employees"
     ],
-    "exclusions": [],
-    "geographic": []
+    "exclusions": [
+      "Leave of absence (not a termination; see SCP-009)",
+      "Internal transfers between commission-eligible roles (see SCP-010)",
+      "Independent contractor terminations (governed by contractor agreement)"
+    ],
+    "geographic": ["United States"]
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Separation Date",
+      "definition": "The last day of active employment, which determines the cutoff for commission crediting, benefit eligibility, and final pay calculation. For resigned employees, this is the last day worked; for terminated employees, the effective date of termination.",
+      "examples": []
+    },
+    {
+      "term": "Earned Commission",
+      "definition": "Commission on transactions where all conditions precedent to payment (as defined in the commission agreement) were satisfied on or before the separation date, regardless of whether payment has been processed.",
+      "examples": []
+    },
+    {
+      "term": "Pipeline Commission",
+      "definition": "Commission on transactions that were in the representative's active pipeline (qualified opportunity or beyond) as of the separation date but have not yet closed. Pipeline commissions may or may not be payable depending on the stage and circumstances of separation.",
+      "examples": []
+    },
+    {
+      "term": "Post-Termination Payment",
+      "definition": "A commission payment made after the separation date for transactions that close after termination but were substantially developed by the departed representative. Subject to specific eligibility rules based on separation type.",
+      "examples": []
+    },
+    {
+      "term": "Clawback Trigger",
+      "definition": "An event occurring before, at, or after termination that activates the Company's right to recover previously paid commissions per SCP-001, including deal cancellations, bad debt, fraud discovery, or violation of post-employment obligations.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Final Commission Calculation",
+      "content": "Upon notification of employee separation, Sales Compensation initiates the final commission calculation process to ensure all earned compensation is identified, calculated, and paid within required timelines.",
       "priority": "HIGH",
-      "subProvisions": [],
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Calculation Scope",
+          "content": "The final commission calculation includes all compensation elements earned through the separation date:",
+          "items": [
+            "All commissions where the credit event occurred on or before the separation date",
+            "Pro-rated quarterly or annual bonuses based on attainment through the separation date",
+            "Accrued but unpaid SPIF or contest earnings through the separation date",
+            "Released holdback amounts where conditions were met by the separation date",
+            "Draw/guarantee amounts earned through the separation date (less any outstanding draw balance)"
+          ]
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Calculation Timeline",
+          "content": "Final commission calculations must be completed within the following timelines:",
+          "items": [
+            "Standard commissions (easily calculable): Within 5 business days of separation date",
+            "Complex commissions (requiring data validation or customer confirmation): Within 15 business days",
+            "Annual bonuses or year-end true-ups: By March 15 of the following year (409A compliance)",
+            "Disputed amounts: Resolution timeline per SCP-015, with undisputed amounts paid on schedule",
+            "If state law requires earlier payment, the state deadline controls"
+          ]
+        },
+        {
+          "id": "prov-001-3",
+          "title": "Separation Type Impact on Calculation",
+          "content": "The calculation methodology may vary based on the type of separation:",
+          "items": [
+            "Voluntary resignation: Standard calculation; no additional amounts beyond earned commissions unless post-termination provisions apply",
+            "Involuntary termination (performance): Standard calculation; clawback review initiated for recent transactions",
+            "Involuntary termination (restructuring/RIF): Enhanced calculation; pipeline protection period applies",
+            "Retirement: Full calculation including any deferred amounts; pipeline protection per retirement agreement",
+            "Termination for cause: Standard calculation of earned amounts only; all unvested/contingent amounts forfeited; clawback review for prior 24 months"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Pipeline Deal Treatment",
+      "content": "The treatment of pipeline opportunities (deals not yet closed at separation) varies based on the representative's separation circumstances, the stage of the opportunity, and the representative's contribution to the deal.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Pipeline Credit by Separation Type",
+          "content": "Pipeline deals are credited to departed representatives under the following conditions:",
+          "items": [
+            "Voluntary resignation (standard notice): Deals at proposal stage or beyond that close within 30 days of separation: 100% credit; deals closing 31-60 days: 50% credit; beyond 60 days: 0% credit",
+            "Involuntary termination (restructuring): Deals at proposal stage or beyond that close within 90 days: 100% credit; deals closing 91-180 days: 50% credit",
+            "Termination for cause: No pipeline credit regardless of stage; all pending commissions subject to review",
+            "Retirement (planned): Deals at proposal stage or beyond that close within 180 days: 100% credit (per retirement agreement terms)",
+            "All pipeline credit is contingent on the departed representative not soliciting the customer for a competitor"
+          ]
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Pipeline Stage Determination",
+          "content": "The opportunity stage on the separation date determines pipeline credit eligibility:",
+          "items": [
+            "Proposal/Quote submitted: Eligible for post-termination credit per the applicable timeline",
+            "Negotiation/Contract stage: Eligible at enhanced terms (longer timeline, higher percentages)",
+            "Discovery/Qualification stage: Generally not eligible for post-termination credit (insufficient deal development)",
+            "Closed-pending-paperwork: Treated as earned commission (not pipeline) if all material terms are agreed",
+            "Stage must be verified in CRM as of the separation date; post-separation stage changes are not considered"
+          ]
+        },
+        {
+          "id": "prov-002-3",
+          "title": "Non-Solicitation Impact",
+          "content": "Post-termination pipeline credits are contingent on compliance with non-solicitation obligations:",
+          "items": [
+            "Representative must not solicit or service the pipeline account for a competitor during the credit period",
+            "Violation of non-solicitation: Immediate forfeiture of all unpaid pipeline credits",
+            "Evidence of competitive solicitation: Customer or former colleague attestation, competitive intelligence, or market activity",
+            "The Company may require periodic certification of non-solicitation compliance as a condition of pipeline payment"
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-002-1",
+          "caption": "Post-Termination Pipeline Credit Summary",
+          "headers": ["Separation Type", "Proposal Stage+", "30 Days", "60 Days", "90 Days", "180 Days"],
+          "rows": [
+            ["Voluntary (standard)", "Eligible", "100%", "50%", "0%", "0%"],
+            ["Involuntary (restructuring)", "Eligible", "100%", "100%", "100%", "50%"],
+            ["Termination for cause", "Not eligible", "0%", "0%", "0%", "0%"],
+            ["Retirement (planned)", "Eligible", "100%", "100%", "100%", "100%"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-003",
+      "title": "Post-Termination Payment Obligations",
+      "content": "The Company's obligation to make commission payments to former employees after separation, including timing, conditions, and communication requirements.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Payment Timing for Separated Employees",
+          "content": "Post-termination commission payments follow these timelines:",
+          "items": [
+            "Final pay (earned commissions): Paid per state law requirements (see state-specific deadlines below)",
+            "Pipeline deal credits: Paid on the regular commission payment schedule following deal closure",
+            "Annual bonus true-ups: Paid by March 15 of the following year per standard timeline",
+            "Holdback releases: Paid within 30 days of condition satisfaction, on the next regular payroll cycle",
+            "All post-termination payments made via the Company's standard payroll system or final pay process"
+          ]
+        },
+        {
+          "id": "prov-003-2",
+          "title": "State-Specific Final Pay Deadlines",
+          "content": "Final pay including earned commissions must be delivered within state-mandated timelines:",
+          "items": [
+            "California: Immediately upon involuntary termination; within 72 hours of voluntary resignation (or immediately with 72+ hours notice)",
+            "New York: Next regular payday following separation",
+            "Illinois: Next regular payday (or immediately if company has no set pay period)",
+            "Massachusetts: Day of termination (involuntary); next regular payday (voluntary)",
+            "Texas: Within 6 calendar days of termination",
+            "All other states: Follow the most restrictive applicable requirement; consult state law matrix"
+          ]
+        },
+        {
+          "id": "prov-003-3",
+          "title": "Communication with Former Employees",
+          "content": "Post-separation communication regarding compensation:",
+          "items": [
+            "Separation compensation summary provided on or before the separation date",
+            "Monthly statements provided for any period with ongoing post-termination payment activity",
+            "Pipeline deal closure notifications within 10 business days of the credit event",
+            "Final payment confirmation letter when all post-termination obligations are complete",
+            "Contact information for compensation questions provided in the separation package"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Clawback Triggers Upon Termination",
+      "content": "Specific clawback considerations that arise in connection with employee termination, including pre-existing obligations and termination-triggered events.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Termination-Related Clawback Events",
+          "content": "The following events may trigger clawback review in connection with termination:",
+          "items": [
+            "Discovery of fraud, misrepresentation, or policy violations during exit review or after departure",
+            "Customer cancellations or deal reversals occurring within 90 days of the representative's termination",
+            "Bad debt on accounts managed by the departed representative (invoices unpaid >180 days)",
+            "Post-termination discovery of double-crediting or commission calculation errors benefiting the representative",
+            "Violation of non-compete, non-solicitation, or confidentiality agreements (if compensation was contingent on compliance)"
+          ]
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Recovery from Terminated Employees",
+          "content": "Recovery of overpaid or clawed-back amounts from former employees is subject to legal constraints:",
+          "items": [
+            "Offset from final pay: Permitted only to the extent authorized by state law and prior written agreement",
+            "Offset from post-termination pipeline payments: Permitted; reduces future pipeline payments before disbursement",
+            "Outstanding draw balance: Recovered per SCP-008 and SCP-006 state law requirements",
+            "Direct demand for repayment: Written demand sent via certified mail with 30-day payment deadline",
+            "Legal action: May be pursued for amounts exceeding $5,000 after all other recovery methods are exhausted"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Outstanding Obligations Offset",
+      "content": "Before final compensation is paid, all outstanding obligations owed by the employee to the Company are evaluated for potential offset (subject to state law limitations).",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Eligible Offsets",
+          "content": "The following employee obligations may be offset from final compensation where legally permitted:",
+          "items": [
+            "Outstanding recoverable draw balance (per SCP-008)",
+            "Previously identified commission overpayments with documented recovery agreement",
+            "Equipment or property not returned within 10 business days of separation (at depreciated value)",
+            "Unreimbursed corporate card balances or expense advances",
+            "Tuition reimbursement clawback amounts per the education assistance agreement"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Offset Limitations",
+          "content": "Legal and policy limitations on final pay offsets:",
+          "items": [
+            "California: Offsets from final wages require prior written authorization; may not reduce below minimum wage",
+            "New York: Offsets limited to amounts specifically authorized in writing; cannot be unilateral",
+            "All states: May not offset earned wages below minimum wage for the final pay period",
+            "Disputed offsets: Undisputed compensation paid on schedule; disputed offset amounts handled through separate recovery process",
+            "Legal review required for any offset exceeding $5,000 or for California/New York employees"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Separation Process and Responsibilities",
+      "content": "A structured separation process ensures all compensation matters are properly handled and documented before and after the employee's departure.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Pre-Separation Checklist",
+          "content": "Upon notification of separation, the following steps are initiated:",
+          "items": [
+            "Sales Compensation notified within 24 hours of separation decision/notification",
+            "Pipeline snapshot taken from CRM as of notification date",
+            "Outstanding draw balance and holdback amounts calculated",
+            "Clawback exposure review for transactions within the past 12 months",
+            "Territory coverage plan developed for the representative's accounts",
+            "Final compensation estimate prepared and reviewed with HR and manager"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Post-Separation Administration",
+          "content": "Ongoing administrative responsibilities after the separation date:",
+          "items": [
+            "Monitor pipeline deals for closure within the applicable credit window",
+            "Process post-termination payments on the regular commission schedule",
+            "Track holdback release conditions and process releases when conditions are met",
+            "Maintain separation file with all compensation-related documentation for 7 years",
+            "Update the terminated employee register for quarterly reporting to Compensation Review Board",
+            "Close the separated employee's compensation file when all post-termination obligations are fulfilled"
+          ]
+        }
+      ],
       "tables": []
     }
   ],
+
   "compliance": {
-    "federalLaws": [],
-    "stateLaws": [],
-    "industryStandards": [],
+    "federalLaws": [
+      "FLSA (Fair Labor Standards Act) - final pay requirements",
+      "IRC Section 409A - timing of post-separation payments",
+      "ERISA - benefit continuation requirements upon termination"
+    ],
+    "stateLaws": [
+      "California Labor Code Sections 201-203 - Final pay timing and waiting time penalties",
+      "New York Labor Law Section 191 - Payment upon termination",
+      "Massachusetts Wage Act - Day of termination payment requirement",
+      "Illinois Wage Payment Act - Final pay timing",
+      "State-specific requirements for payroll deductions from final pay"
+    ],
+    "industryStandards": [
+      "SHRM Termination Best Practices",
+      "WorldatWork Sales Compensation Final Pay Guidelines"
+    ],
     "keywords": [
-      "termination and final pay policy",
       "termination",
-      "final",
-      "policy",
-      "termination/final"
+      "final pay",
+      "separation",
+      "pipeline commission",
+      "post-termination payment",
+      "clawback",
+      "earned commission",
+      "waiting time penalty",
+      "draw balance",
+      "involuntary termination",
+      "voluntary resignation",
+      "termination for cause",
+      "retirement"
     ]
   },
-  "relatedPolicies": [],
+
+  "relatedPolicies": [
+    "SCP-001",
+    "SCP-005",
+    "SCP-006",
+    "SCP-008",
+    "SCP-011"
+  ],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -59,6 +371,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2024-01-01",
+        "author": "Sales Compensation Governance Committee",
+        "description": "Full policy provisions developed with final commission calculation, pipeline treatment, post-termination payments, and clawback triggers"
       }
     ]
   }

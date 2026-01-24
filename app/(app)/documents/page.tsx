@@ -18,6 +18,7 @@ import {
 } from '@radix-ui/react-icons';
 import { ThreePaneWorkspace } from '@/components/workspace/ThreePaneWorkspace';
 import { DataTypeBadge, DataTypeHighlight } from '@/components/demo/DemoBadge';
+import type { DataType } from '@/lib/contracts/data-type.contract';
 import { DemoToggle, DemoFilter, DemoWarningBanner } from '@/components/demo/DemoToggle';
 import { ModeContextBadge } from '@/components/modes/ModeBadge';
 

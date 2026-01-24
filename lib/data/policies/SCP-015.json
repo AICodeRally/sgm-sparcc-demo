@@ -1,55 +1,482 @@
 {
   "code": "SCP-015",
-  "name": "Exception and Dispute Resolution Policy",
+  "name": "Standard Terms and Conditions",
   "category": "Governance",
   "frameworkArea": "Exceptions/Disputes",
-  "status": "TEMPLATE",
-  "version": "0.1.0",
-  "effectiveDate": "2024-01-01T00:00:00Z",
-  "legalReviewRequired": false,
+  "status": "DRAFT",
+  "version": "1.0.0",
+  "effectiveDate": "2026-01-01T00:00:00Z",
+  "legalReviewRequired": true,
+
   "purpose": {
-    "summary": "Policy governing exceptions/disputes.",
+    "summary": "These Standard Terms & Conditions apply to all the Company sales incentive compensation plans unless specifically modified in a particular plan document. They are incorporated by reference into each plan document.",
     "objectives": [
-      "Establish framework for exceptions/disputes",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Establish standard terms for all sales incentive compensation plans",
+      "Define employment relationship and eligibility requirements",
+      "Set payment terms, clawback provisions, and crediting rules",
+      "Establish dispute resolution procedures",
+      "Ensure compliance with applicable laws"
     ]
   },
+
   "scope": {
     "appliesTo": [
-      "All applicable roles and divisions"
+      "All sales incentive compensation plans",
+      "All participants in sales incentive compensation plans"
     ],
-    "exclusions": [],
-    "geographic": []
+    "exclusions": [
+      "Terms specifically modified in a particular plan document"
+    ],
+    "geographic": ["United States"]
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "At-Will Employment",
+      "definition": "Employment may be terminated by employee or Company at any time, with or without cause, and with or without notice. Participation in any incentive compensation plan does not alter this status.",
+      "examples": []
+    },
+    {
+      "term": "Actively Employed",
+      "definition": "Not on unpaid leave of absence (except legally protected leave where required), not under notice of termination (given or received), and performing the duties of the position.",
+      "examples": []
+    },
+    {
+      "term": "Supplemental Wages",
+      "definition": "Incentive payments that may be treated as supplemental wages subject to supplemental wage withholding rates.",
+      "examples": []
+    },
+    {
+      "term": "Compensation Review Board",
+      "definition": "The designated body with final authority to interpret plan terms and resolve disputes. All interpretations and decisions are final and binding.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Employment Relationship",
+      "content": "Defines the nature of the employment relationship and compensation status.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "At-Will Employment",
+          "content": "Participation in any incentive compensation plan does not alter the at-will nature of employment. Nothing in this plan or any plan document creates an employment contract or guarantee of continued employment.",
+          "items": []
+        },
+        {
+          "id": "prov-001-2",
+          "title": "No Guarantee of Earnings",
+          "content": "Participation in an incentive plan does not guarantee any specific level of compensation. Actual incentive earnings depend entirely on performance achieved, as measured according to the specific plan terms.",
+          "items": []
+        },
+        {
+          "id": "prov-001-3",
+          "title": "Not Part of Base Salary",
+          "content": "Incentive compensation is variable pay and is not considered part of base salary for any purpose, including but not limited to:",
+          "items": [
+            "Calculation of severance payments",
+            "Retirement plan contributions",
+            "Overtime calculations (where applicable)",
+            "Other benefit calculations"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Plan Administration and Modification",
+      "content": "The Company retains discretion in plan administration and the right to modify or terminate plans.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Company Discretion",
+          "content": "The Company retains sole and absolute discretion in:",
+          "items": [
+            "Designing, implementing, and administering incentive plans",
+            "Interpreting plan terms and resolving ambiguities",
+            "Making all final decisions regarding eligibility, performance measurement, and payouts",
+            "Determining appropriate corrective actions for errors or unusual circumstances"
+          ]
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Right to Modify or Terminate",
+          "content": "The Company reserves the right, in its sole discretion, to modify or terminate any incentive plan at any time, change plan terms, quotas, measures, payout structures, or any other plan element.",
+          "items": [
+            "Prospective changes apply to performance periods beginning after the change effective date",
+            "Retroactive changes may be made to correct errors, comply with law, or address extraordinary circumstances"
+          ]
+        },
+        {
+          "id": "prov-002-3",
+          "title": "Plan Interpretation",
+          "content": "The Compensation Review Board has final authority to interpret plan terms and resolve disputes. In event of conflict: Plan documents control over communications; official version on file controls over different versions; Standard Terms & Conditions control unless explicitly stated otherwise in the plan.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Eligibility and Participation",
+      "content": "Requirements for eligibility and conditions for suspension or termination of eligibility.",
       "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Eligibility Requirements",
+          "content": "To be eligible for any incentive plan, you must:",
+          "items": [
+            "Hold an eligible position as defined in the plan",
+            "Be actively employed on the date compensation is earned",
+            "Not be on a final written warning or Performance Improvement Plan, unless otherwise approved",
+            "Comply with all Company policies and standards of conduct",
+            "Meet any other eligibility requirements specified in the specific plan"
+          ]
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Continuous Active Employment Required",
+          "content": "Unless otherwise specified, you must be actively employed on the date incentive compensation is earned and on the date it is paid to receive payment.",
+          "items": []
+        },
+        {
+          "id": "prov-003-3",
+          "title": "Suspension or Termination of Eligibility",
+          "content": "The Company may suspend or terminate eligibility if:",
+          "items": [
+            "You violate Company policy",
+            "You engage in misconduct",
+            "You are placed on a Performance Improvement Plan (at Company discretion)",
+            "You are under investigation for policy violations or misconduct",
+            "Your performance falls below acceptable standards",
+            "You fail to meet eligibility requirements"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Performance Measurement and Quotas",
+      "content": "Rules governing performance data, quota assignments, and performance periods.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Performance Data",
+          "content": "Performance is measured using Company-approved data sources. Participants are responsible for reviewing performance statements and promptly reporting errors. The Company may correct data errors at any time, including after payments have been made.",
+          "items": []
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Quota Assignments",
+          "content": "Quotas are assigned at the Company's sole discretion based on territory potential, historical performance, market conditions, corporate objectives, and other factors. Quotas are goals, not guarantees.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Payment Terms",
+      "content": "Terms governing when incentive is earned, how it is paid, and tax withholding.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Tax Withholding",
+          "content": "All incentive payments are subject to:",
+          "items": [
+            "Federal income tax withholding",
+            "State and local income tax withholding (where applicable)",
+            "FICA (Social Security and Medicare) taxes",
+            "Any other applicable taxes or withholdings"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Payment Timing",
+          "content": "The Company will make reasonable efforts to pay earned incentive compensation on the scheduled payment dates. Payment may be delayed if additional time is needed to verify performance or resolve discrepancies.",
+          "items": []
+        },
+        {
+          "id": "prov-005-3",
+          "title": "Payment Method",
+          "content": "Payments are made in U.S. Dollars via direct deposit to the designated payroll account or other method as specified by the Company.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Clawback, Recoupment and Adjustments",
+      "content": "Provisions for recovering overpayments and adjusting for post-payment events.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Overpayment Recovery",
+          "content": "If you receive an overpayment for any reason, the Company will recover through:",
+          "items": [
+            "Deduction from future incentive payments",
+            "Deduction from regular payroll (to the extent permitted by applicable law)",
+            "Direct repayment by you",
+            "Offset against amounts owed to you by the Company"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Clawback for Post-Payment Events",
+          "content": "Incentive payments are subject to clawback for customer-related, performance-related, and conduct-related events:",
+          "items": [
+            "Customer cancels order, returns product, fails to pay (bad debt), or sale is reversed",
+            "Performance results later determined to be inaccurate or credit improperly assigned",
+            "Payment obtained through fraud, misrepresentation, or misconduct",
+            "Violation of Company policy or termination for cause"
+          ]
+        },
+        {
+          "id": "prov-006-3",
+          "title": "Adjustments for Business Events",
+          "content": "Incentive payments may be adjusted for pricing corrections, discount or rebate corrections, revenue recognition adjustments, returns, cancellations, or credits, reclassification of sales, inter-company sales adjustments, and other business adjustments. Adjustments may be retroactive.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Crediting and Attribution",
+      "content": "Rules governing sales credit allocation and territory/account assignments.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Sales Credit Rules",
+          "content": "The Company has sole discretion to determine which participant(s) receive credit for a sale, the percentage of credit, how credit is split in team selling situations, and treatment of disputed or unusual circumstances.",
+          "items": []
+        },
+        {
+          "id": "prov-007-2",
+          "title": "Territory and Account Assignment",
+          "content": "Sales credit is generally based on territory and account assignments in effect at the time of the sale. The Company may adjust credit for territory changes, account reassignments, or other circumstances.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-008",
+      "title": "Caps, Thresholds and Limits",
+      "content": "Provisions for payout caps, minimum performance thresholds, and budget caps.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Payout Caps",
+          "content": "When a cap applies, you will not receive payment for performance above the cap. Performance above the cap does not carry over to future periods.",
+          "items": []
+        },
+        {
+          "id": "prov-008-2",
+          "title": "Payout Thresholds",
+          "content": "When a threshold applies, you must achieve the threshold level to earn any payout. Performance below threshold results in zero payout for that component or period.",
+          "items": []
+        },
+        {
+          "id": "prov-008-3",
+          "title": "Budget Caps",
+          "content": "The Company may impose overall budget caps on total incentive payouts. If a budget cap is reached, individual payouts may be reduced pro-rata or payout curves adjusted.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-009",
+      "title": "Special Circumstances",
+      "content": "Provisions for new hires, transfers, promotions, demotions, leaves of absence, termination, and performance improvement plans.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-009-1",
+          "title": "Termination of Employment",
+          "content": "Treatment varies by termination type:",
+          "items": [
+            "Voluntary Resignation: Eligible for payment only for completed performance periods, pro-rated through last day",
+            "Involuntary Termination (Not for Cause): Eligible for payment for completed periods, pro-rated through last day",
+            "Termination for Cause: All unpaid incentive compensation may be forfeited at Company discretion",
+            "Death: All earned but unpaid incentive compensation paid to estate or designated beneficiary"
+          ]
+        },
+        {
+          "id": "prov-009-2",
+          "title": "Leave of Absence",
+          "content": "Protected Leave (FMLA, Military, etc.): Eligibility and quota treatment will comply with applicable law. Personal/Unpaid Leave: Eligibility may be suspended, quota may be adjusted.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-010",
+      "title": "Compliance and Legal Requirements",
+      "content": "This plan is subject to all applicable federal, state, and local laws. If any provision conflicts with applicable law, the law controls.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-010-1",
+          "title": "Applicable Laws",
+          "content": "Plan is administered in compliance with:",
+          "items": [
+            "Fair Labor Standards Act (FLSA)",
+            "State wage and hour laws",
+            "State commission payment laws",
+            "Tax laws (including IRC Section 409A for deferred compensation)",
+            "Equal Employment Opportunity laws",
+            "ERISA (if applicable)",
+            "Data privacy laws (GDPR, CCPA, etc.)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-011",
+      "title": "Data Privacy",
+      "content": "The Company collects and processes personal data for administering incentive compensation plans. Data is shared only to the extent necessary for legitimate business purposes. Compensation data is retained according to the Company's Data Retention Policy.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-011-1",
+          "title": "Data Subject Rights (GDPR/CCPA)",
+          "content": "If located in a jurisdiction with data privacy rights, you may have rights to:",
+          "items": [
+            "Access your personal data",
+            "Correct inaccurate data",
+            "Request deletion (subject to legal retention requirements)",
+            "Object to processing",
+            "Other rights as applicable"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-012",
+      "title": "Confidentiality",
+      "content": "Information regarding incentive plans, quotas, compensation amounts, and performance data is confidential and proprietary. Exception: Nothing prohibits discussing your compensation with coworkers, as protected by the National Labor Relations Act.",
+      "priority": "MEDIUM",
+      "subProvisions": [],
+      "tables": []
+    },
+    {
+      "id": "prov-013",
+      "title": "Disputes and Resolution",
+      "content": "Structured dispute process from informal discussion to formal escalation.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-013-1",
+          "title": "Dispute Process",
+          "content": "Five-step dispute resolution process:",
+          "items": [
+            "Step 1: Review your performance statement and plan document",
+            "Step 2: Informal discussion with your manager or Sales Operations",
+            "Step 3: Submit formal written dispute with specific issue, performance period, your calculation, and supporting documentation",
+            "Step 4: Sales Operations investigation and written response",
+            "Step 5: Escalation to Compensation Manager, HR, or Comp Review Board"
+          ]
+        },
+        {
+          "id": "prov-013-2",
+          "title": "Timely Dispute Requirement",
+          "content": "Disputes must be submitted within the specified timeframe of receipt of payment statement or the date you became aware of the issue. Failure to timely dispute waives your right to dispute the matter.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-014",
+      "title": "General Provisions",
+      "content": "Standard legal provisions including entire agreement, severability, waiver, assignment, and amendments.",
+      "priority": "LOW",
+      "subProvisions": [
+        {
+          "id": "prov-014-1",
+          "title": "Key Provisions",
+          "content": "Standard legal terms:",
+          "items": [
+            "Entire Agreement: These Terms plus plan document and employment agreement constitute the entire agreement",
+            "No Reliance on Oral Statements: Only written plan documents are binding",
+            "Severability: Invalid provisions do not affect remaining provisions",
+            "Waiver: Failure to enforce does not waive future enforcement rights",
+            "Assignment: Rights may not be assigned by participant; Company may assign to successors",
+            "Amendments: Company may amend at any time with communication to participants"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-015",
+      "title": "Acknowledgment and Acceptance",
+      "content": "By participating in any incentive compensation plan, participants acknowledge they have received, read, and understand these Standard Terms & Conditions, agree to be bound by them, understand the Company may modify them at any time, and agree to comply with all dispute resolution procedures.",
+      "priority": "MEDIUM",
       "subProvisions": [],
       "tables": []
     }
   ],
+
   "compliance": {
-    "federalLaws": [],
-    "stateLaws": [],
-    "industryStandards": [],
+    "federalLaws": [
+      "Fair Labor Standards Act (FLSA)",
+      "IRC Section 409A (deferred compensation)",
+      "ERISA (if applicable)",
+      "Equal Employment Opportunity laws",
+      "National Labor Relations Act",
+      "FMLA (Family and Medical Leave Act)"
+    ],
+    "stateLaws": [
+      "State wage and hour laws",
+      "State commission payment laws",
+      "State wage payment timing laws upon termination",
+      "CCPA (California Consumer Privacy Act)"
+    ],
+    "industryStandards": [
+      "GDPR (General Data Protection Regulation)"
+    ],
     "keywords": [
-      "exception and dispute resolution policy",
-      "exception",
-      "dispute",
-      "resolution",
-      "policy",
-      "exceptions/disputes"
+      "terms and conditions",
+      "at-will employment",
+      "eligibility",
+      "clawback",
+      "recoupment",
+      "crediting",
+      "dispute resolution",
+      "termination",
+      "performance measurement",
+      "quota",
+      "payment terms",
+      "data privacy",
+      "confidentiality",
+      "plan administration"
     ]
   },
+
   "relatedPolicies": [],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
-    "updatedAt": "2025-11-01T00:00:00Z",
+    "updatedAt": "2025-11-17T00:00:00Z",
     "createdBy": "policy-team",
     "approvedBy": "Pending Legal & Executive Review",
     "sourceFile": "lib/data/policies/SCP-015.md",
@@ -60,6 +487,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-17",
+        "author": "Legal / Compensation",
+        "description": "Full policy content structured from markdown source"
       }
     ]
   }

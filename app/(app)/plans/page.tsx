@@ -17,6 +17,8 @@ import {
 import { SetPageTitle } from '@/components/SetPageTitle';
 import PlanCreationWizard from '@/components/plans/PlanCreationWizard';
 import type { Plan } from '@/lib/contracts/plan.contract';
+import type { DataType } from '@/lib/contracts/data-type.contract';
+import { DataTypeBadge } from '@/components/demo/DemoBadge';
 
 type PlanStatus = 'DRAFT' | 'IN_PROGRESS' | 'UNDER_REVIEW' | 'PENDING_APPROVAL' | 'APPROVED' | 'PUBLISHED' | 'SUPERSEDED' | 'ARCHIVED';
 type PlanType = 'COMPENSATION_PLAN' | 'GOVERNANCE_PLAN' | 'POLICY_CREATION_PLAN';

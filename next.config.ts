@@ -4,13 +4,6 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
 
-  // TypeScript type checking - temporarily re-enabled to allow build
-  // TODO: Fix ~45 remaining type errors in lib/services/ and lib/governance/
-  // See: npm run type-check for full list
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
   // External packages that shouldn't be bundled
   serverExternalPackages: ['pdf-parse', '@napi-rs/canvas', 'mammoth', 'better-sqlite3'],
 
@@ -18,6 +11,7 @@ const nextConfig: NextConfig = {
   env: {
     APP_NAME: 'SGM Summit Demo',
     APP_TIER: 'summit',
+    NEXT_PUBLIC_BINDING_MODE: process.env.BINDING_MODE || 'synthetic',
   },
 }
 

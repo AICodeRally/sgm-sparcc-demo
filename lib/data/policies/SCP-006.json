@@ -4,17 +4,21 @@
   "category": "Legal Compliance",
   "frameworkArea": "Compliance (409A, State Wage)",
   "status": "DRAFT",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "effectiveDate": "2024-01-01T00:00:00Z",
   "legalReviewRequired": true,
+
   "purpose": {
     "summary": "This policy establishes compliance standards for state wage and hour laws affecting sales compensation across the Company's multi-state operations. State laws impose varying requirements for commission agreements, payment timing, final pay, and recordkeeping. This policy ensures the Company complies with all applicable state requirements while maintaining consistent compensation practices.",
     "objectives": [
-      "Establish framework for compliance (409a, state wage)",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Establish compliance standards for state wage and hour laws affecting sales compensation",
+      "Ensure compliance with varying state requirements for commission agreements, payment timing, final pay, and recordkeeping",
+      "Maintain consistent compensation practices across multi-state operations",
+      "Provide specific California Labor Code compliance guidance",
+      "Define final payment procedures for employee termination"
     ]
   },
+
   "scope": {
     "appliesTo": [
       "All sales compensation arrangements for employees working in the United States",
@@ -24,33 +28,493 @@
       "State-specific recordkeeping and disclosure obligations"
     ],
     "exclusions": [],
-    "geographic": []
+    "geographic": ["United States", "California", "Illinois", "New York", "Massachusetts", "Washington", "Colorado", "Arizona", "Texas", "Florida", "Pennsylvania"]
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Commission",
+      "definition": "Compensation earned as a percentage or amount based on sales transactions. Generally considered 'earned wages' under state law once the triggering event (sale, payment, delivery) occurs.",
+      "examples": []
+    },
+    {
+      "term": "Bonus",
+      "definition": "Discretionary compensation not directly tied to specific sales. May be treated differently than commissions under state law.",
+      "examples": []
+    },
+    {
+      "term": "Earned vs. Unearned",
+      "definition": "Critical distinction in many states. 'Earned' commissions must typically be paid on termination; 'unearned' commissions may be forfeited. States define 'earned' differently.",
+      "examples": []
+    },
+    {
+      "term": "Final Pay",
+      "definition": "The last paycheck provided to a terminated employee, including all earned wages, accrued vacation (in some states), and earned commissions.",
+      "examples": []
+    },
+    {
+      "term": "Deduction",
+      "definition": "Reduction from compensation. Many states restrict deductions from commission payments.",
+      "examples": []
+    },
+    {
+      "term": "Waiting Time Penalties",
+      "definition": "Statutory penalties (e.g., one day of pay for each day payment is late) imposed by some states when final pay is not timely provided.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "State Wage Law Overview",
+      "content": "States have widely varying laws governing sales compensation. Non-compliance can result in significant penalties.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Why State Compliance Matters",
+          "content": "Non-compliance with state wage laws can result in:",
+          "items": [
+            "Wage claims and litigation by employees",
+            "State labor department penalties and investigations",
+            "Requirement to immediately pay disputed commissions",
+            "Attorney's fees and penalty wages (2x or 3x in some states)",
+            "Class action exposure for systemic violations"
+          ]
+        },
+        {
+          "id": "prov-001-2",
+          "title": "Key Areas of State Variation",
+          "content": "States differ significantly on:",
+          "items": [
+            "Whether written commission agreements are required",
+            "Timing of final commission payment upon termination",
+            "Whether commissions can be subject to clawback",
+            "Classification of commissions vs. bonuses",
+            "Frequency of commission payments during employment",
+            "Recordkeeping requirements"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "California Labor Code Requirements",
+      "content": "California has the most extensive and employee-friendly commission laws in the country. Given the Company's significant California operations, California compliance is critical.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Written Commission Agreement Requirement (Labor Code Section 2751)",
+          "content": "California REQUIRES a written commission agreement signed by both employer and employee that includes:",
+          "items": [
+            "Method of computing commissions",
+            "When commissions are 'earned' (vesting trigger)",
+            "Payment frequency during employment",
+            "Treatment upon termination",
+            "Must be signed before employee earns any commissions",
+            "Employee must receive copy of signed agreement",
+            "Any modifications must be in writing and signed",
+            "Failure to have written agreement creates presumption in employee's favor in disputes"
+          ]
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Final Payment Timing (Labor Code Sections 201-202)",
+          "content": "California has strict final payment deadlines:",
+          "items": [
+            "Involuntary Termination: All earned wages (including commissions) due immediately at termination",
+            "'Immediately' means at time of termination meeting",
+            "Can mail if employee doesn't return to pick up (postmarked within 24 hours)",
+            "Voluntary Resignation: All earned wages due within 72 hours",
+            "If employee gives 72+ hours notice, due on last day of work",
+            "Only 'earned' commissions must be paid immediately",
+            "Commission agreement defines when commissions are 'earned'",
+            "If commission not yet calculable, must estimate and pay within reasonable time",
+            "Waiting time penalties apply if payment is late (up to 30 days of pay)"
+          ]
+        },
+        {
+          "id": "prov-002-3",
+          "title": "Clawback Restrictions",
+          "content": "California significantly restricts commission clawbacks:",
+          "items": [
+            "Cannot deduct from final pay without employee's written authorization",
+            "Cannot require repayment of earned commissions (except for advances or draws)",
+            "'Earned' commissions generally cannot be clawed back for returns/cancellations",
+            "Commission agreement must clearly define when commissions vest (become 'earned')"
+          ]
+        },
+        {
+          "id": "prov-002-4",
+          "title": "Recordkeeping (Labor Code Section 226)",
+          "content": "California requires detailed recordkeeping:",
+          "items": [
+            "Itemized wage statements showing all compensation components",
+            "Commission calculations must be accessible to employees",
+            "Records retained for 4 years",
+            "Employees have right to inspect/copy payroll records",
+            "Penalties for inaccurate wage statements: $50 first violation, $100 each subsequent (up to $4,000)"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Key Multi-State Requirements",
+      "content": "State-by-state requirements for written agreements, final payment timing, and commission classification.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Commission vs. Bonus Classification",
+          "content": "Many states distinguish between commissions and bonuses for legal purposes. Most Company sales incentive plans are commissions (non-discretionary, formula-based). Plans should be designed and documented as commissions with clear earning criteria to avoid disputes.",
+          "items": [
+            "Commission: Earned based on specific, measurable sales activities; non-discretionary; generally must be paid on termination if 'earned'; subject to stricter state law requirements",
+            "Bonus: Discretionary payment not tied to specific formula; employer retains discretion on amount and payment; may not be due on termination; generally more flexibility in plan design"
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "id": "table-003-1",
+          "caption": "Written Agreement Requirements by State",
+          "headers": ["State", "Written Commission Agreement Requirement"],
+          "rows": [
+            ["California", "REQUIRED - Must be signed before commissions earned (Labor Code Section 2751)"],
+            ["Illinois", "RECOMMENDED - Not statutorily required but highly advisable for disputes"],
+            ["New York", "RECOMMENDED - Not required by Labor Law but important for enforceability"],
+            ["Massachusetts", "REQUIRED for commissioned employees (M.G.L. c. 149, Section 148C)"],
+            ["Washington", "RECOMMENDED - Not required but protects employer in disputes"]
+          ]
+        },
+        {
+          "id": "table-003-2",
+          "caption": "Final Payment Timing by State",
+          "headers": ["State", "Involuntary Termination", "Voluntary Resignation"],
+          "rows": [
+            ["California", "Immediately", "72 hours (or last day if notice given)"],
+            ["Illinois", "Next scheduled payday", "Next scheduled payday"],
+            ["New York", "Next scheduled payday", "Next scheduled payday"],
+            ["Massachusetts", "Day of termination (commissions within reasonable time)", "Next scheduled payday or within reasonable time"],
+            ["Washington", "End of pay period", "End of pay period"],
+            ["Colorado", "Immediately", "Next scheduled payday"],
+            ["Arizona", "3 days or next payday", "Next scheduled payday"],
+            ["Texas", "6 days", "Next scheduled payday"],
+            ["Florida", "Next scheduled payday", "Next scheduled payday"],
+            ["Pennsylvania", "Next scheduled payday", "Next scheduled payday"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-004",
+      "title": "Commission Agreement Standards",
+      "content": "Standards for all sales compensation plan documents to ensure state law compliance.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Required Contents",
+          "content": "All sales compensation plan documents must include:",
+          "items": [
+            "Clear calculation formula or methodology",
+            "Definition of when commissions are 'earned' (vesting trigger)",
+            "Payment timing during active employment",
+            "Treatment of commissions upon termination",
+            "Clawback provisions (if any) clearly defined",
+            "Dispute resolution process",
+            "Governing law and jurisdiction"
+          ]
+        },
+        {
+          "id": "prov-004-2",
+          "title": "State-Specific Language",
+          "content": "For California employees, commission agreements must additionally include:",
+          "items": [
+            "Explicit reference to California Labor Code Section 2751",
+            "Statement that agreement complies with California law",
+            "Employee acknowledgment of receipt of signed copy"
+          ]
+        },
+        {
+          "id": "prov-004-3",
+          "title": "Timing of Signature",
+          "content": "Requirements for when commission agreements must be signed:",
+          "items": [
+            "California: Must be signed BEFORE employee earns any commissions",
+            "Other states: Best practice to obtain signature before first commission earned",
+            "New hires: Include in offer letter or onboarding package",
+            "Existing employees: Obtain signature on new agreements before effective date"
+          ]
+        },
+        {
+          "id": "prov-004-4",
+          "title": "Plan Changes and Amendments",
+          "content": "Any changes to commission plan terms require:",
+          "items": [
+            "Written amendment or new agreement",
+            "Employee signature (especially in California)",
+            "Reasonable notice period (30-60 days preferred)",
+            "Cannot be applied retroactively to already-earned commissions"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Final Payment Procedures",
+      "content": "Procedures for processing final compensation payments upon employee termination.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Termination Notification to Payroll",
+          "content": "HR must notify Payroll and Sales Compensation immediately upon employee termination:",
+          "items": [
+            "Termination date",
+            "Type (voluntary vs. involuntary)",
+            "Work state (for determining final pay timing)",
+            "Active commission plans and pending payments"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Commission Calculation for Final Pay",
+          "content": "Process for calculating final commission payments:",
+          "items": [
+            "Earned Commissions: Identify all transactions meeting 'earned' criteria per plan document, calculate through last day of employment, include pending from prior periods if 'earned'",
+            "Unearned Commissions: Identify transactions not yet meeting 'earned' criteria, apply plan terms regarding forfeiture or future payment, document basis for excluding from final pay",
+            "Estimates: If exact calculation not possible by final pay deadline, estimate conservatively (high), true-up within 30 days, document estimation methodology"
+          ]
+        },
+        {
+          "id": "prov-005-3",
+          "title": "Final Pay Processing by State",
+          "content": "State-specific final pay processing requirements:",
+          "items": [
+            "California Involuntary: Process check for pickup at termination meeting or mail immediately",
+            "California Voluntary: Process within 72 hours (or last day if notice given)",
+            "California: Include all earned commissions even if not yet calculated (estimate if needed)",
+            "All Other States: Follow state-specific timing requirements, include earned commissions per plan terms, document compliance with applicable state law"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Required Disclosures and Acknowledgments",
+      "content": "Employee communication and acknowledgment requirements.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Annual Plan Disclosure",
+          "content": "Each year, all commissioned employees receive:",
+          "items": [
+            "Updated compensation plan document",
+            "Summary of key terms in plain language",
+            "Contact information for questions",
+            "Acknowledgment form for signature"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Required Acknowledgments",
+          "content": "Employee acknowledgment must state:",
+          "items": [
+            "'I have received and read the [Plan Name] compensation plan'",
+            "'I understand how my compensation is calculated'",
+            "'I understand when commissions are earned and payable'",
+            "'I have been provided opportunity to ask questions'",
+            "Date and signature"
+          ]
+        },
+        {
+          "id": "prov-006-3",
+          "title": "Mid-Year Changes Notice",
+          "content": "When compensation plans change mid-year:",
+          "items": [
+            "30-day advance written notice (60 days preferred)",
+            "Clear explanation of changes",
+            "Effective date",
+            "New acknowledgment form",
+            "Cannot change treatment of already-earned commissions"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Record Retention Requirements",
+      "content": "The Company maintains compensation records per the most stringent state requirements.",
       "priority": "HIGH",
       "subProvisions": [],
+      "tables": [
+        {
+          "id": "table-007-1",
+          "caption": "Record Retention Requirements by Type",
+          "headers": ["Record Type", "Retention Period", "State Requirement"],
+          "rows": [
+            ["Commission agreements (signed)", "7 years after termination", "California, Massachusetts"],
+            ["Commission calculation records", "4 years", "California Labor Code Section 226"],
+            ["Payment records and statements", "4 years", "California, New York"],
+            ["Plan documents and amendments", "7 years after plan termination", "Best practice for litigation"],
+            ["Employee acknowledgment forms", "7 years after termination", "Compliance documentation"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-008",
+      "title": "Compliance Monitoring and Audits",
+      "content": "Ongoing monitoring and audit procedures for state wage law compliance.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Quarterly Compliance Checklist",
+          "content": "Sales Compensation and HR conduct quarterly review:",
+          "items": [
+            "All active commissioned employees have signed commission agreements on file",
+            "California agreements comply with Labor Code Section 2751 requirements",
+            "Commission payments processed within required timeframes",
+            "Final payments for terminated employees met state deadlines",
+            "No waiting time penalty situations identified"
+          ]
+        },
+        {
+          "id": "prov-008-2",
+          "title": "Annual State Law Update Review",
+          "content": "Legal department conducts annual review of:",
+          "items": [
+            "State wage law changes affecting sales compensation",
+            "New states where the Company has commissioned employees",
+            "Court decisions impacting commission law",
+            "Needed policy or plan document updates"
+          ]
+        },
+        {
+          "id": "prov-008-3",
+          "title": "High-Risk State Focus",
+          "content": "California operations receive enhanced monitoring:",
+          "items": [
+            "Monthly review of California terminations for final pay compliance",
+            "Verification all California employees have Labor Code Section 2751 compliant agreements",
+            "Quarterly training for California HR and payroll staff",
+            "Annual legal audit of California commission practices"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-009",
+      "title": "Roles and Responsibilities",
+      "content": "Clearly defined roles for all parties involved in state wage law compliance.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-009-1",
+          "title": "Sales Compensation Team",
+          "content": "Primary responsibilities:",
+          "items": [
+            "Design commission plans compliant with state laws",
+            "Ensure all plans have required written agreement components",
+            "Obtain employee signatures on commission agreements",
+            "Calculate earned commissions for final pay",
+            "Maintain commission agreement files"
+          ]
+        },
+        {
+          "id": "prov-009-2",
+          "title": "Human Resources",
+          "content": "Employee management:",
+          "items": [
+            "Distribute commission agreements during onboarding",
+            "Notify Payroll and Sales Comp of terminations immediately",
+            "Track final pay deadlines by state",
+            "Maintain state law compliance calendar",
+            "Coordinate with Legal on state law changes"
+          ]
+        },
+        {
+          "id": "prov-009-3",
+          "title": "Payroll",
+          "content": "Payment processing:",
+          "items": [
+            "Process final payments per state deadlines",
+            "Include earned commissions in final checks",
+            "Maintain pay records per state retention requirements",
+            "Produce itemized wage statements (California)",
+            "Flag late payment risks to HR"
+          ]
+        },
+        {
+          "id": "prov-009-4",
+          "title": "Legal Department",
+          "content": "Legal compliance:",
+          "items": [
+            "Review commission agreements for state law compliance",
+            "Monitor state wage law changes",
+            "Advise on California Labor Code Section 2751 compliance",
+            "Provide annual state law training",
+            "Handle wage claims and disputes"
+          ]
+        },
+        {
+          "id": "prov-009-5",
+          "title": "Finance",
+          "content": "Financial management:",
+          "items": [
+            "Ensure proper accruals for earned commissions",
+            "Budget for final commission payments",
+            "Maintain records per state requirements"
+          ]
+        }
+      ],
       "tables": []
     }
   ],
+
   "compliance": {
     "federalLaws": [],
-    "stateLaws": [],
+    "stateLaws": [
+      "California Labor Code Section 2751 (Written Commission Agreements)",
+      "California Labor Code Sections 201-202 (Final Payment Timing)",
+      "California Labor Code Section 226 (Recordkeeping)",
+      "Massachusetts M.G.L. c. 149, Section 148C (Written Commission Agreements)",
+      "State-specific final pay laws (IL, NY, WA, CO, AZ, TX, FL, PA)",
+      "State wage deduction restrictions"
+    ],
     "industryStandards": [],
     "keywords": [
-      "state wage law compliance policy",
-      "state",
-      "compliance",
-      "policy",
-      "(409a,",
-      "wage)"
+      "state wage law",
+      "commission agreement",
+      "final pay",
+      "California Labor Code",
+      "waiting time penalties",
+      "earned commission",
+      "clawback restrictions",
+      "recordkeeping",
+      "termination pay",
+      "written agreement",
+      "voluntary resignation",
+      "involuntary termination"
     ]
   },
-  "relatedPolicies": [],
+
+  "relatedPolicies": [
+    "SCP-001",
+    "SCP-005"
+  ],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -64,6 +528,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-01",
+        "author": "Sales Compensation Governance Committee",
+        "description": "Full structured content populated from markdown source"
       }
     ]
   }

@@ -165,7 +165,7 @@ export async function GET(request: NextRequest) {
     const stats = {
       total: users.length,
       byRole: Object.fromEntries(
-        roleCounts.map((r) => [r.role, r._count])
+        roleCounts.map((r: { role: string; _count: number }) => [r.role, r._count])
       ),
     };
 

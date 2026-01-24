@@ -13,12 +13,16 @@ function SignInContent() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const isSyntheticMode = process.env.NEXT_PUBLIC_BINDING_MODE === 'synthetic' || !process.env.NEXT_PUBLIC_BINDING_MODE;
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    await signIn('passkey', {
-      passkey: email,
+    await signIn('credentials', {
+      email,
+      password: password || 'synthetic',
       callbackUrl,
     });
   };
@@ -49,7 +53,7 @@ function SignInContent() {
             </div>
           )}
 
-          {/* Email Sign In */}
+          {/* Email/Password Sign In */}
           <form onSubmit={handleEmailSignIn} className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
@@ -66,9 +70,26 @@ function SignInContent() {
                 className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-md focus:border-[color:var(--color-primary)] focus:outline-none disabled:opacity-50 bg-[color:var(--color-surface)]"
               />
             </div>
+            {!isSyntheticMode && (
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-[color:var(--color-foreground)] mb-2">
+                  Password
+                </label>
+                <input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                  disabled={isLoading}
+                  autoComplete="current-password"
+                  className="w-full px-4 py-3 border-2 border-[color:var(--color-border)] rounded-md focus:border-[color:var(--color-primary)] focus:outline-none disabled:opacity-50 bg-[color:var(--color-surface)]"
+                />
+              </div>
+            )}
             <button
               type="submit"
-              disabled={isLoading || !email}
+              disabled={isLoading || !email || (!isSyntheticMode && !password)}
               className="w-full px-4 py-3 bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white font-medium rounded-md hover:opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? 'Signing in...' : 'Sign In'}
@@ -90,12 +111,21 @@ function SignInContent() {
             </p>
           </div>
 
-          {/* Demo Info */}
-          <div className="mt-6 p-4 bg-[color:var(--color-surface-alt)] rounded-md">
-            <p className="text-xs text-[color:var(--color-muted)] text-center">
-              <strong>Demo Mode:</strong> Enter any email to sign in
-            </p>
-          </div>
+          {/* Mode Info */}
+          {isSyntheticMode && (
+            <div className="mt-6 p-4 bg-[color:var(--color-surface-alt)] rounded-md">
+              <p className="text-xs text-[color:var(--color-muted)] text-center">
+                <strong>Demo Mode:</strong> Enter any email to sign in
+              </p>
+            </div>
+          )}
+          {!isSyntheticMode && (
+            <div className="mt-4 text-center">
+              <a href="/auth/forgot-password" className="text-sm text-[color:var(--color-primary)] hover:underline">
+                Forgot password?
+              </a>
+            </div>
+          )}
         </div>
       </div>
     </div>

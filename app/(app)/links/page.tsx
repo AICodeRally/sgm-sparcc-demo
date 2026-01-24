@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
+import type { DataType } from '@/lib/contracts/data-type.contract';
 import {
   Link2Icon,
   FileTextIcon,

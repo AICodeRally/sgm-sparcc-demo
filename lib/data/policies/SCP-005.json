@@ -4,17 +4,21 @@
   "category": "Legal Compliance",
   "frameworkArea": "Compliance (409A, State Wage)",
   "status": "DRAFT",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "effectiveDate": "2024-01-01T00:00:00Z",
   "legalReviewRequired": true,
+
   "purpose": {
     "summary": "This policy establishes compliance standards and procedures for Internal Revenue Code Section 409A, which governs deferred compensation arrangements. The policy ensures the Company's compensation plans comply with Section 409A requirements to avoid significant tax penalties for the company and employees.",
     "objectives": [
-      "Establish framework for compliance (409a, state wage)",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Establish compliance standards and procedures for IRC Section 409A",
+      "Ensure compensation plans comply with Section 409A requirements",
+      "Avoid significant tax penalties for the company and employees",
+      "Provide clear identification criteria for covered arrangements",
+      "Define annual compliance review procedures"
     ]
   },
+
   "scope": {
     "appliesTo": [
       "All deferred compensation arrangements as defined by Section 409A",
@@ -24,34 +28,372 @@
       "All U.S.-based employees and independent contractors"
     ],
     "exclusions": [],
-    "geographic": []
+    "geographic": ["United States"]
   },
-  "definitions": [],
+
+  "definitions": [
+    {
+      "term": "Deferred Compensation",
+      "definition": "Any arrangement under which an employee has a legally binding right to compensation in one year that is payable in a subsequent year. This is broader than traditional 'voluntary deferral' plans.",
+      "examples": []
+    },
+    {
+      "term": "Short-Term Deferral Exception",
+      "definition": "Payments made by the 15th day of the third month following the end of the year in which the compensation vests are exempt from Section 409A.",
+      "examples": []
+    },
+    {
+      "term": "Specified Employee",
+      "definition": "A key employee as defined by Section 409A (generally officers, 5% owners, or highly compensated employees). Special payment delay rules apply.",
+      "examples": []
+    },
+    {
+      "term": "Separation from Service",
+      "definition": "Termination of employment as defined by Section 409A regulations (not necessarily same as company's termination definition).",
+      "examples": []
+    },
+    {
+      "term": "Permissible Payment Events",
+      "definition": "The six events under Section 409A that can trigger deferred compensation payments: separation from service, disability, death, specified time/fixed schedule, change in control, or unforeseeable emergency.",
+      "examples": []
+    }
+  ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
+      "title": "Section 409A Overview",
+      "content": "Section 409A of the Internal Revenue Code imposes strict requirements on non-qualified deferred compensation plans. It regulates when compensation can be deferred, when it must be paid, and what elections participants can make regarding payment timing.",
       "priority": "HIGH",
-      "subProvisions": [],
+      "subProvisions": [
+        {
+          "id": "prov-001-1",
+          "title": "Why Compliance Matters",
+          "content": "Non-compliance with Section 409A results in severe consequences for employees:",
+          "items": [
+            "Immediate income inclusion (even if payment not received)",
+            "Additional 20% penalty tax on deferred amounts",
+            "Interest penalties from original deferral date",
+            "No corresponding deduction for employer",
+            "These penalties can result in employees paying taxes exceeding 60% of deferred amounts"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-002",
+      "title": "Identification of Section 409A Covered Arrangements",
+      "content": "Guidelines for determining which arrangements are subject to Section 409A.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Arrangements Subject to Section 409A",
+          "content": "The following arrangements ARE subject to Section 409A:",
+          "items": [
+            "Commission payments made more than 2.5 months after year-end",
+            "Annual bonuses paid after March 15 of the following year",
+            "Multi-year incentive plans with payment delays",
+            "Severance payments exceeding 2x compensation limit",
+            "Retention bonuses with future payment dates",
+            "Change-in-control payments not meeting safe harbor exceptions"
+          ]
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Arrangements Generally Exempt from Section 409A",
+          "content": "The following arrangements are NOT subject to Section 409A (if properly structured):",
+          "items": [
+            "Commissions/bonuses paid by March 15 following year earned",
+            "Qualified retirement plans (401(k), pension plans)",
+            "Stock options granted at fair market value",
+            "Restricted stock (not RSUs)",
+            "Severance up to 2x annual compensation (if paid within 2 years)",
+            "Vacation/PTO payouts"
+          ]
+        },
+        {
+          "id": "prov-002-3",
+          "title": "Gray Areas Requiring Analysis",
+          "content": "Some arrangements require case-by-case analysis with Legal/Tax:",
+          "items": [
+            "Clawback provisions with repayment timing beyond current year",
+            "Discretionary bonus programs with undefined payment timing",
+            "Earnout provisions in acquisition agreements",
+            "Amortized commission payments on multi-year contracts"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Payment Timing Rules and Requirements",
+      "content": "Specific rules governing when deferred compensation may be paid.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Short-Term Deferral Safe Harbor",
+          "content": "To avoid Section 409A, compensation should be paid by the 15th day of the 3rd month following the end of the year in which it vests (becomes no longer subject to substantial risk of forfeiture).",
+          "items": [
+            "2025 commission earned and vested: Must pay by March 15, 2026",
+            "Annual bonus for FY 2025: Must pay by March 15, 2026",
+            "Commission on deal closed December 31, 2025: Must pay by March 15, 2026"
+          ]
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Specified Employees - 6-Month Delay Rule",
+          "content": "For 'specified employees' (key employees), payments triggered by separation from service must be delayed 6 months from separation date.",
+          "items": [
+            "HR identifies specified employees annually (as of December 31)",
+            "List effective April 1 of following year",
+            "Separation-triggered payments delayed 6 months (or until death if earlier)",
+            "No interest accrues during 6-month delay"
+          ]
+        },
+        {
+          "id": "prov-003-3",
+          "title": "Permissible Payment Events",
+          "content": "Section 409A limits payment triggers to these six events:",
+          "items": [
+            "Separation from service",
+            "Death",
+            "Disability (as defined in regulations)",
+            "Specified time or fixed schedule (e.g., 'January 1, 2028')",
+            "Change in control of company (meeting safe harbor definition)",
+            "Unforeseeable emergency (very limited circumstances)",
+            "Plan documents must specify which of these events trigger payment. Vague language like 'when determined by the committee' is NOT compliant."
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "Plan Document Requirements",
+      "content": "Requirements for compensation plan documents subject to Section 409A.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Required Plan Provisions",
+          "content": "All compensation plans subject to Section 409A must include:",
+          "items": [
+            "Specific payment timing tied to permissible payment events",
+            "No discretion to accelerate or delay payments (except as permitted by regulations)",
+            "Specified employee identification and 6-month delay provisions",
+            "Prohibition on impermissible acceleration",
+            "Section 409A savings clause",
+            "Definition of separation from service consistent with Section 409A"
+          ]
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Section 409A Savings Clause",
+          "content": "Every plan document should include a Section 409A savings clause such as: 'This Plan is intended to comply with or be exempt from Section 409A of the Internal Revenue Code. Notwithstanding any provision to the contrary, if any plan provision would cause a participant to incur additional tax or penalties under Section 409A, that provision shall be reformed to avoid such tax or penalties while maintaining, to the maximum extent possible, the original intent and economic benefit to the participant.'",
+          "items": []
+        },
+        {
+          "id": "prov-004-3",
+          "title": "Problematic Language to Avoid",
+          "content": "Do NOT use these phrases in plan documents:",
+          "items": [
+            "'Payment at company's discretion'",
+            "'Payable when determined by committee'",
+            "'Upon termination, in company's sole discretion'",
+            "'As soon as administratively practicable' (too vague)",
+            "Instead use: 'Payable by March 15, 2026'",
+            "Instead use: 'Within 30 days following separation from service (subject to 6-month delay for specified employees)'",
+            "Instead use: 'In the first payroll period following [specific date]'"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Annual Compliance Review Procedures",
+      "content": "Annual review process to ensure ongoing Section 409A compliance.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Q4 Annual Review Process",
+          "content": "Each year by November 30, Sales Compensation and Legal conduct Section 409A compliance review:",
+          "items": [
+            "Step 1: Inventory All Compensation Plans - Identify all active sales compensation plans, document payment timing, flag plans with payments after March 15",
+            "Step 2: Section 409A Applicability Analysis - Determine which plans are subject to Section 409A, identify plans relying on short-term deferral exception",
+            "Step 3: Plan Document Review - Review payment timing language, verify Section 409A savings clauses, confirm specified employee provisions",
+            "Step 4: Operational Compliance Review - Review actual payment practices, identify payments made outside plan terms, assess specified employee payment delays",
+            "Step 5: Remediation Plan - Develop corrective action plan for any issues, prioritize plan document amendments, implement process improvements"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "New Plan Review",
+          "content": "Before implementing any new compensation plan, Sales Compensation must:",
+          "items": [
+            "Submit draft plan document to Legal for Section 409A review",
+            "Allow minimum 2 weeks for legal review",
+            "Obtain written approval from Legal before finalizing",
+            "Document approval in plan file"
+          ]
+        },
+        {
+          "id": "prov-005-3",
+          "title": "Specified Employee Identification",
+          "content": "Annual process for identifying specified employees:",
+          "items": [
+            "HR runs specified employee analysis as of December 31",
+            "Applies IRS criteria: officers, 5% owners, top-paid employees",
+            "List finalized by January 31",
+            "Effective April 1 for following 12 months",
+            "Payroll flagged to apply 6-month delay for specified employees"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Penalties for Non-Compliance",
+      "content": "Consequences of Section 409A non-compliance for employees and company.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "Employee Penalties",
+          "content": "Employees subject to deferred compensation in violation of Section 409A face:",
+          "items": [
+            "Immediate income inclusion of all deferred amounts (even if not yet paid)",
+            "20% additional tax penalty on deferred compensation",
+            "Interest penalties calculated from year of deferral",
+            "Effective tax rate can exceed 60% of deferred amount"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Company Impact",
+          "content": "While Section 409A penalties apply primarily to employees, company faces:",
+          "items": [
+            "Reputational risk and employee relations damage",
+            "Potential loss of tax deduction if amount never paid",
+            "Increased reporting complexity (Form W-2 corrections)",
+            "Possible litigation from affected employees",
+            "IRS scrutiny of other compensation arrangements"
+          ]
+        },
+        {
+          "id": "prov-006-3",
+          "title": "Correction Programs",
+          "content": "IRS provides limited correction programs for Section 409A errors:",
+          "items": [
+            "Document failures can sometimes be corrected retroactively",
+            "Operational failures have narrow correction windows",
+            "Early detection is critical for effective correction",
+            "Not all failures are correctable"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Roles and Responsibilities",
+      "content": "Clearly defined roles for all parties involved in Section 409A compliance.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Sales Compensation Team",
+          "content": "Primary responsibilities:",
+          "items": [
+            "Design plans to avoid Section 409A where possible",
+            "Submit new plans for legal review before implementation",
+            "Maintain inventory of all compensation arrangements",
+            "Process payments according to compliant timing",
+            "Participate in annual compliance review"
+          ]
+        },
+        {
+          "id": "prov-007-2",
+          "title": "Legal/Tax Department",
+          "content": "Compliance oversight:",
+          "items": [
+            "Provide Section 409A training to Sales Compensation",
+            "Review all new plan documents for compliance",
+            "Conduct annual Section 409A compliance audit",
+            "Advise on correction programs if issues identified",
+            "Update policies as regulations change"
+          ]
+        },
+        {
+          "id": "prov-007-3",
+          "title": "Human Resources",
+          "content": "Employee management:",
+          "items": [
+            "Identify specified employees annually",
+            "Communicate specified employee status to affected individuals",
+            "Coordinate with Payroll on 6-month payment delays",
+            "Maintain specified employee lists"
+          ]
+        },
+        {
+          "id": "prov-007-4",
+          "title": "Payroll",
+          "content": "Payment processing:",
+          "items": [
+            "Flag specified employees in payroll system",
+            "Apply 6-month payment delays for separation-triggered payments",
+            "Report deferred compensation on Form W-2",
+            "Process payments according to documented schedules"
+          ]
+        },
+        {
+          "id": "prov-007-5",
+          "title": "Finance",
+          "content": "Financial management:",
+          "items": [
+            "Ensure proper accounting for deferred compensation",
+            "Coordinate with Tax on reporting requirements",
+            "Maintain records of deferred compensation liabilities"
+          ]
+        }
+      ],
       "tables": []
     }
   ],
+
   "compliance": {
-    "federalLaws": [],
+    "federalLaws": [
+      "Internal Revenue Code Section 409A",
+      "IRS Section 409A Regulations (26 CFR 1.409A)",
+      "Federal income tax withholding requirements"
+    ],
     "stateLaws": [],
     "industryStandards": [],
     "keywords": [
-      "section 409a compliance policy",
-      "section",
-      "compliance",
-      "policy",
-      "(409a,",
-      "state",
-      "wage)"
+      "Section 409A",
+      "deferred compensation",
+      "short-term deferral exception",
+      "specified employee",
+      "separation from service",
+      "permissible payment events",
+      "6-month delay rule",
+      "savings clause",
+      "non-qualified deferred compensation",
+      "payment timing",
+      "tax penalty"
     ]
   },
-  "relatedPolicies": [],
+
+  "relatedPolicies": [
+    "SCP-001"
+  ],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -65,6 +407,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-01",
+        "author": "Sales Compensation Governance Committee",
+        "description": "Full structured content populated from markdown source"
       }
     ]
   }

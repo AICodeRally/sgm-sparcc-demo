@@ -4,17 +4,21 @@
   "category": "Incentive Programs",
   "frameworkArea": "SPIF Governance",
   "status": "DRAFT",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "effectiveDate": "2024-01-01T00:00:00Z",
   "legalReviewRequired": true,
+
   "purpose": {
     "summary": "This policy establishes governance standards for Sales Performance Incentive Funds (SPIFs), sales contests, and short-term promotional incentive programs at the Company. The policy ensures SPIFs are strategically aligned, financially controlled, do not conflict with base compensation plans, and comply with legal and regulatory requirements.",
     "objectives": [
-      "Establish framework for spif governance",
-      "Ensure compliance and consistency",
-      "Provide clear governance structure"
+      "Establish governance standards for SPIFs, sales contests, and short-term promotional incentive programs",
+      "Ensure SPIFs are strategically aligned and financially controlled",
+      "Prevent conflicts between SPIFs and base compensation plans",
+      "Comply with legal and regulatory requirements",
+      "Provide clear approval thresholds and authority levels"
     ]
   },
+
   "scope": {
     "appliesTo": [
       "All short-term incentive programs with duration less than one fiscal year",
@@ -22,9 +26,14 @@
       "Sales contests with monetary or non-monetary awards",
       "All divisions, business units, and sales roles within the Company"
     ],
-    "exclusions": [],
+    "exclusions": [
+      "Annual compensation plans",
+      "Recognition programs without incentive compensation",
+      "Employee referral bonuses"
+    ],
     "geographic": []
   },
+
   "definitions": [
     {
       "term": "SPIF (Sales Performance Incentive Fund)",
@@ -57,27 +66,410 @@
       "examples": []
     }
   ],
+
   "provisions": [
     {
       "id": "prov-001",
-      "title": "Policy Requirements",
-      "content": "See full policy document for detailed provisions.",
-      "priority": "HIGH",
+      "title": "SPIF Approval Thresholds and Authority",
+      "content": "SPIF approval requirements are based on total program cost and potential business impact.",
+      "priority": "CRITICAL",
       "subProvisions": [],
+      "tables": [
+        {
+          "id": "table-001-1",
+          "caption": "SPIF Approval Authority by Budget",
+          "headers": ["Total SPIF Budget", "Approval Authority", "Additional Review", "Lead Time Required"],
+          "rows": [
+            ["Under $10,000", "Sales Manager + Sales Comp Manager", "None", "2 weeks"],
+            ["$10,000 - $50,000", "Regional VP + Director Sales Comp", "Finance review", "3 weeks"],
+            ["$50,000 - $150,000", "SVP Sales + VP Sales Comp + Finance", "Legal review", "4 weeks"],
+            ["$150,000 - $500,000", "SVP Sales + CFO + Comp Review Board", "Full business case", "6 weeks"],
+            ["Over $500,000", "CEO + CFO + Comp Review Board", "Board notification", "8 weeks"]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prov-002",
+      "title": "SPIF Design Standards",
+      "content": "Standards governing the design and structure of all SPIF programs.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-002-1",
+          "title": "Duration Requirements",
+          "content": "Time constraints for SPIF programs:",
+          "items": [
+            "Minimum duration: 2 weeks",
+            "Maximum duration: 12 weeks (one quarter)",
+            "Recommended duration: 4-8 weeks for optimal impact",
+            "Programs exceeding 12 weeks must be incorporated into base compensation plans"
+          ]
+        },
+        {
+          "id": "prov-002-2",
+          "title": "Eligibility Standards",
+          "content": "Requirements for defining SPIF eligibility:",
+          "items": [
+            "Clearly defined eligible population",
+            "Must be open to all reps in defined segment (no selective participation)",
+            "Eligibility criteria must be objective and measurable",
+            "New hires within 90 days may be excluded or given prorated targets"
+          ]
+        },
+        {
+          "id": "prov-002-3",
+          "title": "Performance Measures",
+          "content": "SPIFs must have clear, measurable performance criteria:",
+          "items": [
+            "Specific products, services, or customer segments",
+            "Measurable outcomes (revenue, units, new customers, activities)",
+            "Unambiguous definitions (no subjective assessment)",
+            "System-trackable metrics preferred"
+          ]
+        },
+        {
+          "id": "prov-002-4",
+          "title": "Payout Structure",
+          "content": "Acceptable payout structures and requirements:",
+          "items": [
+            "Flat dollar amount per unit/achievement",
+            "Tiered rewards based on achievement levels",
+            "Percentage of sales value",
+            "Ranking-based awards (top performers)",
+            "Payout formula must be clearly documented",
+            "Maximum individual award must be defined",
+            "Total program budget must include worst-case scenario"
+          ]
+        },
+        {
+          "id": "prov-002-5",
+          "title": "Communication Requirements",
+          "content": "Every SPIF must include:",
+          "items": [
+            "Written program rules and guidelines",
+            "Start and end dates (specific dates, not 'one month')",
+            "Eligibility criteria",
+            "Performance measures and tracking methodology",
+            "Payout calculations with examples",
+            "Payment timing",
+            "Program administrator contact information"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-003",
+      "title": "Budget Limits and Financial Controls",
+      "content": "Financial governance for SPIF programs.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-003-1",
+          "title": "Individual Participation Limits",
+          "content": "Total SPIF earnings for any individual sales rep are capped at:",
+          "items": [
+            "25% of annual base compensation per quarter",
+            "50% of annual target incentive per fiscal year",
+            "Earnings exceeding these caps require Compensation Review Board approval"
+          ]
+        },
+        {
+          "id": "prov-003-2",
+          "title": "Aggregate Budget Controls",
+          "content": "Organization-level financial controls:",
+          "items": [
+            "Total SPIF spending across all programs: Not to exceed 5% of total sales compensation budget",
+            "Division-level SPIF budgets approved annually by Finance",
+            "Monthly SPIF spending reports to Finance",
+            "Budget overruns require SVP Sales and CFO approval"
+          ]
+        },
+        {
+          "id": "prov-003-3",
+          "title": "Vendor-Funded SPIFs",
+          "content": "SPIFs funded by manufacturers or vendors are subject to this policy:",
+          "items": [
+            "Must be approved through same governance process",
+            "Vendor funding does not bypass approval requirements",
+            "Legal review required for all vendor-funded programs >$25K",
+            "Must comply with anti-kickback and transparency regulations",
+            "Vendor relationship must be disclosed to participants"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-004",
+      "title": "ROI Measurement Requirements",
+      "content": "Requirements for measuring return on investment for SPIF programs.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-004-1",
+          "title": "Pre-Program ROI Projection",
+          "content": "All SPIFs over $50,000 must include projected ROI analysis:",
+          "items": [
+            "Baseline performance (historical sales without SPIF)",
+            "Projected incremental sales",
+            "Incremental gross profit calculation",
+            "Total program cost (awards + administration)",
+            "Expected ROI percentage (Target: Minimum 3:1)"
+          ]
+        },
+        {
+          "id": "prov-004-2",
+          "title": "Post-Program ROI Analysis",
+          "content": "Within 45 days of program completion, program owner must provide:",
+          "items": [
+            "Actual vs. projected sales performance",
+            "Total awards paid",
+            "Calculated incremental profit",
+            "Actual ROI vs. projected",
+            "Key learnings and recommendations",
+            "Programs failing to achieve 2:1 ROI require explanation and corrective action plan for future programs"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-005",
+      "title": "Conflict Avoidance with Base Compensation Plans",
+      "content": "Rules to prevent SPIFs from conflicting with base compensation plan objectives.",
+      "priority": "CRITICAL",
+      "subProvisions": [
+        {
+          "id": "prov-005-1",
+          "title": "Prohibited Conflicts",
+          "content": "SPIFs may NOT:",
+          "items": [
+            "Incentivize behavior that reduces base plan earnings",
+            "Create incentive to defer sales to different time periods",
+            "Encourage product mix that reduces overall profitability",
+            "Contradict strategic objectives of base plans",
+            "Create incentives to manipulate timing of order booking"
+          ]
+        },
+        {
+          "id": "prov-005-2",
+          "title": "Conflict Assessment Checklist",
+          "content": "All SPIF proposals must address:",
+          "items": [
+            "How does this SPIF align with base plan objectives?",
+            "Could reps earn more by gaming timing or product mix?",
+            "Does this SPIF reward activities already compensated in base plans?",
+            "What behaviors might be de-prioritized due to this SPIF?",
+            "How will we measure if SPIF creates unintended consequences?"
+          ]
+        },
+        {
+          "id": "prov-005-3",
+          "title": "Stacking Limits",
+          "content": "To prevent excessive layering of SPIFs:",
+          "items": [
+            "Maximum of 3 concurrent SPIFs per sales rep",
+            "SPIFs on same product/customer segment must be additive, not duplicative",
+            "Total potential SPIF earnings must be tracked against caps"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-006",
+      "title": "Documentation and Tracking Requirements",
+      "content": "Requirements for registering and tracking all SPIF programs.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-006-1",
+          "title": "SPIF Registration",
+          "content": "All SPIFs must be registered in the central SPIF tracking system before launch:",
+          "items": [
+            "Program name and unique identifier",
+            "Start and end dates",
+            "Business sponsor and program administrator",
+            "Total budget and approval chain",
+            "Eligible population (roles, divisions, headcount)",
+            "Performance measures",
+            "Program rules document reference"
+          ]
+        },
+        {
+          "id": "prov-006-2",
+          "title": "Participant Tracking",
+          "content": "For each participant, track:",
+          "items": [
+            "Eligibility status",
+            "Performance against SPIF measures",
+            "Awards earned",
+            "Payment date and amount",
+            "Tax withholding information"
+          ]
+        },
+        {
+          "id": "prov-006-3",
+          "title": "Financial Tracking",
+          "content": "Financial monitoring requirements:",
+          "items": [
+            "Budget vs. actual spending by program",
+            "Month-to-date and year-to-date SPIF expenses",
+            "Accruals for programs spanning month/quarter end",
+            "Reconciliation to general ledger"
+          ]
+        },
+        {
+          "id": "prov-006-4",
+          "title": "Retention Period",
+          "content": "All SPIF documentation retained for seven (7) years: program rules, approvals, participant data, payment records, and ROI analyses.",
+          "items": []
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-007",
+      "title": "Payment Processing and Timing",
+      "content": "Standards for processing SPIF payments.",
+      "priority": "HIGH",
+      "subProvisions": [
+        {
+          "id": "prov-007-1",
+          "title": "Payment Timing Standards",
+          "content": "Payment deadlines based on program size:",
+          "items": [
+            "SPIFs under $50K total budget: Pay within 30 days of program end",
+            "SPIFs over $50K: Pay within 45 days of program end (allows for verification)",
+            "Vendor-funded SPIFs: Pay within 30 days of receiving vendor payment"
+          ]
+        },
+        {
+          "id": "prov-007-2",
+          "title": "Payment Validation",
+          "content": "Before processing SPIF payments, Sales Compensation must verify:",
+          "items": [
+            "Participant eligibility (active employment, territory coverage)",
+            "Performance data accuracy",
+            "Calculation accuracy",
+            "No duplicate payments",
+            "Compliance with individual earning caps"
+          ]
+        },
+        {
+          "id": "prov-007-3",
+          "title": "Tax Treatment",
+          "content": "All SPIF payments are taxable compensation subject to:",
+          "items": [
+            "Federal and state income tax withholding",
+            "FICA/Medicare taxes",
+            "Reporting on W-2 as supplemental wages",
+            "Non-cash awards reported at fair market value"
+          ]
+        }
+      ],
+      "tables": []
+    },
+    {
+      "id": "prov-008",
+      "title": "Roles and Responsibilities",
+      "content": "Clearly defined roles for all parties involved in SPIF governance.",
+      "priority": "MEDIUM",
+      "subProvisions": [
+        {
+          "id": "prov-008-1",
+          "title": "Business Sponsors/Product Managers",
+          "content": "Primary responsibilities:",
+          "items": [
+            "Identify business objectives requiring SPIF support",
+            "Develop SPIF concept and structure",
+            "Prepare business case and ROI projection",
+            "Provide budget funding",
+            "Conduct post-program ROI analysis"
+          ]
+        },
+        {
+          "id": "prov-008-2",
+          "title": "Sales Compensation Team",
+          "content": "Governance and administration:",
+          "items": [
+            "Review SPIF proposals for policy compliance",
+            "Assess conflict with base compensation plans",
+            "Register SPIFs in tracking system",
+            "Calculate and process SPIF payments",
+            "Monitor aggregate SPIF spending",
+            "Provide quarterly SPIF reporting to leadership"
+          ]
+        },
+        {
+          "id": "prov-008-3",
+          "title": "Finance",
+          "content": "Financial oversight:",
+          "items": [
+            "Review and approve SPIF budgets per thresholds",
+            "Validate ROI projections",
+            "Monitor SPIF spending against budget",
+            "Ensure proper accounting treatment",
+            "Approve accruals for multi-period programs"
+          ]
+        },
+        {
+          "id": "prov-008-4",
+          "title": "Legal",
+          "content": "Legal compliance:",
+          "items": [
+            "Review vendor-funded SPIFs for compliance",
+            "Assess anti-kickback and transparency requirements",
+            "Review program rules for legal risks",
+            "Advise on tax treatment of non-cash awards"
+          ]
+        },
+        {
+          "id": "prov-008-5",
+          "title": "Sales Leadership",
+          "content": "Strategic oversight:",
+          "items": [
+            "Approve SPIFs per authority levels",
+            "Ensure alignment with strategic priorities",
+            "Communicate SPIFs to sales teams",
+            "Monitor for unintended consequences or gaming"
+          ]
+        }
+      ],
       "tables": []
     }
   ],
+
   "compliance": {
-    "federalLaws": [],
-    "stateLaws": [],
+    "federalLaws": [
+      "Federal income tax withholding requirements",
+      "FICA/Medicare tax requirements",
+      "Anti-kickback regulations"
+    ],
+    "stateLaws": [
+      "State income tax withholding",
+      "State transparency regulations"
+    ],
     "industryStandards": [],
     "keywords": [
-      "spif governance policy",
-      "governance",
-      "policy"
+      "SPIF",
+      "sales performance incentive fund",
+      "sales contest",
+      "overlay program",
+      "short-term incentive",
+      "vendor-funded SPIF",
+      "ROI",
+      "commission cap",
+      "conflict avoidance",
+      "payout structure",
+      "budget controls"
     ]
   },
+
   "relatedPolicies": [],
+
   "metadata": {
     "createdAt": "2025-11-01T00:00:00Z",
     "updatedAt": "2025-11-01T00:00:00Z",
@@ -91,6 +483,12 @@
         "date": "2025-11-01",
         "author": "Sales Compensation Governance Committee",
         "description": "Initial draft created from Gap Analysis requirements"
+      },
+      {
+        "version": "1.0.0",
+        "date": "2025-11-01",
+        "author": "Sales Compensation Governance Committee",
+        "description": "Full structured content populated from markdown source"
       }
     ]
   }
