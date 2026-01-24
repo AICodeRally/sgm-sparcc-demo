@@ -10,6 +10,7 @@ import {
   LightningBoltIcon,
   CheckCircledIcon,
 } from '@radix-ui/react-icons';
+import { fetchOpsSignals, type TelemetrySignal } from '@/lib/aicr/client';
 
 interface Insight {
   id: string;
@@ -20,6 +21,30 @@ interface Insight {
   severity: 'critical' | 'high' | 'medium' | 'low';
   actionable: boolean;
   suggestedAction?: string;
+}
+
+/**
+ * Map AICR telemetry signal to Insight format
+ */
+function mapSignalToInsight(signal: TelemetrySignal): Insight {
+  // Determine type based on signal type prefix or severity
+  let type: 'alert' | 'warning' | 'info' = 'info';
+  if (signal.severity === 'critical' || signal.type.includes('ANOMALY')) {
+    type = 'alert';
+  } else if (signal.severity === 'high' || signal.type.includes('THRESHOLD')) {
+    type = 'warning';
+  }
+
+  return {
+    id: signal.id,
+    type,
+    title: signal.title,
+    description: signal.description,
+    timestamp: new Date(signal.timestamp),
+    severity: signal.severity,
+    actionable: !!signal.suggestedAction || !!signal.actionUrl,
+    suggestedAction: signal.suggestedAction,
+  };
 }
 
 interface OpsChiefOrbProps {
@@ -44,18 +69,19 @@ export function OpsChiefOrb({ appName = 'SGM SPARCC', enabled = true }: OpsChief
     setIsLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/ai/opschief?tenantId=platform');
-      if (!response.ok) {
-        // Suppress 401/500 errors (expected when service unavailable)
-        if (response.status !== 401 && response.status !== 500) {
-          console.error('OpsChief fetch error:', response.status);
-        }
-        setError('Service temporarily unavailable');
+      // Fetch from AICR telemetry endpoint
+      const response = await fetchOpsSignals(20);
+
+      if (response.signals.length === 0 && response.count === 0) {
+        // Could be empty data or service unavailable - show empty state
+        setInsights([]);
         return;
       }
-      const data = await response.json();
-      setInsights(data.insights || []);
-    } catch (err) {
+
+      // Map AICR signals to Insight format
+      const mappedInsights = response.signals.map(mapSignalToInsight);
+      setInsights(mappedInsights);
+    } catch {
       // Suppress network errors silently
       setError('Service temporarily unavailable');
     } finally {

@@ -278,9 +278,12 @@ Feb 1:     Handoff to testing
 - Approval Workflow: 7 demo items with multi-step tracking
 - Case Workflow: 7 demo cases with SLA tracking
 
-**AI Orbs (Tasks 1.6-1.9):** ⚠️ Blocked on AICR
+**AI Orbs (Tasks 1.6-1.9):** ✅ Wired (API keys pending)
 - AskSGM: Already wired to AICR via `lib/aicr/client.ts`
-- OpsChief/Pulse/Task: Waiting on Rally's AICR deployment
+- OpsChief: ✅ Wired to `/api/aicc/telemetry?signals=OPS`
+- Pulse: ✅ Wired to `/api/aicc/telemetry?signals=PULSE`
+- Task: Pending (TBD with Rally)
+- **Blocking Issue:** API keys invalid in Vercel (401 errors) - needs credential update
 
 ### 2026-01-23: Priority 2 Polish Pass
 

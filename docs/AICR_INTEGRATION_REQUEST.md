@@ -1,46 +1,45 @@
-# AICR Integration Request for SGM
+# AICR Integration Status for SGM
 
 > **To:** Rally (AICR Team)
 > **From:** SGM Team
 > **Date:** January 23, 2026
-> **Priority:** High - Blocking production readiness
+> **Updated:** January 23, 2026
+> **Priority:** High - API keys blocking production
 
 ---
 
 ## Summary
 
-SGM is ready for production (Feb 1 handoff, March 1 launch) but **4 tasks are blocked** waiting on AICR deployment and configuration.
+Rally has delivered Agent Conductor and telemetry endpoints. SGM has wired Ops and Pulse orbs to AICR. **Only API keys remain blocking.**
 
 ---
 
-## What We Need
+## Current Status
 
 ### 1. Agent Conductor Production Deployment
-**Status:** Pending
-**Blocking:** All AI orb functionality except Ask
-
-We need the Agent Conductor deployed to production so SGM can connect to AICR telemetry endpoints.
+**Status:** ✅ Complete (Rally)
+**Notes:** Migration applied, v1.1 columns verified
 
 ### 2. Production API Keys
-**Status:** Pending
-**Blocking:** AI features in production
+**Status:** ⚠️ BLOCKING
+**Issue:** Both OPENAI_API_KEY and ANTHROPIC_API_KEY return 401 errors in Vercel
 
-Need verified production API keys for:
-- Anthropic (Claude)
-- OpenAI (if used for embeddings)
+**Action Required:** Update API keys in Vercel with valid credentials.
 
 ### 3. Telemetry Endpoint Access
-**Status:** Pending
-**Blocking:** Ops and Pulse orbs
+**Status:** ✅ Complete (Rally)
+**Notes:** Extended with `?signals=` filter
 
-SGM needs to call these AICR endpoints:
+SGM now calls these AICR endpoints:
 
 | Endpoint | Purpose | SGM Component |
 |----------|---------|---------------|
-| `/api/aicc/telemetry` | Read signals from ops_signals table | Ops orb, Pulse orb |
-| `/api/aicc/agents/[slug]/invoke` | Invoke AI agent | Ask orb (already working) |
+| `/api/aicc/telemetry?signals=OPS` | OPS signals | Ops orb ✅ Wired |
+| `/api/aicc/telemetry?signals=PULSE` | PULSE signals | Pulse orb ✅ Wired |
+| `/api/aicc/telemetry?signals=AI_TEL` | Shared AI telemetry | Both orbs |
+| `/api/aicc/agents/[slug]/invoke` | Invoke AI agent | Ask orb ✅ Working |
 
-**Signal types SGM will consume:**
+**Signal types SGM consumes:**
 
 ```
 OPS_ANOMALY_*     → Ops orb (pattern detected)
@@ -64,11 +63,11 @@ PII protection and response filtering for SGM-specific context. Nice to have but
 
 | Component | Status | Notes |
 |-----------|--------|-------|
-| AICR client library | ✅ Done | `lib/aicr/client.ts` |
-| Ask orb | ✅ Wired | Already calling AICR |
-| Ops orb UI | ✅ Built | Waiting for telemetry endpoint |
-| Pulse orb UI | ✅ Built | Waiting for telemetry endpoint |
-| Task orb UI | ✅ Built | Waiting for work management signals |
+| AICR client library | ✅ Done | `lib/aicr/client.ts` with telemetry methods |
+| Ask orb | ✅ Wired | Calling AICR agents/invoke |
+| Ops orb | ✅ Wired | Calling `/api/aicc/telemetry?signals=OPS` |
+| Pulse orb | ✅ Wired | Calling `/api/aicc/telemetry?signals=PULSE` |
+| Task orb UI | ✅ Built | Waiting for work management signals (TBD) |
 | Offline handling | ✅ Done | All orbs show "service offline" gracefully |
 
 ---
