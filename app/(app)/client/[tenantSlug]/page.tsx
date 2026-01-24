@@ -26,7 +26,11 @@ export default function ClientDashboardPage({ params }: ClientDashboardPageProps
       try {
         const response = await fetch(`/api/client/${tenantSlug}/dashboard`);
         const data = await response.json();
-        setDashboardData(data);
+        if (!response.ok || data.error) {
+          setDashboardData(getMockDashboardData());
+        } else {
+          setDashboardData(data);
+        }
       } catch (error) {
         console.error('Failed to load dashboard data:', error);
         // Use mock data as fallback

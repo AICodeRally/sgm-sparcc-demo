@@ -99,7 +99,7 @@ export function ClientDashboardLayout({
                     background: `linear-gradient(to bottom right, ${primaryColor}, ${secondaryColor})`
                   }}
                 >
-                  {companyName.substring(0, 2).toUpperCase()}
+                  {(companyName || 'SG').substring(0, 2).toUpperCase()}
                 </div>
               )}
               <div>
