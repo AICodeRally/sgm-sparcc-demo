@@ -201,10 +201,11 @@ Feb 1:     Handoff to testing
 ### AI Orbs
 
 - [x] Ask orb responds with governance answers (wired to AICR)
-- [ ] Ops orb shows pattern alerts from AICR (⚠️ Blocked on Rally - AICR deployment)
-- [ ] Pulse orb shows coaching recommendations (⚠️ Blocked on Rally - AICR deployment)
-- [ ] Task orb displays work items (⚠️ Blocked on Rally - AICR deployment)
+- [x] Ops orb shows pattern alerts from AICR (wired to telemetry endpoint)
+- [x] Pulse orb shows coaching recommendations (wired to telemetry endpoint)
+- [ ] Task orb displays work items (TBD with Rally)
 - [x] All orbs handle "service offline" gracefully (verified in code)
+- [x] PII protection guardrails active (5cf1c8a1)
 
 ### UI Polish
 
@@ -284,6 +285,16 @@ Feb 1:     Handoff to testing
 - Pulse: ✅ Wired to `/api/aicc/telemetry?signals=PULSE`
 - Task: Pending (TBD with Rally)
 - **API Keys:** ✅ Resolved via Vercel AI Gateway with BYOK auto-injection
+- **Guardrails:** ✅ PII protection active
+
+**AICR Signals Available:**
+| Signal | Type | Description |
+|--------|------|-------------|
+| `AI_TEL_LATENCY` | Ops | Model latency spike detection |
+| `AI_TEL_FALLBACK` | Ops | Fallback rate monitoring |
+| `AI_TEL_COST` | Ops | Daily cost spike detection |
+| `PULSE_FREE_TIER` | Pulse | Free tier usage opportunities |
+| `PULSE_USAGE` | Pulse | Weekly agent usage summary |
 
 ### 2026-01-23: Priority 2 Polish Pass
 
