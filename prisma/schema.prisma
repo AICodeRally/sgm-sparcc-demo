@@ -843,10 +843,12 @@ model GovernanceFramework {
   category      String  
 
   // Content
-  content       String  
+  content           String
+  contentType       String   @default("markdown") @map("content_type")
+  structuredContent Json?    @map("structured_content")
 
   // Versioning
-  version       String  
+  version       String
   status        String    // DRAFT, ACTIVE, SUPERSEDED
 
   // Applicability
@@ -866,6 +868,26 @@ model GovernanceFramework {
   @@index([status])
   @@index([isGlobal])
   @@map("governance_frameworks")
+}
+
+// Checklist Progress Model - Tracks step completion for checklist-type frameworks
+model ChecklistProgress {
+  id             String    @id @default(cuid())
+  engagementId   String    @map("engagement_id")
+  frameworkId    String    @map("framework_id")
+  stepId         String    @map("step_id")
+  completed      Boolean   @default(false)
+  completedDate  DateTime? @map("completed_date")
+  completedBy    String?   @map("completed_by")
+  notes          String?
+
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  @@unique([engagementId, frameworkId, stepId])
+  @@index([engagementId])
+  @@index([frameworkId])
+  @@map("checklist_progress")
 }
 
 // =============================================================================

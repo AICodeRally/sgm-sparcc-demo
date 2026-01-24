@@ -29,6 +29,47 @@ export const FrameworkStatusSchema = z.enum([
 export type FrameworkStatus = z.infer<typeof FrameworkStatusSchema>;
 
 // =============================================================================
+// CONTENT TYPE
+// =============================================================================
+
+export const FrameworkContentTypeSchema = z.enum(['markdown', 'checklist']);
+export type FrameworkContentType = z.infer<typeof FrameworkContentTypeSchema>;
+
+// =============================================================================
+// CHECKLIST SCHEMAS
+// =============================================================================
+
+export const ChecklistStepSchema = z.object({
+  id: z.string(),
+  number: z.number(),
+  text: z.string(),
+});
+export type ChecklistStep = z.infer<typeof ChecklistStepSchema>;
+
+export const ChecklistItemSchema = z.object({
+  id: z.string(),
+  number: z.number(),
+  title: z.string(),
+  steps: z.array(ChecklistStepSchema),
+});
+export type ChecklistItem = z.infer<typeof ChecklistItemSchema>;
+
+export const ChecklistPhaseSchema = z.object({
+  id: z.string(),
+  number: z.number(),
+  title: z.string(),
+  type: z.enum(['checklist', 'reference']),
+  totalSteps: z.number(),
+  items: z.array(ChecklistItemSchema),
+});
+export type ChecklistPhase = z.infer<typeof ChecklistPhaseSchema>;
+
+export const ChecklistContentSchema = z.object({
+  phases: z.array(ChecklistPhaseSchema),
+});
+export type ChecklistContent = z.infer<typeof ChecklistContentSchema>;
+
+// =============================================================================
 // MAIN SCHEMA
 // =============================================================================
 
@@ -39,6 +80,8 @@ export const GovernanceFrameworkSchema = z.object({
   title: z.string().min(1).max(200),
   category: FrameworkCategorySchema,
   content: z.string().min(1), // Markdown content
+  contentType: FrameworkContentTypeSchema.default('markdown'),
+  structuredContent: z.any().nullable().default(null),
   version: z.string().regex(/^\d+\.\d+\.\d+$/, 'Version must be semantic (x.y.z)'),
   status: FrameworkStatusSchema,
   isGlobal: z.boolean().default(false),
