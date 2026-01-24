@@ -4,13 +4,18 @@
 > **From:** SGM Team
 > **Date:** January 23, 2026
 > **Updated:** January 23, 2026
-> **Priority:** High - API keys blocking production
+> **Status:** ✅ Integration Complete
 
 ---
 
 ## Summary
 
-Rally has delivered Agent Conductor and telemetry endpoints. SGM has wired Ops and Pulse orbs to AICR. **Only API keys remain blocking.**
+All AICR integration blockers resolved. SGM is ready for end-to-end testing.
+
+- ✅ Agent Conductor deployed
+- ✅ Telemetry endpoint extended with `?signals=` filter
+- ✅ API keys resolved via Vercel AI Gateway BYOK
+- ✅ Ops and Pulse orbs wired to AICR
 
 ---
 
@@ -21,10 +26,11 @@ Rally has delivered Agent Conductor and telemetry endpoints. SGM has wired Ops a
 **Notes:** Migration applied, v1.1 columns verified
 
 ### 2. Production API Keys
-**Status:** ⚠️ BLOCKING
-**Issue:** Both OPENAI_API_KEY and ANTHROPIC_API_KEY return 401 errors in Vercel
-
-**Action Required:** Update API keys in Vercel with valid credentials.
+**Status:** ✅ Resolved
+**Solution:** Vercel AI Gateway with BYOK auto-injection
+- Uses Vercel's pre-configured BYOK credentials
+- No env vars needed for cloud providers on Vercel
+- Commits: `4318b9da`, `e7315adb`
 
 ### 3. Telemetry Endpoint Access
 **Status:** ✅ Complete (Rally)
