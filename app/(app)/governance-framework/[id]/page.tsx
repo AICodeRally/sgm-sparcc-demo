@@ -12,6 +12,7 @@ import {
 } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import type { GovernanceFramework } from '@/lib/contracts/governance-framework.contract';
+import { ChecklistFrameworkView } from '@/components/governance/checklist';
 
 interface FrameworkViewerPageProps {
   params: Promise<{ id: string }>;
@@ -195,55 +196,59 @@ export default function FrameworkViewerPage({ params }: FrameworkViewerPageProps
       {/* Content */}
       <div className="flex-1 overflow-y-auto p-8">
         <div className="max-w-5xl mx-auto">
-          <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border-2 border-[color:var(--color-border)] p-8">
-            {/* Applicable To */}
-            {framework.applicableTo && framework.applicableTo.length > 0 && (
-              <div className="mb-6 pb-6 border-b border-[color:var(--color-border)]">
-                <h3 className="text-sm font-semibold text-[color:var(--color-foreground)] mb-2">Applicable To:</h3>
-                <div className="flex flex-wrap gap-2">
-                  {framework.applicableTo.map((planType: string) => (
-                    <span
-                      key={planType}
-                      className="px-3 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded-full text-sm font-medium"
-                    >
-                      {planType.replace('_', ' ')}
+          {framework.contentType === 'checklist' ? (
+            <ChecklistFrameworkView framework={framework} />
+          ) : (
+            <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border-2 border-[color:var(--color-border)] p-8">
+              {/* Applicable To */}
+              {framework.applicableTo && framework.applicableTo.length > 0 && (
+                <div className="mb-6 pb-6 border-b border-[color:var(--color-border)]">
+                  <h3 className="text-sm font-semibold text-[color:var(--color-foreground)] mb-2">Applicable To:</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {framework.applicableTo.map((planType: string) => (
+                      <span
+                        key={planType}
+                        className="px-3 py-1 bg-[color:var(--color-surface-alt)] text-[color:var(--color-primary)] rounded-full text-sm font-medium"
+                      >
+                        {planType.replace('_', ' ')}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Framework Content */}
+              <div className="prose prose-sm max-w-none">
+                {renderMarkdown(framework.content)}
+              </div>
+
+              {/* Metadata */}
+              <div className="mt-8 pt-6 border-t border-[color:var(--color-border)]">
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <span className="font-semibold text-[color:var(--color-foreground)]">Created By:</span>
+                    <span className="ml-2 text-[color:var(--color-muted)]">{framework.createdBy}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[color:var(--color-foreground)]">Created:</span>
+                    <span className="ml-2 text-[color:var(--color-muted)]">
+                      {new Date(framework.createdAt).toLocaleDateString()}
                     </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Framework Content */}
-            <div className="prose prose-sm max-w-none">
-              {renderMarkdown(framework.content)}
-            </div>
-
-            {/* Metadata */}
-            <div className="mt-8 pt-6 border-t border-[color:var(--color-border)]">
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <span className="font-semibold text-[color:var(--color-foreground)]">Created By:</span>
-                  <span className="ml-2 text-[color:var(--color-muted)]">{framework.createdBy}</span>
-                </div>
-                <div>
-                  <span className="font-semibold text-[color:var(--color-foreground)]">Created:</span>
-                  <span className="ml-2 text-[color:var(--color-muted)]">
-                    {new Date(framework.createdAt).toLocaleDateString()}
-                  </span>
-                </div>
-                <div>
-                  <span className="font-semibold text-[color:var(--color-foreground)]">Last Updated:</span>
-                  <span className="ml-2 text-[color:var(--color-muted)]">
-                    {new Date(framework.updatedAt).toLocaleDateString()}
-                  </span>
-                </div>
-                <div>
-                  <span className="font-semibold text-[color:var(--color-foreground)]">Version:</span>
-                  <span className="ml-2 text-[color:var(--color-muted)]">{framework.version}</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[color:var(--color-foreground)]">Last Updated:</span>
+                    <span className="ml-2 text-[color:var(--color-muted)]">
+                      {new Date(framework.updatedAt).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-[color:var(--color-foreground)]">Version:</span>
+                    <span className="ml-2 text-[color:var(--color-muted)]">{framework.version}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
