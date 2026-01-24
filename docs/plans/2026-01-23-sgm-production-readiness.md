@@ -114,21 +114,21 @@ const data = await response.json();
 
 ## Production Readiness Tasks
 
-### Priority 1: High (Must Complete)
+### Priority 1: High (Must Complete) ✅ Complete
 
-| # | Task | Description | Est. Effort |
-|---|------|-------------|-------------|
-| 1.1 | Page Verification | Run through all 66 pages, confirm no console errors | 1 day |
-| 1.2 | API Verification | Test all endpoints return valid data | 0.5 day |
-| 1.3 | Document Upload Flow | Verify upload → parse → gap analysis → recommendations | 0.5 day |
-| 1.4 | Approval Workflow | Verify submit → review → approve/reject flow | 0.5 day |
-| 1.5 | Case Workflow | Verify case creation → timeline → resolution | 0.5 day |
-| 1.6 | Wire Ops to AICR | Emit AI_TEL_* signals to /api/aicc/telemetry | 1 day |
-| 1.7 | Wire Pulse to AICR | Emit PULSE_* signals to shared telemetry | 0.5 day |
-| 1.8 | Wire Task to AICR | Connect task service to AICR | 0.5 day |
-| 1.9 | Test All 4 Orbs | End-to-end verification with AICR | 1 day |
+| # | Task | Description | Status |
+|---|------|-------------|--------|
+| 1.1 | Page Verification | Run through all 66 pages, confirm no console errors | ✅ Done |
+| 1.2 | API Verification | Test all endpoints return valid data | ✅ Done |
+| 1.3 | Document Upload Flow | Verify upload → parse → gap analysis → recommendations | ✅ Done |
+| 1.4 | Approval Workflow | Verify submit → review → approve/reject flow | ✅ Done |
+| 1.5 | Case Workflow | Verify case creation → timeline → resolution | ✅ Done |
+| 1.6 | Wire Ops to AICR | Emit AI_TEL_* signals to /api/aicc/telemetry | ✅ Done |
+| 1.7 | Wire Pulse to AICR | Emit PULSE_* signals to shared telemetry | ✅ Done |
+| 1.8 | Wire Task to AICR | Connect task service to AICR (Rally-side) | ✅ Done |
+| 1.9 | Test All 4 Orbs | End-to-end verification with AICR | ✅ Done |
 
-**Subtotal Priority 1:** ~6 days
+**Subtotal Priority 1:** ✅ Complete
 
 ### Priority 2: Medium (Should Complete) ✅ Complete
 
@@ -203,7 +203,7 @@ Feb 1:     Handoff to testing
 - [x] Ask orb responds with governance answers (wired to AICR)
 - [x] Ops orb shows pattern alerts from AICR (wired to telemetry endpoint)
 - [x] Pulse orb shows coaching recommendations (wired to telemetry endpoint)
-- [ ] Task orb displays work items (TBD with Rally)
+- [x] Task orb displays work items (Rally-side: dashboardDefaults + HubClient href fix)
 - [x] All orbs handle "service offline" gracefully (verified in code)
 - [x] PII protection guardrails active (5cf1c8a1)
 
