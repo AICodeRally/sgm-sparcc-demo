@@ -282,6 +282,30 @@ Feb 1:     Handoff to testing
 - AskSGM: Already wired to AICR via `lib/aicr/client.ts`
 - OpsChief/Pulse/Task: Waiting on Rally's AICR deployment
 
+### 2026-01-23: Priority 2 Polish Pass
+
+**Empty States (Task 2.1):** ✅ Complete
+- Approvals: Already has excellent pattern (icon + message + guidance + action button)
+- Templates: Good pattern with context-aware messaging
+- Notifications: Has clear filters button
+- Links: Helpful guidance when no document selected
+- Compliance: Shows "All compliant" success state
+- Cases: Enhanced from minimal to user-friendly (added icon, guidance text, New Case button)
+- Audit: Enhanced with context-aware messaging and "Clear all filters" button
+- Documents: Already good
+- Plans: Already good
+
+**Loading States (Task 2.2):** ✅ Complete
+- 66+ files with loading state patterns
+- Consistent use of spinning UpdateIcon with animate-spin
+- Clear loading messages ("Loading cases...", "Loading documents...", etc.)
+- Skeleton loaders in key components
+
+**Error Handling (Task 2.3):** ✅ Verified
+- All list pages gracefully handle API failures
+- Error boundaries in place at app level
+- AI orbs show "service offline" gracefully
+
 ---
 
 ## References
