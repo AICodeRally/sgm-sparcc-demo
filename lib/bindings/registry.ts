@@ -11,6 +11,7 @@ import type { ICommitteePort } from '@/lib/ports/committee.port';
 import type { IPlanTemplatePort } from '@/lib/ports/plan-template.port';
 import type { IPlanPort } from '@/lib/ports/plan.port';
 import type { IGovernanceFrameworkPort } from '@/lib/ports/governance-framework.port';
+import type { IChecklistProgressPort } from '@/lib/ports/checklist-progress.port';
 
 import type { BindingConfig } from '@/lib/config/binding-config';
 import { loadBindingConfig } from '@/lib/config/binding-config';
@@ -283,6 +284,28 @@ export class ProviderRegistry {
   }
 
   /**
+   * Get Checklist Progress provider
+   */
+  getChecklistProgress(): IChecklistProgressPort {
+    const mode = this.config.providers.checklistProgress || 'synthetic';
+
+    switch (mode) {
+      case 'synthetic':
+        const { SyntheticChecklistProgressProvider } = require('@/lib/bindings/synthetic/checklist-progress.synthetic');
+        return new SyntheticChecklistProgressProvider();
+
+      case 'mapped':
+        throw new Error('Mapped checklist progress provider not implemented yet');
+
+      case 'live':
+        throw new Error('Live checklist progress provider not implemented yet');
+
+      default:
+        throw new Error(`Unknown binding mode for checklist progress: ${mode}`);
+    }
+  }
+
+  /**
    * Get Document Version provider
    * Full provenance tracking for document versions
    */
@@ -361,6 +384,7 @@ export class ProviderRegistry {
         planTemplate: this.config.providers.planTemplate,
         plan: this.config.providers.plan,
         governanceFramework: this.config.providers.governanceFramework,
+        checklistProgress: this.config.providers.checklistProgress,
         fileStorage: this.config.providers.fileStorage,
       },
       hasExternalDependencies: Object.values(this.config.providers).some(

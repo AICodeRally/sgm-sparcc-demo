@@ -81,6 +81,8 @@ export class LiveGovernanceFrameworkProvider implements IGovernanceFrameworkPort
     const framework = await this.prisma.governanceFramework.create({
       data: {
         ...data,
+        contentType: (data as any).contentType || 'markdown',
+        structuredContent: (data as any).structuredContent || undefined,
         applicableTo: data.applicableTo || [],
       },
     });
@@ -136,13 +138,15 @@ export class LiveGovernanceFrameworkProvider implements IGovernanceFrameworkPort
       title: data.changes.title || existing.title,
       category: data.changes.category || existing.category,
       content: data.changes.content || existing.content,
+      contentType: existing.contentType || 'markdown',
+      structuredContent: existing.structuredContent || null,
       version: newVersion,
       status: 'DRAFT',
       isGlobal: existing.isGlobal,
       isMandatory: existing.isMandatory,
       applicableTo: data.changes.applicableTo || existing.applicableTo,
       createdBy: data.createdBy,
-    });
+    } as any);
 
     return newFramework;
   }
@@ -363,6 +367,8 @@ export class LiveGovernanceFrameworkProvider implements IGovernanceFrameworkPort
       title: framework.title,
       category: framework.category,
       content: framework.content,
+      contentType: framework.contentType || 'markdown',
+      structuredContent: framework.structuredContent || null,
       version: framework.version,
       status: framework.status,
       isGlobal: framework.isGlobal,

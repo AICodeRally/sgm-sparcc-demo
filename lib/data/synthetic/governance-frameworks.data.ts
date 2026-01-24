@@ -1,4 +1,5 @@
 import type { GovernanceFramework } from '@/lib/contracts/governance-framework.contract';
+import governanceChecklistData from './governance-checklist.json';
 
 /**
  * Synthetic Governance Framework Data
@@ -75,6 +76,8 @@ All compensation plans must:
 **Last Updated**: January 2026
 **Owner**: BHG Consulting
 `,
+  contentType: 'markdown',
+  structuredContent: null,
   version: '1.0.0',
   status: 'ACTIVE',
   isGlobal: true,
@@ -166,6 +169,8 @@ export const framework2: GovernanceFramework = {
 **Last Updated**: January 2026
 **Owner**: BHG Consulting
 `,
+  contentType: 'markdown',
+  structuredContent: null,
   version: '1.0.0',
   status: 'ACTIVE',
   isGlobal: true,
@@ -276,6 +281,8 @@ All policy documents must follow this structure:
 **Last Updated**: January 2026
 **Owner**: BHG Consulting
 `,
+  contentType: 'markdown',
+  structuredContent: null,
   version: '1.0.0',
   status: 'ACTIVE',
   isGlobal: true,
@@ -287,6 +294,29 @@ All policy documents must follow this structure:
 };
 
 // =============================================================================
+// SPM-FW-004: Governance Implementation Checklist
+// =============================================================================
+
+export const framework4: GovernanceFramework = {
+  id: 'fw-004-id',
+  tenantId: DEFAULT_TENANT_ID,
+  code: 'SPM-FW-004',
+  title: 'Governance Implementation Checklist',
+  category: 'METHODOLOGY',
+  content: 'Interactive governance maturity checklist — 12 phases covering the full path from no governance to a Center of Excellence.',
+  contentType: 'checklist',
+  structuredContent: governanceChecklistData,
+  version: '1.0.0',
+  status: 'ACTIVE',
+  isGlobal: true,
+  isMandatory: false,
+  applicableTo: ['GOVERNANCE_PLAN'],
+  createdBy: CREATED_BY,
+  createdAt: new Date('2026-01-01T00:00:00Z'),
+  updatedAt: new Date('2026-01-24T00:00:00Z'),
+};
+
+// =============================================================================
 // Aggregate Exports
 // =============================================================================
 
@@ -294,4 +324,5 @@ export const syntheticGovernanceFrameworks: GovernanceFramework[] = [
   framework1,
   framework2,
   framework3,
+  framework4,
 ];

@@ -24,6 +24,7 @@ export interface BindingConfig {
     planTemplate: BindingMode;
     plan: BindingMode;
     governanceFramework: BindingMode;
+    checklistProgress: BindingMode;
     fileStorage: BindingMode;
   };
 
@@ -80,6 +81,7 @@ export const defaultBindingConfig: BindingConfig = {
     planTemplate: 'synthetic',
     plan: 'synthetic',
     governanceFramework: 'synthetic',
+    checklistProgress: 'synthetic',
     fileStorage: 'synthetic',
   },
   dataLoad: {
@@ -111,6 +113,7 @@ export function loadBindingConfig(): BindingConfig {
       planTemplate: (process.env.BINDING_MODE_PLAN_TEMPLATE || mode) as BindingMode,
       plan: (process.env.BINDING_MODE_PLAN || mode) as BindingMode,
       governanceFramework: (process.env.BINDING_MODE_GOVERNANCE_FRAMEWORK || mode) as BindingMode,
+      checklistProgress: (process.env.BINDING_MODE_CHECKLIST_PROGRESS || mode) as BindingMode,
       fileStorage: (process.env.BINDING_MODE_FILE_STORAGE || mode) as BindingMode,
     },
     dataLoad: {
