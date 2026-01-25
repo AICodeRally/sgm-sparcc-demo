@@ -15,6 +15,7 @@
 ### Key Demo Points
 - **66+ pages** fully functional
 - **17 SCP policies** (36,000+ words of content)
+- **926-card Knowledge Base** covering 8+ SPM pillars
 - **4 AI orbs** (Ask, Ops, Pulse, Task)
 - **7 demo cases** with full workflows
 - **7 approval items** across SGCC and CRB
@@ -50,6 +51,23 @@
 - "17 Sales Compensation Policies cover all governance scenarios"
 - "Each policy has comprehensive content - over 36,000 words total"
 - "Policies link to related documents, templates, and cases"
+
+---
+
+### 2b. Knowledge Base (2 min)
+**Path:** `/knowledge-base`
+
+**What to show:**
+- 926 Framework Cards across 8+ pillars
+- Search for "clawback" — shows relevant cards
+- Filter by pillar (ICM, Governance, etc.)
+- Grid vs list view toggle
+
+**Talking points:**
+- "Comprehensive reference covering all SPM concepts"
+- "Cards link related terms for easy navigation"
+- "Search and filter to find exactly what you need"
+- "Used by AI for contextual answers"
 
 ---
 
@@ -161,6 +179,7 @@
 
 | Entity | Count | Notes |
 |--------|-------|-------|
+| **KB Cards** | 926 | 8+ pillars, searchable |
 | Policies | 26 | 17 SCP + 9 custom |
 | Documents | 70 | Various types and statuses |
 | Cases | 7 | Active, resolved, closed examples |
@@ -177,7 +196,7 @@
 No - this is synthetic demo data that represents realistic scenarios. In production, this would connect to your actual systems.
 
 ### "How does the AI work?"
-The Ask orb uses Claude via the AICR platform. It has access to all 17 SCP policies and can answer governance questions in natural language.
+The Ask orb uses Claude via the AICR platform. It has access to all 17 SCP policies and the 926-card Knowledge Base. RAG (Retrieval Augmented Generation) pulls relevant context from the KB to provide accurate, contextual answers.
 
 ### "What integrations are supported?"
 SGM is designed to integrate with:

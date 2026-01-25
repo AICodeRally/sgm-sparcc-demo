@@ -6,10 +6,14 @@ import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { FrameworkCardList } from '@/components/governance/knowledge-base';
 import type { FrameworkCard } from '@/lib/contracts/spm-knowledge-base.contract';
 
-// Import card data
+// Import card data (all expansion phases)
 import migratedCardsData from '@/lib/data/synthetic/spm-kb-cards-migrated.json';
 import newPillarCardsData from '@/lib/data/synthetic/spm-kb-cards-new-pillars.json';
 import expansionCardsData from '@/lib/data/synthetic/spm-kb-cards-expansion.json';
+import expansion2CardsData from '@/lib/data/synthetic/spm-kb-cards-expansion-2.json';
+import expansion3CardsData from '@/lib/data/synthetic/spm-kb-cards-expansion-3.json';
+import expansion4CardsData from '@/lib/data/synthetic/spm-kb-cards-expansion-4.json';
+import expansion6CardsData from '@/lib/data/synthetic/spm-kb-cards-expansion-6.json';
 import sampleCardsData from '@/lib/data/synthetic/spm-kb-sample-cards.json';
 
 export default function KnowledgeBasePage() {
@@ -17,12 +21,16 @@ export default function KnowledgeBasePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Combine all cards (each file has a .cards or .sampleCards array)
+    // Combine all cards from all expansion phases (926 total)
     const combined = [
       ...(sampleCardsData.sampleCards as unknown as FrameworkCard[]),
       ...((migratedCardsData as unknown as { cards: FrameworkCard[] }).cards || []),
       ...((newPillarCardsData as unknown as { cards: FrameworkCard[] }).cards || []),
       ...((expansionCardsData as unknown as { cards: FrameworkCard[] }).cards || []),
+      ...((expansion2CardsData as unknown as { cards: FrameworkCard[] }).cards || []),
+      ...((expansion3CardsData as unknown as { cards: FrameworkCard[] }).cards || []),
+      ...((expansion4CardsData as unknown as { cards: FrameworkCard[] }).cards || []),
+      ...((expansion6CardsData as unknown as { cards: FrameworkCard[] }).cards || []),
     ];
 
     // Deduplicate by id
@@ -81,7 +89,7 @@ export default function KnowledgeBasePage() {
                 SPM Definitive Knowledge Base
               </h1>
               <p className="text-sm text-[color:var(--color-muted)]">
-                The comprehensive Sales Performance Management reference — {allCards.length} Framework Cards across 8 pillars
+                The comprehensive Sales Performance Management reference — {allCards.length} Framework Cards across 8+ pillars
               </p>
             </div>
           </div>
