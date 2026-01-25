@@ -15,7 +15,7 @@
 ### Key Demo Points
 - **66+ pages** fully functional
 - **17 SCP policies** (36,000+ words of content)
-- **926-card Knowledge Base** covering 8+ SPM pillars
+- **929-card Knowledge Base** covering 8 SPM pillars
 - **4 AI orbs** (Ask, Ops, Pulse, Task)
 - **7 demo cases** with full workflows
 - **7 approval items** across SGCC and CRB
@@ -58,7 +58,7 @@
 **Path:** `/knowledge-base`
 
 **What to show:**
-- 926 Framework Cards across 8+ pillars
+- 929 Framework Cards across 8 pillars
 - Search for "clawback" — shows relevant cards
 - Filter by pillar (ICM, Governance, etc.)
 - Grid vs list view toggle
@@ -179,7 +179,7 @@
 
 | Entity | Count | Notes |
 |--------|-------|-------|
-| **KB Cards** | 926 | 8+ pillars, searchable |
+| **KB Cards** | 929 | 8 pillars, searchable |
 | Policies | 26 | 17 SCP + 9 custom |
 | Documents | 70 | Various types and statuses |
 | Cases | 7 | Active, resolved, closed examples |

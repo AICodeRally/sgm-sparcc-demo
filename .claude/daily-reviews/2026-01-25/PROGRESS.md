@@ -12,6 +12,8 @@ Continued KB expansion, endpoint creation, and cleanup work.
 | `8983e88` | KB page loads all cards, docs updated, screenshots cleaned |
 | `9e86f79` | Modular product architecture documentation |
 | `4f35b6b` | Extended pillar schema for expansion-6 cards |
+| `4299f32` | KB pagination (50 cards at a time) |
+| `fa47a67` | Pillar-first navigation for faster load times |
 
 ## Features Completed
 
@@ -35,6 +37,14 @@ Continued KB expansion, endpoint creation, and cleanup work.
 - Shows 929 cards in UI after deduplication
 - Search and filter working across all pillars
 
+### 7. Pillar-First Navigation (Performance)
+- Landing view shows 14 pillar tiles (not 929 cards)
+- Click pillar to drill into that pillar's cards
+- Pagination: 50 cards per load within pillar
+- "Back to Pillars" navigation
+- Search works across all pillars from landing
+- Significantly faster initial load and hydration
+
 ### 5. Documentation
 - Demo walkthrough updated with KB section
 - Card count reflects 926+ cards
@@ -57,21 +67,19 @@ Continued KB expansion, endpoint creation, and cleanup work.
 - **URL:** https://sgm-sparcc-demo-8h0ussw65-aicoderally.vercel.app
 - **Note:** KB page shows loading state briefly due to 929-card hydration
 
-## Performance Recommendations (Future Work)
+## Performance Improvements (Implemented)
 
-The KB page loads 929 cards client-side, causing:
-- Large initial bundle (~4.6K lines of JSON imports)
-- Noticeable loading state during hydration
-- Memory pressure on mobile devices
+Initial problem: KB page loaded 929 cards client-side.
 
-**Recommended fixes (priority order):**
+**Implemented solutions:**
+1. **Pillar-first navigation** - Landing shows 14 tiles, not 929 cards
+2. **Pagination** - 50 cards per load within each pillar
+3. **Cross-pillar search** - Search from landing works across all pillars
 
-1. **Server Components** - Convert to RSC, stream cards
-2. **Pagination** - Load 50 cards at a time, infinite scroll
-3. **Virtual List** - Use `react-window` for viewport rendering
-4. **Search-first** - Start with search box, load results on query
-
-**Quick win:** Move JSON imports to API route, fetch on demand.
+**Future improvements (if needed):**
+- Server Components for streaming
+- Virtual list for very large pillars
+- API route for JSON instead of client imports
 
 ## Next Session Suggestions
 

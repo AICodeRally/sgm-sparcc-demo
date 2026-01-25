@@ -89,7 +89,7 @@ export default function KnowledgeBasePage() {
                 SPM Definitive Knowledge Base
               </h1>
               <p className="text-sm text-[color:var(--color-muted)]">
-                The comprehensive Sales Performance Management reference — {allCards.length} Framework Cards across 8+ pillars
+                The comprehensive Sales Performance Management reference — {allCards.length} Framework Cards across 8 pillars
               </p>
             </div>
           </div>

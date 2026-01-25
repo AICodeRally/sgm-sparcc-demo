@@ -121,7 +121,19 @@
       "Bash(do printf \"$host: \")",
       "Bash(sudo lsof:*)",
       "Bash(fuser:*)",
-      "Bash(for p in 3010 3030 3032 3033 3034)"
+      "Bash(for p in 3010 3030 3032 3033 3034)",
+      "Skill(superpowers:brainstorming)",
+      "Skill(superpowers:using-git-worktrees)",
+      "Bash(yes:*)",
+      "Skill(brainstorming)",
+      "Bash(expr:*)",
+      "Skill(superpowers:subagent-driven-development)",
+      "mcp__plugin_playwright_playwright__browser_press_key",
+      "Bash(DATABASE_URL=\"file:./prisma/data/aicr.db\" npx tsx:*)",
+      "Bash(for i in {1..15})",
+      "Bash(do echo \"=== Run $i ===\")",
+      "Bash(for:*)",
+      "Bash(do npx tsx apps/aicr/scripts/embed-spine-chunks.ts)"
     ]
   }
 }
