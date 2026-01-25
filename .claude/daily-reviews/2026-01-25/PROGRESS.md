@@ -2,7 +2,7 @@
 
 ## Session Summary
 
-Continued KB expansion, endpoint creation, and cleanup work.
+KB performance optimization, pillar consolidation, and data quality audit.
 
 ## Commits Made
 
@@ -14,6 +14,9 @@ Continued KB expansion, endpoint creation, and cleanup work.
 | `4f35b6b` | Extended pillar schema for expansion-6 cards |
 | `4299f32` | KB pagination (50 cards at a time) |
 | `fa47a67` | Pillar-first navigation for faster load times |
+| `59dd13a` | Consolidated 14 → 8 core pillars |
+| `fdd2043` | Updated docs to 929 cards, 8 pillars |
+| `4328ea8` | Fixed 19 misclassified cards, regenerated RAG |
 
 ## Features Completed
 
@@ -27,68 +30,53 @@ Continued KB expansion, endpoint creation, and cleanup work.
 - Runtime validation for all signal types
 - Helper functions for signal ID creation
 
-### 3. Knowledge Base Expansion
-- **926 total cards** (up from 600)
-- 14 pillars now supported (8 core + 6 operations/support)
-- New pillars: Operations, Disputes, Data Quality, Integration, Workforce, Change Management
+### 3. Knowledge Base - 929 Cards, 8 Pillars
+| Pillar | Cards | Categories |
+|--------|-------|------------|
+| ICM | 231 | 33 |
+| Sales Planning | 187 | 21 |
+| Technology & Platforms | 127 | 19 |
+| Strategy & Design | 90 | 7 |
+| Implementation & Change | 82 | 16 |
+| Legal & Regulatory | 81 | 8 |
+| Sales Intelligence | 69 | 4 |
+| Governance & Compliance | 62 | 11 |
 
-### 4. KB Page Update
-- Now loads all expansion files (expansion-2 through expansion-6)
-- Shows 929 cards in UI after deduplication
-- Search and filter working across all pillars
-
-### 7. Pillar-First Navigation (Performance)
-- Landing view shows 14 pillar tiles (not 929 cards)
+### 4. Pillar-First Navigation (Performance)
+- Landing view shows 8 pillar tiles (not 929 cards)
 - Click pillar to drill into that pillar's cards
 - Pagination: 50 cards per load within pillar
 - "Back to Pillars" navigation
 - Search works across all pillars from landing
 - Significantly faster initial load and hydration
 
-### 5. Documentation
-- Demo walkthrough updated with KB section
-- Card count reflects 926+ cards
-- AI section mentions RAG integration
+### 5. Pillar Consolidation
+- Removed 6 extended pillars (Operations, Disputes, Data Quality, Integration, Workforce, Change Management)
+- Remapped 90 cards to core 8 pillars
+- Schema simplified to 8 canonical pillars
 
-### 6. Cleanup
-- Removed 17 stale playwright screenshots (~6MB)
-- Deleted one-off analysis scripts
-- Committed modular architecture documentation
-
-## Technical Notes
-
-- Extended `SPMPillarSchema` and `SPMPillarMetadata` to support 6 new pillars
-- KB loader normalizes `keyword` → `term` mapping from JSON files
-- CORS errors for AICR health checks are expected on localhost (not blocking)
+### 6. KB Pillar Audit
+- Agent audited all 929 cards against pillar definitions
+- Found 19 misclassified cards (Data Quality + Integration in wrong pillar)
+- Fixed: moved to TECHNOLOGY_PLATFORMS
+- Regenerated RAG export with correct metadata
+- Added `scripts/generate-rag-export.js` for future regeneration
 
 ## Vercel Deployment
 
-- **Status:** ✅ Ready (auto-deployed 10 min after push)
-- **URL:** https://sgm-sparcc-demo-8h0ussw65-aicoderally.vercel.app
-- **Note:** KB page shows loading state briefly due to 929-card hydration
+- **Status:** ✅ Ready
+- **URL:** https://sgm-sparcc-demo-n53gtmwtg-aicoderally.vercel.app
+- **Aliases:** sgm-sparcc.info, sgm-summit-demo.vercel.app
 
-## Performance Improvements (Implemented)
+## TODOs (See TODO.md)
 
-Initial problem: KB page loaded 929 cards client-side.
-
-**Implemented solutions:**
-1. **Pillar-first navigation** - Landing shows 14 tiles, not 929 cards
-2. **Pagination** - 50 cards per load within each pillar
-3. **Cross-pillar search** - Search from landing works across all pillars
-
-**Future improvements (if needed):**
-- Server Components for streaming
-- Virtual list for very large pillars
-- API route for JSON instead of client imports
-
-## Next Session Suggestions
-
-1. Implement pagination for KB page
-2. Add virtual list rendering
-3. Consider search-first UX
+- [ ] Test AI/RAG endpoint with correct pillar data
+- [ ] Verify pillar-specific queries work correctly
 
 ## Verification
 
 - Type check: PASS
-- KB page: 929 cards displayed
+- KB page: 929 cards, 8 pillars
+- Pillar counts verified in UI
 - GitHub push: SUCCESS
+- Vercel deploy: READY
