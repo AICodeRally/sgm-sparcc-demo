@@ -1,14 +1,17 @@
 {
   "version": "6.0.0",
   "lastUpdated": "2026-01-24T17:00:00Z",
-  "description": "SPM Knowledge Base - Operations and Support",
+  "description": "SPM Knowledge Base - Expansion 6 (remapped to core pillars)",
   "totalCards": 90,
   "cards": [
     {
       "id": "kb-ops-501",
       "keyword": "Commission Statement",
-      "aliases": ["Pay Statement", "Earnings Statement"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Pay Statement",
+        "Earnings Statement"
+      ],
+      "pillar": "ICM",
       "category": "Payment Processing",
       "component": "Statements",
       "cardType": "concept",
@@ -16,14 +19,26 @@
       "whyItMatters": "Commission statements build trust and transparency with the sales force, reduce payment inquiries, and provide an audit trail for compensation payments.",
       "howItWorks": "1. System calculates earnings based on credited transactions. 2. Statement generator compiles all components (base, bonus, SPIF, adjustments). 3. Document is formatted with period dates, transaction details, and totals. 4. Statement is delivered via portal, email, or integrated payroll system. 5. Rep has review period before payment finalization.",
       "example": "Sarah receives her January statement showing 12 closed deals totaling $450K in bookings, earning $22,500 in commission at 5% rate, plus a $2,000 SPIF bonus for hitting quarterly accelerator, minus a $1,200 clawback from a December cancellation.",
-      "relatedTerms": ["Payment Processing", "Earnings Calculation", "Clawback"],
-      "bestPractices": ["Provide transaction-level detail for transparency", "Include clear explanations for adjustments", "Deliver statements before payment date", "Enable electronic acknowledgment"]
+      "relatedTerms": [
+        "Payment Processing",
+        "Earnings Calculation",
+        "Clawback"
+      ],
+      "bestPractices": [
+        "Provide transaction-level detail for transparency",
+        "Include clear explanations for adjustments",
+        "Deliver statements before payment date",
+        "Enable electronic acknowledgment"
+      ]
     },
     {
       "id": "kb-ops-502",
       "keyword": "Payment Cycle",
-      "aliases": ["Commission Cycle", "Pay Period"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Commission Cycle",
+        "Pay Period"
+      ],
+      "pillar": "ICM",
       "category": "Payment Processing",
       "component": "Scheduling",
       "cardType": "concept",
@@ -31,14 +46,26 @@
       "whyItMatters": "Consistent payment cycles ensure predictable cash flow for reps, enable accurate financial forecasting, and maintain compliance with wage payment regulations.",
       "howItWorks": "1. Period closes and transactions are locked. 2. Calculation engine processes all eligible transactions. 3. Results undergo validation and exception review. 4. Finance approves payment batch. 5. Payroll integration transmits earnings. 6. Payment is disbursed on scheduled date.",
       "example": "Acme Corp runs monthly payment cycles closing on the 25th, with calculations completed by the 28th, finance approval by the 30th, and payment on the 5th of the following month. This gives 10 days for processing and 5 days for payroll integration.",
-      "relatedTerms": ["Commission Statement", "Payment Timing", "Payroll Integration"],
-      "bestPractices": ["Maintain consistent cycle dates each period", "Build buffer time for exception handling", "Communicate payment calendar annually", "Align with payroll processing windows"]
+      "relatedTerms": [
+        "Commission Statement",
+        "Payment Timing",
+        "Payroll Integration"
+      ],
+      "bestPractices": [
+        "Maintain consistent cycle dates each period",
+        "Build buffer time for exception handling",
+        "Communicate payment calendar annually",
+        "Align with payroll processing windows"
+      ]
     },
     {
       "id": "kb-ops-503",
       "keyword": "Inquiry Management",
-      "aliases": ["Commission Inquiry", "Pay Question Handling"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Commission Inquiry",
+        "Pay Question Handling"
+      ],
+      "pillar": "ICM",
       "category": "Rep Support",
       "component": "Service Desk",
       "cardType": "concept",
@@ -46,14 +73,26 @@
       "whyItMatters": "Efficient inquiry management reduces administrative burden, improves rep satisfaction, identifies systemic calculation issues, and maintains trust in the compensation program.",
       "howItWorks": "1. Rep submits inquiry via portal or email with specific details. 2. Case is created with unique tracking number. 3. Analyst reviews calculation logic and source data. 4. Research findings are documented. 5. Response is provided with explanation or correction. 6. Case is closed with resolution code for trending.",
       "example": "Marcus submits inquiry #INQ-2026-0142 questioning missing commission on deal #D-4521. Analyst discovers the transaction was credited to wrong territory due to CRM data error. Correction is processed for next payment cycle with detailed explanation provided.",
-      "relatedTerms": ["Dispute Resolution", "Exception Handling", "Commission Statement"],
-      "bestPractices": ["Set SLA targets by inquiry complexity", "Provide self-service calculation visibility", "Track root causes for process improvement", "Enable reps to submit supporting documentation"]
+      "relatedTerms": [
+        "Dispute Resolution",
+        "Exception Handling",
+        "Commission Statement"
+      ],
+      "bestPractices": [
+        "Set SLA targets by inquiry complexity",
+        "Provide self-service calculation visibility",
+        "Track root causes for process improvement",
+        "Enable reps to submit supporting documentation"
+      ]
     },
     {
       "id": "kb-ops-504",
       "keyword": "Batch Processing",
-      "aliases": ["Mass Calculation", "Bulk Processing"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Mass Calculation",
+        "Bulk Processing"
+      ],
+      "pillar": "ICM",
       "category": "System Operations",
       "component": "Calculation Engine",
       "cardType": "concept",
@@ -61,14 +100,26 @@
       "whyItMatters": "Batch processing enables efficient handling of large transaction volumes, ensures consistent calculation timing, and optimizes system resource utilization.",
       "howItWorks": "1. Scheduler triggers batch at designated time. 2. System validates data completeness and quality. 3. Calculation engine processes transactions by rule priority. 4. Results are written to earnings tables. 5. Validation checks compare expected vs actual. 6. Completion notification sent to administrators.",
       "example": "The nightly batch runs at 2 AM, processing 15,000 transactions across 500 reps in 45 minutes. The system calculates tiered commissions, applies accelerators for quota attainment, and handles 23 split credit scenarios automatically.",
-      "relatedTerms": ["Calculation Engine", "Payment Cycle", "Data Validation"],
-      "bestPractices": ["Schedule during low-usage windows", "Implement checkpoint recovery for failures", "Monitor processing time trends", "Validate results before downstream processing"]
+      "relatedTerms": [
+        "Calculation Engine",
+        "Payment Cycle",
+        "Data Validation"
+      ],
+      "bestPractices": [
+        "Schedule during low-usage windows",
+        "Implement checkpoint recovery for failures",
+        "Monitor processing time trends",
+        "Validate results before downstream processing"
+      ]
     },
     {
       "id": "kb-ops-505",
       "keyword": "Shadow Accounting",
-      "aliases": ["Parallel Tracking", "Compensation Accrual"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Parallel Tracking",
+        "Compensation Accrual"
+      ],
+      "pillar": "ICM",
       "category": "Finance Operations",
       "component": "Accruals",
       "cardType": "concept",
@@ -76,14 +127,26 @@
       "whyItMatters": "Shadow accounting ensures accurate financial reporting, enables timely expense accruals, and provides visibility into compensation liabilities before payment.",
       "howItWorks": "1. Transactions are captured as they occur in source systems. 2. Preliminary commission estimates are calculated daily. 3. Accrual journal entries are generated. 4. Month-end reconciliation compares estimates to actuals. 5. True-up adjustments are posted. 6. Variance analysis identifies estimation improvements.",
       "example": "Finance accrues $2.4M in commission expense for January based on daily shadow calculations. Final payment totals $2.35M, resulting in a $50K favorable variance that is analyzed and used to improve next month's estimation model.",
-      "relatedTerms": ["Accrual Accounting", "Financial Close", "Commission Expense"],
-      "bestPractices": ["Calculate shadow accruals daily", "Build estimation models by deal type", "Track variance trends for accuracy improvement", "Integrate with GL systems automatically"]
+      "relatedTerms": [
+        "Accrual Accounting",
+        "Financial Close",
+        "Commission Expense"
+      ],
+      "bestPractices": [
+        "Calculate shadow accruals daily",
+        "Build estimation models by deal type",
+        "Track variance trends for accuracy improvement",
+        "Integrate with GL systems automatically"
+      ]
     },
     {
       "id": "kb-ops-506",
       "keyword": "Manual Adjustment",
-      "aliases": ["Commission Override", "Ad-hoc Adjustment"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Commission Override",
+        "Ad-hoc Adjustment"
+      ],
+      "pillar": "ICM",
       "category": "Exception Processing",
       "component": "Adjustments",
       "cardType": "concept",
@@ -91,14 +154,26 @@
       "whyItMatters": "Manual adjustments provide flexibility to handle exceptions while maintaining proper controls, audit trails, and documentation for unusual compensation situations.",
       "howItWorks": "1. Need for adjustment is identified and documented. 2. Adjustment request is submitted with justification. 3. Appropriate approver reviews based on amount threshold. 4. Approved adjustment is entered with reason code. 5. Adjustment appears on commission statement. 6. Audit trail captures all approval steps.",
       "example": "Due to a CRM integration outage, 15 deals were not credited on time. Operations submits adjustment request for $45,000 total, approved by Director of Sales Ops, with each rep receiving their calculated amount plus a note explaining the system issue.",
-      "relatedTerms": ["Exception Handling", "Approval Workflow", "Audit Trail"],
-      "bestPractices": ["Require documented justification for all adjustments", "Implement tiered approval by amount", "Use standardized reason codes", "Review adjustment trends monthly"]
+      "relatedTerms": [
+        "Exception Handling",
+        "Approval Workflow",
+        "Audit Trail"
+      ],
+      "bestPractices": [
+        "Require documented justification for all adjustments",
+        "Implement tiered approval by amount",
+        "Use standardized reason codes",
+        "Review adjustment trends monthly"
+      ]
     },
     {
       "id": "kb-ops-507",
       "keyword": "Payroll Integration",
-      "aliases": ["Payroll Feed", "Compensation Transmission"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Payroll Feed",
+        "Compensation Transmission"
+      ],
+      "pillar": "ICM",
       "category": "Payment Processing",
       "component": "Integration",
       "cardType": "concept",
@@ -106,14 +181,26 @@
       "whyItMatters": "Seamless payroll integration ensures timely and accurate payment, eliminates manual data entry errors, and maintains proper tax withholding and reporting.",
       "howItWorks": "1. Commission calculations are finalized and approved. 2. Export file is generated in payroll system format. 3. Data validation checks ensure completeness. 4. File is transmitted via secure method (SFTP, API). 5. Payroll system confirms receipt and processing. 6. Reconciliation verifies amounts match.",
       "example": "The approved February commission batch of $890,000 across 200 reps is exported to ADP format, transmitted via SFTP at 6 PM on the 28th, and confirmed processed by 8 AM the next morning for the March 5th paycheck.",
-      "relatedTerms": ["Payment Cycle", "Commission Statement", "Earnings Export"],
-      "bestPractices": ["Use standardized file formats", "Implement checksums for data integrity", "Build error handling for transmission failures", "Reconcile source to payroll amounts"]
+      "relatedTerms": [
+        "Payment Cycle",
+        "Commission Statement",
+        "Earnings Export"
+      ],
+      "bestPractices": [
+        "Use standardized file formats",
+        "Implement checksums for data integrity",
+        "Build error handling for transmission failures",
+        "Reconcile source to payroll amounts"
+      ]
     },
     {
       "id": "kb-ops-508",
       "keyword": "Year-End Processing",
-      "aliases": ["Annual Close", "Fiscal Year End"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Annual Close",
+        "Fiscal Year End"
+      ],
+      "pillar": "ICM",
       "category": "Annual Operations",
       "component": "Close Process",
       "cardType": "concept",
@@ -121,14 +208,26 @@
       "whyItMatters": "Proper year-end processing ensures accurate tax reporting, smooth plan transitions, final bonus calculations, and sets the foundation for the new compensation year.",
       "howItWorks": "1. Final period transactions are processed and locked. 2. Annual bonuses and accelerators are calculated. 3. All pending adjustments are resolved. 4. Final statements are generated and distributed. 5. W-2 data is exported to payroll. 6. New year plans are activated on effective date.",
       "example": "December close includes processing $15M in annual bonuses, resolving 45 pending inquiries, generating final statements for 600 reps, and activating 2026 plans effective January 1st with updated quotas and rate tables.",
-      "relatedTerms": ["Payment Cycle", "Plan Transition", "W-2 Reporting"],
-      "bestPractices": ["Start planning 60 days before year-end", "Create detailed checklists by stakeholder", "Communicate timelines to sales force", "Test new year plans before activation"]
+      "relatedTerms": [
+        "Payment Cycle",
+        "Plan Transition",
+        "W-2 Reporting"
+      ],
+      "bestPractices": [
+        "Start planning 60 days before year-end",
+        "Create detailed checklists by stakeholder",
+        "Communicate timelines to sales force",
+        "Test new year plans before activation"
+      ]
     },
     {
       "id": "kb-ops-509",
       "keyword": "Commission Audit",
-      "aliases": ["Payment Audit", "Compensation Review"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Payment Audit",
+        "Compensation Review"
+      ],
+      "pillar": "ICM",
       "category": "Governance",
       "component": "Audit",
       "cardType": "concept",
@@ -136,14 +235,26 @@
       "whyItMatters": "Regular audits identify calculation errors, detect potential fraud, ensure policy compliance, and provide assurance to finance and leadership on compensation accuracy.",
       "howItWorks": "1. Audit scope and sample selection criteria defined. 2. Transactions are selected for detailed review. 3. Calculations are manually verified against plan rules. 4. Discrepancies are documented and investigated. 5. Findings are reported with severity ratings. 6. Remediation actions are tracked to completion.",
       "example": "Q3 audit samples 5% of transactions (750 deals) and identifies 3 calculation errors totaling $4,200 in overpayments due to incorrect tier application. Root cause analysis reveals rate table configuration issue fixed for future periods.",
-      "relatedTerms": ["Internal Controls", "SOX Compliance", "Exception Handling"],
-      "bestPractices": ["Audit each pay period with statistical sampling", "Rotate audit focus areas", "Track error rates as KPI", "Implement continuous monitoring for high-risk areas"]
+      "relatedTerms": [
+        "Internal Controls",
+        "SOX Compliance",
+        "Exception Handling"
+      ],
+      "bestPractices": [
+        "Audit each pay period with statistical sampling",
+        "Rotate audit focus areas",
+        "Track error rates as KPI",
+        "Implement continuous monitoring for high-risk areas"
+      ]
     },
     {
       "id": "kb-ops-510",
       "keyword": "Self-Service Portal",
-      "aliases": ["Rep Portal", "Commission Dashboard"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Rep Portal",
+        "Commission Dashboard"
+      ],
+      "pillar": "ICM",
       "category": "Rep Support",
       "component": "Technology",
       "cardType": "concept",
@@ -151,14 +262,26 @@
       "whyItMatters": "Self-service reduces administrative workload, improves rep satisfaction through 24/7 access, and provides transparency that builds trust in the compensation program.",
       "howItWorks": "1. Rep authenticates via SSO. 2. Dashboard displays YTD earnings, attainment, and projections. 3. Statement history is available for download. 4. Transaction detail shows crediting for each deal. 5. Inquiry submission form captures issue details. 6. Notification preferences manage communication.",
       "example": "Jennifer logs into the portal Monday morning to check her January results. She sees $28,500 in commissions from 8 deals, 112% quota attainment, and a projection of $95,000 annual earnings at current pace. She downloads her statement PDF for her records.",
-      "relatedTerms": ["Commission Statement", "Inquiry Management", "Earnings Visibility"],
-      "bestPractices": ["Provide mobile-responsive design", "Show calculation detail at transaction level", "Enable document downloads", "Integrate inquiry submission with case management"]
+      "relatedTerms": [
+        "Commission Statement",
+        "Inquiry Management",
+        "Earnings Visibility"
+      ],
+      "bestPractices": [
+        "Provide mobile-responsive design",
+        "Show calculation detail at transaction level",
+        "Enable document downloads",
+        "Integrate inquiry submission with case management"
+      ]
     },
     {
       "id": "kb-ops-511",
       "keyword": "Data Lock",
-      "aliases": ["Period Lock", "Close Lock"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Period Lock",
+        "Close Lock"
+      ],
+      "pillar": "ICM",
       "category": "System Operations",
       "component": "Period Management",
       "cardType": "concept",
@@ -166,14 +289,26 @@
       "whyItMatters": "Data locks preserve the accuracy of historical records, prevent unauthorized changes after payment, and support compliance and audit requirements.",
       "howItWorks": "1. Period end date triggers lock evaluation. 2. System validates all required processing complete. 3. Administrator initiates lock with reason. 4. Write access is revoked for period transactions. 5. Any changes require formal unlock approval. 6. Lock status is logged with timestamp and user.",
       "example": "January 2026 is locked on February 3rd after final payment batch is approved. When a late deal is discovered on February 10th, it requires Director approval to unlock January briefly, process the adjustment, and re-lock with documented justification.",
-      "relatedTerms": ["Period Close", "Audit Trail", "Change Control"],
-      "bestPractices": ["Lock periods within 5 days of payment", "Require senior approval for unlocks", "Log all lock state changes", "Maintain unlock request documentation"]
+      "relatedTerms": [
+        "Period Close",
+        "Audit Trail",
+        "Change Control"
+      ],
+      "bestPractices": [
+        "Lock periods within 5 days of payment",
+        "Require senior approval for unlocks",
+        "Log all lock state changes",
+        "Maintain unlock request documentation"
+      ]
     },
     {
       "id": "kb-ops-512",
       "keyword": "Exception Queue",
-      "aliases": ["Error Queue", "Pending Review"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Error Queue",
+        "Pending Review"
+      ],
+      "pillar": "ICM",
       "category": "Exception Processing",
       "component": "Workflow",
       "cardType": "concept",
@@ -181,14 +316,26 @@
       "whyItMatters": "Effective exception queue management ensures timely resolution of processing issues, prevents payment delays, and identifies systemic problems requiring root cause analysis.",
       "howItWorks": "1. Calculation engine identifies exception condition. 2. Transaction is routed to appropriate queue. 3. Exception is categorized by type and severity. 4. Analyst reviews and takes action (correct, override, reject). 5. Resolution is documented. 6. Transaction returns to normal processing.",
       "example": "The exception queue after January close contains 47 items: 23 missing quota assignments, 15 crediting disputes pending resolution, 6 invalid territory mappings, and 3 transactions with negative amounts requiring review.",
-      "relatedTerms": ["Manual Adjustment", "Data Validation", "Inquiry Management"],
-      "bestPractices": ["Prioritize by payment impact and age", "Set SLA targets for exception resolution", "Track exception types for root cause analysis", "Automate resolution for common patterns"]
+      "relatedTerms": [
+        "Manual Adjustment",
+        "Data Validation",
+        "Inquiry Management"
+      ],
+      "bestPractices": [
+        "Prioritize by payment impact and age",
+        "Set SLA targets for exception resolution",
+        "Track exception types for root cause analysis",
+        "Automate resolution for common patterns"
+      ]
     },
     {
       "id": "kb-ops-513",
       "keyword": "Run Rate Analysis",
-      "aliases": ["Pacing Analysis", "Earnings Projection"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Pacing Analysis",
+        "Earnings Projection"
+      ],
+      "pillar": "ICM",
       "category": "Analytics",
       "component": "Reporting",
       "cardType": "concept",
@@ -196,14 +343,26 @@
       "whyItMatters": "Run rate analysis enables proactive budget management, identifies reps who may miss or exceed targets, and supports capacity planning discussions.",
       "howItWorks": "1. YTD earnings are captured by rep and component. 2. Elapsed period percentage is calculated. 3. Simple annualization extrapolates current pace. 4. Seasonality adjustments refine projections. 5. Results are compared to plan targets. 6. Variance alerts flag significant deviations.",
       "example": "At end of Q1, sales operations calculates run rates showing 15 reps pacing above 150% of target earnings (potential windfall risk) and 22 reps pacing below 80% (potential retention risk). Management reviews for territory or target adjustments.",
-      "relatedTerms": ["Shadow Accounting", "Quota Attainment", "Compensation Expense"],
-      "bestPractices": ["Update projections weekly", "Apply historical seasonality patterns", "Flag outliers for management review", "Use projections in 1:1 coaching discussions"]
+      "relatedTerms": [
+        "Shadow Accounting",
+        "Quota Attainment",
+        "Compensation Expense"
+      ],
+      "bestPractices": [
+        "Update projections weekly",
+        "Apply historical seasonality patterns",
+        "Flag outliers for management review",
+        "Use projections in 1:1 coaching discussions"
+      ]
     },
     {
       "id": "kb-ops-514",
       "keyword": "Comp Ops Calendar",
-      "aliases": ["Operations Calendar", "Processing Schedule"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Operations Calendar",
+        "Processing Schedule"
+      ],
+      "pillar": "ICM",
       "category": "Planning",
       "component": "Scheduling",
       "cardType": "concept",
@@ -211,14 +370,26 @@
       "whyItMatters": "A clear operations calendar ensures predictable processing, enables resource planning, sets stakeholder expectations, and prevents missed deadlines.",
       "howItWorks": "1. Annual calendar is established based on pay periods. 2. Key dates are identified (close, calculation, approval, payment). 3. Dependencies are mapped between activities. 4. Calendar is shared with all stakeholders. 5. Reminders are automated for upcoming deadlines. 6. Actuals are tracked against plan.",
       "example": "The 2026 calendar shows 12 monthly cycles with consistent dates: close on 25th, calculation on 26th-27th, exception review on 28th-30th, approval on 1st, payroll feed on 2nd, and payment on 5th of each month.",
-      "relatedTerms": ["Payment Cycle", "Year-End Processing", "Batch Processing"],
-      "bestPractices": ["Publish calendar before year begins", "Account for holidays and weekends", "Build contingency time for issues", "Track historical processing times"]
+      "relatedTerms": [
+        "Payment Cycle",
+        "Year-End Processing",
+        "Batch Processing"
+      ],
+      "bestPractices": [
+        "Publish calendar before year begins",
+        "Account for holidays and weekends",
+        "Build contingency time for issues",
+        "Track historical processing times"
+      ]
     },
     {
       "id": "kb-ops-515",
       "keyword": "Compensation Holdback",
-      "aliases": ["Payment Hold", "Earnings Reserve"],
-      "pillar": "OPERATIONS",
+      "aliases": [
+        "Payment Hold",
+        "Earnings Reserve"
+      ],
+      "pillar": "ICM",
       "category": "Payment Processing",
       "component": "Risk Management",
       "cardType": "concept",
@@ -226,14 +397,26 @@
       "whyItMatters": "Holdbacks protect the company from paying commissions that may need to be recovered, while providing structured processes that are fair to sales representatives.",
       "howItWorks": "1. Holdback conditions are defined in plan document. 2. Triggering event initiates holdback. 3. Affected earnings are flagged in system. 4. Rep is notified with reason and expected duration. 5. Review occurs at holdback expiration. 6. Earnings are released or formally adjusted.",
       "example": "New enterprise deals over $500K have a 60-day holdback until customer payment is received. Deal #4521 for $750K closed January 15th; the $37,500 commission is held until payment confirmation on March 10th, then released in the March pay cycle.",
-      "relatedTerms": ["Clawback", "Payment Timing", "Risk Management"],
-      "bestPractices": ["Document holdback criteria clearly in plan", "Communicate holdbacks proactively to reps", "Track holdback aging and release dates", "Review holdback policy annually for fairness"]
+      "relatedTerms": [
+        "Clawback",
+        "Payment Timing",
+        "Risk Management"
+      ],
+      "bestPractices": [
+        "Document holdback criteria clearly in plan",
+        "Communicate holdbacks proactively to reps",
+        "Track holdback aging and release dates",
+        "Review holdback policy annually for fairness"
+      ]
     },
     {
       "id": "kb-dp-501",
       "keyword": "Dispute Resolution Process",
-      "aliases": ["Commission Dispute", "Pay Dispute Handling"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Commission Dispute",
+        "Pay Dispute Handling"
+      ],
+      "pillar": "ICM",
       "category": "Process",
       "component": "Resolution",
       "cardType": "concept",
@@ -241,14 +424,26 @@
       "whyItMatters": "A clear dispute process protects both company and employee interests, ensures fair treatment, reduces legal risk, and maintains trust in the compensation program.",
       "howItWorks": "1. Rep submits dispute with supporting documentation. 2. Case is created with unique ID and assigned to analyst. 3. Investigation reviews calculation, data, and policy. 4. Preliminary finding is communicated to rep. 5. Rep may provide additional information. 6. Final decision is made by authorized approver. 7. Resolution is implemented and communicated.",
       "example": "Michael disputes credit for deal #D-8842, claiming he should receive 50% split despite CRM showing 30%. Investigation reveals customer meeting notes supporting Michael's claim. Split is adjusted to 50/50, with $4,000 additional commission processed in next payment.",
-      "relatedTerms": ["Exception Handling", "Appeal Process", "Inquiry Management"],
-      "bestPractices": ["Document clear submission requirements", "Set and publish SLA timeframes", "Maintain audit trail of all decisions", "Provide escalation path for unresolved disputes"]
+      "relatedTerms": [
+        "Exception Handling",
+        "Appeal Process",
+        "Inquiry Management"
+      ],
+      "bestPractices": [
+        "Document clear submission requirements",
+        "Set and publish SLA timeframes",
+        "Maintain audit trail of all decisions",
+        "Provide escalation path for unresolved disputes"
+      ]
     },
     {
       "id": "kb-dp-502",
       "keyword": "Appeal Process",
-      "aliases": ["Dispute Escalation", "Second-Level Review"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Dispute Escalation",
+        "Second-Level Review"
+      ],
+      "pillar": "ICM",
       "category": "Process",
       "component": "Escalation",
       "cardType": "concept",
@@ -256,14 +451,26 @@
       "whyItMatters": "An appeal process provides checks and balances, ensures disputed decisions receive appropriate review, and demonstrates fairness in the compensation program.",
       "howItWorks": "1. Rep receives initial dispute decision. 2. Rep submits appeal within specified timeframe. 3. Appeal is assigned to senior reviewer not involved in original decision. 4. Complete case history is reviewed. 5. Additional fact-finding may occur. 6. Final appeal decision is rendered. 7. Decision is documented and communicated.",
       "example": "Lisa's dispute over territory assignment was denied at first level. She appeals within 10 business days, providing email evidence of verbal territory agreement. VP of Sales reviews the appeal, overturns the original decision, and Lisa receives $12,000 in additional commission.",
-      "relatedTerms": ["Dispute Resolution Process", "Exception Committee", "Management Override"],
-      "bestPractices": ["Limit appeals to one level", "Assign reviewer with no prior involvement", "Set reasonable appeal window (10-15 days)", "Document reasoning for appeal decisions"]
+      "relatedTerms": [
+        "Dispute Resolution Process",
+        "Exception Committee",
+        "Management Override"
+      ],
+      "bestPractices": [
+        "Limit appeals to one level",
+        "Assign reviewer with no prior involvement",
+        "Set reasonable appeal window (10-15 days)",
+        "Document reasoning for appeal decisions"
+      ]
     },
     {
       "id": "kb-dp-503",
       "keyword": "Exception Committee",
-      "aliases": ["Dispute Committee", "Comp Review Board"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Dispute Committee",
+        "Comp Review Board"
+      ],
+      "pillar": "ICM",
       "category": "Governance",
       "component": "Committee",
       "cardType": "concept",
@@ -271,14 +478,26 @@
       "whyItMatters": "An exception committee ensures consistent decision-making, brings diverse perspectives to complex issues, and establishes precedent for future similar situations.",
       "howItWorks": "1. Cases meeting threshold criteria are escalated. 2. Committee meets on regular schedule (weekly/biweekly). 3. Case summaries are prepared and distributed. 4. Committee reviews facts and discusses options. 5. Vote or consensus decision is reached. 6. Decision is documented with rationale. 7. Implementation instructions are communicated.",
       "example": "The exception committee meets weekly and reviews three cases: a $75,000 windfall deal split dispute, a request for retroactive quota adjustment, and interpretation of leave policy for FMLA. Decisions are rendered and communicated within 48 hours.",
-      "relatedTerms": ["Appeal Process", "Management Override", "Policy Interpretation"],
-      "bestPractices": ["Include Sales, Finance, HR, and Legal representatives", "Document all decisions for precedent", "Publish meeting schedule in advance", "Track decision patterns for policy improvement"]
+      "relatedTerms": [
+        "Appeal Process",
+        "Management Override",
+        "Policy Interpretation"
+      ],
+      "bestPractices": [
+        "Include Sales, Finance, HR, and Legal representatives",
+        "Document all decisions for precedent",
+        "Publish meeting schedule in advance",
+        "Track decision patterns for policy improvement"
+      ]
     },
     {
       "id": "kb-dp-504",
       "keyword": "Dispute Documentation",
-      "aliases": ["Case File", "Dispute Record"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Case File",
+        "Dispute Record"
+      ],
+      "pillar": "ICM",
       "category": "Administration",
       "component": "Documentation",
       "cardType": "concept",
@@ -286,14 +505,26 @@
       "whyItMatters": "Thorough documentation protects the company legally, enables consistent decision-making, supports appeals, and provides data for process improvement.",
       "howItWorks": "1. Initial submission is captured with timestamp. 2. All communications are logged chronologically. 3. Supporting documents are attached. 4. Analysis findings are recorded. 5. Decision rationale is documented. 6. Resolution actions are noted. 7. Complete file is archived according to retention policy.",
       "example": "Dispute case #DSP-2026-0089 file includes: original submission with 3 attached emails, analyst research notes, CRM transaction history export, manager statement, committee meeting minutes, final decision memo, and confirmation of payment adjustment.",
-      "relatedTerms": ["Audit Trail", "Dispute Resolution Process", "Records Retention"],
-      "bestPractices": ["Use standardized case templates", "Capture all communications in system", "Attach original source documents", "Apply consistent retention periods"]
+      "relatedTerms": [
+        "Audit Trail",
+        "Dispute Resolution Process",
+        "Records Retention"
+      ],
+      "bestPractices": [
+        "Use standardized case templates",
+        "Capture all communications in system",
+        "Attach original source documents",
+        "Apply consistent retention periods"
+      ]
     },
     {
       "id": "kb-dp-505",
       "keyword": "Root Cause Analysis",
-      "aliases": ["RCA", "Dispute Analysis"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "RCA",
+        "Dispute Analysis"
+      ],
+      "pillar": "ICM",
       "category": "Analytics",
       "component": "Improvement",
       "cardType": "concept",
@@ -301,14 +532,26 @@
       "whyItMatters": "Root cause analysis transforms reactive dispute handling into proactive process improvement, reducing dispute volume and improving rep satisfaction over time.",
       "howItWorks": "1. Dispute data is aggregated by category, cause, and outcome. 2. Patterns are identified (rep, product, territory, rule). 3. Common causes are prioritized by frequency and impact. 4. Improvement actions are defined. 5. Changes are implemented and monitored. 6. Dispute trends are tracked for effectiveness.",
       "example": "Q4 analysis reveals 35% of crediting disputes stem from unclear split rules on partner-influenced deals. Root cause is vague plan language. Corrective action: revise plan document with specific partner scenarios, reducing Q1 disputes by 60%.",
-      "relatedTerms": ["Dispute Metrics", "Process Improvement", "Policy Clarity"],
-      "bestPractices": ["Review dispute data monthly", "Use standard categorization codes", "Involve operations in identifying solutions", "Track improvement action effectiveness"]
+      "relatedTerms": [
+        "Dispute Metrics",
+        "Process Improvement",
+        "Policy Clarity"
+      ],
+      "bestPractices": [
+        "Review dispute data monthly",
+        "Use standard categorization codes",
+        "Involve operations in identifying solutions",
+        "Track improvement action effectiveness"
+      ]
     },
     {
       "id": "kb-dp-506",
       "keyword": "Dispute SLA",
-      "aliases": ["Resolution Timeline", "Response Time"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Resolution Timeline",
+        "Response Time"
+      ],
+      "pillar": "ICM",
       "category": "Performance",
       "component": "Service Level",
       "cardType": "concept",
@@ -316,14 +559,26 @@
       "whyItMatters": "Clear SLAs set expectations for reps, ensure timely resolution, enable resource planning, and provide accountability metrics for the dispute team.",
       "howItWorks": "1. SLAs are defined by dispute complexity tier. 2. Clock starts at dispute submission timestamp. 3. System tracks elapsed time at each stage. 4. Alerts trigger at approaching thresholds. 5. Escalation occurs for SLA breaches. 6. Performance is reported and reviewed regularly.",
       "example": "Dispute SLAs: Simple inquiries - acknowledge in 1 business day, resolve in 3 days. Standard disputes - acknowledge in 2 days, resolve in 10 days. Complex disputes - acknowledge in 2 days, resolve in 20 days. Current performance: 94% within SLA.",
-      "relatedTerms": ["Dispute Resolution Process", "Performance Metrics", "Escalation"],
-      "bestPractices": ["Tier SLAs by complexity", "Measure from submission timestamp", "Report SLA performance weekly", "Analyze SLA breaches for improvement"]
+      "relatedTerms": [
+        "Dispute Resolution Process",
+        "Performance Metrics",
+        "Escalation"
+      ],
+      "bestPractices": [
+        "Tier SLAs by complexity",
+        "Measure from submission timestamp",
+        "Report SLA performance weekly",
+        "Analyze SLA breaches for improvement"
+      ]
     },
     {
       "id": "kb-dp-507",
       "keyword": "Dispute Categorization",
-      "aliases": ["Issue Classification", "Dispute Type"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Issue Classification",
+        "Dispute Type"
+      ],
+      "pillar": "ICM",
       "category": "Administration",
       "component": "Taxonomy",
       "cardType": "concept",
@@ -331,14 +586,26 @@
       "whyItMatters": "Consistent categorization enables trend analysis, appropriate routing, accurate reporting, and identification of systemic issues requiring process improvement.",
       "howItWorks": "1. Standard categories are defined and documented. 2. Initial triage applies primary category. 3. Secondary classifications add detail. 4. Categories drive routing and SLA assignment. 5. Resolution codes capture outcome type. 6. Reporting aggregates by category hierarchy.",
       "example": "Dispute taxonomy: Level 1 (Crediting, Calculation, Data, Policy). Level 2 under Crediting (Territory, Split, Timing, Product). Level 3 provides specific subcategories. Dispute #D-1234 is categorized as Crediting > Split > Partner Referral.",
-      "relatedTerms": ["Root Cause Analysis", "Dispute Metrics", "Routing Rules"],
-      "bestPractices": ["Limit to 3 hierarchy levels", "Train analysts on consistent application", "Review categories annually", "Avoid catch-all categories"]
+      "relatedTerms": [
+        "Root Cause Analysis",
+        "Dispute Metrics",
+        "Routing Rules"
+      ],
+      "bestPractices": [
+        "Limit to 3 hierarchy levels",
+        "Train analysts on consistent application",
+        "Review categories annually",
+        "Avoid catch-all categories"
+      ]
     },
     {
       "id": "kb-dp-508",
       "keyword": "Precedent Library",
-      "aliases": ["Decision Library", "Case Precedent"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Decision Library",
+        "Case Precedent"
+      ],
+      "pillar": "ICM",
       "category": "Knowledge Management",
       "component": "Reference",
       "cardType": "concept",
@@ -346,14 +613,26 @@
       "whyItMatters": "A precedent library promotes fair and consistent treatment, reduces decision time for common scenarios, and helps train new dispute analysts.",
       "howItWorks": "1. Significant decisions are selected for inclusion. 2. Case summary abstracts key facts and ruling. 3. Rationale explains decision logic. 4. Searchable tags enable retrieval. 5. Analysts reference precedents during investigation. 6. New decisions may update or distinguish prior precedents.",
       "example": "Analyst researching a split dispute searches precedent library for 'partner referral split' and finds 5 relevant cases. Case #PRE-2024-023 is directly applicable, establishing 70/30 split for partner-sourced deals, which guides the current decision.",
-      "relatedTerms": ["Exception Committee", "Policy Interpretation", "Knowledge Base"],
-      "bestPractices": ["Include both favorable and unfavorable decisions", "Update when policies change", "Train analysts on precedent research", "Note when facts distinguish prior cases"]
+      "relatedTerms": [
+        "Exception Committee",
+        "Policy Interpretation",
+        "Knowledge Base"
+      ],
+      "bestPractices": [
+        "Include both favorable and unfavorable decisions",
+        "Update when policies change",
+        "Train analysts on precedent research",
+        "Note when facts distinguish prior cases"
+      ]
     },
     {
       "id": "kb-dp-509",
       "keyword": "Dispute Metrics Dashboard",
-      "aliases": ["Dispute KPIs", "Resolution Analytics"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Dispute KPIs",
+        "Resolution Analytics"
+      ],
+      "pillar": "ICM",
       "category": "Analytics",
       "component": "Reporting",
       "cardType": "concept",
@@ -361,14 +640,26 @@
       "whyItMatters": "Dashboard visibility enables proactive management of dispute backlog, resource allocation decisions, and demonstration of program effectiveness.",
       "howItWorks": "1. Dispute data is aggregated in real-time. 2. KPIs are calculated (volume, age, resolution rate, SLA %). 3. Visualizations display current state and trends. 4. Filters enable drill-down by category, team, time. 5. Alerts highlight issues requiring attention. 6. Reports are scheduled for stakeholders.",
       "example": "January dashboard shows: 127 total disputes (up 15% from December), 82% resolved within SLA, average resolution time 6.2 days, top category is crediting disputes (45%), and 12 cases over 15 days requiring attention.",
-      "relatedTerms": ["Dispute SLA", "Root Cause Analysis", "Operational Reporting"],
-      "bestPractices": ["Display real-time data", "Include trend comparisons", "Enable filtering by multiple dimensions", "Highlight exceptions requiring action"]
+      "relatedTerms": [
+        "Dispute SLA",
+        "Root Cause Analysis",
+        "Operational Reporting"
+      ],
+      "bestPractices": [
+        "Display real-time data",
+        "Include trend comparisons",
+        "Enable filtering by multiple dimensions",
+        "Highlight exceptions requiring action"
+      ]
     },
     {
       "id": "kb-dp-510",
       "keyword": "Mediation",
-      "aliases": ["Informal Resolution", "Facilitated Discussion"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Informal Resolution",
+        "Facilitated Discussion"
+      ],
+      "pillar": "ICM",
       "category": "Resolution",
       "component": "Alternative Resolution",
       "cardType": "concept",
@@ -376,14 +667,26 @@
       "whyItMatters": "Mediation can resolve disputes more quickly and preserve relationships compared to formal processes, while reducing escalation to legal or HR channels.",
       "howItWorks": "1. Parties agree to mediation attempt. 2. Neutral mediator is assigned. 3. Both parties share their perspectives. 4. Mediator facilitates discussion of solutions. 5. Agreement is reached or mediation ends. 6. Any agreement is documented and implemented.",
       "example": "Sarah disputes her Q4 quota adjustment. Rather than formal appeal, HR facilitates mediation with her manager and VP Sales. After 45-minute discussion, parties agree on prorated quota reduction of 15% rather than the original 25%, satisfying both parties.",
-      "relatedTerms": ["Appeal Process", "Dispute Resolution Process", "Conflict Resolution"],
-      "bestPractices": ["Offer mediation before formal escalation", "Use trained neutral mediators", "Document any agreements reached", "Preserve formal process option if mediation fails"]
+      "relatedTerms": [
+        "Appeal Process",
+        "Dispute Resolution Process",
+        "Conflict Resolution"
+      ],
+      "bestPractices": [
+        "Offer mediation before formal escalation",
+        "Use trained neutral mediators",
+        "Document any agreements reached",
+        "Preserve formal process option if mediation fails"
+      ]
     },
     {
       "id": "kb-dp-511",
       "keyword": "Dispute Prevention",
-      "aliases": ["Proactive Resolution", "Issue Prevention"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Proactive Resolution",
+        "Issue Prevention"
+      ],
+      "pillar": "ICM",
       "category": "Strategy",
       "component": "Prevention",
       "cardType": "concept",
@@ -391,14 +694,26 @@
       "whyItMatters": "Preventing disputes is more efficient than resolving them, improves rep satisfaction, and frees operations resources for value-added activities.",
       "howItWorks": "1. Root causes of past disputes are analyzed. 2. Prevention strategies are developed. 3. Plan documentation is clarified. 4. Data quality controls are strengthened. 5. Rep communication is enhanced. 6. Self-service tools provide visibility. 7. Dispute trends are monitored for effectiveness.",
       "example": "After analyzing 500 disputes, ops identifies that 40% stem from unclear territory boundaries. Prevention actions include interactive territory maps in the rep portal, automated crediting notifications, and territory change communication templates.",
-      "relatedTerms": ["Root Cause Analysis", "Communication", "Data Quality"],
-      "bestPractices": ["Analyze top dispute categories quarterly", "Invest in plan document clarity", "Provide real-time crediting visibility", "Communicate proactively on changes"]
+      "relatedTerms": [
+        "Root Cause Analysis",
+        "Communication",
+        "Data Quality"
+      ],
+      "bestPractices": [
+        "Analyze top dispute categories quarterly",
+        "Invest in plan document clarity",
+        "Provide real-time crediting visibility",
+        "Communicate proactively on changes"
+      ]
     },
     {
       "id": "kb-dp-512",
       "keyword": "Dispute Cost Analysis",
-      "aliases": ["Resolution Cost", "Dispute Economics"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Resolution Cost",
+        "Dispute Economics"
+      ],
+      "pillar": "ICM",
       "category": "Analytics",
       "component": "Cost Management",
       "cardType": "concept",
@@ -406,14 +721,26 @@
       "whyItMatters": "Understanding dispute costs enables ROI analysis for prevention investments and helps prioritize process improvement initiatives.",
       "howItWorks": "1. Direct costs are captured (analyst time, system costs). 2. Adjustment amounts are tracked by dispute. 3. Indirect costs are estimated (manager time, rep productivity). 4. Total cost per dispute is calculated. 5. Cost trends are analyzed by category. 6. Prevention ROI is modeled.",
       "example": "Analysis reveals average dispute costs $450 in analyst time, $125 in manager involvement, and $2,100 in average payout adjustment, totaling $2,675 per dispute. With 1,200 annual disputes, total cost is $3.2M. A 20% reduction through prevention saves $640K.",
-      "relatedTerms": ["Root Cause Analysis", "Dispute Prevention", "Process Improvement"],
-      "bestPractices": ["Include all cost components", "Track costs by dispute category", "Model prevention investment returns", "Report cost metrics to leadership"]
+      "relatedTerms": [
+        "Root Cause Analysis",
+        "Dispute Prevention",
+        "Process Improvement"
+      ],
+      "bestPractices": [
+        "Include all cost components",
+        "Track costs by dispute category",
+        "Model prevention investment returns",
+        "Report cost metrics to leadership"
+      ]
     },
     {
       "id": "kb-dp-513",
       "keyword": "Dispute Aging",
-      "aliases": ["Case Age", "Resolution Backlog"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Case Age",
+        "Resolution Backlog"
+      ],
+      "pillar": "ICM",
       "category": "Performance",
       "component": "Tracking",
       "cardType": "concept",
@@ -421,14 +748,26 @@
       "whyItMatters": "Monitoring dispute age prevents cases from languishing, ensures fair treatment through timely resolution, and identifies resource or process bottlenecks.",
       "howItWorks": "1. Age is calculated from submission timestamp. 2. Cases are grouped into aging brackets. 3. Aging reports highlight overdue cases. 4. Escalation triggers for age thresholds. 5. Root cause analysis examines aged cases. 6. Resources are allocated to reduce backlog.",
       "example": "Aging report shows: 0-5 days (45 cases), 6-10 days (23 cases), 11-15 days (8 cases), 16-20 days (3 cases), 21+ days (2 cases). The two 21+ day cases are escalated to manager for immediate attention and resolution.",
-      "relatedTerms": ["Dispute SLA", "Dispute Metrics Dashboard", "Escalation"],
-      "bestPractices": ["Review aging daily", "Escalate automatically at thresholds", "Investigate patterns in aged cases", "Set goals for aging bracket reduction"]
+      "relatedTerms": [
+        "Dispute SLA",
+        "Dispute Metrics Dashboard",
+        "Escalation"
+      ],
+      "bestPractices": [
+        "Review aging daily",
+        "Escalate automatically at thresholds",
+        "Investigate patterns in aged cases",
+        "Set goals for aging bracket reduction"
+      ]
     },
     {
       "id": "kb-dp-514",
       "keyword": "Split Credit Dispute",
-      "aliases": ["Credit Split Dispute", "Revenue Allocation Dispute"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Credit Split Dispute",
+        "Revenue Allocation Dispute"
+      ],
+      "pillar": "ICM",
       "category": "Common Disputes",
       "component": "Crediting",
       "cardType": "concept",
@@ -436,14 +775,26 @@
       "whyItMatters": "Split credit disputes are among the most common and contentious, requiring clear policies, documentation, and fair resolution processes.",
       "howItWorks": "1. Reps identify discrepancy in credit allocation. 2. Each party submits their perspective and evidence. 3. Analyst reviews CRM records, meeting notes, contracts. 4. Policy criteria are applied to facts. 5. Determination is made based on documented contribution. 6. Credit is adjusted if warranted.",
       "example": "Inside rep claims 40% credit for enterprise deal, while field rep documented in CRM says 20%. Investigation reveals inside rep conducted three discovery calls and product demos. Policy awards 30% for similar contribution level, split is adjusted.",
-      "relatedTerms": ["Sales Crediting", "Dispute Documentation", "Territory Rules"],
-      "bestPractices": ["Require CRM documentation of involvement", "Define split criteria clearly in plan", "Enable pre-close split agreement process", "Train on consistent split determination"]
+      "relatedTerms": [
+        "Sales Crediting",
+        "Dispute Documentation",
+        "Territory Rules"
+      ],
+      "bestPractices": [
+        "Require CRM documentation of involvement",
+        "Define split criteria clearly in plan",
+        "Enable pre-close split agreement process",
+        "Train on consistent split determination"
+      ]
     },
     {
       "id": "kb-dp-515",
       "keyword": "Dispute Communication",
-      "aliases": ["Case Communication", "Resolution Notification"],
-      "pillar": "DISPUTES",
+      "aliases": [
+        "Case Communication",
+        "Resolution Notification"
+      ],
+      "pillar": "ICM",
       "category": "Administration",
       "component": "Communication",
       "cardType": "concept",
@@ -451,14 +802,26 @@
       "whyItMatters": "Good communication reduces rep anxiety, prevents duplicate submissions, demonstrates respect for the rep, and improves satisfaction regardless of outcome.",
       "howItWorks": "1. Automated acknowledgment confirms receipt. 2. Status updates are sent at key milestones. 3. Information requests are clearly communicated. 4. Preliminary findings may be shared for input. 5. Final decision is delivered with clear rationale. 6. Resolution confirmation closes communication loop.",
       "example": "Day 1: 'We've received dispute #D-4521, analyst assigned.' Day 4: 'We've reviewed records and need copies of customer emails.' Day 8: 'Investigation complete, decision being finalized.' Day 10: 'Decision: Credit adjusted to 50/50 split based on documented contributions.'",
-      "relatedTerms": ["Dispute Resolution Process", "Self-Service Portal", "Dispute SLA"],
-      "bestPractices": ["Set expectations on communication frequency", "Use templates for consistency", "Explain rationale in decisions", "Enable two-way communication"]
+      "relatedTerms": [
+        "Dispute Resolution Process",
+        "Self-Service Portal",
+        "Dispute SLA"
+      ],
+      "bestPractices": [
+        "Set expectations on communication frequency",
+        "Use templates for consistency",
+        "Explain rationale in decisions",
+        "Enable two-way communication"
+      ]
     },
     {
       "id": "kb-dq-501",
       "keyword": "Data Validation Rules",
-      "aliases": ["Validation Logic", "Data Checks"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Validation Logic",
+        "Data Checks"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Validation",
       "component": "Rules Engine",
       "cardType": "concept",
@@ -466,14 +829,26 @@
       "whyItMatters": "Validation rules prevent bad data from corrupting calculations, reduce manual cleanup effort, and catch issues at the source before they cause payment errors.",
       "howItWorks": "1. Rules are defined for each data element. 2. Incoming data is evaluated against rules. 3. Records pass or fail validation. 4. Failed records are quarantined with error codes. 5. Exception reports identify issues for correction. 6. Corrected records are resubmitted.",
       "example": "Opportunity import validation: Amount must be positive (fails 3 records), Close date cannot be future (fails 0), Sales rep ID must exist in roster (fails 7), Product code must be valid (fails 2). Total: 12 records quarantined for review.",
-      "relatedTerms": ["Data Cleansing", "Exception Queue", "Master Data Management"],
-      "bestPractices": ["Validate at point of entry", "Use clear error messages", "Prioritize rules by impact", "Review rule effectiveness quarterly"]
+      "relatedTerms": [
+        "Data Cleansing",
+        "Exception Queue",
+        "Master Data Management"
+      ],
+      "bestPractices": [
+        "Validate at point of entry",
+        "Use clear error messages",
+        "Prioritize rules by impact",
+        "Review rule effectiveness quarterly"
+      ]
     },
     {
       "id": "kb-dq-502",
       "keyword": "Data Cleansing",
-      "aliases": ["Data Cleanup", "Data Scrubbing"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Data Cleanup",
+        "Data Scrubbing"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Processing",
       "component": "Transformation",
       "cardType": "concept",
@@ -481,14 +856,26 @@
       "whyItMatters": "Clean data is essential for accurate commission calculations, reducing disputes, and enabling reliable analytics and reporting.",
       "howItWorks": "1. Data profiling identifies quality issues. 2. Cleansing rules are defined (standardization, deduplication). 3. Automated transformations are applied. 4. Manual review addresses complex issues. 5. Cleansed data replaces original. 6. Quality metrics track improvement.",
       "example": "Monthly data cleansing standardizes customer names (removing Inc., LLC variations), deduplicates 45 records with matching email addresses, fills 23 missing territory codes based on zip code lookup, and flags 12 records requiring manual review.",
-      "relatedTerms": ["Data Validation Rules", "Data Reconciliation", "Master Data Management"],
-      "bestPractices": ["Profile data before cleansing", "Document all transformation rules", "Preserve original data for audit", "Measure quality improvement over time"]
+      "relatedTerms": [
+        "Data Validation Rules",
+        "Data Reconciliation",
+        "Master Data Management"
+      ],
+      "bestPractices": [
+        "Profile data before cleansing",
+        "Document all transformation rules",
+        "Preserve original data for audit",
+        "Measure quality improvement over time"
+      ]
     },
     {
       "id": "kb-dq-503",
       "keyword": "Data Reconciliation",
-      "aliases": ["Data Matching", "Cross-System Validation"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Data Matching",
+        "Cross-System Validation"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Validation",
       "component": "Reconciliation",
       "cardType": "concept",
@@ -496,14 +883,26 @@
       "whyItMatters": "Reconciliation ensures data consistency across systems, catches integration issues, and provides confidence in compensation accuracy.",
       "howItWorks": "1. Matching keys are defined between systems. 2. Records are extracted from each source. 3. Automated comparison identifies discrepancies. 4. Differences are categorized (missing, different values). 5. Resolution actions are taken. 6. Reconciliation report documents results.",
       "example": "CRM-to-SPM reconciliation finds 15,234 opportunities in CRM versus 15,198 in SPM. Investigation reveals 36 records failed import validation (now corrected) and 0 orphan records in SPM. Final reconciliation: 100% matched.",
-      "relatedTerms": ["Data Validation Rules", "System Integration", "Audit Trail"],
-      "bestPractices": ["Reconcile daily during close periods", "Automate discrepancy detection", "Set tolerance thresholds by data type", "Track reconciliation trends"]
+      "relatedTerms": [
+        "Data Validation Rules",
+        "System Integration",
+        "Audit Trail"
+      ],
+      "bestPractices": [
+        "Reconcile daily during close periods",
+        "Automate discrepancy detection",
+        "Set tolerance thresholds by data type",
+        "Track reconciliation trends"
+      ]
     },
     {
       "id": "kb-dq-504",
       "keyword": "Master Data Management",
-      "aliases": ["MDM", "Reference Data Management"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "MDM",
+        "Reference Data Management"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Governance",
       "component": "Master Data",
       "cardType": "concept",
@@ -511,14 +910,26 @@
       "whyItMatters": "Consistent master data ensures accurate territory assignment, product crediting, and quota allocation while reducing maintenance effort across systems.",
       "howItWorks": "1. Golden record sources are identified for each entity. 2. Data stewards are assigned ownership. 3. Change processes control updates. 4. Downstream systems consume from master. 5. Quality rules enforce standards. 6. Audits verify compliance.",
       "example": "Employee master is sourced from HRIS, with daily sync to SPM. When Marcus transfers from Central to West region, HRIS update flows to SPM within 24 hours, automatically updating territory assignment effective with change date.",
-      "relatedTerms": ["Data Stewardship", "Reference Data", "System Integration"],
-      "bestPractices": ["Define single source of truth per entity", "Implement change notification triggers", "Validate downstream sync daily", "Maintain data lineage documentation"]
+      "relatedTerms": [
+        "Data Stewardship",
+        "Reference Data",
+        "System Integration"
+      ],
+      "bestPractices": [
+        "Define single source of truth per entity",
+        "Implement change notification triggers",
+        "Validate downstream sync daily",
+        "Maintain data lineage documentation"
+      ]
     },
     {
       "id": "kb-dq-505",
       "keyword": "Data Quality Scorecard",
-      "aliases": ["DQ Metrics", "Quality Dashboard"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "DQ Metrics",
+        "Quality Dashboard"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Analytics",
       "component": "Measurement",
       "cardType": "concept",
@@ -526,14 +937,26 @@
       "whyItMatters": "Scorecards provide visibility into data health, enable trend tracking, support improvement prioritization, and demonstrate quality to stakeholders.",
       "howItWorks": "1. Quality dimensions are defined. 2. Metrics are established for each dimension. 3. Automated measurement captures current state. 4. Scores are calculated and visualized. 5. Trends are tracked over time. 6. Improvement actions target low scores.",
       "example": "January scorecard: Completeness 97.2% (target 98%), Accuracy 99.1% (target 99%), Timeliness 94.5% (target 95%), Consistency 98.8% (target 98%). Overall score: 97.4%. Focus area: Timeliness improvement for CRM sync delays.",
-      "relatedTerms": ["Data Quality Metrics", "Data Governance", "Continuous Improvement"],
-      "bestPractices": ["Measure all quality dimensions", "Set realistic improvement targets", "Report scorecard monthly", "Link scores to improvement actions"]
+      "relatedTerms": [
+        "Data Quality Metrics",
+        "Data Governance",
+        "Continuous Improvement"
+      ],
+      "bestPractices": [
+        "Measure all quality dimensions",
+        "Set realistic improvement targets",
+        "Report scorecard monthly",
+        "Link scores to improvement actions"
+      ]
     },
     {
       "id": "kb-dq-506",
       "keyword": "Data Profiling",
-      "aliases": ["Data Analysis", "Quality Assessment"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Data Analysis",
+        "Quality Assessment"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Analysis",
       "component": "Assessment",
       "cardType": "concept",
@@ -541,14 +964,26 @@
       "whyItMatters": "Profiling identifies data issues early, informs validation rule design, and prevents downstream problems in compensation calculations.",
       "howItWorks": "1. Data source is connected for analysis. 2. Column-level statistics are generated. 3. Patterns and distributions are analyzed. 4. Anomalies and quality issues are identified. 5. Findings are documented. 6. Recommendations guide data improvement.",
       "example": "Profiling new CRM import reveals: Deal_Amount has 3% null values, Close_Date has 0.5% future dates (error), Rep_ID has 99.8% valid references, Product_Code has 47 distinct values (5 unexpected). Findings drive validation rule updates.",
-      "relatedTerms": ["Data Validation Rules", "Data Quality Scorecard", "Data Discovery"],
-      "bestPractices": ["Profile before new integrations", "Examine distributions not just totals", "Document expected patterns", "Repeat profiling periodically"]
+      "relatedTerms": [
+        "Data Validation Rules",
+        "Data Quality Scorecard",
+        "Data Discovery"
+      ],
+      "bestPractices": [
+        "Profile before new integrations",
+        "Examine distributions not just totals",
+        "Document expected patterns",
+        "Repeat profiling periodically"
+      ]
     },
     {
       "id": "kb-dq-507",
       "keyword": "Duplicate Detection",
-      "aliases": ["Deduplication", "Record Matching"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Deduplication",
+        "Record Matching"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Processing",
       "component": "Deduplication",
       "cardType": "concept",
@@ -556,14 +991,26 @@
       "whyItMatters": "Duplicate records cause double payments, inaccurate quotas, and reporting errors that undermine confidence in the compensation system.",
       "howItWorks": "1. Matching criteria are defined (exact and fuzzy). 2. Records are compared using blocking techniques. 3. Potential duplicates are scored by confidence. 4. High-confidence matches are auto-merged. 5. Medium-confidence matches require review. 6. Surviving record is designated.",
       "example": "Customer deduplication identifies 156 potential duplicates. 89 are exact email matches (auto-merged), 45 are fuzzy name matches (reviewed, 38 confirmed duplicates), 22 are false positives. Net result: 127 duplicate records eliminated.",
-      "relatedTerms": ["Data Cleansing", "Master Data Management", "Data Quality"],
-      "bestPractices": ["Define matching rules by entity type", "Use multiple matching criteria", "Preserve link to original records", "Monitor duplicate creation rate"]
+      "relatedTerms": [
+        "Data Cleansing",
+        "Master Data Management",
+        "Data Quality"
+      ],
+      "bestPractices": [
+        "Define matching rules by entity type",
+        "Use multiple matching criteria",
+        "Preserve link to original records",
+        "Monitor duplicate creation rate"
+      ]
     },
     {
       "id": "kb-dq-508",
       "keyword": "Data Lineage",
-      "aliases": ["Data Provenance", "Data Traceability"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Data Provenance",
+        "Data Traceability"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Governance",
       "component": "Traceability",
       "cardType": "concept",
@@ -571,14 +1018,26 @@
       "whyItMatters": "Lineage enables root cause analysis of data issues, supports audit requirements, and provides transparency into how compensation is calculated.",
       "howItWorks": "1. Data sources are documented. 2. Transformation steps are mapped. 3. Target systems and uses are identified. 4. Lineage metadata is captured. 5. Visual diagrams show data flow. 6. Impact analysis uses lineage for changes.",
       "example": "Commission for deal #D-4521: Originated in Salesforce (Opportunity object), extracted via nightly API, transformed in staging (currency conversion, territory lookup), loaded to SPM (crediting), calculated (tiered rate application), paid via payroll feed.",
-      "relatedTerms": ["Audit Trail", "Data Governance", "Impact Analysis"],
-      "bestPractices": ["Document all transformation logic", "Maintain lineage in metadata repository", "Enable drill-through from reports", "Update lineage when processes change"]
+      "relatedTerms": [
+        "Audit Trail",
+        "Data Governance",
+        "Impact Analysis"
+      ],
+      "bestPractices": [
+        "Document all transformation logic",
+        "Maintain lineage in metadata repository",
+        "Enable drill-through from reports",
+        "Update lineage when processes change"
+      ]
     },
     {
       "id": "kb-dq-509",
       "keyword": "Data Stewardship",
-      "aliases": ["Data Ownership", "Data Custodian"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Data Ownership",
+        "Data Custodian"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Governance",
       "component": "Ownership",
       "cardType": "concept",
@@ -586,14 +1045,26 @@
       "whyItMatters": "Clear stewardship ensures accountability for data quality, provides decision-making authority for issues, and drives continuous improvement.",
       "howItWorks": "1. Data domains are defined. 2. Stewards are assigned by domain. 3. Responsibilities are documented. 4. Quality issues are routed to stewards. 5. Stewards approve data changes. 6. Performance is measured and reported.",
       "example": "Sales operations owns customer and opportunity data, HR owns employee data, Product management owns product catalog. When customer territory mapping is questioned, sales ops steward researches and makes authoritative determination.",
-      "relatedTerms": ["Data Governance", "Master Data Management", "Data Quality"],
-      "bestPractices": ["Assign stewards by subject expertise", "Define clear responsibilities", "Provide tools for issue resolution", "Include stewardship in job descriptions"]
+      "relatedTerms": [
+        "Data Governance",
+        "Master Data Management",
+        "Data Quality"
+      ],
+      "bestPractices": [
+        "Assign stewards by subject expertise",
+        "Define clear responsibilities",
+        "Provide tools for issue resolution",
+        "Include stewardship in job descriptions"
+      ]
     },
     {
       "id": "kb-dq-510",
       "keyword": "Data Quality SLA",
-      "aliases": ["Quality Agreement", "Data Accuracy Target"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Quality Agreement",
+        "Data Accuracy Target"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Governance",
       "component": "Standards",
       "cardType": "concept",
@@ -601,14 +1072,26 @@
       "whyItMatters": "SLAs set clear expectations, provide accountability between teams, enable measurement of data quality, and drive improvement efforts.",
       "howItWorks": "1. Quality dimensions are identified. 2. Target thresholds are negotiated. 3. Measurement methods are agreed. 4. Reporting frequency is established. 5. Escalation process for breaches is defined. 6. Regular reviews assess performance.",
       "example": "CRM-to-SPM data SLA: Completeness 98% (all required fields populated), Accuracy 99% (values match source), Timeliness 24 hours (maximum sync delay). Monthly review shows 97.8% completeness - action plan to improve required field enforcement.",
-      "relatedTerms": ["Data Quality Scorecard", "Data Governance", "Service Level Agreement"],
-      "bestPractices": ["Define measurable thresholds", "Agree on measurement methodology", "Review SLAs quarterly", "Adjust targets based on capability improvements"]
+      "relatedTerms": [
+        "Data Quality Scorecard",
+        "Data Governance",
+        "Service Level Agreement"
+      ],
+      "bestPractices": [
+        "Define measurable thresholds",
+        "Agree on measurement methodology",
+        "Review SLAs quarterly",
+        "Adjust targets based on capability improvements"
+      ]
     },
     {
       "id": "kb-dq-511",
       "keyword": "Data Quality Rules Engine",
-      "aliases": ["DQ Engine", "Quality Automation"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "DQ Engine",
+        "Quality Automation"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Technology",
       "component": "Automation",
       "cardType": "concept",
@@ -616,14 +1099,26 @@
       "whyItMatters": "Automated quality rules enable proactive issue detection, reduce manual review effort, and ensure consistent application of quality standards.",
       "howItWorks": "1. Business rules are translated to technical rules. 2. Rules are configured in the engine. 3. Data is evaluated in real-time or batch. 4. Violations are logged with severity. 5. Alerts notify stewards of critical issues. 6. Dashboards display quality status.",
       "example": "Rules engine evaluates 15,000 daily transactions: 147 violate 'amount cannot be negative' (blocked), 23 violate 'rep must have active assignment' (warning), 8 violate 'close date in valid fiscal period' (blocked). Total: 178 quality events logged.",
-      "relatedTerms": ["Data Validation Rules", "Exception Queue", "Data Quality Scorecard"],
-      "bestPractices": ["Categorize rules by severity", "Enable rule versioning", "Monitor rule performance", "Review false positive rates"]
+      "relatedTerms": [
+        "Data Validation Rules",
+        "Exception Queue",
+        "Data Quality Scorecard"
+      ],
+      "bestPractices": [
+        "Categorize rules by severity",
+        "Enable rule versioning",
+        "Monitor rule performance",
+        "Review false positive rates"
+      ]
     },
     {
       "id": "kb-dq-512",
       "keyword": "Reference Data Validation",
-      "aliases": ["Lookup Validation", "Code Validation"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Lookup Validation",
+        "Code Validation"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Validation",
       "component": "Reference Checks",
       "cardType": "concept",
@@ -631,14 +1126,26 @@
       "whyItMatters": "Invalid reference data causes calculation failures, incorrect crediting, and reporting errors that are difficult to diagnose after the fact.",
       "howItWorks": "1. Reference tables are maintained as authoritative sources. 2. Transaction data is validated against references. 3. Invalid codes are rejected or flagged. 4. New codes require approval before use. 5. Deprecated codes have end dates. 6. Orphan checks identify unused references.",
       "example": "Order import validation checks: Product_Code 'PROD-XYZ' not found in product master (rejected), Territory_ID 'WEST-045' exists but is inactive as of Jan 1 (warning), Currency_Code 'USD' valid (passed). Failed records require correction before processing.",
-      "relatedTerms": ["Master Data Management", "Data Validation Rules", "Data Cleansing"],
-      "bestPractices": ["Validate at point of entry", "Maintain reference table version history", "Communicate code changes proactively", "Archive rather than delete deprecated codes"]
+      "relatedTerms": [
+        "Master Data Management",
+        "Data Validation Rules",
+        "Data Cleansing"
+      ],
+      "bestPractices": [
+        "Validate at point of entry",
+        "Maintain reference table version history",
+        "Communicate code changes proactively",
+        "Archive rather than delete deprecated codes"
+      ]
     },
     {
       "id": "kb-dq-513",
       "keyword": "Data Completeness",
-      "aliases": ["Field Population", "Data Coverage"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Field Population",
+        "Data Coverage"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Dimension",
       "component": "Measurement",
       "cardType": "concept",
@@ -646,14 +1153,26 @@
       "whyItMatters": "Incomplete data causes calculation errors, processing exceptions, and the need for manual intervention that delays payments and increases costs.",
       "howItWorks": "1. Required fields are defined by data element. 2. Population rates are calculated. 3. Missing values are flagged. 4. Completeness scores are tracked over time. 5. Root cause analysis identifies sources of gaps. 6. Improvement actions target low-scoring fields.",
       "example": "Transaction completeness analysis: Deal_Amount 100%, Close_Date 100%, Sales_Rep 99.8%, Product_Code 97.2% (target 99%), Customer_Industry 85.4% (optional field). Focus on Product_Code improvement through CRM validation enhancement.",
-      "relatedTerms": ["Data Quality Scorecard", "Data Validation Rules", "Required Fields"],
-      "bestPractices": ["Define required vs optional fields clearly", "Enforce at source when possible", "Track completeness by source system", "Set realistic improvement targets"]
+      "relatedTerms": [
+        "Data Quality Scorecard",
+        "Data Validation Rules",
+        "Required Fields"
+      ],
+      "bestPractices": [
+        "Define required vs optional fields clearly",
+        "Enforce at source when possible",
+        "Track completeness by source system",
+        "Set realistic improvement targets"
+      ]
     },
     {
       "id": "kb-dq-514",
       "keyword": "Data Accuracy",
-      "aliases": ["Data Correctness", "Value Accuracy"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Data Correctness",
+        "Value Accuracy"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Dimension",
       "component": "Measurement",
       "cardType": "concept",
@@ -661,14 +1180,26 @@
       "whyItMatters": "Inaccurate data leads to incorrect commission calculations, disputes, overpayments or underpayments, and loss of trust in the compensation system.",
       "howItWorks": "1. Accuracy rules are defined (ranges, formats, logic). 2. Sampling methods select records for verification. 3. Values are compared to source or truth. 4. Error rates are calculated. 5. Accuracy trends are monitored. 6. Root causes drive improvement actions.",
       "example": "Q1 accuracy audit: Sampled 500 transactions against source invoices. Found 3 amount discrepancies (99.4% accuracy), 7 date discrepancies (98.6% accuracy), 0 customer mismatches (100% accuracy). Overall accuracy: 98.8% (target 99%).",
-      "relatedTerms": ["Data Quality Scorecard", "Data Reconciliation", "Audit"],
-      "bestPractices": ["Use statistical sampling for efficiency", "Verify against authoritative sources", "Track accuracy by data element", "Investigate all significant discrepancies"]
+      "relatedTerms": [
+        "Data Quality Scorecard",
+        "Data Reconciliation",
+        "Audit"
+      ],
+      "bestPractices": [
+        "Use statistical sampling for efficiency",
+        "Verify against authoritative sources",
+        "Track accuracy by data element",
+        "Investigate all significant discrepancies"
+      ]
     },
     {
       "id": "kb-dq-515",
       "keyword": "Data Timeliness",
-      "aliases": ["Data Freshness", "Latency"],
-      "pillar": "DATA_QUALITY",
+      "aliases": [
+        "Data Freshness",
+        "Latency"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Dimension",
       "component": "Measurement",
       "cardType": "concept",
@@ -676,14 +1207,26 @@
       "whyItMatters": "Stale data causes incorrect calculations based on outdated information, delays payments, and creates discrepancies between systems.",
       "howItWorks": "1. Freshness requirements are defined by use case. 2. Data timestamps track creation and update. 3. Latency is measured from source to target. 4. Timeliness scores compare actual to required. 5. Delays trigger alerts. 6. SLA breaches are investigated.",
       "example": "CRM-to-SPM timeliness tracking: Target 4-hour maximum latency. January average: 2.3 hours. 3 SLA breaches (over 4 hours) due to API timeout. Root cause: CRM maintenance windows. Solution: Adjusted sync schedule to avoid maintenance periods.",
-      "relatedTerms": ["Data Quality SLA", "System Integration", "Real-Time Processing"],
-      "bestPractices": ["Define timeliness by business need", "Monitor latency continuously", "Alert on threshold breaches", "Design for peak volume handling"]
+      "relatedTerms": [
+        "Data Quality SLA",
+        "System Integration",
+        "Real-Time Processing"
+      ],
+      "bestPractices": [
+        "Define timeliness by business need",
+        "Monitor latency continuously",
+        "Alert on threshold breaches",
+        "Design for peak volume handling"
+      ]
     },
     {
       "id": "kb-int-501",
       "keyword": "CRM Integration",
-      "aliases": ["Salesforce Integration", "Opportunity Sync"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Salesforce Integration",
+        "Opportunity Sync"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Source Systems",
       "component": "CRM",
       "cardType": "concept",
@@ -691,14 +1234,26 @@
       "whyItMatters": "CRM integration is the foundation of accurate commissions, providing the transaction data that drives crediting, calculation, and payment.",
       "howItWorks": "1. Integration scope defines which objects and fields sync. 2. Mapping translates CRM to SPM data model. 3. Extraction pulls data via API or export. 4. Transformation applies business rules. 5. Loading populates SPM tables. 6. Validation confirms successful transfer.",
       "example": "Salesforce integration extracts Opportunities with Stage='Closed Won', maps Account to Customer, Opportunity Owner to Sales Rep, and Amount to Deal Value. Nightly sync processes 500 new opportunities with 99.9% success rate.",
-      "relatedTerms": ["ETL Process", "Data Pipeline", "API Integration"],
-      "bestPractices": ["Define clear data ownership", "Implement idempotent processing", "Monitor sync success rates", "Version integration mappings"]
+      "relatedTerms": [
+        "ETL Process",
+        "Data Pipeline",
+        "API Integration"
+      ],
+      "bestPractices": [
+        "Define clear data ownership",
+        "Implement idempotent processing",
+        "Monitor sync success rates",
+        "Version integration mappings"
+      ]
     },
     {
       "id": "kb-int-502",
       "keyword": "ERP Integration",
-      "aliases": ["Financial System Integration", "Invoice Feed"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Financial System Integration",
+        "Invoice Feed"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Source Systems",
       "component": "ERP",
       "cardType": "concept",
@@ -706,14 +1261,26 @@
       "whyItMatters": "ERP integration provides verified revenue data for commission payment, supports clawback processing, and ensures alignment between sales and finance.",
       "howItWorks": "1. Invoice data is extracted from ERP. 2. Matching logic links invoices to opportunities. 3. Payment status is tracked for clawback. 4. Revenue recognition rules determine timing. 5. Commission adjustments flow to GL. 6. Reconciliation validates accuracy.",
       "example": "SAP integration provides daily invoice feed matching invoices to Salesforce opportunities by PO number. Payment status updates trigger commission release for deals on payment holdback. Monthly revenue reconciliation ensures SPM matches finance.",
-      "relatedTerms": ["Invoice Processing", "Revenue Recognition", "Financial Close"],
-      "bestPractices": ["Match on reliable identifiers", "Handle partial payments", "Track payment aging for holdback", "Reconcile to GL monthly"]
+      "relatedTerms": [
+        "Invoice Processing",
+        "Revenue Recognition",
+        "Financial Close"
+      ],
+      "bestPractices": [
+        "Match on reliable identifiers",
+        "Handle partial payments",
+        "Track payment aging for holdback",
+        "Reconcile to GL monthly"
+      ]
     },
     {
       "id": "kb-int-503",
       "keyword": "HRIS Integration",
-      "aliases": ["HR System Integration", "Employee Sync"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "HR System Integration",
+        "Employee Sync"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Source Systems",
       "component": "HRIS",
       "cardType": "concept",
@@ -721,14 +1288,26 @@
       "whyItMatters": "HRIS integration ensures commission eligibility, correct plan assignment, and proper handling of hires, transfers, terminations, and leaves of absence.",
       "howItWorks": "1. Employee events are triggered in HRIS. 2. Changes flow to SPM via API or file. 3. New hires trigger onboarding workflow. 4. Transfers update territory assignment. 5. Terminations initiate final pay processing. 6. Manager changes update reporting.",
       "example": "Workday integration provides real-time employee events. New hire creates SPM participant with 90-day ramp assignment. Department transfer triggers territory reassignment effective change date. Termination initiates final pay calculation and commission proration.",
-      "relatedTerms": ["Employee Lifecycle", "Onboarding", "Termination Processing"],
-      "bestPractices": ["Process events in near-real-time", "Handle retroactive effective dates", "Validate against expected job codes", "Maintain employee history"]
+      "relatedTerms": [
+        "Employee Lifecycle",
+        "Onboarding",
+        "Termination Processing"
+      ],
+      "bestPractices": [
+        "Process events in near-real-time",
+        "Handle retroactive effective dates",
+        "Validate against expected job codes",
+        "Maintain employee history"
+      ]
     },
     {
       "id": "kb-int-504",
       "keyword": "ETL Process",
-      "aliases": ["Extract Transform Load", "Data Pipeline"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Extract Transform Load",
+        "Data Pipeline"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Architecture",
       "component": "Processing",
       "cardType": "concept",
@@ -736,14 +1315,26 @@
       "whyItMatters": "Well-designed ETL processes ensure reliable data flow, enable business rule application, and provide auditability of data transformations.",
       "howItWorks": "1. Extract phase connects to sources and pulls data. 2. Staging area holds raw extracted data. 3. Transform phase applies cleansing, mapping, enrichment. 4. Load phase inserts or updates target tables. 5. Logging captures all operations. 6. Error handling manages failures.",
       "example": "Nightly ETL: Extract 15,000 opportunities from Salesforce (2 min), stage in landing tables, transform with territory lookup and currency conversion (5 min), load to SPM transaction tables (3 min). Total runtime: 10 minutes with 99.8% success rate.",
-      "relatedTerms": ["Data Pipeline", "Integration Architecture", "Batch Processing"],
-      "bestPractices": ["Implement checkpoint recovery", "Log all transformations", "Separate staging from production", "Monitor performance trends"]
+      "relatedTerms": [
+        "Data Pipeline",
+        "Integration Architecture",
+        "Batch Processing"
+      ],
+      "bestPractices": [
+        "Implement checkpoint recovery",
+        "Log all transformations",
+        "Separate staging from production",
+        "Monitor performance trends"
+      ]
     },
     {
       "id": "kb-int-505",
       "keyword": "API Integration",
-      "aliases": ["REST Integration", "Real-Time API"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "REST Integration",
+        "Real-Time API"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Architecture",
       "component": "Connectivity",
       "cardType": "concept",
@@ -751,14 +1342,26 @@
       "whyItMatters": "API integration provides faster data availability, reduces batch processing delays, and enables event-driven compensation processing.",
       "howItWorks": "1. API endpoints are published by source systems. 2. Authentication credentials are securely managed. 3. Requests are made for specific data. 4. Responses are parsed and processed. 5. Rate limits are respected. 6. Error handling manages failures.",
       "example": "Salesforce REST API integration: Authenticate with OAuth 2.0, query Opportunities updated in last hour, receive JSON response with 45 records, parse and map to SPM format, load to transaction staging. Runs hourly for near-real-time data.",
-      "relatedTerms": ["Webhook", "Real-Time Processing", "Integration Platform"],
-      "bestPractices": ["Implement retry logic with backoff", "Cache credentials securely", "Monitor API response times", "Handle rate limiting gracefully"]
+      "relatedTerms": [
+        "Webhook",
+        "Real-Time Processing",
+        "Integration Platform"
+      ],
+      "bestPractices": [
+        "Implement retry logic with backoff",
+        "Cache credentials securely",
+        "Monitor API response times",
+        "Handle rate limiting gracefully"
+      ]
     },
     {
       "id": "kb-int-506",
       "keyword": "Webhook Integration",
-      "aliases": ["Event Webhook", "Push Notification"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Event Webhook",
+        "Push Notification"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Architecture",
       "component": "Events",
       "cardType": "concept",
@@ -766,14 +1369,26 @@
       "whyItMatters": "Webhooks eliminate polling overhead, reduce data latency, and enable immediate action on business events like deal closure.",
       "howItWorks": "1. Webhook endpoint is registered with source. 2. Source system triggers event on data change. 3. HTTP POST sends payload to registered URL. 4. Receiving system validates and processes. 5. Acknowledgment confirms receipt. 6. Retry logic handles failures.",
       "example": "Salesforce webhook fires when Opportunity Stage changes to 'Closed Won'. SPM receives POST with deal details within 30 seconds. Commission preview is immediately available to rep. Processing latency reduced from 24 hours (batch) to under 1 minute.",
-      "relatedTerms": ["API Integration", "Event-Driven Architecture", "Real-Time Processing"],
-      "bestPractices": ["Validate webhook signatures", "Implement idempotency", "Return 200 quickly, process async", "Monitor webhook delivery rates"]
+      "relatedTerms": [
+        "API Integration",
+        "Event-Driven Architecture",
+        "Real-Time Processing"
+      ],
+      "bestPractices": [
+        "Validate webhook signatures",
+        "Implement idempotency",
+        "Return 200 quickly, process async",
+        "Monitor webhook delivery rates"
+      ]
     },
     {
       "id": "kb-int-507",
       "keyword": "Integration Monitoring",
-      "aliases": ["Pipeline Monitoring", "Data Flow Monitoring"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Pipeline Monitoring",
+        "Data Flow Monitoring"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Operations",
       "component": "Monitoring",
       "cardType": "concept",
@@ -781,14 +1396,26 @@
       "whyItMatters": "Proactive monitoring prevents silent failures, enables rapid issue resolution, and maintains confidence in data accuracy.",
       "howItWorks": "1. Metrics are collected from integration processes. 2. Dashboards display real-time status. 3. Thresholds trigger alerts. 4. On-call staff respond to alerts. 5. Root cause analysis follows incidents. 6. Trends inform capacity planning.",
       "example": "Integration dashboard shows: CRM sync (green, 15,234 records, 2.3 min), ERP invoice feed (yellow, 50% longer than average), HRIS sync (green, 45 events). Yellow alert triggers investigation revealing ERP database maintenance causing delay.",
-      "relatedTerms": ["Alerting", "Performance Metrics", "Incident Management"],
-      "bestPractices": ["Monitor all integration points", "Set meaningful thresholds", "Implement escalation procedures", "Review trends weekly"]
+      "relatedTerms": [
+        "Alerting",
+        "Performance Metrics",
+        "Incident Management"
+      ],
+      "bestPractices": [
+        "Monitor all integration points",
+        "Set meaningful thresholds",
+        "Implement escalation procedures",
+        "Review trends weekly"
+      ]
     },
     {
       "id": "kb-int-508",
       "keyword": "Data Mapping",
-      "aliases": ["Field Mapping", "Schema Mapping"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Field Mapping",
+        "Schema Mapping"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Design",
       "component": "Transformation",
       "cardType": "concept",
@@ -796,14 +1423,26 @@
       "whyItMatters": "Accurate mapping ensures data is correctly interpreted in the target system, preventing calculation errors and processing failures.",
       "howItWorks": "1. Source schema is documented. 2. Target requirements are defined. 3. Mapping rules connect source to target. 4. Transformations are specified. 5. Mapping is implemented and tested. 6. Changes are version controlled.",
       "example": "Salesforce to SPM mapping: Opportunity.Amount -> Transaction.Deal_Value (convert from string), Opportunity.CloseDate -> Transaction.Close_Date (format YYYY-MM-DD), Account.BillingState -> Territory lookup (enrich with territory_id based on state).",
-      "relatedTerms": ["ETL Process", "Data Transformation", "Integration Specification"],
-      "bestPractices": ["Document all mappings formally", "Include transformation logic", "Version control mapping specs", "Test with production-like data"]
+      "relatedTerms": [
+        "ETL Process",
+        "Data Transformation",
+        "Integration Specification"
+      ],
+      "bestPractices": [
+        "Document all mappings formally",
+        "Include transformation logic",
+        "Version control mapping specs",
+        "Test with production-like data"
+      ]
     },
     {
       "id": "kb-int-509",
       "keyword": "Integration Error Handling",
-      "aliases": ["Error Recovery", "Failure Management"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Error Recovery",
+        "Failure Management"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Operations",
       "component": "Reliability",
       "cardType": "concept",
@@ -811,14 +1450,26 @@
       "whyItMatters": "Robust error handling prevents data loss, enables rapid recovery, and maintains the reliability required for accurate compensation.",
       "howItWorks": "1. Errors are caught and classified. 2. Retry logic attempts recovery. 3. Failed records are quarantined. 4. Alerts notify operations team. 5. Manual intervention resolves issues. 6. Recovered records resume processing.",
       "example": "CRM sync encounters API timeout. Retry 1 fails, retry 2 succeeds for 14,500 records. 34 records fail validation and are quarantined with error codes. Alert triggers analyst review. 30 records corrected and reprocessed; 4 require source system fix.",
-      "relatedTerms": ["Exception Queue", "Retry Logic", "Data Recovery"],
-      "bestPractices": ["Implement exponential backoff", "Classify errors by recoverability", "Preserve failed records for replay", "Track error rates by type"]
+      "relatedTerms": [
+        "Exception Queue",
+        "Retry Logic",
+        "Data Recovery"
+      ],
+      "bestPractices": [
+        "Implement exponential backoff",
+        "Classify errors by recoverability",
+        "Preserve failed records for replay",
+        "Track error rates by type"
+      ]
     },
     {
       "id": "kb-int-510",
       "keyword": "Integration Testing",
-      "aliases": ["Data Flow Testing", "Interface Testing"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Data Flow Testing",
+        "Interface Testing"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Quality",
       "component": "Testing",
       "cardType": "concept",
@@ -826,14 +1477,26 @@
       "whyItMatters": "Thorough testing prevents production failures, validates business rules, and builds confidence in integration reliability.",
       "howItWorks": "1. Test cases are designed for scenarios. 2. Test data is prepared. 3. Integrations are executed in test environment. 4. Results are validated against expectations. 5. Defects are logged and fixed. 6. Regression tests ensure stability.",
       "example": "CRM integration test suite: New opportunity creation (10 scenarios), opportunity update (15 scenarios), multi-currency deals (5 scenarios), edge cases (10 scenarios). Automated tests run nightly; manual tests for new features. 98% pass rate required for release.",
-      "relatedTerms": ["Test Automation", "Quality Assurance", "Regression Testing"],
-      "bestPractices": ["Test positive and negative scenarios", "Include edge cases", "Automate regression tests", "Use production-like test data"]
+      "relatedTerms": [
+        "Test Automation",
+        "Quality Assurance",
+        "Regression Testing"
+      ],
+      "bestPractices": [
+        "Test positive and negative scenarios",
+        "Include edge cases",
+        "Automate regression tests",
+        "Use production-like test data"
+      ]
     },
     {
       "id": "kb-int-511",
       "keyword": "Payroll Feed",
-      "aliases": ["Payroll Export", "Earnings Transmission"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Payroll Export",
+        "Earnings Transmission"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Target Systems",
       "component": "Payroll",
       "cardType": "concept",
@@ -841,14 +1504,26 @@
       "whyItMatters": "Accurate payroll integration ensures timely payment, proper tax withholding, and compliance with wage payment regulations.",
       "howItWorks": "1. Approved earnings are extracted. 2. Export file is formatted per payroll spec. 3. Validation checks ensure completeness. 4. Secure transfer to payroll. 5. Payroll confirms receipt. 6. Reconciliation verifies amounts.",
       "example": "ADP payroll feed: Extract approved February commissions ($890,000 across 200 reps), format as ADP CSV with employee ID, earning code, amount, and effective date, SFTP transfer at 6 PM, confirm receipt, reconcile: source $890,000 = payroll $890,000.",
-      "relatedTerms": ["Payroll Integration", "Commission Payment", "Earning Codes"],
-      "bestPractices": ["Use standard payroll formats", "Include checksums for validation", "Test with payroll before production", "Reconcile every pay period"]
+      "relatedTerms": [
+        "Payroll Integration",
+        "Commission Payment",
+        "Earning Codes"
+      ],
+      "bestPractices": [
+        "Use standard payroll formats",
+        "Include checksums for validation",
+        "Test with payroll before production",
+        "Reconcile every pay period"
+      ]
     },
     {
       "id": "kb-int-512",
       "keyword": "GL Integration",
-      "aliases": ["General Ledger Feed", "Accounting Integration"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "General Ledger Feed",
+        "Accounting Integration"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Target Systems",
       "component": "Finance",
       "cardType": "concept",
@@ -856,14 +1531,26 @@
       "whyItMatters": "GL integration ensures accurate financial statements, proper expense recognition, and audit-ready compensation accounting.",
       "howItWorks": "1. Commission entries are summarized by GL code. 2. Journal entries are formatted. 3. Posting file is generated. 4. Transfer to GL system. 5. GL confirms posting. 6. Reconciliation validates balances.",
       "example": "Monthly GL feed: Debit Commission Expense $450,000 by cost center, Credit Accrued Commissions $450,000. Posted to Oracle on the 5th after payment. Trial balance reconciliation confirms SPM matches GL within $0.01.",
-      "relatedTerms": ["Financial Close", "Accrual Accounting", "Cost Center Allocation"],
-      "bestPractices": ["Map cost centers accurately", "Support multiple GL structures", "Post after payment finalization", "Reconcile monthly"]
+      "relatedTerms": [
+        "Financial Close",
+        "Accrual Accounting",
+        "Cost Center Allocation"
+      ],
+      "bestPractices": [
+        "Map cost centers accurately",
+        "Support multiple GL structures",
+        "Post after payment finalization",
+        "Reconcile monthly"
+      ]
     },
     {
       "id": "kb-int-513",
       "keyword": "Integration Platform",
-      "aliases": ["iPaaS", "Middleware"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "iPaaS",
+        "Middleware"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Architecture",
       "component": "Platform",
       "cardType": "concept",
@@ -871,14 +1558,26 @@
       "whyItMatters": "Integration platforms reduce development time, improve reliability, and provide centralized management of data flows.",
       "howItWorks": "1. Connectors are configured for sources. 2. Data flows are designed visually. 3. Transformations use built-in functions. 4. Error handling is standardized. 5. Monitoring is centralized. 6. Governance controls access.",
       "example": "MuleSoft integration platform connects Salesforce, Workday, and SAP to SPM. Pre-built connectors reduce development from weeks to days. Centralized dashboard shows all integration status. Reusable transformations ensure consistent data handling.",
-      "relatedTerms": ["ETL Process", "API Management", "Integration Architecture"],
-      "bestPractices": ["Leverage pre-built connectors", "Standardize transformation patterns", "Centralize monitoring", "Implement governance controls"]
+      "relatedTerms": [
+        "ETL Process",
+        "API Management",
+        "Integration Architecture"
+      ],
+      "bestPractices": [
+        "Leverage pre-built connectors",
+        "Standardize transformation patterns",
+        "Centralize monitoring",
+        "Implement governance controls"
+      ]
     },
     {
       "id": "kb-int-514",
       "keyword": "Real-Time Processing",
-      "aliases": ["Streaming Integration", "Event Processing"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Streaming Integration",
+        "Event Processing"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Architecture",
       "component": "Processing",
       "cardType": "concept",
@@ -886,14 +1585,26 @@
       "whyItMatters": "Real-time processing improves rep experience with instant commission visibility, enables proactive management, and supports modern sales motions.",
       "howItWorks": "1. Events trigger on data changes. 2. Message queue buffers events. 3. Stream processor transforms data. 4. Calculations run incrementally. 5. Results update immediately. 6. Dashboards reflect current state.",
       "example": "Deal closure in Salesforce triggers webhook. Event processed in 30 seconds. Commission calculated and visible in rep portal within 2 minutes. Rep sees $5,000 commission for just-closed deal while still on customer call.",
-      "relatedTerms": ["Webhook Integration", "Event-Driven Architecture", "Streaming Data"],
-      "bestPractices": ["Design for idempotency", "Handle out-of-order events", "Monitor processing lag", "Maintain batch backup for recovery"]
+      "relatedTerms": [
+        "Webhook Integration",
+        "Event-Driven Architecture",
+        "Streaming Data"
+      ],
+      "bestPractices": [
+        "Design for idempotency",
+        "Handle out-of-order events",
+        "Monitor processing lag",
+        "Maintain batch backup for recovery"
+      ]
     },
     {
       "id": "kb-int-515",
       "keyword": "Integration Documentation",
-      "aliases": ["Interface Specification", "Integration Design"],
-      "pillar": "INTEGRATION",
+      "aliases": [
+        "Interface Specification",
+        "Integration Design"
+      ],
+      "pillar": "TECHNOLOGY_PLATFORMS",
       "category": "Governance",
       "component": "Documentation",
       "cardType": "concept",
@@ -901,14 +1612,26 @@
       "whyItMatters": "Good documentation enables troubleshooting, supports change management, ensures knowledge transfer, and satisfies audit requirements.",
       "howItWorks": "1. Integration requirements are documented. 2. Technical specifications are created. 3. Mapping documents detail transformations. 4. Runbooks describe operations. 5. Documentation is version controlled. 6. Updates accompany all changes.",
       "example": "Salesforce integration documentation includes: Data flow diagram, field mapping spreadsheet, transformation rules document, error handling procedures, monitoring runbook, and change log. Last updated: January 2026 for new product code field.",
-      "relatedTerms": ["Data Lineage", "Change Management", "Knowledge Base"],
-      "bestPractices": ["Keep documentation current", "Version control all specs", "Include troubleshooting guides", "Review documentation in change process"]
+      "relatedTerms": [
+        "Data Lineage",
+        "Change Management",
+        "Knowledge Base"
+      ],
+      "bestPractices": [
+        "Keep documentation current",
+        "Version control all specs",
+        "Include troubleshooting guides",
+        "Review documentation in change process"
+      ]
     },
     {
       "id": "kb-wf-501",
       "keyword": "New Hire Onboarding",
-      "aliases": ["Sales Onboarding", "Rep Setup"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Sales Onboarding",
+        "Rep Setup"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Lifecycle",
       "component": "Onboarding",
       "cardType": "concept",
@@ -916,14 +1639,26 @@
       "whyItMatters": "Effective onboarding ensures new hires are paid correctly from day one, understand their compensation, and have a positive first experience.",
       "howItWorks": "1. HRIS hire event triggers workflow. 2. Job code determines plan assignment. 3. Manager assigns territory. 4. Quota is set with ramp adjustments. 5. Rep receives plan documentation. 6. Portal access is provisioned. 7. Welcome communication is sent.",
       "example": "Jennifer starts February 1st as Enterprise AE. System automatically assigns Enterprise Plan 2026, sets prorated Q1 quota of $150K (50% for ramp), assigns West-Enterprise territory, provisions portal access, and sends welcome email with plan documents.",
-      "relatedTerms": ["Plan Assignment", "Ramp Period", "Territory Assignment"],
-      "bestPractices": ["Automate trigger from HRIS", "Assign plan before start date", "Provide clear plan documentation", "Schedule comp overview meeting"]
+      "relatedTerms": [
+        "Plan Assignment",
+        "Ramp Period",
+        "Territory Assignment"
+      ],
+      "bestPractices": [
+        "Automate trigger from HRIS",
+        "Assign plan before start date",
+        "Provide clear plan documentation",
+        "Schedule comp overview meeting"
+      ]
     },
     {
       "id": "kb-wf-502",
       "keyword": "Territory Assignment",
-      "aliases": ["Territory Mapping", "Geographic Assignment"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Territory Mapping",
+        "Geographic Assignment"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Territory",
       "component": "Assignment",
       "cardType": "concept",
@@ -931,14 +1666,26 @@
       "whyItMatters": "Accurate territory assignment ensures proper crediting of deals, fair quota distribution, and clear accountability for geographic areas.",
       "howItWorks": "1. Territory structure is defined. 2. Assignment rules match reps to territories. 3. Effective dates control timing. 4. Territory history is maintained. 5. Crediting rules reference assignment. 6. Changes trigger notifications.",
       "example": "Marcus is assigned to territory WEST-ENT-NCA (West Region, Enterprise, Northern California) effective January 1st. All opportunities from accounts headquartered in Northern California with >$100M revenue will credit to Marcus. Previous owner retains credit for deals closed before transition.",
-      "relatedTerms": ["Territory Management", "Sales Crediting", "Account Assignment"],
-      "bestPractices": ["Use clear territory naming", "Maintain assignment history", "Handle transition periods", "Communicate changes proactively"]
+      "relatedTerms": [
+        "Territory Management",
+        "Sales Crediting",
+        "Account Assignment"
+      ],
+      "bestPractices": [
+        "Use clear territory naming",
+        "Maintain assignment history",
+        "Handle transition periods",
+        "Communicate changes proactively"
+      ]
     },
     {
       "id": "kb-wf-503",
       "keyword": "Role Transfer",
-      "aliases": ["Job Change", "Position Transfer"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Job Change",
+        "Position Transfer"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Lifecycle",
       "component": "Transition",
       "cardType": "concept",
@@ -946,14 +1693,26 @@
       "whyItMatters": "Proper role transfer handling ensures continuous accurate compensation, smooth transitions, and proper crediting during the change period.",
       "howItWorks": "1. Role change is received from HRIS. 2. Current plan is ended effective change date. 3. New plan is assigned. 4. Quota is adjusted prorated. 5. Territory is reassigned if needed. 6. Pipeline ownership is transferred. 7. Communication is sent.",
       "example": "Sarah transfers from SMB to Enterprise AE on March 1st. SMB plan ends Feb 28 with prorated Q1 quota. Enterprise plan starts March 1 with 10-month prorated annual quota. Three in-progress deals transfer to new SMB rep with split credit for shared opportunities.",
-      "relatedTerms": ["Plan Assignment", "Quota Adjustment", "Territory Assignment"],
-      "bestPractices": ["Process transfers same-day", "Prorate quotas appropriately", "Handle pipeline transitions", "Communicate clearly to rep"]
+      "relatedTerms": [
+        "Plan Assignment",
+        "Quota Adjustment",
+        "Territory Assignment"
+      ],
+      "bestPractices": [
+        "Process transfers same-day",
+        "Prorate quotas appropriately",
+        "Handle pipeline transitions",
+        "Communicate clearly to rep"
+      ]
     },
     {
       "id": "kb-wf-504",
       "keyword": "Leave of Absence",
-      "aliases": ["LOA", "Leave Management"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "LOA",
+        "Leave Management"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Lifecycle",
       "component": "Leave",
       "cardType": "concept",
@@ -961,14 +1720,26 @@
       "whyItMatters": "Proper LOA handling ensures legal compliance, fair treatment of employees, business continuity during absence, and accurate quota expectations.",
       "howItWorks": "1. Leave request triggers workflow. 2. Policy determines quota treatment. 3. Territory coverage is assigned. 4. Plan rules define payment during leave. 5. Return date triggers reinstatement. 6. Quota is adjusted for leave period.",
       "example": "Michael takes 12-week paternity leave starting April 1. Quota is reduced by $150K (3 months prorated). Territory is temporarily assigned to coverage rep Lisa who receives 50% credit for new deals. Michael continues receiving commission on deals in his pipeline that close during leave.",
-      "relatedTerms": ["Quota Adjustment", "Territory Coverage", "Policy Compliance"],
-      "bestPractices": ["Define clear LOA policies", "Automate quota adjustments", "Assign coverage fairly", "Document coverage arrangements"]
+      "relatedTerms": [
+        "Quota Adjustment",
+        "Territory Coverage",
+        "Policy Compliance"
+      ],
+      "bestPractices": [
+        "Define clear LOA policies",
+        "Automate quota adjustments",
+        "Assign coverage fairly",
+        "Document coverage arrangements"
+      ]
     },
     {
       "id": "kb-wf-505",
       "keyword": "Termination Processing",
-      "aliases": ["Offboarding", "Final Pay Calculation"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Offboarding",
+        "Final Pay Calculation"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Lifecycle",
       "component": "Termination",
       "cardType": "concept",
@@ -976,14 +1747,26 @@
       "whyItMatters": "Proper termination processing ensures legal compliance with final pay regulations, accurate final payment, and smooth transition of accounts.",
       "howItWorks": "1. Termination event received from HRIS. 2. Eligibility determined through term date. 3. Pipeline deals transitioned to new owners. 4. Final commission calculated. 5. Clawback exposure assessed. 6. Final payment processed per policy. 7. System access revoked.",
       "example": "David resigns effective January 15th. Commission calculated through term date. 8 open deals reassigned to territory successor. Final pay includes $12,000 commission earned through January 15th. 60-day clawback period monitored for 3 recent deals. Payment processed with final paycheck.",
-      "relatedTerms": ["Final Pay", "Clawback", "Pipeline Transition"],
-      "bestPractices": ["Process terminations immediately", "Follow state wage laws", "Document pipeline handoff", "Complete clawback review before final pay"]
+      "relatedTerms": [
+        "Final Pay",
+        "Clawback",
+        "Pipeline Transition"
+      ],
+      "bestPractices": [
+        "Process terminations immediately",
+        "Follow state wage laws",
+        "Document pipeline handoff",
+        "Complete clawback review before final pay"
+      ]
     },
     {
       "id": "kb-wf-506",
       "keyword": "Ramp Period",
-      "aliases": ["New Hire Ramp", "Onboarding Period"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "New Hire Ramp",
+        "Onboarding Period"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Onboarding",
       "component": "Ramp",
       "cardType": "concept",
@@ -991,14 +1774,26 @@
       "whyItMatters": "Ramp periods set realistic expectations for new hires, reduce early turnover, and provide financial stability during the learning curve.",
       "howItWorks": "1. Ramp policy defines duration and terms. 2. Quota is reduced per ramp schedule. 3. Draw or guarantee may be provided. 4. Performance is tracked during ramp. 5. Full quota begins at ramp end. 6. Ramp performance may affect status.",
       "example": "90-day ramp for Enterprise AEs: Month 1 - 0% quota, $8K guarantee. Month 2 - 50% quota, $6K guarantee. Month 3 - 75% quota, $4K guarantee. Month 4 - full quota, no guarantee. Sarah closes $50K in month 2, earning 5% = $2,500 commission + $3,500 guarantee top-up.",
-      "relatedTerms": ["Draw", "Guarantee", "Quota Setting"],
-      "bestPractices": ["Match ramp to sales cycle", "Track ramp performance", "Provide training during ramp", "Adjust ramp based on role complexity"]
+      "relatedTerms": [
+        "Draw",
+        "Guarantee",
+        "Quota Setting"
+      ],
+      "bestPractices": [
+        "Match ramp to sales cycle",
+        "Track ramp performance",
+        "Provide training during ramp",
+        "Adjust ramp based on role complexity"
+      ]
     },
     {
       "id": "kb-wf-507",
       "keyword": "Capacity Planning",
-      "aliases": ["Headcount Planning", "Workforce Planning"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Headcount Planning",
+        "Workforce Planning"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Planning",
       "component": "Capacity",
       "cardType": "concept",
@@ -1006,14 +1801,26 @@
       "whyItMatters": "Effective capacity planning ensures sufficient coverage to meet revenue goals while maintaining appropriate cost ratios and quota achievability.",
       "howItWorks": "1. Revenue target is established. 2. Average quota per rep is determined. 3. Expected attainment rates considered. 4. Required headcount calculated. 5. Ramp impact is factored. 6. Attrition assumption added. 7. Hiring plan is created.",
       "example": "2026 revenue target: $50M. Average quota: $500K. Expected attainment: 80%. Productive capacity needed: $62.5M quota. Reps needed: 125. Account for 15% attrition and 90-day ramp: Hire 150 by EOY with staggered start dates.",
-      "relatedTerms": ["Quota Setting", "Productivity Metrics", "Hiring Plan"],
-      "bestPractices": ["Update quarterly", "Factor in ramp productivity", "Account for attrition", "Align with finance planning"]
+      "relatedTerms": [
+        "Quota Setting",
+        "Productivity Metrics",
+        "Hiring Plan"
+      ],
+      "bestPractices": [
+        "Update quarterly",
+        "Factor in ramp productivity",
+        "Account for attrition",
+        "Align with finance planning"
+      ]
     },
     {
       "id": "kb-wf-508",
       "keyword": "Performance Management",
-      "aliases": ["Performance Review", "Rep Performance"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Performance Review",
+        "Rep Performance"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Performance",
       "component": "Management",
       "cardType": "concept",
@@ -1021,14 +1828,26 @@
       "whyItMatters": "Effective performance management improves overall team results, enables coaching opportunities, and identifies top performers and those needing support.",
       "howItWorks": "1. Goals are set aligned to comp plan. 2. Performance is tracked against goals. 3. Regular reviews assess progress. 4. Coaching addresses improvement areas. 5. Recognition rewards strong performance. 6. Action plans address underperformance.",
       "example": "Q1 performance review shows Sarah at 125% of quota (exceeds expectations), Marcus at 85% (meets expectations with upward trend), and David at 60% (below expectations). Sarah nominated for President's Club, Marcus continues current plan, David begins 60-day improvement plan.",
-      "relatedTerms": ["Quota Attainment", "Coaching", "Performance Improvement"],
-      "bestPractices": ["Review performance monthly", "Combine quantitative and qualitative", "Document feedback consistently", "Act quickly on underperformance"]
+      "relatedTerms": [
+        "Quota Attainment",
+        "Coaching",
+        "Performance Improvement"
+      ],
+      "bestPractices": [
+        "Review performance monthly",
+        "Combine quantitative and qualitative",
+        "Document feedback consistently",
+        "Act quickly on underperformance"
+      ]
     },
     {
       "id": "kb-wf-509",
       "keyword": "Compensation Review",
-      "aliases": ["Comp Review", "Pay Review"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Comp Review",
+        "Pay Review"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Compensation",
       "component": "Review",
       "cardType": "concept",
@@ -1036,14 +1855,26 @@
       "whyItMatters": "Regular compensation reviews help retain top talent, ensure fair pay practices, and maintain competitive positioning in the talent market.",
       "howItWorks": "1. Market data is gathered and analyzed. 2. Internal equity is reviewed. 3. Performance is factored in. 4. Budget constraints are considered. 5. Recommendations are developed. 6. Approvals are obtained. 7. Changes are communicated and implemented.",
       "example": "Annual comp review finds Enterprise AE OTE 5% below market median. Budget allows 3% increase pool. Top performers (15 reps) receive 5% increase, solid performers (25 reps) receive 3%, underperformers (5 reps) receive 0% pending improvement.",
-      "relatedTerms": ["Market Data", "Pay Equity", "OTE"],
-      "bestPractices": ["Review annually at minimum", "Use multiple market data sources", "Consider total compensation", "Communicate changes clearly"]
+      "relatedTerms": [
+        "Market Data",
+        "Pay Equity",
+        "OTE"
+      ],
+      "bestPractices": [
+        "Review annually at minimum",
+        "Use multiple market data sources",
+        "Consider total compensation",
+        "Communicate changes clearly"
+      ]
     },
     {
       "id": "kb-wf-510",
       "keyword": "Skills Assessment",
-      "aliases": ["Competency Assessment", "Capability Review"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Competency Assessment",
+        "Capability Review"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Development",
       "component": "Assessment",
       "cardType": "concept",
@@ -1051,14 +1882,26 @@
       "whyItMatters": "Skills assessment enables targeted development, supports succession planning, and helps match representatives to appropriate roles.",
       "howItWorks": "1. Competency framework defines required skills. 2. Current skill levels are assessed. 3. Gaps to role requirements identified. 4. Development priorities established. 5. Training is assigned. 6. Progress is tracked over time.",
       "example": "Enterprise AE competency assessment covers: Discovery skills (4/5), Solution selling (3/5), Executive presence (3/5), Negotiation (4/5), Technical knowledge (2/5). Development plan focuses on technical training and executive coaching to address gaps.",
-      "relatedTerms": ["Training", "Career Development", "Succession Planning"],
-      "bestPractices": ["Use consistent competency framework", "Include self and manager assessment", "Link to development planning", "Reassess periodically"]
+      "relatedTerms": [
+        "Training",
+        "Career Development",
+        "Succession Planning"
+      ],
+      "bestPractices": [
+        "Use consistent competency framework",
+        "Include self and manager assessment",
+        "Link to development planning",
+        "Reassess periodically"
+      ]
     },
     {
       "id": "kb-wf-511",
       "keyword": "Promotion Criteria",
-      "aliases": ["Advancement Criteria", "Career Progression"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Advancement Criteria",
+        "Career Progression"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Career",
       "component": "Progression",
       "cardType": "concept",
@@ -1066,14 +1909,26 @@
       "whyItMatters": "Clear promotion criteria provide career visibility, motivate performance, ensure fair advancement decisions, and support talent development.",
       "howItWorks": "1. Career levels are defined. 2. Requirements for each level documented. 3. Candidates are evaluated against criteria. 4. Recommendations go through approval. 5. Promotions take effect with new comp plan. 6. Non-promotions include feedback.",
       "example": "AE to Senior AE promotion requires: 4+ quarters at 100%+ quota attainment, demonstrated deal complexity (3+ $100K deals), positive peer feedback, and manager recommendation. Jennifer meets all criteria and is promoted effective Q2 with new quota and rate table.",
-      "relatedTerms": ["Career Ladder", "Performance Management", "Compensation Review"],
-      "bestPractices": ["Document criteria clearly", "Apply consistently", "Communicate requirements proactively", "Provide feedback on gaps"]
+      "relatedTerms": [
+        "Career Ladder",
+        "Performance Management",
+        "Compensation Review"
+      ],
+      "bestPractices": [
+        "Document criteria clearly",
+        "Apply consistently",
+        "Communicate requirements proactively",
+        "Provide feedback on gaps"
+      ]
     },
     {
       "id": "kb-wf-512",
       "keyword": "Coverage Model",
-      "aliases": ["Sales Coverage", "Go-to-Market Model"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Sales Coverage",
+        "Go-to-Market Model"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Design",
       "component": "Coverage",
       "cardType": "concept",
@@ -1081,14 +1936,26 @@
       "whyItMatters": "Optimal coverage models maximize revenue potential, ensure appropriate resource allocation, and align compensation structures to market strategy.",
       "howItWorks": "1. Market is segmented by opportunity. 2. Customer needs drive coverage approach. 3. Role types are defined for segments. 4. Territory capacity is determined. 5. Headcount is allocated. 6. Comp plans align to model.",
       "example": "Coverage model: Enterprise (>$1B revenue) = Named accounts with dedicated AE (40 accounts each). Mid-Market ($100M-$1B) = Geographic territories with AE + SDR. SMB (<$100M) = Inside sales with high-velocity model (200+ accounts).",
-      "relatedTerms": ["Territory Design", "Role Design", "Capacity Planning"],
-      "bestPractices": ["Align coverage to customer needs", "Balance workload across reps", "Review coverage annually", "Adjust for market changes"]
+      "relatedTerms": [
+        "Territory Design",
+        "Role Design",
+        "Capacity Planning"
+      ],
+      "bestPractices": [
+        "Align coverage to customer needs",
+        "Balance workload across reps",
+        "Review coverage annually",
+        "Adjust for market changes"
+      ]
     },
     {
       "id": "kb-wf-513",
       "keyword": "Retention Risk Analysis",
-      "aliases": ["Flight Risk", "Attrition Analysis"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Flight Risk",
+        "Attrition Analysis"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Analytics",
       "component": "Retention",
       "cardType": "concept",
@@ -1096,14 +1963,26 @@
       "whyItMatters": "Early identification of retention risk enables intervention to retain valuable talent and reduces the high cost of sales turnover.",
       "howItWorks": "1. Risk indicators are identified. 2. Data is gathered from multiple sources. 3. Risk scores are calculated. 4. High-risk reps are flagged. 5. Managers are alerted. 6. Retention actions are taken. 7. Outcomes are tracked.",
       "example": "Retention model flags Marcus as high risk: Declining quota attainment (trending down 3 quarters), 2+ years in role without promotion, below-market OTE, and reduced CRM activity. Manager schedules career discussion and comp review reveals 10% pay gap to address.",
-      "relatedTerms": ["Turnover Analysis", "Compensation Review", "Career Development"],
-      "bestPractices": ["Use multiple risk indicators", "Act on insights quickly", "Track retention actions", "Measure intervention effectiveness"]
+      "relatedTerms": [
+        "Turnover Analysis",
+        "Compensation Review",
+        "Career Development"
+      ],
+      "bestPractices": [
+        "Use multiple risk indicators",
+        "Act on insights quickly",
+        "Track retention actions",
+        "Measure intervention effectiveness"
+      ]
     },
     {
       "id": "kb-wf-514",
       "keyword": "Organizational Change",
-      "aliases": ["Reorg", "Restructuring"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "Reorg",
+        "Restructuring"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Change",
       "component": "Organization",
       "cardType": "concept",
@@ -1111,14 +1990,26 @@
       "whyItMatters": "Proper handling of organizational change ensures fair treatment during transitions, maintains productivity, and accurate compensation through changes.",
       "howItWorks": "1. Change scope and timeline defined. 2. Impact assessment completed. 3. Transition rules established. 4. Communication plan developed. 5. System changes implemented. 6. Credits and quotas transitioned. 7. Post-change monitoring.",
       "example": "Regional consolidation merges 3 territories into 2. 45 reps affected with 15 changing managers. Transition rules: existing pipeline follows current owner through close, Q2 quota prorated by days in each territory, no double-jeopardy on deals. Implementation over 3 weeks with daily checkpoints.",
-      "relatedTerms": ["Territory Assignment", "Quota Adjustment", "Change Management"],
-      "bestPractices": ["Plan changes thoroughly", "Communicate early and often", "Protect rep earnings during transition", "Monitor post-change carefully"]
+      "relatedTerms": [
+        "Territory Assignment",
+        "Quota Adjustment",
+        "Change Management"
+      ],
+      "bestPractices": [
+        "Plan changes thoroughly",
+        "Communicate early and often",
+        "Protect rep earnings during transition",
+        "Monitor post-change carefully"
+      ]
     },
     {
       "id": "kb-wf-515",
       "keyword": "Workforce Analytics",
-      "aliases": ["People Analytics", "HR Analytics"],
-      "pillar": "WORKFORCE",
+      "aliases": [
+        "People Analytics",
+        "HR Analytics"
+      ],
+      "pillar": "SALES_PLANNING",
       "category": "Analytics",
       "component": "Analytics",
       "cardType": "concept",
@@ -1126,14 +2017,26 @@
       "whyItMatters": "Workforce analytics enables data-driven decisions on hiring, compensation, and organization design that optimize sales performance.",
       "howItWorks": "1. Workforce data is collected. 2. Metrics are calculated and trended. 3. Benchmarks provide context. 4. Analysis identifies patterns. 5. Insights drive recommendations. 6. Decisions are tracked for impact.",
       "example": "Workforce analytics reveals: Enterprise AE productivity 15% above target, SMB turnover at 25% (10% above benchmark), time-to-productivity for new hires is 6 months (target 4 months). Actions: Expand Enterprise team, address SMB compensation, enhance onboarding program.",
-      "relatedTerms": ["Capacity Planning", "Retention Risk Analysis", "Productivity Metrics"],
-      "bestPractices": ["Define key workforce metrics", "Benchmark externally", "Connect to business outcomes", "Act on insights"]
+      "relatedTerms": [
+        "Capacity Planning",
+        "Retention Risk Analysis",
+        "Productivity Metrics"
+      ],
+      "bestPractices": [
+        "Define key workforce metrics",
+        "Benchmark externally",
+        "Connect to business outcomes",
+        "Act on insights"
+      ]
     },
     {
       "id": "kb-cm-501",
       "keyword": "Plan Change Process",
-      "aliases": ["Comp Plan Update", "Plan Amendment"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Comp Plan Update",
+        "Plan Amendment"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Process",
       "component": "Changes",
       "cardType": "concept",
@@ -1141,14 +2044,26 @@
       "whyItMatters": "Structured change processes ensure proper evaluation, stakeholder alignment, legal compliance, and smooth implementation of plan modifications.",
       "howItWorks": "1. Change request is submitted with justification. 2. Impact analysis assesses cost and rep effects. 3. Legal review ensures compliance. 4. Approvals obtained at required levels. 5. Communication plan developed. 6. System changes implemented. 7. Documentation updated.",
       "example": "Q3 accelerator adjustment request: Increase rate from 1.5x to 2.0x for deals above 150% quota. Impact analysis: $250K additional cost, 15 reps affected positively. Legal approves plan amendment language. VP Sales and CFO approve. Communicated to field 2 weeks before effective date.",
-      "relatedTerms": ["Plan Design", "Impact Analysis", "Communication"],
-      "bestPractices": ["Document all changes formally", "Assess full impact before approval", "Communicate proactively", "Update all plan documentation"]
+      "relatedTerms": [
+        "Plan Design",
+        "Impact Analysis",
+        "Communication"
+      ],
+      "bestPractices": [
+        "Document all changes formally",
+        "Assess full impact before approval",
+        "Communicate proactively",
+        "Update all plan documentation"
+      ]
     },
     {
       "id": "kb-cm-502",
       "keyword": "Mid-Year Adjustment",
-      "aliases": ["In-Year Change", "Plan Modification"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "In-Year Change",
+        "Plan Modification"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Changes",
       "component": "Adjustments",
       "cardType": "concept",
@@ -1156,14 +2071,26 @@
       "whyItMatters": "Mid-year adjustments must balance business needs with rep trust, requiring clear policies, fair treatment, and transparent communication.",
       "howItWorks": "1. Business need for change is identified. 2. Policy governs allowable adjustments. 3. Impact on reps is assessed. 4. Change is minimized where possible. 5. Communication explains rationale. 6. Transition rules protect rep earnings. 7. Post-change monitoring occurs.",
       "example": "Market shift requires mid-year quota reduction of 10% across all territories. Policy allows one adjustment per year with leadership approval. Change announced with explanation of market conditions, effective for H2 only, with Q1-Q2 attainment locked at current achievement.",
-      "relatedTerms": ["Quota Adjustment", "Plan Change Process", "Communication"],
-      "bestPractices": ["Limit mid-year changes", "Explain business rationale", "Protect earned attainment", "Apply changes fairly across team"]
+      "relatedTerms": [
+        "Quota Adjustment",
+        "Plan Change Process",
+        "Communication"
+      ],
+      "bestPractices": [
+        "Limit mid-year changes",
+        "Explain business rationale",
+        "Protect earned attainment",
+        "Apply changes fairly across team"
+      ]
     },
     {
       "id": "kb-cm-503",
       "keyword": "Communication Plan",
-      "aliases": ["Change Communication", "Rollout Plan"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Change Communication",
+        "Rollout Plan"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Communication",
       "component": "Planning",
       "cardType": "concept",
@@ -1171,14 +2098,26 @@
       "whyItMatters": "Effective communication prevents confusion, builds understanding and buy-in, reduces inquiries, and maintains trust through changes.",
       "howItWorks": "1. Audiences are identified with needs. 2. Key messages are developed. 3. Timing is planned strategically. 4. Channels are selected by audience. 5. Materials are created and reviewed. 6. Communications are executed. 7. Feedback is gathered.",
       "example": "2026 plan rollout: Week 1 - Leadership briefing with strategic context. Week 2 - Manager training with coaching guides. Week 3 - All-hands announcement. Week 4 - Rep 1:1s with personalized plan details. Week 5 - Q&A sessions. Throughout - FAQ updates based on questions.",
-      "relatedTerms": ["Stakeholder Management", "Training", "Change Readiness"],
-      "bestPractices": ["Communicate early and often", "Tailor messages by audience", "Prepare managers first", "Provide channels for questions"]
+      "relatedTerms": [
+        "Stakeholder Management",
+        "Training",
+        "Change Readiness"
+      ],
+      "bestPractices": [
+        "Communicate early and often",
+        "Tailor messages by audience",
+        "Prepare managers first",
+        "Provide channels for questions"
+      ]
     },
     {
       "id": "kb-cm-504",
       "keyword": "Impact Analysis",
-      "aliases": ["Change Impact", "Cost Analysis"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Change Impact",
+        "Cost Analysis"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Analysis",
       "component": "Assessment",
       "cardType": "concept",
@@ -1186,14 +2125,26 @@
       "whyItMatters": "Thorough impact analysis prevents costly surprises, identifies unintended consequences, and provides data for informed decision-making.",
       "howItWorks": "1. Change parameters are defined. 2. Historical data is analyzed. 3. Earnings impact is modeled by rep. 4. Cost impact is calculated. 5. Behavioral effects are considered. 6. Risks are identified. 7. Findings inform decision.",
       "example": "Proposed accelerator change analysis: Based on last 12 months, 23 reps would have earned additional $340K total. 5 reps would earn >$50K more (potential windfall review). Cost increase is 8% of variable budget. Recommended: Proceed with cap at 200% quota achievement.",
-      "relatedTerms": ["Modeling", "Cost Projection", "Scenario Analysis"],
-      "bestPractices": ["Model with historical data", "Identify outlier effects", "Consider behavioral impact", "Present range of scenarios"]
+      "relatedTerms": [
+        "Modeling",
+        "Cost Projection",
+        "Scenario Analysis"
+      ],
+      "bestPractices": [
+        "Model with historical data",
+        "Identify outlier effects",
+        "Consider behavioral impact",
+        "Present range of scenarios"
+      ]
     },
     {
       "id": "kb-cm-505",
       "keyword": "Transition Rules",
-      "aliases": ["Change Rules", "Transition Policy"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Change Rules",
+        "Transition Policy"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Policy",
       "component": "Transitions",
       "cardType": "concept",
@@ -1201,14 +2152,26 @@
       "whyItMatters": "Clear transition rules provide predictability, ensure fair treatment, reduce disputes, and enable smooth change implementation.",
       "howItWorks": "1. Transition scenarios are defined. 2. Rules specify handling of each scenario. 3. Rules are documented in policy. 4. Communication explains rules. 5. System implements rules. 6. Exceptions follow defined process.",
       "example": "Territory transition rules: Deals in committed stage follow current owner regardless of new assignment. Deals in earlier stages transfer to new owner on effective date. If deal closes within 30 days of transition, both reps receive 50% credit. Pipeline value is split proportionally for quota.",
-      "relatedTerms": ["Territory Assignment", "Role Transfer", "Plan Change Process"],
-      "bestPractices": ["Define rules before changes occur", "Cover all common scenarios", "Communicate rules clearly", "Apply rules consistently"]
+      "relatedTerms": [
+        "Territory Assignment",
+        "Role Transfer",
+        "Plan Change Process"
+      ],
+      "bestPractices": [
+        "Define rules before changes occur",
+        "Cover all common scenarios",
+        "Communicate rules clearly",
+        "Apply rules consistently"
+      ]
     },
     {
       "id": "kb-cm-506",
       "keyword": "Training Program",
-      "aliases": ["Comp Training", "Plan Training"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Comp Training",
+        "Plan Training"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Enablement",
       "component": "Training",
       "cardType": "concept",
@@ -1216,14 +2179,26 @@
       "whyItMatters": "Effective training ensures plan understanding, reduces inquiries and disputes, and enables reps to optimize their earnings potential.",
       "howItWorks": "1. Training needs are assessed. 2. Content is developed by audience. 3. Delivery methods are selected. 4. Training is scheduled and delivered. 5. Comprehension is assessed. 6. Follow-up reinforces learning. 7. Effectiveness is measured.",
       "example": "2026 plan training: Online module (30 min, mandatory) covering plan basics. Live webinar (60 min) with examples and Q&A. Manager certification on coaching conversations. Sandbox calculator for 'what-if' scenarios. 92% completion rate, 4.3/5 satisfaction score.",
-      "relatedTerms": ["Communication Plan", "Onboarding", "Manager Enablement"],
-      "bestPractices": ["Tailor content by role", "Use multiple delivery methods", "Provide hands-on practice", "Measure comprehension"]
+      "relatedTerms": [
+        "Communication Plan",
+        "Onboarding",
+        "Manager Enablement"
+      ],
+      "bestPractices": [
+        "Tailor content by role",
+        "Use multiple delivery methods",
+        "Provide hands-on practice",
+        "Measure comprehension"
+      ]
     },
     {
       "id": "kb-cm-507",
       "keyword": "Stakeholder Management",
-      "aliases": ["Stakeholder Engagement", "Change Champions"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Stakeholder Engagement",
+        "Change Champions"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Engagement",
       "component": "Stakeholders",
       "cardType": "concept",
@@ -1231,14 +2206,26 @@
       "whyItMatters": "Effective stakeholder management builds buy-in, identifies potential resistance early, and creates advocates who support successful change.",
       "howItWorks": "1. Stakeholders are identified and mapped. 2. Interests and concerns are assessed. 3. Engagement strategy is developed. 4. Key stakeholders are involved early. 5. Concerns are addressed. 6. Champions are equipped to advocate. 7. Ongoing engagement maintains support.",
       "example": "Plan redesign stakeholder map: Executive sponsor (CFO), Decision makers (VP Sales, VP Finance), Influencers (Regional Directors), Change champions (top-performing reps), Affected users (all sales reps). Regional Directors engaged in design workshops, becoming advocates for new plan.",
-      "relatedTerms": ["Communication Plan", "Executive Sponsorship", "Change Champions"],
-      "bestPractices": ["Identify stakeholders early", "Assess power and interest", "Engage influencers in design", "Create change champion network"]
+      "relatedTerms": [
+        "Communication Plan",
+        "Executive Sponsorship",
+        "Change Champions"
+      ],
+      "bestPractices": [
+        "Identify stakeholders early",
+        "Assess power and interest",
+        "Engage influencers in design",
+        "Create change champion network"
+      ]
     },
     {
       "id": "kb-cm-508",
       "keyword": "Resistance Management",
-      "aliases": ["Change Resistance", "Objection Handling"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Change Resistance",
+        "Objection Handling"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Engagement",
       "component": "Resistance",
       "cardType": "concept",
@@ -1246,14 +2233,26 @@
       "whyItMatters": "Unaddressed resistance undermines change success, reduces morale, and can lead to unwanted turnover of valuable sales talent.",
       "howItWorks": "1. Resistance indicators are monitored. 2. Root causes are understood. 3. Concerns are acknowledged. 4. Rational concerns are addressed. 5. Emotional concerns are managed. 6. Visible wins build momentum. 7. Persistent resistance is escalated.",
       "example": "Quota increase resistance: Survey reveals concerns about unrealistic targets. Root cause: reps don't understand market analysis. Address: Share market data in town halls, show peer benchmarks. Create 'quick win' milestones. Designate top performers to share strategies. Resistance decreases from 60% to 25%.",
-      "relatedTerms": ["Stakeholder Management", "Communication Plan", "Change Readiness"],
-      "bestPractices": ["Listen to understand root causes", "Address concerns transparently", "Celebrate early successes", "Escalate persistent issues"]
+      "relatedTerms": [
+        "Stakeholder Management",
+        "Communication Plan",
+        "Change Readiness"
+      ],
+      "bestPractices": [
+        "Listen to understand root causes",
+        "Address concerns transparently",
+        "Celebrate early successes",
+        "Escalate persistent issues"
+      ]
     },
     {
       "id": "kb-cm-509",
       "keyword": "Change Readiness",
-      "aliases": ["Readiness Assessment", "Go-Live Readiness"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Readiness Assessment",
+        "Go-Live Readiness"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Planning",
       "component": "Readiness",
       "cardType": "concept",
@@ -1261,14 +2260,26 @@
       "whyItMatters": "Readiness assessment identifies gaps before implementation, enabling corrective action and reducing risk of failed changes.",
       "howItWorks": "1. Readiness criteria are defined. 2. Assessment is conducted. 3. Gaps are identified and prioritized. 4. Remediation actions are taken. 5. Reassessment confirms readiness. 6. Go/no-go decision is made. 7. Contingency plans are prepared.",
       "example": "2026 plan go-live readiness: System testing (95% complete, 2 critical bugs), Training (88% completion, 12% outstanding), Communication (100% complete), Data migration (100% complete), Support staffing (80%, need 2 more analysts). Decision: Delay 1 week to complete bugs and training.",
-      "relatedTerms": ["Implementation Planning", "Testing", "Go-Live"],
-      "bestPractices": ["Define clear readiness criteria", "Assess objectively", "Build contingency time", "Have clear go/no-go decision process"]
+      "relatedTerms": [
+        "Implementation Planning",
+        "Testing",
+        "Go-Live"
+      ],
+      "bestPractices": [
+        "Define clear readiness criteria",
+        "Assess objectively",
+        "Build contingency time",
+        "Have clear go/no-go decision process"
+      ]
     },
     {
       "id": "kb-cm-510",
       "keyword": "Rollback Plan",
-      "aliases": ["Contingency Plan", "Revert Strategy"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Contingency Plan",
+        "Revert Strategy"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Risk",
       "component": "Contingency",
       "cardType": "concept",
@@ -1276,14 +2287,26 @@
       "whyItMatters": "Rollback plans provide insurance against implementation failures, reducing risk and enabling faster recovery if problems occur.",
       "howItWorks": "1. Rollback triggers are defined. 2. Technical rollback procedure documented. 3. Business rollback process established. 4. Communication templates prepared. 5. Decision authority defined. 6. Rollback is tested. 7. Plan is updated based on lessons learned.",
       "example": "New plan rollback criteria: >5% calculation errors, system unavailability >4 hours, or executive decision. Technical rollback: Restore previous plan configuration from backup (2-hour process). Business rollback: Communicate 'temporary revert,' manual adjustments for affected reps, root cause analysis.",
-      "relatedTerms": ["Change Readiness", "Risk Management", "Implementation Planning"],
-      "bestPractices": ["Define clear rollback triggers", "Test rollback procedure", "Prepare communication templates", "Document decision authority"]
+      "relatedTerms": [
+        "Change Readiness",
+        "Risk Management",
+        "Implementation Planning"
+      ],
+      "bestPractices": [
+        "Define clear rollback triggers",
+        "Test rollback procedure",
+        "Prepare communication templates",
+        "Document decision authority"
+      ]
     },
     {
       "id": "kb-cm-511",
       "keyword": "Annual Plan Cycle",
-      "aliases": ["Plan Lifecycle", "Comp Calendar"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Plan Lifecycle",
+        "Comp Calendar"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Planning",
       "component": "Lifecycle",
       "cardType": "concept",
@@ -1291,14 +2314,26 @@
       "whyItMatters": "A well-managed annual cycle ensures timely plan availability, proper stakeholder involvement, and alignment with business planning.",
       "howItWorks": "1. Timeline is established (typically 4-6 months). 2. Design phase develops plan options. 3. Modeling evaluates alternatives. 4. Approval process gains alignment. 5. Implementation builds plans. 6. Communication and training enable field. 7. Launch activates new plans.",
       "example": "2026 plan cycle: July-Aug - Strategy alignment and design principles. Sept-Oct - Plan design and modeling. Nov - Executive approval. Dec - System build, testing, and training. Jan 1 - Plan effective date. Jan - Field rollout and Q&A sessions.",
-      "relatedTerms": ["Plan Design", "Implementation Planning", "Communication Plan"],
-      "bestPractices": ["Start 6 months before effective date", "Build in contingency time", "Get approval before building", "Plan rollout as carefully as design"]
+      "relatedTerms": [
+        "Plan Design",
+        "Implementation Planning",
+        "Communication Plan"
+      ],
+      "bestPractices": [
+        "Start 6 months before effective date",
+        "Build in contingency time",
+        "Get approval before building",
+        "Plan rollout as carefully as design"
+      ]
     },
     {
       "id": "kb-cm-512",
       "keyword": "Version Control",
-      "aliases": ["Plan Versioning", "Document Control"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Plan Versioning",
+        "Document Control"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Governance",
       "component": "Control",
       "cardType": "concept",
@@ -1306,14 +2341,26 @@
       "whyItMatters": "Version control prevents confusion from outdated documents, supports audit requirements, and enables analysis of plan changes over time.",
       "howItWorks": "1. Versioning convention is established. 2. Changes increment version numbers. 3. Previous versions are archived. 4. Active version is clearly marked. 5. Distribution points to current version. 6. Access controls protect integrity. 7. Version history is maintained.",
       "example": "Enterprise AE Plan 2026: v1.0 - Initial release (Jan 1), v1.1 - Clarification on split credit rules (Feb 15), v2.0 - Mid-year accelerator adjustment (July 1). Rep portal always displays current version with change log link. Previous versions accessible to administrators.",
-      "relatedTerms": ["Plan Documentation", "Change Control", "Audit Trail"],
-      "bestPractices": ["Use consistent versioning convention", "Document all changes", "Archive previous versions", "Control access to make changes"]
+      "relatedTerms": [
+        "Plan Documentation",
+        "Change Control",
+        "Audit Trail"
+      ],
+      "bestPractices": [
+        "Use consistent versioning convention",
+        "Document all changes",
+        "Archive previous versions",
+        "Control access to make changes"
+      ]
     },
     {
       "id": "kb-cm-513",
       "keyword": "Post-Implementation Review",
-      "aliases": ["PIR", "Lessons Learned"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "PIR",
+        "Lessons Learned"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Improvement",
       "component": "Review",
       "cardType": "concept",
@@ -1321,14 +2368,26 @@
       "whyItMatters": "Post-implementation reviews enable continuous improvement of change processes, capture institutional knowledge, and validate that objectives were met.",
       "howItWorks": "1. Review is scheduled 30-90 days post-implementation. 2. Success criteria are evaluated. 3. Stakeholder feedback is gathered. 4. Issues are documented. 5. Root causes are analyzed. 6. Lessons learned are captured. 7. Improvements are implemented.",
       "example": "2026 plan PIR (60 days post-launch): On-time launch achieved, 4% inquiry rate (target <5%), 2 calculation errors identified and fixed, training satisfaction 4.2/5. Lessons: Allow more time for testing, improve territory mapping validation. Actions incorporated into 2027 cycle.",
-      "relatedTerms": ["Change Readiness", "Continuous Improvement", "Success Metrics"],
-      "bestPractices": ["Schedule review before go-live", "Gather broad stakeholder input", "Focus on improvement not blame", "Apply lessons to future cycles"]
+      "relatedTerms": [
+        "Change Readiness",
+        "Continuous Improvement",
+        "Success Metrics"
+      ],
+      "bestPractices": [
+        "Schedule review before go-live",
+        "Gather broad stakeholder input",
+        "Focus on improvement not blame",
+        "Apply lessons to future cycles"
+      ]
     },
     {
       "id": "kb-cm-514",
       "keyword": "Change Control Board",
-      "aliases": ["CCB", "Change Committee"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "CCB",
+        "Change Committee"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Governance",
       "component": "Approval",
       "cardType": "concept",
@@ -1336,14 +2395,26 @@
       "whyItMatters": "A change control board provides structured governance, ensures consistent decision-making, and maintains accountability for plan changes.",
       "howItWorks": "1. Board membership is defined. 2. Meeting cadence is established. 3. Change requests are submitted. 4. Board reviews impact and rationale. 5. Decision is made (approve/reject/defer). 6. Approved changes proceed to implementation. 7. Decisions are documented.",
       "example": "Compensation Change Control Board meets bi-weekly with Sales Ops (chair), Finance, HR, Legal, and Sales Leadership. January meeting reviews: Q2 SPIF proposal (approved with modification), accelerator adjustment request (deferred for more analysis), territory boundary update (approved).",
-      "relatedTerms": ["Plan Change Process", "Governance", "Approval Workflow"],
-      "bestPractices": ["Include cross-functional representation", "Meet regularly", "Document all decisions", "Communicate decisions promptly"]
+      "relatedTerms": [
+        "Plan Change Process",
+        "Governance",
+        "Approval Workflow"
+      ],
+      "bestPractices": [
+        "Include cross-functional representation",
+        "Meet regularly",
+        "Document all decisions",
+        "Communicate decisions promptly"
+      ]
     },
     {
       "id": "kb-cm-515",
       "keyword": "Grandfathering",
-      "aliases": ["Legacy Protection", "Transition Protection"],
-      "pillar": "CHANGE_MANAGEMENT",
+      "aliases": [
+        "Legacy Protection",
+        "Transition Protection"
+      ],
+      "pillar": "IMPLEMENTATION_CHANGE",
       "category": "Policy",
       "component": "Protection",
       "cardType": "concept",
@@ -1351,8 +2422,17 @@
       "whyItMatters": "Grandfathering maintains fairness, honors existing commitments, reduces change resistance, and protects reps from unexpected earnings reductions.",
       "howItWorks": "1. Change impact identifies affected reps. 2. Grandfathering policy determines eligibility. 3. Protection period is defined. 4. Old and new plan provisions coexist. 5. System tracks grandfathered arrangements. 6. Protection expires per policy. 7. Full transition to new plan.",
       "example": "New territory model reduces some territory sizes. 12 affected reps are grandfathered at current quota level for 6 months. After 6 months, quotas adjust to new territory potential. During grandfathering, commission is calculated on better of old or new plan terms.",
-      "relatedTerms": ["Transition Rules", "Mid-Year Adjustment", "Holdback"],
-      "bestPractices": ["Define clear eligibility criteria", "Set reasonable protection periods", "Communicate grandfather terms", "Track expiration dates"]
+      "relatedTerms": [
+        "Transition Rules",
+        "Mid-Year Adjustment",
+        "Holdback"
+      ],
+      "bestPractices": [
+        "Define clear eligibility criteria",
+        "Set reasonable protection periods",
+        "Communicate grandfather terms",
+        "Track expiration dates"
+      ]
     }
   ]
 }
