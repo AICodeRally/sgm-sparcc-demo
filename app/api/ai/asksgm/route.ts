@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getRallyLLMClient, isRallyLLMConfigured } from '@/lib/ai/rally-llm-client';
 // AICR Platform client for expert hierarchy (SGM → SPARCC → Summit → Platform)
-import { getAICRClient, isAICRConfigured, type AskSGMResponse } from '@/lib/aicr';
+import {
+  getAICRClient,
+  isAICRConfigured,
+  type AskSGMResponse,
+  type SpineSearchResponse,
+} from '@/lib/aicr';
 // Real governance knowledge base (replaces synthetic mock data)
 import {
   GOVERNANCE_POLICIES,
@@ -243,14 +248,15 @@ When citing decisions, use the DecisionId:
 
     // LLM Priority Chain (Gateway Pattern):
     // 1. AICR Platform (expert hierarchy with RAG)
-    // 2. Rally LLaMA (local, SPM-tuned)
-    // 3. Claude API (cloud fallback)
+    // 2. Rally LLaMA (local, SPM-tuned) + Spine RAG
+    // 3. Claude API (cloud fallback) + Spine RAG
     const startTime = Date.now();
     let responseContent: string = '';
     let modelUsed: string = 'unknown';
     let tokensUsed: { input: number; output: number; total: number } = { input: 0, output: 0, total: 0 };
     let cached: boolean = false;
     let aicrResponse: AskSGMResponse | null = null;
+    let spineSearchResponse: SpineSearchResponse | null = null;
 
     // Priority 1: Try AICR Platform (expert hierarchy)
     if (isAICRConfigured()) {
@@ -290,12 +296,45 @@ When citing decisions, use the DecisionId:
       }
     }
 
+    // If AICR is not available, try to get RAG context via spine search
+    // This enables RAG-backed responses even when using local LLMs
+    if (!aicrResponse && isAICRConfigured()) {
+      try {
+        console.log(`[TOOL] [AskSGM] Fetching RAG context via spine search...`);
+        const aicrClient = getAICRClient();
+        const lastUserMessage = messages.filter(m => m.role === 'user').pop();
+        if (lastUserMessage) {
+          spineSearchResponse = await aicrClient.spineSearch(lastUserMessage.content, {
+            limit: 8,
+            vectorWeight: 0.6,
+            keywordWeight: 0.4,
+            minScore: 0.3,
+            // Focus on governance-related content
+            filePatterns: ['**/governance/**', '**/policies/**', '**/spm/**'],
+          });
+          console.log(`[OK] [AskSGM] Spine search returned ${spineSearchResponse.count} RAG chunks`);
+        }
+      } catch (spineError) {
+        console.warn(`[WARN] [AskSGM] Spine search failed:`, spineError);
+      }
+    }
+
+    // Build dynamic RAG context from spine search results
+    const dynamicRAGContext = spineSearchResponse
+      ? getAICRClient().formatSpineResultsAsRAG(spineSearchResponse.results)
+      : '';
+
     // Priority 2: Try Rally LLaMA (local)
     if (!aicrResponse && isRallyLLMConfigured()) {
       const rallyClient = getRallyLLMClient();
       const clientStatus = rallyClient.getStatus();
 
-      console.log(`[TOOL] [AskSGM] Using LLM: ${clientStatus.model} (Rally Local)`);
+      console.log(`[TOOL] [AskSGM] Using LLM: ${clientStatus.model} (Rally Local)${dynamicRAGContext ? ' + Spine RAG' : ''}`);
+
+      // Enhance system prompt with dynamic RAG from spine search
+      const enhancedSystemPrompt = dynamicRAGContext
+        ? `${systemPrompt}\n\n## Live RAG Context (from Spine)\n${dynamicRAGContext}`
+        : systemPrompt;
 
       const chatResponse = await rallyClient.chat(
         messages.map((msg) => ({
@@ -303,7 +342,7 @@ When citing decisions, use the DecisionId:
           content: msg.content,
         })),
         {
-          systemPrompt: systemPrompt,
+          systemPrompt: enhancedSystemPrompt,
           maxTokens: AI_GUARDRAILS.maxOutputTokens,
           temperature: 0.6,
         }
@@ -332,10 +371,15 @@ When citing decisions, use the DecisionId:
         );
       }
 
-      console.log(`[TOOL] [AskSGM] Using LLM: Claude Sonnet 4 (Cloud Fallback)`);
+      console.log(`[TOOL] [AskSGM] Using LLM: Claude Sonnet 4 (Cloud Fallback)${dynamicRAGContext ? ' + Spine RAG' : ''}`);
 
       const { signal, cleanup } = createAbortController(AI_GUARDRAILS.requestTimeoutMs);
       const maxTokens = AI_GUARDRAILS.maxOutputTokens;
+
+      // Enhance system prompt with dynamic RAG from spine search
+      const enhancedSystemPrompt = dynamicRAGContext
+        ? `${systemPrompt}\n\n## Live RAG Context (from Spine)\n${dynamicRAGContext}`
+        : systemPrompt;
 
       let claudeResponse: Response;
       try {
@@ -350,7 +394,7 @@ When citing decisions, use the DecisionId:
             model: 'claude-sonnet-4-20250514',
             max_tokens: maxTokens,
             temperature: 0.6,
-            system: systemPrompt,
+            system: enhancedSystemPrompt,
             messages: messages.map((msg) => ({
               role: msg.role,
               content: msg.content,
@@ -428,6 +472,9 @@ When citing decisions, use the DecisionId:
         cycleState: body.cycleState || 'unknown',
         jurisdiction: body.jurisdiction || 'DEFAULT',
         userRole: body.userRole || 'unknown',
+        // Spine RAG metrics
+        spineRAGUsed: !!spineSearchResponse,
+        spineRAGChunks: spineSearchResponse?.count || 0,
       },
     });
 
@@ -499,6 +546,14 @@ When citing decisions, use the DecisionId:
           userRole: body.userRole || 'unknown',
         },
       },
+      // Spine RAG info (for fallback paths)
+      spineRAG: spineSearchResponse ? {
+        chunksUsed: spineSearchResponse.count,
+        topResults: spineSearchResponse.results.slice(0, 3).map(r => ({
+          source: r.filePath.split('/').pop(),
+          score: r.scores.combined,
+        })),
+      } : null,
     });
   } catch (error) {
     if (isSecurityError(error)) {

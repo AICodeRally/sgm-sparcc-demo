@@ -62,6 +62,35 @@ export interface AICRClientConfig {
   debug?: boolean;
 }
 
+// Spine Search Types
+export interface SpineSearchOptions {
+  limit?: number;
+  vectorWeight?: number;
+  keywordWeight?: number;
+  minScore?: number;
+  filePatterns?: string[];
+  fileTypes?: string[];
+  chunkTypes?: string[];
+}
+
+export interface SpineSearchResult {
+  id: string;
+  filePath: string;
+  content: string;
+  metadata: Record<string, unknown>;
+  scores: {
+    vector: number;
+    keyword: number;
+    combined: number;
+  };
+}
+
+export interface SpineSearchResponse {
+  query: string;
+  results: SpineSearchResult[];
+  count: number;
+}
+
 /**
  * AICR Platform Client
  */
@@ -171,6 +200,100 @@ export class AICRClient {
     } catch {
       return [];
     }
+  }
+
+  /**
+   * Search spine_chunks for RAG context
+   * Uses hybrid search (vector similarity + keyword matching)
+   */
+  async spineSearch(
+    query: string,
+    options: SpineSearchOptions = {}
+  ): Promise<SpineSearchResponse> {
+    const {
+      limit = 10,
+      vectorWeight = 0.6,
+      keywordWeight = 0.4,
+      minScore = 0.25,
+      filePatterns,
+      fileTypes,
+      chunkTypes,
+    } = options;
+
+    if (this.debug) {
+      console.log(`[AICR Client] Spine search: "${query.slice(0, 50)}..." (limit: ${limit})`);
+    }
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout for search
+
+    try {
+      const response = await fetch(`${this.apiUrl}/api/spine/search`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Auth headers required by AICR spine search endpoint
+          'x-role': 'admin',
+          'x-actor-type': 'admin',
+          'x-actor-id': 'sgm-prototype',
+        },
+        body: JSON.stringify({
+          query,
+          options: {
+            limit,
+            vectorWeight,
+            keywordWeight,
+            minScore,
+            filePatterns,
+            fileTypes,
+            chunkTypes,
+          },
+        }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Spine search error (${response.status}): ${errorText.slice(0, 200)}`);
+      }
+
+      const data = await response.json();
+
+      if (this.debug) {
+        console.log(`[AICR Client] Spine search returned ${data.count} results`);
+      }
+
+      return data as SpineSearchResponse;
+    } catch (error) {
+      clearTimeout(timeoutId);
+
+      if (error instanceof Error && error.name === 'AbortError') {
+        throw new Error('Spine search timeout after 30s');
+      }
+      throw error;
+    }
+  }
+
+  /**
+   * Build RAG context from spine search results
+   * Formats results as markdown for LLM system prompt
+   */
+  formatSpineResultsAsRAG(results: SpineSearchResult[]): string {
+    if (!results.length) {
+      return '## Retrieved Knowledge\nNo relevant content found in knowledge base.';
+    }
+
+    const chunks = results.map((r, i) => {
+      const source = r.filePath.split('/').pop() || r.filePath;
+      const score = (r.scores.combined * 100).toFixed(0);
+      return `### [${i + 1}] ${source} (relevance: ${score}%)
+${r.content.slice(0, 800)}${r.content.length > 800 ? '...' : ''}`;
+    });
+
+    return `## Retrieved Knowledge (${results.length} chunks)
+${chunks.join('\n\n')}`;
   }
 }
 

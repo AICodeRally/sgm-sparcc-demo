@@ -13,4 +13,7 @@ export {
   type AskSGMRequest,
   type AskSGMResponse,
   type AICRClientConfig,
+  type SpineSearchOptions,
+  type SpineSearchResult,
+  type SpineSearchResponse,
 } from './client';
