@@ -1,0 +1,207 @@
+{
+  "auditDate": "2026-01-25",
+  "auditVersion": "1.0.0",
+  "totalCardsAudited": 1398,
+  "filesAudited": [
+    "spm-kb-cards-migrated.json (338 cards)",
+    "spm-kb-cards-sample-cards.json (3 cards)",
+    "spm-kb-cards-new-pillars.json (~100 cards)",
+    "spm-kb-cards-expansion.json (150 cards)",
+    "spm-kb-cards-expansion-2.json (400 cards)",
+    "spm-kb-cards-expansion-3.json (320 cards)",
+    "spm-kb-cards-expansion-4.json (250 cards)",
+    "spm-kb-cards-expansion-6.json (90 cards)"
+  ],
+  "pillarDefinitions": {
+    "SALES_PLANNING": "Territory, quota, capacity, coverage, headcount, workforce planning",
+    "ICM": "Commission calculations, payments, statements, accelerators, SPIFs, draws, clawbacks, disputes, inquiries",
+    "SALES_INTELLIGENCE": "Reporting, dashboards, analytics, forecasting, AI/ML, predictive models",
+    "GOVERNANCE_COMPLIANCE": "SOX, 409A, audit, approvals, committees, policies, documentation",
+    "TECHNOLOGY_PLATFORMS": "SPM vendors, CRM/ERP integration, APIs, data architecture, system operations, batch processing",
+    "STRATEGY_DESIGN": "Pay philosophy, plan design, behavioral economics, benchmarking, market data",
+    "IMPLEMENTATION_CHANGE": "Project methodology, change management, training, adoption, communication",
+    "LEGAL_REGULATORY": "State wage laws, international requirements, employment law, compliance"
+  },
+  "misclassified": [
+    {
+      "id": "kb-dq-501",
+      "keyword": "Data Validation Rules",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data validation rules are about system data architecture and quality controls, not sales planning activities. Per pillar definitions, 'data architecture, system operations' belongs in TECHNOLOGY_PLATFORMS."
+    },
+    {
+      "id": "kb-dq-502",
+      "keyword": "Data Cleansing",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data cleansing/scrubbing is a data management and system operation function, not a sales planning activity."
+    },
+    {
+      "id": "kb-dq-503",
+      "keyword": "Data Reconciliation",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Cross-system data reconciliation is a data architecture concern and system integration topic."
+    },
+    {
+      "id": "kb-dq-504",
+      "keyword": "Master Data Management",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "MDM is fundamentally about data architecture and governance across systems, a core TECHNOLOGY_PLATFORMS topic."
+    },
+    {
+      "id": "kb-dq-505",
+      "keyword": "Data Quality Scorecard",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data quality measurement and scorecards are part of data architecture and system operations."
+    },
+    {
+      "id": "kb-dq-506",
+      "keyword": "Data Profiling",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data profiling is a technical data analysis activity, part of data architecture practices."
+    },
+    {
+      "id": "kb-dq-507",
+      "keyword": "Duplicate Detection",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Deduplication is a data processing and system operation concern, not sales planning."
+    },
+    {
+      "id": "kb-dq-508",
+      "keyword": "Data Lineage",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data lineage/provenance tracking is a data architecture and governance topic."
+    },
+    {
+      "id": "kb-dq-509",
+      "keyword": "Data Stewardship",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data stewardship relates to data governance and architecture, not sales planning processes."
+    },
+    {
+      "id": "kb-dq-510",
+      "keyword": "Data Quality SLA",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data quality SLAs are about data architecture standards and system operations."
+    },
+    {
+      "id": "kb-dq-511",
+      "keyword": "Data Quality Rules Engine",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "A rules engine for data quality is clearly a technology/system component."
+    },
+    {
+      "id": "kb-dq-512",
+      "keyword": "Reference Data Validation",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Reference data validation is a data architecture and system integration concern."
+    },
+    {
+      "id": "kb-dq-513",
+      "keyword": "Data Completeness",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data completeness measurement is a data quality dimension within data architecture."
+    },
+    {
+      "id": "kb-dq-514",
+      "keyword": "Data Accuracy",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data accuracy measurement is a data quality dimension within data architecture."
+    },
+    {
+      "id": "kb-dq-515",
+      "keyword": "Data Timeliness",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Data timeliness/freshness is a data quality dimension within data architecture."
+    },
+    {
+      "id": "sa-sales-data-crm-integration-s78j",
+      "keyword": "CRM Integration",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "CRM integration is explicitly listed in TECHNOLOGY_PLATFORMS definition ('CRM/ERP integration')."
+    },
+    {
+      "id": "sa-sales-data-erp-integration-z5da",
+      "keyword": "ERP Integration",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "ERP integration is explicitly listed in TECHNOLOGY_PLATFORMS definition ('CRM/ERP integration')."
+    },
+    {
+      "id": "sa-sales-data-order-management-sys-iy7c",
+      "keyword": "Order Management System",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Order management systems are technology platforms/systems, not sales planning concepts."
+    },
+    {
+      "id": "sa-sales-data-contract-management--djfn",
+      "keyword": "Contract Management System",
+      "currentPillar": "SALES_PLANNING",
+      "suggestedPillar": "TECHNOLOGY_PLATFORMS",
+      "reason": "Contract management systems are technology platforms/systems, not sales planning concepts."
+    }
+  ],
+  "borderlineCases": [
+    {
+      "id": "kb-ops-504",
+      "keyword": "Batch Processing",
+      "currentPillar": "ICM",
+      "potentialPillar": "TECHNOLOGY_PLATFORMS",
+      "assessment": "Could be argued either way. The pillar definition includes 'batch processing' in TECHNOLOGY_PLATFORMS. However, this card specifically discusses batch processing of commission calculations, which is a core ICM operation. The content focuses on commission calculation timing and validation, making ICM acceptable. RECOMMENDED: Keep in ICM since the content is ICM-specific (commission calculation batch runs)."
+    },
+    {
+      "id": "kb-gc-201",
+      "keyword": "SOX Compliance",
+      "currentPillar": "GOVERNANCE_COMPLIANCE",
+      "potentialPillar": "LEGAL_REGULATORY",
+      "assessment": "SOX is a regulatory requirement, but it's also fundamentally about financial controls and governance. The current GOVERNANCE_COMPLIANCE assignment is correct since the pillar explicitly includes 'SOX, audit, approvals'."
+    },
+    {
+      "id": "kb-tp-407",
+      "keyword": "Inquiry Management",
+      "currentPillar": "TECHNOLOGY_PLATFORMS",
+      "potentialPillar": "ICM",
+      "assessment": "This card focuses on system capabilities for inquiry management (the technology aspect), not the inquiry process itself. The TECHNOLOGY_PLATFORMS assignment is appropriate since it's about platform features."
+    }
+  ],
+  "summary": {
+    "totalMisclassified": 19,
+    "byCurrentPillar": {
+      "SALES_PLANNING": 19
+    },
+    "bySuggestedPillar": {
+      "TECHNOLOGY_PLATFORMS": 19
+    },
+    "primaryFinding": "All 19 misclassified cards are currently in SALES_PLANNING and should be moved to TECHNOLOGY_PLATFORMS. These cards relate to data quality, data management, and system integrations - topics that fall under the TECHNOLOGY_PLATFORMS pillar definition of 'CRM/ERP integration, APIs, data architecture, system operations'.",
+    "rootCause": "The misclassified cards appear to have been grouped by their relationship to 'Sales Data' as a category rather than by their functional domain. While these topics support sales data, they are technology/infrastructure concerns rather than sales planning activities.",
+    "recommendation": "Update pillar assignments for all 19 misclassified cards from SALES_PLANNING to TECHNOLOGY_PLATFORMS. Consider whether the 'Sales Data' category should be split - transaction types (Order, Invoice, Booking) can stay in SALES_PLANNING, but system/integration topics should move to TECHNOLOGY_PLATFORMS."
+  },
+  "correctlyClassified": {
+    "sampledAndVerified": [
+      "ICM cards (accelerators, commissions, payments, disputes, SPIFs, draws) - correct",
+      "GOVERNANCE_COMPLIANCE cards (SOX, 409A, audit, committees, policies) - correct",
+      "SALES_INTELLIGENCE cards (reporting, dashboards, analytics, forecasting, AI/ML) - correct",
+      "STRATEGY_DESIGN cards (pay philosophy, plan design, behavioral economics, benchmarking) - correct",
+      "IMPLEMENTATION_CHANGE cards (project phases, change management, training, adoption) - correct",
+      "LEGAL_REGULATORY cards (state wage laws, international requirements, employment law) - correct",
+      "TECHNOLOGY_PLATFORMS cards (ICM platforms, calculation engines, integrations, APIs) - correct"
+    ],
+    "note": "The vast majority of cards (1,379 out of 1,398) are correctly classified. The misclassifications are isolated to a specific subset of 'Sales Data' category cards in the migrated file."
+  }
+}
