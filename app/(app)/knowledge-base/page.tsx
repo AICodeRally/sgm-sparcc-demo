@@ -9,6 +9,7 @@ import type { FrameworkCard } from '@/lib/contracts/spm-knowledge-base.contract'
 // Import card data
 import migratedCardsData from '@/lib/data/synthetic/spm-kb-cards-migrated.json';
 import newPillarCardsData from '@/lib/data/synthetic/spm-kb-cards-new-pillars.json';
+import expansionCardsData from '@/lib/data/synthetic/spm-kb-cards-expansion.json';
 import sampleCardsData from '@/lib/data/synthetic/spm-kb-sample-cards.json';
 
 export default function KnowledgeBasePage() {
@@ -19,8 +20,9 @@ export default function KnowledgeBasePage() {
     // Combine all cards (each file has a .cards or .sampleCards array)
     const combined = [
       ...(sampleCardsData.sampleCards as unknown as FrameworkCard[]),
-      ...((migratedCardsData as { cards: FrameworkCard[] }).cards || []),
-      ...((newPillarCardsData as { cards: FrameworkCard[] }).cards || []),
+      ...((migratedCardsData as unknown as { cards: FrameworkCard[] }).cards || []),
+      ...((newPillarCardsData as unknown as { cards: FrameworkCard[] }).cards || []),
+      ...((expansionCardsData as unknown as { cards: FrameworkCard[] }).cards || []),
     ];
 
     // Deduplicate by id
