@@ -10,6 +10,7 @@ import {
   TableIcon,
   ReaderIcon,
   ClockIcon,
+  CheckboxIcon,
 } from '@radix-ui/react-icons';
 
 interface ClientDashboardLayoutProps {
@@ -50,6 +51,7 @@ export function ClientDashboardLayout({
     { href: `/client/${tenantSlug}/gaps`, label: 'Gaps', icon: ExclamationTriangleIcon },
     { href: `/client/${tenantSlug}/coverage`, label: 'Coverage', icon: TableIcon },
     { href: `/client/${tenantSlug}/policies`, label: 'Policies', icon: ReaderIcon },
+    { href: `/client/${tenantSlug}/checklist`, label: 'Checklist', icon: CheckboxIcon },
     { href: `/client/${tenantSlug}/roadmap`, label: 'Roadmap', icon: ClockIcon },
   ];
 

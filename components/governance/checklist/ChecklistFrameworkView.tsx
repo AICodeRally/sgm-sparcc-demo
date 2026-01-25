@@ -12,6 +12,7 @@ type ViewMode = 'phase' | 'flat';
 
 interface ChecklistFrameworkViewProps {
   framework: GovernanceFramework;
+  engagementId?: string;
 }
 
 interface ProgressSummary {
@@ -23,7 +24,7 @@ interface ProgressSummary {
   phaseProgress: Record<string, { total: number; completed: number }>;
 }
 
-export function ChecklistFrameworkView({ framework }: ChecklistFrameworkViewProps) {
+export function ChecklistFrameworkView({ framework, engagementId = 'demo-engagement' }: ChecklistFrameworkViewProps) {
   const [activeView, setActiveView] = useState<ViewMode>('phase');
   const [completedStepIds, setCompletedStepIds] = useState<Set<string>>(new Set());
   const [progressData, setProgressData] = useState<ProgressSummary | null>(null);
@@ -54,13 +55,13 @@ export function ChecklistFrameworkView({ framework }: ChecklistFrameworkViewProp
   // Fetch progress data on mount
   useEffect(() => {
     fetchProgress();
-  }, [framework.id]);
+  }, [framework.id, engagementId]);
 
   const fetchProgress = async () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `/api/checklist-progress/summary?engagementId=demo-engagement&frameworkId=${framework.id}`
+        `/api/checklist-progress/summary?engagementId=${engagementId}&frameworkId=${framework.id}`
       );
       if (response.ok) {
         const data: ProgressSummary = await response.json();
@@ -93,7 +94,7 @@ export function ChecklistFrameworkView({ framework }: ChecklistFrameworkViewProp
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          engagementId: 'demo-engagement',
+          engagementId,
           frameworkId: framework.id,
           stepId,
           completed,
