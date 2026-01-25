@@ -1,0 +1,176 @@
+{
+  "sampleCards": [
+    {
+      "id": "icm-accelerator-001",
+      "keyword": "Accelerator",
+      "aliases": ["kicker", "uplift", "multiplier", "upside rate"],
+      "pillar": "ICM",
+      "category": "Plan Mechanics",
+      "component": "Accelerators",
+      "cardType": "mechanic",
+      "definition": "A higher commission rate applied after exceeding a performance threshold, typically quota attainment, rewarding overperformance.",
+      "whyItMatters": "Accelerators drive 15-30% of overperformance in well-designed plans. Without them, top reps have no incentive to exceed quota once they've hit target. They're the primary tool for motivating stretch performance and retaining top talent.",
+      "extendedDefinition": "Accelerators increase the commission rate once a rep surpasses a defined threshold, usually 100% quota attainment. The increased rate applies only to sales above the threshold, not retroactively to all sales. They can be structured as single-tier (one rate above quota) or multi-tier (progressive rates at higher attainment levels).",
+      "howItWorks": "Base rate applies up to threshold (usually 100% quota). Above threshold, accelerated rate kicks in (typically 1.25x-2x base rate). Can be tiered (110%=1.25x, 125%=1.5x) or continuous. Rate multiplier resets each measurement period. Calculated as: Overage Amount × Accelerated Rate.",
+      "example": "Rep at $100K quota with 10% base commission rate. At 110% attainment ($110K revenue), accelerator of 1.5x applies to the $10K overage: $10K × 15% = $1,500 commission on overage, vs $1,000 at base rate. Total earnings: $10K (base) + $1,500 (accelerated) = $11,500.",
+      "userTypes": ["Comp Analyst", "Sales Ops", "Finance", "Sales Leader", "Sales Rep"],
+      "audienceLevels": ["Practitioner", "Executive", "Implementer"],
+      "whoUsesIt": [
+        { "role": "Comp Analyst", "howTheyUseIt": "Models payout curves, sets accelerator rates, analyzes cost impact" },
+        { "role": "Finance", "howTheyUseIt": "Forecasts variable comp expense, monitors plan cost" },
+        { "role": "Sales Leader", "howTheyUseIt": "Explains earning potential to reps, motivates stretch performance" },
+        { "role": "Sales Rep", "howTheyUseIt": "Understands upside opportunity, plans for overachievement" }
+      ],
+      "bestPractices": [
+        "Set first accelerator at 100% attainment (not higher) to reward all overperformance",
+        "Make the rate jump meaningful (minimum 1.25x) to drive behavior change",
+        "Pair with decelerator below threshold to fund the upside",
+        "Cap at 3x base rate maximum to prevent windfall payouts",
+        "Limit to 3 tiers maximum to maintain simplicity",
+        "Communicate clearly in plan document with examples"
+      ],
+      "watchOutFor": [
+        "Cliff accelerators that create sandbagging behavior (reps holding deals)",
+        "Too many tiers causing confusion and reduced motivation",
+        "Accelerators without caps leading to budget overruns",
+        "Misalignment with quota-setting (easy quotas + high accelerators = windfall)"
+      ],
+      "commonMistakes": [
+        "Setting first accelerator above 100% (e.g., 110%) leaving a 'dead zone'",
+        "Using same accelerator rates across all roles regardless of leverage",
+        "Forgetting to model accelerator cost in plan budgeting"
+      ],
+      "relatedTerms": ["decelerator", "cap", "threshold", "rate table", "payout curve", "leverage", "upside"],
+      "oppositeTerms": ["decelerator", "floor"],
+      "vendorTerminology": {
+        "Xactly": "Rate Modifier / Tiered Rate",
+        "Varicent": "Accelerator Rate / Performance Tier",
+        "CaptivateIQ": "Tiered Commission / Rate Multiplier",
+        "SAP": "Graduated Rate",
+        "Oracle": "Tiered Commission Rate"
+      },
+      "regulatoryNotes": "Accelerators on deferred payments may trigger Section 409A compliance requirements. Ensure payment timing aligns with 409A rules.",
+      "sourceAuthority": ["Alexander Group", "WorldatWork", "Korn Ferry"],
+      "tags": ["plan-design", "motivation", "variable-pay", "payout-mechanics", "overperformance"]
+    },
+    {
+      "id": "icm-commission-calc-001",
+      "keyword": "Commission Calculation",
+      "aliases": ["comp calc", "earnings calculation", "payout calculation"],
+      "pillar": "ICM",
+      "category": "Core Processes",
+      "component": "Calculation Concepts",
+      "cardType": "process",
+      "definition": "The process of computing variable compensation owed to a payee based on credited transactions, plan rules, and attainment against goals.",
+      "whyItMatters": "Accuracy drives trust. 80% of compensation disputes stem from calculation errors or misunderstanding. Late or incorrect payments create legal exposure, damage morale, and increase rep attrition. Automated, auditable calculations are essential for scale.",
+      "extendedDefinition": "Commission calculation transforms raw sales data into earnings through a series of steps: crediting (who gets credit), attainment measurement (performance vs. goal), rate application (commission percentages), and adjustment processing (draws, clawbacks, manual changes).",
+      "howItWorks": "1) Ingest credited transactions from source systems. 2) Apply plan rules (rates, tiers, accelerators). 3) Calculate attainment against quota/goals. 4) Determine earnings by component. 5) Apply adjustments (prior period, manual). 6) Generate statements and payment files.",
+      "example": "Monthly calculation cycle: Day 1-3 transaction ingestion, Day 4-5 preliminary calculations, Day 6-7 exception review, Day 8 final lock, Day 9 statement release, Day 15 payment processing.",
+      "userTypes": ["Comp Admin", "Finance", "Sales Ops", "Payroll"],
+      "audienceLevels": ["Practitioner", "Implementer"],
+      "whoUsesIt": [
+        { "role": "Comp Admin", "howTheyUseIt": "Runs calculations, validates results, resolves exceptions" },
+        { "role": "Finance", "howTheyUseIt": "Reviews expense accruals, approves payment batches" },
+        { "role": "Sales Ops", "howTheyUseIt": "Troubleshoots discrepancies, supports rep inquiries" },
+        { "role": "Payroll", "howTheyUseIt": "Processes payment files, ensures tax compliance" }
+      ],
+      "bestPractices": [
+        "Run calculations in draft mode before finalizing",
+        "Implement 4-eye review (maker/checker) for payment approval",
+        "Lock calculation period before releasing statements",
+        "Maintain full audit trail of all changes and overrides",
+        "Reconcile to source systems monthly",
+        "Document exception handling procedures"
+      ],
+      "watchOutFor": [
+        "Manual overrides without proper documentation and approval",
+        "Retroactive changes without governance review",
+        "Currency conversion timing mismatches in global orgs",
+        "Calculation timing conflicts with data refresh cycles"
+      ],
+      "processFlow": {
+        "upstream": ["Sales Crediting", "Data Ingestion", "Quota Assignment"],
+        "downstream": ["Commission Statements", "Payment Processing", "GL Posting"],
+        "diagram": "Crediting → Calculation → Statements → Payment → GL"
+      },
+      "inputs": [
+        "Credited transactions (from crediting engine)",
+        "Plan rules (rates, tiers, accelerators, caps)",
+        "Quota/goal assignments",
+        "Prior period adjustments",
+        "Draw/guarantee balances",
+        "Manual adjustment requests"
+      ],
+      "outputs": [
+        "Calculated earnings by component",
+        "Commission statements (rep-facing)",
+        "Payment file (to payroll)",
+        "GL journal entries (to finance)",
+        "Audit trail and change log"
+      ],
+      "systemsInvolved": ["CRM (Salesforce)", "SPM Platform (Xactly/Varicent)", "ERP (NetSuite/SAP)", "Payroll (ADP/Workday)", "Data Warehouse"],
+      "timing": "Daily: Transaction ingestion | Weekly: Preliminary calculations (optional) | Monthly: Final calculation + statements | Quarterly: True-ups and adjustments",
+      "relatedTerms": ["crediting", "attainment", "commission statement", "payment processing", "true-up"],
+      "vendorTerminology": {
+        "Xactly": "Incentive Calculation",
+        "Varicent": "Compensation Calculation",
+        "CaptivateIQ": "Commission Processing"
+      },
+      "sourceAuthority": ["OpenSymmetry", "Gartner SPM"],
+      "tags": ["process", "core-icm", "calculation", "payments", "operations"]
+    },
+    {
+      "id": "gc-clawback-001",
+      "keyword": "Clawback",
+      "aliases": ["commission recovery", "compensation recovery", "earnings recovery"],
+      "pillar": "GOVERNANCE_COMPLIANCE",
+      "category": "Clawback Policies",
+      "component": "Triggering Events",
+      "cardType": "regulation",
+      "definition": "A contractual provision requiring the return of previously paid compensation when specified triggering events occur, such as deal cancellation, customer churn, or financial restatement.",
+      "whyItMatters": "Clawbacks protect the company from paying commissions on revenue that doesn't materialize. They align rep incentives with customer retention and deal quality. SEC Rule 10D-1 now mandates executive clawback policies for public companies.",
+      "extendedDefinition": "Clawbacks can be triggered by various events: deal cancellation within a period, customer churn, financial restatement, compliance violations, or termination for cause. The recovery amount, timeframe, and method must be clearly defined in plan documents.",
+      "howItWorks": "When a triggering event occurs: 1) Identify original commission paid, 2) Calculate recovery amount per policy, 3) Deduct from future earnings or request repayment, 4) Document recovery and notify payee, 5) Track to completion.",
+      "example": "Rep earns $5,000 commission on a 12-month contract. Customer cancels at month 3. Clawback policy: Pro-rata recovery for cancelled contracts within 12 months. Recovery = $5,000 × (9/12) = $3,750 deducted from next commission payment.",
+      "userTypes": ["Comp Admin", "Legal", "Finance", "Sales Leader"],
+      "audienceLevels": ["Practitioner", "Executive", "Implementer"],
+      "whoUsesIt": [
+        { "role": "Comp Admin", "howTheyUseIt": "Processes clawback calculations, tracks recoveries" },
+        { "role": "Legal", "howTheyUseIt": "Defines policy language, ensures enforceability" },
+        { "role": "Finance", "howTheyUseIt": "Monitors exposure, manages accrual reversals" },
+        { "role": "Sales Leader", "howTheyUseIt": "Communicates policy, manages rep expectations" }
+      ],
+      "bestPractices": [
+        "Define clear triggering events in plan document",
+        "Specify recovery timeframe (typically 6-12 months)",
+        "Pro-rate recovery based on time elapsed when reasonable",
+        "Cap recovery at amount originally paid",
+        "Provide advance notice before deduction",
+        "Track clawback exposure for financial reporting"
+      ],
+      "watchOutFor": [
+        "State wage law restrictions on commission deductions (especially CA)",
+        "409A implications for deferred compensation clawbacks",
+        "Terminated employee recovery challenges",
+        "Excessive clawbacks demotivating sales force"
+      ],
+      "legalBasis": "SEC Rule 10D-1 (2022) requires recovery of erroneously awarded incentive-based compensation from executives following financial restatements. State laws vary on permissible commission deductions.",
+      "requirements": [
+        "Written clawback policy disclosed to payees",
+        "Clear definition of triggering events",
+        "Reasonable recovery timeframe",
+        "Compliant with state wage laws",
+        "Board-approved policy for public companies (SEC 10D-1)"
+      ],
+      "penalties": "Non-compliance with SEC Rule 10D-1 can result in exchange delisting. State wage law violations can result in penalties, back-pay awards, and legal fees.",
+      "relatedTerms": ["chargeback", "recovery", "cancellation", "churn", "409A", "SOX"],
+      "vendorTerminology": {
+        "Xactly": "Clawback / Recovery",
+        "Varicent": "Commission Recovery",
+        "CaptivateIQ": "Clawback Rule"
+      },
+      "sourceAuthority": ["SEC", "Davis Polk", "State Labor Departments"],
+      "tags": ["governance", "compliance", "legal", "recovery", "regulation"]
+    }
+  ]
+}

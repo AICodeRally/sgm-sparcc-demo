@@ -1,0 +1,346 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-01-24T00:00:00Z",
+  "pillars": [
+    {
+      "id": "pillar-1",
+      "pillar": "SALES_PLANNING",
+      "name": "Sales Planning",
+      "description": "Territory, quota, capacity, and coverage models",
+      "color": "#2563eb",
+      "targetCards": 200,
+      "categories": [
+        {
+          "id": "sp-sales-data",
+          "name": "Sales Data",
+          "components": ["Transaction Types", "Revenue Recognition", "Deal Structure", "Data Sources", "Data Validation"]
+        },
+        {
+          "id": "sp-sales-hierarchies",
+          "name": "Sales Hierarchies",
+          "components": ["Organization Structure", "Role Definitions", "Reporting Relationships", "Hierarchy Changes", "Team Structures"]
+        },
+        {
+          "id": "sp-role-definition",
+          "name": "Sales Role Definition",
+          "components": ["Position", "Job Families", "Career Levels", "Role Transitions"]
+        },
+        {
+          "id": "sp-plan-design",
+          "name": "Sales Plan Design",
+          "components": ["Pay Structure", "Pay Mix", "Performance Measurement", "Plan Mechanics", "Credit Types", "Credit Adjustment"]
+        },
+        {
+          "id": "sp-territory",
+          "name": "Territory Definition",
+          "components": ["Territory Logic", "Assignment Rules", "Territory Changes", "Coverage Models", "Territory Performance"]
+        },
+        {
+          "id": "sp-quota",
+          "name": "Quota Definition",
+          "components": ["Quota Allocation", "Quota Types", "Quota Periodicity", "Quota Adjustment Process", "Quota Components", "Multi-level Quotas"]
+        },
+        {
+          "id": "sp-classification",
+          "name": "Sales Data Classification",
+          "components": ["Product Classification", "Customer Classification", "Deal Classification", "Revenue Classification", "Performance Classification"]
+        },
+        {
+          "id": "sp-capacity",
+          "name": "Capacity Planning",
+          "components": ["Headcount Modeling", "Ramp Assumptions", "Productivity Curves", "Attrition Planning", "Hiring Plans"]
+        },
+        {
+          "id": "sp-coverage",
+          "name": "Coverage Models",
+          "components": ["Hunter/Farmer", "Overlay Roles", "Specialist Models", "Geographic Coverage", "Named Accounts"]
+        },
+        {
+          "id": "sp-segmentation",
+          "name": "Account Segmentation",
+          "components": ["TAM/SAM/SOM", "ICP Definition", "Tiering Models", "Scoring Criteria", "Segment Transitions"]
+        }
+      ]
+    },
+    {
+      "id": "pillar-2",
+      "pillar": "ICM",
+      "name": "Incentive Compensation Management",
+      "description": "Plan design, calculations, payments, and statements",
+      "color": "#16a34a",
+      "targetCards": 250,
+      "categories": [
+        {
+          "id": "icm-plan-mechanics",
+          "name": "Plan Mechanics",
+          "components": ["Accelerators", "Decelerators", "Caps", "Floors", "Cliffs", "Gates", "Thresholds", "Rate Tables", "Payout Curves"]
+        },
+        {
+          "id": "icm-payment-types",
+          "name": "Payment Types",
+          "components": ["Draws", "Guarantees", "Advances", "True-ups", "Recoverable vs Non-recoverable", "Signing Bonuses"]
+        },
+        {
+          "id": "icm-crediting",
+          "name": "Crediting Rules",
+          "components": ["Direct Credit", "Overlay Credit", "Split Credit", "Team Credit", "Manager Rollup", "Multi-touch Attribution"]
+        },
+        {
+          "id": "icm-calculation",
+          "name": "Calculation Concepts",
+          "components": ["Effective Rates", "Blended Rates", "Weighted Attainment", "Component Calculations", "Period Calculations"]
+        },
+        {
+          "id": "icm-statements",
+          "name": "Commission Statements",
+          "components": ["Statement Components", "Earnings Details", "YTD Tracking", "Forecast Views", "Statement Delivery"]
+        },
+        {
+          "id": "icm-adjustments",
+          "name": "Adjustments & Corrections",
+          "components": ["Manual Adjustments", "Retroactive Changes", "Error Corrections", "Dispute Resolutions", "Audit Adjustments"]
+        },
+        {
+          "id": "icm-special-programs",
+          "name": "Special Programs",
+          "components": ["SPIFs", "MBOs", "Contests", "Bonuses", "Kickers", "Spot Awards"]
+        },
+        {
+          "id": "icm-plan-administration",
+          "name": "Plan Administration",
+          "components": ["Plan Documents", "Acknowledgments", "Amendments", "Version Control", "Effective Dates"]
+        },
+        {
+          "id": "icm-proration",
+          "name": "Proration Rules",
+          "components": ["New Hire Proration", "Termination Proration", "Leave Proration", "Transfer Proration", "Mid-period Changes"]
+        }
+      ]
+    },
+    {
+      "id": "pillar-3",
+      "pillar": "SALES_INTELLIGENCE",
+      "name": "Sales Intelligence & Analytics",
+      "description": "Reporting, forecasting, AI/ML, and predictive analytics",
+      "color": "#9333ea",
+      "targetCards": 150,
+      "categories": [
+        {
+          "id": "si-reporting",
+          "name": "Reporting",
+          "components": ["Dashboards", "Leaderboards", "Attainment Reports", "Payout Reports", "Trend Analysis"]
+        },
+        {
+          "id": "si-forecasting",
+          "name": "Forecasting",
+          "components": ["Pipeline Forecasting", "AI-assisted Forecasting", "Judgmental Forecasting", "Weighted Pipeline", "Forecast Accuracy"]
+        },
+        {
+          "id": "si-analytics",
+          "name": "Performance Analytics",
+          "components": ["Cohort Analysis", "Rep Benchmarking", "Plan Effectiveness", "Cost of Sales", "ROI Analysis"]
+        },
+        {
+          "id": "si-ai-ml",
+          "name": "AI/ML Capabilities",
+          "components": ["Propensity Scoring", "Churn Prediction", "Deal Scoring", "Anomaly Detection", "Optimization Models"]
+        },
+        {
+          "id": "si-visualization",
+          "name": "Visualization",
+          "components": ["Attainment Curves", "Payout Distribution", "Trend Charts", "Comparison Views", "Heat Maps"]
+        },
+        {
+          "id": "si-data-quality",
+          "name": "Data Quality",
+          "components": ["Data Validation", "Reconciliation", "Exception Reports", "Audit Reports", "Data Lineage"]
+        }
+      ]
+    },
+    {
+      "id": "pillar-4",
+      "pillar": "GOVERNANCE_COMPLIANCE",
+      "name": "Governance & Compliance",
+      "description": "SOX, 409A, clawback, audit, controls, and approvals",
+      "color": "#dc2626",
+      "targetCards": 100,
+      "categories": [
+        {
+          "id": "gc-sox",
+          "name": "SOX Controls",
+          "components": ["Segregation of Duties", "Audit Trails", "Change Management", "Access Controls", "Maker/Checker"]
+        },
+        {
+          "id": "gc-409a",
+          "name": "409A Compliance",
+          "components": ["Deferred Compensation", "Substantial Risk of Forfeiture", "Payment Timing", "Plan Documentation", "Correction Methods"]
+        },
+        {
+          "id": "gc-clawback",
+          "name": "Clawback Policies",
+          "components": ["Triggering Events", "Recovery Methods", "SEC Rule 10D-1", "Policy Documentation", "Enforcement"]
+        },
+        {
+          "id": "gc-approvals",
+          "name": "Approval Workflows",
+          "components": ["SGCC", "CRB", "Exception Governance", "Escalation Paths", "Delegation of Authority"]
+        },
+        {
+          "id": "gc-audit",
+          "name": "Audit & Review",
+          "components": ["Internal Audit", "External Audit", "Compliance Reviews", "Risk Assessment", "Remediation"]
+        },
+        {
+          "id": "gc-documentation",
+          "name": "Documentation Standards",
+          "components": ["Policy Templates", "Procedure Documentation", "Evidence Retention", "Version History", "Sign-off Requirements"]
+        }
+      ]
+    },
+    {
+      "id": "pillar-5",
+      "pillar": "TECHNOLOGY_PLATFORMS",
+      "name": "Technology & Platforms",
+      "description": "SPM vendors, integrations, data architecture, and APIs",
+      "color": "#0891b2",
+      "targetCards": 80,
+      "categories": [
+        {
+          "id": "tp-platforms",
+          "name": "Platform Categories",
+          "components": ["ICM Platforms", "SPM Suites", "CPQ Systems", "CRM Integration", "ERP Integration"]
+        },
+        {
+          "id": "tp-vendors",
+          "name": "Vendor Landscape",
+          "components": ["Xactly", "Varicent", "Anaplan", "CaptivateIQ", "Forma.ai", "Performio", "Spiff", "SAP Commissions", "Oracle ICM"]
+        },
+        {
+          "id": "tp-data-arch",
+          "name": "Data Architecture",
+          "components": ["Staging Tables", "Calculation Engines", "Payment Files", "GL Interfaces", "Data Warehousing"]
+        },
+        {
+          "id": "tp-integration",
+          "name": "Integration Patterns",
+          "components": ["Real-time vs Batch", "API Types", "Middleware", "ETL Processes", "Data Mapping"]
+        },
+        {
+          "id": "tp-implementation",
+          "name": "Implementation Concepts",
+          "components": ["Sandbox", "UAT", "Parallel Testing", "Cutover", "Hypercare"]
+        }
+      ]
+    },
+    {
+      "id": "pillar-6",
+      "pillar": "STRATEGY_DESIGN",
+      "name": "Strategy & Design",
+      "description": "Pay philosophy, behavioral economics, benchmarking, and plan modeling",
+      "color": "#ea580c",
+      "targetCards": 100,
+      "categories": [
+        {
+          "id": "sd-philosophy",
+          "name": "Pay Philosophy",
+          "components": ["Pay-for-Performance", "Market Positioning", "Cost of Sales", "Risk/Reward Balance", "Competitive Strategy"]
+        },
+        {
+          "id": "sd-behavioral",
+          "name": "Behavioral Economics",
+          "components": ["Motivation Theory", "Goal Gradient", "Loss Aversion", "Anchoring", "Social Proof"]
+        },
+        {
+          "id": "sd-design",
+          "name": "Plan Design Principles",
+          "components": ["Pay Mix", "Leverage", "Upside Potential", "Simplicity", "Line of Sight"]
+        },
+        {
+          "id": "sd-benchmarking",
+          "name": "Benchmarking",
+          "components": ["Market Data", "Percentile Targeting", "TTC", "OTE", "Industry Comparisons"]
+        },
+        {
+          "id": "sd-roles",
+          "name": "Role Design",
+          "components": ["Job Families", "Career Paths", "Leveling Frameworks", "Role Transitions", "Competency Models"]
+        },
+        {
+          "id": "sd-modeling",
+          "name": "Plan Modeling",
+          "components": ["Monte Carlo Simulation", "Scenario Analysis", "Payout Curves", "Cost Modeling", "What-if Analysis"]
+        }
+      ]
+    },
+    {
+      "id": "pillar-7",
+      "pillar": "IMPLEMENTATION_CHANGE",
+      "name": "Implementation & Change",
+      "description": "Project methodology, change management, training, and adoption",
+      "color": "#ca8a04",
+      "targetCards": 60,
+      "categories": [
+        {
+          "id": "ic-project",
+          "name": "Project Phases",
+          "components": ["Discovery", "Design", "Build", "Test", "Deploy", "Hypercare"]
+        },
+        {
+          "id": "ic-change",
+          "name": "Change Management",
+          "components": ["Stakeholder Mapping", "Communication Plans", "Resistance Management", "Executive Sponsorship", "Change Networks"]
+        },
+        {
+          "id": "ic-training",
+          "name": "Training & Enablement",
+          "components": ["Admin Training", "End User Training", "Manager Training", "Documentation", "Knowledge Transfer"]
+        },
+        {
+          "id": "ic-adoption",
+          "name": "Adoption Metrics",
+          "components": ["Statement Views", "Inquiry Rates", "Dispute Volumes", "User Satisfaction", "Time to Proficiency"]
+        },
+        {
+          "id": "ic-golive",
+          "name": "Go-Live Readiness",
+          "components": ["Parallel Runs", "Reconciliation", "Rollback Planning", "Cutover Checklist", "War Room"]
+        }
+      ]
+    },
+    {
+      "id": "pillar-8",
+      "pillar": "LEGAL_REGULATORY",
+      "name": "Legal & Regulatory",
+      "description": "State wage laws, international requirements, employment law",
+      "color": "#4f46e5",
+      "targetCards": 80,
+      "categories": [
+        {
+          "id": "lr-us-federal",
+          "name": "US Federal Regulations",
+          "components": ["FLSA", "ERISA", "ADA Considerations", "EEOC Compliance", "Tax Withholding"]
+        },
+        {
+          "id": "lr-us-state",
+          "name": "US State Laws",
+          "components": ["California Wage Laws", "New York Requirements", "Illinois Regulations", "State-specific Timing", "Final Pay Rules"]
+        },
+        {
+          "id": "lr-international",
+          "name": "International Requirements",
+          "components": ["GDPR Data Handling", "Country-specific Rules", "Currency/FX", "Local Labor Laws", "Cross-border Payments"]
+        },
+        {
+          "id": "lr-documentation",
+          "name": "Legal Documentation",
+          "components": ["Plan Documents", "Acknowledgments", "Amendment Protocols", "Retention Requirements", "E-signature"]
+        },
+        {
+          "id": "lr-disputes",
+          "name": "Dispute Resolution",
+          "components": ["Escalation Paths", "Arbitration Clauses", "Legal Holds", "Settlement Processes", "Documentation Requirements"]
+        }
+      ]
+    }
+  ]
+}
