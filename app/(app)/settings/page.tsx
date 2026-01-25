@@ -3,8 +3,10 @@
 import Link from 'next/link';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { PersonIcon, GearIcon, MixerHorizontalIcon, BellIcon, BarChartIcon, AvatarIcon, ReaderIcon } from '@radix-ui/react-icons';
+import { useCurrentUser } from '@/lib/auth';
 
 export default function SettingsPage() {
+  const user = useCurrentUser();
   const settingsSections = [
     {
       title: 'Profile',
@@ -75,29 +77,33 @@ export default function SettingsPage() {
             ))}
           </div>
 
-          {/* Admin Section */}
-          <div className="mt-12 mb-8">
-            <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">Administration</h2>
-            <p className="text-[color:var(--color-muted)] mt-1">System administration and monitoring</p>
-          </div>
+          {/* Admin Section - Only visible to admin users */}
+          {user?.isAdmin && (
+            <>
+              <div className="mt-12 mb-8">
+                <h2 className="text-xl font-bold text-[color:var(--color-foreground)]">Administration</h2>
+                <p className="text-[color:var(--color-muted)] mt-1">System administration and monitoring</p>
+              </div>
 
-          <div className="grid gap-4">
-            {adminSections.map((section) => (
-              <Link
-                key={section.href}
-                href={section.href as any}
-                className="flex items-center gap-4 p-6 bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] hover:border-[color:var(--color-accent)] hover:shadow-md transition-all"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[color:var(--color-accent-bg)]">
-                  <section.icon className="h-6 w-6 text-[color:var(--color-accent)]" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-[color:var(--color-foreground)]">{section.title}</h3>
-                  <p className="text-sm text-[color:var(--color-muted)]">{section.description}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+              <div className="grid gap-4">
+                {adminSections.map((section) => (
+                  <Link
+                    key={section.href}
+                    href={section.href as any}
+                    className="flex items-center gap-4 p-6 bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] hover:border-[color:var(--color-accent)] hover:shadow-md transition-all"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[color:var(--color-accent-bg)]">
+                      <section.icon className="h-6 w-6 text-[color:var(--color-accent)]" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-[color:var(--color-foreground)]">{section.title}</h3>
+                      <p className="text-sm text-[color:var(--color-muted)]">{section.description}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>
