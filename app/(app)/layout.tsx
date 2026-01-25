@@ -7,7 +7,7 @@ import { ModeProvider, useMode } from '@/lib/auth/mode-context';
 import { OperationalMode } from '@/types/operational-mode';
 import { CommandPalette } from '@/components/CommandPalette';
 import { OpsChiefOrb } from '@/components/ai/OpsChiefOrb';
-import { AskDock } from '@/components/ai/AskDock';
+import { AskItem } from '@/components/ai/AskItem';
 import { PulseOrb } from '@/components/ai/PulseOrb';
 import { TaskOrb } from '@/components/ai/TaskOrb';
 import { Navbar } from '@/components/Navbar';
@@ -103,7 +103,7 @@ function AppLayoutInner({
       <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />
       <PulseOrb enabled={isFeatureEnabled('pulse')} />
       <TaskOrb enabled={isFeatureEnabled('tasks')} />
-      <AskDock appName="SGM" enabled={isFeatureEnabled('askDock')} />
+      <AskItem appName="SGM" enabled={isFeatureEnabled('askItem')} />
       <PageKbPanel enabled={isFeatureEnabled('pageKb')} />
     </div>
   );

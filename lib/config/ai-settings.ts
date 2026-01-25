@@ -14,7 +14,7 @@ export interface AISettings {
   /** Individual toggles for specific features */
   features: {
     opsChief: boolean;
-    askDock: boolean;
+    askItem: boolean;
     pulse: boolean;
     tasks: boolean;
     pageKb: boolean;
@@ -29,7 +29,7 @@ const DEFAULT_AI_SETTINGS: AISettings = {
   aiOrbsEnabled: true,
   features: {
     opsChief: true,
-    askDock: true,
+    askItem: true,
     pulse: true,
     tasks: true,
     pageKb: true,

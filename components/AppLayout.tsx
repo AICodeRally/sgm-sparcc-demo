@@ -21,7 +21,7 @@ import {
   CheckIcon,
 } from '@radix-ui/react-icons';
 import { OpsChiefOrb } from '@/components/ai/OpsChiefOrb';
-import { AskDock } from '@/components/ai/AskDock';
+import { AskItem } from '@/components/ai/AskItem';
 import { AppChatbot } from '@/components/ai/AppChatbot';
 import { useTheme } from '@/components/ThemeProvider';
 
@@ -200,7 +200,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
 
       {/* AI Widgets - Fixed Positioning */}
       <OpsChiefOrb appName="SGM Edge" enabled={true} />
-      <AskDock appName="SGM Edge" enabled={true} />
+      <AskItem appName="SGM Edge" enabled={true} />
     </div>
   );
 }

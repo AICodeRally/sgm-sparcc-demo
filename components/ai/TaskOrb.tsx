@@ -65,7 +65,7 @@ export function TaskOrb({ enabled = true }: TaskOrbProps) {
 
   return (
     <>
-      {/* Floating Orb - Right side, next to AskDock */}
+      {/* Floating Orb - Right side, next to AskItem */}
       <button
         onClick={() => setIsOpen(true)}
         className="fixed bottom-4 right-20 z-40 flex h-14 w-14 items-center justify-center rounded-full text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl group"

@@ -25,12 +25,12 @@ interface Message {
   timestamp: Date;
 }
 
-interface AskDockProps {
+interface AskItemProps {
   appName?: string;
   enabled?: boolean;
 }
 
-export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
+export function AskItem({ appName = 'SGM', enabled = true }: AskItemProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);

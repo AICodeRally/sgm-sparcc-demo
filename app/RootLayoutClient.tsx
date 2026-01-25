@@ -8,7 +8,7 @@ import { OperationalMode } from "@/types/operational-mode";
 import { aiManifest } from "../ai.manifest";
 import { CommandPalette } from "@/components/CommandPalette";
 import { OpsChiefOrb } from "@/components/ai/OpsChiefOrb";
-import { AskDock } from "@/components/ai/AskDock";
+import { AskItem } from "@/components/ai/AskItem";
 import { PulseOrb } from "@/components/ai/PulseOrb";
 import { TaskOrb } from "@/components/ai/TaskOrb";
 import { Navbar } from "@/components/Navbar";
@@ -89,7 +89,7 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
       {isAuthenticated && <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />}
       {isAuthenticated && <PulseOrb enabled={isFeatureEnabled('pulse')} />}
       {isAuthenticated && <TaskOrb enabled={isFeatureEnabled('tasks')} />}
-      {isAuthenticated && <AskDock appName="SGM" enabled={isFeatureEnabled('askDock')} />}
+      {isAuthenticated && <AskItem appName="SGM" enabled={isFeatureEnabled('askItem')} />}
       {isAuthenticated && <PageKbPanel enabled={isFeatureEnabled('pageKb')} />}
     </div>
   );

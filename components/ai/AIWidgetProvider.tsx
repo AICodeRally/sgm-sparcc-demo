@@ -4,14 +4,14 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface AIWidgetState {
   opsChiefOpen: boolean;
-  askDockOpen: boolean;
+  askItemOpen: boolean;
   appChatbotOpen: boolean;
 }
 
 interface AIWidgetContextValue {
   state: AIWidgetState;
   toggleOpsChief: () => void;
-  toggleAskDock: () => void;
+  toggleAskItem: () => void;
   toggleAppChatbot: () => void;
   closeAll: () => void;
 }
@@ -21,7 +21,7 @@ const AIWidgetContext = createContext<AIWidgetContextValue | undefined>(undefine
 export function AIWidgetProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<AIWidgetState>({
     opsChiefOpen: false,
-    askDockOpen: false,
+    askItemOpen: false,
     appChatbotOpen: false,
   });
 
@@ -29,8 +29,8 @@ export function AIWidgetProvider({ children }: { children: ReactNode }) {
     setState(s => ({ ...s, opsChiefOpen: !s.opsChiefOpen }));
   };
 
-  const toggleAskDock = () => {
-    setState(s => ({ ...s, askDockOpen: !s.askDockOpen }));
+  const toggleAskItem = () => {
+    setState(s => ({ ...s, askItemOpen: !s.askItemOpen }));
   };
 
   const toggleAppChatbot = () => {
@@ -40,7 +40,7 @@ export function AIWidgetProvider({ children }: { children: ReactNode }) {
   const closeAll = () => {
     setState({
       opsChiefOpen: false,
-      askDockOpen: false,
+      askItemOpen: false,
       appChatbotOpen: false,
     });
   };
@@ -50,7 +50,7 @@ export function AIWidgetProvider({ children }: { children: ReactNode }) {
       value={{
         state,
         toggleOpsChief,
-        toggleAskDock,
+        toggleAskItem,
         toggleAppChatbot,
         closeAll,
       }}
