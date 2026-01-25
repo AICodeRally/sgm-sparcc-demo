@@ -9,6 +9,7 @@ import {
   RowsIcon,
   ChevronDownIcon,
   PlusIcon,
+  ArrowLeftIcon,
 } from '@radix-ui/react-icons';
 
 // Pagination: Load 50 cards at a time for performance
@@ -42,6 +43,46 @@ const CARD_TYPE_LABELS: Record<CardType, string> = {
   regulation: 'Regulation',
 };
 
+// Pillar tile component for the pillar selection view
+function PillarTile({
+  pillar,
+  cardCount,
+  categoryCount,
+  onClick,
+}: {
+  pillar: SPMPillar;
+  cardCount: number;
+  categoryCount: number;
+  onClick: () => void;
+}) {
+  const meta = SPMPillarMetadata[pillar];
+  return (
+    <button
+      onClick={onClick}
+      className="group p-6 bg-[color:var(--color-surface)] rounded-xl border border-[color:var(--color-border)] hover:border-[color:var(--color-primary)] hover:shadow-lg transition-all text-left"
+    >
+      <div className="flex items-start justify-between mb-3">
+        <div
+          className="w-3 h-3 rounded-full"
+          style={{ backgroundColor: meta.color }}
+        />
+        <span className="text-2xl font-bold text-[color:var(--color-primary)] group-hover:scale-110 transition-transform">
+          {cardCount}
+        </span>
+      </div>
+      <h3 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-1">
+        {meta.name}
+      </h3>
+      <p className="text-sm text-[color:var(--color-muted)] line-clamp-2 mb-3">
+        {meta.description}
+      </p>
+      <div className="text-xs text-[color:var(--color-muted)]">
+        {categoryCount} categories
+      </div>
+    </button>
+  );
+}
+
 export function FrameworkCardList({
   cards,
   onTermClick,
@@ -56,6 +97,9 @@ export function FrameworkCardList({
   const [showFilters, setShowFilters] = useState(false);
   const [displayCount, setDisplayCount] = useState(PAGE_SIZE);
 
+  const pillars = SPMPillarSchema.options;
+  const cardTypes = CardTypeSchema.options;
+
   // Reset display count when filters change
   useEffect(() => {
     setDisplayCount(PAGE_SIZE);
@@ -67,6 +111,21 @@ export function FrameworkCardList({
     cards.forEach((card) => categorySet.add(card.category));
     return Array.from(categorySet).sort();
   }, [cards]);
+
+  // Calculate stats per pillar for the pillar selection view
+  const pillarStats = useMemo(() => {
+    const stats: Record<SPMPillar, { cardCount: number; categories: Set<string> }> = {} as Record<SPMPillar, { cardCount: number; categories: Set<string> }>;
+    pillars.forEach((p) => {
+      stats[p] = { cardCount: 0, categories: new Set() };
+    });
+    cards.forEach((card) => {
+      if (stats[card.pillar]) {
+        stats[card.pillar].cardCount++;
+        stats[card.pillar].categories.add(card.category);
+      }
+    });
+    return stats;
+  }, [cards, pillars]);
 
   // Filter cards based on search and filters
   const filteredCards = useMemo(() => {
@@ -146,8 +205,8 @@ export function FrameworkCardList({
     selectedCategory !== 'all' ||
     selectedCardType !== 'all';
 
-  const pillars = SPMPillarSchema.options;
-  const cardTypes = CardTypeSchema.options;
+  // Show pillar tiles when no filters active (landing view)
+  const showPillarTiles = !hasActiveFilters;
 
   return (
     <div className={`space-y-6 ${className}`}>
@@ -335,61 +394,108 @@ export function FrameworkCardList({
         )}
       </div>
 
-      {/* Cards Display */}
-      {filteredCards.length === 0 ? (
-        <div className="text-center py-12">
-          <div className="text-[color:var(--color-muted)] mb-2">No cards found</div>
-          {hasActiveFilters && (
-            <button
-              onClick={handleClearFilters}
-              className="text-sm text-[color:var(--color-primary)] hover:underline"
-            >
-              Clear all filters
-            </button>
-          )}
-        </div>
-      ) : viewMode === 'grid' ? (
-        // Grid View - Group by Pillar
-        <div className="space-y-8">
-          {Object.entries(groupedByPillar).map(([pillar, pillarCards]) => {
-            const pillarMeta = SPMPillarMetadata[pillar as SPMPillar];
-            return (
-              <div key={pillar}>
-                {/* Pillar Header */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="w-1 h-6 rounded-full"
-                    style={{ backgroundColor: pillarMeta.color }}
-                  />
-                  <h3 className="text-lg font-semibold text-[color:var(--color-foreground)]">
-                    {pillarMeta.name}
-                  </h3>
-                  <span className="text-sm text-[color:var(--color-muted)]">
-                    ({pillarCards.length} cards)
-                  </span>
-                </div>
-
-                {/* Grid of Cards */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  {pillarCards.map((card) => (
-                    <FrameworkCard key={card.id} card={card} onTermClick={onTermClick} />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
+      {/* Pillar Selection View - Landing state */}
+      {showPillarTiles ? (
+        <div className="space-y-6">
+          <div className="text-center">
+            <h2 className="text-xl font-semibold text-[color:var(--color-foreground)] mb-2">
+              Select a Pillar to Explore
+            </h2>
+            <p className="text-sm text-[color:var(--color-muted)]">
+              Or use search above to find cards across all pillars
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {pillars.map((pillar) => (
+              <PillarTile
+                key={pillar}
+                pillar={pillar}
+                cardCount={pillarStats[pillar]?.cardCount || 0}
+                categoryCount={pillarStats[pillar]?.categories.size || 0}
+                onClick={() => setSelectedPillar(pillar)}
+              />
+            ))}
+          </div>
         </div>
       ) : (
-        // List View
-        <div className="space-y-4">
-          {paginatedCards.map((card) => (
-            <FrameworkCard key={card.id} card={card} onTermClick={onTermClick} />
-          ))}
-        </div>
+        <>
+          {/* Back to Pillars button when viewing filtered results */}
+          <div className="flex items-center gap-4 mb-4">
+            <button
+              onClick={handleClearFilters}
+              className="flex items-center gap-2 px-3 py-2 text-sm text-[color:var(--color-primary)] hover:bg-[color:var(--color-primary)]/10 rounded-lg transition-colors"
+            >
+              <ArrowLeftIcon className="w-4 h-4" />
+              Back to Pillars
+            </button>
+            {selectedPillar !== 'all' && (
+              <div className="flex items-center gap-2">
+                <div
+                  className="w-3 h-3 rounded-full"
+                  style={{ backgroundColor: SPMPillarMetadata[selectedPillar].color }}
+                />
+                <span className="font-medium text-[color:var(--color-foreground)]">
+                  {SPMPillarMetadata[selectedPillar].name}
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Cards Display */}
+          {filteredCards.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="text-[color:var(--color-muted)] mb-2">No cards found</div>
+              <button
+                onClick={handleClearFilters}
+                className="text-sm text-[color:var(--color-primary)] hover:underline"
+              >
+                Clear all filters
+              </button>
+            </div>
+          ) : viewMode === 'grid' ? (
+            // Grid View - Group by Pillar
+            <div className="space-y-8">
+              {Object.entries(groupedByPillar).map(([pillar, pillarCards]) => {
+                const pillarMeta = SPMPillarMetadata[pillar as SPMPillar];
+                return (
+                  <div key={pillar}>
+                    {/* Pillar Header */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="w-1 h-6 rounded-full"
+                        style={{ backgroundColor: pillarMeta.color }}
+                      />
+                      <h3 className="text-lg font-semibold text-[color:var(--color-foreground)]">
+                        {pillarMeta.name}
+                      </h3>
+                      <span className="text-sm text-[color:var(--color-muted)]">
+                        ({pillarCards.length} cards)
+                      </span>
+                    </div>
+
+                    {/* Grid of Cards */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                      {pillarCards.map((card) => (
+                        <FrameworkCard key={card.id} card={card} onTermClick={onTermClick} />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            // List View
+            <div className="space-y-4">
+              {paginatedCards.map((card) => (
+                <FrameworkCard key={card.id} card={card} onTermClick={onTermClick} />
+              ))}
+            </div>
+          )}
+        </>
       )}
 
-      {/* Load More Button */}
-      {hasMoreCards && (
+      {/* Load More Button - only when viewing cards */}
+      {!showPillarTiles && hasMoreCards && (
         <div className="flex justify-center pt-6">
           <button
             onClick={handleLoadMore}
@@ -402,8 +508,8 @@ export function FrameworkCardList({
         </div>
       )}
 
-      {/* Results Summary */}
-      {filteredCards.length > 0 && (
+      {/* Results Summary - only when viewing cards */}
+      {!showPillarTiles && filteredCards.length > 0 && (
         <div className="text-center text-sm text-[color:var(--color-muted)] pt-4 border-t border-[color:var(--color-border)]">
           Showing {paginatedCards.length} of {filteredCards.length} cards
           {filteredCards.length !== cards.length && ` (${cards.length} total)`}
