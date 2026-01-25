@@ -1,5 +1,6 @@
 import type { GovernanceFramework } from '@/lib/contracts/governance-framework.contract';
 import governanceChecklistData from './governance-checklist.json';
+import spm101FrameworkData from './spm-101-framework.json';
 
 /**
  * Synthetic Governance Framework Data
@@ -317,6 +318,29 @@ export const framework4: GovernanceFramework = {
 };
 
 // =============================================================================
+// SPM-FW-005: SPM 101 Knowledge Base
+// =============================================================================
+
+export const framework5: GovernanceFramework = {
+  id: 'fw-005-id',
+  tenantId: DEFAULT_TENANT_ID,
+  code: 'SPM-FW-005',
+  title: 'SPM 101 Knowledge Base',
+  category: 'BEST_PRACTICES',
+  content: 'Comprehensive SPM glossary and knowledge base — 338 keywords across Sales Planning, Incentive Compensation Management, and Sales Intelligence.',
+  contentType: 'glossary',
+  structuredContent: spm101FrameworkData,
+  version: '1.0.0',
+  status: 'ACTIVE',
+  isGlobal: true,
+  isMandatory: false,
+  applicableTo: ['COMPENSATION_PLAN', 'GOVERNANCE_PLAN'],
+  createdBy: CREATED_BY,
+  createdAt: new Date('2026-01-01T00:00:00Z'),
+  updatedAt: new Date('2026-01-24T00:00:00Z'),
+};
+
+// =============================================================================
 // Aggregate Exports
 // =============================================================================
 
@@ -325,4 +349,5 @@ export const syntheticGovernanceFrameworks: GovernanceFramework[] = [
   framework2,
   framework3,
   framework4,
+  framework5,
 ];

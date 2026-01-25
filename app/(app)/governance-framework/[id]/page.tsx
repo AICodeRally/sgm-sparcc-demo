@@ -13,6 +13,7 @@ import {
 import Link from 'next/link';
 import type { GovernanceFramework } from '@/lib/contracts/governance-framework.contract';
 import { ChecklistFrameworkView } from '@/components/governance/checklist';
+import { GlossaryFrameworkView } from '@/components/governance/glossary';
 
 interface FrameworkViewerPageProps {
   params: Promise<{ id: string }>;
@@ -198,6 +199,8 @@ export default function FrameworkViewerPage({ params }: FrameworkViewerPageProps
         <div className="max-w-5xl mx-auto">
           {framework.contentType === 'checklist' ? (
             <ChecklistFrameworkView framework={framework} />
+          ) : framework.contentType === 'glossary' ? (
+            <GlossaryFrameworkView framework={framework} />
           ) : (
             <div className="bg-[color:var(--surface-glass)] backdrop-blur-sm rounded-lg border-2 border-[color:var(--color-border)] p-8">
               {/* Applicable To */}

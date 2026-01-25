@@ -32,7 +32,7 @@ export type FrameworkStatus = z.infer<typeof FrameworkStatusSchema>;
 // CONTENT TYPE
 // =============================================================================
 
-export const FrameworkContentTypeSchema = z.enum(['markdown', 'checklist']);
+export const FrameworkContentTypeSchema = z.enum(['markdown', 'checklist', 'glossary']);
 export type FrameworkContentType = z.infer<typeof FrameworkContentTypeSchema>;
 
 // =============================================================================
@@ -68,6 +68,43 @@ export const ChecklistContentSchema = z.object({
   phases: z.array(ChecklistPhaseSchema),
 });
 export type ChecklistContent = z.infer<typeof ChecklistContentSchema>;
+
+// =============================================================================
+// GLOSSARY SCHEMAS
+// =============================================================================
+
+export const GlossaryEntrySchema = z.object({
+  id: z.string(),
+  keyword: z.string(),
+  definition: z.string(),
+  userType: z.string().optional(),
+});
+export type GlossaryEntry = z.infer<typeof GlossaryEntrySchema>;
+
+export const GlossaryItemSchema = z.object({
+  id: z.string(),
+  number: z.number(),
+  title: z.string(),
+  category: z.string(),
+  entries: z.array(GlossaryEntrySchema),
+});
+export type GlossaryItem = z.infer<typeof GlossaryItemSchema>;
+
+export const GlossaryPhaseSchema = z.object({
+  id: z.string(),
+  number: z.number(),
+  title: z.string(),
+  type: z.literal('reference'),
+  totalItems: z.number(),
+  totalEntries: z.number(),
+  items: z.array(GlossaryItemSchema),
+});
+export type GlossaryPhase = z.infer<typeof GlossaryPhaseSchema>;
+
+export const GlossaryContentSchema = z.object({
+  phases: z.array(GlossaryPhaseSchema),
+});
+export type GlossaryContent = z.infer<typeof GlossaryContentSchema>;
 
 // =============================================================================
 // MAIN SCHEMA

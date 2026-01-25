@@ -1,0 +1,1 @@
+export { GlossaryFrameworkView } from './GlossaryFrameworkView';
