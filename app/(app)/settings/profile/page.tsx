@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { SetPageTitle } from '@/components/SetPageTitle';
 import { PersonIcon, EnvelopeClosedIcon, IdCardIcon, CheckIcon, Pencil1Icon } from '@radix-ui/react-icons';
+import { ThemeSettings } from '@/components/settings';
 
 const ROLES = ['Admin', 'Manager', 'Analyst', 'User', 'Viewer'];
 
@@ -232,6 +233,14 @@ export default function ProfilePage() {
                 </p>
               )}
             </div>
+          </div>
+
+          {/* Appearance Section */}
+          <div className="mt-8 bg-[color:var(--color-surface)] rounded-lg border border-[color:var(--color-border)] p-6">
+            <h2 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4">
+              Appearance
+            </h2>
+            <ThemeSettings />
           </div>
         </div>
       </div>

@@ -122,8 +122,8 @@ export default function AISettingsPage() {
       icon: LightningBoltIcon,
     },
     {
-      id: 'askDock',
-      key: 'askDock' as const,
+      id: 'askItem',
+      key: 'askItem' as const,
       label: 'AskSGM Assistant',
       description: 'AI chat assistant for governance questions',
       icon: ChatBubbleIcon,
