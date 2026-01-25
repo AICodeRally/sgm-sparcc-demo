@@ -112,6 +112,76 @@ h4 {
   line-height: 1.75rem;
 }
 
+/* ================================================================
+   Orb Glow Animations - Connection Status Indicators
+   ================================================================ */
+
+/* Glow animation for connected orb state */
+@keyframes orb-glow-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 8px 2px color-mix(in srgb, var(--sparcc-gradient-start) 60%, transparent),
+      0 0 20px 4px color-mix(in srgb, var(--sparcc-gradient-mid2) 40%, transparent),
+      0 0 30px 8px color-mix(in srgb, var(--sparcc-gradient-end) 20%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 12px 4px color-mix(in srgb, var(--sparcc-gradient-start) 80%, transparent),
+      0 0 28px 8px color-mix(in srgb, var(--sparcc-gradient-mid2) 50%, transparent),
+      0 0 40px 12px color-mix(in srgb, var(--sparcc-gradient-end) 30%, transparent);
+  }
+}
+
+/* Connected orb - glowing state */
+.orb-connected {
+  animation: orb-glow-pulse 2s ease-in-out infinite;
+}
+
+/* Disconnected orb - subtle dim state */
+.orb-disconnected {
+  opacity: 0.7;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Checking/connecting state */
+@keyframes orb-checking {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.orb-checking {
+  animation: orb-checking 1s ease-in-out infinite;
+}
+
+/* Status indicator dot */
+.orb-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  border: 2px solid var(--color-surface);
+}
+
+.orb-status-dot.connected {
+  background-color: var(--color-success);
+  box-shadow: 0 0 6px var(--color-success);
+}
+
+.orb-status-dot.disconnected {
+  background-color: var(--color-muted);
+}
+
+.orb-status-dot.checking {
+  background-color: var(--color-warning);
+  animation: orb-checking 1s ease-in-out infinite;
+}
+
 /* Component styles */
 .glass-card {
   background-color: var(--surface-glass);

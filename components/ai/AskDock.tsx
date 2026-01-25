@@ -10,10 +10,13 @@ import {
   InfoCircledIcon,
   ExclamationTriangleIcon,
   CheckCircledIcon,
+  ActivityLogIcon,
 } from '@radix-ui/react-icons';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { usePageKb } from '@/components/kb/PageKbProvider';
+import { useServiceHealth } from '@/lib/aicr/use-service-health';
+import { TelemetryVisualizer } from './TelemetryVisualizer';
 
 interface Message {
   id: string;
@@ -35,8 +38,27 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPageGuide, setShowPageGuide] = useState(false);
+  const [showTelemetry, setShowTelemetry] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { data: pageKb } = usePageKb();
+
+  // Service health for orb glow indicator
+  const { isAskSGMAvailable, isAICRAvailable, isChecking } = useServiceHealth();
+  const isConnected = isAskSGMAvailable || isAICRAvailable;
+
+  // Determine orb state class
+  const getOrbStateClass = () => {
+    if (isChecking) return 'orb-checking';
+    if (isConnected) return 'orb-connected';
+    return 'orb-disconnected';
+  };
+
+  // Determine status dot class
+  const getStatusDotClass = () => {
+    if (isChecking) return 'checking';
+    if (isConnected) return 'connected';
+    return 'disconnected';
+  };
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -140,11 +162,13 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl"
+          className={`fixed bottom-4 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl ${getOrbStateClass()}`}
           aria-label="Open AskSGM AI Assistant"
-          title="AskSGM - Governance AI Assistant"
+          title={`AskSGM - Governance AI Assistant${isConnected ? ' (Connected)' : isChecking ? ' (Connecting...)' : ' (Offline)'}`}
         >
           <ChatBubbleIcon className="h-6 w-6" />
+          {/* Connection status dot */}
+          <span className={`orb-status-dot ${getStatusDotClass()}`} />
         </button>
       )}
 
@@ -154,13 +178,35 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
           {/* Header */}
           <div className="flex items-center justify-between border-b border-[color:var(--color-border)] bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] p-4 text-white rounded-t-lg">
             <div className="flex items-center gap-2">
-              <ChatBubbleIcon className="h-5 w-5" />
+              <div className="relative">
+                <ChatBubbleIcon className="h-5 w-5" />
+                {/* Mini status dot in header */}
+                <span
+                  className={`absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full border border-white ${
+                    isChecking
+                      ? 'bg-yellow-400 animate-pulse'
+                      : isConnected
+                      ? 'bg-green-400'
+                      : 'bg-gray-400'
+                  }`}
+                />
+              </div>
               <div>
                 <h3 className="font-semibold">AskSGM</h3>
-                <p className="text-xs text-white/80">Governance AI Assistant</p>
+                <p className="text-xs text-white/80">
+                  {isChecking ? 'Connecting...' : isConnected ? 'Connected' : 'Offline'}
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowTelemetry(!showTelemetry)}
+                className={`rounded p-1 text-xs transition-colors hover:bg-[color:var(--color-surface)]/20 ${showTelemetry ? 'bg-[color:var(--color-surface)]/20' : ''}`}
+                aria-label="Toggle telemetry view"
+                title="AI Telemetry"
+              >
+                <ActivityLogIcon className="h-4 w-4" />
+              </button>
               {messages.length > 0 && (
                 <button
                   onClick={clearChat}
@@ -190,7 +236,16 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
 
           {/* Messages Area */}
           <div className="flex-1 space-y-4 overflow-y-auto p-4 bg-[color:var(--color-surface-alt)]">
-            {messages.length === 0 ? (
+            {/* Telemetry View */}
+            {showTelemetry && (
+              <TelemetryVisualizer
+                showSignalFeed={true}
+                compact={false}
+                className="mb-4"
+              />
+            )}
+
+            {!showTelemetry && messages.length === 0 ? (
               <>
                 {/* Welcome Message */}
                 <div className="flex gap-3">
@@ -256,7 +311,7 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
                   ))}
                 </div>
               </>
-            ) : (
+            ) : !showTelemetry ? (
               <>
                 {messages.map((message) => (
                   <div
@@ -316,7 +371,7 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
 
                 <div ref={messagesEndRef} />
               </>
-            )}
+            ) : null}
           </div>
 
           {/* Input Area */}
@@ -362,9 +417,20 @@ export function AskDock({ appName = 'SGM', enabled = true }: AskDockProps) {
       {isOpen && isMinimized && (
         <button
           onClick={() => setIsMinimized(false)}
-          className="fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-lg bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] px-4 py-2 text-white shadow-lg transition-all hover:shadow-xl"
+          className={`fixed bottom-4 right-4 z-40 flex items-center gap-2 rounded-lg bg-[linear-gradient(90deg,var(--sparcc-gradient-start),var(--sparcc-gradient-mid2),var(--sparcc-gradient-end))] px-4 py-2 text-white shadow-lg transition-all hover:shadow-xl ${getOrbStateClass()}`}
         >
-          <ChatBubbleIcon className="h-4 w-4" />
+          <div className="relative">
+            <ChatBubbleIcon className="h-4 w-4" />
+            <span
+              className={`absolute -top-1 -right-1 h-2 w-2 rounded-full border border-white ${
+                isChecking
+                  ? 'bg-yellow-400 animate-pulse'
+                  : isConnected
+                  ? 'bg-green-400'
+                  : 'bg-gray-400'
+              }`}
+            />
+          </div>
           <span className="text-sm font-medium">AskSGM</span>
           {messages.length > 0 && (
             <span className="ml-1 rounded-full bg-[color:var(--color-surface)]/20 px-2 py-0.5 text-xs">
