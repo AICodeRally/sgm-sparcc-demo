@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Document {
   id: string;
@@ -120,13 +122,13 @@ export default function DocumentDetailPage() {
               )}
 
               {markdownContent ? (
-                <div className="prose prose-sm max-w-none">
-                  <div className="whitespace-pre-wrap font-mono text-sm text-[color:var(--color-foreground)] bg-[color:var(--color-surface-alt)] p-4 rounded">
-                    {markdownContent.slice(0, 500)}...
-                  </div>
-                  <p className="text-center text-[color:var(--color-muted)] mt-4">
-                    <em>Preview truncated. Download full document to see complete content.</em>
-                  </p>
+                <div className="prose prose-sm max-w-none prose-headings:text-[color:var(--color-foreground)] prose-p:text-[color:var(--color-foreground)] prose-li:text-[color:var(--color-foreground)]">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {markdownContent.length > 3000
+                      ? markdownContent.substring(0, 3000) + '\n\n*... (Preview truncated. Download the full document for complete content.)*'
+                      : markdownContent
+                    }
+                  </ReactMarkdown>
                 </div>
               ) : (
                 <div className="text-center py-12">

@@ -12,6 +12,22 @@ import {
 } from '@radix-ui/react-icons';
 import type { GovernanceFramework } from '@/lib/contracts/governance-framework.contract';
 
+/**
+ * Strip markdown formatting to create a plain text preview
+ */
+function getPlainTextPreview(markdown: string, maxLength: number = 150): string {
+  return markdown
+    .replace(/^#{1,6}\s+/gm, '')  // Remove headers
+    .replace(/\*\*(.+?)\*\*/g, '$1')  // Remove bold
+    .replace(/\*(.+?)\*/g, '$1')  // Remove italic
+    .replace(/\[(.+?)\]\(.+?\)/g, '$1')  // Remove links
+    .replace(/^[-*+]\s+/gm, '')  // Remove list markers
+    .replace(/\n+/g, ' ')  // Collapse newlines
+    .replace(/\s+/g, ' ')  // Collapse whitespace
+    .trim()
+    .substring(0, maxLength);
+}
+
 export default function GovernanceFrameworkPage() {
   const router = useRouter();
   const [frameworks, setFrameworks] = useState<GovernanceFramework[]>([]);
@@ -206,7 +222,7 @@ export default function GovernanceFrameworkPage() {
 
                   {/* Content Preview */}
                   <p className="text-sm text-[color:var(--color-muted)] line-clamp-3 mb-4">
-                    {framework.content.substring(0, 150)}...
+                    {getPlainTextPreview(framework.content)}...
                   </p>
 
                   {/* Footer */}

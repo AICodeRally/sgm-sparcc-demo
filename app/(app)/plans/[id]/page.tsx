@@ -14,6 +14,8 @@ import {
   Cross2Icon,
 } from '@radix-ui/react-icons';
 import { SetPageTitle } from '@/components/SetPageTitle';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Plan {
   id: string;
@@ -287,7 +289,11 @@ export default function PlanDetailPage() {
                           )}
                           {section.content && section.content.trim() && (
                             <div className="mt-2 p-3 bg-[color:var(--color-surface-alt)] rounded border border-[color:var(--color-border)]">
-                              <p className="text-sm text-[color:var(--color-foreground)] whitespace-pre-wrap">{section.content}</p>
+                              <div className="prose prose-sm max-w-none prose-headings:text-[color:var(--color-foreground)] prose-p:text-[color:var(--color-foreground)] prose-li:text-[color:var(--color-foreground)]">
+                                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                  {section.content}
+                                </ReactMarkdown>
+                              </div>
                             </div>
                           )}
                         </div>

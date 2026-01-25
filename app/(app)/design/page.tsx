@@ -23,10 +23,10 @@ export default function DesignModePage() {
   const config = MODE_CONFIGS[OperationalMode.DESIGN];
   const clientName = useClientName();
   const [metrics, setMetrics] = useState({
-    policies: 26,
-    templates: 56,
-    frameworks: 6,
-    planCount: 27,
+    policies: 17,      // Actual: 17 SCP policies (SCP-001 to SCP-017)
+    templates: 27,     // Actual: 27 template sections in library
+    frameworks: 4,     // Actual: 4 governance frameworks
+    planCount: 27,     // Mock data for demo
   });
   const toneStyles = getToneStyles('primary');
 
