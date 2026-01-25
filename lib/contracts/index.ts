@@ -26,3 +26,6 @@ export * from './link.contract';
 
 // Index Item (Search pattern)
 export * from './index-item.contract';
+
+// Signal Envelope (Telemetry signals for Ops, Pulse, Task orbs)
+export * from './signal-envelope.contract';
