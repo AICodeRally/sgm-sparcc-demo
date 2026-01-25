@@ -133,7 +133,13 @@
       "Bash(for i in {1..15})",
       "Bash(do echo \"=== Run $i ===\")",
       "Bash(for:*)",
-      "Bash(do npx tsx apps/aicr/scripts/embed-spine-chunks.ts)"
+      "Bash(do npx tsx apps/aicr/scripts/embed-spine-chunks.ts)",
+      "Bash(do lsof -i :$port)",
+      "Bash({ echo \"$port is free\")",
+      "Bash(break)",
+      "Bash(})",
+      "Skill(superpowers:executing-plans)",
+      "Skill(superpowers:finishing-a-development-branch)"
     ]
   }
 }
