@@ -23,10 +23,12 @@ export function useCurrentUser(): CurrentUser | null {
 
   // Admin detection - can be extended to check database roles
   const email = session.user.email || '';
+  const role = ((session.user as Record<string, unknown>).role as string || '').toLowerCase();
   const isAdmin =
     email.includes('admin') ||
     email.endsWith('@aicr.platform') ||
-    (session.user as Record<string, unknown>).role === 'admin';
+    role === 'admin' ||
+    role === 'super_admin';
 
   return {
     id: (session.user as Record<string, unknown>).id as string || session.user.email || 'unknown',
