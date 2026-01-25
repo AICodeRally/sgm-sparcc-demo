@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import {
   MagnifyingGlassIcon,
   Cross2Icon,
@@ -8,7 +8,11 @@ import {
   GridIcon,
   RowsIcon,
   ChevronDownIcon,
+  PlusIcon,
 } from '@radix-ui/react-icons';
+
+// Pagination: Load 50 cards at a time for performance
+const PAGE_SIZE = 50;
 import { FrameworkCard } from './FrameworkCard';
 import type {
   FrameworkCard as FrameworkCardType,
@@ -50,6 +54,12 @@ export function FrameworkCardList({
   const [selectedCardType, setSelectedCardType] = useState<CardType | 'all'>(initialFilters.cardType || 'all');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [showFilters, setShowFilters] = useState(false);
+  const [displayCount, setDisplayCount] = useState(PAGE_SIZE);
+
+  // Reset display count when filters change
+  useEffect(() => {
+    setDisplayCount(PAGE_SIZE);
+  }, [searchQuery, selectedPillar, selectedCategory, selectedCardType]);
 
   // Extract unique categories from cards
   const categories = useMemo(() => {
@@ -99,17 +109,29 @@ export function FrameworkCardList({
     });
   }, [cards, searchQuery, selectedPillar, selectedCategory, selectedCardType]);
 
-  // Group cards by pillar for display
+  // Paginate filtered cards for performance
+  const paginatedCards = useMemo(() => {
+    return filteredCards.slice(0, displayCount);
+  }, [filteredCards, displayCount]);
+
+  const hasMoreCards = displayCount < filteredCards.length;
+  const remainingCards = filteredCards.length - displayCount;
+
+  const handleLoadMore = useCallback(() => {
+    setDisplayCount((prev) => Math.min(prev + PAGE_SIZE, filteredCards.length));
+  }, [filteredCards.length]);
+
+  // Group cards by pillar for display (uses paginated cards)
   const groupedByPillar = useMemo(() => {
     const groups: Record<string, FrameworkCardType[]> = {};
-    filteredCards.forEach((card) => {
+    paginatedCards.forEach((card) => {
       if (!groups[card.pillar]) {
         groups[card.pillar] = [];
       }
       groups[card.pillar].push(card);
     });
     return groups;
-  }, [filteredCards]);
+  }, [paginatedCards]);
 
   const handleClearFilters = useCallback(() => {
     setSearchQuery('');
@@ -360,16 +382,31 @@ export function FrameworkCardList({
       ) : (
         // List View
         <div className="space-y-4">
-          {filteredCards.map((card) => (
+          {paginatedCards.map((card) => (
             <FrameworkCard key={card.id} card={card} onTermClick={onTermClick} />
           ))}
+        </div>
+      )}
+
+      {/* Load More Button */}
+      {hasMoreCards && (
+        <div className="flex justify-center pt-6">
+          <button
+            onClick={handleLoadMore}
+            className="flex items-center gap-2 px-6 py-3 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-primary)]/90 transition-colors font-medium"
+          >
+            <PlusIcon className="w-4 h-4" />
+            Load {Math.min(PAGE_SIZE, remainingCards)} more cards
+            <span className="text-white/70 text-sm">({remainingCards} remaining)</span>
+          </button>
         </div>
       )}
 
       {/* Results Summary */}
       {filteredCards.length > 0 && (
         <div className="text-center text-sm text-[color:var(--color-muted)] pt-4 border-t border-[color:var(--color-border)]">
-          Showing {filteredCards.length} of {cards.length} cards
+          Showing {paginatedCards.length} of {filteredCards.length} cards
+          {filteredCards.length !== cards.length && ` (${cards.length} total)`}
         </div>
       )}
     </div>
