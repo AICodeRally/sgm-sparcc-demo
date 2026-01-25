@@ -20,6 +20,13 @@ export const SPMPillarSchema = z.enum([
   'STRATEGY_DESIGN',
   'IMPLEMENTATION_CHANGE',
   'LEGAL_REGULATORY',
+  // Extended pillars for operations and support
+  'OPERATIONS',
+  'DISPUTES',
+  'DATA_QUALITY',
+  'INTEGRATION',
+  'WORKFORCE',
+  'CHANGE_MANAGEMENT',
 ]);
 export type SPMPillar = z.infer<typeof SPMPillarSchema>;
 
@@ -63,6 +70,37 @@ export const SPMPillarMetadata: Record<SPMPillar, { name: string; description: s
     name: 'Legal & Regulatory',
     description: 'State wage laws, international requirements, employment law',
     color: '#4f46e5', // indigo
+  },
+  // Extended pillars for operations and support
+  OPERATIONS: {
+    name: 'Operations',
+    description: 'Day-to-day administration, payment processing, inquiries',
+    color: '#059669', // emerald
+  },
+  DISPUTES: {
+    name: 'Disputes',
+    description: 'Dispute resolution, appeals, exception handling',
+    color: '#d97706', // amber
+  },
+  DATA_QUALITY: {
+    name: 'Data Quality',
+    description: 'Data validation, cleansing, reconciliation',
+    color: '#7c3aed', // violet
+  },
+  INTEGRATION: {
+    name: 'Integration',
+    description: 'CRM integration, ERP feeds, data pipelines',
+    color: '#0284c7', // sky
+  },
+  WORKFORCE: {
+    name: 'Workforce',
+    description: 'Hiring, territory assignment, onboarding',
+    color: '#be185d', // pink
+  },
+  CHANGE_MANAGEMENT: {
+    name: 'Change Management',
+    description: 'Plan changes, mid-year adjustments, communication',
+    color: '#b45309', // amber-dark
   },
 };
 
