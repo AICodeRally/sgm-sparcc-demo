@@ -1,10 +1,11 @@
 import type { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { createAuthOptionsV4, type AuthConfig } from '@aicr/auth/v4';
 import {
+  createAuthOptionsV4,
+  type AuthConfig,
   getAvailableModesForRole,
   getDefaultModeForRole,
-} from './mode-permissions';
+} from './aicr-auth-v4';
 
 /**
  * NextAuth.js Configuration using @aicr/auth v4
