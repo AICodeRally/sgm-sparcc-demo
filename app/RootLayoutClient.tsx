@@ -7,10 +7,6 @@ import { OperationalMode } from "@/types/operational-mode";
 // import { AppShell } from "@rally/app-shell"; // Rally package not yet installed
 import { aiManifest } from "../ai.manifest";
 import { CommandPalette } from "@/components/CommandPalette";
-import { OpsChiefOrb } from "@/components/ai/OpsChiefOrb";
-import { AskItem } from "@/components/ai/AskItem";
-import { PulseOrb } from "@/components/ai/PulseOrb";
-import { TaskOrb } from "@/components/ai/TaskOrb";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PageTitleProvider } from "@/components/PageTitle";
@@ -21,6 +17,15 @@ import { getActiveModule } from "@/lib/config/module-registry";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { applyThemeVars, getStoredTheme } from "@/lib/config/themes";
 import { AISettingsProvider, useAISettings } from "@/components/ai/AISettingsProvider";
+
+// TODO: Replace with @aicr/orbs package when published
+// import { OrbProvider, AIDock } from '@aicr/orbs';
+// import orbManifest from '../orb-manifest.json';
+// For now, use legacy orb components
+import { OpsChiefOrb } from "@/components/ai/OpsChiefOrb";
+import { AskItem } from "@/components/ai/AskItem";
+import { PulseOrb } from "@/components/ai/PulseOrb";
+import { TaskOrb } from "@/components/ai/TaskOrb";
 
 interface RootLayoutClientProps {
   children: React.ReactNode;
@@ -86,6 +91,17 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
       {/* What's New Modal - only show after authentication */}
       {isAuthenticated && <WhatsNewModal />}
       {/* AI Widgets - controlled by AI Settings */}
+      {/*
+        TODO: Replace legacy orbs with @aicr/orbs AIDock when package is published:
+
+        {isAuthenticated && (
+          <OrbProvider manifest={orbManifest}>
+            <AIDock />
+          </OrbProvider>
+        )}
+
+        For now, using legacy orb components:
+      */}
       {isAuthenticated && <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />}
       {isAuthenticated && <PulseOrb enabled={isFeatureEnabled('pulse')} />}
       {isAuthenticated && <TaskOrb enabled={isFeatureEnabled('tasks')} />}
