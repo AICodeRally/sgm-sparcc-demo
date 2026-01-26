@@ -1,5 +1,12 @@
 'use client';
 
+/**
+ * @deprecated This component is deprecated. Use @aicr/orbs AIDock instead.
+ * Migration: Import { OrbProvider, AIDock } from '@aicr/orbs' and use
+ * orb-manifest.json for configuration. This file will be removed once
+ * the @aicr/orbs package is published and integrated.
+ */
+
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import {
