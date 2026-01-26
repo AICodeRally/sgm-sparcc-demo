@@ -3,6 +3,26 @@
 import React, { useState, useEffect } from 'react';
 import { SessionProvider, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { signOut } from 'next-auth/react';
+
+// Shell imports - using unified Shell component
+import {
+  Shell,
+  PageTitleProvider,
+  usePageTitle,
+  type ShellContentConfig,
+  type NavbarUser,
+  type FooterLink,
+} from '@aicr/shell';
+import {
+  rcmBrand,
+  rcmContentStyle,
+  rcmModules,
+  rcmNavigation,
+  getIconComponent,
+} from '@/lib/config/shell-config';
+
+// Local imports (keeping AI components and other local features)
 import { ModeProvider, useMode } from '@/lib/auth/mode-context';
 import { OperationalMode } from '@/types/operational-mode';
 import { CommandPalette } from '@/components/CommandPalette';
@@ -10,16 +30,11 @@ import { OpsChiefOrb } from '@/components/ai/OpsChiefOrb';
 import { AskItem } from '@/components/ai/AskItem';
 import { PulseOrb } from '@/components/ai/PulseOrb';
 import { TaskOrb } from '@/components/ai/TaskOrb';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
-import { PageTitleProvider } from '@/components/PageTitle';
 import { WhatsNewModal } from '@/components/modals/WhatsNewModal';
 import { PageKbProvider } from '@/components/kb/PageKbProvider';
 import { PageKbPanel } from '@/components/kb/PageKbPanel';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { AISettingsProvider, useAISettings } from '@/components/ai/AISettingsProvider';
-import { getActiveModule } from '@/lib/config/module-registry';
-import { applyThemeVars, getStoredTheme } from '@/lib/config/themes';
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -30,35 +45,56 @@ interface AppLayoutProps {
  */
 function LoadingScreen() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[color:var(--color-background)]">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="text-center">
         <div
           className="w-16 h-16 rounded-full mx-auto mb-4 animate-pulse"
           style={{
-            backgroundImage:
-              'linear-gradient(135deg, var(--sparcc-gradient-start), var(--sparcc-gradient-mid2), var(--sparcc-gradient-end))',
+            background: `linear-gradient(135deg, ${rcmBrand.gradient[0]}, ${rcmBrand.gradient[1]})`,
           }}
         />
-        <p className="text-[color:var(--color-muted)]">Loading...</p>
+        <p className="text-gray-500">Loading...</p>
       </div>
     </div>
   );
 }
 
 /**
- * Inner layout with mode context and keyboard shortcuts
+ * Footer links
+ */
+const footerLinks: FooterLink[] = [
+  { label: 'Documentation', href: '/docs' },
+  { label: 'Support', href: '/support' },
+  { label: 'Privacy', href: '/privacy' },
+];
+
+/**
+ * Shell configuration for RCM (tiles style)
+ */
+const shellConfig: ShellContentConfig = {
+  contentStyle: rcmContentStyle,
+  brand: rcmBrand,
+  navigation: rcmNavigation,
+  modules: rcmModules,
+};
+
+/**
+ * Inner layout with unified Shell component
  */
 function AppLayoutInner({
   children,
   commandPaletteOpen,
   setCommandPaletteOpen,
+  user,
 }: {
   children: React.ReactNode;
   commandPaletteOpen: boolean;
   setCommandPaletteOpen: (open: boolean) => void;
+  user: NavbarUser;
 }) {
   const { switchMode, canSwitchMode } = useMode();
   const { isFeatureEnabled } = useAISettings();
+  const { title, description } = usePageTitle();
 
   // Global keyboard shortcuts
   useEffect(() => {
@@ -93,19 +129,37 @@ function AppLayoutInner({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [canSwitchMode, switchMode, commandPaletteOpen, setCommandPaletteOpen]);
 
+  const handleSignOut = () => {
+    signOut({ callbackUrl: '/' });
+  };
+
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <main className="flex-1 pb-24">{children}</main>
-      <Footer />
+    <>
+      <Shell
+        config={shellConfig}
+        user={user}
+        pageTitle={title}
+        pageDescription={description}
+        onSignOut={handleSignOut}
+        footerLinks={footerLinks}
+        footerTagline="Powered by AICR Platform"
+        showSearch={true}
+        getIcon={getIconComponent}
+      >
+        {children}
+      </Shell>
+
+      {/* Overlays and Modals */}
       <CommandPalette isOpen={commandPaletteOpen} onClose={() => setCommandPaletteOpen(false)} />
       <WhatsNewModal />
-      <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />
+
+      {/* AI Widgets */}
+      <OpsChiefOrb appName="RCM SPARCC" enabled={isFeatureEnabled('opsChief')} />
       <PulseOrb enabled={isFeatureEnabled('pulse')} />
       <TaskOrb enabled={isFeatureEnabled('tasks')} />
-      <AskItem appName="SGM" enabled={isFeatureEnabled('askItem')} />
+      <AskItem appName="RCM" enabled={isFeatureEnabled('askItem')} />
       <PageKbPanel enabled={isFeatureEnabled('pageKb')} />
-    </div>
+    </>
   );
 }
 
@@ -113,10 +167,9 @@ function AppLayoutInner({
  * Auth-protected layout wrapper
  */
 function AuthProtectedLayout({ children }: { children: React.ReactNode }) {
-  const { status } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
-  const activeModule = getActiveModule();
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -124,33 +177,6 @@ function AuthProtectedLayout({ children }: { children: React.ReactNode }) {
       router.push('/auth/signin');
     }
   }, [status, router]);
-
-  // Apply theme
-  useEffect(() => {
-    const g = activeModule.gradient;
-    const moduleTheme = {
-      gradient: {
-        start: g.start,
-        mid1: g.mid1 || g.start,
-        mid2: g.mid2 || g.end,
-        end: g.end,
-      },
-      primary: g.start,
-      secondary: g.mid2 || g.end,
-      accent: g.end,
-    };
-    applyThemeVars({
-      id: 'module-default',
-      name: activeModule.module.name,
-      description: '',
-      gradient: moduleTheme.gradient,
-      primary: moduleTheme.primary,
-      secondary: moduleTheme.secondary,
-      accent: moduleTheme.accent,
-    });
-    const stored = getStoredTheme();
-    applyThemeVars(stored);
-  }, [activeModule]);
 
   if (status === 'loading') {
     return <LoadingScreen />;
@@ -160,6 +186,12 @@ function AuthProtectedLayout({ children }: { children: React.ReactNode }) {
     return <LoadingScreen />;
   }
 
+  // Build user object for navbar
+  const user: NavbarUser = {
+    name: session?.user?.name || 'Guest',
+    email: session?.user?.email || '',
+  };
+
   return (
     <AISettingsProvider>
       <ModeProvider>
@@ -168,6 +200,7 @@ function AuthProtectedLayout({ children }: { children: React.ReactNode }) {
             <AppLayoutInner
               commandPaletteOpen={commandPaletteOpen}
               setCommandPaletteOpen={setCommandPaletteOpen}
+              user={user}
             >
               {children}
             </AppLayoutInner>
@@ -180,7 +213,7 @@ function AuthProtectedLayout({ children }: { children: React.ReactNode }) {
 
 /**
  * Protected app layout
- * Wraps all authenticated pages with navbar, footer, AI components
+ * Wraps all authenticated pages with shell components
  */
 export default function AppLayout({ children }: AppLayoutProps) {
   return (

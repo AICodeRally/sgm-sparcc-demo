@@ -7,10 +7,6 @@ import { OperationalMode } from "@/types/operational-mode";
 // import { AppShell } from "@rally/app-shell"; // Rally package not yet installed
 import { aiManifest } from "../ai.manifest";
 import { CommandPalette } from "@/components/CommandPalette";
-import { OpsChiefOrb } from "@/components/ai/OpsChiefOrb";
-import { AskItem } from "@/components/ai/AskItem";
-import { PulseOrb } from "@/components/ai/PulseOrb";
-import { TaskOrb } from "@/components/ai/TaskOrb";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PageTitleProvider } from "@/components/PageTitle";
@@ -21,6 +17,10 @@ import { getActiveModule } from "@/lib/config/module-registry";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { applyThemeVars, getStoredTheme } from "@/lib/config/themes";
 import { AISettingsProvider, useAISettings } from "@/components/ai/AISettingsProvider";
+
+// @aicr/orbs package - AI Dock with macOS-style UI
+import { OrbProvider, AIDock } from '@aicr/orbs';
+import orbManifest from '../orb-manifest.json';
 
 interface RootLayoutClientProps {
   children: React.ReactNode;
@@ -85,11 +85,15 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
       />
       {/* What's New Modal - only show after authentication */}
       {isAuthenticated && <WhatsNewModal />}
-      {/* AI Widgets - controlled by AI Settings */}
-      {isAuthenticated && <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />}
-      {isAuthenticated && <PulseOrb enabled={isFeatureEnabled('pulse')} />}
-      {isAuthenticated && <TaskOrb enabled={isFeatureEnabled('tasks')} />}
-      {isAuthenticated && <AskItem appName="SGM" enabled={isFeatureEnabled('askItem')} />}
+
+      {/* AI Dock - macOS-style unified orb interface from @aicr/orbs */}
+      {isAuthenticated && (
+        <OrbProvider manifest={orbManifest as any}>
+          <AIDock />
+        </OrbProvider>
+      )}
+
+      {/* Page KB Panel - remains separate as it's a slide-out panel */}
       {isAuthenticated && <PageKbPanel enabled={isFeatureEnabled('pageKb')} />}
     </div>
   );
