@@ -18,8 +18,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { applyThemeVars, getStoredTheme } from "@/lib/config/themes";
 import { AISettingsProvider, useAISettings } from "@/components/ai/AISettingsProvider";
 
-// @aicr/orbs package - AI Dock with macOS-style UI
-import { OrbProvider, AIDock, type DockSettings } from '@aicr/orbs';
+// @aicr/orbs inlined - AI Dock with macOS-style UI
+import { OrbProvider, AIDock, type DockSettings } from '@/lib/aicr-orbs';
 import orbManifest from '../orb-manifest.json';
 
 interface RootLayoutClientProps {
