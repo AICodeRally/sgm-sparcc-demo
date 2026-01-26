@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { SessionProvider, useSession } from "next-auth/react";
 import { ModeProvider, useMode } from "@/lib/auth/mode-context";
 import { OperationalMode } from "@/types/operational-mode";
@@ -19,7 +19,7 @@ import { applyThemeVars, getStoredTheme } from "@/lib/config/themes";
 import { AISettingsProvider, useAISettings } from "@/components/ai/AISettingsProvider";
 
 // @aicr/orbs package - AI Dock with macOS-style UI
-import { OrbProvider, AIDock } from '@aicr/orbs';
+import { OrbProvider, AIDock, type DockSettings } from '@aicr/orbs';
 import orbManifest from '../orb-manifest.json';
 
 // Legacy orb components (deprecated - kept for fallback)
@@ -42,8 +42,32 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
 }) {
   const { switchMode, canSwitchMode } = useMode();
   const { data: session, status } = useSession();
-  const { isFeatureEnabled } = useAISettings();
+  const { settings, isFeatureEnabled, setDockSettings } = useAISettings();
   const isAuthenticated = status === 'authenticated' && !!session;
+
+  // Bridge SGM's AI settings to @aicr/orbs dock settings
+  const externalDockSettings = useMemo<Partial<DockSettings>>(() => ({
+    position: settings.dock?.position ?? 'bottom',
+    autoHide: settings.dock?.autoHide ?? false,
+    magnification: settings.dock?.magnification ?? true,
+    // Map SGM feature toggles to orb visibility
+    orbVisibility: {
+      ask: settings.features.askItem,
+      ops: settings.features.opsChief,
+      pulse: settings.features.pulse,
+      tasks: settings.features.tasks,
+      kb: settings.features.pageKb,
+    },
+  }), [settings]);
+
+  // Sync dock settings changes back to SGM
+  const handleDockSettingsChange = useCallback((newSettings: DockSettings) => {
+    setDockSettings({
+      position: newSettings.position,
+      autoHide: newSettings.autoHide,
+      magnification: newSettings.magnification,
+    });
+  }, [setDockSettings]);
 
   // Global keyboard shortcuts
   useEffect(() => {
@@ -93,8 +117,12 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
       {isAuthenticated && <WhatsNewModal />}
 
       {/* AI Dock - macOS-style unified orb interface from @aicr/orbs */}
-      {isAuthenticated && (
-        <OrbProvider manifest={orbManifest as any}>
+      {isAuthenticated && settings.aiOrbsEnabled && (
+        <OrbProvider
+          manifest={orbManifest as any}
+          externalSettings={externalDockSettings}
+          onSettingsChange={handleDockSettingsChange}
+        >
           <AIDock />
         </OrbProvider>
       )}
