@@ -1,16 +1,12 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { SessionProvider, useSession } from "next-auth/react";
 import { ModeProvider, useMode } from "@/lib/auth/mode-context";
 import { OperationalMode } from "@/types/operational-mode";
 // import { AppShell } from "@rally/app-shell"; // Rally package not yet installed
 import { aiManifest } from "../ai.manifest";
 import { CommandPalette } from "@/components/CommandPalette";
-import { OpsChiefOrb } from "@/components/ai/OpsChiefOrb";
-import { AskItem } from "@/components/ai/AskItem";
-import { PulseOrb } from "@/components/ai/PulseOrb";
-import { TaskOrb } from "@/components/ai/TaskOrb";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { PageTitleProvider } from "@/components/PageTitle";
@@ -21,6 +17,10 @@ import { getActiveModule } from "@/lib/config/module-registry";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { applyThemeVars, getStoredTheme } from "@/lib/config/themes";
 import { AISettingsProvider, useAISettings } from "@/components/ai/AISettingsProvider";
+
+// @aicr/orbs package - AI Dock with macOS-style UI
+import { OrbProvider, AIDock, type DockSettings } from '@aicr/orbs';
+import orbManifest from '../orb-manifest.json';
 
 interface RootLayoutClientProps {
   children: React.ReactNode;
@@ -36,8 +36,32 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
 }) {
   const { switchMode, canSwitchMode } = useMode();
   const { data: session, status } = useSession();
-  const { isFeatureEnabled } = useAISettings();
+  const { settings, isFeatureEnabled, setDockSettings } = useAISettings();
   const isAuthenticated = status === 'authenticated' && !!session;
+
+  // Bridge SGM's AI settings to @aicr/orbs dock settings
+  const externalDockSettings = useMemo<Partial<DockSettings>>(() => ({
+    position: settings.dock?.position ?? 'bottom',
+    autoHide: settings.dock?.autoHide ?? false,
+    magnification: settings.dock?.magnification ?? true,
+    // Map SGM feature toggles to orb visibility
+    orbVisibility: {
+      ask: settings.features.askItem,
+      ops: settings.features.opsChief,
+      pulse: settings.features.pulse,
+      tasks: settings.features.tasks,
+      kb: settings.features.pageKb,
+    },
+  }), [settings]);
+
+  // Sync dock settings changes back to SGM
+  const handleDockSettingsChange = useCallback((newSettings: DockSettings) => {
+    setDockSettings({
+      position: newSettings.position,
+      autoHide: newSettings.autoHide,
+      magnification: newSettings.magnification,
+    });
+  }, [setDockSettings]);
 
   // Global keyboard shortcuts
   useEffect(() => {
@@ -85,11 +109,19 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
       />
       {/* What's New Modal - only show after authentication */}
       {isAuthenticated && <WhatsNewModal />}
-      {/* AI Widgets - controlled by AI Settings */}
-      {isAuthenticated && <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />}
-      {isAuthenticated && <PulseOrb enabled={isFeatureEnabled('pulse')} />}
-      {isAuthenticated && <TaskOrb enabled={isFeatureEnabled('tasks')} />}
-      {isAuthenticated && <AskItem appName="SGM" enabled={isFeatureEnabled('askItem')} />}
+
+      {/* AI Dock - macOS-style unified orb interface from @aicr/orbs */}
+      {isAuthenticated && settings.aiOrbsEnabled && (
+        <OrbProvider
+          manifest={orbManifest as any}
+          externalSettings={externalDockSettings}
+          onSettingsChange={handleDockSettingsChange}
+        >
+          <AIDock />
+        </OrbProvider>
+      )}
+
+      {/* Page KB Panel - remains separate as it's a slide-out panel, not a dock orb */}
       {isAuthenticated && <PageKbPanel enabled={isFeatureEnabled('pageKb')} />}
     </div>
   );

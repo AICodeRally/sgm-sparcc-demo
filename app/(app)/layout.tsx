@@ -6,10 +6,6 @@ import { useRouter } from 'next/navigation';
 import { ModeProvider, useMode } from '@/lib/auth/mode-context';
 import { OperationalMode } from '@/types/operational-mode';
 import { CommandPalette } from '@/components/CommandPalette';
-import { OpsChiefOrb } from '@/components/ai/OpsChiefOrb';
-import { AskItem } from '@/components/ai/AskItem';
-import { PulseOrb } from '@/components/ai/PulseOrb';
-import { TaskOrb } from '@/components/ai/TaskOrb';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { PageTitleProvider } from '@/components/PageTitle';
@@ -100,10 +96,7 @@ function AppLayoutInner({
       <Footer />
       <CommandPalette isOpen={commandPaletteOpen} onClose={() => setCommandPaletteOpen(false)} />
       <WhatsNewModal />
-      <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />
-      <PulseOrb enabled={isFeatureEnabled('pulse')} />
-      <TaskOrb enabled={isFeatureEnabled('tasks')} />
-      <AskItem appName="SGM" enabled={isFeatureEnabled('askItem')} />
+      {/* AI Dock is rendered in RootLayoutClient via @aicr/orbs */}
       <PageKbPanel enabled={isFeatureEnabled('pageKb')} />
     </div>
   );

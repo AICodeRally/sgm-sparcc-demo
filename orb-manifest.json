@@ -1,0 +1,54 @@
+{
+  "app": "sgm-sparcc",
+  "platform": "aicr",
+  "version": "1.0.0",
+  "orbs": {
+    "ask": {
+      "extends": "@aicr/orbs/ask",
+      "enabled": true,
+      "overrides": {
+        "name": "Ask SGM",
+        "endpoints": {
+          "invoke": "/api/ai/asksgm"
+        }
+      },
+      "branding": {
+        "gradient": ["#1e3a5f", "#0891b2"]
+      }
+    },
+    "ops": {
+      "extends": "@aicr/orbs/ops",
+      "enabled": true,
+      "overrides": {
+        "name": "OpsChief"
+      },
+      "signals": {
+        "subscribes": ["OPS_ANOMALY_*", "OPS_THRESHOLD_*", "OPS_DRIFT_*"]
+      }
+    },
+    "pulse": {
+      "extends": "@aicr/orbs/pulse",
+      "enabled": true,
+      "signals": {
+        "subscribes": ["PULSE_RECOMMEND_*", "PULSE_LEARN_*", "PULSE_ACTION_*"]
+      }
+    },
+    "tasks": {
+      "extends": "@aicr/orbs/tasks",
+      "enabled": true
+    },
+    "kb": {
+      "extends": "@aicr/orbs/kb",
+      "enabled": true,
+      "overrides": {
+        "name": "SGM Docs",
+        "description": "AI-maintained governance documentation"
+      }
+    }
+  },
+  "dock": {
+    "position": "bottom",
+    "autoHide": false,
+    "magnification": true
+  }
+}
