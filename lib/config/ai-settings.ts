@@ -8,6 +8,9 @@
 
 const AI_SETTINGS_KEY = 'sgm-ai-settings';
 
+/** Dock position options (like macOS Dock) */
+export type DockPosition = 'left' | 'bottom' | 'right';
+
 export interface AISettings {
   /** Master toggle for all AI orbs/widgets */
   aiOrbsEnabled: boolean;
@@ -18,6 +21,15 @@ export interface AISettings {
     pulse: boolean;
     tasks: boolean;
     pageKb: boolean;
+  };
+  /** AI Dock UI settings */
+  dock: {
+    /** Dock position on screen */
+    position: DockPosition;
+    /** Auto-hide dock when not in use */
+    autoHide: boolean;
+    /** Enable magnification effect on hover */
+    magnification: boolean;
   };
   /** Timestamp of last update */
   updatedAt: string;
@@ -33,6 +45,11 @@ const DEFAULT_AI_SETTINGS: AISettings = {
     pulse: true,
     tasks: true,
     pageKb: true,
+  },
+  dock: {
+    position: 'bottom',
+    autoHide: false,
+    magnification: true,
   },
   updatedAt: new Date().toISOString(),
 };
@@ -127,4 +144,35 @@ export function resetAISettings(): AISettings {
 export function isAIFeatureEnabled(feature: keyof AISettings['features']): boolean {
   const settings = getAISettings();
   return settings.aiOrbsEnabled && settings.features[feature];
+}
+
+/**
+ * Update dock position
+ */
+export function setDockPosition(position: DockPosition, updatedBy?: string): AISettings {
+  const current = getAISettings();
+  return saveAISettings({
+    dock: {
+      ...current.dock,
+      position,
+    },
+    updatedBy,
+  });
+}
+
+/**
+ * Update dock settings
+ */
+export function updateDockSettings(
+  dockSettings: Partial<AISettings['dock']>,
+  updatedBy?: string
+): AISettings {
+  const current = getAISettings();
+  return saveAISettings({
+    dock: {
+      ...current.dock,
+      ...dockSettings,
+    },
+    updatedBy,
+  });
 }

@@ -15,7 +15,11 @@ import {
   ExclamationTriangleIcon,
   InfoCircledIcon,
   ResetIcon,
+  DesktopIcon,
+  MagicWandIcon,
+  EyeClosedIcon,
 } from '@radix-ui/react-icons';
+import type { DockPosition } from '@/lib/config/ai-settings';
 
 interface FeatureToggleProps {
   id: string;
@@ -77,7 +81,7 @@ function FeatureToggle({ id, label, description, icon: Icon, enabled, disabled, 
 export default function AISettingsPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const { settings, aiEnabled, setAIEnabled, setFeatureEnabled, reset } = useAISettings();
+  const { settings, aiEnabled, setAIEnabled, setFeatureEnabled, setDockSettings, reset } = useAISettings();
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   // Access control - only SUPER_ADMIN and ADMIN can access
@@ -112,6 +116,20 @@ export default function AISettingsPage() {
     reset();
     setShowResetConfirm(false);
   };
+
+  const handleDockPositionChange = (position: DockPosition) => {
+    setDockSettings({ position }, userEmail);
+  };
+
+  const handleDockToggle = (key: 'autoHide' | 'magnification', enabled: boolean) => {
+    setDockSettings({ [key]: enabled }, userEmail);
+  };
+
+  const dockPositions: { value: DockPosition; label: string; description: string }[] = [
+    { value: 'left', label: 'Left', description: 'Dock on the left edge' },
+    { value: 'bottom', label: 'Bottom', description: 'Dock at the bottom (default)' },
+    { value: 'right', label: 'Right', description: 'Dock on the right edge' },
+  ];
 
   const features = [
     {
@@ -251,6 +269,61 @@ export default function AISettingsPage() {
                 Enable the master toggle to configure individual features
               </p>
             )}
+          </div>
+
+          {/* AI Dock Settings */}
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold text-[color:var(--color-foreground)] mb-4 flex items-center gap-2">
+              <DesktopIcon className="h-5 w-5" />
+              AI Dock Settings
+            </h3>
+            <p className="text-sm text-[color:var(--color-muted)] mb-4">
+              Customize how the AI Dock appears on your screen, similar to the macOS Dock.
+            </p>
+
+            {/* Dock Position */}
+            <div className="mb-6 p-4 rounded-lg bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
+              <h4 className="font-medium text-[color:var(--color-foreground)] mb-3">Dock Position</h4>
+              <div className="flex gap-3">
+                {dockPositions.map((pos) => (
+                  <button
+                    key={pos.value}
+                    onClick={() => handleDockPositionChange(pos.value)}
+                    disabled={!aiEnabled}
+                    className={`flex-1 px-4 py-3 rounded-lg border-2 transition-all ${
+                      settings.dock?.position === pos.value
+                        ? 'border-[color:var(--color-primary)] bg-[color:var(--color-primary)]/10'
+                        : 'border-[color:var(--color-border)] hover:border-[color:var(--color-primary)]/50'
+                    } ${!aiEnabled ? 'opacity-60 cursor-not-allowed' : ''}`}
+                  >
+                    <div className="text-sm font-medium text-[color:var(--color-foreground)]">{pos.label}</div>
+                    <div className="text-xs text-[color:var(--color-muted)] mt-1">{pos.description}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Dock Behavior Toggles */}
+            <div className="space-y-3">
+              <FeatureToggle
+                id="autoHide"
+                label="Auto-hide Dock"
+                description="Hide the dock when not in use, show on hover"
+                icon={EyeClosedIcon}
+                enabled={settings.dock?.autoHide ?? false}
+                disabled={!aiEnabled}
+                onChange={(enabled) => handleDockToggle('autoHide', enabled)}
+              />
+              <FeatureToggle
+                id="magnification"
+                label="Magnification"
+                description="Zoom icons on hover, like the macOS Dock"
+                icon={MagicWandIcon}
+                enabled={settings.dock?.magnification ?? true}
+                disabled={!aiEnabled}
+                onChange={(enabled) => handleDockToggle('magnification', enabled)}
+              />
+            </div>
           </div>
 
           {/* Reset Section */}

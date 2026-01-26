@@ -3,10 +3,12 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import {
   AISettings,
+  DockPosition,
   getAISettings,
   saveAISettings,
   toggleAIOrbs,
   toggleAIFeature,
+  updateDockSettings,
   resetAISettings,
 } from '@/lib/config/ai-settings';
 
@@ -20,6 +22,8 @@ interface AISettingsContextType {
   setAIEnabled: (enabled: boolean, updatedBy?: string) => void;
   /** Toggle a specific feature */
   setFeatureEnabled: (feature: keyof AISettings['features'], enabled: boolean, updatedBy?: string) => void;
+  /** Update dock settings */
+  setDockSettings: (dockSettings: Partial<AISettings['dock']>, updatedBy?: string) => void;
   /** Update multiple settings at once */
   updateSettings: (settings: Partial<AISettings>) => void;
   /** Reset to defaults */
@@ -69,6 +73,14 @@ export function AISettingsProvider({ children }: { children: React.ReactNode }) 
     []
   );
 
+  const setDockSettings = useCallback(
+    (dockSettings: Partial<AISettings['dock']>, updatedBy?: string) => {
+      const updated = updateDockSettings(dockSettings, updatedBy);
+      setSettings(updated);
+    },
+    []
+  );
+
   const updateSettings = useCallback((newSettings: Partial<AISettings>) => {
     const updated = saveAISettings(newSettings);
     setSettings(updated);
@@ -87,6 +99,7 @@ export function AISettingsProvider({ children }: { children: React.ReactNode }) 
         isFeatureEnabled,
         setAIEnabled,
         setFeatureEnabled,
+        setDockSettings,
         updateSettings,
         reset,
       }}
