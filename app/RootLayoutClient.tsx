@@ -18,10 +18,11 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { applyThemeVars, getStoredTheme } from "@/lib/config/themes";
 import { AISettingsProvider, useAISettings } from "@/components/ai/AISettingsProvider";
 
-// TODO: Replace with @aicr/orbs package when published
-// import { OrbProvider, AIDock } from '@aicr/orbs';
-// import orbManifest from '../orb-manifest.json';
-// For now, use legacy orb components
+// @aicr/orbs package - AI Dock with macOS-style UI
+import { OrbProvider, AIDock } from '@aicr/orbs';
+import orbManifest from '../orb-manifest.json';
+
+// Legacy orb components (deprecated - kept for fallback)
 import { OpsChiefOrb } from "@/components/ai/OpsChiefOrb";
 import { AskItem } from "@/components/ai/AskItem";
 import { PulseOrb } from "@/components/ai/PulseOrb";
@@ -90,23 +91,23 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
       />
       {/* What's New Modal - only show after authentication */}
       {isAuthenticated && <WhatsNewModal />}
-      {/* AI Widgets - controlled by AI Settings */}
-      {/*
-        TODO: Replace legacy orbs with @aicr/orbs AIDock when package is published:
 
-        {isAuthenticated && (
-          <OrbProvider manifest={orbManifest}>
-            <AIDock />
-          </OrbProvider>
-        )}
+      {/* AI Dock - macOS-style unified orb interface from @aicr/orbs */}
+      {isAuthenticated && (
+        <OrbProvider manifest={orbManifest as any}>
+          <AIDock />
+        </OrbProvider>
+      )}
 
-        For now, using legacy orb components:
-      */}
+      {/* Page KB Panel - remains separate as it's a slide-out panel, not a dock orb */}
+      {isAuthenticated && <PageKbPanel enabled={isFeatureEnabled('pageKb')} />}
+
+      {/* Legacy orbs (deprecated - uncomment for fallback if needed)
       {isAuthenticated && <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />}
       {isAuthenticated && <PulseOrb enabled={isFeatureEnabled('pulse')} />}
       {isAuthenticated && <TaskOrb enabled={isFeatureEnabled('tasks')} />}
       {isAuthenticated && <AskItem appName="SGM" enabled={isFeatureEnabled('askItem')} />}
-      {isAuthenticated && <PageKbPanel enabled={isFeatureEnabled('pageKb')} />}
+      */}
     </div>
   );
 }
