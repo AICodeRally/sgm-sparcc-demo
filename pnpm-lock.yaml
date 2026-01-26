@@ -11,9 +11,6 @@ importers:
       '@aicr/auth':
         specifier: file:../aicr/packages/auth
         version: file:../aicr/packages/auth(@prisma/client@6.19.2(prisma@6.19.2(typescript@5.9.3))(typescript@5.9.3))(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react@19.2.3)
-      '@aicr/shell':
-        specifier: file:../aicr/packages/shell
-        version: file:../aicr/packages/shell(@radix-ui/react-icons@1.3.2(react@19.2.3))(lucide-react@0.562.0(react@19.2.3))(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       '@heroicons/react':
         specifier: ^2.2.0
         version: 2.2.0(react@19.2.3)
@@ -177,15 +174,6 @@ packages:
       '@prisma/client': '>=5.0.0'
       next: '>=14.0.0'
       react: '>=18.0.0'
-
-  '@aicr/shell@file:../aicr/packages/shell':
-    resolution: {directory: ../aicr/packages/shell, type: directory}
-    peerDependencies:
-      '@radix-ui/react-icons': '>=1.0.0'
-      lucide-react: '>=0.300.0'
-      next: '>=14.0.0'
-      react: '>=18.0.0'
-      react-dom: '>=18.0.0'
 
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
@@ -3727,14 +3715,6 @@ snapshots:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
       - nodemailer
-
-  '@aicr/shell@file:../aicr/packages/shell(@radix-ui/react-icons@1.3.2(react@19.2.3))(lucide-react@0.562.0(react@19.2.3))(next@16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
-    dependencies:
-      '@radix-ui/react-icons': 1.3.2(react@19.2.3)
-      lucide-react: 0.562.0(react@19.2.3)
-      next: 16.1.4(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
-      react: 19.2.3
-      react-dom: 19.2.3(react@19.2.3)
 
   '@alloc/quick-lru@5.2.0': {}
 

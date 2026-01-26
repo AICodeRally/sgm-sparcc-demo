@@ -3,7 +3,7 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  transpilePackages: ['@aicr/auth', '@aicr/shell'],
+  transpilePackages: ['@aicr/auth'],
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
 
   // Environment variables
   env: {
-    APP_NAME: 'RCM SPARCC Demo',
+    APP_NAME: 'SGM Summit Demo',
     APP_TIER: 'summit',
     NEXT_PUBLIC_BINDING_MODE: process.env.BINDING_MODE || 'synthetic',
   },
