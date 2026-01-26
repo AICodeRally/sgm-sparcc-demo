@@ -22,12 +22,6 @@ import { AISettingsProvider, useAISettings } from "@/components/ai/AISettingsPro
 import { OrbProvider, AIDock, type DockSettings } from '@aicr/orbs';
 import orbManifest from '../orb-manifest.json';
 
-// Legacy orb components (deprecated - kept for fallback)
-import { OpsChiefOrb } from "@/components/ai/OpsChiefOrb";
-import { AskItem } from "@/components/ai/AskItem";
-import { PulseOrb } from "@/components/ai/PulseOrb";
-import { TaskOrb } from "@/components/ai/TaskOrb";
-
 interface RootLayoutClientProps {
   children: React.ReactNode;
 }
@@ -129,13 +123,6 @@ function LayoutWithModeContext({ children, commandPaletteOpen, setCommandPalette
 
       {/* Page KB Panel - remains separate as it's a slide-out panel, not a dock orb */}
       {isAuthenticated && <PageKbPanel enabled={isFeatureEnabled('pageKb')} />}
-
-      {/* Legacy orbs (deprecated - uncomment for fallback if needed)
-      {isAuthenticated && <OpsChiefOrb appName="SGM SPARCC" enabled={isFeatureEnabled('opsChief')} />}
-      {isAuthenticated && <PulseOrb enabled={isFeatureEnabled('pulse')} />}
-      {isAuthenticated && <TaskOrb enabled={isFeatureEnabled('tasks')} />}
-      {isAuthenticated && <AskItem appName="SGM" enabled={isFeatureEnabled('askItem')} />}
-      */}
     </div>
   );
 }
