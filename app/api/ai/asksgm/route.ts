@@ -7,6 +7,11 @@ import {
   type AskSGMResponse,
   type SpineSearchResponse,
 } from '@/lib/aicr';
+// AICR Gateway client for unified chat (budget, rate limiting, caching)
+import {
+  getAICRGatewayClient,
+  isAICRGatewayConfigured,
+} from '@/lib/aicr';
 // Real governance knowledge base (replaces synthetic mock data)
 import {
   GOVERNANCE_POLICIES,
@@ -354,8 +359,50 @@ When citing decisions, use the DecisionId:
       cached = chatResponse.cached;
     }
 
-    // Priority 3: Fallback to Claude API (cloud)
-    if (!aicrResponse && !isRallyLLMConfigured()) {
+    // Priority 3: Try AICR Gateway (budget, rate limiting, caching)
+    if (!aicrResponse && !isRallyLLMConfigured() && isAICRGatewayConfigured()) {
+      try {
+        console.log(`[TOOL] [AskSGM] Using LLM: AICR Gateway (claude-sonnet-4)${dynamicRAGContext ? ' + Spine RAG' : ''}`);
+
+        const gatewayClient = getAICRGatewayClient({ tenantId });
+        const maxTokens = AI_GUARDRAILS.maxOutputTokens;
+
+        // Enhance system prompt with dynamic RAG from spine search
+        const enhancedSystemPrompt = dynamicRAGContext
+          ? `${systemPrompt}\n\n## Live RAG Context (from Spine)\n${dynamicRAGContext}`
+          : systemPrompt;
+
+        const gatewayResponse = await gatewayClient.chat({
+          model: 'claude-sonnet-4',
+          messages: [
+            { role: 'system', content: enhancedSystemPrompt },
+            ...messages.map((msg) => ({
+              role: msg.role as 'user' | 'assistant',
+              content: msg.content,
+            })),
+          ],
+          max_tokens: maxTokens,
+          temperature: 0.6,
+        });
+
+        responseContent = gatewayResponse.choices?.[0]?.message?.content || '';
+        modelUsed = 'claude-sonnet-4 (via gateway)';
+        tokensUsed = {
+          input: gatewayResponse.usage?.prompt_tokens || 0,
+          output: gatewayResponse.usage?.completion_tokens || 0,
+          total: gatewayResponse.usage?.total_tokens || 0,
+        };
+        cached = gatewayResponse._cached || false;
+
+        console.log(`[OK] [AskSGM] AICR Gateway responded (cached: ${cached})`);
+      } catch (gatewayError) {
+        console.warn(`[WARN] [AskSGM] AICR Gateway failed, falling back to direct Claude:`, gatewayError);
+        // Fall through to Priority 4
+      }
+    }
+
+    // Priority 4: Fallback to Claude API (cloud, direct - no budget/rate limit)
+    if (!aicrResponse && !isRallyLLMConfigured() && !responseContent) {
       if (!process.env.ANTHROPIC_API_KEY) {
         console.warn(
           JSON.stringify({
@@ -371,7 +418,7 @@ When citing decisions, use the DecisionId:
         );
       }
 
-      console.log(`[TOOL] [AskSGM] Using LLM: Claude Sonnet 4 (Cloud Fallback)${dynamicRAGContext ? ' + Spine RAG' : ''}`);
+      console.log(`[TOOL] [AskSGM] Using LLM: Claude Sonnet 4 (Direct API - no gateway)${dynamicRAGContext ? ' + Spine RAG' : ''}`);
 
       const { signal, cleanup } = createAbortController(AI_GUARDRAILS.requestTimeoutMs);
       const maxTokens = AI_GUARDRAILS.maxOutputTokens;
@@ -413,7 +460,7 @@ When citing decisions, use the DecisionId:
 
       const claudeData = (await claudeResponse.json()) as any;
       responseContent = claudeData.content?.[0]?.text || '';
-      modelUsed = 'claude-sonnet-4-20250514';
+      modelUsed = 'claude-sonnet-4-20250514 (direct)';
       tokensUsed = {
         input: claudeData.usage?.input_tokens || 0,
         output: claudeData.usage?.output_tokens || 0,
@@ -453,7 +500,8 @@ When citing decisions, use the DecisionId:
 
     // Determine model type for telemetry
     const modelType = aicrResponse ? 'aicr-platform' :
-                      isRallyLLMConfigured() ? 'rally-llama-spm' : 'claude-sonnet';
+                      isRallyLLMConfigured() ? 'rally-llama-spm' :
+                      modelUsed.includes('gateway') ? 'aicr-gateway' : 'claude-sonnet-direct';
 
     logTelemetry({
       name: 'ai.request',
@@ -525,7 +573,9 @@ When citing decisions, use the DecisionId:
       model: {
         id: modelUsed,
         type: modelType,
-        provider: aicrResponse ? 'aicr' : isRallyLLMConfigured() ? 'rally' : 'anthropic',
+        provider: aicrResponse ? 'aicr' :
+                  isRallyLLMConfigured() ? 'rally' :
+                  modelUsed.includes('gateway') ? 'aicr-gateway' : 'anthropic-direct',
       },
       // AICR expert hierarchy info (if used)
       expert: aicrResponse ? {

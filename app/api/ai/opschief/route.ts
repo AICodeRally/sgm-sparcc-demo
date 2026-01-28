@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { emitSignalsFromInsights } from '@/lib/ai/signals';
 import { getRallyLLMClient, isRallyLLMConfigured } from '@/lib/ai/rally-llm-client';
+import { getAICRGatewayClient, isAICRGatewayConfigured } from '@/lib/aicr';
 import { APPROVAL_ITEMS } from '@/lib/data/synthetic/governance-approvals.data';
 import { ALL_GOVERNANCE_DOCUMENTS } from '@/lib/data/synthetic/governance-documents.data';
 import { CASE_ITEMS } from '@/lib/data/synthetic/cases.data';
@@ -147,9 +148,9 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
 
     // Use Rally LLaMA if configured, otherwise fallback to Claude
     const startTime = Date.now();
-    let analysisContent: string;
-    let modelUsed: string;
-    let tokensUsed: { input: number; output: number; total: number };
+    let analysisContent: string = '';
+    let modelUsed: string = 'unknown';
+    let tokensUsed: { input: number; output: number; total: number } = { input: 0, output: 0, total: 0 };
 
     if (isRallyLLMConfigured()) {
       // Call Rally LLaMA for governance analysis (SPM-tuned for compensation governance)
@@ -174,10 +175,37 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
       analysisContent = analysisResponse.content;
       modelUsed = clientStatus.model;
       tokensUsed = analysisResponse.tokensUsed;
-    } else {
-      // Fallback to Claude API (if configured) or static insights
-      console.log(`[TOOL] [OpsChief/SGM] Checking for Claude API key...`);
+    } else if (isAICRGatewayConfigured()) {
+      // Priority 2: Try AICR Gateway (budget, rate limiting, caching)
+      try {
+        console.log(`[TOOL] [OpsChief/SGM] Using LLM: AICR Gateway (gpt-4o)`);
 
+        const gatewayClient = getAICRGatewayClient({ tenantId });
+        const gatewayResponse = await gatewayClient.chat({
+          model: 'gpt-4o',
+          messages: [{ role: 'user', content: analysisPrompt }],
+          max_tokens: AI_GUARDRAILS.maxOutputTokens,
+          temperature: 0.5,
+        });
+
+        analysisContent = gatewayResponse.choices?.[0]?.message?.content || '';
+        modelUsed = 'gpt-4o (via gateway)';
+        tokensUsed = {
+          input: gatewayResponse.usage?.prompt_tokens || 0,
+          output: gatewayResponse.usage?.completion_tokens || 0,
+          total: gatewayResponse.usage?.total_tokens || 0,
+        };
+
+        console.log(`[OK] [OpsChief/SGM] AICR Gateway responded (cached: ${gatewayResponse._cached || false})`);
+      } catch (gatewayError) {
+        console.warn(`[WARN] [OpsChief/SGM] AICR Gateway failed:`, gatewayError);
+        // Fall through to other fallbacks
+        analysisContent = '';
+      }
+    }
+
+    // Priority 3: Fallback to static insights or direct Claude API
+    if (!analysisContent) {
       if (!process.env.ANTHROPIC_API_KEY) {
         // No API key - return static insights
         console.log(`[TOOL] [OpsChief/SGM] No API key configured - using static insights`);
@@ -223,8 +251,8 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
         modelUsed = 'static-fallback';
         tokensUsed = { input: 0, output: 0, total: 0 };
       } else {
-        // Claude API configured - use it
-        console.log(`[TOOL] [OpsChief/SGM] Using LLM: Claude Opus 4.5 (Fallback)`);
+        // Priority 4: Direct Claude API (last resort - no budget/rate limit)
+        console.log(`[TOOL] [OpsChief/SGM] Using LLM: Claude Opus 4.5 (Direct API - no gateway)`);
 
         const { signal, cleanup } = createAbortController(AI_GUARDRAILS.requestTimeoutMs);
         let claudeResponse: Response;
@@ -261,7 +289,7 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
 
         const claudeData = (await claudeResponse.json()) as any;
         analysisContent = claudeData.content?.[0]?.text || '';
-        modelUsed = 'claude-opus-4-5-20251101';
+        modelUsed = 'claude-opus-4-5-20251101 (direct)';
         tokensUsed = {
           input: claudeData.usage?.input_tokens || 0,
           output: claudeData.usage?.output_tokens || 0,
@@ -318,7 +346,9 @@ Generate 3-5 governance insights based on the data above. Be specific with metri
       ts: new Date().toISOString(),
       metrics: {
         modelId: modelUsed,
-        modelType: isRallyLLMConfigured() ? 'rally-llama-spm' : 'claude-sonnet',
+        modelType: isRallyLLMConfigured() ? 'rally-llama-spm' :
+                   modelUsed.includes('gateway') ? 'aicr-gateway' :
+                   modelUsed.includes('static') ? 'static-fallback' : 'claude-direct',
         intent: 'sgm_governance_analysis',
         analysisType: 'opschief',
         department: department || 'all',
