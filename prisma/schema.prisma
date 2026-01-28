@@ -1376,3 +1376,47 @@ model GovernanceConversation {
   @@index([lastMessageAt])
   @@map("governance_conversations")
 }
+
+// =============================================================================
+// ANSWER LIBRARY MODELS (AI Response Caching)
+// =============================================================================
+
+// Answer Library Model - Caches high-quality Q&A pairs for semantic matching
+model AnswerLibrary {
+  id              String   @id @default(cuid())
+
+  // Query & Embedding
+  queryText       String   @map("query_text")
+  queryEmbedding  Json?    @map("query_embedding")  // 768-dim vector as JSON array
+  normalizedQuery String?  @map("normalized_query")
+
+  // Answer
+  answerText      String   @map("answer_text")
+  sourcesJson     Json?    @map("sources_json")
+
+  // Confidence & Voting
+  confidenceScore Float    @default(1.0) @map("confidence_score")
+  thumbsUpCount   Int      @default(0) @map("thumbs_up_count")
+  thumbsDownCount Int      @default(0) @map("thumbs_down_count")
+
+  // Usage Tracking
+  useCount        Int      @default(1) @map("use_count")
+  lastUsedAt      DateTime? @map("last_used_at")
+
+  // Model Info
+  embeddingModel  String?  @map("embedding_model")
+  llmModel        String?  @map("llm_model")
+  llmProvider     String?  @map("llm_provider")
+
+  // Status
+  isActive        Boolean  @default(true) @map("is_active")
+
+  // Timestamps
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@index([isActive])
+  @@index([lastUsedAt])
+  @@index([confidenceScore])
+  @@map("answer_library")
+}
