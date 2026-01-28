@@ -10,7 +10,7 @@ export const OrbConfigSchema = z.object({
   overrides: z.object({
     name: z.string().optional(),
     description: z.string().optional(),
-    endpoints: z.record(z.string()).optional(),
+    endpoints: z.record(z.string(), z.string()).optional(),
   }).optional(),
   branding: z.object({
     gradient: z.tuple([z.string(), z.string()]).optional(),
