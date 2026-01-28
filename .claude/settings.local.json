@@ -139,7 +139,11 @@
       "Bash(break)",
       "Bash(})",
       "Skill(superpowers:executing-plans)",
-      "Skill(superpowers:finishing-a-development-branch)"
+      "Skill(superpowers:finishing-a-development-branch)",
+      "Skill(superpowers:writing-plans)",
+      "Bash(gh pr create --title \"feat: AICR Orbs Integration with macOS-style AI Dock\" --body \"$\\(cat <<''EOF''\n## Summary\n\n- Implements the @aicr/orbs package strategy for unified AI orb management across AICR platform apps\n- Integrates macOS-style AI Dock into SGM as the pilot application\n- Adds dock settings UI \\(position, auto-hide, magnification\\)\n- Deprecates legacy orb components in favor of the new unified dock\n\n## Changes\n\n### New Files\n- `orb-manifest.json` - SGM-specific orb configuration\n- `docs/plans/2026-01-25-aicr-orbs-implementation.md` - Implementation plan\n\n### Modified Files\n- `app/RootLayoutClient.tsx` - Replaced legacy orbs with OrbProvider + AIDock\n- `app/\\(app\\)/settings/ai/page.tsx` - Added dock settings UI\n- `lib/config/ai-settings.ts` - Extended settings with dock configuration\n- `components/ai/AISettingsProvider.tsx` - Added setDockSettings method\n- `components/ai/*.tsx` - Added deprecation notices to legacy orbs\n\n## Test plan\n\n- [ ] Sign in and verify AI Dock appears at bottom of screen\n- [ ] Hover over orbs to verify magnification effect\n- [ ] Click orbs to open their respective panels\n- [ ] Go to Settings > AI Features and verify dock settings work\n- [ ] Test dock position changes \\(left/bottom/right\\)\n- [ ] Test auto-hide and magnification toggles\n\n## Dependencies\n\nRequires `npm link @aicr/orbs` until package is published to npm.\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\nEOF\n\\)\")",
+      "Bash(gh pr merge:*)",
+      "Bash(gh pr view:*)"
     ]
   }
 }

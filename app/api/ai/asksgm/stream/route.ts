@@ -86,6 +86,44 @@ export async function POST(request: NextRequest) {
             }
 
             sendEvent({ type: 'done', data: { source: 'rally-llm' }});
+          } else if (process.env.ANTHROPIC_API_KEY) {
+            // Fallback to direct Anthropic API
+            sendEvent({ type: 'context', data: { source: 'anthropic-direct' } });
+
+            const anthropicResponse = await fetch('https://api.anthropic.com/v1/messages', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': process.env.ANTHROPIC_API_KEY,
+                'anthropic-version': '2023-06-01',
+              },
+              body: JSON.stringify({
+                model: 'claude-sonnet-4-20250514',
+                max_tokens: 2000,
+                messages: [{ role: 'user', content: body.query }],
+              }),
+            });
+
+            if (!anthropicResponse.ok) {
+              throw new Error(`Anthropic API error: ${anthropicResponse.status}`);
+            }
+
+            const data = await anthropicResponse.json() as {
+              content: Array<{ type: string; text: string }>;
+              usage?: { input_tokens: number; output_tokens: number };
+            };
+            const content = data.content?.[0]?.text || '';
+            const chunkSize = 50;
+            for (let i = 0; i < content.length; i += chunkSize) {
+              const chunk = content.slice(i, i + chunkSize);
+              sendEvent({ type: 'chunk', data: { content: chunk } });
+              await new Promise(r => setTimeout(r, 10));
+            }
+
+            sendEvent({ type: 'done', data: {
+              totalTokens: (data.usage?.input_tokens || 0) + (data.usage?.output_tokens || 0),
+              source: 'anthropic-direct'
+            }});
           } else {
             throw new Error('No LLM provider configured');
           }
