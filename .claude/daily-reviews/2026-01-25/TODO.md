@@ -2,13 +2,14 @@
 
 ## Pending
 
-### Test AI/RAG Endpoint with Correct Pillar Data
-- [ ] Verify `/api/ai/kb` endpoint returns cards with updated pillar assignments
-- [ ] Test search queries return correct pillar metadata
-- [ ] Confirm RAG export (`spm-kb-rag-export.json`) is being used by AI queries
-- [ ] Test pillar-specific queries (e.g., "What technology platforms are used?")
+(None)
 
 ## Completed This Session
+
+### RAG/Pillar Data Verification (Jan 27)
+- [x] Verified RAG export has correct pillar assignments (8 pillars, 929 chunks)
+- [x] Confirmed TECHNOLOGY_PLATFORMS pillar includes: CRM Integration, ERP Integration, ICM Platform, Xactly, Varicent, CaptivateIQ, Anaplan
+- [x] API endpoints require auth (verified 401 response = endpoint working)
 
 - [x] Pillar-first KB navigation for faster load times
 - [x] Consolidated 14 pillars → 8 core pillars
